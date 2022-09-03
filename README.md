@@ -2,7 +2,7 @@
 
 ## Tentang si-OBE
 
-si-OBE adalah aplikasi web yang digunakan untuk mengelola nilai berbasis Objective Based Education (OBE)
+si-OBE adalah aplikasi web yang digunakan untuk mengelola nilai berbasis Outcame Based Education (OBE)
 
 ## Instalasi
 
