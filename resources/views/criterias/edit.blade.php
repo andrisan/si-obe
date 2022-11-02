@@ -11,15 +11,15 @@
                 <form action="foo/barr">
                     <div class="pb-4">
                         <div class="pb-2"><label for="position"><strong class="font-semibold text-gray-900 dark:text-white">Title</strong></label></div>
-                        <input type="text" placeholder="Posisi CLO" class="input input-bordered w-full max-w-xs" /> <br>
+                        <input type="text" placeholder="Judul kriteria" class="input input-bordered w-full max-w-xs" /> <br>
                     </div>
                     <div class="pb-4">
                     <div class="pb-2"><label for="position"><strong class="font-semibold text-gray-900 dark:text-white">Description</strong></label></div>
-                        <textarea class="textarea textarea-bordered w-full" placeholder="Deskripsi CLO"></textarea>
+                        <textarea class="textarea textarea-bordered w-full" placeholder="Deskripsi kriteria"></textarea>
                     </div>
                     <div class="pb-4">
                         <div class="pb-2"><label for="position"><strong class="font-semibold text-gray-900 dark:text-white">Max Point</strong></label></div>
-                        <input type="text" placeholder="Posisi CLO" class="input input-bordered w-full max-w-xs" /> <br>
+                        <input type="text" placeholder="Poin max kriteria" class="input input-bordered w-full max-w-xs" /> <br>
                     </div>
                 </form>
                 <input type="submit" value="Edit" class="btn btn-active rounded-md " />
