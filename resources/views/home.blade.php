@@ -23,7 +23,7 @@
    
   </style>
 </head>
-<div class="lg:flex">
+<div class="md:flex">
 
  
   <div class="navbar ml-28 mt-20  ">
@@ -60,39 +60,43 @@
         </div>
         
       </div>
-      <div class="w-72 h-10 bg-[#AFC7F5] mt-20  rounded-lg">
-    <div class="mt-2 ml-2 flex">
-      <img src="{{asset('img/Assign.png')}}" alt="">
-      <h1 class="ml-5">My Courses</h1>
-      <i class="fa-solid fa-magnifying-glass absolute right-32 mt-1"></i>
-    </div>
-    <div class="h-72 bg-[#AFC7F5] mt-5 rounded-lg ">
-      <div class="flex pt-10 pl-5">
-          <img class="w-5 mr-2" src="{{asset('img/frames.png')}}" alt="">
-          <h1>Matkul 1</h1>
-      </div>
-      <div class="flex pt-3 pl-5">
-          <img class="w-5 mr-2" src="{{asset('img/frames.png')}}" alt="">
-          <h1>Matkul 2</h1>
-      </div>
-      <div class="flex pt-3 pl-5">
-          <img class="w-5 mr-2" src="{{asset('img/frames.png')}}" alt="">
-          <h1>Matkul 3</h1>
-      </div>
-      <div class="flex pt-3 pl-5">
-          <img class="w-5 mr-2" src="{{asset('img/frames.png')}}" alt="">
-          <h1>Matkul 4</h1>
-      </div>
-      <div class="flex pt-3 pl-5">
-          <img class="w-5 mr-2" src="{{asset('img/frames.png')}}" alt="">
-          <h1>Matkul 5</h1>
-      </div>
-      <h1 class="text-gray-600 ml-5 mt-6">All Course...</h1>
-    </div>
+     
     
 
   </div>
     </div>
+    <div class="w-[35rem] bg-black mt-20 mx-5">
+
+</div>
+<div class="w-72 h-10 bg-[#AFC7F5] mt-20  rounded-lg">
+<div class="mt-2 ml-2 flex">
+<img src="{{asset('img/Assign.png')}}" alt="">
+<h1 class="ml-5">My Courses</h1>
+<i class="fa-solid fa-magnifying-glass absolute right-40 mt-1"></i>
+</div>
+<div class="h-72 bg-[#AFC7F5] mt-5 rounded-lg ">
+<div class="flex pt-10 pl-5">
+    <img class="w-5 mr-2" src="{{asset('img/frames.png')}}" alt="">
+    <h1>Matkul 1</h1>
+</div>
+<div class="flex pt-3 pl-5">
+    <img class="w-5 mr-2" src="{{asset('img/frames.png')}}" alt="">
+    <h1>Matkul 2</h1>
+</div>
+<div class="flex pt-3 pl-5">
+    <img class="w-5 mr-2" src="{{asset('img/frames.png')}}" alt="">
+    <h1>Matkul 3</h1>
+</div>
+<div class="flex pt-3 pl-5">
+    <img class="w-5 mr-2" src="{{asset('img/frames.png')}}" alt="">
+    <h1>Matkul 4</h1>
+</div>
+<div class="flex pt-3 pl-5">
+    <img class="w-5 mr-2" src="{{asset('img/frames.png')}}" alt="">
+    <h1>Matkul 5</h1>
+</div>
+<h1 class="text-gray-600 ml-5 mt-6">All Course...</h1>
+</div>
   </div>
   
   
