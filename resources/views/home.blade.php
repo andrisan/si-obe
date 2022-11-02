@@ -24,7 +24,7 @@
 </head>
 
 <body>
-  <div class="ml-28">
+  <div class="mx-28">
 
     <div class="mt-10 ">
       <h1 class="text-4xl font-extrabold ">Dashboard</h1>
@@ -36,7 +36,7 @@
           <div>
 
   </div>
-  <div class="md:flex pb-10">
+  <div class="md:flex pb-10 mx-10">
 
 
     <div class="navbar ml-28 mt-5  ">
@@ -169,7 +169,7 @@
 
 
     </div>
-
+  </div>
 
 
 </body>
