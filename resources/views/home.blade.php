@@ -66,7 +66,7 @@
   </div>
   <div class="w-[35rem] bg-white mt-20 mx-5 ">
     <div class="bg-[#AFC7F5] p-5 ">
-      <h1 class="mx-auto my-auto">Lembar Kerja</h1>
+      <h1 class="mx-auto my-auto text-2xl font-bold">Lembar Kerja</h1>
     </div>
     <div class="border-2 border-blue-300 h-[90vh]">
       <div class="flex mt-5 pb-10 ">
