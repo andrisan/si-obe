@@ -46,7 +46,16 @@
       </div>
 
     </div>
+    <div class="flex  mt-5 space-x-5 relative">
 
+<div class="right-0 float-right absolute">
+  <div class="flex space-x-5">
+    <button class="bg-[#AFC7F5] px-5 py-2 rounded-md text-black" placeholder="Tambah"> <span class="font-bold  text-white rounded-full border-white"></span> Unggah</button>
+    <button class="bg-[#AFC7F5] px-5 py-2 rounded-md text-black" placeholder="Tambah"> <span class="font-bold  text-white rounded-full border-white"></span> Simpan</button>
+  </div>
+
+</div>
+</div>
 
 
     
