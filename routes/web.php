@@ -16,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/rubric/edit', function () {
+    return view('rubricedit');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
