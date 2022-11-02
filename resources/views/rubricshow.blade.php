@@ -53,9 +53,102 @@
     <button class="bg-[#AFC7F5] px-5 py-2 rounded-md text-black" placeholder="Tambah"> <span class="font-bold  text-white rounded-full border-white"></span> Unggah</button>
     <button class="bg-[#AFC7F5] px-5 py-2 rounded-md text-black" placeholder="Tambah"> <span class="font-bold  text-white rounded-full border-white"></span> Simpan</button>
   </div>
+<div class="mt-20">
+      <table  class="table-fixed w-full" border="2">
+        <thead>
+          <tr class="bg-[#F7F7F9] border-2 h-10">
+            <th class="w-10">No</th>
+            <th class="w-48">NIM</th>
+            <th class="w-[30rem] border-collapse">Nama</th>
+            <th>Submission</th>
+            <th>ABS</th>
+            <th>UTS</th>
+            <th>UAS</th>
+            <th class="pr-5">Nilai Akhir</th>
+          </tr>
+        </thead>
+        <tbody class="text-center border-2 border-black">
+          <tr class="border-2 h-14">
+            <td>1</td>
+            <td>215150701111002</td>
+            <td>Ferdinand Pratama Putra</td>
+            <td><button class="bg-[#678CD3] hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
+                Lihat
+              </button></td>
+            <td>80</td>
+            <td>80</td>
+            <td>80</td>
+            <td class="pr-5">B</td>
 
+          </tr>
+          <tr class="border-2 h-14">
+            <td>2</td>
+
+          </tr>
+          <tr class="border-2 h-14">
+            <td>3</td>
+
+          </tr>
+          <tr class="border-2 h-14">
+            <td>4</td>
+
+          </tr>
+          <tr class="border-2 h-14">
+            <td>5</td>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
 </div>
 </div>
+<div class="mt-20">
+      <table  class="table-fixed w-full" border="2">
+        <thead>
+          <tr class="bg-[#F7F7F9] border-2 h-10">
+            <th class="w-10">No</th>
+            <th class="w-48">NIM</th>
+            <th class="w-[30rem] border-collapse">Nama</th>
+            <th>Submission</th>
+            <th>ABS</th>
+            <th>UTS</th>
+            <th>UAS</th>
+            <th class="pr-5">Nilai Akhir</th>
+          </tr>
+        </thead>
+        <tbody class="text-center border-2 border-black">
+          <tr class="border-2 h-14">
+            <td>1</td>
+            <td>215150701111002</td>
+            <td>Ferdinand Pratama Putra</td>
+            <td><button class="bg-[#678CD3] hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
+                Lihat
+              </button></td>
+            <td>80</td>
+            <td>80</td>
+            <td>80</td>
+            <td class="pr-5">B</td>
+
+          </tr>
+          <tr class="border-2 h-14">
+            <td>2</td>
+
+          </tr>
+          <tr class="border-2 h-14">
+            <td>3</td>
+
+          </tr>
+          <tr class="border-2 h-14">
+            <td>4</td>
+
+          </tr>
+          <tr class="border-2 h-14">
+            <td>5</td>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
 
     
