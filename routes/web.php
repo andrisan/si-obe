@@ -22,3 +22,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+Route::get('/syllabi/{syllabus}/learning-plans/{learning-plan}/edit', function () {
+    return view('learning-plans.edit');
+});
