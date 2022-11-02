@@ -22,6 +22,7 @@
     }
   </style>
 </head>
+  <body>
 <div class="md:flex">
 
 
@@ -156,7 +157,7 @@
 
   </div>
 
-  <body>
+
 
   </body>
 
