@@ -56,7 +56,7 @@
           <i class="fa-solid fa-calendar-days  pl-36 "></i>
         </div>
         <div class="mt-1">
-          
+          @include('components.calender')
         </div>
         
       </div>
