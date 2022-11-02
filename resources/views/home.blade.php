@@ -118,7 +118,7 @@
     <div class="w-72 h-10 bg-[#AFC7F5] mt-5 rounded-lg">
       <div class="pt-2 ml-2 flex">
         <img src="{{asset('img/Assign.png')}}" alt="">
-        <h1 class="ml-5">Assigment</h1>
+        <h1 class="ml-5">Assingment</h1>
 
       </div>
       <div class="h-72 bg-[#AFC7F5] mt-5 rounded-lg ">
