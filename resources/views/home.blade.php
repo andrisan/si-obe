@@ -23,7 +23,48 @@
    
   </style>
 </head>
+<div class="lg:flex">
 
+ 
+  <div class="navbar ml-28 mt-20  ">
+    <div class="bg-[#AFC7F5] w-72 h-14 ml-5 pt-2 rounded-md cursor-pointer">
+      <div class="flex ml-3">
+        <img class="w-8 gb" src="{{ asset('img/Gambar Fakultas.png') }}">
+        <h1 class="justify-center items-center text-center my-auto mt-1 ml-5 text-xl">All Faculties</h1>
+      </div>
+    </div>
+    <div class="bg-[#AFC7F5]  w-72 h-14 ml-5 pt-2 rounded-md mt-5 cursor-pointer">
+      <div class="flex ml-3">
+        <img class="w-8 ml gb" src="{{ asset('img/Gambar Department.png') }}">
+        <h1 class="justify-center items-center text-center my-auto ml-5 text-xl">All Departemens</h1>
+      </div>
+    </div>
+    <div class="bg-[#AFC7F5]  w-72 h-14 ml-5 pt-2 rounded-md mt-5 cursor-pointer">
+      <div class="flex ml-3">
+        <img class="w-8 gb" src="{{ asset('img/Gambar Program Studi.png') }}">
+        <h1 class="justify-center items-center text-center my-auto mt-1 ml-5 text-xl">All Study Program</h1>
+      </div>
+    </div>
+    
+    <div class="w-72">
+      <div class="mt-5">
+        <h1 class="text-xl pl-5">Academic Calender</h1>
+      </div>
+      <div class="bg-[#AFC7F5]  w-72 h-8 ml-5 pt-2 rounded-md mt-5 cursor-pointer">
+        <div class="flex">
+          <h1 class="ml-8 text-sm">Select date</h1>
+          <i class="fa-solid fa-calendar-days  pl-36 "></i>
+        </div>
+        <div class="mt-1">
+          
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+  
+</div>
 <body>
   
 </body>
