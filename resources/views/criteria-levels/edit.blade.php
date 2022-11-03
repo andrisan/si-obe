@@ -28,11 +28,11 @@
                                         <a class="mr-10 tab tab-active">Criteria Levels Edit</a>
                                     </div>
                                     <!-- Nama Mata Kuliah -->
-                                    <div class="container text-start p-4 text-primary mt-2">
+                                    <div class="container text-start p-4 text-blue-600 mt-2">
                                         <form>
                                             <label class="uppercase font-bold" for="fname">nama mata kuliah/indikator</label><br>
                                             <input type="text" placeholder="Type here"
-                                                class="input input-bordered input-ghost input-sm w-full max-w-xs mb-4 mt-2" /><br>
+                                                class="input input-bordered input-ghost input-sm w-full max-w-xl mb-4 mt-2" /><br>
                                         </form>
                                     </div>
                                     <div class="mx-4 w-[600px] drop-shadow rounded-md">
