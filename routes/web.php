@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/rubric/edit', function () {
-    return view('rubricedit');
+    return view('rubrics.edit');
 });
 
 Route::get('/dashboard', function () {
