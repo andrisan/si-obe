@@ -18,7 +18,7 @@ Route::get('/', function () {
 });
 
 Route::get('/departments/{department}/study-programs/{study-program}/edit', function () {
-    return view('study-program');
+    return view('study-programs');
 });
 
 Route::get('/dashboard', function () {
