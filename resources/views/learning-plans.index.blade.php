@@ -86,7 +86,6 @@
             </tr>
           </thead>
           <tbody>
-            <!-- row 1 -->
             <tr>
                 <td>1</td>
                 <td>Introduction</td>
@@ -97,7 +96,6 @@
                   <button class="btn btn-error btn-sm">Delete</button>
                 </td>
               </tr>
-              <!-- row 2 -->
               <tr>
                 <td>2</td>
                 <td>MVC</td>
@@ -108,7 +106,6 @@
                   <button class="btn btn-error btn-sm">Delete</button>
                 </td>
               </tr>
-              <!-- row 3 -->
               <tr>
                 <td>3</td>
                 <td>PHP</td>
@@ -119,7 +116,6 @@
                   <button class="btn btn-error btn-sm">Delete</button>
                 </td>
               </tr>
-              <!-- row 4 -->
               <tr>
                 <td>4</td>
                 <td>PBD</td>
@@ -130,7 +126,6 @@
                   <button class="btn btn-error btn-sm">Delete</button>
                 </td>
               </tr>
-              <!-- row 5 -->
               <tr>
                 <td>5</td>
                 <td>PHP Basics</td>
@@ -141,7 +136,6 @@
                   <button class="btn btn-error btn-sm">Delete</button>
                 </td>
               </tr>
-              <!-- row 6 -->
               <tr>
                 <td>6</td>
                 <td>Laravel</td>
@@ -152,7 +146,6 @@
                   <button class="btn btn-error btn-sm">Delete</button>
                 </td>
               </tr>
-              <!-- row 7 -->
               <tr>
                 <td>7</td>
                 <td>Linked List</td>
@@ -163,7 +156,6 @@
                   <button class="btn btn-error btn-sm">Delete</button>
                 </td>
               </tr>
-              <!-- row 8 -->
               <tr>
                 <td>8</td>
                 <td>HTML</td>
