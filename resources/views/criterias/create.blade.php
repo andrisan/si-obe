@@ -1,21 +1,19 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
+            {{ __('Membuat Kriteria Baru') }}
         </h2>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="items-center" style="background-color: white;">
-                    <h1 class="text-4xl font-extrabold sm:pt-16 sm:pl-14 pt-16 text-center sm:text-left">Membuat Kriteria Baru</h1><hr class="sm:ml-14 mt-3">
-                </div>
+                
             
                 <div class="flex items-center justify-center py-10" style="background-color: white;">
                     <div class="card bg-white mx-auto formCard">
                         <div class="card-body items-left lg:items-center">
-                          <form action="">
+                          <form action="/rubrics/blabla/criterias/blablo" method="GET">
                             <h2 class="card-title text-left justify-center font-bold text-2xl">Masukkan Kriteria Baru Anda</h2>
             
                             <h3 class="text-left lg:text-left font-semibold text-sm pt-16 iloPosition ">Judul</h3>
