@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LPController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,3 +27,5 @@ require __DIR__.'/auth.php';
 Route::get('/syllabi/{syllabus}/learning-plans/{learning-plan}/edit', function () {
     return view('learning-plans.edit');
 });
+
+Route::resource('syllabi.learning-plans', LPController::class);
