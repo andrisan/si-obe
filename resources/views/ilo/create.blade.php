@@ -13,7 +13,7 @@
                         <div class="card bg-white mx-auto formCard">
                             <div class="card-body items-left lg:items-center">
                                 <h2 class="card-title text-center justify-center font-semibold text-2xl">Masukkan Capaian Pembelajaran Baru Anda</h2>
-                                <form action="/ilo/hasil">
+                                <form action="/syllabi/blabla/ilos">
                                     <h3 class="text-left lg:text-center font-semibold text-sm pt-16 iloPosition">POSISI</h3>
                                     <input type="text" placeholder="Ketik di sini..." class="input input-bordered w-full max-w-xs font-regular text-base" />
                                     <h3 class="text-left lg:text-center font-semibold text-sm pt-4 iloDesc">DESKRIPSI</h3>
