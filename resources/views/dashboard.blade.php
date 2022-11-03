@@ -4,12 +4,12 @@
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
-
-    <div class="py-12">
-        <div class="max-w-8xl sm:px-6 lg:px-8">
-            <div class="bg-white overflow- shadow-sm sm:rounded-lg">
-                <div class="p-1 bg-white border-b border-gray-200">
-                     <div class="md:ml-20">
+  
+    <div class="py-5">
+        <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white  shadow-sm sm:rounded-lg">
+                <div class="p-12 bg-white border-b border-gray-200">
+                    <div class="md:ml-20">
                         <div class="rounded-md p-2 w-72 bg-[#AFC7F5]  ">
                             <div class="flex text-center items-center  ">
                                 <div class="gb ">
@@ -18,7 +18,7 @@
                                 <h2 class="ml-3 text-xl text-black">All Faculties</h2>
                             </div>
                         </div>
-                         <div class="mt-5 rounded-md p-2 w-72 bg-[#AFC7F5]  ">
+                        <div class="mt-5 rounded-md p-2 w-72 bg-[#AFC7F5]  ">
                             <div class="flex text-center items-center  ">
                                 <div class="gb ">
                                     <img class="ml-2 w-11" src="{{ asset('img/Gambar Department.png') }}" alt="">
@@ -34,7 +34,8 @@
                                 <h2 class="ml-3 text-xl text-black">All Study program</h2>
                             </div>
                         </div>
-                    
+                    </div>
+
                 </div>
             </div>
         </div>
