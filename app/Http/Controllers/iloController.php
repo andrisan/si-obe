@@ -13,7 +13,7 @@ class iloController extends Controller
      */
     public function index()
     {
-        //
+        return view('ilo.create');
     }
 
     /**
@@ -23,7 +23,7 @@ class iloController extends Controller
      */
     public function create()
     {
-        return view('ilo.create');
+        //
     }
 
     /**
