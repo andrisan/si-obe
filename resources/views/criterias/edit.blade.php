@@ -11,15 +11,15 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                 <form action=" ">
                     <div class="pb-4">
-                        <div class="pb-2"><label for="position"><strong class="font-semibold text-gray-900 dark:text-white">Title</strong></label></div>
+                        <div class="pb-2"><label for="title"><strong class="font-semibold text-gray-900 dark:text-white">Title</strong></label></div>
                         <input type="text" placeholder="Judul kriteria" class="input input-bordered w-full max-w-xs" /> <br>
                     </div>
                     <div class="pb-4">
-                    <div class="pb-2"><label for="position"><strong class="font-semibold text-gray-900 dark:text-white">Description</strong></label></div>
+                    <div class="pb-2"><label for="description"><strong class="font-semibold text-gray-900 dark:text-white">Description</strong></label></div>
                         <textarea class="textarea textarea-bordered w-full" placeholder="Deskripsi kriteria"></textarea>
                     </div>
                     <div class="pb-4">
-                        <div class="pb-2"><label for="position"><strong class="font-semibold text-gray-900 dark:text-white">Max Point</strong></label></div>
+                        <div class="pb-2"><label for="max"><strong class="font-semibold text-gray-900 dark:text-white">Max Point</strong></label></div>
                         <input type="text" placeholder="Poin max kriteria" class="input input-bordered w-full max-w-xs" /> <br>
                     </div>
                 </form>
