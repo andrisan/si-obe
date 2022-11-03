@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\RubricsController;
+use App\Http\Controllers\criteriaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +22,8 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+Route::get('/criterias/{id}', [criteriaController::class, 'show']);
 
 Route::get('/rubrics/{rubric}/criterias/{criteria}/criteria-levels/{criteria-level}/edit', function () {
     return view('criteria-levels/edit');
