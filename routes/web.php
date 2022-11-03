@@ -19,7 +19,7 @@ Route::get('/', function () {
 });
 Route::resource('rubrics',rubricController::class);
 Route::get('/rubric/show', function () {
-    return view('rubricshow');
+    return view('rubrics.show');
 })->middleware(['auth']);
 
 Route::get('/dashboard', function () {
