@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\criteriaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route:: resource('criteria',criteriaController::class);
+
 
 Route::get('/criteria/edit', function () {
     return view('criterialevel');
