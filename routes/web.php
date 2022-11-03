@@ -18,7 +18,7 @@ Route::get('/', function () {
 });
 Route::get('/rubric/show', function () {
     return view('rubricshow');
-});
+})->middleware(['auth']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
