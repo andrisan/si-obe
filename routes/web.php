@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\RubricsController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\lloController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,8 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+Route::resource('llos', lloController::class);
 
 Route::get('/rubrics/{rubric}/criterias/{criteria}/criteria-levels/{criteria-level}/edit', function () {
     return view('criteria-levels/edit');
