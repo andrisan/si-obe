@@ -76,7 +76,7 @@
         <button class="btn btn-accent col-end-9">Tambah</button>
       </div>
       <div class="overflow-x-auto py-4">
-        <table class="table table-zebra w-full">
+        <table class="table table w-full">
           <!-- head -->
           <thead>
             <tr>
