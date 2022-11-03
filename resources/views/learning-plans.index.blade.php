@@ -178,7 +178,7 @@
         </table>
       </div>
       <div class="grid grid-cols-8 gap-4 py-4">
-        <button class="btn btn-accent col-end-9">Tambah</button>
+        <button class="btn btn-accent col-end-1">Tambah</button>
       </div>
       <form>
           <div class="flex justify-end p-4">
