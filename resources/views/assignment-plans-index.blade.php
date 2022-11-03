@@ -28,7 +28,7 @@
   <div class="navbar-end">
     <button class="btn btn-secondary">Simpan</button>
   </div>
-
+</div>
   <div class="flex flex-col w-full">
     <div class="divider"></div> 
   </div>
