@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\RubricsController;
+use App\Http\Controllers\cloController;
 use Illuminate\Support\Facades\Route;
 
 /*
