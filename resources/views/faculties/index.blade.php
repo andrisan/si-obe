@@ -1,13 +1,13 @@
 <x-faculties-layout>
   <h1 class="text-4xl font-semibold text-primary-content">Daftar Fakultas</h1>
   <h1 class="text-xl mt-2 text-primary-content">Cari Nama Fakultas</h1>
-  {{-- Search dan tambah belum responsive --}}
-  <div class="grid grid-cols-8 gap-4 py-4">
+  
+  <div class="grid">
       <form action="" method="" class="col-start-1 col-span-3">
           <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" />
           <button class="btn btn-primary ml-2">Cari</button>
       </form>
-      <button class="btn btn-accent col-end-9">Tambah</button>
+      <button class="btn btn-accent col-end-9 text-black">Tambah</button>
   </div>
 
   <div class="overflow-x-auto py-4">
@@ -87,6 +87,36 @@
             <th>7</th>
             <td>Fakultas Teknik Pertanian</td>
             <td>3</td>
+            <td>
+              <button class="btn btn-warning btn-sm">Edit</button>
+              <button class="btn btn-error btn-sm">Delete</button>
+            </td>
+          </tr>
+          <!-- row 8 -->
+          <tr>
+            <th>8</th>
+            <td>Fakultas ABC</td>
+            <td>3</td>
+            <td>
+              <button class="btn btn-warning btn-sm">Edit</button>
+              <button class="btn btn-error btn-sm">Delete</button>
+            </td>
+          </tr>
+          <!-- row 9 -->
+          <tr>
+            <th>9</th>
+            <td>Fakultas DEF</td>
+            <td>6</td>
+            <td>
+              <button class="btn btn-warning btn-sm">Edit</button>
+              <button class="btn btn-error btn-sm">Delete</button>
+            </td>
+          </tr>
+          <!-- row 9 -->
+          <tr>
+            <th>10</th>
+            <td>Fakultas GHI</td>
+            <td>7</td>
             <td>
               <button class="btn btn-warning btn-sm">Edit</button>
               <button class="btn btn-error btn-sm">Delete</button>

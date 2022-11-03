@@ -6,7 +6,7 @@
     <title>Fakultas</title>
 </head>
 <body>
-    <div class="container p-12">
+    <div class="p-12">
         {{-- Page Content --}}
         {{ $slot }}
     </div>
