@@ -21,16 +21,17 @@
       </label>
     </div>
   </div>
+
   <div class="navbar-center">
     <a class="btn btn-ghost normal-case text-xl">Assignment Plans</a>
   </div>
   <div class="navbar-end">
-  <button class="btn btn-secondary">Simpan</button>
+    <button class="btn btn-secondary">Simpan</button>
   </div>
-</div>
-<div class="flex flex-col w-full">
-  <div class="divider"></div> 
-</div>
+
+  <div class="flex flex-col w-full">
+    <div class="divider"></div> 
+  </div>
 </div>
 
 
@@ -38,14 +39,14 @@
   <div >
     <div class="card w-200 bg-base-100 shadow-xl ">
       <div class="card-body">
-      <div class="form-control w-full max-w-xs">
-      <input type="text" placeholder="Title" class="input input-bordered w-full max-w-xs mb-5" mx-20 my-20 />
-      <div class="form-control">
-      <textarea class="textarea textarea-bordered h-24" placeholder="Description"></textarea>
-    </div>
-    </div>
+        <div class="form-control w-full max-w-xs">
+          <input type="text" placeholder="Title" class="input input-bordered w-full max-w-xs mb-5"/>
+          <div class="form-control">
+            <textarea class="textarea textarea-bordered h-24" placeholder="Description"></textarea>
+          </div>
         </div>
       </div>
+    </div>
   </div>
 
   <!-- card output-->
