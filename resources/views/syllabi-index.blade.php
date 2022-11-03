@@ -9,7 +9,7 @@
   <link href="https://cdn.jsdelivr.net/npm/daisyui@2.38.0/dist/full.css" rel="stylesheet" type="text/css" />
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <title>Document</title>
+  <title>Syllabi</title>
 
 </head>
 
@@ -28,8 +28,8 @@
     </div>
     <div class="flex-none gap-4">
       <a class="pr-3">
-        <p class="text-m">Putri Daliana Salsabilla Rais</p>
-        <p class="text-x5">215150700111043</p>
+        <p class="text-m">Nama Lengkap Mahasiswa</p>
+        <p class="text-x5">215150700111000</p>
       </a>
     </div>
     <div class="dropdown dropdown-end">
@@ -49,44 +49,44 @@
 
     <div class="card bg-base-100 shadow-xl" style="border-width:2px; height:250px; width:500px">
         <div class="card-body">
-          <h2 class="card-title">TITLE</h2>
-          <p>Penjelasan mengenai TITLE</p>
+          <h2 class="card-title">PBD</h2>
+          <p>Pemrograman Basis Data</p>
           <div class="border-b"></div>
           <div class="card-actions justify-end">
-            <p align="right">Author</p>
+            <p align="right">Nama Dosen</p>
           </div>
         </div>
       </div>
 
       <div class="card bg-base-100 shadow-xl" style="border-width:2px; height:250px; width:500px">
         <div class="card-body">
-          <h2 class="card-title">TITLE</h2>
-          <p>Penjelasan mengenai TITLE</p>
+          <h2 class="card-title">PAW</h2>
+          <p>Pemrograman Berbasis Website</p>
           <div class="border-b"></div>
           <div class="card-actions justify-end">
-            <p align="right">Author</p>
+            <p align="right">Nama Dosen</p>
           </div>
         </div>
       </div>
 
       <div class="card bg-base-100 shadow-xl" style="border-width:2px; height:250px; width:500px">
         <div class="card-body">
-          <h2 class="card-title">TITLE</h2>
-          <p>Penjelasan mengenai TITLE</p>
+          <h2 class="card-title">Statistika</h2>
+          <p>Mata Kuliah Statistika</p>
           <div class="border-b"></div>
           <div class="card-actions justify-end">
-            <p align="right">Author</p>
+            <p align="right">Nama Dosen</p>
           </div>
         </div>
       </div>
 
       <div class="card bg-base-100 shadow-xl" style="border-width:2px; height:250px; width:500px">
         <div class="card-body">
-          <h2 class="card-title">TITLE</h2>
-          <p>Penjelasan mengenai TITLE</p>
+          <h2 class="card-title">JKD</h2>
+          <p>Jaringan Komputer Dasar</p>
           <div class="border-b"></div>
           <div class="card-actions justify-end">
-            <p align="right">Author</p>
+            <p align="right">Nama Dosen</p>
           </div>
         </div>
       </div>
