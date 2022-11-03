@@ -24,3 +24,4 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
+Route::resource('rubrics.criterias', CriteriasController::class);
