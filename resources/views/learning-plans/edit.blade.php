@@ -18,6 +18,10 @@
                     <div class="pb-2"><label for="study_material"><strong class="font-semibold text-gray-900">Study Material</strong></label></div>
                         <textarea class="textarea textarea-bordered w-full" placeholder="Study Material"></textarea>
                     </div>
+                    <div class="pb-4">
+                    <div class="pb-2"><label for="study_material"><strong class="font-semibold text-gray-900">Learning Method</strong></label></div>
+                        <textarea class="textarea textarea-bordered w-full" placeholder="Study Material"></textarea>
+                    </div>
                 <input type="submit" value="Edit" class="btn btn-active rounded-md " />
                 <button class="btn btn-outline rounded-md">Cancel</button>
                 </div>
