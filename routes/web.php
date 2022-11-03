@@ -32,3 +32,4 @@ Route::get('/rubrics/{rubric}/criterias/{criteria}/criteria-levels/{criteria-lev
 Route ::resource('rubrics', RubricsController::class)->middleware(['auth'])->only('show', 'create');
 
 require __DIR__.'/auth.php';
+?>
