@@ -22,3 +22,8 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+Route::get('/syllabi/syllabus/ilos/1/edit', function () {
+    return view('ilos.edit');
+})->middleware(['auth'])->name('dashboard');
+
