@@ -23,7 +23,7 @@ class CriteriasController extends Controller
      */
     public function create()
     {
-        
+        return view('criterias.create');
     }
 
     /**
@@ -45,7 +45,7 @@ class CriteriasController extends Controller
      */
     public function show($id)
     {
-        
+        return 'criterias'. $id;
     }
 
     /**
