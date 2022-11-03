@@ -21,7 +21,7 @@
                         <div class="mt-5 rounded-md p-2 w-72 bg-[#AFC7F5]  ">
                             <div class="flex text-center items-center  ">
                                 <div class="gb ">
-                                    <img class="ml-2 w-11" src="{{ asset('img/Gambar Department.png') }}" alt="">
+                                    <img class="ml-2 w-10" src="{{ asset('img/Gambar Department.png') }}" alt="">
                                 </div>
                                 <h2 class="ml-6 text-xl text-black">All Departements</h2>
                             </div>
