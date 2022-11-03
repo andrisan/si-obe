@@ -37,7 +37,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="relative border-2 border-blue-400">
+                        <div class="relative border-2 h-screen border-blue-400">
                             <div class=" w-[72] px-10 rounded-sm bg-[#AFC7F5]">
                                 <div class="flex py-2 ">
                                     <img src="{{ asset('img/Vector.png') }}" alt="">
@@ -48,7 +48,7 @@
                             <div class="   ">
                                 <div class="flex p-5">
 
-                                    <div class="w-72 h-60  bg-[#6F727A] shadow-xl">
+                                    <div class="w-72 h-60  bg-[#6F727A] ">
                                         <figure><img class="h-full" src="{{ asset('img/GambarCourse 1.png') }}"
                                                 alt="Shoes" /></figure>
                                         <div class="card-body">
@@ -63,40 +63,7 @@
 
                                         </div>
                                     </div>
-                                    <div class="w-72 h-60 ml-5 bg-[#6F727A] shadow-xl">
-                                        <figure><img class="h-full" src="{{ asset('img/GambarCourse 1.png') }}"
-                                                alt="Shoes" /></figure>
-                                        <div class="card-body">
-                                            <div class="text-white">
-                                                <div class="flex">
-                                                    <h2 class="text-md  pr-5">Pemrograman Basis Data</h2>
-                                                    <h1 class="text-2xl">...</h1>
-                                                </div>
-                                                <p class="text-sm">Teknologi Informasi - B</p>
-
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="flex p-5">
-
-                                    <div class="w-72 h-60  bg-[#6F727A] shadow-xl">
-                                        <figure><img class="h-full" src="{{ asset('img/GambarCourse 1.png') }}"
-                                                alt="Shoes" /></figure>
-                                        <div class="card-body">
-                                            <div class="text-white">
-                                                <div class="flex">
-                                                    <h2 class="text-md  pr-5">Pemrograman Basis Data</h2>
-                                                    <h1 class="text-2xl">...</h1>
-                                                </div>
-                                                <p class="text-sm">Teknologi Informasi - B</p>
-
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="w-72 h-60 ml-5 bg-[#6F727A] shadow-xl">
+                                    <div class="w-72 h-60 ml-5 bg-[#6F727A] ">
                                         <figure><img class="h-full" src="{{ asset('img/GambarCourse 1.png') }}"
                                                 alt="Shoes" /></figure>
                                         <div class="card-body">
@@ -112,7 +79,40 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="text-right justify-end items-end flex mr-5 pb-5 mt-10 ">
+                                <div class="flex px-5 ">
+
+                                    <div class="w-72 h-60  bg-[#6F727A] ">
+                                        <figure><img class="h-full" src="{{ asset('img/GambarCourse 1.png') }}"
+                                                alt="Shoes" /></figure>
+                                        <div class="card-body">
+                                            <div class="text-white">
+                                                <div class="flex">
+                                                    <h2 class="text-md  pr-5">Pemrograman Basis Data</h2>
+                                                    <h1 class="text-2xl">...</h1>
+                                                </div>
+                                                <p class="text-sm">Teknologi Informasi - B</p>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="w-72 h-60 ml-5 bg-[#6F727A] ">
+                                        <figure><img class="h-full" src="{{ asset('img/GambarCourse 1.png') }}"
+                                                alt="Shoes" /></figure>
+                                        <div class="card-body">
+                                            <div class="text-white">
+                                                <div class="flex">
+                                                    <h2 class="text-md  pr-5">Pemrograman Basis Data</h2>
+                                                    <h1 class="text-2xl">...</h1>
+                                                </div>
+                                                <p class="text-sm">Teknologi Informasi - B</p>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-right justify-end items-end flex mr-5 pb-2 mt-10 ">
                                     <div class="flex ">
                                         <h1 class="text-black py-1">Show</h1>
                                         <select class="ml-5 py-1" name="" id="1">
@@ -227,7 +227,7 @@
 
 
 
-                        
+
                     </div>
                 </div>
             </div>
