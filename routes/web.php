@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\rubricController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,9 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::resource('rubrics',rubricController::class);
 Route::get('/rubric/show', function () {
     return view('rubricshow');
-});
+})->middleware(['auth']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
