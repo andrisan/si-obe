@@ -18,7 +18,7 @@
                   <h2 class="card-title">Edit Program Study</h2>
                   <div class="form-control w-full max-w-xs">
                     <label class="label">
-                        <span class="label-text">ID Program Study</span>
+                        <span class="label-text">ID Program Study</span> 
                       </label>
                       <input type="text" class="input input-bordered w-full max-w-xs" value="123"/>
                     <label class="label">
