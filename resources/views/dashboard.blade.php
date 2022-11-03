@@ -9,8 +9,8 @@
         <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white  shadow-sm sm:rounded-lg">
                 <div class="p-10     bg-white border-b border-gray-200">
-                    <div class="flex space-x-6">
-                        <div class="    ">
+                    <div class="flex lg:ml-16 space-x-6">
+                        <div class="   ">
                             <div class="rounded-md h-16 p-2 w-72 bg-[#AFC7F5]  ">
                                 <div class="flex text-center items-center  ">
                                     <div class="gb ">
