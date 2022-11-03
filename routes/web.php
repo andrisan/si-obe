@@ -22,6 +22,10 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::get('/rubrics/{rubric}/criterias/{criteria}/criteria-levels/{criteria-level}/edit', function () {
+    return view('criteria-levels/edit');
+})->middleware(['auth']);
+
 Route ::resource('rubrics', RubricsController::class)->middleware(['auth'])->only('show', 'create');
 
 require __DIR__.'/auth.php';
