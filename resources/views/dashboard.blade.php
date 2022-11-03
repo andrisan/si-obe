@@ -123,7 +123,96 @@
                                 </div>
                             </div>
                         </div>
-                       
+                        <div class="md:ml-">
+                            <div class="rounded-md p-2 w-72 bg-[#AFC7F5]  ">
+                                <div class="flex">
+                                    <img class="h-full" src="{{ asset('img/Assign.png') }}" alt="" />
+                                    <h1 class="ml-2 text-black">My Courses</h1>
+                                </div>
+
+                            </div>
+                            <div class="p-5 rounded-md mt-3  w-72 bg-[#AFC7F5] space-y-3  ">
+                                <div class="flex">
+                                    <img class="" src="{{ asset('img/frames.png') }}" alt="">
+                                   <h1 class="ml-5 text-black">Matkul 1</h1>
+                                </div>
+                                <div class="flex">
+                                    <img class="" src="{{ asset('img/frames.png') }}" alt="">
+                                   <h1 class="ml-5 text-black">Matkul 2</h1>
+                                </div>
+                                <div class="flex">
+                                    <img class="" src="{{ asset('img/frames.png') }}" alt="">
+                                   <h1 class="ml-5 text-black">Matkul 3</h1>
+                                </div>
+                                <div class="flex">
+                                    <img class="" src="{{ asset('img/frames.png') }}" alt="">
+                                   <h1 class="ml-5 text-black">Matkul 4</h1>
+                                </div>
+                                <div class="flex">
+                                    <img class="" src="{{ asset('img/frames.png') }}" alt="">
+                                   <h1 class="ml-5 text-black">Matkul 5</h1>
+                                </div>
+                                <div class="flex">
+                                    <img class="" src="{{ asset('img/frames.png') }}" alt="">
+                                   <h1 class="ml-5 text-black">Matkul 6</h1>
+                                </div>
+                                <div class="flex">
+                                    <img class="" src="{{ asset('img/frames.png') }}" alt="">
+                                   <h1 class="ml-5 text-black">Matkul 7</h1>
+                                </div>
+                                <div class="flex">
+                                   <img class="" src="{{ asset('img/frames.png') }}" alt="">
+                                   <h1 class="ml-5 text-black">Matkul 8</h1>
+                                </div>
+                                <h1 class="pt-4">All Courses...</h1>
+
+                            </div>
+                            <div class="rounded-md mt-10 p-2 w-72 bg-[#AFC7F5]  ">
+                                <div class="flex">
+                                    <img class="h-full" src="{{ asset('img/Assign.png') }}" alt="" />
+                                    <h1 class="ml-2 text-black">My Courses</h1>
+                                </div>
+
+                            </div>
+                            <div class="p-3 rounded-md mt-3  w-72 border-2 border-blue-400 space-y-3  ">
+                                <div class="flex">
+                                   <img src="{{ asset('img/Vector(1).png') }}" alt="">
+                                   <h1 class="ml-5 text-black">Tugas 1 - Matkul 1</h1>
+                                </div>
+                                <div class="flex">
+                                   <img src="{{ asset('img/Vector(1).png') }}" alt="">
+                                   <h1 class="ml-5 text-black">Tugas 2 - Matkul 2</h1>
+                                </div>
+                                <div class="flex">
+                                   <img src="{{ asset('img/Vector(1).png') }}" alt="">
+                                   <h1 class="ml-5 text-black">Tugas 3 - Matkul 3</h1>
+                                </div>
+                                <div class="flex">
+                                   <img src="{{ asset('img/Vector(1).png') }}" alt="">
+                                   <h1 class="ml-5 text-black">Tugas 4 - Matkul 4</h1>
+                                </div>
+                                <div class="flex">
+                                   <img src="{{ asset('img/Vector(1).png') }}" alt="">
+                                   <h1 class="ml-5 text-black">Tugas 5 - Matkul 5</h1>
+                                </div>
+                                <div class="flex">
+                                   <img src="{{ asset('img/Vector(1).png') }}" alt="">
+                                   <h1 class="ml-5 text-black">Tugas 6 - Matkul 6</h1>
+                                </div>
+                                <div class="flex">
+                                   <img src="{{ asset('img/Vector(1).png') }}" alt="">
+                                   <h1 class="ml-5 text-black">Tugas 7 - Matkul 7</h1>
+                                </div>
+                                <div class="flex">
+                                   <img src="{{ asset('img/Vector(1).png') }}" alt="">
+                                   <h1 class="ml-5 text-black">Tugas 8 - Matkul 8</h1>
+                                </div>
+                               
+                                <h1 class="pt-4">All Courses...</h1>
+
+                            </div>
+
+                        </div>
 
 
 
