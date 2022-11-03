@@ -50,7 +50,7 @@
             <div class="">
                 <h1 class="text-xl p-2 px-4 bg-violet-600 rounded-lg mb-4 text-neutral flex-auto w-fit">RECENTLY COURSE</h1>
                 <div class="grid grid-cols-2 gap-4 justify-items-center">
-                    <div class="card bg-neutral shadow-xl" style="width: 550px; height:200px">
+                    <div class="card w-full h-48 bg-neutral shadow-xl">
                         <div class="card-body">
                             <div class="grid grid-flow-col auto-cols-max justify-items-center card-body p-0">
                                 <label tabindex="0" class="btn btn-ghost btn-circle avatar">
@@ -60,20 +60,20 @@
                                 </label>
                                 <div class="flex">
                                     <a class="pl-2">
-                                        <p class="text-m">Pengembangan Basis Data</p>
+                                        <p class="text-m">Pengembangan Basis Data - C</p>
                                         <p class="text-xs">Mr. Andri Santoso</p>
                                     </a>
                                 </div>
 
                             </div>
                             <div class="card-actions justify-end gap-4">
-                                <div class="text-violet-400 text-m">OPEN</div>
-                                <div class="text-violet-400 text-m">MORE DETAILS</div>
+                                <div class="text-violet-400 text-m hover:bg-violet-800 border-transparent rounded-lg p-2">OPEN</div>
+                                <div class="text-violet-400 text-m hover:bg-violet-800 border-transparent rounded-lg p-2">MORE DETAILS</div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="card bg-neutral shadow-xl" style="width: 550px; height:200px">
+                    <div class="card w-full h-48 bg-neutral shadow-xl">
                         <div class="card-body">
                             <div class="grid grid-flow-col auto-cols-max justify-items-center card-body p-0">
                                 <label tabindex="0" class="btn btn-ghost btn-circle avatar">
@@ -83,15 +83,15 @@
                                 </label>
                                 <div class="flex">
                                     <a class="pl-2">
-                                        <p class="text-m">Pengembangan Aplikasi Web</p>
+                                        <p class="text-m">Pengembangan Aplikasi Web - A</p>
                                         <p class="text-xs">Mr. Andri Santoso</p>
                                     </a>
                                 </div>
 
                             </div>
                             <div class="card-actions justify-end gap-4">
-                                <div class="text-violet-400 text-m">OPEN</div>
-                                <div class="text-violet-400 text-m">MORE DETAILS</div>
+                                <div class="text-violet-400 text-m hover:bg-violet-800 border-transparent rounded-lg p-2">OPEN</div>
+                                <div class="text-violet-400 text-m hover:bg-violet-800 border-transparent rounded-lg p-2">MORE DETAILS</div>
                             </div>
                         </div>
                     </div>
@@ -101,7 +101,8 @@
             <div class="">
                 <h1 class="text-xl p-2 px-4 bg-violet-600 rounded-lg mb-4 text-neutral flex-auto w-fit">MY COURSE</h1>
                 <div class="grid grid-cols-2 gap-4 justify-items-center">
-                    <div class="card bg-neutral shadow-xl" style="width: 550px; height:200px">
+
+                    <div class="card w-full h-48 bg-neutral shadow-xl">
                         <div class="card-body">
                             <div class="grid grid-flow-col auto-cols-max justify-items-center card-body p-0">
                                 <label tabindex="0" class="btn btn-ghost btn-circle avatar">
@@ -111,20 +112,20 @@
                                 </label>
                                 <div class="flex">
                                     <a class="pl-2">
-                                        <p class="text-m">Pengembangan Basis Data</p>
+                                        <p class="text-m">Pengembangan Basis Data - A</p>
                                         <p class="text-xs">Mr. Andri Santoso</p>
                                     </a>
                                 </div>
 
                             </div>
                             <div class="card-actions justify-end gap-4">
-                                <div class="text-violet-400 text-m">OPEN</div>
-                                <div class="text-violet-400 text-m">MORE DETAILS</div>
+                                <div class="text-violet-400 text-m hover:bg-violet-800 border-transparent rounded-lg p-2">OPEN</div>
+                                <div class="text-violet-400 text-m hover:bg-violet-800 border-transparent rounded-lg p-2">MORE DETAILS</div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="card bg-neutral shadow-xl" style="width: 550px; height:200px">
+                    <div class="card w-full h-48 bg-neutral shadow-xl">
                         <div class="card-body">
                             <div class="grid grid-flow-col auto-cols-max justify-items-center card-body p-0">
                                 <label tabindex="0" class="btn btn-ghost btn-circle avatar">
@@ -134,20 +135,20 @@
                                 </label>
                                 <div class="flex">
                                     <a class="pl-2">
-                                        <p class="text-m">Pengembangan Aplikasi Web</p>
+                                        <p class="text-m">Pengembangan Basis Data - B</p>
                                         <p class="text-xs">Mr. Andri Santoso</p>
                                     </a>
                                 </div>
 
                             </div>
                             <div class="card-actions justify-end gap-4">
-                                <div class="text-violet-400 text-m">OPEN</div>
-                                <div class="text-violet-400 text-m">MORE DETAILS</div>
+                                <div class="text-violet-400 text-m hover:bg-violet-800 border-transparent rounded-lg p-2">OPEN</div>
+                                <div class="text-violet-400 text-m hover:bg-violet-800 border-transparent rounded-lg p-2">MORE DETAILS</div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="card bg-neutral shadow-xl" style="width: 550px; height:200px">
+                    <div class="card w-full h-48 bg-neutral shadow-xl">
                         <div class="card-body">
                             <div class="grid grid-flow-col auto-cols-max justify-items-center card-body p-0">
                                 <label tabindex="0" class="btn btn-ghost btn-circle avatar">
@@ -157,20 +158,20 @@
                                 </label>
                                 <div class="flex">
                                     <a class="pl-2">
-                                        <p class="text-m">Jaringan Komputer Dasar</p>
+                                        <p class="text-m">Pengembangan Basis Data - C</p>
                                         <p class="text-xs">Mr. Dwija Wisnu Brata</p>
                                     </a>
                                 </div>
 
                             </div>
                             <div class="card-actions justify-end gap-4">
-                                <div class="text-violet-400 text-m">OPEN</div>
-                                <div class="text-violet-400 text-m">MORE DETAILS</div>
+                                <div class="text-violet-400 text-m hover:bg-violet-800 border-transparent rounded-lg p-2">OPEN</div>
+                                <div class="text-violet-400 text-m hover:bg-violet-800 border-transparent rounded-lg p-2">MORE DETAILS</div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="card bg-neutral shadow-xl" style="width: 550px; height:200px">
+                    <div class="card w-full h-48 bg-neutral shadow-xl">
                         <div class="card-body">
                             <div class="grid grid-flow-col auto-cols-max justify-items-center card-body p-0">
                                 <label tabindex="0" class="btn btn-ghost btn-circle avatar">
@@ -180,20 +181,20 @@
                                 </label>
                                 <div class="flex">
                                     <a class="pl-2">
-                                        <p class="text-m">Algoritma dan Struktur Data</p>
+                                        <p class="text-m">Pengembangan Aplikasi Web - A</p>
                                         <p class="text-xs">Mr. Buce Trias Hanggara</p>
                                     </a>
                                 </div>
 
                             </div>
                             <div class="card-actions justify-end gap-4">
-                                <div class="text-violet-400 text-m">OPEN</div>
-                                <div class="text-violet-400 text-m">MORE DETAILS</div>
+                                <div class="text-violet-400 text-m hover:bg-violet-800 border-transparent rounded-lg p-2">OPEN</div>
+                                <div class="text-violet-400 text-m hover:bg-violet-800 border-transparent rounded-lg p-2">MORE DETAILS</div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="card bg-neutral shadow-xl" style="width: 550px; height:200px">
+                    <div class="card w-full h-48 bg-neutral shadow-xl">
                         <div class="card-body">
                             <div class="grid grid-flow-col auto-cols-max justify-items-center card-body p-0">
                                 <label tabindex="0" class="btn btn-ghost btn-circle avatar">
@@ -203,20 +204,20 @@
                                 </label>
                                 <div class="flex">
                                     <a class="pl-2">
-                                        <p class="text-m">Analisis Desain Sistem Informasi</p>
+                                        <p class="text-m">Pengembangan Aplikasi Web - B</p>
                                         <p class="text-xs">Mr. Fajar Pradana</p>
                                     </a>
                                 </div>
 
                             </div>
                             <div class="card-actions justify-end gap-4">
-                                <div class="text-violet-400 text-m">OPEN</div>
-                                <div class="text-violet-400 text-m">MORE DETAILS</div>
+                                <div class="text-violet-400 text-m hover:bg-violet-800 border-transparent rounded-lg p-2">OPEN</div>
+                                <div class="text-violet-400 text-m hover:bg-violet-800 border-transparent rounded-lg p-2">MORE DETAILS</div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="card bg-neutral shadow-xl" style="width: 550px; height:200px">
+                    <div class="card w-full h-48 bg-neutral shadow-xl">
                         <div class="card-body">
                             <div class="grid grid-flow-col auto-cols-max justify-items-center card-body p-0">
                                 <label tabindex="0" class="btn btn-ghost btn-circle avatar">
@@ -226,15 +227,15 @@
                                 </label>
                                 <div class="flex">
                                     <a class="pl-2">
-                                        <p class="text-m">Kewirausahaan</p>
+                                        <p class="text-m">Pengembangan Aplikasi Web - C</p>
                                         <p class="text-xs">Mr. Tibyani</p>
                                     </a>
                                 </div>
 
                             </div>
                             <div class="card-actions justify-end gap-4">
-                                <div class="text-violet-400 text-m">OPEN</div>
-                                <div class="text-violet-400 text-m">MORE DETAILS</div>
+                                <div class="text-violet-400 text-m hover:bg-violet-800 border-transparent rounded-lg p-2">OPEN</div>
+                                <div class="text-violet-400 text-m hover:bg-violet-800 border-transparent rounded-lg p-2">MORE DETAILS</div>
                             </div>
                         </div>
                     </div>
