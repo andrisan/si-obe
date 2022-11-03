@@ -8,9 +8,9 @@
     <div class="py-5">
         <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white  shadow-sm sm:rounded-lg">
-                <div class="p-12 bg-white border-b border-gray-200">
+                <div class="p-10     bg-white border-b border-gray-200">
                     <div class="flex space-x-6">
-                        <div class="md:ml-16">
+                        <div class="    ">
                             <div class="rounded-md h-16 p-2 w-72 bg-[#AFC7F5]  ">
                                 <div class="flex text-center items-center  ">
                                     <div class="gb ">
@@ -233,4 +233,4 @@
             </div>
         </div>
 
-</x-app-layout>
+    </x-app-layout>
