@@ -18,7 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('syllabi.ilos', iloController::class)->middleware(['auth'])->only('show', 'create');
+Route::resource('syllabi.ilos', iloController::class)->middleware(['auth'])->only('index', 'create');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
