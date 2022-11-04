@@ -8,6 +8,7 @@ use App\Http\Controllers\cloController;
 use App\Http\Controllers\levelsController;
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CourseLearningOutcomeController;
 use App\Http\Controllers\lloController;
 
 /*
@@ -73,5 +74,8 @@ Route::get('/criteria-levels/{id}', [levelsController::class, 'show']);
 
 Route ::resource('rubrics', RubricsController::class)->middleware(['auth'])->only('show', 'create');
 
+Route::resource('syllabi.ilos.clos', CourseLearningOutcomeController::class);
+
 require __DIR__.'/auth.php';
+
 ?>
