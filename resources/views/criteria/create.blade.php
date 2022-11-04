@@ -9,12 +9,12 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class=" bg-white border-b border-gray-200">
-                    <div class = "p-10">
-                <h1 class="text-black">I N D I C A T O R</h1>
+                    <div class="p-10">
+                        <h1 class="text-black">I N D I C A T O R</h1>
                         <div class="mt-2">
                             <input class="rounded-md w-80" placeholder="Enter text here..." type="text">
                         </div>
-                        
+
                         <div class="flex">
 
                             <div class="mt-5">
@@ -22,18 +22,26 @@
                                 <input type="text" class="mt-2 w-80 rounded-md" placeholder="Enter Text Here..."
                                     name="" id="">
                             </div>
-                         
+                            <div class="mt-5 ml-10 ">
+                                <h1 class="text-black">L E V E L</h1>
+                                <select class="w-80 mt-2 rounded-md" name="" id="">
+                                    <option disabled>Select a category..</option>
+                                    <option value="saab">Baik</option>
+                                    <option value="mercedes">Cukup</option>
+                                    <option value="audi">Kurang</option>
+                                </select>
+                            </div>
                         </div>
-                        
-                        
-                        
-                        
-                        </div>
-                         </div>
+
+
+
+
                     </div>
-                   
                 </div>
             </div>
+
         </div>
+    </div>
+    </div>
     </div>
 </x-app-layout>
