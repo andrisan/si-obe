@@ -3,6 +3,7 @@
 use App\Http\Controllers\RubricsController;
 use App\Http\Controllers\levelsController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\lloController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,8 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+Route::resource('llos', lloController::class);
 
 Route::get('/course-classes/new', function () {
     return view('course-classes/create');
