@@ -17,11 +17,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/criteria/edit', function () {
+    return view('welcome');
+});
 Route:: resource('criteria',criteriaController::class);
 
 
 Route::get('/criteria/edit', function () {
-    return view('criterialevel');
+    return view('criteria.create');
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
