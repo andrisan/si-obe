@@ -32,6 +32,10 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::get('/course-classes/search', function () {
+    return view('course-classes/search');
+})->middleware(['auth']);
+
 Route::get('/criterias/{id}', [criteriaController::class, 'show']);
 
 Route::resource('llos', lloController::class);
