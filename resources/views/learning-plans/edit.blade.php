@@ -22,7 +22,11 @@
                     <div class="pb-2"><label for="study_material"><strong class="font-semibold text-gray-900">Learning Method</strong></label></div>
                         <textarea class="textarea textarea-bordered w-full" placeholder="Study Material"></textarea>
                     </div>
-                <input type="submit" value="Edit" class="btn btn-active rounded-md " />
+                    <div class="pb-4">
+                        <div class="pb-2"><label for="week_number"><strong class="font-semibold text-gray-900">Estimated Time</strong></label></div>
+                        <input type="text" placeholder="Week Number" class="input input-bordered w-full max-w-xs" /> <br>
+                    </div>   
+                <input type="submit" value="Simpan" class="btn btn-active rounded-md " />
                 <button class="btn btn-outline rounded-md">Cancel</button>
                 </div>
             </div>
