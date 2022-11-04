@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\RubricsController;
+use App\Http\Controllers\levelsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,5 +26,13 @@ Route::get('/dashboard', function () {
 Route::get('/course-classes/new', function () {
     return view('course-classes/create');
 })->middleware(['auth']);
+
+Route::get('/rubrics/{rubric}/criterias/{criteria}/criteria-levels/{criteria-level}/edit', function () {
+    return view('criteria-levels/edit');
+})->middleware(['auth']);
+
+Route::get('/criteria-levels/{id}', [levelsController::class, 'show']);
+
+Route ::resource('rubrics', RubricsController::class)->middleware(['auth'])->only('show', 'create');
 
 require __DIR__.'/auth.php';
