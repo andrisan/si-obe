@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\RubricsController;
+use App\Http\Controllers\criteriaController;
 use App\Http\Controllers\cloController;
 use App\Http\Controllers\levelsController;
 use Illuminate\Support\Facades\Route;
@@ -30,6 +31,8 @@ Route::resource('clos', cloController::class);
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+Route::get('/criterias/{id}', [criteriaController::class, 'show']);
 
 Route::resource('llos', lloController::class);
 
