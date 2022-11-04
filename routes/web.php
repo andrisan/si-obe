@@ -22,6 +22,12 @@ Route::get('/criteria/edit', function () {
 });
 Route:: resource('criteria',criteriaController::class);
 
+Route::get('/criteria', function () {
+    return view('criteria.create');
+});
+
+
+
 
 Route::get('/criteria/edit', function () {
     return view('criteria.create');
