@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\RubricsController;
+use App\Http\Controllers\cloController;
 use App\Http\Controllers\levelsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\lloController;
@@ -19,6 +20,8 @@ use App\Http\Controllers\lloController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('clos', cloController::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -39,3 +42,4 @@ Route::get('/criteria-levels/{id}', [levelsController::class, 'show']);
 Route ::resource('rubrics', RubricsController::class)->middleware(['auth'])->only('show', 'create');
 
 require __DIR__.'/auth.php';
+?>
