@@ -58,6 +58,17 @@
                     <div class="px-3 py-1 ">
                         <input class="w-80 bg-[#E5E5E5]" type="text" placeholder="Description">
                     </div>
+                    <div class="block pb-5 space-y-3 rounded-md border-2 border-black">
+                    <div class="px-3 py-1 mt-5">
+                        <input class="w-80 bg-[#E5E5E5]" type="text" placeholder="Points">
+                    </div>
+                    <div class="px-3 py-1">
+                        <input class="w-80 bg-[#E5E5E5]" type="text" placeholder="Level">
+                    </div>
+                    <div class="px-3 py-1 ">
+                        <input class="w-80 bg-[#E5E5E5]" type="text" placeholder="Description">
+                    </div>
+                    </div>
                     </div>
                    
                 </div>
