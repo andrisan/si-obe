@@ -56,7 +56,7 @@ class CourseLearningOutcomeController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('clos.edit');
     }
 
     /**
