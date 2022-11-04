@@ -21,6 +21,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/rubrics/{rubric}/criterias/{criteria}/edit', function () {
+    return view('criterias.edit');
+});
+
 Route::resource('clos', cloController::class);
 
 Route::get('/dashboard', function () {
