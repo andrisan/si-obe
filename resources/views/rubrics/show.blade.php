@@ -32,16 +32,16 @@
                             <h1 class="text-black">Mampu memahami konsep dasar php</h1>
                         </div>
 
-                        <div class="flex space-x-40 justify-center  text-black font-bold">
-                            <div class="px-5 py-2 w-60 bg-[#AFC7F5] rounded-md flex justify-between">
+                        <div class="flex space-x-40 justify-center   text-black font-bold">
+                            <div class="px-5 py-2 w-60 bg-[#AFC7F5] cursor-pointer rounded-md flex justify-between">
                                 <h1 class="">Baik</h1>
                                 <h1 class text-sm ">3 pts</h1>
                   </div>
-                  <div class="px-5 py-2 w-60 bg-[#AFC7F5] rounded-md flex justify-between">
+                  <div class="px-5 py-2 w-60 bg-[#AFC7F5] cursor-pointer rounded-md flex justify-between">
                     <h1 class="">Cukup</h1>
                     <h1 class=" text-sm">2 pts</h1>
                   </div>
-                  <div class="px-5 py-2 w-60 bg-[#AFC7F5]  rounded-md flex justify-between">
+                  <div class="px-5 py-2 w-60 bg-[#AFC7F5] cursor-pointer  rounded-md flex justify-between">
                     <h1 class="">Kurang</h1>
                     <h1 class=" text-sm">1 pts</h1>
                   </div>
@@ -64,15 +64,15 @@
                 </div>
 
                 <div class="flex justify-between text-black font-bold">
-                  <div class="px-5 py-2 w-60 bg-[#AFC7F5] flex justify-between">
+                  <div class="px-5 py-2 w-60 bg-[#AFC7F5] cursor-pointer flex justify-between">
                     <h1 class="">Baik</h1>
                     <h1 class="text-sm">3 pts</h1>
                   </div>
-                  <div class="px-5 py-2 w-60 bg-[#AFC7F5] flex justify-between">
+                  <div class="px-5 py-2 w-60 bg-[#AFC7F5] cursor-pointer flex justify-between">
                     <h1 class="">Cukup</h1>
                     <h1 class=" text-sm">2 pts</h1>
                   </div>
-                  <div class="px-5 py-2 w-60 bg-[#AFC7F5] flex justify-between">
+                  <div class="px-5 py-2 w-60 bg-[#AFC7F5] cursor-pointer flex justify-between">
                     <h1 class="">Kurang</h1>
                     <h1 class=" text-sm">1 pts</h1>
                   </div>
