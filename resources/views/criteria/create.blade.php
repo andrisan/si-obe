@@ -33,12 +33,12 @@
                             </div>
                         </div>
 
-<div class="mt-5 ">
+                        <div class="mt-5 ">
                             <h1 class="text-black">D E S C R I P T I O N</h1>
                             <textarea class="rounded-md mt-2 h-52" name="" id="" cols="30" rows="10"></textarea>
                         </div>
 
-<div class="mt-10 flex space-x-5">
+                        <div class="mt-10 flex space-x-5">
                             <button class="rounded-md hover:bg-blue-700 bg-blue-500 text-white p-3">Create</button>
                             <button
                                 class="rounded-md border-2 border-blue-400 hover:border-blue-700 hover:text-blue-600 bg-white text-blue-500 p-3">Button</button>
