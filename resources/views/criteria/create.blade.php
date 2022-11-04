@@ -15,7 +15,15 @@
                             <input class="rounded-md w-80" placeholder="Enter text here..." type="text">
                         </div>
                         
-                        
+                        <div class="flex">
+
+                            <div class="mt-5">
+                                <h1 class="text-black">P O I N T</h1>
+                                <input type="text" class="mt-2 w-80 rounded-md" placeholder="Enter Text Here..."
+                                    name="" id="">
+                            </div>
+                         
+                        </div>
                         
                         
                         
