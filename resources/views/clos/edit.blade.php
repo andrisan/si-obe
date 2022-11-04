@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-2xl text-gray-800 leading-tight">
-        Course Learning Outcome <span class="bg-blue-100 text-blue-800 text-base font-semibold mr-2 px-2.5 py-0.5 rounded ml-2">EDIT</span>
+            Edit: Course Learning Outcome
         </h2>
     </x-slot>
 
@@ -19,7 +19,7 @@
                         <textarea class="textarea textarea-bordered w-full" placeholder="Deskripsi CLO"></textarea>
                     </div>
                 </form>
-                <input type="submit" value="Edit" class="btn btn-active rounded-md " />
+                <input type="submit" value="Save" class="btn btn-active rounded-md " />
                 <button class="btn btn-outline rounded-md">Cancel</button>
                 </div>
             </div>
