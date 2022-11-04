@@ -23,7 +23,11 @@ class criteriaController extends Controller
      */
     public function create()
     {
+
+        return view('criteria.create');
+
         //
+
     }
 
     /**
@@ -45,9 +49,13 @@ class criteriaController extends Controller
      */
     public function show($id)
     {
+
+        //
+    }
+
         return view('criterias.show');
     }
-    
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -81,4 +89,8 @@ class criteriaController extends Controller
     {
         //
     }
+
 }
+=======
+}
+

@@ -1,8 +1,7 @@
 <?php
 
-
 use App\Http\Controllers\rubricController;
-=======
+use App\Http\Controllers\criteriaController;
 use App\Http\Controllers\RubricsController;
 use App\Http\Controllers\criteriaController;
 use App\Http\Controllers\cloController;
@@ -25,10 +24,20 @@ use App\Http\Controllers\lloController;
 Route::get('/', function () {
     return view('welcome');
 });
+
 Route::resource('rubrics',rubricController::class);
 Route::get('/rubric/show', function () {
     return view('rubrics.show');
 })->middleware(['auth']);
+
+Route::get('/criteria/edit', function () {
+    return view('welcome');
+});
+Route:: resource('criteria',criteriaController::class);
+
+Route::get('/criteria', function () {
+    return view('criteria.create');
+});
 
 Route::get('/rubrics/{rubric}/criterias/{criteria}/edit', function () {
     return view('criterias.edit');
