@@ -10,15 +10,34 @@
         </div>
         
     </div>
-     <p class="text-black mt-3">Add the criteria you’ll use to evaluate student work as any performance levels or descriptions you want to include. Students will receive a copy of this rubric with their assignment. </p>
+    <div class="flex mt-5">
+        <p class="text-black mt-3 justify-start mr-20">Add the criteria you’ll use to evaluate student work as any performance levels or descriptions you want to include. Students will receive a copy of this rubric with their assignment. </p>
+        <img class="w-10 h-10 justify-end" src="{{ asset('img/titik.png') }}" alt="">
+    </div>
+    <div class="flex">
+        <h1>Sort the order point bg: </h1>
+        <select class="ml-2  h-10 rounded-lg" name="" id="">
+            <option value="" >Desceding</option>
+        </select>
+    </div>
      
   </x-slot>
 
   <div class="py-12">
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-              <div class="p-6 bg-white border-b border-gray-200">
-                
+              <div class="p-10 bg-white border-b border-gray-200">
+                <div class="w-72 p-2 border-2 border-black rounded-lg bg-[#E0E2E7]">
+                    <h1 class="border-b-2 border-black">
+                        Criterion tittle (required) <br> PAW-01
+                    </h1>
+                </div>
+                <div class="">
+                    <textarea class=" border-2 border-black rounded-lg mt-10" name="" id="" cols="" rows="10">
+                        Criterion description
+                    </textarea>
+                </div>
+               
               </div>
           </div>
       </div>
