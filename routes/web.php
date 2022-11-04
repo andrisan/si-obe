@@ -3,9 +3,9 @@
 use App\Http\Controllers\rubricController;
 use App\Http\Controllers\criteriaController;
 use App\Http\Controllers\RubricsController;
-use App\Http\Controllers\criteriaController;
 use App\Http\Controllers\cloController;
 use App\Http\Controllers\levelsController;
+use App\Http\Controllers\ProfileController;
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CourseLearningOutcomeController;
@@ -81,6 +81,8 @@ Route::get('/criteria-levels/{id}', [levelsController::class, 'show']);
 Route ::resource('rubrics', RubricsController::class)->middleware(['auth'])->only('show', 'create');
 
 Route::resource('syllabi.ilos.clos', CourseLearningOutcomeController::class);
+
+Route::get('/profile', [ProfileController::class, 'index']);
 
 require __DIR__.'/auth.php';
 
