@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CourseLearningOutcomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,8 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/syllabi/syllabus/ilos/ilo/clos/clo/edit', function () {
-    return view('clos.edit');
-})->middleware(['auth'])->name('dashboard');
+// Route::get('/syllabi/syllabus/ilos/ilo/clos/clo/edit', function () {
+//     return view('clos.edit');
+// })->middleware(['auth'])->name('dashboard');
+
+Route::resource('syllabi.ilos.clos', CourseLearningOutcomeController::class);
