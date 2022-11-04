@@ -25,6 +25,9 @@ use App\Http\Controllers\lloController;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/rubric/edit', function () {
+    return view('rubrics.edit');
+});
 
 Route::resource('rubrics',rubricController::class);
 Route::get('/rubric/show', function () {
@@ -49,6 +52,9 @@ Route::resource('clos', cloController::class);
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+
+require __DIR__.'/auth.php';
 
 Route::get('/course-classes/{test}/edit', function () {
     return view('course-classes/edit');
@@ -79,3 +85,4 @@ Route::resource('syllabi.ilos.clos', CourseLearningOutcomeController::class);
 require __DIR__.'/auth.php';
 
 ?>
+
