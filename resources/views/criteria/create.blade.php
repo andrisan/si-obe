@@ -33,7 +33,10 @@
                             </div>
                         </div>
 
-
+<div class="mt-5 ">
+                            <h1 class="text-black">D E S C R I P T I O N</h1>
+                            <textarea class="rounded-md mt-2 h-52" name="" id="" cols="30" rows="10"></textarea>
+                        </div>
 
 
                     </div>
