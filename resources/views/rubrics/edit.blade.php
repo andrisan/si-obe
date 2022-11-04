@@ -33,9 +33,7 @@
                     </h1>
                 </div>
                 <div class="">
-                    <textarea class=" border-2 border-black rounded-lg mt-10" name="" id="" cols="" rows="10">
-                        Criterion description
-                    </textarea>
+                    <textarea class="w-full border-2 border-black rounded-lg mt-5" name="" id="" cols="" rows="10">Criterion description </textarea>
                 </div>
                
               </div>
