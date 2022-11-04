@@ -32,6 +32,10 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::get('/course-classes/{test}/edit', function () {
+    return view('course-classes/edit');
+})->middleware(['auth']);
+
 Route::get('/course-classes/search', function () {
     return view('course-classes/search');
 })->middleware(['auth']);
