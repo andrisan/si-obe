@@ -35,7 +35,22 @@
                 <div class="">
                     <textarea class="w-full border-2 border-black rounded-lg mt-5" name="" id="" cols="" rows="10">Criterion description </textarea>
                 </div>
-               
+               <div>
+                <div class="flex p-2 border-2 border-black">
+                    <div class="block space-y-3 rounded-md border-2 border-black">
+                    <div class="px-3 py-1 ">
+                        <input class="w-72" type="text" placeholder="Points">
+                    </div>
+                    <div class="px-3 py-1">
+                        <input class="w-72" type="text" placeholder="Level">
+                    </div>
+                    <div class="px-3 py-1 ">
+                        <input class="w-72" type="text" placeholder="Description">
+                    </div>
+                    </div>
+                   
+                </div>
+               </div>
               </div>
           </div>
       </div>
