@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class criteriaController extends Controller
+class levelsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,11 +23,7 @@ class criteriaController extends Controller
      */
     public function create()
     {
-
-        return view('criteria.create');
-
         //
-
     }
 
     /**
@@ -38,7 +34,7 @@ class criteriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -49,11 +45,7 @@ class criteriaController extends Controller
      */
     public function show($id)
     {
-
-        //
-    }
-
-        return view('criterias.show');
+        return view('levels.show');
     }
 
     /**
@@ -89,8 +81,4 @@ class criteriaController extends Controller
     {
         //
     }
-
 }
-=======
-}
-
