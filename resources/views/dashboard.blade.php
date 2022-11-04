@@ -12,7 +12,7 @@
                     <div class="flex lg:ml-16 space-x-6">
                         <div class="   ">
                             <div class="rounded-md h-16 p-2 w-72 bg-[#AFC7F5]  ">
-                                <div class="flex text-center items-center  ">
+                                <div class="flex text-center items-center cursor-pointer  ">
                                     <div class="gb ">
                                         <img class="" src="{{ asset('img/Gambar Fakultas.png') }}" alt="">
                                     </div>
@@ -20,7 +20,7 @@
                                 </div>
                             </div>
                             <div class="mt-5 rounded-md h-16 p-2 w-72 bg-[#AFC7F5]  ">
-                                <div class="flex text-center items-center  ">
+                                <div class="flex text-center items-center cursor-pointer  ">
                                     <div class="gb ">
                                         <img class="ml-2 w-10" src="{{ asset('img/Gambar Department.png') }}"
                                             alt="">
@@ -29,7 +29,7 @@
                                 </div>
                             </div>
                             <div class="mt-5 rounded-md h-16 p-2 w-72 bg-[#AFC7F5]  ">
-                                <div class="flex text-center items-center  ">
+                                <div class="flex text-center items-center cursor-pointer  ">
                                     <div class="gb ">
                                         <img class="" src="{{ asset('img/Gambar Program Studi.png') }}" alt="">
                                     </div>
@@ -53,7 +53,7 @@
                                                 alt="Shoes" /></figure>
                                         <div class="card-body">
                                             <div class="text-white">
-                                                <div class="flex">
+                                                <div class="flex ">
                                                     <h2 class="text-md  pr-5">Pemrograman Basis Data</h2>
                                                     <h1 class="text-2xl">...</h1>
                                                 </div>
@@ -164,7 +164,7 @@
                                    <img class="" src="{{ asset('img/frames.png') }}" alt="">
                                    <h1 class="ml-5 text-black">Matkul 8</h1>
                                 </div>
-                                <h1 class="pt-4">All Courses...</h1>
+                                <h1 class="pt-4 text-gray-600">All Courses...</h1>
 
                             </div>
                             <div class="rounded-md mt-10 p-2 w-72 bg-[#AFC7F5]  ">
