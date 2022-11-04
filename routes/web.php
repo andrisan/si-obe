@@ -23,6 +23,10 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::get('/course-classes/new', function () {
+    return view('course-classes/create');
+})->middleware(['auth']);
+
 Route::get('/rubrics/{rubric}/criterias/{criteria}/criteria-levels/{criteria-level}/edit', function () {
     return view('criteria-levels/edit');
 })->middleware(['auth']);
