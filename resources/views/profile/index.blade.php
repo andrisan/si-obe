@@ -19,7 +19,7 @@
                           <!-- Page content here -->
                           <div class="tabs">
                             <a class="tab">Home     ></a> 
-                            <a class="tab">Profile     ></a> 
+                            <a class="tab-active">Profile     ></a> 
                           </div>
         
                         <div class="card w-100 bg-base-100 shadow-xl ml-4 mr-4 mt-5">
