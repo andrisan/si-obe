@@ -1,6 +1,11 @@
 <?php
 
+use App\Http\Controllers\RubricsController;
+use App\Http\Controllers\criteriaController;
+use App\Http\Controllers\cloController;
+use App\Http\Controllers\levelsController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\lloController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +22,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/rubrics/{rubric}/criterias/{criteria}/edit', function () {
+    return view('criterias.edit');
+});
+
+Route::resource('clos', cloController::class);
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
@@ -25,4 +36,25 @@ Route::get('/course-classes/{test}/edit', function () {
     return view('course-classes/edit');
 })->middleware(['auth']);
 
+Route::get('/course-classes/search', function () {
+    return view('course-classes/search');
+})->middleware(['auth']);
+
+Route::get('/criterias/{id}', [criteriaController::class, 'show']);
+
+Route::resource('llos', lloController::class);
+
+Route::get('/course-classes/new', function () {
+    return view('course-classes/create');
+})->middleware(['auth']);
+
+Route::get('/rubrics/{rubric}/criterias/{criteria}/criteria-levels/{criteria-level}/edit', function () {
+    return view('criteria-levels/edit');
+})->middleware(['auth']);
+
+Route::get('/criteria-levels/{id}', [levelsController::class, 'show']);
+
+Route ::resource('rubrics', RubricsController::class)->middleware(['auth'])->only('show', 'create');
+
 require __DIR__.'/auth.php';
+?>
