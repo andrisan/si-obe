@@ -26,7 +26,7 @@
   <div class="py-12">
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-              <div class="p-10 bg-white border-b border-gray-200">
+              <div class="p-10 bg-white rounded-md border-2 border-black  ">
                 <div class="w-72 p-2 border-2 border-black rounded-lg bg-[#E0E2E7]">
                     <h1 class="border-b-2 border-black">
                         Criterion tittle (required) <br> PAW-01
@@ -36,16 +36,16 @@
                     <textarea class="w-full border-2 border-black rounded-lg mt-5" name="" id="" cols="" rows="10">Criterion description </textarea>
                 </div>
                <div>
-                <div class="flex p-2 border-2 border-black">
-                    <div class="block space-y-3 rounded-md border-2 border-black">
-                    <div class="px-3 py-1 ">
-                        <input class="w-72" type="text" placeholder="Points">
+                <div class="flex mt-2 ">
+                    <div class="block pb-5 space-y-3 rounded-md border-2 border-black">
+                    <div class="px-3 py-1 mt-5">
+                        <input class="w-80 bg-[#E5E5E5]" type="text" placeholder="Points">
                     </div>
                     <div class="px-3 py-1">
-                        <input class="w-72" type="text" placeholder="Level">
+                        <input class="w-80 bg-[#E5E5E5]" type="text" placeholder="Level">
                     </div>
                     <div class="px-3 py-1 ">
-                        <input class="w-72" type="text" placeholder="Description">
+                        <input class="w-80 bg-[#E5E5E5]" type="text" placeholder="Description">
                     </div>
                     </div>
                    
