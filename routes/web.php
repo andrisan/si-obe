@@ -21,8 +21,8 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/syllabi-new', function () {
-    return view('syllabi-new');
+Route::get('/syllabi/create', function () {
+    return view('syllabi.create');
 });
 
 require __DIR__.'/auth.php';
