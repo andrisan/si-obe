@@ -17,8 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/syllabi-edit', function () {
-    return view('syllabi-edit');
+Route::get('/syllabi/{syllabus}/edit', function ($syllabus) {
+    return view('syllabi.edit copy',['syllabus' => $syllabus]);
 });
 
 Route::get('/dashboard', function () {
