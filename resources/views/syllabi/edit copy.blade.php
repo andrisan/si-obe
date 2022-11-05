@@ -1,7 +1,7 @@
 <x-app-layout>
   <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        {{ __('Edit Syllabus ID '.$syllabus) }}
+        {{ __('Edit Syllabus of ID '.$syllabus) }}
     </h2>
   </x-slot>
 
@@ -11,26 +11,26 @@
         <label class="label">
           <span class="label-text text-primary">Syllabus Name</span>
         </label>
-        <input type="text" class="input input-bordered input-primary bg-primary w-full max-w-xs" />
+        <input type="text" class="input input-bordered input-primary text-white bg-primary w-full max-w-xs" />
       </div>
     
       <div class="form-control w-full max-w-xs">
         <label class="label">
           <span class="label-text text-primary">Author</span>
         </label>
-        <input type="text" class="input input-bordered input-primary bg-primary w-full max-w-xs" />
+        <input type="text" class="input input-bordered input-primary text-white bg-primary w-full max-w-xs" />
       </div>
     
       <div class="form-control">
         <label class="label">
           <span class="label-text text-primary">Head of Study Program</span>
         </label> 
-        <textarea class="textarea textarea-primary bg-primary w-full h-24"></textarea>
+        <textarea class="textarea textarea-primary bg-primary text-white w-full h-24"></textarea>
       </div>
     </div>
   
     <div class="py-5" style="float:right">
-      <button class="btn btn-outline justify-end">Save</button>
+      <a class="btn btn-outline justify-end" href="/syllabi">Save</a>
     </div>
   </div>
 </x-app-layout>
