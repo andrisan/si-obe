@@ -60,15 +60,13 @@
                                 </label>
                                 <div class="flex">
                                     <a class="pl-2">
-                                        <p class="text-m">Pengembangan Basis Data - C</p>
-                                        <p class="text-xs">Mr. Andri Santoso</p>
+                                        <p class="text-m">Pengembangan Basis Data</p>
                                     </a>
                                 </div>
 
                             </div>
                             <div class="card-actions justify-end gap-4">
                                 <div class="text-violet-400 text-m hover:bg-violet-800 border-transparent rounded-lg p-2">OPEN</div>
-                                <div class="text-violet-400 text-m hover:bg-violet-800 border-transparent rounded-lg p-2">MORE DETAILS</div>
                             </div>
                         </div>
                     </div>
@@ -83,15 +81,13 @@
                                 </label>
                                 <div class="flex">
                                     <a class="pl-2">
-                                        <p class="text-m">Pengembangan Aplikasi Web - A</p>
-                                        <p class="text-xs">Mr. Andri Santoso</p>
+                                        <p class="text-m">Pengembangan Aplikasi Web</p>
                                     </a>
                                 </div>
 
                             </div>
                             <div class="card-actions justify-end gap-4">
                                 <div class="text-violet-400 text-m hover:bg-violet-800 border-transparent rounded-lg p-2">OPEN</div>
-                                <div class="text-violet-400 text-m hover:bg-violet-800 border-transparent rounded-lg p-2">MORE DETAILS</div>
                             </div>
                         </div>
                     </div>
