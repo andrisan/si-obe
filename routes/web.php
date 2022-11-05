@@ -83,7 +83,7 @@ Route ::resource('rubrics', RubricsController::class)->middleware(['auth'])->onl
 
 Route::resource('syllabi.ilos.clos', CourseLearningOutcomeController::class);
 
-Route::get('/profile', [ProfileController::class, 'index']);
+Route::get('/profile', [ProfileController::class, 'index'])->middleware(['auth']);
 
 require __DIR__.'/auth.php';
 

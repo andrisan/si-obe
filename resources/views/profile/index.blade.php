@@ -35,7 +35,7 @@
                               <p class="mt-2"><strong>Email Address</strong></p>
                               <p><a class="hover:text-warning" href="https://mail.google.com/">{{ Auth::user()->email }}</a></p>
                               <p class="mt-2"><strong>Password</strong></p>
-                              <p>KamuNanyea</p>
+                              <p>KamuNanyeeaa?</p>
                               <br>
                               <div class="card-actions">
                                 <button class="bg-blue-600 hover:bg-white hover:text-blue-600 text-white font-bold py-2 px-4 rounded border-blue-600 border-2">
@@ -50,16 +50,6 @@
                             </div>
                           </div>
                         </div>
-                        
-                        <!-- <div class="card w-100 bg-base-100 shadow-xl ml-4 mr-4 mt-5">
-                          <div class="card-body">
-                            <h2 class="card-title">Pengembangan Aplikasi Web - B</h2>
-                            <p><strong>Teacher : </strong>Widhy Hayuhardhika Nugraha Putra</p>
-                            <div class="card-actions justify-end">
-                              <button class="">Insert Enrollment Key</button>
-                            </div>
-                          </div>
-                        </div> -->
                           
                         </div> 
                         <div class="drawer-side">
