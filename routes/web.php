@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 Route::get('/syllabi/{syllabus}/edit', function ($syllabus) {
     return view('syllabi.edit copy',['syllabus' => $syllabus]);
-});
+})->middleware('auth');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
