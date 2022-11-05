@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\DepartmentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,8 +21,6 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/faculties/{faculty}/departments', function () {
-    return view('departmentsindex');
-})->name('departments.index');
+Route::get('/faculties/{faculty}/departments', [DepartmentController::class, 'index']);
 
 require __DIR__.'/auth.php';
