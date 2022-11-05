@@ -17,9 +17,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/course-create', function () {
-    return view('course-create');
-});
+Route::get('/courses.create', function () {
+    return view('courses.create');
+})->middleware(['auth']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
