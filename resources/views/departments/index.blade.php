@@ -35,6 +35,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>Department</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -42,11 +43,19 @@
                             <tr class="hover">
                                 <th>1</th>
                                 <td>Teknik Informatika</td>
+                                <td>
+                                    <button class="btn btn-warning btn-sm">Edit</button>
+                                    <button class="btn btn-error btn-sm">Delete</button>
+                                </td>
                             </tr>
                             <!-- row 2 -->
                             <tr class="hover">
                                 <th>2</th>
                                 <td>Sistem Informasi</td>
+                                <td>
+                                    <button class="btn btn-warning btn-sm">Edit</button>
+                                    <button class="btn btn-error btn-sm">Delete</button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
