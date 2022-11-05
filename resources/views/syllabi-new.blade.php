@@ -1,107 +1,45 @@
-<!DOCTYPE html>
-<html data-theme="dark" lang="en">
+<x-app-layout>
+  <x-slot name="header">
+    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+      {{ __('Create New Syllabi') }}
+    </h2>
+  </x-slot>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.38.0/dist/full.css" rel="stylesheet" type="text/css" />
-    <script src="https://kit.fontawesome.com/a73fac8683.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <title>Create New Syllabi</title>
-</head>
 
-<body>
-    <!--NAVBAR-->
-    <div class="navbar text-neutral-content">
-        <div class="dropdown dropdown-bottom">
-            <label tabindex="0" class="btn btn-ghost btn-circle avatar">
-                <div class="w-10 rounded-full">
-                <img src="img/ava.jpg"/>
-                </div>
+      <!-- Page content here -->
+      <div class="mx-10 my-5">
+        <div class="border-transparent rounded-lg bg-base-300 px-4 py-5">
+          <div class="form-control w-full max-w-xs">
+            <label class="label">
+              <span class="label-text text-primary text-violet-400">Syllabus Name</span>
             </label>
-            <ul tabindex="0" class="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
-                <li>
-                    <a class="justify-between">
-                        Profile
-                        <span class="badge">New</span>
-                    </a>
-                </li>
-                <li><a>Settings</a></li>
-                <li><a>Logout</a></li>
-            </ul>
-        </div>
-        <div class="flex-1">
-            <a class="pl-5">
-                <p class="text-m">Fairuz Nandhita Putri</p>
-                <p class="text-xs">Semester 3</p>
-            </a>
-        </div>
-    </div>
-    <div class="border-b border-slate-500"></div>
-    <!--END NAVBAR-->
+            <input type="text" class="input text-white input-bordered input-primary bg-primary w-full max-w-xs" />
+          </div>
 
-    <!--SIDEBAR-->
-    <div class="drawer drawer-mobile">
-        <!-- <div class="border-r-2 border-indigo-500"> -->
-        <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
-        <div class="drawer-content flex flex-col px-10 pt-5 border-primary-content border-l border-slate-500">
-            <!-- Page content here -->
-            <div class="">
-              <h1 class="font-sans text-2xl pb-4">Create Syllabus</h1>
-              <div class="border-transparent rounded-lg bg-base-300 px-4 py-5">
-                <div class="form-control w-full max-w-xs">
-                  <label class="label">
-                    <span class="label-text text-primary text-violet-400">Syllabus Name</span>
-                  </label>
-                  <input type="text" class="input text-white input-bordered input-primary bg-primary w-full max-w-xs" />
-                </div>
-              
-                <div class="form-control w-full max-w-xs">
-                  <label class="label">
-                    <span class="label-text text-primary text-violet-400">Author</span>
-                  </label>
-                  <input type="text" class="input text-white input-bordered input-primary bg-primary w-full max-w-xs" />
-                </div>
-              
-                <div class="form-control">
-                  <label class="label">
-                    <span class="label-text text-primary text-violet-400">Head of Study Program</span>
-                  </label> 
-                  <textarea class="textarea textarea-primary bg-primary text-white"></textarea>
-                </div>
-              </div>
-            
-              <div class="py-5" style="float:right">
-                <button class="btn btn-outline justify-end">Create</button>
-              </div>
-            </div>
-            <!-- End content -->
-            <label for="my-drawer-2" class="btn btn-primary drawer-button lg:hidden">Open drawer</label>
-    
-        </div>
-        <div class="drawer-side">
-            <label for="my-drawer-2" class="drawer-overlay"></label>
-            <ul class="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
-                <!-- Sidebar content here -->
-                <div class="bg-violet-600 rounded-lg mb-2">
-                    <li><a><i class="fa-solid fa-house"></i>Dashboard</a></li>
-                </div>
-                <div class="border-b border-slate-500"></div>
-                <li><a>My Classes</a></li>
-                <li><a><i class="fa-solid fa-heart"></i>Pengembangan Aplikasi Web</a></li>
-                <li><a><i class="fa-solid fa-heart"></i>Pemrograman Basis Data</a></li>
-                <li><a><i class="fa-solid fa-heart"></i>Jaringan Komputer Dasar</a></li>
-                <li><a><i class="fa-solid fa-heart"></i>Algoritma dan Struktur Data</a></li>
-                <li><a><i class="fa-solid fa-heart"></i>Analisis dan Desain Sistem Informasi</a></li>
-                <li><a><i class="fa-solid fa-heart"></i>Kewirausahaan</a></li>
-                <li><a><i class="fa-solid fa-heart"></i>Etika Profesi</a></li>
-            </ul>
-        </div>
-    </div>
-    <!-- </div> -->
-    <!--END SIDEBAR-->
+          <div class="form-control w-full max-w-xs">
+            <label class="label">
+              <span class="label-text text-primary text-violet-400">Author</span>
+            </label>
+            <input type="text" class="input text-white input-bordered input-primary bg-primary w-full max-w-xs" />
+          </div>
 
-</body>
+          <div class="form-control">
+            <label class="label">
+              <span class="label-text text-primary text-violet-400">Head of Study Program</span>
+            </label>
+            <textarea class="textarea textarea-primary bg-primary text-white"></textarea>
+          </div>
+        </div>
 
-</html>
+        <div class="py-5" style="float:right">
+          <button class="btn btn-outline justify-end">Create</button>
+        </div>
+      </div>
+      <!-- End content -->
+      
+  <!--END SIDEBAR-->
+  </div>
+  </div>
+  </div>
+  </div>
+</x-app-layout>
