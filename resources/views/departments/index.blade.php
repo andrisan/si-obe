@@ -23,10 +23,11 @@
                     </div>
 
                     <!--Judul-->
-                    <div class="flex justify-center py-6">
+                    <div class="flex justify-center">
                         <h1 class="text-3xl font-bold">Departments</h1>
                     </div>
 
+                    <br>
                     <!--Tabel departments-->
                         <div class="overflow-x-auto">
                             <table class="table w-full text-center">
