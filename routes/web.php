@@ -8,6 +8,7 @@ use App\Http\Controllers\levelsController;
 use App\Http\Controllers\ProfileController;
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\CourseLearningOutcomeController;
 use App\Http\Controllers\lloController;
 
@@ -53,6 +54,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::get('/faculties/{faculty}/departments', [DepartmentController::class, 'index']);
 
 Route::get('/course-classes/{test}/edit', function () {
     return view('course-classes/edit');
