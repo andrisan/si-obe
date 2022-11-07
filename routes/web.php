@@ -21,6 +21,10 @@ Route::get('/syllabi-index', function () {
     return view('syllabi-index');
 });
 
+Route::get('/index', function () {
+    return view('syllabi-index.index');
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
