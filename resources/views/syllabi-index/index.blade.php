@@ -15,7 +15,7 @@
                                 <p class="text-black ml-4 mb-2">CSD60001</p>
                                 <p></p>
                                 <p class="text-blue-600 font-semibold ml-4">Semester</p>
-                                <p class="text-black ml-4">3</p>
+                                <p class="text-black ml-4 mb-2">3</p>
                                 <p class="text-blue-600 font-semibold ml-4">Course ID</p>
                                 <p class="text-black ml-4 mb-4">CSD60001</p>
                             </div>
