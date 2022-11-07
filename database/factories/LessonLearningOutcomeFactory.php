@@ -17,6 +17,7 @@ class LessonLearningOutcomeFactory extends Factory
     public function definition()
     {
         return [
+            'code' => fake()->lexify(str_repeat('?', 5)),
             'description' => fake()->sentence,
         ];
     }
