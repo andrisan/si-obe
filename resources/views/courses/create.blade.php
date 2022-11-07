@@ -16,79 +16,79 @@
 
                 <div class="form-control w-full max-w-xs">
                   <label class="label">
-                    <span class="label-text text-primary text-violet-400">Course Code</span>
+                    <span class="label-text text-blue-600 text-blue-600">Course Code</span>
                   </label>
-                  <input type="text" class="input text-white input-bordered input-primary bg-primary w-full max-w-xs" />
+                  <input type="text" class="input text-blue-600 input-bordered input-primary bg-white w-full max-w-xs" />
                 </div>
 
                 <div class="form-control w-full max-w-xs">
                   <label class="label">
-                    <span class="label-text text-primary text-violet-400">Short Description</span>
+                    <span class="label-text text-blue-600 text-blue-600">Short Description</span>
                   </label> 
-                  <textarea class="textarea textarea-primary bg-primary text-white"></textarea>
+                  <textarea class="textarea textarea-primary bg-white text-blue-600"></textarea>
                 </div>
               
                 <div class="form-control w-full max-w-xs">
                   <label class="label">
-                    <span class="label-text text-primary text-violet-400">Course Name</span>
+                    <span class="label-text text-blue-600 text-blue-600">Course Name</span>
                   </label>
-                  <input type="text" class="input text-white input-bordered input-primary bg-primary w-full max-w-xs" />
+                  <input type="text" class="input text-blue-600 input-bordered input-primary bg-white w-full max-w-xs" />
                 </div>
 
                 <div class="form-control w-full max-w-xs">
                   <label class="label">
-                    <span class="label-text text-primary text-violet-400">Minimal Requirement</span>
+                    <span class="label-text text-blue-600 text-blue-600">Minimal Requirement</span>
                   </label> 
-                  <textarea class="textarea textarea-primary bg-primary text-white"></textarea>
+                  <textarea class="textarea textarea-primary bg-white text-blue-600"></textarea>
                 </div>
               
                 <div class="form-control w-full max-w-xs">
                   <label class="label">
-                    <span class="label-text text-primary text-violet-400">Course Credit</span>
+                    <span class="label-text text-blue-600 text-blue-600">Course Credit</span>
                   </label>
-                  <input type="text" class="input text-white input-bordered input-primary bg-primary w-full max-w-xs" />
+                  <input type="text" class="input text-blue-600 input-bordered input-primary bg-white w-full max-w-xs" />
                 </div>
 
                 <div class="form-control w-full max-w-xs">
                   <label class="label">
-                    <span class="label-text text-primary text-violet-400">Study Material</span>
+                    <span class="label-text text-blue-600 text-blue-600">Study Material</span>
                   </label> 
-                  <textarea class="textarea textarea-primary bg-primary text-white"></textarea>
+                  <textarea class="textarea textarea-primary bg-white text-blue-600"></textarea>
                 </div>
 
                 <div class="form-control w-full max-w-xs">
                   <label class="label">
-                    <span class="label-text text-primary text-violet-400">Lab Credit</span>
+                    <span class="label-text text-blue-600 text-blue-600">Lab Credit</span>
                   </label>
-                  <input type="text" class="input text-white input-bordered input-primary bg-primary w-full max-w-xs" />
+                  <input type="text" class="input text-blue-600 input-bordered input-primary bg-white w-full max-w-xs" />
                 </div>
 
                 <div class="form-control w-full max-w-xs">
                   <label class="label">
-                    <span class="label-text text-primary text-violet-400">Learning Media</span>
+                    <span class="label-text text-blue-600 text-blue-600">Learning Media</span>
                   </label> 
-                  <textarea class="textarea textarea-primary bg-primary text-white"></textarea>
+                  <textarea class="textarea textarea-primary bg-white text-blue-600"></textarea>
                 </div>
 
                 <div class="form-control w-full max-w-xs">
                   <label class="label">
-                    <span class="label-text text-primary text-violet-400">Course Type</span>
+                    <span class="label-text text-blue-600 text-blue-600">Course Type</span>
                   </label>
-                  <input type="text" class="input text-white input-bordered input-primary bg-primary w-full max-w-xs" />
+                  <input type="text" class="input text-blue-600 input-bordered input-primary bg-white w-full max-w-xs" />
                 </div>
 
                 <div class="form-control w-full max-w-xs">
                   <label class="label">
-                    <span class="label-text text-primary text-violet-400">Study Program</span>
+                    <span class="label-text text-blue-600 text-blue-600">Study Program</span>
                   </label>
-                  <input type="text" class="input text-white input-bordered input-primary bg-primary w-full max-w-xs" />
+                  <input type="text" class="input text-blue-600 input-bordered input-primary bg-white w-full max-w-xs" />
                 </div>
 
                 <div class="form-control w-full max-w-xs">
                   <label class="label">
-                    <span class="label-text text-primary text-violet-400">User Creator</span>
+                    <span class="label-text text-blue-600 text-blue-600">User Creator</span>
                   </label>
-                  <input type="text" class="input text-white input-bordered input-primary bg-primary w-full max-w-xs" />
+                  <input type="text" class="input text-blue-600 input-bordered input-primary bg-white w-full max-w-xs" />
                 </div>
 
               </div>
