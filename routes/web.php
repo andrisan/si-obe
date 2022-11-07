@@ -23,6 +23,6 @@ Route::get('/dashboard', function () {
 
 Route::get('/syllabi/create', function () {
     return view('syllabi.create');
-});
+})->middleware(['auth'])->name('syllabi.create');
 
 require __DIR__.'/auth.php';
