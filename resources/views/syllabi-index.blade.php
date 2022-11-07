@@ -15,26 +15,28 @@
 
 <body>
   <!--Nvabr-->
-  <div class="alert alert-info shadow-lg">
-  <div>
-    <svg fill="none" viewBox="0 0 24 24" class="stroke-current flex-shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-    <span>Rencana Pembelajaran Semester.</span>
+  <div class= container pt-10; style= "justify-center">
+  <div class="navbar-end justify-center" style="justify-center">
+    <button class="btn" style="background-color: #BB86FC; text-shadow: 0px 0px 4px white; color: white;">Rancangan Pembelajaran Semester</button>
   </div>
-</div>
+  </div>
   <!--EndNvbr-->
 
   <!--Isi-->
-  <div class="container pt-10">
-    <div class="grid grid-cols-2 gap-4 justify-items-center">
+  <main style="padding: 25px; overflow: auto; color: white;">
+<aside style= "float: right; width: 25%; padding-left: 20px;">
+</aside>
 
-    <div class="card bg-base-100 shadow-xl" style="border-width:2px; height:250px; width:500px">
-        <div class="card-body">
-          <h2 class="card-title">PBD</h2>
-          <p>Pemrograman Basis Data</p>
-          <div class="border-b"></div>
-          <div class="card-actions justify-end">
-            <p align="right">Nama Dosen</p>
-          </div>
+<!-- card title-->
+  <div>
+    <div class="card w-96 shadow-xl mb-10" style="float: left; width:75%; background-color: #35303A;" >
+      <div class="card-body" style="padding: 5px 40px;border-radius: 5px; margin-top: 20px;">
+      <h2 class="card-title">Dosen Penyusun RPS</h2>
+      <div class="card-actions justify-end">
+    </div>
+    <div class="input input-bordered w-full mb-5" style="background-color: #121212;">
+          <input type="text" placeholder="Title" class="input input-bordered w-full mb-5" style="background-color: #121212;"/>
+    <p>We are using cookies for no reason.</p>
         </div>
       </div>
 
@@ -45,35 +47,10 @@
           <div class="border-b"></div>
           <div class="card-actions justify-end">
             <p align="right">Nama Dosen</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="card bg-base-100 shadow-xl" style="border-width:2px; height:250px; width:500px">
-        <div class="card-body">
-          <h2 class="card-title">Statistika</h2>
-          <p>Mata Kuliah Statistika</p>
-          <div class="border-b"></div>
-          <div class="card-actions justify-end">
-            <p align="right">Nama Dosen</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="card bg-base-100 shadow-xl" style="border-width:2px; height:250px; width:500px">
-        <div class="card-body">
-          <h2 class="card-title">JKD</h2>
-          <p>Jaringan Komputer Dasar</p>
-          <div class="border-b"></div>
-          <div class="card-actions justify-end">
-            <p align="right">Nama Dosen</p>
-          </div>
-        </div>
-      </div>
-
-
     </div>
   </div>
+</div>
+</main>
 
 
   <!--EndIsi-->
