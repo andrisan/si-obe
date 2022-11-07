@@ -5,12 +5,13 @@
         </h2>
     </x-slot>
 
+    <x-slot name="slot">
         <!-- <div class="border-r-2 border-indigo-500"> -->
         <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
         <div class="drawer-content flex flex-col px-10 pt-5 border-primary-content border-l border-slate-500">
             <!-- Page content here -->
             <div class="">
-              <div class="border-transparent rounded-lg bg-base-300 px-5 py-5">
+              <div class="border-transparent rounded-lg bg-white px-5 py-5">
               <div class="grid grid-cols-2 grid-flow-row gap-1 justify-items-center">
 
                 <div class="form-control w-full max-w-xs">
@@ -104,4 +105,5 @@
             </div>
         </div>
     </div>
+</x-slot>
 </x-app-layout>
