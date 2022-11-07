@@ -28,6 +28,6 @@ Route::get('/dashboard', function () {
 
 Route::get('/course-classes/index', function () {
     return view('course-classes/index');
-});
+})->middleware(['auth']);
 
 require __DIR__.'/auth.php';
