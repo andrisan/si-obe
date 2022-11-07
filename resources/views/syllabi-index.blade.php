@@ -15,32 +15,12 @@
 
 <body>
   <!--Nvabr-->
-  <div class="navbar bg-base-100">
-    <div class="flex-none">
-      <button class="btn btn-square btn-ghost">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-5 h-5 stroke-current">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-        </svg>
-      </button>
-    </div>
-    <div class="flex-1">
-      <a class="btn btn-ghost normal-case text-xl">RPS</a>
-    </div>
-    <div class="flex-none gap-4">
-      <a class="pr-3">
-        <p class="text-m">Nama Lengkap Mahasiswa</p>
-        <p class="text-x5">215150700111000</p>
-      </a>
-    </div>
-    <div class="dropdown dropdown-end">
-      <label tabindex="0" class="btn btn-ghost btn-circle avatar">
-        <div class="w-10 rounded-full">
-          <img src="https://placeimg.com/80/80/people" />
-        </div>
-      </label>
-    </div>
+  <div class="alert alert-info shadow-lg">
+  <div>
+    <svg fill="none" viewBox="0 0 24 24" class="stroke-current flex-shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+    <span>Rencana Pembelajaran Semester.</span>
   </div>
-  <div class="border-b border-slate-500"></div>
+</div>
   <!--EndNvbr-->
 
   <!--Isi-->
