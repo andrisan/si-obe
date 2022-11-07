@@ -54,8 +54,6 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 
-require __DIR__.'/auth.php';
-
 Route::get('/course-classes/{test}/edit', function () {
     return view('course-classes/edit');
 })->middleware(['auth']);
@@ -84,7 +82,6 @@ Route::resource('syllabi.ilos.clos', CourseLearningOutcomeController::class);
 
 Route::get('/profile', [ProfileController::class, 'index'])->middleware(['auth']);
 
-require __DIR__.'/auth.php';
-
-?>
-
+Route::get('/syllabi/syllabus/ilos/1/edit', function () {
+    return view('ilos.edit');
+})->middleware(['auth'])->name('dashboard');
