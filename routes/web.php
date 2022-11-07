@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/courses.create', function () {
+Route::get('/courses/create', function () {
     return view('courses.create');
 })->middleware(['auth']);
 
