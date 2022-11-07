@@ -9,23 +9,23 @@
     <div class="border-b rounded-lg bg-base-300 px-4 py-5">
       <div class="form-control w-full max-w-xs">
         <label class="label">
-          <span class="label-text text-primary">Syllabus Name</span>
+          <span class="label-text text-blue-600 text-blue-600">Syllabus Name</span>
         </label>
-        <input type="text" class="input input-bordered input-primary text-white bg-primary w-full max-w-xs" />
+        <input type="text" class="input text-blue-600 input-bordered input-primary bg-white w-full max-w-xs" />
       </div>
     
       <div class="form-control w-full max-w-xs">
         <label class="label">
-          <span class="label-text text-primary">Author</span>
+          <span class="label-text text-blue-600 text-blue-600">Author</span>
         </label>
-        <input type="text" class="input input-bordered input-primary text-white bg-primary w-full max-w-xs" />
+        <input type="text" class=" input text-blue-600 input-bordered input-primary bg-white w-full max-w-xs" />
       </div>
     
       <div class="form-control">
         <label class="label">
-          <span class="label-text text-primary">Head of Study Program</span>
+          <span class="label-text text-blue-600 text-blue-600">Head of Study Program</span>
         </label> 
-        <textarea class="textarea textarea-primary bg-primary text-white w-full h-24"></textarea>
+        <textarea class="textarea text-blue-600 input-bordered input-primary bg-white w-full h-24"></textarea>
       </div>
     </div>
   
