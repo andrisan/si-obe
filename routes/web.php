@@ -17,17 +17,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/course-index', function () {
-    return view('coursesindex');
-});
-
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/course-classes/index', function () {
-    return view('course-classes/index');
+Route::get('/courses', function () {
+    return view('courses/index');
 })->middleware(['auth']);
 
 require __DIR__.'/auth.php';
