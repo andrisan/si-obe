@@ -11,11 +11,6 @@ class lloController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        return view('llos.index');
-    }
-
     /**
      * Show the form for creating a new resource.
      *
