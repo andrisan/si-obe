@@ -21,7 +21,7 @@ Route::get('/syllabi-index', function () {
     return view('syllabi-index');
 });
 
-Route::get('/index', function () {
+Route::get('/syllabi', function () {
     return view('syllabi-index.index');
 });
 
