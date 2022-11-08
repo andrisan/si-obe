@@ -22,7 +22,7 @@ Route::get('/syllabi-index', function () {
 });
 
 Route::get('/syllabi', function () {
-    return view('syllabi-index.index');
+    return view('syllabi.index');
 });
 
 Route::get('/dashboard', function () {
