@@ -26,4 +26,8 @@ Route::get('/courses', function () {
     return view('courses/index');
 })->middleware(['auth']);
 
+Route::get('/coursescoba', function () {
+    return view('courses/indexcoba');
+})->middleware(['auth']);
+
 require __DIR__.'/auth.php';
