@@ -6,10 +6,10 @@
     </h2>
   </x-slot>
 
-  <div data-theme="light" class="py-12">
+  <div class="py-12">
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-              <div class="p-10">
+              <div data-theme="light" class="p-10">
                 <h1 class="text-4xl font-semibold">Daftar Fakultas</h1>
                 <h1 class="text-xl mt-4">Cari Nama Fakultas</h1>
                 
@@ -18,7 +18,7 @@
                         <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" />
                         <button class="btn btn-info font-bold ml-2">Cari</button>
                     </form>
-                    <button class="btn btn-accent font-bold col-end-9 text-black">Tambah</button>
+                    <button class="btn btn-accent font-bold col-end-9 text-black" >Tambah</button>
                 </div>
 
                 <div class="overflow-x-auto py-4">
@@ -40,8 +40,13 @@
                             <td>{{ $faculty->name }}</td>
                             <td>{{ $faculty->jumlahProdi }}</td>
                             <td>
-                              <button class="btn btn-warning btn-sm">Edit</button>
-                              <button class="btn btn-error btn-sm">Delete</button>
+                              <form action="faculties/{{ $faculty->id }}/edit" method="get">
+                                <button class="btn btn-warning btn-sm" value="{{ $faculty->id }}">Edit</button>
+                              </form>
+                              <form action="faculties/{{ $faculty->id }}" method="get">
+                                <button class="btn btn-error btn-sm mt-1" value="{{ $faculty->id }}"
+                                  onclick="return confirm('Yakin ingin menghapus data ?');">Delete</button>
+                              </form>
                             </td>
                           </tr>
                           <?php $i++ ?>
