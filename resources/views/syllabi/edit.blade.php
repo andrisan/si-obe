@@ -1,107 +1,51 @@
-<!DOCTYPE html>
-<html data-theme="dark" lang="en">
+<x-app-layout>
+  <x-slot name="header">
+    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+      {{ __('Syllabi Edit of '.$syllabus) }}
+    </h2>
+  </x-slot>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.38.0/dist/full.css" rel="stylesheet" type="text/css" />
-    <script src="https://kit.fontawesome.com/a73fac8683.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <title>Edit Syllabi</title>
-</head>
+  <div class="text-sm breadcrumbs pl-8 pt-5 font-bold text-primary">
+    <ul>
+      <li><a href="">Dashboard</a></li>
+      <li><a href="">Syllabi</a></li>
+      <li>Syllabi Edit</li>
+    </ul>
+  </div>
 
-<body>
-    <!--NAVBAR-->
-    <div class="navbar text-neutral-content">
-        <div class="dropdown dropdown-bottom">
-            <label tabindex="0" class="btn btn-ghost btn-circle avatar">
-                <div class="w-10 rounded-full">
-                <img src="image/ava.jpg"/>
-                </div>
+  <div class="px-8 pt-3 pb-10">
+    <div class="border-b rounded-lg bg-primary-content shadow-xl px-5 py-5">
+
+      <div class="grid grid-cols-2 pb-5">
+        <div>
+          <div class="form-control w-full px-10">
+            <label class="label">
+              <span class="label-text text-neutral font-bold">Syllabus Name</span>
             </label>
-            <ul tabindex="0" class="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
-                <li>
-                    <a class="justify-between">
-                        Profile
-                        <span class="badge">New</span>
-                    </a>
-                </li>
-                <li><a>Settings</a></li>
-                <li><a>Logout</a></li>
-            </ul>
+            <input type="text" class="input text-neutral input-bordered input-primary bg-white w-full h-18" />
+          </div>
+          <div class="form-control w-full px-10">
+            <label class="label">
+              <span class="label-text text-neutral font-bold">Author</span>
+            </label>
+            <input type="text" class=" input text-neutral input-bordered input-primary bg-white w-full h-18" />
+          </div>
         </div>
-        <div class="flex-1">
-            <a class="pl-5">
-                <p class="text-m">Fairuz Nandhita Putri</p>
-                <p class="text-xs">Semester 3</p>
-            </a>
+
+        <div>
+          <div class="form-control w-full px-10">
+            <label class="label">
+              <span class="label-text text-neutral font-bold">Head of Study Program</span>
+            </label>
+            <textarea class="textarea text-neutral input-bordered input-primary bg-white w-full h-full"></textarea>
+          </div>
+
+          <div class="px-10 pt-3" style="float:right">
+            <button class="btn btn-outline btn-primary" href="/syllabi">Save</button>
+          </div>
         </div>
+      </div>
+
     </div>
-    <div class="border-b border-slate-500"></div>
-    <!--END NAVBAR-->
-
-    <!--SIDEBAR-->
-    <div class="drawer drawer-mobile">
-        <!-- <div class="border-r-2 border-indigo-500"> -->
-        <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
-        <div class="drawer-content flex flex-col px-10 pt-5 border-primary-content border-l border-slate-500">
-            <!-- Page content here -->
-            <div class="">
-              <h1 class="font-sans text-2xl pb-4">Edit Syllabus</h1>
-              <div class="border-b rounded-lg bg-base-300 px-4 py-5">
-                <div class="form-control w-full max-w-xs">
-                  <label class="label">
-                    <span class="label-text text-primary text-violet-400">Syllabus Name</span>
-                  </label>
-                  <input type="text" class="input text-white input-bordered input-primary bg-primary w-full max-w-xs" />
-                </div>
-              
-                <div class="form-control w-full max-w-xs">
-                  <label class="label">
-                    <span class="label-text text-primary text-violet-400">Author</span>
-                  </label>
-                  <input type="text" class="input text-white input-bordered input-primary bg-primary w-full max-w-xs" />
-                </div>
-              
-                <div class="form-control">
-                  <label class="label">
-                    <span class="label-text text-primary text-violet-400">Head of Study Program</span>
-                  </label> 
-                  <textarea class="textarea textarea-primary bg-primary text-white"></textarea>
-                </div>
-              </div>
-            
-              <div class="py-5" style="float:right">
-                <button class="btn btn-outline justify-end">Edit</button>
-              </div>
-            </div>
-            <!-- End content -->
-            <label for="my-drawer-2" class="btn btn-primary drawer-button lg:hidden">Open drawer</label>
-    
-        </div>
-        <div class="drawer-side">
-            <label for="my-drawer-2" class="drawer-overlay"></label>
-            <ul class="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
-                <!-- Sidebar content here -->
-                <div class="bg-violet-600 rounded-lg mb-2">
-                    <li><a><i class="fa-solid fa-house"></i>Dashboard</a></li>
-                </div>
-                <div class="border-b border-slate-500"></div>
-                <li><a>My Classes</a></li>
-                <li><a><i class="fa-solid fa-heart"></i>Pengembangan Aplikasi Web</a></li>
-                <li><a><i class="fa-solid fa-heart"></i>Pemrograman Basis Data</a></li>
-                <li><a><i class="fa-solid fa-heart"></i>Jaringan Komputer Dasar</a></li>
-                <li><a><i class="fa-solid fa-heart"></i>Algoritma dan Struktur Data</a></li>
-                <li><a><i class="fa-solid fa-heart"></i>Analisis dan Desain Sistem Informasi</a></li>
-                <li><a><i class="fa-solid fa-heart"></i>Kewirausahaan</a></li>
-                <li><a><i class="fa-solid fa-heart"></i>Etika Profesi</a></li>
-            </ul>
-        </div>
-    </div>
-    <!-- </div> -->
-    <!--END SIDEBAR-->
-
-</body>
-
-</html>
+  </div>
+</x-app-layout>
