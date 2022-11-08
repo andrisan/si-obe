@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\iloController;
+use App\Http\Controllers\LloController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +27,5 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+Route::get('/llos/create', [LloController::class,'create'])->middleware(['auth']);
