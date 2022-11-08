@@ -8,8 +8,8 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg ">
-                <div class="p-6 bg-white border-b border-gray-200 flex justify-center">
-                  <div class="card w-96 bg-base-300 text-neutral-content">
+                <div data-theme="light" class="p-6 flex justify-center">
+                  <div class="card w-96 bg-base-200 text-neutral-content">
                     <div class="card-body items-center text-center">
                       <h2 class="card-title text-neutral">Edit Departemen</h2>
                       <div class="form-control w-full max-w-xs">
@@ -25,10 +25,12 @@
                         </label>
                         <input type="text" class="input input-bordered w-full max-w-xs text-neutral" value="Sistem Informasi" />
                       </div>
-                      <div class="card-actions justify-end mt-4">
-                        <button class="btn btn-outline btn-error">Cancel</button>
-                        <button class="btn btn-primary">Simpan</button>
-                      </div>
+                      <form action="index">
+                        <div class="card-actions justify-end mt-4">
+                          <button class="btn btn-outline btn-error">Cancel</button>
+                          <button class="btn btn-primary">Simpan</button>
+                        </div>
+                      </form>
                     </div>
                   </div>
                 </div>

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DepartmentsEditController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,9 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('departments/edit', function () {
-    return view('departments.edit');
-});
+Route::get('/departments/edit', [DepartmentsEditController::class, 'index'])->middleware(['auth']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
