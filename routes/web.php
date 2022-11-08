@@ -21,8 +21,8 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/create', function () {
-    return view('assigment_plans_create.create');
+Route::get('/assignment-plans/create', function () {
+    return view('assignment-plans.create');
 });
 
 require __DIR__.'/auth.php';
