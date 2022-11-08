@@ -87,3 +87,5 @@ Route::get('/profile', [ProfileController::class, 'index'])->middleware(['auth']
 Route::get('/syllabi/syllabus/ilos/1/edit', function () {
     return view('ilos.edit');
 })->middleware(['auth'])->name('dashboard');
+
+Route::get('/Ilos/index', [IloController::class,'index'])->middleware(['auth']);
