@@ -6,7 +6,10 @@
     </x-slot>
 
     <div class="py-12">
-        
+                <div>
+                    <h3>Nama Mahasiswa</h3>
+                    <p>Status</p>
+                </div>
                 <input type="submit" value="Save" class="btn btn-active rounded-md " />
                 <button class="btn btn-outline rounded-md">Cancel</button>
                 </div>
