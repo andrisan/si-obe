@@ -4,13 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class lloController extends Controller
+class IloController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    public function index()
+    {
+        return view('ilos.index');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -18,7 +23,7 @@ class lloController extends Controller
      */
     public function create()
     {
-        //
+      
     }
 
     /**
@@ -42,7 +47,7 @@ class lloController extends Controller
     {
         //
     }
-    
+
     /**
      * Show the form for editing the specified resource.
      *
