@@ -1,13 +1,13 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FacultyController;
 use App\Http\Controllers\rubricController;
 use App\Http\Controllers\criteriaController;
 use App\Http\Controllers\RubricsController;
 use App\Http\Controllers\cloController;
 use App\Http\Controllers\levelsController;
 use App\Http\Controllers\ProfileController;
-
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\CourseLearningOutcomeController;
 use App\Http\Controllers\lloController;
@@ -51,6 +51,8 @@ Route::get('/rubrics/{rubric}/criterias/{criteria}/edit', function () {
 });
 
 Route::resource('clos', cloController::class);
+
+Route::resource('faculties', FacultyController::class)->middleware('auth');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
