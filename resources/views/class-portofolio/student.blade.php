@@ -31,8 +31,35 @@
                             </h1>
                             <h1 class="mr-10">Kelas: TI-C</h1>
                         </div>
-                    </div>
+                        <div class="mt-2    py-20 ">
+                            <style>
+                                .border-{
+                                    background: black;
+                                }
+                                table , th, td{
+                                    border: black 2px solid;
+                                } 
+                            </style>
 
+                            <table class="w-full border-colapse border-2 border-black" border="1"  cellpadding="15">
+                                <tr >
+                                    <th  rowspan="2" bgcolor="#AFC7F5">NO</th>
+                                    <th  rowspan="2" bgcolor="#AFC7F5">KOMPETENSI DASAR
+                                    </th>
+                                    <th  rowspan="2" bgcolor="#AFC7F5">PERIODE TANGGAL
+                                    </th>
+                                    <th  colspan="3" bgcolor="#AFC7F5">KETERCAPAIAN</th>
+                                    <th  rowspan="2" bgcolor="#AFC7F5">SKOR</th>
+
+                                </tr>
+                                <tr >
+                                    <th  bgcolor="#AFC7F5">CUKUP</th>
+                                    <th  bgcolor="#AFC7F5">BAIK</th>
+                                    <th  bgcolor="#AFC7F5">SANGAT BAIK</th>
+
+                                </tr>
+                    </div>
+                    </div>
 
 
 
