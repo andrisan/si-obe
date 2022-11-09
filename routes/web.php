@@ -96,4 +96,4 @@ Route::get('/Ilos/index', [IloController::class,'index'])->middleware(['auth']);
 
 Route::get('/course-classes/{course-class}/assignments', function () {
     return view('assignments.show');
-})->middleware(['auth']);
+})->middleware(['auth'])->name('assignments.show');
