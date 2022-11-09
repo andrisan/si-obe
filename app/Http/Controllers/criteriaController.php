@@ -49,10 +49,6 @@ class criteriaController extends Controller
      */
     public function show($id)
     {
-
-        //
-    }
-
         return view('criterias.show');
     }
 
@@ -90,7 +86,5 @@ class criteriaController extends Controller
         //
     }
 
-}
-=======
 }
 
