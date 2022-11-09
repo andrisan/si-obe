@@ -103,7 +103,7 @@
 
             <div class="form-control w-full max-w-xs">
               <label class="label">
-                <span class="label-text text-neutral font-bold">User Creator</span>
+                <span class="mt-7 label-text text-neutral font-bold">User Creator</span>
               </label>
               <input type="text" class="input text-neutral input-bordered bg-white w-full max-w-xs" />
             </div>
