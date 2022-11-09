@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class DepartmentsEditController extends Controller
+class DepartmentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,7 @@ class DepartmentsEditController extends Controller
      */
     public function index()
     {
-        return view('departments.edit');
+        //
     }
 
     /**
@@ -56,7 +56,7 @@ class DepartmentsEditController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('departments.edit');
     }
 
     /**
