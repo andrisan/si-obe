@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClassPortofolioController;
 use App\Http\Controllers\CriteriasController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DepartmentController;
@@ -11,7 +12,6 @@ use App\Http\Controllers\RubricsController;
 use App\Http\Controllers\cloController;
 use App\Http\Controllers\levelsController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\CourseLearningOutcomeController;
 use App\Http\Controllers\lloController;
 use App\Http\Controllers\IloController;
@@ -87,10 +87,12 @@ Route::resource('rubrics.criterias', CriteriasController::class);
 
 Route::get('/syllabi/{syllabus}/learning-plans/{learning-plan}/edit', function () {
     return view('assignment-plans.edit');
-    
+});
+
 Route::get('/assignment-plans/create', function () {
     return view('assignment-plans.create');
 });
+
 Route::get('/courses', function () {
     return view('courses/index');
 })->middleware(['auth']);
@@ -98,6 +100,7 @@ Route::get('/courses', function () {
 Route::get('/course-classes/search', function () {
     return view('course-classes/search');
 })->middleware(['auth']);
+
 Route::get('/portofolio/student', function () {
     return view('portofolio.student');
 })->middleware(['auth']);
@@ -109,6 +112,7 @@ Route::resource('llos', lloController::class);
 Route::get('/course-classes/new', function () {
     return view('course-classes/create');
 })->middleware(['auth']);
+
 Route::get('/portofolio/student', function () {
     return view('class-portofolio.student');
 })->middleware(['auth']);
@@ -127,7 +131,6 @@ Route::get('/syllabi/create', function () {
     return view('syllabi.create');
 })->middleware(['auth'])->name('syllabi.create');
 
-
 Route::get('/course-classes/{courseclass}/assignments', function ($courseClass) {
     return view('assignments.show',['courseclass' => $courseClass]);
 })->middleware(['auth']);
@@ -135,5 +138,7 @@ Route::get('/course-classes/{courseclass}/assignments', function ($courseClass) 
 Route::get('/studentgrades/create/{id}', [StudentGradeController::class,'create'])->middleware(['auth']);
 
 Route::get('/course-classes/join/{id}', [CourseClassController::class, 'show']);
+
+Route::get('/class-portofolio/{courseclass}', [ClassPortofolioController::class, 'index']);
 
 require __DIR__.'/auth.php';
