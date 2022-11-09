@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FacultyController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,13 +18,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/faculties/edit', function () {
-    return view('faculties.edit');
-});
+Route::resource('faculties/{faculty}/edit', FacultyController::class)->middleware(['auth']);
 
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
