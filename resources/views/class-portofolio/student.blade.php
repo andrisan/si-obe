@@ -52,12 +52,14 @@
                                     <th  rowspan="2" bgcolor="#AFC7F5">SKOR</th>
 
                                 </tr>
+                                
                                 <tr >
                                     <th  bgcolor="#AFC7F5">CUKUP</th>
                                     <th  bgcolor="#AFC7F5">BAIK</th>
                                     <th  bgcolor="#AFC7F5">SANGAT BAIK</th>
 
                                 </tr>
+                                
                                 <tr >
                                     <td class="text-center">1</td>
                                     <td class="text-center">Presentasi Blade Template</td>
@@ -68,6 +70,7 @@
                                     <td class="text-center"></td>
                                     <td class="text-center">81</td>
                                 </tr>
+                                
                                 <tr >
                                     <td class="text-center">2</td>
                                     <td class="text-center">Ringkasan Blade Template</td>
@@ -78,6 +81,7 @@
                                             src="{{ asset('img/dashicons_yes.png') }}" alt=""></td>
                                     <td class="text-center">92</td>
                                 </tr>
+                                
                                 <tr >
                                     <td class="text-center">3</td>
                                     <td class="text-center">Membuat view home.index</td>
@@ -89,6 +93,7 @@
 
                                     <td class="text-center">78</td>
                                 </tr>
+                                
                                 <tfoot celpadding="4">
                                     <tr >
                                         <th  bgcolor="#AFC7F5"  colspan="5"></th>
