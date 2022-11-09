@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClassPortofolioController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CourseClassController;
 use App\Http\Controllers\FacultyController;
@@ -108,5 +109,7 @@ Route::get('/course-class/index', [CourseClassController::class,'index'])->middl
 Route::get('/course-classes/index2', function () {
     return view('course-classes.index2');
 })->middleware(['auth']);
+
+Route::get('/class-portofolio/{courseclass}', [ClassPortofolioController::class, 'index']);
 
 require __DIR__.'/auth.php';
