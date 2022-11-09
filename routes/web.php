@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\departmentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,9 +18,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/departmentCreate', function () {
-    return view('departmentCreate');
-});
+Route::get('/department/create', function () {
+    return view('department.create');
+})->middleware(['auth']);
+
+Route::resource('departments', DepartmentController::class)->middleware(['auth']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
