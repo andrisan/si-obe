@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CourseClassesController;
+use App\Http\Controllers\CourseClassController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +24,7 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/course-classes/index', [CourseClassesController::class,'index'])->middleware(['auth']);
+Route::get('/course-class/index', [CourseClassController::class,'index'])->middleware(['auth']);
 Route::get('/course-classes/index2', function () {
     return view('course-classes.index2');
 })->middleware(['auth']);
