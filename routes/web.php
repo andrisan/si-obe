@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\CourseClassController;
 use App\Http\Controllers\FacultyController;
 use App\Http\Controllers\rubricController;
@@ -14,7 +15,6 @@ use App\Http\Controllers\CourseLearningOutcomeController;
 use App\Http\Controllers\lloController;
 use App\Http\Controllers\IloController;
 use App\Http\Controllers\StudentGradeController;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -66,8 +66,6 @@ Route::get('/syllabi', function () {
 
 Route::resource('faculties/{faculty}/edit', FacultyController::class)->middleware(['auth']);
 
-
-
 Route::get('/syllabi/{syllabus}/edit', function ($syllabus) {
     return view('syllabi.edit',['syllabus' => $syllabus]);
 })->middleware('auth');
@@ -77,6 +75,8 @@ Route::resource('faculties', FacultyController::class)->middleware(['auth']);
 Route::get('/courses/create', function () {
     return view('courses.create');
 })->middleware(['auth']);
+
+Route::resource('faculties.departments', DepartmentController::class)->middleware('auth');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

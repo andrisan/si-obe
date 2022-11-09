@@ -56,7 +56,7 @@ class DepartmentController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('departments.edit');
     }
 
     /**
