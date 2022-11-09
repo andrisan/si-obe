@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CourseClassController;
 use App\Http\Controllers\FacultyController;
 use App\Http\Controllers\rubricController;
 use App\Http\Controllers\criteriaController;
@@ -12,7 +13,6 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\CourseLearningOutcomeController;
 use App\Http\Controllers\lloController;
 use App\Http\Controllers\IloController;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -65,14 +65,13 @@ Route::get('/syllabi', function () {
 Route::resource('faculties/{faculty}/edit', FacultyController::class)->middleware(['auth']);
 
 
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/faculties/{faculty}/departments', [DepartmentController::class, 'index']);
-
-Route::get('/course-classes/{test}/edit', function () {
-    return view('course-classes/edit');
+Route::get('/courses', function () {
+    return view('courses/index');
 })->middleware(['auth']);
 
 Route::get('/course-classes/search', function () {
@@ -108,6 +107,7 @@ Route::get('/Ilos/index', [IloController::class,'index'])->middleware(['auth']);
 
 Route::get('/course-classes/{courseclass}/assignments', function ($courseClass) {
     return view('assignments.show',['courseclass' => $courseClass]);
+
 })->middleware(['auth']);
 
 require __DIR__.'/auth.php';
