@@ -141,4 +141,8 @@ Route::get('/course-classes/join/{id}', [CourseClassController::class, 'show']);
 
 Route::get('/class-portofolio/{courseclass}', [ClassPortofolioController::class, 'index']);
 
+Route::get('/assignments/{assignments}/edit', function () {
+    return view('assignments.edit');
+})->middleware(['auth']);
+
 require __DIR__.'/auth.php';
