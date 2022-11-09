@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CriteriasController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\CourseClassController;
@@ -81,6 +82,8 @@ Route::resource('faculties.departments', DepartmentController::class)->middlewar
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+Route::resource('rubrics.criterias', CriteriasController::class);
 
 Route::get('/syllabi/{syllabus}/learning-plans/{learning-plan}/edit', function () {
     return view('assignment-plans.edit');
