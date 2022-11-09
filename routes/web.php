@@ -70,6 +70,9 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::get('/syllabi/{syllabus}/learning-plans/{learning-plan}/edit', function () {
+    return view('assignment-plans.edit');
+    
 Route::get('/assignment-plans/create', function () {
     return view('assignment-plans.create');
 });
