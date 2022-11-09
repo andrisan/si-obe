@@ -109,4 +109,6 @@ Route::get('/course-classes/index2', function () {
     return view('course-classes.index2');
 })->middleware(['auth']);
 
+Route::get('/course-classes/join/{id}', [CourseClassController::class, 'show']);
+
 require __DIR__.'/auth.php';
