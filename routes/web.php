@@ -134,4 +134,6 @@ Route::get('/course-classes/{courseclass}/assignments', function ($courseClass) 
 
 Route::get('/studentgrades/create/{id}', [StudentGradeController::class,'create'])->middleware(['auth']);
 
+Route::get('/course-classes/join/{id}', [CourseClassController::class, 'show']);
+
 require __DIR__.'/auth.php';
