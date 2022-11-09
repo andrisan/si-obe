@@ -113,4 +113,9 @@ Route::get('/syllabi/create', function () {
 })->middleware(['auth'])->name('syllabi.create');
 
 
+Route::get('/course-classes/{courseclass}/assignments', function ($courseClass) {
+    return view('assignments.show',['courseclass' => $courseClass]);
+})->middleware(['auth']);
+
 require __DIR__.'/auth.php';
+
