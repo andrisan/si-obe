@@ -45,7 +45,7 @@ class CourseClassController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('course-classes.show_join');
     }
 
     /**
