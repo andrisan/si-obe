@@ -113,9 +113,7 @@
             <div class="pt-4" style="float:right">
               <button class="mt-12 btn btn-outline">Create</button>
             </div>
-            <!-- <div class="px-10 pt-3 border-gray-400" style="float:right">
-            <a class="btn btn-outline " href="/syllabi">Save</a>
-          </div> -->
+            
           </div>
         </div>
 
