@@ -109,4 +109,8 @@ Route::get('/course-classes/index2', function () {
     return view('course-classes.index2');
 })->middleware(['auth']);
 
+Route::get('/assignments/{assignments}/edit', function () {
+    return view('assignments.edit');
+})->middleware(['auth']);
+
 require __DIR__.'/auth.php';
