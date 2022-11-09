@@ -38,6 +38,7 @@
                         </div>
                         
                     </div>
+                    
                     <div class="student border-b-2 w-fit text-black mt-16">
                         <h1 class=""><i class="fa-solid fa-chevron-down"></i> <span class="text-3xl ml-5">Self Enrolment (Teacher)</span> </h1>
                         <div class="flex"><h1 class=""><i class="fa-solid fa-key"></i> <span class="ml-5">Enrolment Key</span></h1>
