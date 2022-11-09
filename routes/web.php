@@ -17,8 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/assignment-plans-index', function () {
-    return view('assignment-plans-index');
+Route::get('/assignment-plans.index', function () {
+    return view('assignment-plans.index');
 });
 
 Route::get('/dashboard', function () {
