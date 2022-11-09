@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CourseClassController;
 use App\Http\Controllers\FacultyController;
 use App\Http\Controllers\rubricController;
 use App\Http\Controllers\criteriaController;
@@ -13,7 +14,6 @@ use App\Http\Controllers\CourseLearningOutcomeController;
 use App\Http\Controllers\lloController;
 use App\Http\Controllers\IloController;
 use App\Http\Controllers\StudentGradeController;
-
 
 
 /*
@@ -67,14 +67,29 @@ Route::get('/syllabi', function () {
 Route::resource('faculties/{faculty}/edit', FacultyController::class)->middleware(['auth']);
 
 
+
+Route::get('/syllabi/{syllabus}/edit', function ($syllabus) {
+    return view('syllabi.edit',['syllabus' => $syllabus]);
+})->middleware('auth');
+
+Route::resource('faculties', FacultyController::class)->middleware(['auth']);
+
+Route::get('/courses/create', function () {
+    return view('courses.create');
+})->middleware(['auth']);
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/faculties/{faculty}/departments', [DepartmentController::class, 'index']);
-
-Route::get('/course-classes/{test}/edit', function () {
-    return view('course-classes/edit');
+Route::get('/syllabi/{syllabus}/learning-plans/{learning-plan}/edit', function () {
+    return view('assignment-plans.edit');
+    
+Route::get('/assignment-plans/create', function () {
+    return view('assignment-plans.create');
+});
+Route::get('/courses', function () {
+    return view('courses/index');
 })->middleware(['auth']);
 
 Route::get('/course-classes/search', function () {
@@ -99,15 +114,15 @@ Route ::resource('rubrics', RubricsController::class)->middleware(['auth'])->onl
 
 Route::resource('syllabi.ilos.clos', CourseLearningOutcomeController::class);
 
-Route::get('/profile', [ProfileController::class, 'index'])->middleware(['auth']);
+Route::get('/syllabi/create', function () {
+    return view('syllabi.create');
+})->middleware(['auth'])->name('syllabi.create');
 
-Route::get('/syllabi/syllabus/ilos/1/edit', function () {
-    return view('ilos.edit');
+
+Route::get('/course-classes/{courseclass}/assignments', function ($courseClass) {
+    return view('assignments.show',['courseclass' => $courseClass]);
 })->middleware(['auth']);
-
-Route::get('/Ilos/index', [IloController::class,'index'])->middleware(['auth']);
-
-require __DIR__.'/auth.php';
 
 Route::get('/studentgrades/create/{id}', [StudentGradeController::class,'create'])->middleware(['auth']);
 
+require __DIR__.'/auth.php';
