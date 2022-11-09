@@ -63,6 +63,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('syllabus_id')->constrained('syllabus');
             $table->integer('position')->nullable();
+            $table->string('code', 512)->nullable();
             $table->text('description')->nullable();
         });
 
@@ -70,6 +71,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('ilo_id')->constrained('intended_learning_outcome');
             $table->integer('position')->nullable();
+            $table->string('code', 512)->nullable();
             $table->text('description')->nullable();
         });
 
@@ -77,6 +79,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('clo_id')->constrained('course_learning_outcome');
             $table->integer('position')->nullable();
+            $table->string('code', 512)->nullable();
             $table->text('description')->nullable();
         });
 
