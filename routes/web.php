@@ -93,3 +93,5 @@ Route::get('/syllabi/syllabus/ilos/1/edit', function () {
 })->middleware(['auth'])->name('dashboard');
 
 Route::get('/Ilos/index', [IloController::class,'index'])->middleware(['auth']);
+
+require __DIR__.'/auth.php';
