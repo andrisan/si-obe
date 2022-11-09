@@ -21,4 +21,6 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::get('/departments/{department}/study-programs', [StudyProgramController::class, 'index']);
+
 require __DIR__.'/auth.php';
