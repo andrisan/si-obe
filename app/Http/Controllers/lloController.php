@@ -2,27 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Faculty;
 use Illuminate\Http\Request;
 
-class FacultyController extends Controller
+class lloController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $faculties = DB::table('faculty')
-                    ->leftjoin('department', 'department.faculty_id', '=', 'faculty.id')
-                    ->select('faculty.id', 'faculty.name', DB::raw('count(department.faculty_id) as jumlahProdi'))
-                    ->groupBy('faculty.id')
-                    ->get();
- 
-        return view('faculties.index', ['faculties' => $faculties]);
-    }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -47,21 +35,21 @@ class FacultyController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Faculty  $faculty
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Faculty $faculty)
+    public function show($id)
     {
         //
     }
-
+    
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Faculty  $faculty
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Faculty $faculty)
+    public function edit($id)
     {
         //
     }
@@ -70,10 +58,10 @@ class FacultyController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Faculty  $faculty
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Faculty $faculty)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -81,10 +69,10 @@ class FacultyController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Faculty  $faculty
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Faculty $faculty)
+    public function destroy($id)
     {
         //
     }
