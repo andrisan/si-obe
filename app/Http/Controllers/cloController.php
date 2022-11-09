@@ -1,3 +1,4 @@
+@@ -0,0 +1,85 @@
 <?php
 
 namespace App\Http\Controllers;
@@ -23,7 +24,7 @@ class cloController extends Controller
      */
     public function create()
     {
-        //
+        return view('clo.create');
     }
 
     /**
@@ -46,6 +47,7 @@ class cloController extends Controller
     public function show($id)
     {
         //
+        return 'clo'. $id;
     }
 
     /**
@@ -79,6 +81,6 @@ class cloController extends Controller
      */
     public function destroy($id)
     {
-        //
-    }
+        //
+    }
 }
