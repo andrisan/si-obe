@@ -4,18 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class DepartmentController extends Controller
+class lloController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        return view('departments.index');
-    }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -47,7 +42,7 @@ class DepartmentController extends Controller
     {
         //
     }
-
+    
     /**
      * Show the form for editing the specified resource.
      *
@@ -56,7 +51,7 @@ class DepartmentController extends Controller
      */
     public function edit($id)
     {
-        return view('departments.edit');
+        //
     }
 
     /**

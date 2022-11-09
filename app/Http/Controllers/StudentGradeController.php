@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class DepartmentController extends Controller
+class StudentGradeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,7 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        return view('departments.index');
+        //
     }
 
     /**
@@ -21,11 +21,10 @@ class DepartmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        return view('layouts.studentgrades');
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -56,7 +55,7 @@ class DepartmentController extends Controller
      */
     public function edit($id)
     {
-        return view('departments.edit');
+        //
     }
 
     /**

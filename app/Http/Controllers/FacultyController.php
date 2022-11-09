@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Faculty;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
-class DepartmentController extends Controller
+class FacultyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +15,14 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        return view('departments.index');
+        //
+        $faculties = DB::table('faculty')
+                    ->leftjoin('department', 'department.faculty_id', '=', 'faculty.id')
+                    ->select('faculty.id', 'faculty.name', DB::raw('count(department.faculty_id) as jumlahProdi'))
+                    ->groupBy('faculty.id')
+                    ->get();
+ 
+        return view('faculties.index', ['faculties' => $faculties]);
     }
 
     /**
@@ -23,7 +32,7 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        //
+        return view('faculties.create');
     }
 
     /**
@@ -40,10 +49,10 @@ class DepartmentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Faculty  $faculty
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Faculty $faculty)
     {
         //
     }
@@ -51,22 +60,22 @@ class DepartmentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Faculty  $faculty
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Faculty $faculty)
     {
-        return view('departments.edit');
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Faculty  $faculty
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Faculty $faculty)
     {
         //
     }
@@ -74,10 +83,10 @@ class DepartmentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Faculty  $faculty
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Faculty $faculty)
     {
         //
     }
