@@ -66,10 +66,45 @@ Route::resource('faculties/{faculty}/edit', FacultyController::class)->middlewar
 
 
 
+Route::get('/syllabi/{syllabus}/edit', function ($syllabus) {
+    return view('syllabi.edit',['syllabus' => $syllabus]);
+})->middleware('auth');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::get('/syllabi/{syllabus}/learning-plans/{learning-plan}/edit', function () {
+    return view('assignment-plans.edit');
+    
+Route::get('/assignment-plans/create', function () {
+    return view('assignment-plans.create');
+});
+Route::get('/courses', function () {
+    return view('courses/index');
+})->middleware(['auth']);
+
+Route::get('/course-classes/search', function () {
+    return view('course-classes/search');
+})->middleware(['auth']);
+
+Route::get('/criterias/{id}', [criteriaController::class, 'show']);
+
+Route::resource('llos', lloController::class);
+
+Route::get('/course-classes/new', function () {
+    return view('course-classes/create');
+})->middleware(['auth']);
+
+Route::get('/rubrics/{rubric}/criterias/{criteria}/criteria-levels/{criteria-level}/edit', function () {
+    return view('criteria-levels/edit');
+})->middleware(['auth']);
+
+Route::get('/criteria-levels/{id}', [levelsController::class, 'show']);
+
+Route ::resource('rubrics', RubricsController::class)->middleware(['auth'])->only('show', 'create');
+
+Route::resource('syllabi.ilos.clos', CourseLearningOutcomeController::class);
 
 Route::get('/syllabi/create', function () {
     return view('syllabi.create');
