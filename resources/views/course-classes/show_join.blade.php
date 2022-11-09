@@ -38,3 +38,19 @@
                         </div>
                         
                     </div>
+                    <div class="student border-b-2 w-fit text-black mt-16">
+                        <h1 class=""><i class="fa-solid fa-chevron-down"></i> <span class="text-3xl ml-5">Self Enrolment (Teacher)</span> </h1>
+                        <div class="flex"><h1 class=""><i class="fa-solid fa-key"></i> <span class="ml-5">Enrolment Key</span></h1>
+                        <form action="block">
+                            <input class="border-[#2E65F3] ml-72 rounded-md " type="text" name="" id="">
+                            <button class="btn bg-[#2E65F3] text-white font-semibold border-none mt-5 ml-72 block">Enrol Me</button>
+                        </form>
+                        </div>
+                        
+                    </div>
+                    
+            
+                    
+                    
+    </div>
+</x-app-layout>
