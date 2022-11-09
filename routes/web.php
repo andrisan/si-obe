@@ -54,6 +54,17 @@ Route::resource('clos', cloController::class);
 
 Route::resource('faculties', FacultyController::class)->middleware('auth');
 
+Route::get('/syllabi-index', function () {
+    return view('syllabi-index');
+});
+
+Route::get('/syllabi', function () {
+    return view('syllabi.index');
+});
+
+Route::resource('faculties/{faculty}/edit', FacultyController::class)->middleware(['auth']);
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
