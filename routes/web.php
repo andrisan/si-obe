@@ -106,17 +106,9 @@ Route ::resource('rubrics', RubricsController::class)->middleware(['auth'])->onl
 
 Route::resource('syllabi.ilos.clos', CourseLearningOutcomeController::class);
 
-Route::get('/profile', [ProfileController::class, 'index'])->middleware(['auth']);
+Route::get('/syllabi/create', function () {
+    return view('syllabi.create');
+})->middleware(['auth'])->name('syllabi.create');
 
-Route::get('/syllabi/syllabus/ilos/1/edit', function () {
-    return view('ilos.edit');
-})->middleware(['auth']);
-
-Route::get('/Ilos/index', [IloController::class,'index'])->middleware(['auth']);
-
-Route::get('/course-class/index', [CourseClassController::class,'index'])->middleware(['auth']);
-Route::get('/course-classes/index2', function () {
-    return view('course-classes.index2');
-})->middleware(['auth']);
 
 require __DIR__.'/auth.php';
