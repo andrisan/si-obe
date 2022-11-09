@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Faculty;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class FacultyController extends Controller
 {
@@ -14,6 +15,7 @@ class FacultyController extends Controller
      */
     public function index()
     {
+        //
         $faculties = DB::table('faculty')
                     ->leftjoin('department', 'department.faculty_id', '=', 'faculty.id')
                     ->select('faculty.id', 'faculty.name', DB::raw('count(department.faculty_id) as jumlahProdi'))
@@ -30,7 +32,7 @@ class FacultyController extends Controller
      */
     public function create()
     {
-        //
+        return view('faculties.create');
     }
 
     /**

@@ -70,6 +70,8 @@ Route::get('/syllabi/{syllabus}/edit', function ($syllabus) {
     return view('syllabi.edit',['syllabus' => $syllabus]);
 })->middleware('auth');
 
+Route::resource('faculties', FacultyController::class)->middleware(['auth']);
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
