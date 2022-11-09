@@ -21,7 +21,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/assignment-plans/edit', function () {
+Route::get('/syllabi/{syllabus}/learning-plans/{learning-plan}/edit', function () {
     return view('assignment-plans.edit');
 })->middleware(['auth']);
 
