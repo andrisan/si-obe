@@ -78,6 +78,9 @@ Route::get('/course-classes/{test}/edit', function () {
 Route::get('/course-classes/search', function () {
     return view('course-classes/search');
 })->middleware(['auth']);
+Route::get('/portofolio/student', function () {
+    return view('portofolio.student');
+})->middleware(['auth']);
 
 Route::get('/criterias/{id}', [criteriaController::class, 'show']);
 
@@ -85,6 +88,9 @@ Route::resource('llos', lloController::class);
 
 Route::get('/course-classes/new', function () {
     return view('course-classes/create');
+})->middleware(['auth']);
+Route::get('/portofolio/student', function () {
+    return view('class-portofolio.student');
 })->middleware(['auth']);
 
 Route::get('/rubrics/{rubric}/criterias/{criteria}/criteria-levels/{criteria-level}/edit', function () {
