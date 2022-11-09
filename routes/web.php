@@ -70,6 +70,9 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::get('/assignment-plans/create', function () {
+    return view('assignment-plans.create');
+});
 Route::get('/courses', function () {
     return view('courses/index');
 })->middleware(['auth']);
