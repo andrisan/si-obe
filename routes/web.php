@@ -66,6 +66,10 @@ Route::resource('faculties/{faculty}/edit', FacultyController::class)->middlewar
 
 
 
+Route::get('/syllabi/{syllabus}/edit', function ($syllabus) {
+    return view('syllabi.edit',['syllabus' => $syllabus]);
+})->middleware('auth');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
