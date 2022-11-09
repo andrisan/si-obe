@@ -94,8 +94,8 @@ Route::get('/syllabi/syllabus/ilos/1/edit', function () {
 
 Route::get('/Ilos/index', [IloController::class,'index'])->middleware(['auth']);
 
-Route::get('/course-classes/{course-class}/assignments', function () {
-    return view('assignments.show');
+Route::get('/course-classes/{courseclass}/assignments', function ($courseClass) {
+    return view('assignments.show',['courseclass' => $courseClass]);
 })->middleware(['auth']);
 
 require __DIR__.'/auth.php';
