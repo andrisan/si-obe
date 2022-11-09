@@ -66,6 +66,7 @@ class FacultyController extends Controller
     public function edit(Faculty $faculty)
     {
         //
+        return view('faculties.edit');
     }
 
     /**
