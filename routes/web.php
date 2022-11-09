@@ -66,8 +66,6 @@ Route::get('/syllabi', function () {
     return view('syllabi.index');
 });
 
-Route::resource('faculties/{faculty}/edit', FacultyController::class)->middleware(['auth']);
-
 Route::get('/syllabi/{syllabus}/edit', function ($syllabus) {
     return view('syllabi.edit',['syllabus' => $syllabus]);
 })->middleware('auth');

@@ -17,8 +17,10 @@
                     <form action="" method="" class="col-start-1 col-span-3">
                         <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" />
                         <button class="btn btn-info font-bold ml-2">Cari</button>
+                    </form> 
+                    <form action="faculties/create" class="col-end-9 flex justify-end">
+                      <button class="btn btn-accent font-bold text-black ">Tambah</button>
                     </form>
-                    <button class="btn btn-accent font-bold col-end-9 text-black" >Tambah</button>
                 </div>
 
                 <div class="overflow-x-auto py-4">
@@ -40,13 +42,15 @@
                             <td>{{ $faculty->name }}</td>
                             <td>{{ $faculty->jumlahProdi }}</td>
                             <td>
-                              <form action="faculties/{{ $faculty->id }}/edit" method="get">
-                                <button class="btn btn-warning btn-sm" value="{{ $faculty->id }}">Edit</button>
-                              </form>
-                              <form action="faculties/{{ $faculty->id }}" method="get">
-                                <button class="btn btn-error btn-sm mt-1" value="{{ $faculty->id }}"
-                                  onclick="return confirm('Yakin ingin menghapus data ?');">Delete</button>
-                              </form>
+                              <div class="flex items-strecth">
+                                <form action="faculties/{{ $faculty->id }}/edit" method="get">
+                                  <button class="btn btn-warning btn-sm m-1" value="{{ $faculty->id }}">Edit</button>
+                                </form>
+                                <form action="faculties/{{ $faculty->id }}" method="get">
+                                  <button class="btn btn-error btn-sm m-1" value="{{ $faculty->id }}"
+                                    onclick="return confirm('Yakin ingin menghapus data ?');">Delete</button>
+                                </form>
+                              </div>
                             </td>
                           </tr>
                           <?php $i++ ?>

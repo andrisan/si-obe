@@ -19,7 +19,9 @@
                       <input type="text" class="input input-bordered w-full max-w-xs text-neutral" value="Ilmu Komputer"/>
                     </div>
                     <div class="card-actions justify-end mt-4">
-                        <button class="btn btn-outline btn-error">Cancel</button>
+                        <form action="/faculties">
+                          <button class="btn btn-outline btn-error font-bold">Cancel</button>
+                        </form>
                         <button class="btn btn-primary">Simpan</button>
                     </div>
                   </div>
