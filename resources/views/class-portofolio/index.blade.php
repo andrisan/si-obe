@@ -10,7 +10,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                 <div class="items-center">
-        <h1 class="text-4xl font-extrabold sm:pl-14 pt-10 text-center text-black">PORTOFOLIO KELAS</h1>
+        <h1 class="text-4xl font-extrabold sm:pl-14 pt-10 text-center text-black">PORTOFOLIO KELAS {{ strtoupper($cc) }}</h1>
     </div>
 
     <div class="flex mt-10">
