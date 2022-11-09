@@ -18,7 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/faculties/{faculty}/departments/{department}/edit', [DepartmentsEditController::class, 'index'])->middleware(['auth']);
+// Route::resource('/faculties/{faculty}/departments/{department}/edit', [DepartmentsEditController::class, 'index'])->middleware(['auth']);
+Route::resource('/faculties/{faculty}/departments/{department}/edit', DepartmentsEditController::class)->middleware('auth');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
