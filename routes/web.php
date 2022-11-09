@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FacultyCreateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/faculties/create', [FacultyController::class, 'index'])->middleware(['auth']);
+Route::resource('/faculties/create', FacultyCreateController::class)->middleware(['auth']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
