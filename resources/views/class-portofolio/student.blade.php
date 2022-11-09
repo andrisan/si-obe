@@ -78,6 +78,30 @@
                                             src="{{ asset('img/dashicons_yes.png') }}" alt=""></td>
                                     <td class="text-center">92</td>
                                 </tr>
+                                <tr >
+                                    <td class="text-center">3</td>
+                                    <td class="text-center">Membuat view home.index</td>
+                                    <td class="text-center">30/10/2022</td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center"><img class="text-center mx-auto" src="{{ asset('img/dashicons_yes.png') }}"
+                                            alt=""></td>
+                                    <td class="text-center"></td>
+
+                                    <td class="text-center">78</td>
+                                </tr>
+                                <tfoot celpadding="4">
+                                    <tr >
+                                        <th  bgcolor="#AFC7F5"  colspan="5"></th>
+                                        <th  bgcolor="#AFC7F5" colspan="">TOTAL NILAI</th>
+                                        <th  bgcolor="#AFC7F5" colspan="">251</th>
+                                    </tr>
+                                    <tr>
+                                        <th  bgcolor="#AFC7F5" colspan="5"></th>
+                                        <th  bgcolor="#AFC7F5" colspan="">NILAI AKHIR</th>
+                                        <th  bgcolor="#AFC7F5" colspan="">A</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
                     </div>
                     </div>
 
