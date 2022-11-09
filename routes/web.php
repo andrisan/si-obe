@@ -13,6 +13,8 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\CourseLearningOutcomeController;
 use App\Http\Controllers\lloController;
 use App\Http\Controllers\IloController;
+use App\Http\Controllers\StudentGradeController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -121,5 +123,6 @@ Route::get('/course-classes/{courseclass}/assignments', function ($courseClass) 
     return view('assignments.show',['courseclass' => $courseClass]);
 })->middleware(['auth']);
 
-require __DIR__.'/auth.php';
+Route::get('/studentgrades/create/{id}', [StudentGradeController::class,'create'])->middleware(['auth']);
 
+require __DIR__.'/auth.php';
