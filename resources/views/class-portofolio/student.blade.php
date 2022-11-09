@@ -100,6 +100,7 @@
                                         <th  bgcolor="#AFC7F5" colspan="">TOTAL NILAI</th>
                                         <th  bgcolor="#AFC7F5" colspan="">251</th>
                                     </tr>
+                                    
                                     <tr>
                                         <th  bgcolor="#AFC7F5" colspan="5"></th>
                                         <th  bgcolor="#AFC7F5" colspan="">NILAI AKHIR</th>
@@ -108,7 +109,7 @@
                                 </tfoot>
                             </table>
                     </div>
-                    </div>
+                  </div>
 
 
 
