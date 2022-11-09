@@ -58,6 +58,26 @@
                                     <th  bgcolor="#AFC7F5">SANGAT BAIK</th>
 
                                 </tr>
+                                <tr >
+                                    <td class="text-center">1</td>
+                                    <td class="text-center">Presentasi Blade Template</td>
+                                    <td class="text-center">25/10/2022</td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center"><img class="mx-auto text-center" src="{{ asset('img/dashicons_yes.png') }}"
+                                            alt=""></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center">81</td>
+                                </tr>
+                                <tr >
+                                    <td class="text-center">2</td>
+                                    <td class="text-center">Ringkasan Blade Template</td>
+                                    <td class="text-center">25/10/2022</td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center"><img class="mx-auto"
+                                            src="{{ asset('img/dashicons_yes.png') }}" alt=""></td>
+                                    <td class="text-center">92</td>
+                                </tr>
                     </div>
                     </div>
 
