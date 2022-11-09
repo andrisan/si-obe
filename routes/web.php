@@ -19,7 +19,7 @@ Route::get('/', function () {
 });
 
 Route::get('/syllabi/{syllabus}/learning-plans/create', function () {
-    return view('create');
+    return view('learning-plans.create');
 });
 
 Route::get('/dashboard', function () {
