@@ -23,3 +23,31 @@
                         </select>
                   </form>
                   </div>
+                  <div class="flex px-16 mt-2 ">
+                    <table class="table-fixed w-full">
+  
+                      <thead>
+                        <tr>
+                          <th  class="">No</th>
+                          <th  class="">Nama Mahasiswa</th>
+                          <th  class="">NIM</th>
+                          <th  class="">Kelas</th>
+                          <th  class="">Program Studi</th>
+                          <th  class="">Nilai</th>
+                          <th  class="">Action</th>
+                        </tr>
+                      </thead>
+                  
+                      <tbody class=" border-2 border-black text-center">
+                        <tr class="border-2 h-14">
+                          <td width="100px">1</td>
+                            <td width="100px">Gunawan Dwi Irawan</td>
+                            <td width="400px">215150701111009</td>
+                            <td width="400px">B</td>
+                            <td width="400px">Teknologi Informasi</td>
+                            <td width="100px"><input type="text" class="w-24 h-6 rounded-lg border-blue-600"></td>
+                            <td >
+                              <button class="btn  btn-error bg-red-600 text-slate-100 hover:bg-red-200 hover:text-slate-400  btn-xs sm:btn-sm md:btn-sm rounded-md w-16 mr-1 ">Delete</button>
+                              <button class="btn  btn-primary bg-blue-600 text-slate-100 hover:bg-blue-200 hover:text-slate-400  btn-xs sm:btn-sm md:btn-sm rounded-md w-16 ">Save</button>
+                            </td>
+                        </tr>
