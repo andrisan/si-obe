@@ -14,7 +14,7 @@
     </div>
 
     <div class="flex mt-10">
-        <table class="table-fixed w-3/4 mx-auto">
+        <table class="table-fixed  mx-auto">
             <thead class="text-black">
                 <tr class="h-10">
                     <th rowspan="2" class="w-10 border-x-2 border-t-2 border-black">No</th>
