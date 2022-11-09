@@ -65,14 +65,13 @@ Route::get('/syllabi', function () {
 Route::resource('faculties/{faculty}/edit', FacultyController::class)->middleware(['auth']);
 
 
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/faculties/{faculty}/departments', [DepartmentController::class, 'index']);
-
-Route::get('/course-classes/{test}/edit', function () {
-    return view('course-classes/edit');
+Route::get('/courses', function () {
+    return view('courses/index');
 })->middleware(['auth']);
 
 Route::get('/course-classes/search', function () {
