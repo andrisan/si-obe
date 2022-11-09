@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\CourseLearningOutcomeController;
 use App\Http\Controllers\lloController;
+use App\Http\Controllers\StudentGradeController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -87,3 +89,5 @@ Route::get('/profile', [ProfileController::class, 'index'])->middleware(['auth']
 Route::get('/syllabi/syllabus/ilos/1/edit', function () {
     return view('ilos.edit');
 })->middleware(['auth'])->name('dashboard');
+
+Route::resource('student-grades', StudentGradeController::class);
