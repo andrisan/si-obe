@@ -12,6 +12,8 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\CourseLearningOutcomeController;
 use App\Http\Controllers\lloController;
 use App\Http\Controllers\IloController;
+use App\Http\Controllers\StudentGradeController;
+
 
 
 /*
@@ -106,3 +108,6 @@ Route::get('/syllabi/syllabus/ilos/1/edit', function () {
 Route::get('/Ilos/index', [IloController::class,'index'])->middleware(['auth']);
 
 require __DIR__.'/auth.php';
+
+Route::get('/studentgrades/create/{id}', [StudentGradeController::class,'create'])->middleware(['auth']);
+
