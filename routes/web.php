@@ -18,8 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/syllabi/{syllabus}/learning-plans/new', function () {
-    return view('learning-planscreate');
+Route::get('/syllabi/{syllabus}/learning-plans/create', function () {
+    return view('create');
 });
 
 Route::get('/dashboard', function () {
