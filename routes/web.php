@@ -54,6 +54,17 @@ Route::resource('clos', cloController::class);
 
 Route::resource('faculties', FacultyController::class)->middleware('auth');
 
+Route::get('/syllabi-index', function () {
+    return view('syllabi-index');
+});
+
+Route::get('/syllabi', function () {
+    return view('syllabi.index');
+});
+
+Route::resource('faculties/{faculty}/edit', FacultyController::class)->middleware(['auth']);
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
@@ -90,12 +101,14 @@ Route::get('/profile', [ProfileController::class, 'index'])->middleware(['auth']
 
 Route::get('/syllabi/syllabus/ilos/1/edit', function () {
     return view('ilos.edit');
-})->middleware(['auth'])->name('dashboard');
+})->middleware(['auth']);
 
 Route::get('/Ilos/index', [IloController::class,'index'])->middleware(['auth']);
+
 
 Route::get('/course-classes/{courseclass}/assignments', function ($courseClass) {
     return view('assignments.show',['courseclass' => $courseClass]);
 })->middleware(['auth']);
 
 require __DIR__.'/auth.php';
+
