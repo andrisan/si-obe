@@ -18,7 +18,7 @@ Route::get('/', function () {
 });
 
 Route::get('/courses/{course}/edit', function () {
-    return view('edit');
+    return view('courses.edit');
 });
 
 Route::get('/dashboard', function () {
