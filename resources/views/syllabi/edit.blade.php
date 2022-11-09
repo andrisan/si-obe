@@ -41,7 +41,7 @@
           </div>
 
           <div class="px-10 pt-3 border-gray-400" style="float:right">
-            <button class="btn btn-outline " href="/syllabi">Save</button>
+            <a class="btn btn-outline " href="/syllabi">Save</a>
           </div>
         </div>
       </div>
