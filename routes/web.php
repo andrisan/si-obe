@@ -28,6 +28,11 @@ use App\Http\Controllers\IloController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/student-grades', function () {
+    return view('student-grades.show');
+});
+
 Route::get('/rubric/edit', function () {
     return view('rubrics.edit');
 });
