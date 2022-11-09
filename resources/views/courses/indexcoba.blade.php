@@ -18,17 +18,25 @@
                       <!-- Akhir judul -->
           
                       <div class="drawer drawer-mobile">
+                        
                           <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
+                          
                           <div class="drawer-content flex flex-col">
+                         <div>
+                          <div class="text-sm breadcrumbs  m-5 font-bold text-gray-600">
+                            <ul>
+                              <li><a href="">Dashboard</a></li>
+                              <li class="text-blue-600"><a href="">Courses</a></li>
+                            </ul>
+                          </div>
+                         </div>
                             <!-- Page content here -->
-                            <div class="tabs">
-                              <a class="mr-10 tab text-blue-600"> <strong>Home ></strong></a> 
-                              <a class="mr-10 tab text-gray-600"><strong>Course</strong></a> 
-                            </div>
+            
+                          
           
                           <div class="form-control ml-4 text-sm max-w-xl mb-0 mt-5 " id="kodekelas">
                             <label class="uppercase font-bold" for="fname">Course Name</label>
-                            <div class="input-group mt-2 ">
+                            <div class="input-group mt-2">
                                 <input type="text" placeholder="Search Course" class="input max-w-xs border-gray-200 bg-gray-200 w-full" />
                                 {{-- <select class="select select-bordered hover:bg-base text-gray-400 bg-gray-200">
                                     <option>Pengembangan Aplikasi Web</option>
@@ -49,7 +57,7 @@
                               <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint voluptatem voluptate dignissimos nihil quia aspernatur ducimus? Nihil nisi, natus cumque eligendi aliquid, rem repellat architecto consequatur non, culpa dolorem vel!</p>
                               <div class="card-actions justify-end border-t-2">
                                 <br>
-                                <p><strong>Minimal Requirement:</strong> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur facilis, dolore saepe expedita earum praesentium cum odio repudiandae esse officia? Cupiditate, magnam repellat? Voluptatem nobis iure magnam expedita, aut obcaecati.</p>
+                                <p><strong>Minimal requirement:</strong> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur facilis, dolore saepe expedita earum praesentium cum odio repudiandae esse officia? Cupiditate, magnam repellat? Voluptatem nobis iure magnam expedita, aut obcaecati.</p>
                                 <button class="text-blue-600 m-4"><strong>Read More </strong></button>
                                 <button class="m-4">Insert Enrollment Key</button>
 
@@ -60,7 +68,7 @@
                           <div class="card-normal w-100  ml-4 mr-4 mt-5  shadow-lg border-gray-600">
                             <div class="card-body">
                               <h2 class="card-title">Pengembangan Aplikasi Web</h2>
-                              <p>CD0980 - <strong>Mandatory</strong> - Classrom/ELING  - <strong>4 SKS</strong></p>
+                              <p>CD0980 - <strong>Mandatory</strong> - Classroom/ELING  - <strong>4 SKS</strong></p>
                              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores tempora ipsam eos accusantium facere pariatur inventore deleniti veniam doloribus, temporibus laboriosam ipsum quae vel nam itaque laudantium quos repellat sed.</p>
                               <div class="card-actions justify-end border-t-2">
                                 <br>
@@ -86,7 +94,6 @@
                             <label for="my-drawer-2" class="drawer-overlay"></label> 
                             <ul class="menu p-4 overflow-y-auto w-80 text-primary-content font-semibold border-gray-300 border-r-2 bg-white">
                               <!-- Sidebar content here -->
-                              <li><a class="mb-8 hover:bg-primary-content text-blue-600">Home</a></li>
                               <li><a class="mb-8 hover:bg-primary-content text-blue-600">Course </a></li>
                               <li><a class="mb-8 hover:bg-primary-content text-blue-600">Add Course</a></li>
                             </ul>
