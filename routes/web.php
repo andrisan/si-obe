@@ -60,10 +60,6 @@ Route::get('/criteria', function () {
     return view('criteria.create');
 });
 
-Route::get('/rubrics/{rubric}/criterias/{criteria}/edit', function () {
-    return view('criterias.edit');
-});
-
 Route::resource('clos', cloController::class);
 
 Route::resource('faculties', FacultyController::class)->middleware('auth');
