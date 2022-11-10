@@ -1,7 +1,7 @@
 <x-app-layout>
 <x-slot name="header">
         <h2 class="font-semibold text-2xl text-gray-800 leading-tight">
-        Intended Learaning Outcome <span class="bg-blue-100 text-blue-800 text-base font-semibold mr-2 px-2.5 py-0.5 rounded ml-2">EDIT</span>
+        Edit: Intended Learning Outcome
         </h2>
     </x-slot>
 
