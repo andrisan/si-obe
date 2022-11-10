@@ -166,8 +166,11 @@ Route::get('/Ilos/index', [IloController::class, 'index'])->middleware(['auth'])
 
 Route::resource('course-classes.assignments', AssignmentController::class)->middleware(['auth']);
 
+Route::resource('departments.study-programs', StudyProgramController::class)->middleware(['auth']);
+
 Route::resource('syllabi.ilos', IloController::class);
 
 Route::resource('study-programs', StudyProgramsController::class)->middleware(['auth']);
 
 require __DIR__ . '/auth.php';
+
