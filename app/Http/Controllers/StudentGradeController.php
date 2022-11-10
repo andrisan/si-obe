@@ -55,7 +55,7 @@ class StudentGradeController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('student-grades.edit');
     }
 
     /**

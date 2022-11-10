@@ -56,7 +56,7 @@ class IloController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('ilos.edit');
     }
 
     /**
