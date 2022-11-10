@@ -125,7 +125,7 @@ Route::get('/criterias/{id}', [criteriaController::class, 'show']);
 
 Route::resource('llos', lloController::class);
 
-Route::get('/course-classes/new', function () {
+Route::get('/course-classes/create', function () {
     return view('course-classes/create');
 })->middleware(['auth']);
 
@@ -166,5 +166,7 @@ Route::get('/Ilos/index', [IloController::class, 'index'])->middleware(['auth'])
 Route::resource('course-classes.assignments', AssignmentController::class)->middleware(['auth']);
 
 Route::resource('syllabi.ilos', IloController::class);
+
+Route::get('/profile', [ProfileController::class, 'index']);
 
 require __DIR__ . '/auth.php';
