@@ -78,6 +78,10 @@ Route::get('/courses/create', function () {
 
 Route::resource('faculties.departments', DepartmentController::class)->middleware('auth');
 
+Route::get('/syllabi/{syllabus}/learning-plans/create', function () {
+    return view('learning-plans.create');
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
