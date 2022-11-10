@@ -17,7 +17,7 @@ use App\Http\Controllers\lloController;
 use App\Http\Controllers\IloController;
 use App\Http\Controllers\AssignmentController;
 use App\Http\Controllers\StudentGradeController;
-use App\Http\Controllers\StudyProgramsController;
+use App\Http\Controllers\StudyProgramController;
 
 /*
 |--------------------------------------------------------------------------
