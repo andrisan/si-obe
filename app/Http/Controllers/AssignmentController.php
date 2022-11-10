@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Department;
 use Illuminate\Http\Request;
 
-class lloController extends Controller
+class AssignmentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,9 +14,9 @@ class lloController extends Controller
      */
     public function index()
     {
-        return view('llos.index');
+        //
     }
-    
+
     /**
      * Show the form for creating a new resource.
      *
@@ -24,6 +25,7 @@ class lloController extends Controller
     public function create()
     {
         //
+        return view('assignments.create');
     }
 
     /**
@@ -47,7 +49,7 @@ class lloController extends Controller
     {
         //
     }
-    
+
     /**
      * Show the form for editing the specified resource.
      *

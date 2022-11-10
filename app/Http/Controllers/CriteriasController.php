@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class lloController extends Controller
+class CriteriasController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,9 +13,9 @@ class lloController extends Controller
      */
     public function index()
     {
-        return view('llos.index');
+        //
     }
-    
+
     /**
      * Show the form for creating a new resource.
      *
@@ -23,7 +23,7 @@ class lloController extends Controller
      */
     public function create()
     {
-        //
+        return view('criterias.create');
     }
 
     /**
@@ -45,9 +45,9 @@ class lloController extends Controller
      */
     public function show($id)
     {
-        //
+        return 'criterias'. $id;
     }
-    
+
     /**
      * Show the form for editing the specified resource.
      *

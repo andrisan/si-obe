@@ -21,11 +21,10 @@ class StudentGradeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        return view('layouts.studentgrades');
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -56,7 +55,7 @@ class StudentGradeController extends Controller
      */
     public function edit($id)
     {
-        return view('student-grades.edit');
+        //
     }
 
     /**
