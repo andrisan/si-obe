@@ -5,6 +5,7 @@
         </h2>
     </x-slot>
 
+    <!-- cek -->
     <div class="py-12">
                 <div>
                     <h3>Nama Mahasiswa</h3>
