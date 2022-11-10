@@ -20,7 +20,7 @@
                         <textarea class="textarea textarea-bordered w-full" placeholder="Deskripsi CLO"></textarea>
                     </div>
                 </form>
-                <input type="submit" value="Edit" class="btn btn-active rounded-md " />
+                <input type="submit" value="Save" class="btn btn-active rounded-md " />
                 <button class="btn btn-outline rounded-md">Cancel</button>
                 </div>
             </div>
