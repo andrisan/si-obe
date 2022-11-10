@@ -130,7 +130,7 @@
             </div>
    
             <form>
-                    <div class="flex justify-end p-4">
+                    <div class="flex justify-center p-4">
                         <div>
                             <input class="btn btn-outline btn-active m-1" type="button" value="Prev">
                          </div>
