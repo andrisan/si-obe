@@ -163,6 +163,8 @@ Route::get('/assignments/{assignments}/edit', function () {
 
 Route::get('/Ilos/index', [IloController::class, 'index'])->middleware(['auth']);
 
+Route::get('/Llos/edit', [LloController::class, 'edit'])->middleware(['auth']);
+
 Route::resource('course-classes.assignments', AssignmentController::class)->middleware(['auth']);
 
 Route::resource('syllabi.ilos', IloController::class);
