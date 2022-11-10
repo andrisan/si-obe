@@ -33,6 +33,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/assignment-plans.index', function () {
+    return view('assignment-plans.index');
+});
+
 Route::get('/student-grades', function () {
     return view('student-grades.show');
 });
