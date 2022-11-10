@@ -167,8 +167,6 @@ Route::resource('course-classes.assignments', AssignmentController::class)->midd
 
 Route::resource('syllabi.ilos', IloController::class);
 
-Route::resource('student-grades', StudentGradeController::class);
-
 require __DIR__ . '/auth.php';
 
 
