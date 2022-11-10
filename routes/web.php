@@ -168,6 +168,6 @@ Route::resource('course-classes.assignments', AssignmentController::class)->midd
 
 Route::resource('syllabi.ilos', IloController::class);
 
-Route::resource('study-programs', StudyProgramsController::class)->middleware(['auth']);
+Route::resource('departments.study-programs', StudyProgramsController::class)->middleware(['auth']);
 
 require __DIR__ . '/auth.php';
