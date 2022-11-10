@@ -18,7 +18,7 @@ Route::get('/', function () {
 });
 
 Route::get('/syllabi/{syllabus}/learning-plans', function () {
-    return view('learning-plans.index.blade.php');
+    return view('learning-plans.index');
 });
 
 Route::get('/dashboard', function () {
