@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\StudyProgramsController;
+use App\Http\Controllers\StudyProgramController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,6 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/departments/{department}/study-programs', [StudyProgramController::class, 'index']);
+Route::resource('departments.study-programs', StudyProgramController::class)->middleware(['auth']);
 
 require __DIR__.'/auth.php';
