@@ -1,11 +1,10 @@
-@@ -0,0 +1,85 @@
 <?php
 
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class cloController extends Controller
+class CloController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,7 +23,7 @@ class cloController extends Controller
      */
     public function create()
     {
-        return view('clo.create');
+        //
     }
 
     /**
@@ -47,7 +46,6 @@ class cloController extends Controller
     public function show($id)
     {
         //
-        return 'clo'. $id;
     }
 
     /**
@@ -81,6 +79,6 @@ class cloController extends Controller
      */
     public function destroy($id)
     {
-        //
-    }
+        //
+    }
 }
