@@ -16,13 +16,6 @@
                                 <input type="text" placeholder="Enter Your Username" class="input input-bordered input-ghost input-l w-full max-w-xl mb-2 mt-2" />
                             </form>
                         </div>
-
-                        <div class="container p-4 text-primary text-sm">
-                            <form>
-                                <label class="uppercase font-bold  text-blue-600" for="fname">kode kelas</label><br>
-                                <input type="text" placeholder="Enter Your Class Code" class="input input-bordered input-ghost input-l w-full max-w-xl mb-4 mt-2" />
-                            </form>
-                        </div>
             
                         <div class="max-w-xl ml-4">
                             <label class="uppercase font-bold text-sm text-blue-600" for="fname">unggah</label>
