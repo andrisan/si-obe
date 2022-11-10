@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-2xl text-gray-800 leading-tight">
-        Learning Plans <span class="bg-blue-100 text-blue-800 text-base font-semibold mr-2 px-2.5 py-0.5 rounded ml-2">EDIT</span>
+        Edit: Learning Plans
         </h2>
     </x-slot>
 
@@ -26,7 +26,7 @@
                         <div class="pb-2"><label for="week_number"><strong class="font-semibold text-gray-900">Estimated Time</strong></label></div>
                         <input type="text" placeholder="Week Number" class="input input-bordered w-full max-w-xs" /> <br>
                     </div>   
-                <input type="submit" value="Simpan" class="btn btn-active rounded-md " />
+                <input type="submit" value="Save" class="btn btn-active rounded-md " />
                 <button class="btn btn-outline rounded-md">Cancel</button>
                 </div>
             </div>
