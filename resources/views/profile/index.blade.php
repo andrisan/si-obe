@@ -58,8 +58,8 @@
                             <!-- Sidebar content here -->
                             <li><a href="dashboard" class="mb-8 hover:bg-white hover:text-blue-600">Home</a></li>
                             <li><a href="course-classes" class="mb-8 hover:bg-white hover:text-blue-600">Course Class</a></li>
-                            <li><a href="course-classes/new" class="mb-8 hover:bg-white hover:text-blue-600">Add Course Class</a></li>
-                            <li><a class="mb-8 hover:bg-white hover:text-blue-600">Join Course Class</a></li>
+                            <li><a href="course-classes/create" class="mb-8 hover:bg-white hover:text-blue-600">Add Course Class</a></li>
+                            <li><a href="course-classes/join/{id}" class="mb-8 hover:bg-white hover:text-blue-600">Join Course Class</a></li>
                             <li><a href="profile" class="mb-8 hover:bg-white hover:text-blue-600">Profile</a></li>
                           </ul>
                         </div>

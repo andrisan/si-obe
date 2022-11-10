@@ -126,7 +126,7 @@ Route::get('/criterias/{id}', [criteriaController::class, 'show']);
 
 Route::resource('llos', lloController::class);
 
-Route::get('/course-classes/new', function () {
+Route::get('/course-classes/create', function () {
     return view('course-classes/create');
 })->middleware(['auth']);
 
@@ -169,6 +169,8 @@ Route::resource('course-classes.assignments', AssignmentController::class)->midd
 Route::resource('departments.study-programs', StudyProgramController::class)->middleware(['auth']);
 
 Route::resource('syllabi.ilos', IloController::class);
+
+Route::get('/profile', [ProfileController::class, 'index']);
 
 Route::resource('study-programs', StudyProgramsController::class)->middleware(['auth']);
 
