@@ -82,6 +82,10 @@ Route::get('/syllabi/{syllabus}/learning-plans/create', function () {
     return view('learning-plans.create');
 });
 
+Route::get('/courses/{course}/edit', function () {
+    return view('courses.edit');
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
