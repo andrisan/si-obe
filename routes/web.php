@@ -19,7 +19,6 @@ use App\Http\Controllers\AssignmentController;
 use App\Http\Controllers\StudentGradeController;
 use App\Http\Controllers\StudyProgramController;
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -170,6 +169,8 @@ Route::resource('course-classes.assignments', AssignmentController::class)->midd
 Route::resource('departments.study-programs', StudyProgramController::class)->middleware(['auth']);
 
 Route::resource('syllabi.ilos', IloController::class);
+
+Route::resource('study-programs', StudyProgramsController::class)->middleware(['auth']);
 
 require __DIR__ . '/auth.php';
 
