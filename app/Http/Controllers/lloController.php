@@ -4,11 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-<<<<<<< HEAD
-class CloController extends Controller
-=======
-class cloController extends Controller
->>>>>>> main
+class lloController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,13 +13,9 @@ class cloController extends Controller
      */
     public function index()
     {
-<<<<<<< HEAD
-        //
-=======
-        return view('clos.index');
->>>>>>> main
+        return view('llos.index');
     }
-
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -55,7 +47,7 @@ class cloController extends Controller
     {
         //
     }
-
+    
     /**
      * Show the form for editing the specified resource.
      *

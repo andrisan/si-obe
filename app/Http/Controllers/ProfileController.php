@@ -4,11 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-<<<<<<< HEAD
-class CloController extends Controller
-=======
-class cloController extends Controller
->>>>>>> main
+class ProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,11 +13,7 @@ class cloController extends Controller
      */
     public function index()
     {
-<<<<<<< HEAD
-        //
-=======
-        return view('clos.index');
->>>>>>> main
+        return view( 'profile.index');
     }
 
     /**
@@ -53,7 +45,7 @@ class cloController extends Controller
      */
     public function show($id)
     {
-        //
+        // 
     }
 
     /**

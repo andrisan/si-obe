@@ -4,11 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-<<<<<<< HEAD
-class CloController extends Controller
-=======
-class cloController extends Controller
->>>>>>> main
+class StudentGradeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,11 +13,7 @@ class cloController extends Controller
      */
     public function index()
     {
-<<<<<<< HEAD
         //
-=======
-        return view('clos.index');
->>>>>>> main
     }
 
     /**
@@ -29,11 +21,10 @@ class cloController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        return view('layouts.studentgrades');
     }
-
     /**
      * Store a newly created resource in storage.
      *

@@ -4,11 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-<<<<<<< HEAD
-class CloController extends Controller
-=======
-class cloController extends Controller
->>>>>>> main
+class criteriaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,11 +13,7 @@ class cloController extends Controller
      */
     public function index()
     {
-<<<<<<< HEAD
         //
-=======
-        return view('clos.index');
->>>>>>> main
     }
 
     /**
@@ -31,7 +23,11 @@ class cloController extends Controller
      */
     public function create()
     {
+
+        return view('criteria.create');
+
         //
+
     }
 
     /**
@@ -53,7 +49,7 @@ class cloController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('criterias.show');
     }
 
     /**
@@ -89,4 +85,6 @@ class cloController extends Controller
     {
         //
     }
+
 }
+

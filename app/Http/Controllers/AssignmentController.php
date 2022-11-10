@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Department;
 use Illuminate\Http\Request;
 
-<<<<<<< HEAD
-class CloController extends Controller
-=======
-class cloController extends Controller
->>>>>>> main
+class AssignmentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,11 +14,7 @@ class cloController extends Controller
      */
     public function index()
     {
-<<<<<<< HEAD
         //
-=======
-        return view('clos.index');
->>>>>>> main
     }
 
     /**
@@ -32,6 +25,7 @@ class cloController extends Controller
     public function create()
     {
         //
+        return view('assignments.create');
     }
 
     /**
