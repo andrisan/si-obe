@@ -26,7 +26,7 @@
                         <div class="pb-2"><label for="week_number"><strong class="font-semibold text-gray-900">Estimated Time</strong></label></div>
                         <input type="text" placeholder="Week Number" class="input input-bordered w-full max-w-xs" /> <br>
                     </div>   
-                <input type="simpan" value="Save" class="btn btn-active rounded-md " />
+                <input type="simpan" value="Simpan" class="btn btn-active rounded-md " />
                 <button class="btn btn-outline rounded-md">Cancel</button>
                 </div>
             </div>
