@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\LPController;
+use App\Http\Controllers\LearningPlanController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,4 +24,4 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-Route::resource('syllabi.learning-plans', LPController::class);
+Route::resource('syllabi.learning-plans', LearningPlanController::class);
