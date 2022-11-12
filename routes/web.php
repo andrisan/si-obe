@@ -154,6 +154,8 @@ Route::get('/course-classes/{courseclass}/assignments', function ($courseClass) 
 
 Route::get('/studentgrades/create/{id}', [StudentGradeController::class,'create'])->middleware(['auth']);
 
+Route::resource('student-grades', StudentGradeController::class);
+
 Route::get('/course-classes/join/{id}', [CourseClassController::class, 'show']);
 
 Route::get('/class-portofolio/{courseclass}', [ClassPortofolioController::class, 'index']);
