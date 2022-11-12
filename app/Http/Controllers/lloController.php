@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class lloController extends Controller
+class LloController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -56,7 +56,7 @@ class lloController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('Ilos.edit');
     }
 
     /**

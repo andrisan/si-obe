@@ -17,7 +17,8 @@ use App\Http\Controllers\lloController;
 use App\Http\Controllers\IloController;
 use App\Http\Controllers\AssignmentController;
 use App\Http\Controllers\StudentGradeController;
-
+use App\Http\Controllers\StudyProgramController;
+use App\Http\Controllers\IntendedLearningOutcomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -125,7 +126,7 @@ Route::get('/criterias/{id}', [criteriaController::class, 'show']);
 
 Route::resource('llos', lloController::class);
 
-Route::get('/course-classes/new', function () {
+Route::get('/course-classes/create', function () {
     return view('course-classes/create');
 })->middleware(['auth']);
 
@@ -163,11 +164,19 @@ Route::get('/assignments/{assignments}/edit', function () {
 
 Route::get('/Ilos/index', [IloController::class, 'index'])->middleware(['auth']);
 
+Route::get('/Llos/edit', [LloController::class, 'edit'])->middleware(['auth']);
+
 Route::resource('course-classes.assignments', AssignmentController::class)->middleware(['auth']);
+
+Route::resource('departments.study-programs', StudyProgramController::class)->middleware(['auth']);
 
 Route::resource('syllabi.ilos', IloController::class);
 
+Route::get('/profile', [ProfileController::class, 'index']);
+
+Route::resource('study-programs', StudyProgramsController::class)->middleware(['auth']);
+
+Route::resource('syllabi.ilos', IntendedLearningOutcomeController::class);
+
 require __DIR__ . '/auth.php';
-
-
 
