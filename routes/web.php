@@ -174,6 +174,12 @@ Route::resource('syllabi.ilos', IloController::class);
 
 Route::get('/profile', [ProfileController::class, 'index']);
 
+
+Route::get('/profile/grade', function () {
+    return view('profile.grade');
+})->middleware(['auth']);
+
+
 Route::resource('study-programs', StudyProgramsController::class)->middleware(['auth']);
 
 Route::resource('syllabi.ilos', IntendedLearningOutcomeController::class);
