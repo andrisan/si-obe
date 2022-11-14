@@ -13,7 +13,7 @@ class CourseLearningOutcomeController extends Controller
      */
     public function index()
     {
-        //
+        return view('clo.index');
     }
 
     /**
