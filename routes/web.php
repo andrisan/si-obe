@@ -37,6 +37,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/departments/{department}/study-programs/{study-program}/edit', function () {
+    return view('study-programs.edit');
+    
 Route::get('/department/create', function () {
     return view('department.create');
 })->middleware(['auth']);
