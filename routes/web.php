@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ClassPortofolioController;
 use App\Http\Controllers\CriteriasController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\CourseClassController;
@@ -58,10 +59,6 @@ Route::resource('criteria', criteriaController::class);
 
 Route::get('/criteria', function () {
     return view('criteria.create');
-});
-
-Route::get('/rubrics/{rubric}/criterias/{criteria}/edit', function () {
-    return view('criterias.edit');
 });
 
 Route::resource('clos', cloController::class);
@@ -154,6 +151,8 @@ Route::get('/course-classes/{courseclass}/assignments', function ($courseClass) 
 
 Route::get('/studentgrades/create/{id}', [StudentGradeController::class,'create'])->middleware(['auth']);
 
+Route::resource('student-grades', StudentGradeController::class);
+
 Route::get('/course-classes/join/{id}', [CourseClassController::class, 'show']);
 
 Route::get('/class-portofolio/{courseclass}', [ClassPortofolioController::class, 'index']);
@@ -168,21 +167,21 @@ Route::get('/Llos/edit', [LloController::class, 'edit'])->middleware(['auth']);
 
 Route::resource('course-classes.assignments', AssignmentController::class)->middleware(['auth']);
 
-Route::resource('departments.study-programs', StudyProgramController::class)->middleware(['auth']);
+//Route::resource('departments.study-programs', StudyProgramController::class)->middleware(['auth']);
 
 Route::resource('syllabi.ilos', IloController::class);
 
 Route::get('/profile', [ProfileController::class, 'index']);
 
-
 Route::get('/profile/grade', function () {
     return view('profile.grade');
 })->middleware(['auth']);
 
-
 Route::resource('study-programs', StudyProgramsController::class)->middleware(['auth']);
 
 Route::resource('syllabi.ilos', IntendedLearningOutcomeController::class);
+
+Route::resource('users', UserController::class)->middleware(['auth']);
 
 require __DIR__ . '/auth.php';
 
