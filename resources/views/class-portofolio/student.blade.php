@@ -13,14 +13,7 @@
                         </h1>
                     </div>
                     <div class="ml-10 mt-14">
-                        <div class="flex text-black">
-                            <h1>Nama <span class="ml-40">:</span></h1>
-                            <p class="ml-2">{{ Auth::user()->name }}</p>
-                        </div>
-                        <div class="flex text-black">
-                            <h1>NIM <span class="pl-[10.8rem]">:</span></h1>
-                            <p class="ml-2">215150700111001</p>
-                        </div>
+                      
                         <div class="flex text-black">
                             <h1>Mata Kuliah <span class="pl-[7.4rem]">:</span></h1>
                             <p class="ml-2">Pengembangan Aplikasi Web</p>
@@ -44,68 +37,65 @@
                             <table class="w-full border-colapse border-2 border-black" border="1"  cellpadding="15">
                                 <tr >
                                     <th  rowspan="2" bgcolor="#AFC7F5">NO</th>
-                                    <th  rowspan="2" bgcolor="#AFC7F5">KOMPETENSI DASAR
+                                    <th  rowspan="2" bgcolor="#AFC7F5">NAMA
                                     </th>
-                                    <th  rowspan="2" bgcolor="#AFC7F5">PERIODE TANGGAL
+                                    <th  rowspan="2" bgcolor="#AFC7F5">NIM
                                     </th>
-                                    <th  colspan="3" bgcolor="#AFC7F5">KETERCAPAIAN</th>
-                                    <th  rowspan="2" bgcolor="#AFC7F5">SKOR</th>
+                                    <th  colspan="5" bgcolor="#AFC7F5">LEMBAR KERJA</th>
+                                    <th  rowspan="2" bgcolor="#AFC7F5">TOTAL NILAI</th>
+                                    <th  rowspan="2" bgcolor="#AFC7F5">NILAI AKHIR</th>
 
                                 </tr>
                                 
                                 <tr >
-                                    <th  bgcolor="#AFC7F5">CUKUP</th>
-                                    <th  bgcolor="#AFC7F5">BAIK</th>
-                                    <th  bgcolor="#AFC7F5">SANGAT BAIK</th>
+                                    <th  bgcolor="#AFC7F5">LK01</th>
+                                    <th  bgcolor="#AFC7F5">LK02</th>
+                                    <th  bgcolor="#AFC7F5">LK03</th>
+                                    <th  bgcolor="#AFC7F5">LK04</th>
+                                    <th  bgcolor="#AFC7F5">LK05</th>
 
                                 </tr>
                                 
                                 <tr >
                                     <td class="text-center">1</td>
-                                    <td class="text-center">Presentasi Blade Template</td>
-                                    <td class="text-center">25/10/2022</td>
-                                    <td class="text-center"></td>
-                                    <td class="text-center"><img class="mx-auto text-center" src="{{ asset('img/dashicons_yes.png') }}"
-                                            alt=""></td>
-                                    <td class="text-center"></td>
-                                    <td class="text-center">81</td>
+                                    <td class="text-center">M NABIL GHIFARI MONTESWI</td>
+                                    <td class="text-center">215150707111005</td>
+                                    <td class="text-center">75%</td>
+                                    <td class="text-center">82%</td>
+                                    <td class="text-center">60%</td>
+                                    <td class="text-center">85%</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-center">78,4%</td>
+                                    <td class="text-center">B+</td>
                                 </tr>
                                 
                                 <tr >
                                     <td class="text-center">2</td>
-                                    <td class="text-center">Ringkasan Blade Template</td>
-                                    <td class="text-center">25/10/2022</td>
-                                    <td class="text-center"></td>
-                                    <td class="text-center"></td>
-                                    <td class="text-center"><img class="mx-auto"
-                                            src="{{ asset('img/dashicons_yes.png') }}" alt=""></td>
-                                    <td class="text-center">92</td>
+                                    <td class="text-center">Ferdinand Pratama Putra</td>
+                                    <td class="text-center">215150707111005</td>
+                                    <td class="text-center">75%</td>
+                                    <td class="text-center">82%</td>
+                                    <td class="text-center">60%</td>
+                                    <td class="text-center">85%</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-center">78,4%</td>
+                                    <td class="text-center">B+</td>
                                 </tr>
                                 
                                 <tr >
                                     <td class="text-center">3</td>
-                                    <td class="text-center">Membuat view home.index</td>
-                                    <td class="text-center">30/10/2022</td>
-                                    <td class="text-center"></td>
-                                    <td class="text-center"><img class="text-center mx-auto" src="{{ asset('img/dashicons_yes.png') }}"
-                                            alt=""></td>
-                                    <td class="text-center"></td>
-
-                                    <td class="text-center">78</td>
+                                    <td class="text-center">Taufiq Ubaidillah</td>
+                                    <td class="text-center">215150707111005</td>
+                                    <td class="text-center">75%</td>
+                                    <td class="text-center">82%</td>
+                                    <td class="text-center">60%</td>
+                                    <td class="text-center">85%</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-center">78,4%</td>
+                                    <td class="text-center">B+</td>
                                 </tr>
                                 
-                                <tfoot celpadding="4">
-                                    <tr >
-                                        <th  bgcolor="#AFC7F5"  colspan="5"></th>
-                                        <th  bgcolor="#AFC7F5" colspan="">TOTAL NILAI</th>
-                                        <th  bgcolor="#AFC7F5" colspan="">251</th>
-                                    </tr>
-                                    
-                                    <tr>
-                                        <th  bgcolor="#AFC7F5" colspan="5"></th>
-                                        <th  bgcolor="#AFC7F5" colspan="">NILAI AKHIR</th>
-                                        <th  bgcolor="#AFC7F5" colspan="">A</th>
-                                    </tr>
+                               
                                 </tfoot>
                             </table>
                                
