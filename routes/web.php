@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\departmentController;
 use App\Http\Controllers\LearningPlanController;
 use App\Http\Controllers\ClassPortofolioController;
 use App\Http\Controllers\CriteriasController;
@@ -35,6 +36,12 @@ use App\Http\Controllers\IntendedLearningOutcomeController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/department/create', function () {
+    return view('department.create');
+})->middleware(['auth']);
+
+Route::resource('departments', DepartmentController::class)->middleware(['auth']);
 
 Route::get('/syllabi/{syllabus}/learning-plans', function () {
     return view('learning-plans.index');
