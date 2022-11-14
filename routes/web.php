@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LearningPlanController;
 use App\Http\Controllers\ClassPortofolioController;
 use App\Http\Controllers\CriteriasController;
 use App\Http\Controllers\UserController;
@@ -100,6 +101,8 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::resource('syllabi.learning-plans', LearningPlanController::class);
+
 Route::resource('rubrics.criterias', CriteriasController::class);
 
 Route::get('/syllabi/{syllabus}/learning-plans/{learning-plan}/edit', function () {
@@ -187,4 +190,3 @@ Route::resource('syllabi.ilos', IntendedLearningOutcomeController::class);
 Route::resource('users', UserController::class)->middleware(['auth']);
 
 require __DIR__ . '/auth.php';
-
