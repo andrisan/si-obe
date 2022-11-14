@@ -6,6 +6,8 @@ use App\Http\Controllers\ClassPortofolioController;
 use App\Http\Controllers\CriteriasController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\iloController;
+use App\Http\Controllers\LloController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\CourseClassController;
 use App\Http\Controllers\FacultyController;
@@ -22,6 +24,7 @@ use App\Http\Controllers\AssignmentController;
 use App\Http\Controllers\StudentGradeController;
 use App\Http\Controllers\StudyProgramController;
 use App\Http\Controllers\IntendedLearningOutcomeController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,6 +39,8 @@ use App\Http\Controllers\IntendedLearningOutcomeController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('syllabi.ilos', iloController::class)->middleware(['auth'])->only('index', 'create');
 
 Route::get('/departments/{department}/study-programs/{study-program}/edit', function () {
     return view('study-programs.edit');
@@ -110,6 +115,8 @@ Route::get('/courses/{course}/edit', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+Route::get('/llos/create', [LloController::class,'create'])->middleware(['auth']);
 
 Route::resource('syllabi.learning-plans', LearningPlanController::class);
 
