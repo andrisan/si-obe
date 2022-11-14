@@ -23,7 +23,7 @@ class IntendedLearningOutcomeController extends Controller
      */
     public function create()
     {
-        //
+        return view('intended-learning-outcomes.create');
     }
 
     /**
@@ -56,7 +56,7 @@ class IntendedLearningOutcomeController extends Controller
      */
     public function edit($id)
     {
-        return view('ilos.edit');
+        return view('intended-learning-outcomes.edit');
     }
 
     /**

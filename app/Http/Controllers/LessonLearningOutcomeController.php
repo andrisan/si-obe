@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class iloController extends Controller
+class LessonLearningOutcomeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,7 @@ class iloController extends Controller
      */
     public function index()
     {
-        return 'ilo ';
+        //
     }
 
     /**
@@ -23,7 +23,7 @@ class iloController extends Controller
      */
     public function create()
     {
-        return view('ilo.create');
+        return view('lesson-learning-outcomes.create');
     }
 
     /**
@@ -56,7 +56,7 @@ class iloController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**

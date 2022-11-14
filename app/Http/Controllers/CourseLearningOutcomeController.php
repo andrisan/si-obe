@@ -13,7 +13,7 @@ class CourseLearningOutcomeController extends Controller
      */
     public function index()
     {
-        return view('clo.index');
+        return view('course-learning-outcomes.index');
     }
 
     /**
@@ -56,7 +56,7 @@ class CourseLearningOutcomeController extends Controller
      */
     public function edit($id)
     {
-        return view('clos.edit');
+        return view('course-learning-outcomes.edit');
     }
 
     /**
