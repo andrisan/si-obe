@@ -35,6 +35,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/syllabi/{syllabus}/learning-plans', function () {
+    return view('learning-plans.index');
+
 Route::get('/assignment-plans.index', function () {
     return view('assignment-plans.index');
 });
