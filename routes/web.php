@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ClassPortofolioController;
 use App\Http\Controllers\CriteriasController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\CourseClassController;
@@ -168,15 +169,17 @@ Route::get('/Llos/edit', [LloController::class, 'edit'])->middleware(['auth']);
 
 Route::resource('course-classes.assignments', AssignmentController::class)->middleware(['auth']);
 
-Route::resource('departments.study-programs', StudyProgramController::class)->middleware(['auth']);
+//Route::resource('departments.study-programs', StudyProgramController::class)->middleware(['auth']);
 
 Route::resource('syllabi.ilos', IloController::class);
 
 Route::get('/profile', [ProfileController::class, 'index']);
 
-Route::resource('study-programs', StudyProgramsController::class)->middleware(['auth']);
+//Route::resource('study-programs', StudyProgramsController::class)->middleware(['auth']);
 
 Route::resource('syllabi.ilos', IntendedLearningOutcomeController::class);
+
+Route::resource('users', UserController::class)->middleware(['auth']);
 
 require __DIR__ . '/auth.php';
 
