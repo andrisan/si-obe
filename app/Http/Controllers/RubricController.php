@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Rubric;
 use Illuminate\Http\Request;
 
 class RubricController extends Controller
@@ -59,7 +59,7 @@ class RubricController extends Controller
      */
     public function edit(Rubric $rubric)
     {
-        return view('rubric.edit', [
+        return view('rubrics.edit', [
             'rubric' => $rubric
         ]);
     }
