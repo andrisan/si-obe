@@ -32,52 +32,57 @@ class RubricController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Rubric $rubric)
     {
-        //
+        $rub = new Rubric();
+        $rub->title = $rubric->title; 
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Rubric $rubric
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Rubric $rubric)
     {
-        return view( 'rubrics.show');
+        return view( 'rubrics.show', [
+            'rubric' => $rubric
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Rubric $rubric
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Rubric $rubric)
     {
-        //
+        return view('rubric.edit', [
+            'rubric' => $rubric
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Rubric $rubric
+     * @param  Rubric $rubric
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Rubric $rubric)
     {
-        //
+        $rubric->update(['title' => $rubric->title] );
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Rubric $rubric
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Rubric $rubric)
     {
         //
     }
