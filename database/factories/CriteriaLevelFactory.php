@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\StudentInfo>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\CriteriaLevel>
  */
-class StudentInfoFactory extends Factory
+class CriteriaLevelFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +17,8 @@ class StudentInfoFactory extends Factory
     public function definition()
     {
         return [
-            'student_id_number' => $this->faker->word(),
+            'title' => $this->faker->words(3, true),
+            'description' => $this->faker->sentences(10, true),
         ];
     }
 }

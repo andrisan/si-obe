@@ -13,31 +13,31 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create ('student_info', function (Blueprint $table){
+        Schema::create ('student_data', function (Blueprint $table){
             $table->foreignId('id')->primary()->constrained('users');
             $table->string('student_id_number')->nullable();
         });
 
-        Schema::create('faculty', function (Blueprint $table) {
+        Schema::create('faculties', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
         });
 
-        Schema::create('department', function (Blueprint $table) {
+        Schema::create('departments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('faculty_id')->constrained('faculty');
+            $table->foreignId('faculty_id')->constrained('faculties');
             $table->string('name')->nullable();
         });
 
-        Schema::create('study_program', function (Blueprint $table) {
+        Schema::create('study_programs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('department_id')->constrained('department');
+            $table->foreignId('department_id')->constrained('departments');
             $table->string('name');
         });
 
-        Schema::create('course', function (Blueprint $table) {
+        Schema::create('courses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('study_program_id')->constrained('study_program');
+            $table->foreignId('study_program_id')->constrained('study_programs');
             $table->foreignId('creator_user_id')->constrained('users');
             $table->string('name')->nullable();
             $table->string('code')->unique()->nullable();
@@ -51,52 +51,49 @@ return new class extends Migration
             $table->timestampsTz();
         });
 
-        Schema::create('syllabus', function (Blueprint $table) {
+        Schema::create('syllabi', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('course_id')->constrained('course');
+            $table->foreignId('course_id')->constrained('courses');
             $table->string('title');
             $table->text('author')->nullable();
             $table->string('head_of_study_program', 512)->nullable();
         });
 
-        Schema::create('intended_learning_outcome', function (Blueprint $table) {
+        Schema::create('intended_learning_outcomes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('syllabus_id')->constrained('syllabus');
+            $table->foreignId('syllabus_id')->constrained('syllabi');
             $table->integer('position')->nullable();
-            $table->string('code', 512)->nullable();
             $table->text('description')->nullable();
         });
 
-        Schema::create('course_learning_outcome', function (Blueprint $table) {
+        Schema::create('course_learning_outcomes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('ilo_id')->constrained('intended_learning_outcome');
+            $table->foreignId('ilo_id')->constrained('intended_learning_outcomes');
             $table->integer('position')->nullable();
-            $table->string('code', 512)->nullable();
             $table->text('description')->nullable();
         });
 
-        Schema::create('lesson_learning_outcome', function (Blueprint $table) {
+        Schema::create('lesson_learning_outcomes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('clo_id')->constrained('course_learning_outcome');
+            $table->foreignId('clo_id')->constrained('course_learning_outcomes');
             $table->integer('position')->nullable();
-            $table->string('code', 512)->nullable();
             $table->text('description')->nullable();
         });
 
-        Schema::create('learning_plan', function (Blueprint $table) {
+        Schema::create('learning_plans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('syllabus_id')->constrained('syllabus');
+            $table->foreignId('syllabus_id')->constrained('syllabi');
             $table->integer('week_number')->nullable();
-            $table->foreignId('llo_id')->constrained('lesson_learning_outcome');
+            $table->foreignId('llo_id')->constrained('lesson_learning_outcomes');
             $table->text('study_material')->nullable();
             $table->text('learning_method')->nullable();
             $table->string('estimated_time',1024)->nullable();
             $table->timestampsTz();
         });
 
-        Schema::create('assignment_plan', function (Blueprint $table) {
+        Schema::create('assignment_plans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('syllabus_id')->constrained('syllabus');
+            $table->foreignId('syllabus_id')->constrained('syllabi');
             $table->text('objective')->nullable();
             $table->string('title', 2048)->nullable();
             $table->boolean('is_group_assignment')->nullable();
@@ -108,48 +105,48 @@ return new class extends Migration
             $table->timestampsTz();
         });
 
-        Schema::create('rubric', function (Blueprint $table) {
+        Schema::create('rubrics', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('assignment_plan_id')->constrained('assignment_plan');
+            $table->foreignId('assignment_plan_id')->constrained('assignment_plans');
             $table->string('title',1024);
             $table->timestampsTz();
         });
 
-        Schema::create('criterion', function (Blueprint $table) {
+        Schema::create('criterias', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('rubric_id')->constrained('rubric');
-            $table->foreignId('llo_id')->constrained('lesson_learning_outcome');
+            $table->foreignId('rubric_id')->constrained('rubrics');
+            $table->foreignId('llo_id')->constrained('lesson_learning_outcomes');
             $table->string('title', 1024)->nullable();
             $table->string('description', 1024)->nullable();
             $table->float('max_point')->nullable();
             $table->timestampsTz();
         });
 
-        Schema::create('criterion_level', function (Blueprint $table) {
+        Schema::create('criteria_levels', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('criterion_id')->constrained('criterion');
+            $table->foreignId('criteria_id')->constrained('criterias');
             $table->float('point');
             $table->string('title', 1024)->nullable();
             $table->text('description')->nullable();
         });
 
-        Schema::create('assignment_plan_task', function (Blueprint $table) {
+        Schema::create('assignment_plan_tasks', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('assignment_plan_id')->constrained('assignment_plan');
-            $table->foreignId('criterion_id')->nullable()->constrained('criterion');
+            $table->foreignId('assignment_plan_id')->constrained('assignment_plans');
+            $table->foreignId('criteria_id')->nullable()->constrained('criterias');
             $table->string('code', 512);
             $table->text('description');
         });
 
-        Schema::create('grading_plan', function (Blueprint $table) {
+        Schema::create('grading_plans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('learning_plan_id')->constrained('learning_plan');
-            $table->foreignId('assignment_plan_task_id')->constrained('assignment_plan_task');
+            $table->foreignId('learning_plan_id')->constrained('learning_plans');
+            $table->foreignId('assignment_plan_task_id')->constrained('assignment_plan_tasks');
         });
 
-        Schema::create('course_class', function (Blueprint $table) {
+        Schema::create('course_classes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('course_id')->constrained('course');
+            $table->foreignId('course_id')->constrained('courses');
             $table->string('name', 1024);
             $table->string('thumbnail_img', 1024)->nullable();
             $table->string('class_code', 256)->nullable();
@@ -157,27 +154,27 @@ return new class extends Migration
             $table->timestampsTz();
         });
 
-        Schema::create('join_class', function (Blueprint $table) {
+        Schema::create('join_classes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('course_class_id')->constrained('course_class');
+            $table->foreignId('course_class_id')->constrained('course_classes');
             $table->foreignId('student_user_id')->constrained('users');
         });
 
-        Schema::create('assignment', function (Blueprint $table) {
+        Schema::create('assignments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('assignment_plan_id')->constrained('assignment_plan');
-            $table->foreignId('course_class_id')->constrained('course_class');
+            $table->foreignId('assignment_plan_id')->constrained('assignment_plans');
+            $table->foreignId('course_class_id')->constrained('course_classes');
             $table->timestamp('assigned_date')->nullable();
             $table->timestamp('due_date')->nullable();
             $table->text('note')->nullable();
         });
 
-        Schema::create('student_grade', function (Blueprint $table) {
+        Schema::create('student_grades', function (Blueprint $table) {
             $table->id();
             $table->foreignId('student_user_id')->constrained('users');
-            $table->foreignId('assignment_id')->constrained('assignment');
-            $table->foreignId('assignment_plan_task_id')->constrained('assignment_plan_task');
-            $table->foreignId('criterion_level_id')->constrained('criterion_level');
+            $table->foreignId('assignment_id')->constrained('assignments');
+            $table->foreignId('assignment_plan_task_id')->constrained('assignment_plan_tasks');
+            $table->foreignId('criteria_level_id')->constrained('criteria_levels');
             $table->timestampsTz();
         });
     }
@@ -189,25 +186,25 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('student_grade');
-        Schema::dropIfExists('assignment');
-        Schema::dropIfExists('join_class');
-        Schema::dropIfExists('course_class');
-        Schema::dropIfExists('grading_plan');
-        Schema::dropIfExists('assignment_plan_task');
-        Schema::dropIfExists('criterion_level');
-        Schema::dropIfExists('criterion');
-        Schema::dropIfExists('rubric');
-        Schema::dropIfExists('assignment_plan');
-        Schema::dropIfExists('learning_plan');
-        Schema::dropIfExists('lesson_learning_outcome');
-        Schema::dropIfExists('course_learning_outcome');
-        Schema::dropIfExists('intended_learning_outcome');
-        Schema::dropIfExists('syllabus');
-        Schema::dropIfExists('course');
-        Schema::dropIfExists('study_program');
-        Schema::dropIfExists('department');
-        Schema::dropIfExists('faculty');
-        Schema::dropIfExists('student_info');
+        Schema::dropIfExists('student_grades');
+        Schema::dropIfExists('assignments');
+        Schema::dropIfExists('join_classes');
+        Schema::dropIfExists('course_classes');
+        Schema::dropIfExists('grading_plans');
+        Schema::dropIfExists('assignment_plan_tasks');
+        Schema::dropIfExists('criteria_levels');
+        Schema::dropIfExists('criterias');
+        Schema::dropIfExists('rubrics');
+        Schema::dropIfExists('assignment_plans');
+        Schema::dropIfExists('learning_plans');
+        Schema::dropIfExists('lesson_learning_outcomes');
+        Schema::dropIfExists('course_learning_outcomes');
+        Schema::dropIfExists('intended_learning_outcomes');
+        Schema::dropIfExists('syllabi');
+        Schema::dropIfExists('courses');
+        Schema::dropIfExists('study_programs');
+        Schema::dropIfExists('departments');
+        Schema::dropIfExists('faculties');
+        Schema::dropIfExists('student_data');
     }
 };

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Department;
+use App\Models\Faculty;
+use App\Models\StudyProgram;
 use Illuminate\Http\Request;
 
 class StudyProgramController extends Controller
@@ -43,9 +46,9 @@ class StudyProgramController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Faculty $faculty, Department $department, StudyProgram $studyProgram)
     {
-        //
+        ddd($faculty, $department, $studyProgram);
     }
 
     /**

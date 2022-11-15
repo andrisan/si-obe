@@ -9,8 +9,6 @@ class Assignment extends Model
 {
     use HasFactory;
 
-    public $table = 'assignment';
-
     public $timestamps = false;
 
     public function studentGrades()

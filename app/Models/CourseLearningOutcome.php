@@ -9,8 +9,6 @@ class CourseLearningOutcome extends Model
 {
     use HasFactory;
 
-    public $table = 'course_learning_outcome';
-
     public $timestamps = false;
 
     public function intendedLearningOutcome(){

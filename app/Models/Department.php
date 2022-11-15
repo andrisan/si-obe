@@ -9,7 +9,9 @@ class Department extends Model
 {
     use HasFactory;
 
-    public $table = 'department';
-
     public $timestamps = false;
+
+    public function studyPrograms(){
+        return $this->hasMany(StudyProgram::class);
+    }
 }

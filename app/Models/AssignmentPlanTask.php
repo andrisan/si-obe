@@ -9,12 +9,10 @@ class AssignmentPlanTask extends Model
 {
     use HasFactory;
 
-    public $table = 'assignment_plan_task';
-
     public $timestamps = false;
 
-    public function criterion()
+    public function criteria()
     {
-        return $this->hasOne(Criterion::class, 'id', 'criterion_id');
+        return $this->hasOne(Criteria::class, 'id', 'criteria_id');
     }
 }

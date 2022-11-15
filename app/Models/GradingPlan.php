@@ -9,7 +9,5 @@ class GradingPlan extends Model
 {
     use HasFactory;
 
-    public $table = 'grading_plan';
-
     public $timestamps = false;
 }

@@ -9,11 +9,9 @@ class CourseClass extends Model
 {
     use HasFactory;
 
-    public $table = 'course_class';
-
     public function students()
     {
-        return $this->belongsToMany(User::class, 'join_class',
+        return $this->belongsToMany(User::class, 'join_classes',
             'course_class_id', 'student_user_id');
     }
 }

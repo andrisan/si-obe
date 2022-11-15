@@ -9,8 +9,6 @@ class Syllabus extends Model
 {
     use HasFactory;
 
-    public $table = 'syllabus';
-
     public $timestamps = false;
 
     public function studyProgram()

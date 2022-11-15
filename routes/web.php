@@ -1,8 +1,24 @@
 <?php
 
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\AssignmentController;
+use App\Http\Controllers\AssignmentPlanController;
+use App\Http\Controllers\CourseClassController;
+use App\Http\Controllers\CourseController;
+use App\Http\Controllers\CourseLearningOutcomeController;
+use App\Http\Controllers\CriteriaController;
+use App\Http\Controllers\CriteriaLevelController;
+use App\Http\Controllers\IntendedLearningOutcomeController;
+use App\Http\Controllers\LearningPlanController;
+use App\Http\Controllers\LessonLearningOutcomeController;
+use App\Http\Controllers\RubricController;
+use App\Http\Controllers\StudentGradeController;
+use App\Http\Controllers\SyllabusController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\FacultyController;
+use App\Http\Controllers\StudyProgramController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +37,27 @@ Route::get('/', function () {
 
 Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-Route::resource('users', UserController::class)->middleware(['auth']);
+Route::group(['middleware' => 'auth'], function () {
+    Route::resource('users', UserController::class);
+    Route::resource('faculties', FacultyController::class);
+    Route::resource('courses', CourseController::class);
+    Route::resource('syllabi', SyllabusController::class);
+    Route::resource('rubrics', RubricController::class);
+    Route::resource('classes', CourseClassController::class);
+    Route::resource('student-grades', StudentGradeController::class);
+
+    Route::scopeBindings()->group(function () {
+        Route::resource('faculties.departments', DepartmentController::class);
+        Route::resource('faculties.departments.study-programs', StudyProgramController::class);
+        Route::resource('syllabi.ilos', IntendedLearningOutcomeController::class);
+        Route::resource('syllabi.ilos.clos', CourseLearningOutcomeController::class);
+        Route::resource('syllabi.ilos.llos', LessonLearningOutcomeController::class);
+        Route::resource('syllabi.learning-plans', LearningPlanController::class);
+        Route::resource('syllabi.assignment-plans', AssignmentPlanController::class);
+        Route::resource('rubrics.criterias', CriteriaController::class);
+        Route::resource('rubrics.criterias.criteria-levels', CriteriaLevelController::class);
+        Route::resource('classes.assigments', AssignmentController::class);
+    });
+});
 
 require __DIR__ . '/auth.php';

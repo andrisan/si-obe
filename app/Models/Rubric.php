@@ -8,6 +8,4 @@ use Illuminate\Database\Eloquent\Model;
 class Rubric extends Model
 {
     use HasFactory;
-
-    public $table = 'rubric';
 }

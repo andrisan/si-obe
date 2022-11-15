@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Department;
+use App\Models\Faculty;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class DepartmentController extends Controller
 {
@@ -40,12 +43,13 @@ class DepartmentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Faculty $faculty
+     * @param Department $department
+     * @return Response
      */
-    public function show($id)
+    public function show(Faculty $faculty, Department $department)
     {
-        //
+        dd($faculty, $department);
     }
 
     /**

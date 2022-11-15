@@ -9,8 +9,6 @@ class AssignmentPlan extends Model
 {
     use HasFactory;
 
-    public $table = 'assignment_plan';
-
     public function assignmentPlanTasks()
     {
         return $this->hasMany(AssignmentPlanTask::class);

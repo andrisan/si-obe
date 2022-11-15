@@ -7,11 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class StudyProgram extends Model
 {
-    protected $table = 'study_program';
+    use HasFactory;
 
     public $timestamps = false;
-
-    use HasFactory;
 
     public function courses()
     {
