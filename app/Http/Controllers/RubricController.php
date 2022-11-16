@@ -32,10 +32,15 @@ class RubricController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Rubric $rubric)
+    public function store(Request $request)
     {
-        $rub = new Rubric();
-        $rub->title = $rubric->title; 
+        $rubric = new Rubric();
+        $rubric->title = $request->title; 
+        $rubric->save();
+
+        return redirect()->route("rubrics.show", [
+            'rubric' => $rubric
+        ]);
     }
 
     /**
