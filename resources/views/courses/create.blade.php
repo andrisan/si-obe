@@ -21,7 +21,9 @@
       <div class="pb-10">
         <div class="border-b rounded-lg shadow-xl bg-white px-5 py-5">
           <div class="grid grid-cols-2 grid-flow-row gap-1 justify-items-center pb-5">
+            <form method="post" action="{{route('courses.store')}}">
 
+            </form>
             <div class="form-control w-full max-w-xs">
               <label class="label">
                 <span class="label-text text-neutral font-bold">Course Code</span>
@@ -95,6 +97,9 @@
               </label>
               <select class="select text-neutral input-bordered bg-white w-full max-w-xs">
                 <option></option>
+{{--                  @foreach($studyPrograms as $program)--}}
+{{--                      <option>{{ $program->name }}</option>--}}
+{{--                  @endforeach--}}
                 <option>Sistem Informasi</option>
                 <option>Teknologi Informasi</option>
                 <option>Pendidikan Teknologi Informasi</option>
@@ -113,7 +118,7 @@
             <div class="pt-4" style="float:right">
               <button class="mt-12 btn btn-outline">Create</button>
             </div>
-            
+
           </div>
         </div>
 

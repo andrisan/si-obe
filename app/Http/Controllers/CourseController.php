@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\StudyProgram;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -24,7 +25,13 @@ class CourseController extends Controller
      */
     public function create()
     {
-        return view('courses.create');
+        $studyPrograms = StudyProgram::get();
+//        dd($studyPrograms);
+//        foreach ($studyPrograms as $program) {
+//            dd($program->name);
+//        }
+        return view('courses.create')
+            ->with(['studyPrograms' => $studyPrograms]);
     }
 
     /**
@@ -57,8 +64,12 @@ class CourseController extends Controller
      */
     public function edit(Course $course)
     {
-        return view('courses.edit')
-        ->with(['course' => $course]);
+        $studyProgram = StudyProgram::where('id','=',$course->id)->first();
+//        dd($studyProgram);
+        return view('courses.edit',[
+            'course' => $course,
+            'studyProgram' => $studyProgram
+        ]);
     }
 
     /**

@@ -19,13 +19,13 @@
                         <label for="s_program">Study Program</label>
                     </div>
                     <div class="pb-4 rounded-l">
-                        <input class="bg-slate-200 text-slate-800 list w-11/12" type="text" name="s_program" value="Study Program" disabled>
+                        <input class="bg-slate-200 text-slate-800 list w-11/12" type="text" name="s_program" value="{{ $studyProgram->name }}" disabled>
                     </div>
                     <div class="font-bold label">
                         <label for="c_name">Course</label>
                     </div>
                     <div class="pb-4 rounded-l">
-                        <input class="bg-slate-100 text-slate-900 list w-11/12" type="text" name="c_name" value="Course A">
+                        <input class="bg-slate-100 text-slate-900 list w-11/12" type="text" name="c_name" value="{{ $course->name }}">
                     </div>
                     <div class="font-bold label">
                         <label for="c_name">Course Code</label>
