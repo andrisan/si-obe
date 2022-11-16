@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CourseLearningOutcome;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CourseLearningOutcomeController extends Controller
 {
@@ -34,7 +36,7 @@ class CourseLearningOutcomeController extends Controller
      */
     public function create()
     {
-        //
+        return view('course-learning-outcomes.create');
     }
 
     /**
@@ -80,7 +82,7 @@ class CourseLearningOutcomeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        DB::table('course_learning_outcomes')->where('id', $id)->update(['position'=>$request->position, 'description'=>$request->description]);
+        DB::table('course_learning_outcomes')->where(['id', $id])->update(['position'=>$request->position], ['description'=>$request->description]);
         return back();
     }
 
