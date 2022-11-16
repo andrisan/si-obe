@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Rubric;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,6 @@ class RubricController extends Controller
      */
     public function index()
     {
-
     }
 
     /**
@@ -35,7 +35,7 @@ class RubricController extends Controller
     public function store(Request $request)
     {
         $rubric = new Rubric();
-        $rubric->title = $request->title; 
+        $rubric->title = $request->title;
         $rubric->save();
 
         return redirect()->route("rubrics.show", [
@@ -51,7 +51,7 @@ class RubricController extends Controller
      */
     public function show(Rubric $rubric)
     {
-        return view( 'rubrics.show', [
+        return view('rubrics.show', [
             'rubric' => $rubric
         ]);
     }
@@ -76,9 +76,15 @@ class RubricController extends Controller
      * @param  Rubric $rubric
      * @return \Illuminate\Http\Response
      */
-    public function update(Rubric $rubric)
+    public function update(Request $request, Rubric $rubric)
     {
-        $rubric->update(['title' => $rubric->title] );
+        $rubric->update([
+            'title' => $request->title
+        ]);
+
+        return redirect()->route("rubrics.show", [
+            'rubric' => $rubric
+        ]);
     }
 
     /**
