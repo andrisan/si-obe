@@ -10,7 +10,7 @@ class Rubric extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title'];
+    protected $fillable = ['title', 'assignment_plan_id'];
 
     protected $attributes = [
         'assignment_plan_id' => 1,
