@@ -13,7 +13,7 @@ class CourseLearningOutcomeController extends Controller
      */
     public function index()
     {
-        return view('course-learning-outcomes.index');
+        //
     }
 
     /**
@@ -23,7 +23,6 @@ class CourseLearningOutcomeController extends Controller
      */
     public function create()
     {
-        
         //
     }
     // button create
@@ -60,9 +59,8 @@ class CourseLearningOutcomeController extends Controller
      */
     public function edit($id)
     {
-        return view('course-learning-outcomes.edit');
+        return view('clos.edit');
     }
-    // button edit
     <input type="button" value="Edit" class="btn btn-primary" id="create" onClick="document.location.href='some/page'" />
     <a href="<?php echo base_url('file controler/functionnya'); ?>" class="btn btn-primary btn-sm floatright">Edit</a>
 
