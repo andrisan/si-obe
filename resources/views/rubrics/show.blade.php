@@ -4,6 +4,9 @@
       <div class="items-start">
         <h2 class="font-semibold   text-4xl text-gray-800 leading-tight">
           {{ $rubric->title }}
+          <a href="<?php echo base_url('file_controler/functionnya'); ?>" class="btn btn-primary btn-sm floatright">Create</a>
+          <a href="<?php echo base_url('file_controler/functionnya'); ?>" class="btn btn-primary btn-sm floatright">Edit</a>
+          <a href="<?php echo base_url('file_controler/functionnya'); ?>" class="btn btn-primary btn-sm floatright">Delete</a>
         </h2>
       </div>
     </div>
