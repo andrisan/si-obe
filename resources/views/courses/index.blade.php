@@ -1,4 +1,4 @@
-<x-app-layout>
+    <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Courses') }}
@@ -99,7 +99,7 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a>
+                                                <a href="{{ route('courses.create') }}">
                                                     <div class="grid grid-rows-2 gap-2">
                                                         <div>
                                                             <svg class="h-8 w-8 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
