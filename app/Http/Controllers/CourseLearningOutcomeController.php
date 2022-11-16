@@ -13,7 +13,18 @@ class CourseLearningOutcomeController extends Controller
      */
     public function index()
     {
-        return view('course-learning-outcomes.index');
+        $clos = course_learning_outcomes::query()
+        ->withQueryString()
+        ->through(fn ($clos) => [
+            'id' => $clos->id,
+            'ilo_id' => $clos->ilo_id,
+            'position' => $clos->position,
+            'description' => $clos->description(),
+        ]);
+
+        return view('course-learning-outcomes.index', [
+            'clos' => $clos
+        ]);
     }
 
     /**
