@@ -12,6 +12,10 @@ class Rubric extends Model
 
     protected $fillable = ['title'];
 
+    protected $attributes = [
+        'assignment_plan_id' => 1,
+    ];
+
     public function criteria()
     {
         return $this->hasMany(Criteria::class);
