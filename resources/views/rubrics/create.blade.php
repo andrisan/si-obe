@@ -16,8 +16,12 @@
                                 <form action="/rubrics/blabla" method="GET">
                                     <div class="form-control w-full max-w-xs">
                                         <label class="label">
+                                            <span class="label-text text-sm">ID LEMBAR KERJA</span>
+                                        </label>
+                                        <input type="text" placeholder="Ketik Disini"
+                                            class="input input-bordered w-full max-w-xs" style="background-color: white" />
+                                            <label class="label">
                                             <span class="label-text text-sm">JUDUL</span>
-
                                         </label>
                                         <input type="text" placeholder="Ketik Disini"
                                             class="input input-bordered w-full max-w-xs" style="background-color: white" />
