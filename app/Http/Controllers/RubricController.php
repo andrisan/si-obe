@@ -36,6 +36,7 @@ class RubricController extends Controller
     {
         $rubric = new Rubric();
         $rubric->title = $request->title;
+        $rubric->assignment_plan_id = $request->assignment_plan_id;
         $rubric->save();
 
         return redirect()->route("rubrics.show", [
@@ -95,6 +96,6 @@ class RubricController extends Controller
      */
     public function destroy(Rubric $rubric)
     {
-        //
+        $rubric->delete();
     }
 }
