@@ -16,10 +16,10 @@ class FacultyController extends Controller
     public function index()
     {
         //
-        $faculties = DB::table('faculty')
-                    ->leftjoin('department', 'department.faculty_id', '=', 'faculty.id')
-                    ->select('faculty.id', 'faculty.name', DB::raw('count(department.faculty_id) as jumlahProdi'))
-                    ->groupBy('faculty.id')
+        $faculties = DB::table('faculties')
+                    ->leftjoin('departments', 'departments.faculty_id', '=', 'faculties.id')
+                    ->select('faculties.id', 'faculties.name', DB::raw('count(departments.faculty_id) as jumlahProdi'))
+                    ->groupBy('faculties.id')
                     ->get();
 
         return view('faculties.index', ['faculties' => $faculties]);
@@ -43,7 +43,8 @@ class FacultyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        DB::table('faculties')->insert(['name' => $request->name]);
+        return back();
     }
 
     /**
@@ -52,9 +53,9 @@ class FacultyController extends Controller
      * @param  \App\Models\Faculty  $faculty
      * @return \Illuminate\Http\Response
      */
-    public function show(Faculty $faculty)
+    public function show()
     {
-        ddd($faculty);
+        //
     }
 
     /**
@@ -63,10 +64,10 @@ class FacultyController extends Controller
      * @param  \App\Models\Faculty  $faculty
      * @return \Illuminate\Http\Response
      */
-    public function edit(Faculty $faculty)
+    public function edit($id)
     {
-        //
-        return view('faculties.edit');
+        $faculty = DB::table('faculties')->where('id', $id)->first();
+        return view('faculties.edit', ['faculty'=>$faculty]);
     }
 
     /**
@@ -76,9 +77,10 @@ class FacultyController extends Controller
      * @param  \App\Models\Faculty  $faculty
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Faculty $faculty)
+    public function update(Request $request, $id)
     {
-        //
+        DB::table('faculties')->where('id', $id)->update(['name'=>$request->name]);
+        return back();
     }
 
     /**
@@ -87,8 +89,10 @@ class FacultyController extends Controller
      * @param  \App\Models\Faculty  $faculty
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Faculty $faculty)
+    public function destroy($id)
     {
-        //
+        DB::table('faculties')->where('id', $id)->delete();
+
+        return back();
     }
 }

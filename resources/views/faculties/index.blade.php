@@ -18,7 +18,7 @@
                         <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" />
                         <button class="btn btn-info font-bold ml-2">Cari</button>
                     </form> 
-                    <form action="faculties/create" class="col-end-9 flex justify-end">
+                    <form action="{{ route('faculties.create') }}" class="col-end-9 flex justify-end" method="get">
                       <button class="btn btn-accent font-bold text-black ">Tambah</button>
                     </form>
                 </div>
@@ -28,7 +28,7 @@
                       <!-- head -->
                       <thead>
                         <tr>
-                          <th>Id Fakultas</th>
+                          <th>Nomor</th>
                           <th>Nama Fakultas</th>
                           <th>Jumlah Program Studi</th>
                           <th>Opsi</th>
@@ -46,7 +46,9 @@
                                 <form action="faculties/{{ $faculty->id }}/edit" method="get">
                                   <button class="btn btn-warning btn-sm m-1" value="{{ $faculty->id }}">Edit</button>
                                 </form>
-                                <form action="faculties/{{ $faculty->id }}" method="get">
+                                <form action="faculties/{{ $faculty->id }}" method="post">
+                                  @csrf
+                                  @method('delete')
                                   <button class="btn btn-error btn-sm m-1" value="{{ $faculty->id }}"
                                     onclick="return confirm('Yakin ingin menghapus data ?');">Delete</button>
                                 </form>
