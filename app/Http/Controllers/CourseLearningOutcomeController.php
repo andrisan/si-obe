@@ -67,7 +67,8 @@ class CourseLearningOutcomeController extends Controller
      */
     public function edit($id)
     {
-        return view('course-learning-outcomes.edit');
+        $clo = DB::table('course_learning_outcomes')->where('id', $id)->first(); 
+        return view('course-learning-outcomes.edit', ['clo'=>$clo]);
     }
 
     /**
@@ -79,7 +80,8 @@ class CourseLearningOutcomeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        DB::table('course_learning_outcomes')->where('id', $id)->update(['position'=>$request->position, 'description'=>$request->description]);
+        return back();
     }
 
     /**
