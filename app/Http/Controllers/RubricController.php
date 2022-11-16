@@ -97,5 +97,9 @@ class RubricController extends Controller
     public function destroy(Rubric $rubric)
     {
         $rubric->delete();
+
+        return redirect()->route("rubrics.show", [
+            'rubric' => Rubric::first()
+        ]);
     }
 }
