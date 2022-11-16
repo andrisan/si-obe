@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Rubric;
 use Illuminate\Http\Request;
 
 class RubricController extends Controller
@@ -13,7 +14,6 @@ class RubricController extends Controller
      */
     public function index()
     {
-
     }
 
     /**
@@ -34,50 +34,66 @@ class RubricController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rubric = new Rubric();
+        $rubric->title = $request->title;
+        $rubric->save();
+
+        return redirect()->route("rubrics.show", [
+            'rubric' => $rubric
+        ]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Rubric $rubric
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Rubric $rubric)
     {
-        return view( 'rubrics.show');
+        return view('rubrics.show', [
+            'rubric' => $rubric
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Rubric $rubric
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Rubric $rubric)
     {
-        //
+        return view('rubrics.edit', [
+            'rubric' => $rubric
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Rubric $rubric
+     * @param  Rubric $rubric
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Rubric $rubric)
     {
-        //
+        $rubric->update([
+            'title' => $request->title
+        ]);
+
+        return redirect()->route("rubrics.show", [
+            'rubric' => $rubric
+        ]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Rubric $rubric
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Rubric $rubric)
     {
         //
     }

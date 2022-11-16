@@ -13,7 +13,8 @@
                         <div class="card-body items-center text-center justify-items-center">
                             <div class="my-auto mx-auto">
                                 <h2 class="card-title text-2xl mb-4">Masukkan Rubrik Baru</h2>
-                                <form action="/rubrics/blabla" method="GET">
+                                <form action={{ route('rubrics.store') }} method="POST">
+                                    @csrf
                                     <div class="form-control w-full max-w-xs">
                                         <label class="label">
                                             <span class="label-text text-sm">ID LEMBAR KERJA</span>
@@ -23,7 +24,7 @@
                                             <label class="label">
                                             <span class="label-text text-sm">JUDUL</span>
                                         </label>
-                                        <input type="text" placeholder="Ketik Disini"
+                                        <input type="text" placeholder="Ketik Disini" name="title"
                                             class="input input-bordered w-full max-w-xs" style="background-color: white" />
                                     </div>
                                     <input type="submit" class="btn btn-primary mt-7 flex justify-self-start">
