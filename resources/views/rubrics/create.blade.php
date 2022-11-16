@@ -19,13 +19,11 @@
                                         <label class="label">
                                             <span class="label-text text-sm">ID LEMBAR KERJA</span>
                                         </label>
-                                        <input type="text" placeholder="Ketik Disini"
-                                            class="input input-bordered w-full max-w-xs" style="background-color: white" />
-                                            <label class="label">
+                                        <input id="id" name="id" type="text" placeholder="Ketik Disini" class="input input-bordered w-full max-w-xs" style="background-color: white" />
+                                        <label class="label">
                                             <span class="label-text text-sm">JUDUL</span>
                                         </label>
-                                        <input type="text" placeholder="Ketik Disini" name="title"
-                                            class="input input-bordered w-full max-w-xs" style="background-color: white" />
+                                        <input id="title" type="text" placeholder="Ketik Disini" name="title" class="input input-bordered w-full max-w-xs" style="background-color: white" />
                                     </div>
                                     <input type="submit" class="btn btn-primary mt-7 flex justify-self-start">
                                 </form>
