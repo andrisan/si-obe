@@ -14,7 +14,19 @@ class AssignmentPlanController extends Controller
      */
     public function index()
     {
-        //
+        $plans = AssignmentPlan::query()
+            ->paginate(10)
+            ->withQueryString()
+            ->through(fn ($plans) => [
+                'id' => $plans->id,
+                'name' => $plans->name,
+                'email' => $plans->email,
+                'created_at' => $plans->created_at->toFormattedDateString(),
+            ]);
+
+        return view('assignmentplan.index', [
+            'AssigmentPlan' => $plans
+        ]);
     }
 
     /**
@@ -35,7 +47,20 @@ class AssignmentPlanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'title' => 'required|string',
+            'description' => 'required|string|description',
+           // '' => 'required|string|confirmed',
+            //'password_confirmation' => 'required|string',
+        ]);
+
+       // $user = new User();
+       // $user->name = $validated['name'];
+       // $user->email = $validated['email'];
+       // $user->password = bcrypt($validated['password']);
+       // $user->save();
+
+       // return redirect()->route('users.index');
     }
 
     /**
@@ -44,9 +69,9 @@ class AssignmentPlanController extends Controller
      * @param  \App\Models\AssignmentPlan  $assignmentPlan
      * @return \Illuminate\Http\Response
      */
-    public function show(AssignmentPlan $assignmentPlan)
+    public function show($id)
     {
-        //
+        return view('assignmen-plans.show');
     }
 
     /**
@@ -55,9 +80,9 @@ class AssignmentPlanController extends Controller
      * @param  \App\Models\AssignmentPlan  $assignmentPlan
      * @return \Illuminate\Http\Response
      */
-    public function edit(AssignmentPlan $assignmentPlan)
+    public function edit($id)
     {
-        //
+        return view('assignmen-plans.edit');
     }
 
     /**
