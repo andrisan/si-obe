@@ -51,7 +51,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('faculties.departments.study-programs', StudyProgramController::class);
         Route::resource('syllabi.ilos', IntendedLearningOutcomeController::class);
         Route::resource('syllabi.ilos.clos', CourseLearningOutcomeController::class);
-        Route::resource('syllabi.ilos.llos', LessonLearningOutcomeController::class);
+        Route::resource('syllabi.ilos.clos.llos', LessonLearningOutcomeController::class);
         Route::resource('syllabi.learning-plans', LearningPlanController::class);
         Route::resource('syllabi.assignment-plans', AssignmentPlanController::class);
         Route::resource('rubrics.criterias', CriteriaController::class);
