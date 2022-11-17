@@ -42,11 +42,11 @@
           <!-- head -->
           <thead>
             <tr>
-              <th>No.</th>
+              <th>ID.</th>
+              <th>Syllabus ID</th>
+              <th>Week Number</th>
+              <th>LLO ID</th>
               <th>Study Material</th>
-              <th>Learning Methode</th>
-              <th>Estimated Time</th>
-              <th>Opsi</th>
             </tr>
           </thead>
           <tbody>
