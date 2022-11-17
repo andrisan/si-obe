@@ -64,6 +64,9 @@ class CourseController extends Controller
         $course->short_description = $validated['short_description'];
         $course->study_material_summary = $validated['study_material_summary'];
         $course->learning_media = $validated['learning_media'];
+
+        $course->study_program_id = StudyProgram::where('name','=',$request->input('study_program'))->value('id');
+
         $course->save();
 
         return redirect()->route('courses.index');
