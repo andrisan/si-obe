@@ -24,7 +24,7 @@ class AssignmentPlanController extends Controller
      */
     public function create()
     {
-        //
+        return view('assignmen-plans.create');
     }
 
     /**
