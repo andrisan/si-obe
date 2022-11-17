@@ -28,8 +28,8 @@
                             @if($llos->isNotEmpty())
                             <thead>
                               <tr class="bg-[#F7F7F9] border-2 h-10">
-                                <th class="w-auto">Kode CLO</th>
                                 <th class="w-auto">Kode LLO</th>
+                                <th class="w-auto">Kode CLO</th>
                                 <th class="w-auto">Posisi</th>
                                 <th class="w-auto">deskripsi</th>
                                 <th>Aksi</th>
