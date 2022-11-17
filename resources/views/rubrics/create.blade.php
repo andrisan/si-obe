@@ -19,12 +19,20 @@
                                         <label class="label">
                                             <span class="label-text text-sm">ID LEMBAR KERJA</span>
                                         </label>
-                                        <input id="id" name="assignment_plan_id" type="number" placeholder="Ketik Disini" class="input input-bordered w-full max-w-xs" style="background-color: white" />
+                                        <select name="assignment_plan_id" class="select input-bordered w-full max-w-xs" style="background-color: white">
+                                            <option disabled selected>Masukkan ID LK</option>
+                                            <option>01</option>
+                                            <option>02</option>
+                                            <option>03</option>
+                                            <option>04</option>
+                                            <option>05</option>
+                                            <option>06</option>
+                                        </select>
                                         <x-input-error :messages="$errors->get('assignment_plan_id')" class="mt-2" />
                                         <label class="label">
                                             <span class="label-text text-sm">JUDUL</span>
                                         </label>
-                                        <input id="title" type="text" placeholder="Ketik Disini" name="title" class="input input-bordered w-full max-w-xs" style="background-color: white" />
+                                        <input type="text" placeholder="Ketik Disini" name="title" class="input input-bordered w-full max-w-xs" style="background-color: white" />
                                         <x-input-error :messages="$errors->get('title')" class="mt-2" />
                                     </div>
                                     <input type="submit" class="btn btn-primary mt-7 flex justify-self-start">
