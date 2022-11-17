@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AssignmentPlan;
 use App\Models\Rubric;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,11 @@ class RubricController extends Controller
      */
     public function index()
     {
-        return view('rubrics.index');
+        $rubric = Rubric::all();
+
+        return view('rubrics.index',[
+            'rubric' => $rubric
+        ]);
     }
 
     /**
@@ -23,8 +28,12 @@ class RubricController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('rubrics.create');
+    {   
+        $assignmentPlan = AssignmentPlan::all();
+
+        return view('rubrics.create', [
+            'assignmentPlan' => $assignmentPlan
+        ]);
     }
 
     /**
@@ -51,9 +60,7 @@ class RubricController extends Controller
         // $rubric->save();
 
 
-        return redirect()->route("rubrics.show", [
-            'rubric' => $rubric
-        ]);
+        return redirect()->route("rubrics.index");
     }
 
     /**
@@ -103,9 +110,7 @@ class RubricController extends Controller
         //     'title' => $request->title
         // ]);
 
-        return redirect()->route("rubrics.show", [
-            'rubric' => $rubric
-        ]);
+        return redirect()->route("rubrics.index");
     }
 
     /**
@@ -118,8 +123,6 @@ class RubricController extends Controller
     {
         $rubric->delete();
 
-        return redirect()->route("rubrics.show", [
-            'rubric' => Rubric::first()
-        ]);
+        return redirect()->route("rubrics.index");
     }
 }
