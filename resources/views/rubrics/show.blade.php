@@ -4,13 +4,6 @@
       <div class="items-start">
         <h2 class="font-semibold   text-4xl text-gray-800 leading-tight">
           {{ $rubric->title }}
-          <form action="{{ route('rubrics.destroy', $rubric) }}" method="POST">
-          <a href="{{ route('rubrics.create') }}" class="btn btn-primary btn-sm floatright">Create</a>
-          <a href="{{ route('rubrics.edit', $rubric) }}" class="btn btn-primary btn-sm floatright">Edit</a>
-          @csrf
-          @method('DELETE')
-          <input type="submit" class="btn btn-primary btn-sm floatright" value="Delete">
-        </form>
         </h2>
       </div>
     </div>
