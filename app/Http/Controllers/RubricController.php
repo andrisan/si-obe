@@ -34,10 +34,21 @@ class RubricController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'title' => 'required|string',
+            'assignment_plan_id' => 'required|numeric',
+        ]);
+
         $rubric = new Rubric();
-        $rubric->title = $request->title;
-        $rubric->assignment_plan_id = $request->assignment_plan_id;
+        $rubric->title = $validated['title'];
+        $rubric->assignment_plan_id = $validated['assignment_plan_id'];
         $rubric->save();
+        
+        // $rubric = new Rubric();
+        // $rubric->title = $request->title;
+        // $rubric->assignment_plan_id = $request->assignment_plan_id;
+        // $rubric->save();
+
 
         return redirect()->route("rubrics.show", [
             'rubric' => $rubric
@@ -79,9 +90,17 @@ class RubricController extends Controller
      */
     public function update(Request $request, Rubric $rubric)
     {
-        $rubric->update([
-            'title' => $request->title
+        $validated = $request->validate([
+            'title' => 'required|string',
         ]);
+
+        $rubric->update([
+            'title' => $validated['title']
+        ]);
+
+        // $rubric->update([
+        //     'title' => $request->title
+        // ]);
 
         return redirect()->route("rubrics.show", [
             'rubric' => $rubric
