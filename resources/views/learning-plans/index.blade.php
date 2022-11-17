@@ -42,7 +42,7 @@
           <!-- head -->
           <thead>
             <tr>
-              <th>ID.</th>
+              <th>ID</th>
               <th>Syllabus ID</th>
               <th>Week Number</th>
               <th>LLO ID</th>
