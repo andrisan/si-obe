@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\LearningPlan;
+use App\Models\Syllabus;
+use App\Models\LessonLearningOutcome;
 
 class LearningPlanController extends Controller
 {
@@ -13,7 +16,15 @@ class LearningPlanController extends Controller
      */
     public function index()
     {
-        //
+        $learningPlans = LearningPlan::all();
+        $syllabus = Syllabus::all();
+        $llo = LessonLearningOutcome::all();
+        
+        return view('learning-plans.index',[
+            'learning-plans'=>$learningPlans,
+            'syllabus'=>$syllabus,
+            'llo' =>$llo
+        ]);
     }
 
     /**
