@@ -55,6 +55,7 @@ class UserController extends Controller
         $validated = $request->validate([
             'name' => 'required|string',
             'email' => 'required|string|email',
+            'role' => 'required|in:admin,teacher,student',
             'password' => 'required|string|confirmed',
             'password_confirmation' => 'required|string',
         ]);
@@ -62,6 +63,7 @@ class UserController extends Controller
         $user = new User();
         $user->name = $validated['name'];
         $user->email = $validated['email'];
+        $user->role = $validated['role'];
         $user->password = bcrypt($validated['password']);
         $user->save();
 
@@ -105,6 +107,7 @@ class UserController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string',
+            'role' => 'required|in:admin,teacher,student',
             'email' => 'required|string|email',
         ]);
 
@@ -117,10 +120,13 @@ class UserController extends Controller
      * Remove the specified resource from storage.
      *
      * @param User $user
-     * @return \Illuminate\Http\Response
+     * @return Application|Redirector|RedirectResponse
      */
     public function destroy(User $user)
     {
-        //
+        // delete user
+        $user->delete();
+
+        return redirect(route('users.index'));
     }
 }
