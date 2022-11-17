@@ -15,7 +15,7 @@ class CourseLearningOutcomeController extends Controller
      */
     public function index()
     {
-        $clos = DB::table('course_learning_outcomes');
+        $clos = DB::table('course_learning_outcomes')->get();
 
         return view('course-learning-outcomes.index', [
             'clos' => $clos
