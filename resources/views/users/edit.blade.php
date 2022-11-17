@@ -1,3 +1,5 @@
+@section('pageTitle', 'Edit User')
+
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -12,7 +14,7 @@
                     <form method="POST" action="{{ route('users.update', $user) }}">
                         @csrf
                         @method('patch')
-                        <div class="form-control w-full max-w-xs">
+                        <div class="form-control w-full max-w-xs p-3">
                             <label class="label">
                                 <span class="label-text">Fullname</span>
                             </label>
@@ -20,7 +22,7 @@
                             <x-input-error :messages="$errors->get('name')" class="mt-2" />
                         </div>
 
-                        <div class="form-control w-full max-w-xs">
+                        <div class="form-control w-full max-w-xs p-3">
                             <label class="label">
                                 <span class="label-text">Email</span>
                             </label>
@@ -28,7 +30,20 @@
                             <x-input-error :messages="$errors->get('email')" class="mt-2" />
                         </div>
 
-                        <div class="mt-4 space-x-2">
+                        <div class="form-control w-full max-w-xs p-3">
+                            <label class="label">
+                                <span class="label-text">Role</span>
+                            </label>
+                            <select name="role" class="select select-bordered w-full max-w-xs">
+                                <option value="admin" {{ old('role', $user->role) == 'admin' ? 'selected' : '' }}>Admin</option>
+                                <option value="teacher" {{ old('role', $user->role) == 'teacher' ? 'selected' : '' }}>Teacher</option>
+                                <option value="student" {{ old('role', $user->role) == 'student' ? 'selected' : '' }}>Student</option>
+                            </select>
+
+                            <x-input-error :messages="$errors->get('role')" class="mt-2" />
+                        </div>
+
+                        <div class="mt-4 p-4 space-x-2">
                             <button type="submit" class="btn btn-sm px-7">
                                 Save
                             </button>
