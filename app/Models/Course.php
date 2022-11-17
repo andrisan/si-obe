@@ -11,7 +11,7 @@ class Course extends Model
 
     public function studyProgram()
     {
-        return $this->belongsTo(StudyProgram::class);
+        return $this->belongsTo(StudyProgram::class, 'study_program_id');
     }
 
     public function creator()
