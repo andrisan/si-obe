@@ -29,10 +29,6 @@ class CourseController extends Controller
     public function create()
     {
         $studyPrograms = StudyProgram::get();
-//        dd($studyPrograms);
-//        foreach ($studyPrograms as $program) {
-//            dd($program->name);
-//        }
         return view('courses.create')
             ->with(['studyPrograms' => $studyPrograms]);
     }
@@ -49,7 +45,7 @@ class CourseController extends Controller
         $validated = $request->validate([
             'code' => 'required|string',
             'name' => 'required|string',
-            'course_credit' => 'required|string|confirmed',
+            'course_credit' => 'required|integer',
             'lab_credit' => 'required|integer',
             'type' => 'in:Mandatory, Elective',
             'short_description' => 'string',
@@ -57,15 +53,17 @@ class CourseController extends Controller
             'learning_media' => 'string',
         ]);
 
+        // dd($request);
+
         $course = new Course();
         $course->code = $validated['code'];
         $course->name = $validated['name'];
         $course->course_credit = $validated['course_credit'];
         $course->lab_credit = $validated['lab_credit'];
         $course->type = $validated['type'];
-        $course->short_description = $validated['text'];
-        $course->study_material_summary = $validated['text'];
-        $course->learning_media = $validated['text'];
+        $course->short_description = $validated['short_description'];
+        $course->study_material_summary = $validated['study_material_summary'];
+        $course->learning_media = $validated['learning_media'];
         $course->save();
 
         return redirect()->route('courses.index');

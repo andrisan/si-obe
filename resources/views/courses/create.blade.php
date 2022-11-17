@@ -28,6 +28,7 @@
                   <span class="label-text text-neutral font-bold">Course Code</span>
                 </label>
                 <input type="text" class="input text-neutral input-bordered bg-white w-full max-w-xs" name="code" id="code" />
+                <x-input-error :messages="$errors->get('code')" class="mt-2" />
               </div>
   
               <div class="form-control w-full max-w-xs">
@@ -35,6 +36,7 @@
                   <span class="label-text text-neutral font-bold">Short Description</span>
                 </label>
                 <textarea class="textarea input-bordered bg-white text-neutral" name="short_description" id="short_description" ></textarea>
+                <x-input-error :messages="$errors->get('short_description')" class="mt-2" />
               </div>
   
               <div class="form-control w-full max-w-xs">
@@ -42,13 +44,15 @@
                   <span class="label-text text-neutral font-bold">Course Name</span>
                 </label>
                 <input type="text" class="input text-neutral input-bordered bg-white w-full max-w-xs" name="name" id="name" />
+                <x-input-error :messages="$errors->get('name')" class="mt-2" />
               </div>
   
               <div class="form-control w-full max-w-xs">
                 <label class="label">
                   <span class="label-text text-neutral font-bold">Minimal Requirement</span>
                 </label>
-                <textarea class="textarea input-bordered bg-white text-neutral" name="minimal_requirement" id="minimal requirement" ></textarea>
+                <textarea class="textarea input-bordered bg-white text-neutral" name="minimal_requirement" id="minimal_requirement" ></textarea>
+                <x-input-error :messages="$errors->get('minimal_requirement')" class="mt-2" />
               </div>
   
               <div class="form-control w-full max-w-xs">
@@ -56,6 +60,7 @@
                   <span class="label-text text-neutral font-bold">Course Credit</span>
                 </label>
                 <input type="text" class="input text-neutral input-bordered bg-white w-full max-w-xs" name="course_credit" id="course_credit" />
+                <x-input-error :messages="$errors->get('course_credit')" class="mt-2" />
               </div>
   
               <div class="form-control w-full max-w-xs">
@@ -63,6 +68,7 @@
                   <span class="label-text text-neutral font-bold">Study Material</span>
                 </label>
                 <textarea class="textarea input-bordered bg-white text-neutral" name="study_material_summary" id="study_material_summary" ></textarea>
+                <x-input-error :messages="$errors->get('study_material_summary')" class="mt-2" />
               </div>
   
               <div class="form-control w-full max-w-xs">
@@ -70,6 +76,7 @@
                   <span class="label-text text-neutral font-bold">Lab Credit</span>
                 </label>
                 <input type="text" class="input text-neutral input-bordered bg-white w-full max-w-xs" name="lab_credit" id="lab_credit" />
+                <x-input-error :messages="$errors->get('lab_credit')" class="mt-2" />
               </div>
   
               <div class="form-control w-full max-w-xs">
@@ -77,6 +84,7 @@
                   <span class="label-text text-neutral font-bold">Learning Media</span>
                 </label>
                 <textarea class="textarea input-bordered bg-white text-neutral" name="learning_media" id="learning_media" ></textarea>
+                <x-input-error :messages="$errors->get('learning_media')" class="mt-2" />
               </div>
   
               <div class="form-control w-full max-w-xs">
@@ -88,6 +96,7 @@
                   <option>Mandatory</option>
                   <option>Elective</option>
                 </select>
+                <x-input-error :messages="$errors->get('type')" class="mt-2" />
               </div>
   
               <div class="form-control w-full max-w-xs">
@@ -96,15 +105,16 @@
                 </label>
                 <select class="select text-neutral input-bordered bg-white w-full max-w-xs" name="study_program" id="study_program">
                   <option></option>
-  {{--                  @foreach($studyPrograms as $program)--}}
-  {{--                      <option>{{ $program->name }}</option>--}}
-  {{--                  @endforeach--}}
-                  <option>Sistem Informasi</option>
+                  @foreach($studyPrograms as $program)
+                      <option>{{ $program->name }}</option>
+                  @endforeach
+                  <!-- <option>Sistem Informasi</option>
                   <option>Teknologi Informasi</option>
                   <option>Pendidikan Teknologi Informasi</option>
                   <option>Teknik Informatika</option>
-                  <option>Teknik Komputer</option>
+                  <option>Teknik Komputer</option> -->
                 </select>
+                <x-input-error :messages="$errors->get('study_program')" class="mt-2" />
               </div>
   
               <div class="form-control w-full max-w-xs">
@@ -112,6 +122,7 @@
                   <span class="mt-7 label-text text-neutral font-bold">User Creator</span>
                 </label>
                 <input type="text" class="input text-neutral input-bordered bg-white w-full max-w-xs" name="user_creator" id="user_creator" />
+                <x-input-error :messages="$errors->get('user_creator')" class="mt-2" />
               </div>
 
               <div class="pt-4" style="float:right">
