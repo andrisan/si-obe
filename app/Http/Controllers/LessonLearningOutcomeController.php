@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Models\IntendedLearningOutcome;
+use App\Models\CourseLearningOutcome;
+use App\Models\LessonLearningOutcome;
 
 class LessonLearningOutcomeController extends Controller
 {
@@ -11,9 +15,12 @@ class LessonLearningOutcomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($syllabus, $ilo, $clo)
     {
-        //
+        $llos = LessonLearningOutcome::where('clo_id', $clo)->get();
+        return view('lesson-learning-outcomes.index', [
+            'llos' => $llos
+        ]);
     }
 
     /**
@@ -34,7 +41,21 @@ class LessonLearningOutcomeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'id' => 'required|id',
+            'clo_id' => 'required|id',
+            'position' => 'integer',
+            'description' => 'text',
+        ]);
+
+        $llo = new LessonLearningOutcome();
+        $llo->id = $validated['id'];
+        $llo->clo_id = $validated['clo_id'];
+        $llo->position = $validated['position'];
+        $llo->description = $validated['description'];
+        $llo->save();
+
+        return redirect()->route('lesson-learning-outcomes.index');
     }
 
     /**
@@ -43,9 +64,9 @@ class LessonLearningOutcomeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(IntendedLearningOutcome $intendedLearningOutcome, CourseLearningOutcome $courseLearningOutcome, LessonLearningProgram $lessonLearningProgram)
     {
-        //
+        ddd($intendedLearningOutcome, $courseLearningOutcome, $lessonLearningProgram);
     }
 
     /**
@@ -54,9 +75,11 @@ class LessonLearningOutcomeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($syllabus, $ilo, $clo, $llo)
     {
-
+        return view('lesson-learning-outcomes.edit', [
+            'clo' => $clo
+        ]);
     }
 
     /**
@@ -66,9 +89,18 @@ class LessonLearningOutcomeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $syllabus, $ilo, $clo, $llo)
     {
-        //
+        $validated = $request->validate([
+            'id' => 'required|id',
+            'clo_id' => 'required|id',
+            'position' => 'integer',
+            'description' => 'text',
+        ]);
+
+        $llo->update($validated);
+
+        return redirect(route('lesson-learning-outcomes.index'));
     }
 
     /**
