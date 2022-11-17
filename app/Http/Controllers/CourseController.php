@@ -15,7 +15,10 @@ class CourseController extends Controller
      */
     public function index()
     {
-        return view('courses.index');
+        $courses = Course::get();
+        return view('courses.index',[
+            'courses' => $courses 
+        ]);
     }
 
     /**
@@ -43,7 +46,31 @@ class CourseController extends Controller
     public function store(Request $request)
     {
         //
+        $validated = $request->validate([
+            'code' => 'required|string',
+            'name' => 'required|string',
+            'course_credit' => 'required|string|confirmed',
+            'lab_credit' => 'required|integer',
+            'type' => 'in:Mandatory, Elective',
+            'short_description' => 'string',
+            'study_material_summary' => 'string',
+            'learning_media' => 'string',
+        ]);
+
+        $course = new Course();
+        $course->code = $validated['code'];
+        $course->name = $validated['name'];
+        $course->course_credit = $validated['course_credit'];
+        $course->lab_credit = $validated['lab_credit'];
+        $course->type = $validated['type'];
+        $course->short_description = $validated['text'];
+        $course->study_material_summary = $validated['text'];
+        $course->learning_media = $validated['text'];
+        $course->save();
+
+        return redirect()->route('courses.index');
     }
+    
 
     /**
      * Display the specified resource.
@@ -51,10 +78,13 @@ class CourseController extends Controller
      * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function show(Course $course)
-    {
-        //
+    public function show(Course $course){
+        // 
+        return view('courses.show', [
+            'course' => $course
+        ]);    
     }
+    
 
     /**
      * Show the form for editing the specified resource.
@@ -95,3 +125,4 @@ class CourseController extends Controller
         //
     }
 }
+

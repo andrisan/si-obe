@@ -44,13 +44,14 @@
                                         </div>
                                     </div>
 
+                                    @foreach ($courses as $course)
                                     <div class="card-normal w-full shadow-2xl ml-5 px-5 mt-10 mr-5">
                                         <div class="card-body">
-                                            <h2 class="card-title">Pemrograman Basis Data</h2>
-                                            <p>CD0970 - <strong>Elective</strong> - Panopto - <strong>3 SKS</strong> </p>
-                                            <p class="pb-10">Mata kuliah ini merupakan mata kuliah wajib yang bisa diambil setelah lulus mata kuliah Sistem Basis Data. Sesudah menempuh mata kuliah Permograman Basis Data, mahasiswa mampu untuk memahami konsep pemrograman basis data, mampu merancang dan mengimplementasikan logika pemrograman dalam basis data serta integrasinya dalam aplikasi web.</p>
+                                            <h2 class="card-title">{{$course->name}}</h2>
+                                            <p>{{$course->code}} - <strong>{{$course->type}}</strong> - {{$course->learning_media}} - <strong>{{$course->course_credit}} SKS</strong> </p>
+                                            <p class="pb-10">{{$course->short_description}}</p>
                                             <div class="card-actions justify-end border-t-2">
-                                                <p class="pt-10"><strong>Minimal requirement:</strong> Mendapat minimal nilai D pada mata kuliah SBD</p>
+                                                <p class="pt-10"><strong>Minimal requirement:</strong> {{$course->minimal_requirement}}</p>
                                                 <div class="pt-5">
                                                     <button class="text-blue-600 m-4"><strong>Read More </strong></button>
                                                     <button class="m-4">Insert Enrollment Key</button>
@@ -58,22 +59,7 @@
                                             </div>
                                         </div>
                                     </div>
-
-                                    <div class="card-normal w-full shadow-2xl ml-5 px-5 mt-5 mr-5 mb-10">
-                                        <div class="card-body">
-                                            <h2 class="card-title">Pengembangan Aplikasi Web</h2>
-                                            <p>CD0980 - <strong>Mandatory</strong> - Classroom/ELING - <strong>4 SKS</strong></p>
-                                            <p class="pb-10">Mata kuliah ini merupakan mata kuliah wajib yang bisa diambil setelah lulus mata kuliah Dasar Design Antarmuka Pengguna. Sesudah menempuh mata kuliah ini, Mahasiswa diharapkan mampu Mengetahui dan memahami komponen infrastruktur dalam pengembangan aplikasi web, Mampu mengimplementasikan pemrograman client side dan server side, serta mengintegrasikannya dengan database untuk digunakan dalam pengembangan aplikasi web, Memahami dan mengimplementasikan framework dan manajemen content dalam pengembangan aplikasi berbasis web, serta Memberikan dasar-dasar pengetahuan tentang Service-Oriented Architecture dan API</p>
-                                            <div class="card-actions justify-end border-t-2">
-                                                <p class="pt-10"><strong>Minimal requirement:</strong> Mendapat minimal nilai D pada mata kuliah DDAP</p>
-                                                <div class="pt-5">
-                                                    <button class="text-blue-600 m-4"><strong>Read More </strong></button>
-                                                    <button class="m-4">Insert Enrollment Key</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
+                                    @endforeach
                                 </div>
                                 <div class="drawer-side">
                                     <label for="my-drawer-2" class="drawer-overlay"></label>
