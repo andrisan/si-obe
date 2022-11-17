@@ -3,13 +3,8 @@
     "version": "2.2.11",
     "width": 2600,
     "height": 2600,
-
-    "scrollTop": -677.9444339474048,
-    "scrollLeft": -1082.2274305555543,
-
-    "scrollTop": -749,
-    "scrollLeft": -1615,
-
+    "scrollTop": -582.0729166666666,
+    "scrollLeft": -70.39999999999995,
     "zoomLevel": 0.9,
     "show": {
       "tableComment": true,
@@ -791,7 +786,7 @@
           "active": false,
           "left": 139.4456,
           "top": 78.668,
-          "zIndex": 20,
+          "zIndex": 19,
           "widthName": 168.9560546875,
           "widthComment": 60,
           "color": "#2196F3"
@@ -923,7 +918,7 @@
           "active": false,
           "left": 775.3361,
           "top": 24.6991,
-          "zIndex": 21,
+          "zIndex": 20,
           "widthName": 158.09521484375,
           "widthComment": 60,
           "color": "#2196F3"
@@ -1055,7 +1050,7 @@
           "active": false,
           "left": 1440.8927,
           "top": 60.2857,
-          "zIndex": 22,
+          "zIndex": 21,
           "widthName": 156.654296875,
           "widthComment": 60,
           "color": "#2196F3"
@@ -1522,29 +1517,6 @@
             "id": "6b191950-d855-4b68-9692-b86f52fc97ab"
           },
           {
-            "name": "created_at",
-            "comment": "",
-            "dataType": "timestamp",
-            "default": "",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": false,
-              "unique": false,
-              "notNull": true
-            },
-            "ui": {
-              "active": false,
-              "pk": false,
-              "fk": false,
-              "pfk": false,
-              "widthName": 63.4326171875,
-              "widthComment": 60,
-              "widthDataType": 61.9599609375,
-              "widthDefault": 60
-            },
-            "id": "a7614ad2-c746-467c-90ce-c4ee55fc2514"
-          },
-          {
             "name": "updated_at",
             "comment": "",
             "dataType": "timestamp",
@@ -1566,13 +1538,36 @@
               "widthDefault": 60
             },
             "id": "14bc2b5f-54a3-426d-b002-fafdae84e738"
+          },
+          {
+            "name": "created_at",
+            "comment": "",
+            "dataType": "timestamp",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 63.4326171875,
+              "widthComment": 60,
+              "widthDataType": 61.9599609375,
+              "widthDefault": 60
+            },
+            "id": "a7614ad2-c746-467c-90ce-c4ee55fc2514"
           }
         ],
         "ui": {
           "active": false,
-          "left": 632.493,
-          "top": 570.4456,
-          "zIndex": 13,
+          "left": 737.3822,
+          "top": 473.5567,
+          "zIndex": 28,
           "widthName": 106.787109375,
           "widthComment": 60,
           "color": "#2196F3"
@@ -2192,7 +2187,7 @@
           "active": false,
           "left": 1260.9286,
           "top": 817.0408,
-          "zIndex": 17,
+          "zIndex": 16,
           "widthName": 60,
           "widthComment": 60,
           "color": "#2196F3"
@@ -2347,7 +2342,7 @@
           "active": false,
           "left": 1900.1625,
           "top": 493.7674,
-          "zIndex": 16,
+          "zIndex": 15,
           "widthName": 60,
           "widthComment": 60,
           "color": "#2196F3"
@@ -2479,7 +2474,7 @@
           "active": false,
           "left": 1972.8939,
           "top": 810.8414,
-          "zIndex": 18,
+          "zIndex": 17,
           "widthName": 81.47265625,
           "widthComment": 60,
           "color": "#2196F3"
@@ -2657,7 +2652,7 @@
           "active": false,
           "left": 1591.5059,
           "top": 1024.6752,
-          "zIndex": 15,
+          "zIndex": 14,
           "widthName": 91.62255859375,
           "widthComment": 60,
           "color": "#009688"
@@ -2806,7 +2801,7 @@
           "active": false,
           "left": 1340.4822,
           "top": 287.1485,
-          "zIndex": 23,
+          "zIndex": 22,
           "widthName": 83.67529296875,
           "widthComment": 60,
           "color": "#2196F3"
@@ -3288,7 +3283,7 @@
           "active": false,
           "left": 1256.4639,
           "top": 563.1247,
-          "zIndex": 19,
+          "zIndex": 18,
           "widthName": 137.85888671875,
           "widthComment": 60,
           "color": "#2196F3"
@@ -3599,8 +3594,8 @@
           "columnIds": [
             "48844d6f-e4da-4f3d-a5aa-3dfef5e81de3"
           ],
-          "x": 1082.45540234375,
-          "y": 806.6956,
+          "x": 1187.34460234375,
+          "y": 709.8067,
           "direction": "right"
         },
         "end": {
@@ -3817,7 +3812,7 @@
             "c4b6283a-1caf-4e70-b755-6d5aa701fe81"
           ],
           "x": 967,
-          "y": 1199.7866,
+          "y": 1151.7866,
           "direction": "left"
         },
         "constraintName": "fk_course_class_to_assignment",
@@ -3868,8 +3863,8 @@
           "columnIds": [
             "c58b49e1-3b85-4d8f-bdb8-9fb87e95308a"
           ],
-          "x": 632.493,
-          "y": 727.9456,
+          "x": 737.3822,
+          "y": 631.0567,
           "direction": "left"
         },
         "constraintName": "fk_syllabus_to_assignment_plan",
@@ -3989,8 +3984,8 @@
           "columnIds": [
             "48844d6f-e4da-4f3d-a5aa-3dfef5e81de3"
           ],
-          "x": 857.474201171875,
-          "y": 885.4456,
+          "x": 962.363401171875,
+          "y": 788.5567,
           "direction": "bottom"
         },
         "end": {
@@ -3998,9 +3993,9 @@
           "columnIds": [
             "7fede121-e2bd-4ad9-a013-19b230f92207"
           ],
-          "x": 967,
-          "y": 1103.7866,
-          "direction": "left"
+          "x": 1184.046630859375,
+          "y": 1055.7866,
+          "direction": "top"
         },
         "constraintName": "fk_assignment_plan_to_assignment",
         "visible": true,
@@ -4041,8 +4036,8 @@
           "columnIds": [
             "48844d6f-e4da-4f3d-a5aa-3dfef5e81de3"
           ],
-          "x": 1082.45540234375,
-          "y": 649.1956,
+          "x": 1187.34460234375,
+          "y": 552.3067,
           "direction": "right"
         },
         "end": {

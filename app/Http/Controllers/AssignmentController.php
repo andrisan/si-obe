@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Department;
 use Illuminate\Http\Request;
+use App\Models\Assignment;
+use App\Models\AssignmentPlan;
+use Illuminate\Support\Facades\DB;
+
 
 class AssignmentController extends Controller
 {
@@ -15,6 +19,13 @@ class AssignmentController extends Controller
     public function index()
     {
         //
+        $assignment = DB::table('assignments')
+            ->join('assignment_plans', 'assignment_plans.id', '=', 'assignments.assignment_plan_id')
+            ->join('course_classes', 'course_classes.id', '=', 'assignments.course_class_id')
+            ->select('assignment_plans.title', 'assignments.assigned_date', 'assignments.due_date', 'assignments.note')
+            ->get();
+        // dd($assignment);
+        return view('assignments.show', ['assignments' => $assignment]);
     }
 
     /**
@@ -48,6 +59,7 @@ class AssignmentController extends Controller
     public function show($id)
     {
         //
+        return view('assignments.create');
     }
 
     /**
@@ -59,6 +71,7 @@ class AssignmentController extends Controller
     public function edit($id)
     {
         //
+        return view('assignments.edit');
     }
 
     /**
