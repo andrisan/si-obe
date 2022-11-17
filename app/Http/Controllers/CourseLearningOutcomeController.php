@@ -15,14 +15,7 @@ class CourseLearningOutcomeController extends Controller
      */
     public function index()
     {
-        $clos = course_learning_outcomes::query()
-        ->withQueryString()
-        ->through(fn ($clos) => [
-            'id' => $clos->id,
-            'ilo_id' => $clos->ilo_id,
-            'position' => $clos->position,
-            'description' => $clos->description(),
-        ]);
+        $clos = DB::table('course_learning_outcomes');
 
         return view('course-learning-outcomes.index', [
             'clos' => $clos
