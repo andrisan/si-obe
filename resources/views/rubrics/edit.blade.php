@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="border-b-2 flex  justify-between border-blue-600">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight text-4xl">
-                {{ $rubric->title }}
+                Edit Rubric : {{ $rubric->title }}
             </h2>
             <div class="mb-5 w-14">
                 <img src="{{ asset('img/Default.png') }}" alt="">
@@ -82,7 +82,7 @@
                     </div>--}}
                     <div>
 
-                        <input type="submit" value="edit" class="btn btn-primary mt-7 flex justify-self-start">
+                        <input type="submit" value="Simpan" class="btn btn-primary mt-7 flex justify-self-start">
                         </form>
                     </div>
 
