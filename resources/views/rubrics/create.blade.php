@@ -15,18 +15,15 @@
                                 <h2 class="card-title text-2xl mb-4">Masukkan Rubrik Baru</h2>
                                 <form action={{ route('rubrics.store') }} method="POST">
                                     @csrf
-                                    <div class="form-control w-full max-w-xs" name='assignment_plan_id'>
+                                    <div class="form-control w-full max-w-xs">
                                         <label class="label">
                                             <span class="label-text text-sm">ID LEMBAR KERJA</span>
                                         </label>
                                         <select name="assignment_plan_id" class="select input-bordered w-full max-w-xs" style="background-color: white">
                                             <option disabled selected>Masukkan ID LK</option>
-                                            <option>01</option>
-                                            <option>02</option>
-                                            <option>03</option>
-                                            <option>04</option>
-                                            <option>05</option>
-                                            <option>06</option>
+                                            @foreach ($assignmentPlan as $assignmentPlan)
+                                            <option>{{ $assignmentPlan->id }}</option>  
+                                            @endforeach
                                         </select>
                                         <x-input-error :messages="$errors->get('assignment_plan_id')" class="mt-2" />
                                         <label class="label">
