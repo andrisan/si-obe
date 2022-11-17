@@ -42,7 +42,8 @@
                             </select>
                         </div>
                         <div class="right-0 float-right absolute">
-                            <button class="bg-[#2E65F3] px-5 py-2 rounded-md text-white" placeholder="Tambah"> <span class="font-bold  text-white rounded-full border-white">+</span> Tambah</button>
+                            <a href=""><button class="bg-[#2E65F3] px-5 py-2 rounded-md text-white" placeholder="Tambah"> <span class="font-bold  text-white rounded-full border-white">+</span> Tambah</button></a>
+                            
                         </div>
                     </div>
             
@@ -57,66 +58,20 @@
                               </tr>
                             </thead>
                             <tbody class="text-center border-2 border-black text-black">
-                              <tr class="border-2 h-14">
-                                <td>1</td>
-                                <td>M1</td>
-                                <td>Mampu memahami konsep pemrograman basis data untuk menunjang integrasi data dalam pengembangan aplikasi</td>
-                                <td class="flex space-x-8 ">
-            
-                                    <button class="px-2 mt-2 text-blue-800 border-blue-800 rounded-2xl border-2">CEK LLO</button>
-                                    <div class="mt-3"><i class="fa-solid fa-pen-to-square text-blue-800"></i></div>
-                                    <div class="mt-3"><i class="fa-solid fa-trash-can text-red-600"></i></div>
-            
-                                </td>
-                              </tr>
-                              <tr class="border-2 h-14">
-                                <td>2</td>
-                                <td>M2</td>
-                                <td>Mampu merancang dan mengimplementasikan logika pemrograman dalam stored procedure, store function, cursor, trigger</td>
-                                <td class="flex space-x-8 ">
-            
-                                    <button class="px-2 mt-2 text-blue-800 border-blue-800 rounded-2xl border-2">CEK LLO</button>
-                                    <div class="mt-3"><i class="fa-solid fa-pen-to-square text-blue-800"></i></div>
-                                    <div class="mt-3"><i class="fa-solid fa-trash-can text-red-600"></i></div>
-            
-                                </td>
-                              </tr>
-                              <tr class="border-2 h-14">
-                                <td>3</td>
-                                <td>M3</td>
-                                <td>Mampu mengintegrasikan pemrograman basis data dalam aplikasi</td>
-                                <td class="flex space-x-8 ">
-            
-                                    <button class="px-2 mt-2 text-blue-800 border-blue-800 rounded-2xl border-2">CEK LLO</button>
-                                    <div class="mt-3"><i class="fa-solid fa-pen-to-square text-blue-800"></i></div>
-                                    <div class="mt-3"><i class="fa-solid fa-trash-can text-red-600"></i></div>
-            
-                                </td>
-                              </tr>
-                              <tr class="border-2 h-14">
-                                <td>4</td>
-                                <td>M4</td>
-                                <td>Mampu menyampaikan hasil rancangan dan implementasi projek secara ilmiah</td>
-                                <td class="flex space-x-8 ">
-            
-                                    <button class="px-2 mt-2 text-blue-800 border-blue-800 rounded-2xl border-2">CEK LLO</button>
-                                    <div class="mt-3"><i class="fa-solid fa-pen-to-square text-blue-800"></i></div>
-                                    <div class="mt-3"><i class="fa-solid fa-trash-can text-red-600"></i></div>
-            
-                                </td>
-                              </tr>
-                              <tr class="border-2 h-14">
-                                <td>5</td>
-                                <td>M5</td>
-                                <td>Mampu memahami konsep pemrograman basis data untuk menunjang integrasi data dalam pengembangan database</td>
-                                <td class="flex space-x-8 ">
-            
-                                    <button class="px-2 mt-2 text-blue-800 border-blue-800 rounded-2xl border-2">CEK LLO</button>
-                                    <div class="mt-3"><i class="fa-solid fa-pen-to-square text-blue-800"></i></div>
-                                    <div class="mt-3"><i class="fa-solid fa-trash-can text-red-600"></i></div>
-            
-                                </td>
-                              </tr>
+                                @foreach($clos as $clos) 
+                                    <tr class="border-2 h-14">
+                                        <td>{{$clos->position}}</td>
+                                        <td></td>
+                                        <td>{{$clos->description}}</td>
+                                        <td class="flex space-x-8 ">
+                    
+                                            <button class="px-2 mt-2 text-blue-800 border-blue-800 rounded-2xl border-2">CEK LLO</button>
+                                            <div class="mt-3"><i class="fa-solid fa-pen-to-square text-blue-800"></i></div>
+                                            <div class="mt-3"><i class="fa-solid fa-trash-can text-red-600"></i></div>
+                    
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                           </table>
                     </div>
