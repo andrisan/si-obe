@@ -2,6 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Criteria;
+use App\Models\CriteriaLevel;
+use App\Models\Rubric;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class CriteriaLevelController extends Controller
@@ -9,76 +16,132 @@ class CriteriaLevelController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
-    public function index()
+    public function index(Rubric $rubric, Criteria $criteria)
     {
-        //
+        return view('criteria-levels.index', [
+            'rubric' => $rubric,
+            'criteria' => $criteria,
+            'criteriaLevels' => $criteria->criteriaLevels()->paginate(3)
+        ]);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
-    public function create()
+    public function create(Rubric $rubric, Criteria $criteria)
     {
-        //
+        return view('criteria-levels.create', [
+            'rubric' => $rubric,
+            'criteria' => $criteria,
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(Request $request, Rubric $rubric, Criteria $criteria)
     {
+        $validated = $request->validate([
+            'point' => 'required|numeric',
+            'title' => 'required|string',
+            'description' => 'string',
+        ]);
 
+        $criteria->criteriaLevels()->create($validated);
+
+        return redirect()->route('rubrics.criterias.criteria-levels.index', [
+            'rubric' => $rubric,
+            'criteria' => $criteria,
+        ]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Rubric $rubric
+     * @param Criteria $criteria
+     * @param CriteriaLevel $criteriaLevel
+     * @return RedirectResponse
      */
-    public function show($id)
+    public function show(Rubric $rubric, Criteria $criteria, CriteriaLevel $criteriaLevel)
     {
-        return view('levels.show');
+        return redirect()->route('rubrics.criterias.criteria-levels.index', [
+            'rubric' => $rubric,
+            'criteria' => $criteria,
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Rubric $rubric
+     * @param Criteria $criteria
+     * @param CriteriaLevel $criteriaLevel
+     * @return Application|Factory|View
      */
-    public function edit($id)
+    public function edit(Rubric $rubric, Criteria $criteria, CriteriaLevel $criteriaLevel)
     {
-        //
+        return view('criteria-levels.edit', [
+            'rubric' => $rubric,
+            'criteria' => $criteria,
+            'criteriaLevel' => $criteriaLevel
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Rubric $rubric
+     * @param Criteria $criteria
+     * @param CriteriaLevel $criteriaLevel
+     * @return RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Rubric $rubric, Criteria $criteria, CriteriaLevel $criteriaLevel): RedirectResponse
     {
-        //
+        $validated = $request->validate([
+            'point' => 'required|numeric',
+            'title' => 'required|string',
+            'description' => 'string',
+        ]);
+
+        $criteriaLevel->update($validated);
+
+        $currentMaxPoint = $criteria->criteriaLevels()->max('point');
+        if ($currentMaxPoint != $criteria->max_point) {
+            $criteria->update([
+                'max_point' => $currentMaxPoint
+            ]);
+        }
+
+        return redirect()->route('rubrics.criterias.criteria-levels.index', [
+            'rubric' => $rubric,
+            'criteria' => $criteria
+        ]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Rubric $rubric
+     * @param Criteria $criteria
+     * @param CriteriaLevel $criteriaLevel
+     * @return RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(Rubric $rubric, Criteria $criteria, CriteriaLevel $criteriaLevel)
     {
-        //
+        $criteriaLevel->delete();
+        
+        return redirect()->route('rubrics.criterias.criteria-levels.index', [
+            'rubric' => $rubric,
+            'criteria' => $criteria
+        ]);
     }
 }
