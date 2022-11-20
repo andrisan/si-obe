@@ -6,6 +6,7 @@ use App\Models\Syllabus;
 use App\Models\IntendedLearningOutcome;
 use App\Models\CourseLearningOutcome;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 
 class CourseLearningOutcomeController extends Controller
@@ -59,26 +60,38 @@ class CourseLearningOutcomeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param Syllabus $syllabus
+     * @param IntendedLearningOutcome $intendedLearningOutcome
+     * @param CourseLearningOutcome $courseLearningOutcome
+     * 
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Syllabus $syllabus, IntendedLearningOutcome $intendedLearningOutcome, CourseLearningOutcome $courseLearningOutcome)
     {
-        $clo = DB::table('course_learning_outcomes')->where('id', $id)->first(); 
-        return view('course-learning-outcomes.edit', ['clo'=>$clo]);
+        return view('course-learning-outcomes.edit', [
+            'syllabus' => $syllabus,
+            'intendedLearningOutcome' => $intendedLearningOutcome,
+            'courseLearningOutcome' => $courseLearningOutcome,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param Syllabus $syllabus
+     * @param IntendedLearningOutcome $intendedLearningOutcome
+     * @param CourseLearningOutcome $courseLearningOutcome
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Syllabus $syllabus, IntendedLearningOutcome $intendedLearningOutcome, CourseLearningOutcome $courseLearningOutcome): RedirectResponse
     {
-        DB::table('course_learning_outcomes')->where(['id', $id])->update(['position'=>$request->position], ['description'=>$request->description]);
-        return back();
+        $validated = $request->validate([
+            'position' => 'required|numeric',
+            'description' => 'required|string',
+        ]);
+
+        $courseLearningOutcome->update($validated);
     }
 
     /**
