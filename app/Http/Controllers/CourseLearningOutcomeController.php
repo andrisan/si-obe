@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Syllabus;
+use App\Models\IntendedLearningOutcome;
 use App\Models\CourseLearningOutcome;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
