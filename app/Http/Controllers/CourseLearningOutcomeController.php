@@ -66,12 +66,12 @@ class CourseLearningOutcomeController extends Controller
      * 
      * @return \Illuminate\Http\Response
      */
-    public function edit(Syllabus $syllabus, IntendedLearningOutcome $intendedLearningOutcome, CourseLearningOutcome $courseLearningOutcome)
+    public function edit($syllabus, $ilo, CourseLearningOutcome $clo)
     {
         return view('course-learning-outcomes.edit', [
             'syllabus' => $syllabus,
-            'intendedLearningOutcome' => $intendedLearningOutcome,
-            'courseLearningOutcome' => $courseLearningOutcome,
+            'ilo' => $ilo,
+            'clo' => $clo,
         ]);
     }
 
@@ -84,18 +84,18 @@ class CourseLearningOutcomeController extends Controller
      * @param CourseLearningOutcome $courseLearningOutcome
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Syllabus $syllabus, IntendedLearningOutcome $intendedLearningOutcome, CourseLearningOutcome $courseLearningOutcome): RedirectResponse
+    public function update(Request $request, $syllabus, $ilo, CourseLearningOutcome $clo): RedirectResponse
     {
         $validated = $request->validate([
             'position' => 'required|numeric',
             'description' => 'required|string',
         ]);
 
-        $courseLearningOutcome->update($validated);
+        $clo->update($validated);
 
         return redirect()->route('syllabi.ilos.clos.index', [
             'syllabus' => $syllabus,
-            'intendedLearningOutcome' => $intendedLearningOutcome,
+            'ilo' => $ilo,
         ]);
     }
 
