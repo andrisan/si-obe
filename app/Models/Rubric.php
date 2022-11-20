@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Rubric extends Model
 {
     use HasFactory;
+
+    public function criterias()
+    {
+        return $this->hasMany(Criteria::class);
+    }
 }
