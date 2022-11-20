@@ -27,7 +27,7 @@
                     </nav>
             
                     <div class="flex  mt-5 space-x-5 relative">
-                        <div class="">
+                        <!-- <div class="">
                             <input type="text" class="bg-[#F7F7F9] w-52 px-5 py-2 rounded-md text-black placeholder:text-black" placeholder="MASUKKAN KODE">
                         </div>
                         <div class="">
@@ -40,7 +40,7 @@
                                     <option value="js">M4</option>
                                   
                             </select>
-                        </div>
+                        </div> -->
                         <div class="right-0 float-right absolute">
                             <a href=""><button class="bg-[#2E65F3] px-5 py-2 rounded-md text-white" placeholder="Tambah"> <span class="font-bold  text-white rounded-full border-white">+</span> Tambah</button></a>
                             
@@ -52,7 +52,7 @@
                             <thead>
                               <tr class="bg-[#F7F7F9] border-2 h-10">
                                 <th class="w-10">No</th>
-                                <th class="w-44">KODE CLO</th>
+                                <!-- <th class="w-44">KODE CLO</th> -->
                                 <th class="w-[40rem]">DESKRIPSI</th>
                                 <th>AKSI</th>
                               </tr>
