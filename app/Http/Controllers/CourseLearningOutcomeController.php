@@ -93,7 +93,10 @@ class CourseLearningOutcomeController extends Controller
 
         $courseLearningOutcome->update($validated);
 
-        return redirect()->route('syllabi.ilos.clos.index');
+        return redirect()->route('syllabi.ilos.clos.index', [
+            'syllabus' => $syllabus,
+            'intendedLearningOutcome' => $intendedLearningOutcome,
+        ]);
     }
 
     /**
