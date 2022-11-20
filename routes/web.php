@@ -56,7 +56,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('syllabi.assignment-plans', AssignmentPlanController::class);
         Route::resource('rubrics.criterias', CriteriaController::class);
         Route::resource('rubrics.criterias.criteria-levels', CriteriaLevelController::class);
-        Route::resource('classes.assigments', AssignmentController::class);
+        Route::resource('course-classes.assignments', AssignmentController::class);
     });
 });
 

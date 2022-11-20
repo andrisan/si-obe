@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Department;
-use Illuminate\Http\Request;
 use App\Models\Assignment;
-use App\Models\AssignmentPlan;
+use App\Models\CourseClass;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 
 class AssignmentController extends Controller
@@ -16,16 +16,15 @@ class AssignmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(CourseClass $courseClass)
     {
-        //
-        $assignment = DB::table('assignments')
-            ->join('assignment_plans', 'assignment_plans.id', '=', 'assignments.assignment_plan_id')
-            ->join('course_classes', 'course_classes.id', '=', 'assignments.course_class_id')
-            ->select('assignment_plans.title', 'assignments.assigned_date', 'assignments.due_date', 'assignments.note')
-            ->get();
-        // dd($assignment);
-        return view('assignments.show', ['assignments' => $assignment]);
+        // $assignment = Assignment::all();
+
+        return view('assignments.index', [
+            'courseClass' => $courseClass,
+            // 'assignment' => $assignment,
+
+        ]);
     }
 
     /**
@@ -56,10 +55,12 @@ class AssignmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(CourseClass $courseClass, Assignment $assignment)
     {
-        //
-        return view('assignments.create');
+        return view('assignments.show', [
+            'courseClass' => $courseClass,
+            'assignment' => $assignment
+        ]);
     }
 
     /**

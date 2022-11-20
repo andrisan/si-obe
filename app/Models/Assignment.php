@@ -2,8 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\CourseClass;
+use App\Models\StudentGrade;
+use App\Models\AssignmentPlan;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Assignment extends Model
 {
@@ -15,4 +18,10 @@ class Assignment extends Model
     {
         return $this->hasMany(StudentGrade::class);
     }
+
+    public function assignmentPlan()
+    {
+        return $this->belongsTo(AssignmentPlan::class);
+    }
+    
 }

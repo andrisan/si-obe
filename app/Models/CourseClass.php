@@ -14,4 +14,9 @@ class CourseClass extends Model
         return $this->belongsToMany(User::class, 'join_classes',
             'course_class_id', 'student_user_id');
     }
+
+    public function assignments()
+    {
+        return $this->hasMany(Assignment::class);
+    }
 }
