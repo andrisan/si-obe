@@ -36,7 +36,7 @@ class AssignmentPlanController extends Controller
      */
     public function create()
     {
-        return view('assignmen-plans.create');
+        return view('assignment-plans.create');
     }
 
     /**
@@ -71,7 +71,7 @@ class AssignmentPlanController extends Controller
      */
     public function show($id)
     {
-        return view('assignmen-plans.show');
+        return view('assignment-plans.show');
     }
 
     /**
@@ -82,7 +82,7 @@ class AssignmentPlanController extends Controller
      */
     public function edit($id)
     {
-        return view('assignmen-plans.edit');
+        return view('assignment-plans.edit');
     }
 
     /**

@@ -30,10 +30,24 @@
                                 <input type="text" placeholder="Enter Your Description" class="input input-bordered input-ghost input-l w-full max-w-xl mb-4 mt-2" />
                             </form>
                         </div>
+
+                        <div class="container p-4 text-primary text-sm">
+                            <form>
+                                <label class="uppercase font-bold  text-blue-600" for="fname">Created at</label><br>
+                                <input type="text" placeholder="Enter Your Deadline" class="input input-bordered input-ghost input-l w-full max-w-xl mb-4 mt-2" />
+                            </form>
+                        </div>
                         
                         <div class="container p-4 text-primary text-sm">
                             <form>
                                 <label class="uppercase font-bold  text-blue-600" for="fname">Deadline</label><br>
+                                <input type="text" placeholder="Enter Your Deadline" class="input input-bordered input-ghost input-l w-full max-w-xl mb-4 mt-2" />
+                            </form>
+                        </div>
+                     
+                        <div class="container p-4 text-primary text-sm">
+                            <form>
+                                <label class="uppercase font-bold  text-blue-600" for="fname">Assignment style</label><br>
                                 <input type="text" placeholder="Enter Your Deadline" class="input input-bordered input-ghost input-l w-full max-w-xl mb-4 mt-2" />
                             </form>
                         </div>
