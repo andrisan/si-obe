@@ -24,8 +24,8 @@ class AssignmentPlanController extends Controller
                 'created_at' => $plans->created_at->toFormattedDateString(),
             ]);
 
-        return view('assignmentplan.index', [
-            'AssigmentPlan' => $plans
+        return view('assignment-plans.index', [
+            'AssignmentPlan' => $plans
         ]);
     }
 
