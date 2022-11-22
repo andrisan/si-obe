@@ -13,13 +13,13 @@
                   <table class="table table-compact w-full">
                     <thead>
                       <tr>
-                        <th></th> 
+                        <th>Kode kelas</th> 
                         <th>Title</th> 
                         <th>Description</th> 
                         <th>Created at</th> 
                         <th>Deadline</th> 
                         <th>Assignment Style</th> 
-                        <th>Create</th>
+                        <th><button class="btn bg-blue-600">Create</button></th>
                       </tr>
                     </thead> 
                     <tbody>
@@ -32,7 +32,7 @@
                         <td>Essai</td> 
                         <td>
                           <button class="btn btn-info">Edit</button>
-                          <button class="btn btn-info">Delete</button>
+                          <button class="btn btn-warning">Delete</button>
                         </td>
                       </tr>
                       <tr>
@@ -44,7 +44,7 @@
                         <td>Essai</td> 
                         <td>
                           <button class="btn btn-info">Edit</button>
-                          <button class="btn btn-info">Delete</button>
+                          <button class="btn btn-warning">Delete</button>
                         </td>
                       </tr>
                       <tr>
@@ -56,7 +56,7 @@
                         <td>Essai</td> 
                         <td>
                           <button class="btn btn-info">Edit</button>
-                          <button class="btn btn-info">Delete</button>
+                          <button class="btn btn-warning">Delete</button>
                         </td>
                       </tr>
                       <tr>
@@ -68,7 +68,7 @@
                         <td>Pilgan</td> 
                         <td>
                           <button class="btn btn-info">Edit</button>
-                          <button class="btn btn-info">Delete</button>
+                          <button class="btn btn-warning">Delete</button>
                         </td>
                       </tr>
                     </tbody> 
