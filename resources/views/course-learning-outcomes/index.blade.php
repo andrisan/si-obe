@@ -55,7 +55,7 @@
                                 @csrf
                                     <button class="px-2 mt-1 text-blue-800 border-blue-800 rounded-2xl border-2">CEK LLO</button>
                                     <button class="mt-1"><i class="fa-solid fa-pen-to-square text-blue-800"></i></button>
-                                    <a href="{{route('syllabi.ilos.clos.destroy', [$syllabus, $ilo, $clos->id])}}"><div class="mt-3" ><i class="fa-solid fa-trash-can text-red-600"></i></div></a>
+                                    <button class="mt-1"><i class="fa-solid fa-trash-can text-red-600"></i></button>
                                     </form>
                                 </td>
                             </tr>
