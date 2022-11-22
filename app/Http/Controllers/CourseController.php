@@ -107,14 +107,13 @@ class CourseController extends Controller
      */
     public function edit(Course $course)
     {
-        $studyPrograms = StudyProgram::where('id','=',$course->id)->first();
+//        dd($course);
         $studyPrograms = StudyProgram::get();
-    
+
 //        dd($studyProgram);
         return view('courses.edit',[
             'course' => $course,
             'studyPrograms' => $studyPrograms,
-
         ]);
     }
 
@@ -134,15 +133,26 @@ class CourseController extends Controller
             'course_credit' => 'integer',
             'lab_credit' => 'integer',
             'type' => 'in:Mandatory,Elective',
-            'short_description' => 'text',
+            'short_description' => 'string',
             'minimal_requirement' => 'string',
-            'study_material_summary' => 'text',
-            'learning_media' => 'text',
+            'study_material_summary' => 'string',
+            'learning_media' => 'string',
             'study_program' => 'exists:study_programs,id',
             'creator_user' => 'exists:users,id'
         ]);
 
-        $course->update($validated);
+        $course->code = $validated['code'];
+        $course->name = $validated['name'];
+        $course->course_credit = $validated['course_credit'];
+        $course->lab_credit = $validated['lab_credit'];
+        $course->type = $validated['type'];
+        $course->short_description = $validated['short_description'];
+        $course->minimal_requirement = $validated['minimal_requirement'];
+        $course->study_material_summary = $validated['study_material_summary'];
+        $course->learning_media = $validated['learning_media'];
+        $course->study_program_id = $validated['study_program'];
+
+        $course->update();
 
         return redirect()->route('courses.index');
     }

@@ -54,7 +54,7 @@
                                                     <p><strong>Minimal requirement:</strong> {{$course->minimal_requirement}}</p>
                                                 </div>
                                                 <div class="card-actions justify-end pt-5">
-                                                    <form action="courses/{{ $course->id }}/edit" method="get">
+                                                    <form action="/courses/{{ $course->id }}/edit" method="get">
                                                         <button class="text-blue-600 m-4" value="{{ $course->id }}"><strong>Edit</strong></button>
                                                     </form>
                                                     <form action="courses/{{ $course->id }}" method="post">
