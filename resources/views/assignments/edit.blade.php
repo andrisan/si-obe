@@ -35,21 +35,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="py-4 ">
-                                <div class=" ">
-                                    <h1 class="font-bold py-2">Course Class</h1>
-                                    <div class="form-control w-full lg:w-[28.5rem]">
-                                        <select class="select select-bordered">
-                                            <option>Pengembangan Aplikasi Website - A</option>
-                                            <option>Pengembangan Aplikasi Website - B</option>
-                                            <option>Pengembangan Aplikasi Website - C</option>
-                                            <option>Pemrograman Basis Data - A</option>
-                                            <option>Pemrograman Basis Data - B</option>
-                                            <option>Pemrograman Basis Data - C</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
+
 
                             <div class="tenggat">
                                 <h1 class="font-bold py-2">Deadline</h1>
@@ -82,7 +68,7 @@
                 </div>
                 <div class="tombol justify-end flex flex-row gap-2 py-5 px-10">
                     <button class="btn btn-outline btn-error w-24">Cancel</button>
-                    <button class="btn btn-info  w-24">Save</button>
+                    <button class="btn btn-active btn-primary w-24">Save</button>
                 </div>
             </div>
         </div>

@@ -24,7 +24,7 @@
 
                             <div class=" ">
                                 <h1 class="font-bold py-2 ">Assignment Plan</h1>
-                                <div class="form-control w-full lg:w-[28.5rem]">
+                                <div class="form-control w-full lg:w-[28.5rem] ">
 
                                     <select class="select select-bordered">
                                         <option disabled selected>Assignments</option>
@@ -36,25 +36,9 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="py-4 ">
-                                <div class=" ">
-                                    <h1 class="font-bold py-2">Course Class</h1>
-                                    <div class="form-control w-full lg:w-[28.5rem]">
-
-                                        <select class="select select-bordered">
-                                            <option disabled selected>Course Class</option>
-                                            <option>Pengembangan Aplikasi Website - A</option>
-                                            <option>Pengembangan Aplikasi Website - B</option>
-                                            <option>Pemrograman Basis Data - A</option>
-                                            <option>Pemrograman Basis Data - B</option>
-
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
 
                             <div class="tenggat">
-                                <h1 class="font-bold py-2">Tenggat</h1>
+                                <h1 class="font-bold py-2">Deadline</h1>
 
                                 <div class="flex-row flex gap-10">
                                     <div class="1">
@@ -85,7 +69,7 @@
                             <h1>Note</h1>
                         </div>
                         <div class="py-2">
-                            <div><textarea class=" textarea textarea-bordered lg:w-[40rem] sm:w-[44rem] w-[28.5rem]
+                            <div><textarea class=" textarea textarea-bordered lg:w-[40rem] sm:w-[39rem] w-[25.5rem]
                             h-64" placeholder="Note"></textarea>
                             </div>
 
@@ -95,8 +79,11 @@
                     </div>
                 </div>
                 <div class="tombol justify-end flex flex-row gap-2 py-5 px-10">
-                    <button class="btn btn-outline btn-error w-24">Cancel</button>
-                    <button class="btn btn-active btn-primary w-24">Simpan</button>
+                    <a href="/course-classes/{course-class}/assignments
+"><button class="btn btn-outline btn-error w-24">Cancel</button>
+                    </a>
+
+                    <button class="btn btn-active btn-primary w-24">Save</button>
 
                 </div>
 
