@@ -32,7 +32,7 @@
                         <td>Essai</td> 
                         <td>
                           <button class="btn btn-info">Edit</button>
-                          <button class="btn btn-warning">Delete</button>
+                          <button class="btn btn-error">Delete</button>
                         </td>
                       </tr>
                       <tr>
@@ -44,7 +44,7 @@
                         <td>Essai</td> 
                         <td>
                           <button class="btn btn-info">Edit</button>
-                          <button class="btn btn-warning">Delete</button>
+                          <button class="btn btn-error">Delete</button>
                         </td>
                       </tr>
                       <tr>
@@ -56,7 +56,7 @@
                         <td>Essai</td> 
                         <td>
                           <button class="btn btn-info">Edit</button>
-                          <button class="btn btn-warning">Delete</button>
+                          <button class="btn btn-error">Delete</button>
                         </td>
                       </tr>
                       <tr>
@@ -68,7 +68,7 @@
                         <td>Pilgan</td> 
                         <td>
                           <button class="btn btn-info">Edit</button>
-                          <button class="btn btn-warning">Delete</button>
+                          <button class="btn btn-error">Delete</button>
                         </td>
                       </tr>
                     </tbody> 
