@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Assignment;
 use App\Models\CourseClass;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-
 
 class AssignmentController extends Controller
 {
@@ -66,22 +64,37 @@ class AssignmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(CourseClass $courseClass, Assignment $assignment)
     {
-        //
-        return view('assignments.edit');
+        return view('assignments.edit', [
+            'courseClass' => $courseClass,
+            'assignment' => $assignment
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  CourseClass $courseClass
+     * @param  Assignment $assignment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, CourseClass $courseClass, Assignment $assignment)
     {
-        //
+        $validated = $request->validate([
+            // 'assignment_plan_id' => 'required|numeric',
+            'assigned_date' => 'required|date',
+            'due_date' => 'required|date',
+            'note' => 'string',
+        ]);
+
+        $assignment->update($validated);
+
+        return redirect()->route('course-classes.assignments.show', [
+            'courseClass' => $courseClass,
+            'assignment' => $assignment
+        ]);
     }
 
     /**

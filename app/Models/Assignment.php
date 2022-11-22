@@ -14,6 +14,14 @@ class Assignment extends Model
 
     public $timestamps = false;
 
+    protected $fillable = [
+        'assignment_plan_id',
+        'assigned_date',
+        'assigned_date',
+        'due_date',
+        'note'
+    ];
+
     public function studentGrades()
     {
         return $this->hasMany(StudentGrade::class);

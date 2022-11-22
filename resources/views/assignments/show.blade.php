@@ -42,7 +42,7 @@
                         <td>{{ $assignment->note }}</td>
                         <td>
                           <div class="flex items-strecth">
-                            <form action="" method="get">
+                            <form action="{{ route('course-classes.assignments.edit', [$courseClass, $assignment]) }}" method="get">
                               <button class="btn btn-warning btn-sm m-1" value="">Edit</button>
                             </form>
                             <form method="POST" action="{{ route('course-classes.assignments.destroy', [$courseClass, $assignment]) }}">
