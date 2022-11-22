@@ -32,7 +32,7 @@
                                 <select class="select text-neutral input-bordered bg-white w-full max-w-xs" name="study_program" id="study_program" value="{{ $course->study_program_id }}">
                                     <option></option>
                                     @foreach($studyPrograms as $program)
-                                    <option value="{{ $program->id }}">{{ $program->name }}</option>
+                                    <option value="{{ $program->id }}" @selected($program->id == $course->study_program_id)>{{ $program->name }}</option>
                                     @endforeach
                                 </select>
                                 <x-input-error :messages="$errors->get('study_program')" class="mt-2" />
@@ -98,10 +98,10 @@
                                 <label class="label">
                                     <span class="label-text text-neutral font-bold">Course Type</span>
                                 </label>
-                                <select class="select text-neutral input-bordered bg-white w-full max-w-xs" name="type" id="type" value="{{ $course->type }}">
+                                <select class="select text-neutral input-bordered bg-white w-full max-w-xs" name="type" id="type">
                                     <option></option>
-                                    <option>Mandatory</option>
-                                    <option>Elective</option>
+                                    <option @selected($course->type == 'mandatory')>Mandatory</option>
+                                    <option @selected($course->type == 'elective')>Elective</option>
                                 </select>
                                 <x-input-error :messages="$errors->get('type')" class="mt-2" />
                             </div>
@@ -121,7 +121,7 @@
                                 <button class="btn btn-outline" type="submit">Save</button>
 {{--                            </form>--}}
 {{--                            <form action="{{ route('courses.index') }}">--}}
-                                <button class="btn btn-outline">Cancel</button>
+                                <a class="btn btn-outline" href="{{ route('courses.index') }}">Cancel</a>
 {{--                            </form>--}}
                         </div>
                     </form>
