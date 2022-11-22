@@ -27,7 +27,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-control pl-5 text-sm max-w-xl mb-0 mt-5" id="kodekelas">
+                                        <div class="form-control pl-5 text-sm max-w-xl mb-10 mt-5" id="kodekelas">
                                             <div class="input-group mt-2">
                                                 <input type="text" placeholder="course name" class="input max-w-xs border-gray-200 bg-gray-200 w-full" />
                                                 {{-- <select class="select select-bordered hover:bg-base text-gray-400 bg-gray-200">
@@ -45,7 +45,7 @@
                                         </div>
 
                                         @foreach ($courses as $course)
-                                        <div class="card-normal w-full shadow-2xl ml-5 px-5 mt-10 mr-5">
+                                        <div class="card-normal w-full shadow-2xl ml-5 px-5 mr-5 mb-10">
                                             <div class="card-body">
                                                 <h2 class="card-title">{{$course->name}}</h2>
                                                 <p>{{$course->code}} - <strong>{{$course->type}}</strong> - {{$course->learning_media}} - <strong>{{$course->course_credit}} SKS</strong> </p>
