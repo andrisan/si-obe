@@ -118,9 +118,11 @@
                     </form>
 
                     <div class="card-actions justify-end pt-5">
-                        <button class="btn btn-outline" type="submit">Save</button>
                         <form action="{{ route('courses.index') }}">
-                          <button class="btn btn-outline">Cancel</button>
+                            <button class="btn btn-outline" type="submit">Save</button>
+                        </form>
+                        <form action="{{ route('courses.index') }}">
+                            <button class="btn btn-outline">Cancel</button>
                         </form>
                     </div>
     </x-slot>
