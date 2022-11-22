@@ -27,10 +27,12 @@ class AssignmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(CourseClass $courseClass, Assignment $assignment)
     {
-        //
-        return view('assignments.create');
+        return view('assignments.create', [
+            'courseClass' => $courseClass,
+            'assignment' => $assignment
+        ]);
     }
 
     /**
@@ -39,9 +41,20 @@ class AssignmentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, CourseClass $courseClass, Assignment $assignment)
     {
-        //
+        $validated = $request->validate([
+            // 'assignment_plan_id' => 1,
+            'assigned_date' => 'required|date',
+            'due_date' => 'required|date',
+            'note' => 'string',
+        ]);
+
+        $assignment->create($validated);
+        return redirect()->route('course-classes.assignments.index', [
+            'courseClass' => $courseClass,
+            'assignment' => $assignment
+        ]);
     }
 
     /**
