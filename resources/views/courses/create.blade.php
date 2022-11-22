@@ -117,13 +117,13 @@
                                 <label class="label">
                                     <span class="mt-7 label-text text-neutral font-bold">User Creator</span>
                                 </label>
-                                <select class="select text-neutral input-bordered bg-white w-full max-w-xs" name="study_program" id="study_program">
+                                <select class="select text-neutral input-bordered bg-white w-full max-w-xs" name="creator_user" id="creator_user">
                                     <option></option>
                                     @foreach($userCreator as $user)
                                         <option value="{{ $user->id }}">{{ $user->name }}</option>
                                     @endforeach
                                 </select>
-                                <x-input-error :messages="$errors->get('user_creator')" class="mt-2" />
+                                <x-input-error :messages="$errors->get('creator_user')" class="mt-2" />
                             </div>
 
                             <div class="pt-4" style="float:right">

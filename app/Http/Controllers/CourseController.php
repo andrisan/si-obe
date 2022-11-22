@@ -52,10 +52,12 @@ class CourseController extends Controller
             'name' => 'required|string',
             'course_credit' => 'required|integer',
             'lab_credit' => 'required|integer',
-            'type' => 'in:Mandatory, Elective',
+            'type' => 'in:Mandatory,Elective',
             'short_description' => 'string',
             'study_material_summary' => 'string',
             'learning_media' => 'string',
+            'study_program' => 'required|exists:study_programs,id',
+            'creator_user' => 'required|exists:users,id'
         ]);
 
         // dd($request);
@@ -69,8 +71,8 @@ class CourseController extends Controller
         $course->short_description = $validated['short_description'];
         $course->study_material_summary = $validated['study_material_summary'];
         $course->learning_media = $validated['learning_media'];
-
-        $course->study_program_id = StudyProgram::where('name','=',$request->input('study_program'))->value('id');
+        $course->study_program_id = $validated['study_program'];
+        $course->creator_user_id = $validated['creator_user'];
 
         $course->save();
 
