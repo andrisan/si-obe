@@ -16,12 +16,14 @@ class CourseLearningOutcomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($syllabus, $ilo)
     {
         $clos = DB::table('course_learning_outcomes')->get();
 
         return view('course-learning-outcomes.index', [
-            'clos' => $clos
+            'clos' => $clos,
+            'syllabus' => $syllabus,
+            'ilo' => $ilo,
         ]);
     }
 
@@ -105,8 +107,11 @@ class CourseLearningOutcomeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($syllabus, $ilo, CourseLearningOutcome $clo)
     {
         //
+        $clo->delete();
+
+        return redirect(route('syllabi.ilos.clos.index', [$syllabus, $ilo]));
     }
 }
