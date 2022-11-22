@@ -19,7 +19,11 @@
                         <th>created_at</th> 
                         <th>updated_at</th> 
                         <th>assignment_style</th> 
-                        <th><button class="btn bg-blue-600">Create</button></th>
+                        <th>
+                            <a href="/assignment-plans/create">
+                              <button class="btn bg-blue-600" >Create</button>
+                            </a>
+                        </th>
                       </tr>
                     </thead> 
                     <tbody>
