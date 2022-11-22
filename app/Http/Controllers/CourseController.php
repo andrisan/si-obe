@@ -22,6 +22,7 @@ class CourseController extends Controller
         ]);
     }
 
+
     /**
      * Show the form for creating a new resource.
      *
@@ -37,6 +38,7 @@ class CourseController extends Controller
             'userCreator' => $userCreator
         ]);
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -54,6 +56,7 @@ class CourseController extends Controller
             'lab_credit' => 'required|integer',
             'type' => 'in:Mandatory,Elective',
             'short_description' => 'string',
+            'minimal_requirement' => 'string',
             'study_material_summary' => 'string',
             'learning_media' => 'string',
             'study_program' => 'required|exists:study_programs,id',
@@ -69,6 +72,7 @@ class CourseController extends Controller
         $course->lab_credit = $validated['lab_credit'];
         $course->type = $validated['type'];
         $course->short_description = $validated['short_description'];
+        $course->minimal_requirement = $validated['minimal_requirement'];
         $course->study_material_summary = $validated['study_material_summary'];
         $course->learning_media = $validated['learning_media'];
         $course->study_program_id = $validated['study_program'];
@@ -110,6 +114,7 @@ class CourseController extends Controller
         ]);
     }
 
+
     /**
      * Update the specified resource in storage.
      *
@@ -119,7 +124,23 @@ class CourseController extends Controller
      */
     public function update(Request $request, Course $course)
     {
-        //
+        $validated = $request->validate([
+            'code' => 'required|string',
+            'name' => 'required|string',
+            'course_credit' => 'required|integer',
+            'lab_credit' => 'required|integer',
+            'type' => 'required|in:Mandatory,Elective',
+            'short_description' => 'required|text',
+            'minimal_requirement' => 'required|string',
+            'study_material_summary' => 'required|text',
+            'learning_media' => 'required|text',
+            'study_program' => 'required|exists:study_programs,id',
+            'creator_user' => 'required|exists:users,id'
+        ]);
+
+        $course->update($validated);
+
+        return redirect(route('courses.index'));
     }
 
     /**
