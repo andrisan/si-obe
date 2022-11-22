@@ -18,12 +18,10 @@ class CourseLearningOutcomeController extends Controller
      */
     public function index($syllabus, $ilo)
     {
-        $clos = DB::table('course_learning_outcomes')->get();
+        $data = CourseLearningOutcome::all();
 
         return view('course-learning-outcomes.index', [
-            'clos' => $clos,
-            'syllabus' => $syllabus,
-            'ilo' => $ilo,
+            'data' => $data
         ]);
     }
 
