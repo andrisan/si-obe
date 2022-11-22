@@ -107,13 +107,8 @@
                                 <select class="select text-neutral input-bordered bg-white w-full max-w-xs" name="study_program" id="study_program">
                                     <option></option>
                                     @foreach($studyPrograms as $program)
-                                        <option>{{ $program->name }}</option>
+                                        <option value="{{ $program->id }}">{{ $program->name }}</option>
                                     @endforeach
-                                    <!-- <option>Sistem Informasi</option>
-                                         <option>Teknologi Informasi</option>
-                                         <option>Pendidikan Teknologi Informasi</option>
-                                         <option>Teknik Informatika</option>
-                                         <option>Teknik Komputer</option> -->
                                 </select>
                                 <x-input-error :messages="$errors->get('study_program')" class="mt-2" />
                             </div>
@@ -122,7 +117,12 @@
                                 <label class="label">
                                     <span class="mt-7 label-text text-neutral font-bold">User Creator</span>
                                 </label>
-                                <input type="text" class="input text-neutral input-bordered bg-white w-full max-w-xs" name="user_creator" id="user_creator" />
+                                <select class="select text-neutral input-bordered bg-white w-full max-w-xs" name="study_program" id="study_program">
+                                    <option></option>
+                                    @foreach($userCreator as $user)
+                                        <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                    @endforeach
+                                </select>
                                 <x-input-error :messages="$errors->get('user_creator')" class="mt-2" />
                             </div>
 

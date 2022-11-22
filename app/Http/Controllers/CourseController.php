@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\StudyProgram;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -17,7 +18,7 @@ class CourseController extends Controller
     {
         $courses = Course::get();
         return view('courses.index',[
-            'courses' => $courses 
+            'courses' => $courses
         ]);
     }
 
@@ -29,8 +30,12 @@ class CourseController extends Controller
     public function create()
     {
         $studyPrograms = StudyProgram::get();
-        return view('courses.create')
-            ->with(['studyPrograms' => $studyPrograms]);
+        $userCreator = User::get();
+
+        return view('courses.create', [
+            'studyPrograms' => $studyPrograms,
+            'userCreator' => $userCreator
+        ]);
     }
 
     /**
@@ -71,7 +76,7 @@ class CourseController extends Controller
 
         return redirect()->route('courses.index');
     }
-    
+
 
     /**
      * Display the specified resource.
@@ -80,12 +85,12 @@ class CourseController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Course $course){
-        // 
+        //
         return view('courses.show', [
             'course' => $course
-        ]);    
+        ]);
     }
-    
+
 
     /**
      * Show the form for editing the specified resource.
