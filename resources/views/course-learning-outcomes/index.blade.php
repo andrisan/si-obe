@@ -61,13 +61,13 @@
                                 @foreach($clos as $clos) 
                                     <tr class="border-2 h-14">
                                         <td>{{$clos->position}}</td>
-                                        <td></td>
+                                        <!-- <td></td> -->
                                         <td>{{$clos->description}}</td>
                                         <td class="flex space-x-8 ">
                     
                                             <button class="px-2 mt-2 text-blue-800 border-blue-800 rounded-2xl border-2">CEK LLO</button>
                                             <div class="mt-3"><i class="fa-solid fa-pen-to-square text-blue-800"></i></div>
-                                            <div class="mt-3"><i class="fa-solid fa-trash-can text-red-600"></i></div>
+                                            <a href="{{route('syllabi.ilos.clos.destroy', [$syllabus, $ilo, $clos->id])}}"><div class="mt-3" ><i class="fa-solid fa-trash-can text-red-600"></i></div></a>
                     
                                         </td>
                                     </tr>
