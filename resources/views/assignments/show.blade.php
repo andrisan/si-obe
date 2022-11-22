@@ -45,9 +45,14 @@
                             <form action="" method="get">
                               <button class="btn btn-warning btn-sm m-1" value="">Edit</button>
                             </form>
-                            <form action="" method="get">
-                              <button class="btn btn-error btn-sm m-1" value=""
-                                onclick="return confirm('Yakin ingin menghapus data ?');">Delete</button>
+                            <form method="POST" action="{{ route('course-classes.assignments.destroy', [$courseClass, $assignment]) }}">
+                              @csrf
+                              @method('delete')
+
+                              <button class="btn btn-error btn-sm m-1"
+                                  onclick="event.preventDefault(); confirm('Yakin ingin menghapus data?') && this.closest('form').submit();">
+                                  {{ __('Delete') }}
+                              </button>
                             </form>
                           </div>
                         </td>
@@ -57,6 +62,7 @@
                 </div>
               </div>
           </div>
+          <a class="btn btn-primary btn-sm m-4" href="{{ route('course-classes.assignments.index', [$courseClass, $assignment]) }}"> <- Back </a>
       </div>
   </div>
 </x-app-layout>

@@ -90,8 +90,13 @@ class AssignmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(CourseClass $courseClass, Assignment $assignment)
     {
-        //
+        $assignment->delete();
+
+        return redirect()->route('course-classes.assignments.index', [
+            'courseClass' => $courseClass,
+            'assignment' => $assignment
+        ]);
     }
 }
