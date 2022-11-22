@@ -92,8 +92,9 @@ class CourseController extends Controller
      */
     public function show(Course $course){
         //
-        return view('courses.show', [
-            'course' => $course
+        $courses = Course::get();
+        return view('courses.index', [
+            'courses' => $courses
         ]);
     }
 
@@ -106,11 +107,14 @@ class CourseController extends Controller
      */
     public function edit(Course $course)
     {
-        $studyProgram = StudyProgram::where('id','=',$course->id)->first();
+        $studyPrograms = StudyProgram::where('id','=',$course->id)->first();
+        $studyPrograms = StudyProgram::get();
+    
 //        dd($studyProgram);
         return view('courses.edit',[
             'course' => $course,
-            'studyProgram' => $studyProgram
+            'studyPrograms' => $studyPrograms,
+
         ]);
     }
 
@@ -125,22 +129,22 @@ class CourseController extends Controller
     public function update(Request $request, Course $course)
     {
         $validated = $request->validate([
-            'code' => 'required|string',
-            'name' => 'required|string',
-            'course_credit' => 'required|integer',
-            'lab_credit' => 'required|integer',
-            'type' => 'required|in:Mandatory,Elective',
-            'short_description' => 'required|text',
-            'minimal_requirement' => 'required|string',
-            'study_material_summary' => 'required|text',
-            'learning_media' => 'required|text',
-            'study_program' => 'required|exists:study_programs,id',
-            'creator_user' => 'required|exists:users,id'
+            'code' => 'string',
+            'name' => 'string',
+            'course_credit' => 'integer',
+            'lab_credit' => 'integer',
+            'type' => 'in:Mandatory,Elective',
+            'short_description' => 'text',
+            'minimal_requirement' => 'string',
+            'study_material_summary' => 'text',
+            'learning_media' => 'text',
+            'study_program' => 'exists:study_programs,id',
+            'creator_user' => 'exists:users,id'
         ]);
 
         $course->update($validated);
 
-        return redirect(route('courses.index'));
+        return redirect()->route('courses.index');
     }
 
     /**
