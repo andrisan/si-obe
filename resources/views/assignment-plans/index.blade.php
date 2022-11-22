@@ -9,67 +9,79 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                  <div class= "grid grid-cols-2 gap-4">
-                    <!-- card title-->
-                      <div class="card mx-20 mt-10">
-                        <div class="card w-100 bg-base-300 shadow-xl">
-                          <div class="card-body">
-                            <h2 class="card-title">Pemrograman Basis Data</h2>
-                            <p>Pertemuan 1</p>
-                            <div class="card-actions justify-end">
-                              <button class="btn btn-info">Pilih</button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    <!--end card -->
-                    <!-- card title-->
-                    <div class="card mx-20 mt-10">
-                        <div class="card w-100 bg-base-300 shadow-xl">
-                          <div class="card-body">
-                            <h2 class="card-title">Pemrograman Basis Data</h2>
-                            <p>Pertemuan 2</p>
-                            <div class="card-actions justify-end">
-                              <button class="btn btn-info">Pilih</button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    <!--end card -->
-                    <!-- card title-->
-                    <div class="card mx-20 mt-10 mb-10">
-                        <div class="card w-100 bg-base-300 shadow-xl">
-                          <div class="card-body">
-                            <h2 class="card-title">Pemrograman Basis Data</h2>
-                            <p>Pertemuan 3</p>
-                            <div class="card-actions justify-end">
-                              <button class="btn btn-info">Pilih</button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    <!--end card -->
-                    <!-- card title-->
-                    <div class="card mx-20 mt-10 mb-10">
-                        <div class="card w-100 bg-base-300 shadow-xl">
-                          <div class="card-body">
-                            <h2 class="card-title">Pemrograman Basis Data</h2>
-                            <p>Pertemuan 4</p>
-                            <div class="card-actions justify-end">
-                              <button class="btn btn-info">Pilih</button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    <!--end card -->
-                    </div>
-                    <!--pagination-->
-                    <div class="btn-group justify-end">
-                      <button class="btn btn-info">Page 1</button>
-                      <button class="btn btn-info">»</button>
-                    </div>
-                    <!--end pagination-->
-                    </div>
+                <div class="overflow-x-auto">
+                  <table class="table table-compact w-full">
+                    <thead>
+                      <tr>
+                        <th></th> 
+                        <th>Title</th> 
+                        <th>Description</th> 
+                        <th>Created at</th> 
+                        <th>Deadline</th> 
+                        <th>Assignment Style</th> 
+                        <th>Create</th>
+                      </tr>
+                    </thead> 
+                    <tbody>
+                      <tr>
+                        <th>1</th> 
+                        <td>PBD</td> 
+                        <td>Membuat trigger</td> 
+                        <td>08/07/2022</td> 
+                        <td>10/11/2022</td> 
+                        <td>Essai</td> 
+                        <td>
+                          <button class="btn btn-info">Edit</button>
+                          <button class="btn btn-info">Delete</button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>2</th> 
+                        <td>PAW</td> 
+                        <td>Code JS</td> 
+                        <td>08/07/2022</td> 
+                        <td>10/11/2022</td> 
+                        <td>Essai</td> 
+                        <td>
+                          <button class="btn btn-info">Edit</button>
+                          <button class="btn btn-info">Delete</button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>3</th> 
+                        <td>JKD</td> 
+                        <td>Menjekaskan TCP/IP</td> 
+                        <td>08/07/2022</td> 
+                        <td>10/11/2022</td> 
+                        <td>Essai</td> 
+                        <td>
+                          <button class="btn btn-info">Edit</button>
+                          <button class="btn btn-info">Delete</button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>4</th> 
+                        <td>ASD</td> 
+                        <td>Sorting</td> 
+                        <td>08/07/2022</td> 
+                        <td>10/11/2022</td> 
+                        <td>Pilgan</td> 
+                        <td>
+                          <button class="btn btn-info">Edit</button>
+                          <button class="btn btn-info">Delete</button>
+                        </td>
+                      </tr>
+                    </tbody> 
+                  </table>
+                  <div class="btn-group mt-5">
+                    <button class="btn btn-xs btn-info">1</button>
+                    <button class="btn btn-xs">2</button>
+                    <button class="btn btn-xs">3</button>
+                  </div>
+
+
+                </div>
+                
                 </div>
             </div>
         </div>
