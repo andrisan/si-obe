@@ -23,54 +23,20 @@
                       </tr>
                     </thead> 
                     <tbody>
+                      @foreach($plans as $ap)
                       <tr>
-                        <th>1</th> 
-                        <td>PBD</td> 
-                        <td>Membuat trigger</td> 
-                        <td>08/07/2022</td> 
-                        <td>10/11/2022</td> 
-                        <td>Essai</td> 
+                        <th>{{$ap['id']}}</th> 
+                        <td>{{$ap['title']}}</td> 
+                        <td>{{$ap['description']}}</td> 
+                        <td>{{$ap['created_at']}}</td> 
+                        <td>{{$ap['updated_at']}}</td> 
+                        <td>{{$ap['assignment_style']}}</td> 
                         <td>
-                          <button class="btn btn-info">Edit</button>
+                          <button class="btn btn-warning">Edit</button>
                           <button class="btn btn-error">Delete</button>
                         </td>
                       </tr>
-                      <tr>
-                        <th>2</th> 
-                        <td>PAW</td> 
-                        <td>Code JS</td> 
-                        <td>08/07/2022</td> 
-                        <td>10/11/2022</td> 
-                        <td>Essai</td> 
-                        <td>
-                          <button class="btn btn-info">Edit</button>
-                          <button class="btn btn-error">Delete</button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <th>3</th> 
-                        <td>JKD</td> 
-                        <td>Menjekaskan TCP/IP</td> 
-                        <td>08/07/2022</td> 
-                        <td>10/11/2022</td> 
-                        <td>Essai</td> 
-                        <td>
-                          <button class="btn btn-info">Edit</button>
-                          <button class="btn btn-error">Delete</button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <th>4</th> 
-                        <td>ASD</td> 
-                        <td>Sorting</td> 
-                        <td>08/07/2022</td> 
-                        <td>10/11/2022</td> 
-                        <td>Pilgan</td> 
-                        <td>
-                          <button class="btn btn-info">Edit</button>
-                          <button class="btn btn-error">Delete</button>
-                        </td>
-                      </tr>
+                      @endforeach
                     </tbody> 
                   </table>
                   <div class="btn-group mt-5">

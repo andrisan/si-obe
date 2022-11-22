@@ -19,13 +19,15 @@ class AssignmentPlanController extends Controller
             ->withQueryString()
             ->through(fn ($plans) => [
                 'id' => $plans->id,
-                'name' => $plans->name,
-                'email' => $plans->email,
+                'title' => $plans->title,
+                'description' => $plans->description,
                 'created_at' => $plans->created_at->toFormattedDateString(),
+                'updated_at' => $plans->updated_at->toFormattedDateString(),
+                'assignment_style' => $plans->assignment_style,
             ]);
 
         return view('assignment-plans.index', [
-            'AssignmentPlan' => $plans
+            'plans' => $plans
         ]);
     }
 
