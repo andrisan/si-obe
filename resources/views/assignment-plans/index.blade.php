@@ -13,12 +13,12 @@
                   <table class="table table-compact w-full">
                     <thead>
                       <tr>
-                        <th>Kode kelas</th> 
-                        <th>Title</th> 
-                        <th>Description</th> 
-                        <th>Created at</th> 
-                        <th>Deadline</th> 
-                        <th>Assignment Style</th> 
+                        <th>id</th> 
+                        <th>title</th> 
+                        <th>description</th> 
+                        <th>created_at</th> 
+                        <th>updated_at</th> 
+                        <th>assignment_style</th> 
                         <th><button class="btn bg-blue-600">Create</button></th>
                       </tr>
                     </thead> 
