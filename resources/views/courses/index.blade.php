@@ -97,7 +97,7 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a>
+                                                <a href="{{ route('courses.edit') }}">
                                                     <div class="grid grid-rows-2 gap-2">
                                                         <div>
                                                             <svg class="h-8 w-8 text-black" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
