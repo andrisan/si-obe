@@ -55,7 +55,7 @@
                                 </div>
 
                                 @foreach ($courses as $course)
-                                <div class="card-normal shadow-2xl ml-5 px-5 mr-5 mb-10">
+                                <div class="card-normal shadow-lg ml-5 px-5 mr-5 mb-10">
                                     <div class="card-body">
                                         <h2 class="card-title">{{$course->name}}</h2>
                                         <p>{{$course->code}} - <strong>{{$course->type}}</strong> - {{$course->learning_media}} - <strong>{{$course->course_credit}} SKS</strong> </p>
@@ -63,10 +63,10 @@
                                         <p class="pb-10">{{$course->study_material_summary}}</p>
                                         <p>Created by {{ $name[$course->id] }}</p>
 
-                                        <div class="pt-10 card-actions border-t-2">
+                                        <div class="pt-5 card-actions border-t-2">
                                             <p><strong>Minimal requirement:</strong> {{$course->minimal_requirement}}</p>
                                         </div>
-                                        <div class="card-actions justify-end pt-5">
+                                        <div class="card-actions justify-end pt-3">
                                             <form action="/courses/{{ $course->id }}/edit" method="get">
                                                 <button class="text-blue-600 m-4" value="{{ $course->id }}"><strong>Edit</strong></button>
                                             </form>

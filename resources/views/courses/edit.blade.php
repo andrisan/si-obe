@@ -25,6 +25,7 @@
                         @csrf
                         @method('put')
                         <div class="grid grid-cols-2 grid-flow-row gap-8 justify-items-center pb-5">
+
                             <div class="form-control w-full max-w-xl">
                                 <label class="label">
                                     <span class="label-text text-neutral font-bold">Study Program</span>
@@ -110,7 +111,7 @@
                                 <label class="label">
                                     <span class="label-text text-neutral font-bold">Learning Media</span>
                                 </label>
-                                <textarea class="textarea input-bordered bg-white text-neutral" name="learning_media" id="learning_media">{{ $course->learning_media }}</textarea>
+                                <input type="text" class="input text-neutral input-bordered bg-white w-full max-w-xl" name="learning_media" id="learning_media" value="{{ $course->learning_media }}" />
                                 <x-input-error :messages="$errors->get('learning_media')" class="mt-2" />
                             </div>
 

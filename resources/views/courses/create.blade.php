@@ -26,18 +26,23 @@
 
                             <div class="form-control w-full max-w-xl">
                                 <label class="label">
-                                    <span class="label-text text-neutral font-bold">Course Code</span>
+                                    <span class="label-text text-neutral font-bold">Study Program</span>
                                 </label>
-                                <input type="text" class="input text-neutral input-bordered bg-white w-full max-w-xl" name="code" id="code" />
-                                <x-input-error :messages="$errors->get('code')" class="mt-2" />
+                                <select class="select text-neutral input-bordered bg-white w-full max-w-xl" name="study_program" id="study_program">
+                                    <option></option>
+                                    @foreach($studyPrograms as $program)
+                                    <option value="{{ $program->id }}">{{ $program->name }}</option>
+                                    @endforeach
+                                </select>
+                                <x-input-error :messages="$errors->get('study_program')" class="mt-2" />
                             </div>
 
                             <div class="form-control w-full max-w-xl">
                                 <label class="label">
-                                    <span class="label-text text-neutral font-bold">Short Description</span>
+                                    <span class="label-text text-neutral font-bold">Course Code</span>
                                 </label>
-                                <textarea class="textarea text-neutral input-bordered bg-white w-full max-w-xl" name="short_description" id="short_description"></textarea>
-                                <x-input-error :messages="$errors->get('short_description')" class="mt-2" />
+                                <input type="text" class="input text-neutral input-bordered bg-white w-full max-w-xl" name="code" id="code" />
+                                <x-input-error :messages="$errors->get('code')" class="mt-2" />
                             </div>
 
                             <div class="form-control w-full max-w-xl">
@@ -50,10 +55,10 @@
 
                             <div class="form-control w-full max-w-xl">
                                 <label class="label">
-                                    <span class="label-text text-neutral font-bold">Minimal Requirement</span>
+                                    <span class="label-text text-neutral font-bold">Short Description</span>
                                 </label>
-                                <textarea class="textarea text-neutral input-bordered bg-white w-full max-w-xl" name="minimal_requirement" id="minimal_requirement"></textarea>
-                                <x-input-error :messages="$errors->get('minimal_requirement')" class="mt-2" />
+                                <textarea class="textarea text-neutral input-bordered bg-white w-full max-w-xl" name="short_description" id="short_description"></textarea>
+                                <x-input-error :messages="$errors->get('short_description')" class="mt-2" />
                             </div>
 
                             <div class="form-control w-full max-w-xl">
@@ -66,10 +71,10 @@
 
                             <div class="form-control w-full max-w-xl">
                                 <label class="label">
-                                    <span class="label-text text-neutral font-bold">Study Material</span>
+                                    <span class="label-text text-neutral font-bold">Minimal Requirement</span>
                                 </label>
-                                <textarea class="textarea text-neutral input-bordered bg-white w-full max-w-xl" name="study_material_summary" id="study_material_summary"></textarea>
-                                <x-input-error :messages="$errors->get('study_material_summary')" class="mt-2" />
+                                <textarea class="textarea text-neutral input-bordered bg-white w-full max-w-xl" name="minimal_requirement" id="minimal_requirement"></textarea>
+                                <x-input-error :messages="$errors->get('minimal_requirement')" class="mt-2" />
                             </div>
 
                             <div class="form-control w-full max-w-xl">
@@ -82,10 +87,10 @@
 
                             <div class="form-control w-full max-w-xl">
                                 <label class="label">
-                                    <span class="label-text text-neutral font-bold">Learning Media</span>
+                                    <span class="label-text text-neutral font-bold">Study Material</span>
                                 </label>
-                                <textarea class="textarea text-neutral input-bordered bg-white w-full max-w-xl" name="learning_media" id="learning_media"></textarea>
-                                <x-input-error :messages="$errors->get('learning_media')" class="mt-2" />
+                                <textarea class="textarea text-neutral input-bordered bg-white w-full max-w-xl" name="study_material_summary" id="study_material_summary"></textarea>
+                                <x-input-error :messages="$errors->get('study_material_summary')" class="mt-2" />
                             </div>
 
                             <div class="form-control w-full max-w-xl">
@@ -102,34 +107,21 @@
 
                             <div class="form-control w-full max-w-xl">
                                 <label class="label">
-                                    <span class="label-text text-neutral font-bold">Study Program</span>
+                                    <span class="label-text text-neutral font-bold">Learning Media</span>
                                 </label>
-                                <select class="select text-neutral input-bordered bg-white w-full max-w-xl" name="study_program" id="study_program">
-                                    <option></option>
-                                    @foreach($studyPrograms as $program)
-                                    <option value="{{ $program->id }}">{{ $program->name }}</option>
-                                    @endforeach
-                                </select>
-                                <x-input-error :messages="$errors->get('study_program')" class="mt-2" />
+                                <input type="text" class="input text-neutral input-bordered bg-white w-full max-w-xl" name="learning_media" id="learning_media" />
+                                <x-input-error :messages="$errors->get('learning_media')" class="mt-2" />
                             </div>
 
-                            <div class="form-control w-full max-w-xl">
-                                <label class="label">
-                                    <span class="mt-7 label-text text-neutral font-bold">User Creator</span>
-                                </label>
-                                <select class="select text-neutral input-bordered bg-white w-full max-w-xl" name="creator_user" id="creator_user">
-                                    <option></option>
-                                    @foreach($userCreator as $user)
-                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
-                                    @endforeach
-                                </select>
-                                <x-input-error :messages="$errors->get('creator_user')" class="mt-2" />
-                            </div>
+                        </div>
 
-                            <div class="pt-4" style="float:right">
-                                <button class="mt-12 btn btn-outline" type="submit">Create</button>
-                                <a href="{{ route('courses.store') }}">{{ __() }}</a>
-                            </div>
+                        <div class="card-actions justify-end pt-5">
+                            {{-- <form action="{{ route('courses.index') }}">--}}
+                            <button class="btn btn-outline" href="{{ route('courses.store') }}" type="submit">Create</button>
+                            {{-- </form>--}}
+                            {{-- <form action="{{ route('courses.index') }}">--}}
+                            <a class="btn btn-outline" href="{{ route('courses.index') }}">Cancel</a>
+                            {{-- </form>--}}
                         </div>
                     </form>
                 </div>
