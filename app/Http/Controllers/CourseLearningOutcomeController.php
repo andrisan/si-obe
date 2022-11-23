@@ -32,7 +32,7 @@ class CourseLearningOutcomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($syllabus, $ilo, CourseLearningOutcome $clo)
     {
         return view('course-learning-outcomes.create', [
             'syllabus' => $syllabus,
