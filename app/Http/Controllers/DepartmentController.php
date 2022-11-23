@@ -52,7 +52,7 @@ class DepartmentController extends Controller
     public function store(Request $request, Faculty $faculty, Department $department)
     {
 
-        $faculty = Faculty::all();
+     
 
         $department->create([
             'name' => $request->name,
