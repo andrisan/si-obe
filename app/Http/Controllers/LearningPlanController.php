@@ -103,8 +103,12 @@ class LearningPlanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Syllabus $syllabi, LearningPlan $learningPlan)
     {
-        //
+        $learningPlan->delete();
+        
+        return redirect()->route('syllabi.learning-plans.index', [
+            'syllabi' => $syllabi
+        ]);
     }
 }
