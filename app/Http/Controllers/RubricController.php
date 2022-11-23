@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AssignmentPlan;
+use App\Models\Criteria;
 use App\Models\Rubric;
 use Illuminate\Http\Request;
 
@@ -17,7 +18,7 @@ class RubricController extends Controller
     {
         $rubric = Rubric::all();
 
-        return view('rubrics.index',[
+        return view('rubrics.index', [
             'rubric' => $rubric
         ]);
     }
@@ -28,7 +29,7 @@ class RubricController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {   
+    {
         $assignmentPlan = AssignmentPlan::all();
 
         return view('rubrics.create', [
@@ -49,12 +50,12 @@ class RubricController extends Controller
             'assignment_plan_title' => 'required|string',
         ]);
         $assignmentPlanId = AssignmentPlan::where('title', $validated['assignment_plan_title'])->get();
-        
+
         $rubric = new Rubric();
         $rubric->title = $validated['title'];
         $rubric->assignment_plan_id = $assignmentPlanId->first()->id;
         $rubric->save();
-        
+
         // $rubric = new Rubric();
         // $rubric->title = $request->title;
         // $rubric->assignment_plan_id = $request->assignment_plan_id;
@@ -122,8 +123,23 @@ class RubricController extends Controller
      */
     public function destroy(Rubric $rubric)
     {
+        // $criteriaCount = Criteria::where('rubric_id', $rubric->id)->count();
+        // if ($criteriaCount == 0) {
+        //     $rubric->delete();
+        // } else {
+        //     $criteria = Criteria::where('rubric_id', $rubric->id)->get();
+        //     foreach ($criteria as $criteria) {
+        //         $criteria->delete();
+        //     }
+        //     $rubric->delete();
+        // }
+        foreach ($rubric->criterias as $criterias) {
+            foreach ($criterias->criteriaLevels as $cl){
+                $cl->delete();
+            }
+            $criterias->delete();
+        }
         $rubric->delete();
-
         return redirect()->route("rubrics.index");
     }
 }
