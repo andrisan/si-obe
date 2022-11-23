@@ -23,7 +23,7 @@
         <!--awal form create-->
         <div class="flex flex-row justify-center">
             <div class="block p-6 rounded-lg shadow-2xl bg-white max-w-md basis-1/2">
-                <form action="{{ route('faculties.departments.store', [$faculty,$department]) }}" method="post">
+                <form action="{{ route('faculties.departments.store', [$faculty]) }}" method="post">
                     @csrf
                     <div class="form-group mb-6">
                         <h1>{{$faculty->name}}</h1>
