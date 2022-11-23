@@ -78,9 +78,11 @@ class LearningPlanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Syllabus $syllabi)
     {
-        return  view('learning-plans.edit');
+        return  view('learning-plans.edit', [
+            'syllabi' => $syllabi
+        ]);
     }
 
     /**
