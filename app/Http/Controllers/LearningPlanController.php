@@ -20,7 +20,8 @@ class LearningPlanController extends Controller
         $learningPlans = LearningPlan::where('syllabus_id', $syllabi)->get();
         return view('learning-plans.index', [
             'syllabi' => $syllabi,
-            'learningPlans' => $syllabi->learningPlans()->paginate(4)
+            // 'learningPlans' => $syllabi->learningPlans()->paginate(4)
+            'learningPlans' => $learningPlans
         ]);
     }
 
