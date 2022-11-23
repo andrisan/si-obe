@@ -116,6 +116,9 @@ class CourseLearningOutcomeController extends Controller
         //
         $clo->delete();
 
-        return redirect(route('syllabi.ilos.clos.index', [$syllabus, $ilo]));
+        return redirect()->route('syllabi.ilos.clos.index', [
+            'syllabus' => $syllabus,
+            'ilo' => $ilo,
+        ]);
     }
 }
