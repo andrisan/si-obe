@@ -59,7 +59,7 @@
                                                     <form action="/courses/{{ $course->id }}/edit" method="get">
                                                         <button class="text-blue-600 m-4" value="{{ $course->id }}"><strong>Edit</strong></button>
                                                     </form>
-                                                    <form action="" method="post">
+                                                    <form action="{{route('courses.destroy', $course->id)}}" method="post">
                                                         @csrf
                                                         @method('delete')
                                                         <button class="m-4" value="{{ $course->id }}" onclick="return confirm('Yakin ingin menghapus data?');"><strong>Delete</strong></button>
