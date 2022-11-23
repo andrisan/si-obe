@@ -37,15 +37,18 @@
                         id="SPName" placeholder="Name">
                     </div>
 
-                    <button type="submit" class="btn px-6 py-2.5 text-white font-medium text-xs rounded shadow-md">
-                        CREATE
-                    </button>
-                    <button type="submit" class="btn px-6 py-2.5 text-white font-medium text-xs rounded shadow-md">
-                        CANCEL
-                    </button>
-                </form>
-            </div>
+                    <div class="mt-5">
+                        <button type="submit" class="btn btn-primary px-6 py-2.5 text-white font-medium text-xs rounded shadow-md">
+                            CREATE
+                        </button>
+                        <button type="submit" class="btn px-6 py-2.5 text-white font-medium text-xs rounded shadow-md">
+                            <a  href="{{ route('faculties.departments.study-programs.index', [$faculty, $department]) }}">CANCEL</a>
+                        
+                        </button>
+                    </div>
+            </form>
         </div>
-        <!--Akhir Form Create-->
     </div>
+    <!--Akhir Form Create-->
+</div>
 </x-app-layout>
