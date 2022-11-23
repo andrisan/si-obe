@@ -14,16 +14,12 @@ class LearningPlanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($syllabus)
     {
-        $learningPlans = LearningPlan::all();
-        $syllabus = Syllabus::all();
-        $llo = LessonLearningOutcome::all();
-        
-        return view('learning-plans.index',[
-            'learning-plans'=>$learningPlans,
-            'syllabus'=>$syllabus,
-            'llo' =>$llo
+
+        $learningPlans = LearningPlan::where('syllabus_id', $syllabus)->get();
+        return view('learning-plans.index', [
+            'learningPlans' => $learningPlans
         ]);
     }
 
@@ -34,7 +30,7 @@ class LearningPlanController extends Controller
      */
     public function create()
     {
-        //
+        return view('learning-plans.create');
     }
 
     /**
@@ -54,9 +50,9 @@ class LearningPlanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Syllabus $syllabus, LessonLearningOutcome $lessonLearningOutcome, LearningPlan $learningPlan)
     {
-        //
+        ddd($syllabus, $lessonLearningOutcome, $learningPlan);
     }
 
     /**
