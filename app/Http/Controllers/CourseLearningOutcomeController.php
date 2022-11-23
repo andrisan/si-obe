@@ -47,9 +47,19 @@ class CourseLearningOutcomeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $syllabus, $ilo, CourseLearningOutcome $clo)
     {
-        //
+        $validated = $request->validate([
+            'position' => 'required|numeric',
+            'description' => 'required|string',
+        ]);
+
+        $clo->insert($validated);
+
+        return redirect()->route('syllabi.ilos.clos.index', [
+            'syllabus' => $syllabus,
+            'ilo' => $ilo,
+        ]);
     }
 
     /**
