@@ -46,12 +46,13 @@ class RubricController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required|string',
-            'assignment_plan_id' => 'required|numeric',
+            'assignment_plan_title' => 'required|string',
         ]);
-
+        $assignmentPlanId = AssignmentPlan::where('title', $validated['assignment_plan_title'])->get();
+        
         $rubric = new Rubric();
         $rubric->title = $validated['title'];
-        $rubric->assignment_plan_id = $validated['assignment_plan_id'];
+        $rubric->assignment_plan_id = $assignmentPlanId->first()->id;
         $rubric->save();
         
         // $rubric = new Rubric();
