@@ -2,7 +2,7 @@
   <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
 
-      {{ 'Syllaby : '}}
+
     </h2>
   </x-slot>
 
@@ -49,10 +49,11 @@
           <tr class="text-left">
             <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-16">Week</th>
             <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-16">LLO</th>
-            <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-128">Study Material</th>
+            <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-256">Study Material</th>
             <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-128">Learning Method</th>
             <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-128">Estimated Time</th>
-            <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-48">Action</th>
+            <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-128">Last Update</th>
+            <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-52">Action</th>
           </tr>
         </thead>
         <tbody>
@@ -63,15 +64,18 @@
             <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $learningPlan->study_material }}</td>
             <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $learningPlan->learning_method }}</td>
             <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $learningPlan->estimated_time }}</td>
+            <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $learningPlan->updated_at }}</td>
             <td class="text-gray-600 px-6 py-3 border-t border-gray-100">
               <div class="flex flex-wrap space-x-4">
-                <a href="" class="text-blue-500">Edit</a>
-                <form method="POST" action="">
+                <form action="{{ route('syllabi.learning-plans.edit', [$syllabi, $learningPlan->id]) }}" method="GET">
+                  <button class="btn btn-warning btn-sm" value="{{ $learningPlan->id }}">Edit</button>
+                </form>
+
+                <form action="{{ route('syllabi.learning-plans.destroy', [$syllabi, $learningPlan->id]) }}" method="POST">
                   @csrf
                   @method('delete')
 
-                  <button class="text-red-500" onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
-                    {{ __('Delete') }}
+                  <button class="btn btn-error btn-sm" value="{{ $learningPlan->id }}" onclick="return confirm('Are you sure?')">Delete
                   </button>
                 </form>
 
