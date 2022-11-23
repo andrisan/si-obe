@@ -55,7 +55,7 @@ class FacultyController extends Controller
      */
     public function show(Faculty $faculty)
     {
-        ddd($faculty);
+        
     }
 
     /**
@@ -81,7 +81,7 @@ class FacultyController extends Controller
     {
         //
         DB::table('faculties')->where('id', $id)->update(['name'=>$request->name]);
-        return back();
+        return redirect()->intended('faculties');
     }
 
     /**
