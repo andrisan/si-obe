@@ -13,13 +13,13 @@
                       <form action="{{ route('faculties.store') }}" method="post">
                           @csrf
                           <div class="form-control">
-                              <label class="uppercase font-bold  text-black" for="fname">nama fakultas</label>
-                              <input type="text" placeholder="Type here" class="input input-bordered input-ghost input-l w-full max-w-xl mb-6 mt-2" name="name"/>
+                              <label class="uppercase font-bold  text-blue-600" for="fname">nama fakultas</label>
+                              <input type="text" placeholder="Type here" class="input input-bordered input-ghost input-l w-full max-w-xl mb-6" name="name"/>
                           </div>
                           <div class="actions justify-start">
-                              <button class="btn bg-accent hover:bg-white hover:text-accent text-white font-bold py-2 px-4 rounded border-accent border-2 hover:border-accent mr-2">Tambah</button>
+                              <button class="btn bg-blue-600 hover:bg-white hover:text-blue-600 text-white font-bold py-2 px-4 rounded border-blue-600 border-2 hover:border-blue-600 mr-2">Tambah</button>
                               <form action="{{ route('faculties.index') }}">
-                                  <button class="btn bg-red-600 hover:bg-white hover:text-red-500 text-white font-bold py-2 px-4 rounded border-red-500 border-2 hover:border-red-500">Cancel</button>
+                                  <button class="btn bg-red-600 hover:bg-white hover:text-red-600 text-white font-bold py-2 px-4 rounded border-red-600 border-2 hover:border-red-600">Cancel</button>
                               </form>
                           </div>
                       </form>
