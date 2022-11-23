@@ -128,7 +128,7 @@
 
                             <div class="pt-4" style="float:right">
                                 <button class="mt-12 btn btn-outline" type="submit">Create</button>
-                                <a href="{{ route('courses.store') }}">{{ __('Cancel') }}</a>
+                                <a href="{{ route('courses.store') }}">{{ __() }}</a>
                             </div>
 
 
