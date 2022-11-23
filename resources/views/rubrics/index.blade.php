@@ -8,12 +8,17 @@
 
     </x-slot>
 
-    <div class="pt-10">
-        <a href="{{ route('rubrics.create') }}"
-            class="bg-blue-500 ml-[1347px] border-2 border-blue-300 rounded-md shadow-sm px-2.5 sm:px-5 py-2 inline-flex justify-center text-lg font-semibold text-white hover:bg-blue-400 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">+
-            Rubrik Baru</a>
+    <div class="max-w-7xl mx-auto p-8">
+        <div class="flex flex-row sm:justify-end px-3 sm:px-16 -mr-2 sm:-mr-3">
+            <div class="order-5 sm:order-6 mr-2 sm:mr-3">
+                <div class="relative">
+                    <a href="{{ route('rubrics.create') }}" class="bg-blue-500 border-2 border-blue-300 rounded-md shadow-sm px-2.5 sm:px-5 py-2 inline-flex justify-center text-lg font-semibold text-white hover:bg-blue-400 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">+ Rubric Baru</a>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="pt-5">
+
+    <div>
         <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white border-2 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
