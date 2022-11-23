@@ -47,14 +47,23 @@
               <th>Week Number</th>
               <th>LLO ID</th>
               <th>Study Material</th>
+              <th>Learning Method</th>
+              <th>Estimated Time</th>
+              <th>Created at</th>
+              <th>Opsi</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>1</td>
               <td>Introduction</td>
-              <td>Synchronus</td>
+              <td>1</td>
               <td>100 minutes</td>
+              <td> </td>
+              <td> </td>
+              <td> </td>
+              <td> </td>
+              <td> </td>
               <td>
                 <button class="btn btn-success btn-sm">Edit</button>
                 <button class="btn btn-error btn-sm">Delete</button>
@@ -63,8 +72,13 @@
             <tr>
               <td>2</td>
               <td>MVC</td>
-              <td>Synchronus</td>
+              <td>2</td>
               <td>120 minutes</td>
+              <td> </td>
+              <td> </td>
+              <td> </td>
+              <td> </td>
+              <td> </td>
               <td>
                 <button class="btn btn-success btn-sm">Edit</button>
                 <button class="btn btn-error btn-sm">Delete</button>
@@ -73,8 +87,13 @@
             <tr>
               <td>3</td>
               <td>PHP</td>
-              <td>Asynchronus</td>
+              <td>3</td>
               <td>120 minutes</td>
+              <td> </td>
+              <td> </td>
+              <td> </td>
+              <td> </td>
+              <td> </td>
               <td>
                 <button class="btn btn-success btn-sm">Edit</button>
                 <button class="btn btn-error btn-sm">Delete</button>
@@ -83,8 +102,13 @@
             <tr>
               <td>4</td>
               <td>PBD</td>
-              <td>Asynchronus</td>
+              <td>4</td>
               <td>45 minutes</td>
+              <td> </td>
+              <td> </td>
+              <td> </td>
+              <td> </td>
+              <td> </td>
               <td>
                 <button class="btn btn-success btn-sm">Edit</button>
                 <button class="btn btn-error btn-sm">Delete</button>
@@ -93,8 +117,13 @@
             <tr>
               <td>5</td>
               <td>PHP Basics</td>
-              <td>Synchronus</td>
+              <td>5</td>
               <td>100 minutes</td>
+              <td> </td>
+              <td> </td>
+              <td> </td>
+              <td> </td>
+              <td> </td>
               <td>
                 <button class="btn btn-success btn-sm">Edit</button>
                 <button class="btn btn-error btn-sm">Delete</button>
@@ -103,8 +132,13 @@
             <tr>
               <td>6</td>
               <td>Laravel</td>
-              <td>Asynchronus</td>
+              <td>6</td>
               <td>45 minutes</td>
+              <td> </td>
+              <td> </td>
+              <td> </td>
+              <td> </td>
+              <td> </td>
               <td>
                 <button class="btn btn-success btn-sm">Edit</button>
                 <button class="btn btn-error btn-sm">Delete</button>
@@ -113,8 +147,13 @@
             <tr>
               <td>7</td>
               <td>Linked List</td>
-              <td>Synchronus</td>
+              <td>7</td>
               <td>200 minutes</td>
+              <td> </td>
+              <td> </td>
+              <td> </td>
+              <td> </td>
+              <td> </td>
               <td>
                 <button class="btn btn-success btn-sm">Edit</button>
                 <button class="btn btn-error btn-sm">Delete</button>
@@ -123,8 +162,13 @@
             <tr>
               <td>8</td>
               <td>HTML</td>
-              <td>Asynchronus</td>
+              <td>8</td>
               <td>100 minutes</td>
+              <td> </td>
+              <td> </td>
+              <td> </td>
+              <td> </td>
+              <td> </td>
               <td>
                 <button class="btn btn-success btn-sm">Edit</button>
                 <button class="btn btn-error btn-sm">Delete</button>
