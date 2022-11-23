@@ -14,12 +14,13 @@ class LearningPlanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($syllabus)
+    public function index($syllabi)
     {
 
-        $learningPlans = LearningPlan::where('syllabus_id', $syllabus)->get();
+        $learningPlans = LearningPlan::where('syllabus_id', $syllabi)->get();
         return view('learning-plans.index', [
-            'learningPlans' => $learningPlans
+            'syllabi' => $syllabi,
+            'learningPlans' => $syllabi->learningPlans()->paginate(4)
         ]);
     }
 
@@ -28,9 +29,11 @@ class LearningPlanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Syllabus $syllabi)
     {
-        return view('learning-plans.create');
+        return view('learning-plans.create', [
+            'syllabi' => $syllabi
+        ]);
     }
 
     /**
@@ -39,9 +42,22 @@ class LearningPlanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Syllabus $syllabi)
     {
-        //
+        $validated = $request->validate([
+            'Week Number' => 'required|numeric',
+            'LLO_ID' => 'required|numeric',
+            'studyMaterial' => 'required|string',
+            'learningMethod' => 'required|string',
+            'estTime' => 'required|numeric',
+            'updatedAt' => 'required|numeric',
+        ]);
+
+        $syllabi->learningPlans()->create($validated);
+
+        return redirect()->route('syllabi.learning-plans.index', [
+            'syllabi' => $syllabi
+        ]);
     }
 
     /**
@@ -50,9 +66,9 @@ class LearningPlanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Syllabus $syllabus, LessonLearningOutcome $lessonLearningOutcome, LearningPlan $learningPlan)
+    public function show(Syllabus $syllabi, LessonLearningOutcome $lessonLearningOutcome, LearningPlan $learningPlan)
     {
-        ddd($syllabus, $lessonLearningOutcome, $learningPlan);
+        ddd($syllabi, $lessonLearningOutcome, $learningPlan);
     }
 
     /**
