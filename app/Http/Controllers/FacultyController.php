@@ -55,7 +55,7 @@ class FacultyController extends Controller
      */
     public function show(Faculty $faculty)
     {
-        ddd($faculty);
+        //
     }
 
     /**
@@ -94,7 +94,6 @@ class FacultyController extends Controller
     {
         //
         DB::table('faculties')->where('id', $id)->delete();
-
         return back();
     }
 }
