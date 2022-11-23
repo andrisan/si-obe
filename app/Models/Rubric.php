@@ -16,7 +16,7 @@ class Rubric extends Model
         'assignment_plan_id' => 1,
     ];
 
-    public function criteria()
+    public function criterias()
     {
         return $this->hasMany(Criteria::class);
     }
