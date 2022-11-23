@@ -105,7 +105,11 @@ class LearningPlanController extends Controller
 
         $learningPlan->update($validated);
 
-        return redirect(route('syllabi.learning-plans.index'));
+        return redirect(route('syllabi.learning-plans.index', [
+                'syllabi'=> $syllabi,
+                'learningPlan'=> $learningPlan
+
+    ]));
     }
 
     /**
