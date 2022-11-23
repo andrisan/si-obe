@@ -125,6 +125,7 @@ class CourseLearningOutcomeController extends Controller
      */
     public function destroy($syllabus, $ilo, CourseLearningOutcome $clo)
     {
+
         //
         $clo->delete();
 
