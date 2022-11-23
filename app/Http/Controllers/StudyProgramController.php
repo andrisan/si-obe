@@ -39,5 +39,16 @@ class StudyProgramController extends Controller
         ]);
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Faculty $faculty, Department $department, StudyProgram $studyProgram)
+    {
+        ddd($faculty, $department, $studyProgram);
+    }
+
     
 }
