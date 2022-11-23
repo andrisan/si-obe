@@ -10,16 +10,17 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div data-theme="light" class="p-10">
-                  <div class="grid">
-                    <div class="grid justify-start">
-                      <h1 class="text-4xl font-semibold">Daftar Fakultas</h1>
+                    <div class="grid">
+                        <div class="grid justify-start">
+                            <h1 class="text-4xl font-semibold">Daftar Fakultas</h1>
+                        </div>
+                        <div class="grid justify-end">
+                            <button
+                                class="btn bg-accent hover:bg-white hover:text-accent text-white font-bold py-2 px-4 rounded border-accent border-2 hover:border-accent">
+                                <a href="{{ route('faculties.create') }}">Tambah Fakultas</a>
+                            </button>
+                        </div>
                     </div>
-                    <div class="grid justify-end">
-                      <button class="btn bg-accent hover:bg-white hover:text-accent text-white font-bold py-2 px-4 rounded border-accent border-2 hover:border-accent">
-                        <a href="{{ route('faculties.create') }}">Tambah Fakultas</a>
-                      </button>
-                    </div>
-                  </div>
 
                     {{-- <div class="justify-start mt-2 mb-2">
                         
