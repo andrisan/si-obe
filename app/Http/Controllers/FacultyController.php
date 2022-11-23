@@ -64,10 +64,10 @@ class FacultyController extends Controller
      * @param  \App\Models\Faculty  $faculty
      * @return \Illuminate\Http\Response
      */
-    public function edit(Faculty $faculty)
+    public function edit($id)
     {
-        //
-        return view('faculties.edit');
+        $faculty = DB::table('faculties')->where('id', $id)->first();
+        return view('faculties.edit', ['faculty'=>$faculty]);
     }
 
     /**
