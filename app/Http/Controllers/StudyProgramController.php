@@ -87,5 +87,43 @@ class StudyProgramController extends Controller
         ]);
     }
 
-    
+   /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Faculty $faculty, Department $department, StudyProgram $studyProgram): RedirectResponse
+    {
+        //
+        $validated = $request->validate([
+            'name' => 'required|string'
+        ]);
+
+        $studyProgram->update($validated);
+
+
+        return redirect()->route('faculties.departments.study-programs.index', [
+            'faculty' => $faculty,
+            'department' => $department
+        ]);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Faculty $faculty, Department $department, StudyProgram $studyProgram)
+    {
+        //
+        $studyProgram->delete();
+        
+        return redirect()->route('faculties.departments.study-programs.index', [
+            'faculty' => $faculty,
+            'department' => $department
+        ]);
+    } 
 }
