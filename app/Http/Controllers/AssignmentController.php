@@ -96,7 +96,7 @@ class AssignmentController extends Controller
     public function update(Request $request, CourseClass $courseClass, Assignment $assignment)
     {
         $validated = $request->validate([
-            // 'assignment_plan_id' => 'required|numeric',
+            'assignment_plan_id' => 'required|numeric',
             'assigned_date' => 'required|date',
             'due_date' => 'required|date',
             'note' => 'string',
@@ -104,10 +104,7 @@ class AssignmentController extends Controller
 
         $assignment->update($validated);
 
-        return redirect()->route('course-classes.assignments.show', [
-            'courseClass' => $courseClass,
-            'assignment' => $assignment
-        ]);
+        return redirect()->route('course-classes.assignments.show', [$courseClass, $assignment]);
     }
 
     /**

@@ -32,9 +32,9 @@
                                          <select name="assignment_plan_id" class="select select-bordered"> 
                                             @foreach (AssignmentPlan::all() as $ap)
                                                 @if ($ap->title === $assignment->assignmentPlan->title)
-                                                    <option selected>{{"$ap->id - $ap->title "}}</option>
+                                                    <option selected value="{{ old('assignment_plan-id',(int)$ap->id)}}">{{$ap->title }}</option>
                                                 @else
-                                                    <option>{{"$ap->id - $ap->title "}}</option>
+                                                    <option value="{{ old('assignment_plan-id',(int)$ap->id)}}">{{$ap->title }}</option>
                                                 @endif
                                             @endforeach
                                         </select>
@@ -77,7 +77,7 @@
                     </div>
                     <div class="tombol justify-end flex flex-row gap-2 py-5 px-10">
                         <button class="btn btn-outline btn-error w-24">
-                           <a href="">Cancel</a>
+                            <a href="{{ route('course-classes.assignments.index', [$courseClass, $assignment]) }}">Cancel</a>
                         </button>
                         <button type="submit" class="btn btn-active btn-primary w-24">
                             Save
