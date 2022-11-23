@@ -23,7 +23,7 @@
                             <form action="{{ route('rubrics.update', $rubric) }}" method="POST">
                                 @csrf
                                 @method('patch')
-                                <input placeholder="{{ $rubric->title }}" name="title" type="text" class="w-full rounded-md mt-2 bg-[#f8f8f8]">
+                                <input placeholder="{{ $rubric->title }}" name="title" type="text" class="w-full rounded-md mt-2 bg-[#f8f8f8]" value="{{ old('title', $rubric->title)  }}">
                                 <x-input-error :messages="$errors->get('title')" class="mt-2" />
                         </h1>
                     </div>
