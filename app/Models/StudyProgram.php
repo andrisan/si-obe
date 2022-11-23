@@ -20,4 +20,7 @@ class StudyProgram extends Model
     {
         return $this->belongsTo(Faculty::class);
     }
+    protected $fillable = [
+        'name',
+    ];
 }
