@@ -12,7 +12,7 @@
 
                         <div class="container p-4 text-primary mt-2 text-sm">
                             <form>
-                                <label class="uppercase font-bold  text-blue-600" for="fname">Kode Kelas</label><br>
+                                <label class="uppercase font-bold  text-blue-600" for="fname">ID</label><br>
                                 <input type="text" placeholder="Enter Your Class Code" class="input input-bordered input-ghost input-l w-full max-w-xl mb-2 mt-2" />
                             </form>
                         </div>
@@ -34,30 +34,36 @@
                         <div class="container p-4 text-primary text-sm">
                             <form>
                                 <label class="uppercase font-bold  text-blue-600" for="fname">Created at</label><br>
-                                <input type="text" placeholder="Enter Your Deadline" class="input input-bordered input-ghost input-l w-full max-w-xl mb-4 mt-2" />
+                                <input type="text" placeholder="Enter Your Created at" class="input input-bordered input-ghost input-l w-full max-w-xl mb-4 mt-2" />
                             </form>
                         </div>
                         
                         <div class="container p-4 text-primary text-sm">
                             <form>
-                                <label class="uppercase font-bold  text-blue-600" for="fname">Deadline</label><br>
-                                <input type="text" placeholder="Enter Your Deadline" class="input input-bordered input-ghost input-l w-full max-w-xl mb-4 mt-2" />
+                                <label class="uppercase font-bold  text-blue-600" for="fname">updated_at</label><br>
+                                <input type="text" placeholder="Enter Your Updated at" class="input input-bordered input-ghost input-l w-full max-w-xl mb-4 mt-2" />
                             </form>
                         </div>
                      
                         <div class="container p-4 text-primary text-sm">
                             <form>
                                 <label class="uppercase font-bold  text-blue-600" for="fname">Assignment style</label><br>
-                                <input type="text" placeholder="Enter Your Deadline" class="input input-bordered input-ghost input-l w-full max-w-xl mb-4 mt-2" />
+                                <input type="text" placeholder="Enter Your Assignment style" class="input input-bordered input-ghost input-l w-full max-w-xl mb-4 mt-2" />
                             </form>
                         </div>
-                    
 
 
                         <div class="mt-4 ml-4">
+                        
                             <button class="bg-blue-300 hover:bg-blue-600 hover:text-white text-white font-bold py-2 px-4 rounded border-outline border-2">
-                                Create Class
+                                Create
                             </button>
+
+                            <button class="bg-error hover:bg-red-600 hover:text-white text-white font-bold py-2 px-4 rounded border-outline border-2">
+                                Cancel
+                            </button>
+                       
+
                         </div>
 
                         

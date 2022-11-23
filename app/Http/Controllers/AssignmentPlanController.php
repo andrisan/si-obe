@@ -14,18 +14,7 @@ class AssignmentPlanController extends Controller
      */
     public function index()
     {
-        $plans = AssignmentPlan::query()
-            ->paginate(10)
-            ->withQueryString()
-            ->through(fn ($plans) => [
-                'id' => $plans->id,
-                'title' => $plans->title,
-                'description' => $plans->description,
-                'created_at' => $plans->created_at->toFormattedDateString(),
-                'updated_at' => $plans->updated_at->toFormattedDateString(),
-                'assignment_style' => $plans->assignment_style,
-            ]);
-
+        $plans= AssignmentPlan::get();
         return view('assignment-plans.index', [
             'plans' => $plans
         ]);
@@ -50,19 +39,25 @@ class AssignmentPlanController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
+            'id' => 'required|string',
             'title' => 'required|string',
             'description' => 'required|string|description',
-           // '' => 'required|string|confirmed',
-            //'password_confirmation' => 'required|string',
+            'created_at' => 'required|string',
+            'updated_at' => 'required|string',
+            'assignment_style' => 'required|string'
         ]);
 
-       // $user = new User();
-       // $user->name = $validated['name'];
-       // $user->email = $validated['email'];
-       // $user->password = bcrypt($validated['password']);
-       // $user->save();
+        $plan = new AssignmentPlan();
+        $plan->id = $validated['ID'];
+        $plan->title = $validated['title'];
+        $plan->description = $validated['description'];
+        $plan->created_at = $validated['created_at'];
+        $plan->updated_at = $validated['updated_at'];
+        $plan->assignment_style = $validated['required|string'];
 
-       // return redirect()->route('users.index');
+        $plan->save();
+
+        return redirect()->route('assignment-plans.index');
     }
 
     /**
@@ -71,9 +66,13 @@ class AssignmentPlanController extends Controller
      * @param  \App\Models\AssignmentPlan  $assignmentPlan
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(AssignmentPlan $plan)
     {
-        return view('assignment-plans.show');
+        $plans = AssignmentPlan::get();
+        return view('assignment-plans.index', [
+            'plans' => $plans
+        ]);
+        
     }
 
     /**
@@ -82,7 +81,7 @@ class AssignmentPlanController extends Controller
      * @param  \App\Models\AssignmentPlan  $assignmentPlan
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(AssignmentPlan $plan)
     {
         return view('assignment-plans.edit');
     }
@@ -94,9 +93,26 @@ class AssignmentPlanController extends Controller
      * @param  \App\Models\AssignmentPlan  $assignmentPlan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, AssignmentPlan $assignmentPlan)
+    public function update(Request $request, AssignmentPlan $plan)
     {
-        //
+        $validated= $request->validate([
+            'id' => 'string',
+            'title' => 'string',
+            'description' => 'string',
+            'created_at' => 'string',
+            'updated_at' => 'string',
+            'assignment_style' => 'string'
+        ]);
+        $plan->id = $validated['ID'];
+        $plan->title = $validated['title'];
+        $plan->description = $validated['description'];
+        $plan->created_at = $validated['created_at'];
+        $plan->updated_at = $validated['updated_at'];
+        $plan->assignment_style = $validated['required|string'];
+
+        $plan->update();
+
+        return redirect()->route('assignment-plans.index');
     }
 
     /**
@@ -105,8 +121,9 @@ class AssignmentPlanController extends Controller
      * @param  \App\Models\AssignmentPlan  $assignmentPlan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(AssignmentPlan $assignmentPlan)
+    public function destroy(AssignmentPlan $plan)
     {
-        //
+        $plan->delete();
+        return redirect()->route('plans.index');
     }
 }

@@ -20,8 +20,8 @@
                         <th>updated_at</th> 
                         <th>assignment_style</th> 
                         <th>
-                            <a href="/assignment-plans/create">
-                              <button class="btn bg-blue-600" >Create</button>
+                            <a href="assignment-plans/create">
+                              <button class="btn border-outline bg-blue-400 hover:bg-blue-700 hover:text-white text-white font-bold btn-outline">Create</button>
                             </a>
                         </th>
                       </tr>
@@ -36,8 +36,13 @@
                         <td>{{$ap['updated_at']}}</td> 
                         <td>{{$ap['assignment_style']}}</td> 
                         <td>
-                          <button class="btn btn-warning">Edit</button>
-                          <button class="btn btn-error">Delete</button>
+                        
+                        <button class="btn bg-blue-300 hover:bg-blue-600 hover:text-white text-white font-bold btn-outline">Edit</button>
+                        <form action="{{route('plans.destroy', $plans->id)}}" method="post">
+                        @csrf
+                        @method('delete')
+                          <button class="btn btn-error hover:bg-red-600 hover:text-white text-white font-bold" value="{{$plan->id}}" onclick="return confirm('Yakin ingin menghapus data?');">Delete</button>
+                          </form>
                         </td>
                       </tr>
                       @endforeach
