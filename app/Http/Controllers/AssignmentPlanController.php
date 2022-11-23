@@ -81,9 +81,10 @@ class AssignmentPlanController extends Controller
      * @param  \App\Models\AssignmentPlan  $assignmentPlan
      * @return \Illuminate\Http\Response
      */
-    public function edit(AssignmentPlan $plan)
+    public function edit( AssignmentPlan $plan)
     {
-        return view('assignment-plans.edit');
+          return view('assignment-plans.edit');  
+        
     }
 
     /**
@@ -124,6 +125,6 @@ class AssignmentPlanController extends Controller
     public function destroy(AssignmentPlan $plan)
     {
         $plan->delete();
-        return redirect()->route('plans.index');
+        return redirect()->route('assignment-plans.index');
     }
 }
