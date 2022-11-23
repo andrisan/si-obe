@@ -13,4 +13,9 @@ class Criteria extends Model
     {
         return $this->hasMany(CriteriaLevel::class);
     }
+
+    public function assignmentPlanTasks()
+    {
+        return $this->hasMany(AssignmentPlanTask::class);
+    }
 }
