@@ -6,6 +6,7 @@ use App\Models\Department;
 use App\Models\Faculty;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 
 class DepartmentController extends Controller
 {
@@ -14,16 +15,15 @@ class DepartmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($faculty)
     {
         //
-        $department = Department::where('faculty_id',$faculty)->orderBy('faculty_id')->get();
+        $department = Department::where('faculty_id', $faculty)->orderBy('faculty_id')->get();
         $faculty = Faculty::all();
-        return view('departments.index',[
-            'departments'=>$department,
-            'faculties'=>$faculty
+        return view('departments.index', [
+            'departments' => $department,
+            'faculties' => $faculty
         ]);
-
     }
 
     /**
@@ -31,10 +31,16 @@ class DepartmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Faculty $faculty, Department $department)
     {
         //
 
+
+
+        return view('departments.create', [
+            'faculty' => $faculty,
+            'department' => $department,
+        ]);
     }
 
     /**
@@ -43,9 +49,19 @@ class DepartmentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Faculty $faculty, Department $department)
     {
-        //
+
+        $faculty = Faculty::all();
+
+        $department->create([
+            'name' => $request->name,
+            'faculty_id' => $request->faculty_id,
+        ]);
+
+        return redirect()->route(
+            'faculties.departments.index',$faculty
+        );
     }
 
     /**
@@ -57,8 +73,12 @@ class DepartmentController extends Controller
      */
     public function show(Faculty $faculty, Department $department)
     {
-       return view('faculties.departments.index',[
-            'department'=>$department,
+
+
+
+        return view('faculties.departments.index', [
+
+            'department' => $department,
             'faculty' => $faculty
         ]);
     }
@@ -72,6 +92,12 @@ class DepartmentController extends Controller
     public function edit($faculty, Department $department)
     {
         //
+
+
+        // $faculty = DB::table('faculties')->where('id',$id)->first();
+        // $department = DB::table('departments')->where('id',$id)->first();
+        // return view('departments.edit',['department'=>$department],['faculty'=>$faculty]);
+
         return view('departments.edit', [
             'department' => $department,
             'faculty' => $faculty,
@@ -85,14 +111,19 @@ class DepartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $faculty, Department $department)
     {
+
         //
-         $department->update([
+
+
+
+        $department->update([
+
             'name' => $request->name
         ]);
-        
-        
+
+
         return redirect()->route('faculties.departments.index', $faculty);
     }
 
@@ -102,14 +133,18 @@ class DepartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($faculty, Department $department)
     {
         //
-         $department -> delete();
 
-      return redirect()->route('faculties.departments.index',[
-        'department' => $department,
+        $department->delete();
+
+        $department->delete();
+
+
+        return redirect()->route('faculties.departments.index', [
+            'department' => $department,
             'faculty' => $faculty,
-      ]);
+        ]);
     }
 }
