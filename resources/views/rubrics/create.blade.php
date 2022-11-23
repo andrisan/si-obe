@@ -7,9 +7,8 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="flex items-center justify-center py-10">
-                    <div class="card border rounded-lg shadow-xl w-5/12 h-96 mx-auto">
+                    <div class="card border rounded-lg shadow-xl w-5/12 h-96 mx-auto bg-white">
                         <div class="card-body items-center text-center justify-items-center">
                             <div class="my-auto mx-auto">
                                 <h2 class="card-title text-2xl mb-4">Masukkan Rubrik Baru</h2>
@@ -39,7 +38,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
     </div>
 </x-app-layout>
