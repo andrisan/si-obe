@@ -87,8 +87,11 @@ class FacultyController extends Controller
      * @param  \App\Models\Faculty  $faculty
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Faculty $faculty)
+    public function destroy($id)
     {
         //
+        DB::table('faculties')->where('id', $id)->delete();
+
+        return back();
     }
 }
