@@ -11,6 +11,13 @@ class LessonLearningOutcome extends Model
 
     public $timestamps = false;
 
+    protected $fillable = [
+        'id',
+        'clo_id',
+        'position',
+        'description'
+    ];
+    
     public function courseLearningOutcome()
     {
         return $this->belongsTo(CourseLearningOutcome::class);
