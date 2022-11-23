@@ -16,10 +16,10 @@ class FacultyController extends Controller
     public function index()
     {
         //
-        $faculties = DB::table('faculty')
-                    ->leftjoin('department', 'department.faculty_id', '=', 'faculty.id')
-                    ->select('faculty.id', 'faculty.name', DB::raw('count(department.faculty_id) as jumlahProdi'))
-                    ->groupBy('faculty.id')
+        $faculties = DB::table('faculties')
+                    ->leftjoin('departments', 'departments.faculty_id', '=', 'faculties.id')
+                    ->select('faculties.id', 'faculties.name', DB::raw('count(departments.faculty_id) as jumlahProdi'))
+                    ->groupBy('faculties.id')
                     ->get();
 
         return view('faculties.index', ['faculties' => $faculties]);

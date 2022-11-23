@@ -4,7 +4,6 @@
           {{ __('Dashboard') }}
       </h2>
   </x-slot>
-
   <div class="py-12">
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -16,13 +15,17 @@
                       <label class="label">
                         <span class="label-text">Nama Fakultas</span>
                       </label>
-                      <input type="text" class="input input-bordered w-full max-w-xs text-neutral" value="Ilmu Komputer"/>
-                    </div>
-                    <div class="card-actions justify-end mt-4">
-                        <form action="/faculties">
+                      <form action="/faculties/{{ $faculty->id }}" method="post">
+                        @csrf
+                        @method('put')
+                        <input type="text" class="input input-bordered w-full max-w-xs text-neutral" name="name" value="{{ $faculty->name }}"/>
+                      </div>
+                      <div class="card-actions justify-end mt-4">
+                        <button class="btn btn-primary" type="submit">Simpan</button>
+                      </form>
+                        <form action="{{ route('faculties.index') }}">
                           <button class="btn btn-outline btn-error font-bold">Cancel</button>
                         </form>
-                        <button class="btn btn-primary">Simpan</button>
                     </div>
                   </div>
               </div>
@@ -31,7 +34,3 @@
       </div>
   </div>
 </x-app-layout>
-
-
-
-            
