@@ -110,16 +110,14 @@ class AssignmentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  CourseClass $courseClass
+     * @param  Assignment $assignment
      * @return \Illuminate\Http\Response
      */
     public function destroy(CourseClass $courseClass, Assignment $assignment)
     {
         $assignment->delete();
 
-        return redirect()->route('course-classes.assignments.index', [
-            'courseClass' => $courseClass,
-            'assignment' => $assignment
-        ]);
+        return redirect()->route('course-classes.assignments.index', [$courseClass, $assignment]);
     }
 }
