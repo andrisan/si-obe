@@ -2,7 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\IntendedLearningOutcome;
+use App\Models\Syllabus;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
+
+
 
 class IntendedLearningOutcomeController extends Controller
 {
@@ -11,9 +18,13 @@ class IntendedLearningOutcomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($syllabus)
     {
-        //
+        $ilo = IntendedLearningOutcome::where('syllabus_id', $syllabus)->orderBy('position')->get();
+       return view('intended-learning-outcomes.index',[
+            'syllabus' => $syllabus,
+            'ilo' => $ilo
+        ]);
     }
 
     /**
@@ -21,9 +32,12 @@ class IntendedLearningOutcomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Syllabus $syllabus)
     {
-        return view('intended-learning-outcomes.create');
+        return view('intended-learning-outcomes.create',[
+            'syllabus' =>$syllabus
+        ]);
+
     }
 
     /**
@@ -32,53 +46,15 @@ class IntendedLearningOutcomeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Syllabus $syllabus)
     {
-        //
-    }
+        $validateData = $request->validate([
+        'position'=> 'required',
+        'description'=> 'required',
+    ]);
+        $syllabus->intentedLearningOutcomes()->create($validateData);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        return redirect()-> route ('syllabi.ilos.index',[
+        'syllabus' => $syllabus,
+    ]);
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        return view('intended-learning-outcomes.edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-}
