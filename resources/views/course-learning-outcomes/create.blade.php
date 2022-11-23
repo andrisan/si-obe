@@ -11,8 +11,9 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                 <!-- <form action="{{ route('syllabi.ilos.clos.store', [$syllabus, $ilo, $clo]) }}" method="post">  -->
+                  <form action="{{ route('syllabi.ilos.clos.store', [$syllabus, $ilo, $clo]) }}" method="post">
                     <div class="pb-4">
+                    @csrf
                     <h2 class="font-semibold text-3xl text-center">Input Your New Course Learning Outcomes</h2>
                         <div class="pb-2"><label for="position"><strong class="font-semibold text-gray-900 dark:text-white">Position</strong></label></div>
                         <input type="text" placeholder="Posisi CLO" class="input input-bordered w-full max-w-xs" /> <br>
@@ -24,8 +25,8 @@
                     <button type="submit" class="btn btn-sm px-7">
                                 Save
                             </button>
-                           <!-- <a href="{{ route('syllabi.ilos.clos.index', [$syllabus, $ilo]) }}" class="btn btn-outline rounded-md">Cancel</a>
-                 -->
+                           <a href="{{ route('syllabi.ilos.clos.index', [$syllabus, $ilo]) }}" class="btn btn-outline rounded-md">Cancel</a>
+                
                 </form>
                 
                 </div>
