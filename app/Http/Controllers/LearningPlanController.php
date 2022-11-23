@@ -46,7 +46,7 @@ class LearningPlanController extends Controller
     public function store(Request $request, Syllabus $syllabi)
     {
         $validated = $request->validate([
-            'Week Number' => 'required|numeric',
+            'WeekNumber' => 'required|numeric',
             'LLO_ID' => 'required|numeric',
             'studyMaterial' => 'required|string',
             'learningMethod' => 'required|string',
@@ -92,9 +92,20 @@ class LearningPlanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Syllabus $syllabi, LearningPlan $learningPlan)
     {
-        //
+        $validated = $request->validate([
+            'WeekNumber' => 'required|numeric',
+            'LLO_ID' => 'required|numeric',
+            'studyMaterial' => 'required|string',
+            'learningMethod' => 'required|string',
+            'estTime' => 'required|numeric',
+            'updatedAt' => 'required|numeric',
+        ]);
+
+        $learningPlan->update($validated);
+
+        return redirect(route('syllabi.learning-plans.index'));
     }
 
     /**
