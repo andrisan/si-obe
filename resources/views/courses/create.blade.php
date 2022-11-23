@@ -24,20 +24,26 @@
                         @csrf
                         <div class="grid grid-cols-2 grid-flow-row gap-8 justify-items-center pb-5">
 
+
+                            <div class="form-control w-full max-w-xl">
+                                <label class="label">
+                                    <span class="label-text text-neutral font-bold">Study Program</span>
+                                </label>
+                                <select class="select text-neutral input-bordered bg-white w-full max-w-xl" name="study_program" id="study_program">
+                                    <option></option>
+                                    @foreach($studyPrograms as $program)
+                                        <option value="{{ $program->id }}">{{ $program->name }}</option>
+                                    @endforeach
+                                </select>
+                                <x-input-error :messages="$errors->get('study_program')" class="mt-2" />
+                            </div>
+
                             <div class="form-control w-full max-w-xl">
                                 <label class="label">
                                     <span class="label-text text-neutral font-bold">Course Code</span>
                                 </label>
                                 <input type="text" class="input text-neutral input-bordered bg-white w-full max-w-xl" name="code" id="code" />
                                 <x-input-error :messages="$errors->get('code')" class="mt-2" />
-                            </div>
-
-                            <div class="form-control w-full max-w-xl">
-                                <label class="label">
-                                    <span class="label-text text-neutral font-bold">Short Description</span>
-                                </label>
-                                <textarea class="textarea text-neutral input-bordered bg-white w-full max-w-xl" name="short_description" id="short_description" ></textarea>
-                                <x-input-error :messages="$errors->get('short_description')" class="mt-2" />
                             </div>
 
                             <div class="form-control w-full max-w-xl">
@@ -50,10 +56,10 @@
 
                             <div class="form-control w-full max-w-xl">
                                 <label class="label">
-                                    <span class="label-text text-neutral font-bold">Minimal Requirement</span>
+                                    <span class="label-text text-neutral font-bold">Short Description</span>
                                 </label>
-                                <textarea class="textarea text-neutral input-bordered bg-white w-full max-w-xl" name="minimal_requirement" id="minimal_requirement" ></textarea>
-                                <x-input-error :messages="$errors->get('minimal_requirement')" class="mt-2" />
+                                <textarea class="textarea text-neutral input-bordered bg-white w-full max-w-xl" name="short_description" id="short_description" ></textarea>
+                                <x-input-error :messages="$errors->get('short_description')" class="mt-2" />
                             </div>
 
                             <div class="form-control w-full max-w-xl">
@@ -64,12 +70,13 @@
                                 <x-input-error :messages="$errors->get('course_credit')" class="mt-2" />
                             </div>
 
+
                             <div class="form-control w-full max-w-xl">
                                 <label class="label">
-                                    <span class="label-text text-neutral font-bold">Study Material</span>
+                                    <span class="label-text text-neutral font-bold">Minimal Requirement</span>
                                 </label>
-                                <textarea class="textarea text-neutral input-bordered bg-white w-full max-w-xl" name="study_material_summary" id="study_material_summary" ></textarea>
-                                <x-input-error :messages="$errors->get('study_material_summary')" class="mt-2" />
+                                <textarea class="textarea text-neutral input-bordered bg-white w-full max-w-xl" name="minimal_requirement" id="minimal_requirement" ></textarea>
+                                <x-input-error :messages="$errors->get('minimal_requirement')" class="mt-2" />
                             </div>
 
                             <div class="form-control w-full max-w-xl">
@@ -82,12 +89,13 @@
 
                             <div class="form-control w-full max-w-xl">
                                 <label class="label">
-                                    <span class="label-text text-neutral font-bold">Learning Media</span>
+                                    <span class="label-text text-neutral font-bold">Study Material</span>
                                 </label>
-                                <textarea class="textarea text-neutral input-bordered bg-white w-full max-w-xl" name="learning_media" id="learning_media" ></textarea>
-                                <x-input-error :messages="$errors->get('learning_media')" class="mt-2" />
+                                <textarea class="textarea text-neutral input-bordered bg-white w-full max-w-xl" name="study_material_summary" id="study_material_summary" ></textarea>
+                                <x-input-error :messages="$errors->get('study_material_summary')" class="mt-2" />
                             </div>
 
+                            
                             <div class="form-control w-full max-w-xl">
                                 <label class="label">
                                     <span class="label-text text-neutral font-bold">Course Type</span>
@@ -102,16 +110,13 @@
 
                             <div class="form-control w-full max-w-xl">
                                 <label class="label">
-                                    <span class="label-text text-neutral font-bold">Study Program</span>
+                                    <span class="label-text text-neutral font-bold">Learning Media</span>
                                 </label>
-                                <select class="select text-neutral input-bordered bg-white w-full max-w-xl" name="study_program" id="study_program">
-                                    <option></option>
-                                    @foreach($studyPrograms as $program)
-                                        <option value="{{ $program->id }}">{{ $program->name }}</option>
-                                    @endforeach
-                                </select>
-                                <x-input-error :messages="$errors->get('study_program')" class="mt-2" />
+                                <textarea class="textarea text-neutral input-bordered bg-white w-full max-w-xl" name="learning_media" id="learning_media" ></textarea>
+                                <x-input-error :messages="$errors->get('learning_media')" class="mt-2" />
                             </div>
+
+
 
                             <div class="form-control w-full max-w-xl">
                                 <label class="label">
