@@ -46,8 +46,9 @@
                                             <form action="{{ route('rubrics.destroy', $rubric) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
-                                                <input href="" value="Delete" type="submit"
-                                                    class="text-red-600 font-semibold ml-2-auto text-lg">
+                                                <button href=""
+                                                    class="text-red-600 font-semibold mx-auto text-lg cursor-pointer"
+                                                    @click="confirm('Are you sure?') ? console.log('asdasd') : false">Delete</button>
                                             </form>
                                         </div>
                                     </td>
@@ -55,72 +56,6 @@
                             </tbody>
                             <?php $i += 1 ?>
                             @endforeach
-
-                            {{-- <tr class="h-10">
-                                <td>2</td>
-                                <td>
-                                    <a href="">LK-01</a>
-                                </td>
-                                <td class="items-center">
-                                    <div class="flex items-center justify-center">
-                                        <a href="" class="text-blue-700 font-semibold mx-auto text-lg">Edit</a>
-                                        <button href=""
-                                            class="text-red-600 font-semibold mx-auto text-lg">Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="h-10">
-                                <td>3</td>
-                                <td>
-                                    <a href="">LK-01</a>
-                                </td>
-                                <td class="items-center">
-                                    <div class="flex items-center justify-center">
-                                        <a href="" class="text-blue-700 font-semibold mx-auto text-lg">Edit</a>
-                                        <button href=""
-                                            class="text-red-600 font-semibold mx-auto text-lg">Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="h-10">
-                                <td>4</td>
-                                <td>
-                                    <a href="">LK-01</a>
-                                </td>
-                                <td class="items-center">
-                                    <div class="flex items-center justify-center">
-                                        <a href="" class="text-blue-700 font-semibold mx-auto text-lg">Edit</a>
-                                        <button href=""
-                                            class="text-red-600 font-semibold mx-auto text-lg">Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="h-10">
-                                <td>5</td>
-                                <td>
-                                    <a href="">LK-01</a>
-                                </td>
-                                <td class="items-center">
-                                    <div class="flex items-center justify-center">
-                                        <a href="" class="text-blue-700 font-semibold mx-auto text-lg">Edit</a>
-                                        <button href=""
-                                            class="text-red-600 font-semibold mx-auto text-lg">Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="h-10">
-                                <td>6</td>
-                                <td>
-                                    <a href="">LK-01</a>
-                                </td>
-                                <td class="items-center">
-                                    <div class="flex items-center justify-center">
-                                        <a href="" class="text-blue-700 font-semibold mx-auto text-lg">Edit</a>
-                                        <button href=""
-                                            class="text-red-600 font-semibold mx-auto text-lg">Delete</button>
-                                    </div>
-                                </td>
-                            </tr> --}}
 
                         </table>
                     </div>
