@@ -50,6 +50,8 @@
                                                 <h2 class="card-title">{{$course->name}}</h2>
                                                 <p>{{$course->code}} - <strong>{{$course->type}}</strong> - {{$course->learning_media}} - <strong>{{$course->course_credit}} SKS</strong> </p>
                                                 <p class="pb-10">{{$course->short_description}}</p>
+                                                <p class="pb-10">{{$course->study_material_summary}}</p>
+
                                                 <div class="pt-10 card-actions border-t-2">
                                                     <p><strong>Minimal requirement:</strong> {{$course->minimal_requirement}}</p>
                                                 </div>
@@ -57,10 +59,10 @@
                                                     <form action="/courses/{{ $course->id }}/edit" method="get">
                                                         <button class="text-blue-600 m-4" value="{{ $course->id }}"><strong>Edit</strong></button>
                                                     </form>
-                                                    <form action="courses/{{ $course->id }}" method="post">
+                                                    <form action="" method="post">
                                                         @csrf
                                                         @method('delete')
-                                                        <button class="m-4" value="{{ $course->id }}" onclick="return confirm('Yakin ingin menghapus data ?');"><strong>Delete</strong></button>
+                                                        <button class="m-4" value="{{ $course->id }}" onclick="return confirm('Yakin ingin menghapus data?');"><strong>Delete</strong></button>
                                                     </form>
                                                 </div>
                                             </div>

@@ -13,7 +13,7 @@
         <div class="text-sm breadcrumbs pl-8 pt-5 font-bold text-grey-600">
             <ul>
                 <li><a href="">Dashboard</a></li>
-                <li><a href="">Courses</a></li>
+                <li><a href="{{route('courses.index')}}">Courses</a></li>
                 <li class="text-blue-600">Edit</li>
             </ul>
         </div>
