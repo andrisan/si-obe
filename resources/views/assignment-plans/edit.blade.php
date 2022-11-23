@@ -1,87 +1,71 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Edit Assignment Plans') }}
-        </h2>
-    </x-slot>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Edit Assignment Plans') }}
+        </h2>
+    </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div data-theme="light" class="p-6 bg-white border-b border-gray-200">
-                    <!---Assignment style-->
-                    <select class="select select-bordered border-info w-full max-w-xs mx-10 mb-10 mt-5">
-      <option disabled selected>Assignment Style</option>
-      <option>Multiple choice</option>
-      <option>Essay</option>
-      <option>Simple question</option>
-    </select>
-    <!--end Assignment style-->
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 bg-white border-b border-gray-200">
+                  
+                        <div class="container p-4 text-primary mt-2 text-sm">
+                            <form>
+                                <label class="uppercase font-bold  text-blue-600" for="fname">ID</label><br>
+                                <input type="text" class="input input-bordered input-ghost input-l w-full max-w-xl mb-2 mt-2" name="c_class" value="1"/>
+                            </form>
+                        </div>
 
-    <!--deadline -->
-    <div class="form-control float-right mx-10 mt-5">
-      <label class="input-group input-group-md" >
-        <span><img src="img/Vector.png"/></span>
-        <input type="text" placeholder="DD/MM/YYYY" class="input input-bordered input-md mb-0"/>
-      </label>
-    </div>
-    <!--end deadline-->
+                        <div class="container p-4 text-primary text-sm">
+                            <form>
+                                <label class="uppercase font-bold  text-blue-600" for="fname">Title</label><br>
+                                <input type="text" class="input input-bordered input-ghost input-l w-full max-w-xl mb-4 mt-2" name="c_class" value="Pemrograman Basis Data"/>
+                            </form>
+                        </div>
 
-    <!-- card title-->
-    <div class="card float-left shadow-xl mx-10">
-        <div class="card w-96 shadow-xl mt-10 mx-10  bg-stone-300">
-          <div class="card-body card-bordered">
-            <div class="form-control w-full">
-              <input type="text" placeholder="Pemrograman Basis Data" class="input input-bordered w-full mb-5"/>
-              <div class="form-control mb-5">
-                <textarea class="textarea textarea-bordered h-24" placeholder="Merupakan kumpulan informasi yang disimpan didalam komputer secara sistematik."></textarea>
-              </div>
-              <div class="form-control w-52">
-                <label class="cursor-pointer label">
-                  <span class="label-text">Group Assignment</span> 
-                  <input type="checkbox" class="toggle toggle-info" checked/>
-                </label>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!--output-->
-        <div>
-          <div class="card w-96 bg-base-100 shadow-xl mt-10 mb-10 mx-10">
-            <div class="card-body bg-stone-300">
-            <p>Output</p>
-              <div class="form-control w-full">
-                <div class="form-control mb-5">
-                  <textarea class="textarea textarea-bordered h-24" placeholder="Text here"></textarea>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      <!--end output-->
-    </div>
-    <!--end card -->
+                        <div class="container p-4 text-primary text-sm">
+                            <form>
+                                <label class="uppercase font-bold  text-blue-600" for="fname">Description</label><br>
+                                <input type="text" placeholder="Enter Your Description" class="input input-bordered input-ghost input-l w-full max-w-xl mb-4 mt-2" name="c_class" value="Lorem Ipsum..." />
+                            </form>
+                        </div>
 
-    <!--  submissioninstruction-->
-    <div class="form-control mx-10">
-          <label class="label">
-            <span class="label-text">Submission Instruction</span>
-          </label> 
-          <textarea class="textarea textarea-bordered mt-5 mb-5 h-24" placeholder="Text here"></textarea>
-        </div>
-        
-<!--button-->
-<div class="navbar-end mx-10 mt-5">
-    <button class="btn btn-info">Edit</button>
-</div>
-    <!--end button-->
-        <!--end instruction-->
+                        <div class="container p-4 text-primary text-sm">
+                            <form>
+                                <label class="uppercase font-bold  text-blue-600" for="fname">Created at</label><br>
+                                <input type="text" placeholder="Enter Your Deadline" class="input input-bordered input-ghost input-l w-full max-w-xl mb-4 mt-2" name="c_class" value="Lorem Ipsum..." />
+                            </form>
+                        </div>
+                        
+                        <div class="container p-4 text-primary text-sm">
+                            <form>
+                                <label class="uppercase font-bold  text-blue-600" for="fname">Updated_at</label><br>
+                                <input type="text" placeholder="Enter Your Deadline" class="input input-bordered input-ghost input-l w-full max-w-xl mb-4 mt-2" name="c_class" value="Lorem Ipsum..."/>
+                            </form>
+                        </div>
+                     
+                        <div class="container p-4 text-primary text-sm">
+                            <form>
+                                <label class="uppercase font-bold  text-blue-600" for="fname">Assignment style</label><br>
+                                <input type="text" placeholder="Enter Your Deadline" class="input input-bordered input-ghost input-l w-full max-w-xl mb-4 mt-2" name="c_class" value="Lorem Ipsum..." />
+                            </form>
+                        </div>
+                    
 
-      
 
-    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                        <div class="mt-4 ml-4">
+                            <button class="bg-blue-300 hover:bg-blue-600 hover:text-white text-white font-bold py-2 px-4 rounded border-outline border-2">
+                                Save
+                            <button class="bg-error hover:bg-red-600 hover:text-white text-white font-bold py-2 px-4 rounded border-outline border-2">
+                                Cancel
+                            </button>
+                        </div>
+
+                        
+                </div>
+            </div>
+        </div>
+    </div>
+        
 </x-app-layout>
