@@ -13,193 +13,46 @@
     </div>
   </x-slot>
 
-  <div class="grid grid-cols-4 divide-y w-full h-full">
-    <div class="col-span-1 grid grid-flow-row grid-rows-none auto-rows-max divide-y overflow-y-scroll h-full">
-      <div class="text-xl font-bold p-5">
-        <label>Teknologi Informasi</label>
-      </div>
-      <div class="grid grid-flow-row grid-rows-none p-5">
-        <div class="flex flex-wrap py-2">
-          <label class="px-4">Analisis dan Desain Sistem Informasi</label>
-        </div>
-        <div class="flex flex-wrap py-2">
-          <label class="px-4">Algoritma dan Struktur Data</label>
-        </div>
-        <div class="flex flex-wrap py-2">
-          <label class="px-4">Jaringan Komputer Dasar</label>
-        </div>
-        <div class="flex flex-wrap py-2">
-          <label class="px-4">Pemrograman Aplikasi Web</label>
-        </div>
-        <div class="flex flex-wrap py-2">
-          <label class="px-4">Pemrograman Basis Data</label>
-        </div>
-      </div>
-    </div>
-    <div class="col-span-3 p-10 shadow-xl justify-items-auto overflow-y-auto">
-      <div class="overflow-x-auto py-4">
-        <table class="table table-zebra w-full">
-          <!-- head -->
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Syllabus ID</th>
-              <th>Week Number</th>
-              <th>LLO ID</th>
-              <th>Study Material</th>
-              <th>Learning Method</th>
-              <th>Estimated Time</th>
-              <th>Created at</th>
-              <th>Opsi</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>Introduction</td>
-              <td>1</td>
-              <td>100 minutes</td>
-              <td> </td>
-              <td> </td>
-              <td> </td>
-              <td> </td>
-              <td> </td>
-              <td>
-                <button class="btn btn-success btn-sm">Edit</button>
-                <button class="btn btn-error btn-sm">Delete</button>
-              </td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>MVC</td>
-              <td>2</td>
-              <td>120 minutes</td>
-              <td> </td>
-              <td> </td>
-              <td> </td>
-              <td> </td>
-              <td> </td>
-              <td>
-                <button class="btn btn-success btn-sm">Edit</button>
-                <button class="btn btn-error btn-sm">Delete</button>
-              </td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>PHP</td>
-              <td>3</td>
-              <td>120 minutes</td>
-              <td> </td>
-              <td> </td>
-              <td> </td>
-              <td> </td>
-              <td> </td>
-              <td>
-                <button class="btn btn-success btn-sm">Edit</button>
-                <button class="btn btn-error btn-sm">Delete</button>
-              </td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td>PBD</td>
-              <td>4</td>
-              <td>45 minutes</td>
-              <td> </td>
-              <td> </td>
-              <td> </td>
-              <td> </td>
-              <td> </td>
-              <td>
-                <button class="btn btn-success btn-sm">Edit</button>
-                <button class="btn btn-error btn-sm">Delete</button>
-              </td>
-            </tr>
-            <tr>
-              <td>5</td>
-              <td>PHP Basics</td>
-              <td>5</td>
-              <td>100 minutes</td>
-              <td> </td>
-              <td> </td>
-              <td> </td>
-              <td> </td>
-              <td> </td>
-              <td>
-                <button class="btn btn-success btn-sm">Edit</button>
-                <button class="btn btn-error btn-sm">Delete</button>
-              </td>
-            </tr>
-            <tr>
-              <td>6</td>
-              <td>Laravel</td>
-              <td>6</td>
-              <td>45 minutes</td>
-              <td> </td>
-              <td> </td>
-              <td> </td>
-              <td> </td>
-              <td> </td>
-              <td>
-                <button class="btn btn-success btn-sm">Edit</button>
-                <button class="btn btn-error btn-sm">Delete</button>
-              </td>
-            </tr>
-            <tr>
-              <td>7</td>
-              <td>Linked List</td>
-              <td>7</td>
-              <td>200 minutes</td>
-              <td> </td>
-              <td> </td>
-              <td> </td>
-              <td> </td>
-              <td> </td>
-              <td>
-                <button class="btn btn-success btn-sm">Edit</button>
-                <button class="btn btn-error btn-sm">Delete</button>
-              </td>
-            </tr>
-            <tr>
-              <td>8</td>
-              <td>HTML</td>
-              <td>8</td>
-              <td>100 minutes</td>
-              <td> </td>
-              <td> </td>
-              <td> </td>
-              <td> </td>
-              <td> </td>
-              <td>
-                <button class="btn btn-success btn-sm">Edit</button>
-                <button class="btn btn-error btn-sm">Delete</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="grid grid-cols-8 gap-4 py-4">
-        <button class="btn btn-accent col-end-1">Tambah</button>
-      </div>
-      <form>
-        <div class="flex justify-end p-4">
-          <div>
-            <input class="btn btn-outline btn-active m-1" type="button" value="Prev">
-          </div>
-          <div>
-            <input class="btn btn-outline btn-active m-1" type="button" value="1">
-          </div>
-          <div>
-            <input class="btn btn-outline btn-active m-1" type="button" value="2">
-          </div>
-          <div>
-            <input class="btn btn-outline btn-active m-1" type="button" value="3">
-          </div>
-          <div>
-            <input class="btn btn-outline btn-active m-1" type="button" value="Next">
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
+  <table class="table-fixed w-full">
+    @if($learningPlans->isNotEmpty())
+    <thead>
+      <tr class="bg-[#F7F7F9] border-2 h-10">
+        <th class="w-auto">Learning Plan ID</th>
+        <th class="w-auto">Syllabus ID</th>
+        <th class="w-auto">Week Number</th>
+        <th class="w-auto">LLO's ID</th>
+        <th class="w-auto">Study Material</th>
+        <th class="w-auto">Learning Methode</th>
+        <th class="w-auto">Est. Time</th>
+        <th class="w-auto">Created at</th>
+        <th class="w-auto">Updated at</th>
+        <th>Aksi</th>
+      </tr>
+    </thead>
+    <tbody class="text-center border-2 border-black text-black">
+      @foreach($learningPlans as $learningPlan)
+      <tr class="border-2 h-14">
+        <td>{{ $learningPlan->id }}</td>
+        <td>{{ $learningPlan->syllabus_id }}</td>
+        <td>{{ $learningPlan->week_number }}</td>
+        <td>{{ $learningPlan->llo_id }}</td>
+        <td>{{ $learningPlan->study_material }}</td>
+        <td>{{ $learningPlan->learning_method }}</td>
+        <td>{{ $learningPlan->estimated_time }}</td>
+        <td>{{ $learningPlan->created_at }}</td>
+        <td>{{ $learningPlan->updated_at }}</td>
+        <td>
+          <button href="`learning-plans/${row.id}/edit`" class="btn btn-warning btn-sm">Edit</button>
+          <button class="btn btn-error btn-sm" @click="confirm('Are you sure?') ? console.log('asdasd') : false">Delete</button>
+        </td>
+      </tr>
+      @endforeach
+    </tbody>
+  </table>
+  @else
+  <br>
+  <h1 class="text-2xl font-extrabold text-center" style="font-weight: 900;">Data tidak ditemukan</h1>
+  <br>
+  @endif
 
 </x-app-layout>
