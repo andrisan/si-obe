@@ -36,7 +36,7 @@
                                 <label class="label">
                                     <span class="label-text text-neutral font-bold">Short Description</span>
                                 </label>
-                                <textarea class="textarea text-neutral input-bordered bg-white w-full max-w-xl" name="short_description" id="short_description" ></textarea>
+                                <textarea class="textarea text-neutral input-bordered bg-white w-full max-w-xl" name="short_description" id="short_description"></textarea>
                                 <x-input-error :messages="$errors->get('short_description')" class="mt-2" />
                             </div>
 
@@ -52,7 +52,7 @@
                                 <label class="label">
                                     <span class="label-text text-neutral font-bold">Minimal Requirement</span>
                                 </label>
-                                <textarea class="textarea text-neutral input-bordered bg-white w-full max-w-xl" name="minimal_requirement" id="minimal_requirement" ></textarea>
+                                <textarea class="textarea text-neutral input-bordered bg-white w-full max-w-xl" name="minimal_requirement" id="minimal_requirement"></textarea>
                                 <x-input-error :messages="$errors->get('minimal_requirement')" class="mt-2" />
                             </div>
 
@@ -68,7 +68,7 @@
                                 <label class="label">
                                     <span class="label-text text-neutral font-bold">Study Material</span>
                                 </label>
-                                <textarea class="textarea text-neutral input-bordered bg-white w-full max-w-xl" name="study_material_summary" id="study_material_summary" ></textarea>
+                                <textarea class="textarea text-neutral input-bordered bg-white w-full max-w-xl" name="study_material_summary" id="study_material_summary"></textarea>
                                 <x-input-error :messages="$errors->get('study_material_summary')" class="mt-2" />
                             </div>
 
@@ -84,7 +84,7 @@
                                 <label class="label">
                                     <span class="label-text text-neutral font-bold">Learning Media</span>
                                 </label>
-                                <textarea class="textarea text-neutral input-bordered bg-white w-full max-w-xl" name="learning_media" id="learning_media" ></textarea>
+                                <textarea class="textarea text-neutral input-bordered bg-white w-full max-w-xl" name="learning_media" id="learning_media"></textarea>
                                 <x-input-error :messages="$errors->get('learning_media')" class="mt-2" />
                             </div>
 
@@ -107,7 +107,7 @@
                                 <select class="select text-neutral input-bordered bg-white w-full max-w-xl" name="study_program" id="study_program">
                                     <option></option>
                                     @foreach($studyPrograms as $program)
-                                        <option value="{{ $program->id }}">{{ $program->name }}</option>
+                                    <option value="{{ $program->id }}">{{ $program->name }}</option>
                                     @endforeach
                                 </select>
                                 <x-input-error :messages="$errors->get('study_program')" class="mt-2" />
@@ -120,7 +120,7 @@
                                 <select class="select text-neutral input-bordered bg-white w-full max-w-xl" name="creator_user" id="creator_user">
                                     <option></option>
                                     @foreach($userCreator as $user)
-                                        <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
                                     @endforeach
                                 </select>
                                 <x-input-error :messages="$errors->get('creator_user')" class="mt-2" />
@@ -130,17 +130,9 @@
                                 <button class="mt-12 btn btn-outline" type="submit">Create</button>
                                 <a href="{{ route('courses.store') }}">{{ __() }}</a>
                             </div>
-
-
-
-
-
                         </div>
                     </form>
                 </div>
-
-
-
             </div>
             <!-- End content -->
         </div>

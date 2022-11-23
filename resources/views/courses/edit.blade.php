@@ -117,17 +117,16 @@
                         </div>
 
                         <div class="card-actions justify-end pt-5">
-{{--                            <form action="{{ route('courses.index') }}">--}}
-                                <button class="btn btn-outline" type="submit">Save</button>
-{{--                            </form>--}}
-{{--                            <form action="{{ route('courses.index') }}">--}}
-                                <a class="btn btn-outline" href="{{ route('courses.index') }}">Cancel</a>
-{{--                            </form>--}}
+                            {{-- <form action="{{ route('courses.index') }}">--}}
+                            <button class="btn btn-outline" type="submit">Save</button>
+                            {{-- </form>--}}
+                            {{-- <form action="{{ route('courses.index') }}">--}}
+                            <a class="btn btn-outline" href="{{ route('courses.index') }}">Cancel</a>
+                            {{-- </form>--}}
                         </div>
                     </form>
-
-
+                </div>
+            </div>
+        </div>
     </x-slot>
-
-
 </x-app-layout>
