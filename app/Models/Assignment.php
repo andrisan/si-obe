@@ -22,11 +22,6 @@ class Assignment extends Model
         'note'
     ];
 
-    // protected $attributes = [
-    //     // 'assignment_plan_id' => 1,
-    //     'course_class_id' => 1,
-    // ];    
-
     public function studentGrades()
     {
         return $this->hasMany(StudentGrade::class);

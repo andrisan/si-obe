@@ -5,7 +5,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
+            {{ __('Course Class')." : $courseClass->name" }}
         </h2>
     </x-slot>
 
@@ -77,7 +77,7 @@
                     </div>
                     <div class="tombol justify-end flex flex-row gap-2 py-5 px-10">
                         <button class="btn btn-outline btn-error w-24">
-                            <a href="{{ route('course-classes.assignments.index', [$courseClass, $assignment]) }}">Cancel</a>
+                            <a href="{{ route('course-classes.assignments.show', [$courseClass, $assignment]) }}">Cancel</a>
                         </button>
                         <button type="submit" class="btn btn-active btn-primary w-24">
                             Save

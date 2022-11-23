@@ -18,7 +18,10 @@ class AssignmentController extends Controller
     {
         return view('assignments.index', [
             'courseClass' => $courseClass,
-            'assignments' => $courseClass->assignments()->paginate(4)
+            'assignments' => $courseClass
+                                ->assignments()
+                                ->orderBy('id', 'desc')
+                                ->paginate(4)
         ]);
     }
 

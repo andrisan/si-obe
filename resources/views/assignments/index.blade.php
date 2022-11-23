@@ -57,9 +57,9 @@
                     </div>
 
                     <?php $i = 1 ?>
-                    @foreach($assignments as $assigment)
+                    @foreach($assignments as $assignment)
                         <div class=" mt-6 border-2 border-gray-200  rounded-2xl  hover:bg-red-50 hover:scale-[1.03] duration-100">
-                            <a href="assignments/{{ $assigment->id }}">
+                            <a href="assignments/{{ $assignment->id }}">
                                 <div class="text-left text-neutral-content py-3 px-5">
                                     <div class="flex flex-row gap-5">
                                         <div class="logo">
@@ -71,9 +71,9 @@
                                         </div>
                                         <div class="truncate">
                                             <h1 class="truncate text-[16px] font-bold text-black ">
-                                                {{ $assigment->assignmentPlan->title??null }}</h1>
+                                                {{ $assignment->assignmentPlan->title??null }}</h1>
                                             <p class="  text-black">
-                                                {{ Carbon::parse( $assigment->assigned_date)->format("M d, Y") }}</p>
+                                                {{ Carbon::parse( $assignment->assigned_date)->format("M d, Y") }}</p>
                                         </div>
                                     </div>
                                 </div>
