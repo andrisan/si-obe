@@ -16,7 +16,7 @@ class RubricController extends Controller
      */
     public function index()
     {
-        $rubric = Rubric::all();
+        $rubric = Rubric::paginate(3);
 
         return view('rubrics.index', [
             'rubric' => $rubric
@@ -55,12 +55,6 @@ class RubricController extends Controller
         $rubric->title = $validated['title'];
         $rubric->assignment_plan_id = $assignmentPlanId->first()->id;
         $rubric->save();
-
-        // $rubric = new Rubric();
-        // $rubric->title = $request->title;
-        // $rubric->assignment_plan_id = $request->assignment_plan_id;
-        // $rubric->save();
-
 
         return redirect()->route("rubrics.index");
     }
@@ -108,10 +102,6 @@ class RubricController extends Controller
             'title' => $validated['title']
         ]);
 
-        // $rubric->update([
-        //     'title' => $request->title
-        // ]);
-
         return redirect()->route("rubrics.index");
     }
 
@@ -123,16 +113,6 @@ class RubricController extends Controller
      */
     public function destroy(Rubric $rubric)
     {
-        // $criteriaCount = Criteria::where('rubric_id', $rubric->id)->count();
-        // if ($criteriaCount == 0) {
-        //     $rubric->delete();
-        // } else {
-        //     $criteria = Criteria::where('rubric_id', $rubric->id)->get();
-        //     foreach ($criteria as $criteria) {
-        //         $criteria->delete();
-        //     }
-        //     $rubric->delete();
-        // }
         foreach ($rubric->criterias as $criterias) {
             foreach ($criterias->criteriaLevels as $cl) {
                 foreach ($cl->studentGrades as $sg) {
