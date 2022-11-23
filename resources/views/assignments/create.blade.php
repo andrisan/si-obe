@@ -28,11 +28,12 @@
                                 <div class=" ">
                                     <h1 class="font-bold py-2 ">Assignment Plan</h1>
                                     <div class="form-control w-full lg:w-[28.5rem] ">
-                                        <select class="select select-bordered"> 
+                                    <select name="assignment_plan_id" class="select select-bordered"> 
                                             @foreach (AssignmentPlan::all() as $ap)
-                                                    <option>{{"$ap->id - $ap->title "}}</option>
+                                                <option value="{{ old('assignment_plan-id',(int)$ap->id)}}">{{$ap->title }}</option>
                                             @endforeach
                                         </select>
+                                        <x-input-error :messages="$errors->get('assignment_plan_id')" class="mt-2" />
                                     </div>
                                 </div>
     
