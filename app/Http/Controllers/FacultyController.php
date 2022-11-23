@@ -43,7 +43,8 @@ class FacultyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        DB::table('faculties')->insert(['name' => $request->name]);
+        return redirect()->intended('faculties');
     }
 
     /**
@@ -76,7 +77,7 @@ class FacultyController extends Controller
      * @param  \App\Models\Faculty  $faculty
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, &id)
+    public function update(Request $request, $id)
     {
         //
         DB::table('faculties')->where('id', $id)->update(['name'=>$request->name]);
