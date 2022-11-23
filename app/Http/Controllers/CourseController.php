@@ -6,6 +6,7 @@ use App\Models\Course;
 use App\Models\StudyProgram;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
 {
@@ -17,9 +18,17 @@ class CourseController extends Controller
     public function index()
     {
         $courses = Course::get();
+        foreach ($courses as $course) {
+            $name[$course->id] = User::where('id','=',$course->creator_user_id)->value('name');
+        }
+
+//        dd($name);
+
         return view('courses.index',[
-            'courses' => $courses
+            'courses' => $courses,
+            'name' => $name,
         ]);
+
     }
 
 
@@ -60,10 +69,7 @@ class CourseController extends Controller
             'study_material_summary' => 'string',
             'learning_media' => 'string',
             'study_program' => 'required|exists:study_programs,id',
-            'creator_user' => 'required|exists:users,id'
         ]);
-
-        // dd($request);
 
         $course = new Course();
         $course->code = $validated['code'];
@@ -76,7 +82,7 @@ class CourseController extends Controller
         $course->study_material_summary = $validated['study_material_summary'];
         $course->learning_media = $validated['learning_media'];
         $course->study_program_id = $validated['study_program'];
-        $course->creator_user_id = $validated['creator_user'];
+        $course->creator_user_id = Auth::id();
 
         $course->save();
 
@@ -91,7 +97,6 @@ class CourseController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Course $course){
-        //
         $courses = Course::get();
         return view('courses.index', [
             'courses' => $courses
@@ -107,13 +112,11 @@ class CourseController extends Controller
      */
     public function edit(Course $course)
     {
-//        dd($course);
         $studyPrograms = StudyProgram::get();
 
-//        dd($studyProgram);
         return view('courses.edit',[
             'course' => $course,
-            'studyPrograms' => $studyPrograms,
+            'studyPrograms' => $studyPrograms
         ]);
     }
 
@@ -138,7 +141,6 @@ class CourseController extends Controller
             'study_material_summary' => 'string',
             'learning_media' => 'string',
             'study_program' => 'exists:study_programs,id',
-            'creator_user' => 'exists:users,id'
         ]);
 
         $course->code = $validated['code'];
@@ -165,8 +167,6 @@ class CourseController extends Controller
      */
     public function destroy(Course $course)
     {
-        //
-
         $course->delete();
 
         return redirect()->route('courses.index');

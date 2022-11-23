@@ -31,8 +31,8 @@
                                 <div>
                                     <div class="text-sm breadcrumbs pl-5 pt-7 font-bold text-gray-600">
                                         <ul>
-                                            <li><a href="">Dashboard</a></li>
-                                            <li class="text-blue-600"><a href="">Courses</a></li>
+                                            <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                                            <li class="text-blue-600"><a href="{{ route('courses.index') }}">Courses</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -61,6 +61,7 @@
                                         <p>{{$course->code}} - <strong>{{$course->type}}</strong> - {{$course->learning_media}} - <strong>{{$course->course_credit}} SKS</strong> </p>
                                         <p class="pb-10">{{$course->short_description}}</p>
                                         <p class="pb-10">{{$course->study_material_summary}}</p>
+                                        <p>Created by {{ $name[$course->id] }}</p>
 
                                         <div class="pt-10 card-actions border-t-2">
                                             <p><strong>Minimal requirement:</strong> {{$course->minimal_requirement}}</p>
