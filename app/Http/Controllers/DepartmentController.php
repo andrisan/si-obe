@@ -92,5 +92,11 @@ class DepartmentController extends Controller
     public function destroy($id)
     {
         //
+         $department -> delete();
+
+      return redirect()->route('faculties.departments.index',[
+        'department' => $department,
+            'faculty' => $faculty,
+      ]);
     }
 }
