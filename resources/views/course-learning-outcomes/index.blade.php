@@ -48,12 +48,14 @@
                             <td>{{$clo['position']}}</td>    
                             <td class="text-justify-center">{{$clo['description']}}</td>
                             <td class="flex space-x-8 justify-center mt-3">
-                              <form action="/syllabi/{{$clo['id']}}/ilos" method="post"></form>
+                                <button class="px-2 mt-1 text-blue-800 border-blue-800 rounded-2xl border-2">LLO</button>
+                                    <a href="{{ route('syllabi.ilos.clos.edit', [$syllabus, $ilo, $clo['id']]) }}" class="mt-1"><i class="fa-solid fa-pen-to-square text-blue-800"></i></a>
+                              <form action="{{ route('syllabi.ilos.clos.destroy', [$syllabus, $ilo, $clo['id']]) }}" method="POST"></form>
                                 @method('delete')
                                 @csrf
-                                    <button class="px-2 mt-1 text-blue-800 border-blue-800 rounded-2xl border-2">LLO</button>
-                                    <a href="{{ route('syllabi.ilos.clos.edit', [$syllabus, $ilo, $clo['id']]) }}" class="mt-1"><i class="fa-solid fa-pen-to-square text-blue-800"></i></a>
-                                    <button class="mt-1"><i class="fa-solid fa-trash-can text-red-600"></i></button>
+                                    <a href="{{ route('syllabi.ilos.clos.destroy', [$syllabus, $ilo, $clo['id']]) }}" class="mt-1" onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
+                                     <i class="fa-solid fa-trash-can text-red-600"></i>
+                                    </a>
                                     </form>
                                 </td>
                             </tr>
