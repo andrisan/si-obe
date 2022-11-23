@@ -10,4 +10,9 @@ class CriteriaLevel extends Model
     use HasFactory;
 
     public $timestamps = false;
+
+    public function studentGrades()
+    {
+        return $this->hasMany(StudentGrade::class);
+    }
 }
