@@ -15,14 +15,11 @@ class FacultyController extends Controller
      */
     public function index()
     {
-        //
-        $faculties = DB::table('faculties')
-                    ->leftjoin('departments', 'departments.faculty_id', '=', 'faculties.id')
-                    ->select('faculties.id', 'faculties.name', DB::raw('count(departments.faculty_id) as jumlahProdi'))
-                    ->groupBy('faculties.id')
-                    ->get();
+        
+        $faculties = Faculty::all();
 
-        return view('faculties.index', ['faculties' => $faculties]);
+        return view('faculties.index', [
+            'faculties' => $faculties]);
     }
 
     /**
@@ -41,9 +38,17 @@ class FacultyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
-        DB::table('faculties')->insert(['name' => $request->name]);
+        $validated = $request->validate([
+            'name' => 'required|string'
+        ]);
+
+        $faculty = new Faculty();
+        $faculty->name = $validated['name'];
+        $faculty->save();
+
         return redirect()->intended('faculties');
     }
 
@@ -64,9 +69,9 @@ class FacultyController extends Controller
      * @param  \App\Models\Faculty  $faculty
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+
+    public function edit(Faculty $faculty)
     {
-        $faculty = DB::table('faculties')->where('id', $id)->first();
         return view('faculties.edit', ['faculty'=>$faculty]);
     }
 
@@ -77,10 +82,17 @@ class FacultyController extends Controller
      * @param  \App\Models\Faculty  $faculty
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Faculty $faculty)
     {
         //
-        DB::table('faculties')->where('id', $id)->update(['name'=>$request->name]);
+        $validated = $request->validate([
+            'name' => 'required|string'
+        ]);
+
+        $faculty->update([
+            'name' => $validated['name']
+        ]);
+        
         return redirect()->intended('faculties');
     }
 
@@ -90,10 +102,10 @@ class FacultyController extends Controller
      * @param  \App\Models\Faculty  $faculty
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Faculty $faculty)
     {
         //
-        DB::table('faculties')->where('id', $id)->delete();
+        $faculty->delete();
 
         return back();
     }

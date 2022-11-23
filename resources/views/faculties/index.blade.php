@@ -27,7 +27,6 @@
                                 <tr>
                                     <th>Nomor</th>
                                     <th>Nama Fakultas</th>
-                                    <th>Jumlah Program Studi</th>
                                     <th>Opsi</th>
                                 </tr>
                             </thead>
@@ -37,7 +36,6 @@
                                     <tr>
                                         <th>{{ $i }}</th>
                                         <td>{{ $faculty->name }}</td>
-                                        <td>{{ $faculty->jumlahProdi }}</td>
                                         <td>
                                             <div class="flex items-strecth">
                                                 <form action="faculties/{{ $faculty->id }}/edit" method="get">
