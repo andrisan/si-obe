@@ -20,28 +20,29 @@
                         <th>updated_at</th> 
                         <th>assignment_style</th> 
                         <th>
-                            <a href="assignment-plans/create">
+                            
                               <button class="btn border-outline bg-blue-400 hover:bg-blue-700 hover:text-white text-white font-bold btn-outline">Create</button>
-                            </a>
+                              <a href="{{ route('plans.store')  }}">{{ __()}}</a>
+
                         </th>
                       </tr>
                     </thead> 
                     <tbody>
                       @foreach($plans as $ap)
                       <tr>
-                        <th>{{$ap['id']}}</th> 
-                        <td>{{$ap['title']}}</td> 
-                        <td>{{$ap['description']}}</td> 
-                        <td>{{$ap['created_at']}}</td> 
-                        <td>{{$ap['updated_at']}}</td> 
-                        <td>{{$ap['assignment_style']}}</td> 
+                        <th>{{$ap->id}}</th> 
+                        <td>{{$ap->title}}</td> 
+                        <td>{{$ap->description}}</td> 
+                        <td>{{$ap->created_at}}</td> 
+                        <td>{{$ap->updated_at}}</td> 
+                        <td>{{$ap->assignment_style}}</td> 
                         <td>
                         
                         <button class="btn bg-blue-300 hover:bg-blue-600 hover:text-white text-white font-bold btn-outline">Edit</button>
-                        <form action="{{route('plans.destroy', $plans->id)}}" method="post">
+                        <form action="{{route('assignment-plans.destroy', $ap->id)}}" method="post">
                         @csrf
                         @method('delete')
-                          <button class="btn btn-error hover:bg-red-600 hover:text-white text-white font-bold" value="{{$plan->id}}" onclick="return confirm('Yakin ingin menghapus data?');">Delete</button>
+                          <button class="btn btn-error hover:bg-red-600 hover:text-white text-white font-bold" value="{{$ap->id}}" onclick="return confirm('Yakin ingin menghapus data?');">Delete</button>
                           </form>
                         </td>
                       </tr>
