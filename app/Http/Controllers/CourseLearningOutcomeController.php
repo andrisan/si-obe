@@ -18,10 +18,12 @@ class CourseLearningOutcomeController extends Controller
      */
     public function index($syllabus, $ilo)
     {
-        $data = CourseLearningOutcome::all();
+        $clos = CourseLearningOutcome::where('ilo_id', $ilo)->get();
 
         return view('course-learning-outcomes.index', [
-            'data' => $data
+            'syllabus' => $syllabus,
+            'ilo' => $ilo,
+            'clos' => $clos,
         ]);
     }
 
