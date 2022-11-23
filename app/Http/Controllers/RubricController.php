@@ -134,8 +134,16 @@ class RubricController extends Controller
         //     $rubric->delete();
         // }
         foreach ($rubric->criterias as $criterias) {
-            foreach ($criterias->criteriaLevels as $cl){
+            foreach ($criterias->criteriaLevels as $cl) {
+                foreach ($cl->studentGrades as $sg) {
+                    $sg->delete();
+                }
                 $cl->delete();
+            }foreach ($criterias->assignmentPlanTasks as $ap) {
+                foreach ($ap->gradingPlans as $gp) {
+                    $gp->delete();
+                }
+                $ap->delete();
             }
             $criterias->delete();
         }
