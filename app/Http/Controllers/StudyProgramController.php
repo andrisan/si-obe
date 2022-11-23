@@ -40,6 +40,27 @@ class StudyProgramController extends Controller
     }
 
     /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request, Faculty $faculty, Department $department)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string',
+        
+        ]);
+
+        $department->studyPrograms()->create($validated);
+
+        return redirect()->route('faculties.departments.study-programs.index', [
+            'faculty' => $faculty,
+            'department' => $department,
+        ]);
+    }
+
+    /**
      * Display the specified resource.
      *
      * @param  int  $id
