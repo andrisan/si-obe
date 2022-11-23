@@ -78,7 +78,7 @@ $rows = collect($departments)->all()['data'] ?? [];
                                             <th>{{ $department['id'] }}</th>
                                             <td>{{ $department['name'] }}</td>
                                             <td>
-                                                <div class="">
+                                                <div class="flex  ">
 
 
 

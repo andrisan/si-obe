@@ -18,14 +18,7 @@
                                   action="{{ route('faculties.departments.update', [$faculty, $department]) }}">
                                   @csrf
                                   @method('patch')
-                                  <label class="label">
 
-                                      <span class="label-text">Fakultas</span>
-                                  </label>
-                                  <select class="select select-bordered w-full max-w-xs text-neutral">
-                                      <option>Fakultas Vokasi</option>
-                                      <option>Ekonomi Bisnis</option>
-                                  </select>
                                   <label class="label mt-4 text-neutral">
                                       <span class="label-text">Departemen</span>
                                   </label>

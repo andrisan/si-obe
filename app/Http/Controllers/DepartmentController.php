@@ -97,7 +97,7 @@ class DepartmentController extends Controller
         // $faculty = DB::table('faculties')->where('id',$id)->first();
         // $department = DB::table('departments')->where('id',$id)->first();
         // return view('departments.edit',['department'=>$department],['faculty'=>$faculty]);
-
+        
         return view('departments.edit', [
             'department' => $department,
             'faculty' => $faculty,
