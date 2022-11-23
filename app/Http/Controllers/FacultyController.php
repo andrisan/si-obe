@@ -76,9 +76,11 @@ class FacultyController extends Controller
      * @param  \App\Models\Faculty  $faculty
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Faculty $faculty)
+    public function update(Request $request, &id)
     {
         //
+        DB::table('faculties')->where('id', $id)->update(['name'=>$request->name]);
+        return back();
     }
 
     /**
