@@ -17,15 +17,15 @@
                                     @csrf
                                     <div class="form-control w-full max-w-xs">
                                         <label class="label">
-                                            <span class="label-text text-sm">ID LEMBAR KERJA</span>
+                                            <span class="label-text text-sm">Judul LEMBAR KERJA</span>
                                         </label>
-                                        <select name="assignment_plan_id" class="select input-bordered w-full max-w-xs" style="background-color: white">
-                                            <option disabled selected>Masukkan ID LK</option>
+                                        <select name="assignment_plan_title" class="select input-bordered w-full max-w-xs" style="background-color: white">
+                                            <option disabled selected>Masukkan Judul LK</option>
                                             @foreach ($assignmentPlan as $assignmentPlan)
-                                            <option>{{ $assignmentPlan->id }}</option>  
-                                            @endforeach
+                                            <option>{{ $assignmentPlan->title }}</option>  
+                                            @endforeach 
                                         </select>
-                                        <x-input-error :messages="$errors->get('assignment_plan_id')" class="mt-2" />
+                                        <x-input-error :messages="$errors->get('assignment_plan_title')" class="mt-2" />
                                         <label class="label">
                                             <span class="label-text text-sm">JUDUL</span>
                                         </label>
