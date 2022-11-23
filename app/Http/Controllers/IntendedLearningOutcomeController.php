@@ -58,3 +58,65 @@ class IntendedLearningOutcomeController extends Controller
         'syllabus' => $syllabus,
     ]);
     }
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show()
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param Syllabus $syllabus
+     * @param IntendedLearningOutcome $intendedLearningOutcome
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($syllabus,IntendedLearningOutcome $ilo)
+    {
+        // return view('intended-learning-outcomes.edit');
+        return view ('intended-learning-outcomes.edit',[
+            'syllabus' => $syllabus,
+            'ilo'   => $ilo
+        ]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param Syllabus $syllabus
+     * @param IntendedLearningOutcome $intendedLearningOutcome
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $syllabus, IntendedLearningOutcome $ilo)
+    {
+
+        $validateData = $request->validate([
+        'position'=> 'required',
+        'description'=> 'required',
+    ]);
+        $ilo->update($validateData);
+
+        return redirect()-> route ('syllabi.ilos.index',[
+        'syllabus' => $syllabus,
+    ]);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     *
+     */
+    public function destroy($id)
+    {
+        DB::table('intended_learning_outcomes')->where('id',$id)->delete();
+        return back();
+    }
+}
