@@ -69,6 +69,10 @@ class DepartmentController extends Controller
     public function edit($id)
     {
         //
+        return view('departments.edit', [
+            'department' => $department,
+            'faculty' => $faculty,
+        ]);
     }
 
     /**
@@ -81,6 +85,12 @@ class DepartmentController extends Controller
     public function update(Request $request, $id)
     {
         //
+         $department->update([
+            'name' => $request->name
+        ]);
+        
+        
+        return redirect()->route('faculties.departments.index', $faculty);
     }
 
     /**
