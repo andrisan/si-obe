@@ -33,9 +33,13 @@ class LessonLearningOutcomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($syllabus, $ilo, CourseLearningOutcome $clo)
     {
-        return view('lesson-learning-outcomes.create');
+        return view('lesson-learning-outcomes.create',[
+            'syllabus' => $syllabus,
+            'ilo' => $ilo,
+            'clo' => $clo
+        ]);
     }
 
     /**
@@ -44,23 +48,20 @@ class LessonLearningOutcomeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $syllabus, $ilo, CourseLearningOutcome $clo)
     {
         $validated = $request->validate([
-            'id' => 'required|id',
-            'clo_id' => 'required|id',
-            'position' => 'integer',
-            'description' => 'text',
+            'position' => 'required|numeric',
+            'description' => 'required|string',
         ]);
 
-        $llo = new LessonLearningOutcome();
-        $llo->id = $validated['id'];
-        $llo->clo_id = $validated['clo_id'];
-        $llo->position = $validated['position'];
-        $llo->description = $validated['description'];
-        $llo->save();
+        $clo->lessonLearningOutcomes()->create($validated);
 
-        return redirect()->route('lesson-learning-outcomes.index');
+        return redirect()->route('syllabi.ilos.clos.llos.index',[
+            'syllabus' => $syllabus,
+            'ilo' => $ilo,
+            'clo' => $clo
+        ]);
     }
 
     /**
@@ -69,9 +70,9 @@ class LessonLearningOutcomeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(IntendedLearningOutcome $intendedLearningOutcome, CourseLearningOutcome $courseLearningOutcome, LessonLearningProgram $lessonLearningProgram)
+    public function show()
     {
-        ddd($intendedLearningOutcome, $courseLearningOutcome, $lessonLearningProgram);
+
     }
 
     /**
@@ -80,10 +81,13 @@ class LessonLearningOutcomeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($syllabus, $ilo, $clo, $llo)
+    public function edit($syllabus, $ilo, $clo, LessonLearningOutcome $llo)
     {
         return view('lesson-learning-outcomes.edit', [
-            'clo' => $clo
+            'syllabus' => $syllabus,
+            'ilo' => $ilo,
+            'clo' => $clo,
+            'llo' => $llo
         ]);
     }
 
@@ -94,18 +98,20 @@ class LessonLearningOutcomeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $syllabus, $ilo, $clo, $llo)
+    public function update(Request $request, $syllabus, $ilo, $clo, LessonLearningOutcome $llo)
     {
         $validated = $request->validate([
-            'id' => 'required|id',
-            'clo_id' => 'required|id',
-            'position' => 'integer',
-            'description' => 'text',
+            'position' => 'required|numeric',
+            'description' => 'required|string',
         ]);
 
         $llo->update($validated);
 
-        return redirect(route('lesson-learning-outcomes.index'));
+        return redirect()->route('syllabi.ilos.clos.llos.index',[
+            'syllabus' => $syllabus,
+            'ilo' => $ilo,
+            'clo' => $clo
+        ]);
     }
 
     /**
@@ -114,8 +120,14 @@ class LessonLearningOutcomeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($syllabus, $ilo, $clo, LessonLearningOutcome $llo)
     {
-        //
+        $llo->delete();
+
+        return redirect()->route('syllabi.ilos.clos.llos.index',[
+            'syllabus' => $syllabus,
+            'ilo' => $ilo,
+            'clo' => $clo
+        ]);
     }
 }
