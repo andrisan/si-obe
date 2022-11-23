@@ -17,6 +17,13 @@ class DepartmentController extends Controller
     public function index()
     {
         //
+        $department = Department::where('faculty_id',$faculty)->orderBy('faculty_id')->get();
+        $faculty = Faculty::all();
+        return view('departments.index',[
+            'departments'=>$department,
+            'faculties'=>$faculty
+        ]);
+
     }
 
     /**
@@ -27,6 +34,7 @@ class DepartmentController extends Controller
     public function create()
     {
         //
+
     }
 
     /**
