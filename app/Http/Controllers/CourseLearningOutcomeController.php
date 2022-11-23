@@ -32,12 +32,11 @@ class CourseLearningOutcomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($syllabus, $ilo, CourseLearningOutcome $clo)
+    public function create($syllabus, IntendedLearningOutcome $ilo)
     {
         return view('course-learning-outcomes.create', [
             'syllabus' => $syllabus,
             'ilo' => $ilo,
-            'clo' => $clo,
         ]);
     }
 
@@ -47,14 +46,14 @@ class CourseLearningOutcomeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $syllabus, $ilo, CourseLearningOutcome $clo)
+    public function store(Request $request, $syllabus, IntendedLearningOutcome $ilo)
     {
         $validated = $request->validate([
             'position' => 'required|numeric',
             'description' => 'required|string',
         ]);
 
-        $clo->insert($validated);
+        $ilo->courseLearningOutcomes()->create($validated);
 
         return redirect()->route('syllabi.ilos.clos.index', [
             'syllabus' => $syllabus,
