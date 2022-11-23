@@ -29,7 +29,6 @@
                     <div class="flex  mt-5 space-x-5 relative">
                         <div class="right-0 float-right absolute">
                             <a href="{{ route('syllabi.ilos.clos.create', [$syllabus, $ilo]) }}"><button class="bg-[#2E65F3] px-5 py-2 rounded-md text-white" placeholder="Tambah"> <span class="font-bold  text-white rounded-full border-white">+</span> Tambah</button></a>
-                            
                         </div>
                     </div>
             
