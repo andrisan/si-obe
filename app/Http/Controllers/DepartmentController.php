@@ -57,7 +57,10 @@ class DepartmentController extends Controller
      */
     public function show(Faculty $faculty, Department $department)
     {
-        dd($faculty, $department);
+       return view('faculties.departments.index',[
+            'department'=>$department,
+            'faculty' => $faculty
+        ]);
     }
 
     /**
@@ -66,7 +69,7 @@ class DepartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($faculty, Department $department)
     {
         //
         return view('departments.edit', [
