@@ -12,7 +12,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-20 text-black">
                     <div class="flex justify-between border-b-2 pb-4 ">
-                        <div class="judul  ">
+                        <div class="judul">
                             <h1 class="text-2xl font-extrabold" style="font-weight: 900;">Course Learning Outcome</h1>
                         </div>
                        
@@ -44,17 +44,18 @@
                             </tr>
                         </thead>
                         <tbody class=" border-2 border-black text-center">
-                            @foreach ($data as $data)
+                            @foreach ($clos as $clo)
                             <tr class="border-2 h-14">
-                            <td>{{$data['id']}}</td>
-                            <td>{{$data['position']}}</td>    
-                            <td class="text-justify-center">{{$data['description']}}</td>
+                            <td>{{$clo['id']}}</td>
+                            <td>{{$clo['position']}}</td>    
+                            <td class="text-justify-center">{{$clo['description']}}</td>
                             <td class="flex space-x-8 justify-center mt-3">
-                              <form action="/syllabi/{{$data['id']}}/ilos" method="post"></form>
+                              <form action="/syllabi/{{$clo['id']}}/ilos" method="post"></form>
                                 @method('delete')
                                 @csrf
-                                    <button class="px-2 mt-1 text-blue-800 border-blue-800 rounded-2xl border-2">CEK LLO</button>
-                                    <button class="mt-1"><i class="fa-solid fa-pen-to-square text-blue-800"></i></button>
+                                    <button class="px-2 mt-1 text-blue-800 border-blue-800 rounded-2xl border-2">LLO</button>
+                                    <a href="{{ route('syllabi.ilos.clos.edit', [$syllabus, $ilo, $clo['id']]) }}" class="mt-1"><i class="fa-solid fa-pen-to-square text-blue-800"></i></a>
+                                    <button ></button>
                                     <button class="mt-1"><i class="fa-solid fa-trash-can text-red-600"></i></button>
                                     </form>
                                 </td>
