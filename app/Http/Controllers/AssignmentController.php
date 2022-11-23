@@ -44,16 +44,17 @@ class AssignmentController extends Controller
     public function store(Request $request, CourseClass $courseClass, Assignment $assignment)
     {
         $validated = $request->validate([
-            // 'assignment_plan_id' => 1,
+            'assignment_plan_id' => 'required|numeric',
             'assigned_date' => 'required|date',
             'due_date' => 'required|date',
             'note' => 'string',
         ]);
 
         $assignment->create($validated);
+
         return redirect()->route('course-classes.assignments.index', [
-            'courseClass' => $courseClass,
-            'assignment' => $assignment
+            $courseClass 
+            // $assignment
         ]);
     }
 
