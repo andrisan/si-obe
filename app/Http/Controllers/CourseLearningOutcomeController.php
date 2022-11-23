@@ -32,7 +32,11 @@ class CourseLearningOutcomeController extends Controller
      */
     public function create()
     {
-        return view('course-learning-outcomes.create');
+        return view('course-learning-outcomes.create', [
+            'syllabus' => $syllabus,
+            'ilo' => $ilo,
+            'clo' => $clo,
+        ]);
     }
 
     /**
