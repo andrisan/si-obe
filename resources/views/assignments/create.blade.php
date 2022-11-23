@@ -20,7 +20,9 @@
                             <h1>Assignments Create</h1>
                         </div>
                     </div>
-    
+
+                    <input type="hidden" name="course_class_id" id="course_class_id" value="{{ old('course_class_id', (int)$courseClass->id)}}">
+
                     <div class="flex flex-row flex-wrap justify-between px-10 pt-10 ">
                         <div class=" ">
                             <div class="pt-1">
