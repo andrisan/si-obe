@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Syllabus;
 use App\Models\IntendedLearningOutcome;
 use App\Models\CourseLearningOutcome;
-use Illuminate\Http\Request;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class CourseLearningOutcomeController extends Controller
@@ -54,7 +57,7 @@ class CourseLearningOutcomeController extends Controller
         ]);
 
         $ilo->courseLearningOutcomes()->create($validated);
-
+        
         return redirect()->route('syllabi.ilos.clos.index', [
             'syllabus' => $syllabus,
             'ilo' => $ilo,
