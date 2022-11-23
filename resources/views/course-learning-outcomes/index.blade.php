@@ -37,8 +37,7 @@
                     <table class="table-fixed w-full">
                         <thead>
                             <tr class="border-2 h-10">
-                            <th class="w-10">Id</th>
-                            <th class="w-10">Position</th>
+                            <th class="w-10">No</th>
                             <th class="w-[35rem]">Description</th>
                             <th class=" w-60">Aksi</th>
                             </tr>
@@ -46,7 +45,6 @@
                         <tbody class=" border-2 border-black text-center">
                             @foreach ($clos as $clo)
                             <tr class="border-2 h-14">
-                            <td>{{$clo['id']}}</td>
                             <td>{{$clo['position']}}</td>    
                             <td class="text-justify-center">{{$clo['description']}}</td>
                             <td class="flex space-x-8 justify-center mt-3">
