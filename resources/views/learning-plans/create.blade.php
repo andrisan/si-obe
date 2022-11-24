@@ -17,24 +17,29 @@
         <div class="hero-content text-center max-w-xl">
             <div class="card w-96 bg-base-100">
                 <div class="card-body items-center text-center">
-                    <form>
+                    <form action="{{ route('syllabi.learning-plans.store', [$syllabi]) }}" method="POST">
                         <div class="form-control w-full max-w-xs">
-                            <label class="label">
+                            @csrf
+                            <label for="week_number" class="label">
                                 <span class="label-text">Study Material</span>
                             </label>
-                            <input type="text" class="input input-bordered w-full max-w-xs" value="" />
-                            <label class="label">
-                                <span class="label-text">Learning Methode</span>
+                            <input type="number" placeholder="Week Number" class="input input-bordered w-full max-w-xs" name="week_number" min="1" max="20" />
+                            <label for="sudy_material" class="label">
+                                <span class="label-text">Study Material</span>
                             </label>
-                            <input type="text" class="input input-bordered w-full max-w-xs" value="" />
-                            <label class="label">
+                            <input type="text" placeholder="Study Material" class="input input-bordered w-full max-w-xs" name="study_material" />
+                            <label for="learning_method" class="label">
+                                <span class="label-text">Learning Method</span>
+                            </label>
+                            <input type="text" placeholder="Learning Method" class="input input-bordered w-full max-w-xs" name="learning_method" />
+                            <label for="estimated_time" class="label">
                                 <span class="label-text">Estimated Time</span>
                             </label>
-                            <input type="number" class="input input-bordered w-full max-w-xs" value="" min="0" max="300" />
+                            <input type="text" placeholder="Estimated Time" class="input input-bordered w-full max-w-xs" name="estimated_time" />
                         </div>
                         <div class="card-actions justify-end mt-4">
-                            <button class="btn btn-error m-2">Cancel</button>
-                            <button class="btn btn-success m-2">Create</button>
+                            <a href="{{ route('syllabi.learning-plans.index', [$syllabi]) }}" class="btn btn-eror m-2">Cancel</a>
+                            <input type="submit" value="Create" class="btn btn-success m-2 " />
                         </div>
                     </form>
                 </div>
