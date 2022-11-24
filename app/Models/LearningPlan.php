@@ -3,6 +3,7 @@
 namespace App\Models;
 use App\Models\Syllabus;
 use App\Models\LessonLearningOutcome;
+use App\Models\GradingPlan;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -28,5 +29,10 @@ class LearningPlan extends Model
     public function lessonLearningOutcome()
     {
         return $this->belongsTo(LessonLearningOutcome::class);
+    }
+
+    public function gradingPlan()
+    {
+        return $this->hasMany(GradingPlan::class);
     }
 }
