@@ -9,8 +9,17 @@ class AssignmentPlan extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'id',
+        'title',
+        'description',
+        'created_at',
+        'updated_at',
+        'assignment_style'
+    ];
+
     public function assignmentPlanTasks()
     {
-        return $this->hasMany(AssignmentPlanTask::class);
+        return $this->hasMany(AssignmentPlanTask::class, 'assignment_plan_id');
     }
 }
