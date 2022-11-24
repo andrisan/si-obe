@@ -14,22 +14,22 @@
                 @method('patch')
                 <div class="pb-4">
                         <div class="pb-2"><label for="week_number"><strong class="font-semibold text-gray-900">Week Number</strong></label></div>
-                        <input type="text" placeholder="Week Number" class="input input-bordered w-full max-w-xs" value="{{ old('week_number', $learningPlan->week_number) }}"/> <br>
+                        <input type="text" placeholder="Week Number" class="input input-bordered w-full max-w-xs" value="{{ old('week_number', $learningPlans->week_number) }}"/> <br>
                     </div>
                     <div class="pb-4">
                     <div class="pb-2"><label for="study_material"><strong class="font-semibold text-gray-900">Study Material</strong></label></div>
-                        <textarea class="textarea textarea-bordered w-full" placeholder="Study Material" name="Study Material" > {{ old('study_material', $learningPlan->study_material) }} </textarea>
+                        <textarea class="textarea textarea-bordered w-full" placeholder="Study Material" name="Study Material" > {{ old('study_material', $learningPlans->study_material) }} </textarea>
                     </div>
                     <div class="pb-4">
                     <div class="pb-2"><label for="study_material"><strong class="font-semibold text-gray-900">Learning Method</strong></label></div>
-                        <textarea class="textarea textarea-bordered w-full" placeholder="Learning Method" name="Learning Method" > {{ old('learning_method', $learningPlan->learning_method) }} </textarea>
+                        <textarea class="textarea textarea-bordered w-full" placeholder="Learning Method" name="Learning Method" > {{ old('learning_method', $learningPlans->learning_method) }} </textarea>
                     </div>
                     <div class="pb-4">
                         <div class="pb-2"><label for="week_number"><strong class="font-semibold text-gray-900">Estimated Time</strong></label></div>
-                        <input type="text" placeholder="Estimated Time" class="input input-bordered w-full max-w-xs" value="{{ old('estimated_time', $learningPlan->estimated_time) }}"/> <br>
+                        <input type="text" placeholder="Estimated Time" class="input input-bordered w-full max-w-xs" value="{{ old('estimated_time', $learningPlans->estimated_time) }}"/> <br>
                     </div>   
                 <input type="submit" value="Save" class="btn btn-active rounded-md " />
-                <a href="{{ route('syllabi.learning-plans.index', [$syllabi, $learningPlan]) }}" class="btn btn-outline rounded-md">Cancel</a>
+                <a href="{{ route('syllabi.learning-plans.index', [$syllabi, $learningPlans]) }}" class="btn btn-outline rounded-md">Cancel</a>
                 </div>
             </div>
         </div>
