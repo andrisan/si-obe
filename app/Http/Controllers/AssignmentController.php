@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Department;
+use App\Models\Assignment;
+use App\Models\CourseClass;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class AssignmentController extends Controller
 {
@@ -12,9 +14,15 @@ class AssignmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(CourseClass $courseClass)
     {
-        //
+        return view('assignments.index', [
+            'courseClass' => $courseClass,
+            'assignments' => $courseClass
+                                ->assignments()
+                                ->orderBy('id', 'desc')
+                                ->paginate(4)
+        ]);
     }
 
     /**
@@ -22,10 +30,12 @@ class AssignmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(CourseClass $courseClass, Assignment $assignment)
     {
-        //
-        return view('assignments.create');
+        return view('assignments.create', [
+            'courseClass' => $courseClass,
+            'assignment' => $assignment
+        ]);
     }
 
     /**
@@ -34,9 +44,21 @@ class AssignmentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, CourseClass $courseClass, Assignment $assignment)
     {
-        //
+        $validated = $request->validate([
+            'assignment_plan_id' => 'required|numeric',
+            'course_class_id' => 'required|numeric',
+            'assigned_date' => 'required|date',
+            'due_date' => 'required|date',
+            'note' => 'string',
+        ]);
+
+        $assignment->create($validated);
+
+        return redirect()->route('course-classes.assignments.index', [
+            $courseClass
+        ]);
     }
 
     /**
@@ -45,9 +67,12 @@ class AssignmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(CourseClass $courseClass, Assignment $assignment)
     {
-        //
+        return view('assignments.show', [
+            'courseClass' => $courseClass,
+            'assignment' => $assignment
+        ]);
     }
 
     /**
@@ -56,31 +81,47 @@ class AssignmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(CourseClass $courseClass, Assignment $assignment)
     {
-        //
+        return view('assignments.edit', [
+            'courseClass' => $courseClass,
+            'assignment' => $assignment
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  CourseClass $courseClass
+     * @param  Assignment $assignment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, CourseClass $courseClass, Assignment $assignment)
     {
-        //
+        $validated = $request->validate([
+            'assignment_plan_id' => 'required|numeric',
+            'assigned_date' => 'required|date',
+            'due_date' => 'required|date',
+            'note' => 'string',
+        ]);
+
+        $assignment->update($validated);
+
+        return redirect()->route('course-classes.assignments.show', [$courseClass, $assignment]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  CourseClass $courseClass
+     * @param  Assignment $assignment
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(CourseClass $courseClass, Assignment $assignment)
     {
-        //
+        $assignment->delete();
+
+        return redirect()->route('course-classes.assignments.index', [$courseClass, $assignment]);
     }
 }
