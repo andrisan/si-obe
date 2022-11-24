@@ -10,8 +10,9 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
 
-                <form method="POST" action="{{route('assignment-plans.update')}}">
+                <form action="{{ route('syllabi.assignment-plans.update', [$syllabus, $plan]) }}"  method="post">
                         @csrf
+                        @method('patch')
                   
                         <div class="container p-4 text-primary mt-2 text-sm">
                             
@@ -58,7 +59,7 @@
                     
 
 
-                       
+                       <!--
                         <div class="mt-4 ml-4">
                             {{--<form action="{{route('assignment-plans.index'}}">--}}
                         
@@ -75,7 +76,10 @@
                             </form>
                        
                         </div>
+                        !-->
 
+                        <input type="submit" value="Save" class="bg-blue-300 hover:bg-blue-600 hover:text-white text-white font-bold py-2 px-4 rounded border-outline border-2"/>
+                        <a href="{{ route('syllabi.assignment-plans.index', [$syllabus]) }}" class="bg-error hover:bg-red-600 hover:text-white text-white font-bold py-2 px-4 rounded border-outline border-2">Cancel</a>
                 </form>    
                 </div>
             </div>

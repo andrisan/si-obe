@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AssignmentPlan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Models\AssignmentPlan;
+
+
+
 
 class AssignmentPlanController extends Controller
 {
@@ -12,10 +16,11 @@ class AssignmentPlanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($syllabus)
     {
         $plans= AssignmentPlan::get();
         return view('assignment-plans.index', [
+            'syllabus' => $syllabus,
             'plans' => $plans
         ]);
     }
@@ -25,9 +30,11 @@ class AssignmentPlanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($syllabus)
     {
-        return view('assignment-plans.create');
+        return view('assignment-plans.create',[
+            'syllabus' => $syllabus
+        ]);
     }
 
     /**
@@ -36,7 +43,7 @@ class AssignmentPlanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, AssignmentPlan $plan)
+    public function store(Request $request, $syllabus, AssignmentPlan $plan)
     {
         $validated = $request->validate([
             'id' => 'required|string',
@@ -48,7 +55,7 @@ class AssignmentPlanController extends Controller
         ]);
 
         $plan = new AssignmentPlan();
-        $plan->id = $validated['ID'];
+        $plan->id = $validated['id'];
         $plan->title = $validated['title'];
         $plan->description = $validated['description'];
         $plan->created_at = $validated['created_at'];
@@ -57,7 +64,10 @@ class AssignmentPlanController extends Controller
 
         $plan->save();
 
-        return redirect()->route('assignment-plans.index');
+        return redirect()->route('syllabi.assignment-plans.index',[
+            'syllabus'=> $syllabus,
+            'plan' => $plan
+        ]);
     }
 
     /**
@@ -66,12 +76,13 @@ class AssignmentPlanController extends Controller
      * @param  \App\Models\AssignmentPlan  $assignmentPlan
      * @return \Illuminate\Http\Response
      */
-    public function show(AssignmentPlan $plan)
+    public function show()
+        //AssignmentPlan $plan)
     {
-        $plans = AssignmentPlan::get();
-        return view('assignment-plans.index', [
-            'plans' => $plans
-        ]);
+       // $plans = AssignmentPlan::get();
+       // return view('assignment-plans.index', [
+       //     'plans' => $plans
+       // ]);
         
     }
 
@@ -81,9 +92,12 @@ class AssignmentPlanController extends Controller
      * @param  \App\Models\AssignmentPlan  $assignmentPlan
      * @return \Illuminate\Http\Response
      */
-    public function edit( AssignmentPlan $plan)
+    public function edit( $syllabus, AssignmentPlan $plan)
     {
-          return view('assignment-plans.edit');  
+          return view('assignment-plans.edit',[
+            'syllabus' => $syllabus,
+            'plan'=> $plan
+          ]);  
         
     }
 
@@ -94,7 +108,7 @@ class AssignmentPlanController extends Controller
      * @param  \App\Models\AssignmentPlan  $assignmentPlan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, AssignmentPlan $plan)
+    public function update(Request $request, $syllabus, AssignmentPlan $plan)
     {
         $validated= $request->validate([
             'id' => 'string',
@@ -104,16 +118,20 @@ class AssignmentPlanController extends Controller
             'updated_at' => 'string',
             'assignment_style' => 'string'
         ]);
-        $plan->id = $validated['ID'];
+        
+
+        $plan->id = $validated['id'];
         $plan->title = $validated['title'];
         $plan->description = $validated['description'];
         $plan->created_at = $validated['created_at'];
         $plan->updated_at = $validated['updated_at'];
         $plan->assignment_style = $validated['required|string'];
 
-        $plan->update();
+        $plan->update($validated);
 
-        return redirect()->route('assignment-plans.index');
+        return redirect()->route('syllabi.assignment-plans.index',[
+            'syllabus' => $syllabus
+        ]);
     }
 
     /**
@@ -122,9 +140,12 @@ class AssignmentPlanController extends Controller
      * @param  \App\Models\AssignmentPlan  $assignmentPlan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(AssignmentPlan $plan)
+    public function destroy($syllabus, AssignmentPlan $plan)
     {
         $plan->delete();
-        return redirect()->route('assignment-plans.index');
+
+        return redirect()->route('syllabi.assignment-plans.index',[
+            'syllabus' => $syllabus
+        ]);
     }
 }

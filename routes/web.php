@@ -45,7 +45,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('rubrics', RubricController::class);
     Route::resource('classes', CourseClassController::class);
     Route::resource('student-grades', StudentGradeController::class);
-    Route::resource('assignment-plans', AssignmentPlanController::class);
 
     Route::scopeBindings()->group(function () {
         Route::resource('faculties.departments', DepartmentController::class);

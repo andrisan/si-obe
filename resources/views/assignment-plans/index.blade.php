@@ -22,35 +22,35 @@
                         <th>
                            
                         <div>
-                        <a href="{{ route('assignment-plans.create') }}">
+                        <form action="{{ route('syllabi.assignment-plans.create', [$syllabus]) }}" method= "get">
                               <button class="btn border-outline bg-blue-400 hover:bg-blue-700 hover:text-white 
-                              text-white font-bold btn-outline">Create</button>
-                              </a>
+                              text-white font-bold btn-outline"><strong>Create</strong></button>
+                        </form>
                         </div>
 
                         </th>
                       </tr>
                     </thead> 
                     <tbody>
-                      @foreach($plans as $ap)
+                      @foreach($plans as $plan)
                       <tr>
-                        <th>{{$ap['id']}}</th> 
-                        <td>{{$ap['title']}}</td> 
-                        <td>{{$ap['description']}}</td> 
-                        <td>{{$ap['created_at']}}</td> 
-                        <td>{{$ap['updated_at']}}</td> 
-                        <td>{{$ap['assignment_style']}}</td> 
+                        <th>{{ $plan->id }}</th> 
+                        <td>{{ $plan->title }}</td> 
+                        <td>{{ $plan->description }}</td> 
+                        <td>{{ $plan->created_at }}</td> 
+                        <td>{{ $plan->updated_at }}</td> 
+                        <td>{{ $plan->assignment_style }}</td> 
                         <td>
 
-                        <form action="/assignment-plans/{{ $ap->id}}/edit" method="get">
-                        <button class="btn bg-blue-300 hover:bg-blue-600 hover:text-white text-white font-bold btn-outline">Edit</button>
+                        <form action="{{ route('syllabi.assignment-plans.edit', [$syllabus, $plan->id]) }}" method="get">
+                        <button class="btn bg-blue-300 hover:bg-blue-600 hover:text-white text-white font-bold btn-outline"><strong>Edit</strong></button>
                         </form>
 
-                        <form action="{{route('assignment-plans.destroy', $ap->id)}}" method="post">
+                        <form action="{{ route('syllabi.assignment-plans.destroy', [$syllabus, $plan->id]) }}" method="post">
                         @csrf
                         @method('delete')
-                          <button class="btn btn-error hover:bg-red-600 hover:text-white text-white font-bold"  
-                          onclick="return confirm('Yakin ingin menghapus data?');">Delete</button>
+                          <button class="btn btn-error hover:bg-red-600 hover:text-white text-white font-bold" value="{{ $plan->id }}"  
+                          onclick="return confirm('Yakin ingin menghapus data?');"><strong>Delete</strong></button>
                           </form>
                           
                         </td>
