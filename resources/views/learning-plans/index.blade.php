@@ -8,7 +8,7 @@
   <div class="max-w-7xl mx-auto p-8">
     <div class="flex flex-row sm:justify-end mb-3 px-4 sm:px-0 -mr-2 sm:-mr-3">
       <div class="order-5 sm:order-6 mr-2 sm:mr-3">
-        <a href="{{ route('syllabi.learning-plans.create', [$syllabi]) }}" class="w-full bg-white border border-gray-300 rounded-md shadow-sm px-2.5 sm:px-4 py-2 inline-flex justify-center text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+        <a href="{{ route('syllabi.learning-plans.create', [$syllabus]) }}" class="w-full bg-white border border-gray-300 rounded-md shadow-sm px-2.5 sm:px-4 py-2 inline-flex justify-center text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
           <span class="pr-1">New Learning Plan</span>
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 612.001 612.001" style="enable-background:new 0 0 612.001 612.001;" xml:space="preserve">
             viewBox="0 0 612.001 612.001" style="enable-background:new 0 0 612.001 612.001;" xml:space="preserve">
@@ -42,12 +42,14 @@
       </div>
     </div>
     <div class="mb-5 overflow-x-auto bg-white rounded-lg shadow overflow-y-auto relative">
-      @if($learningPlans->isNotEmpty())
+      
       <table class="border-collapse table-auto w-full bg-white table-striped relative">
         <thead>
           <tr class="text-left">
-            <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-16">Week</th>
+            <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-16">Kode</th>
+            <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-16">Syllabus</th>
             <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-16">LLO</th>
+            <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-16">Week</th>
             <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-256">Study Material</th>
             <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-128">Learning Method</th>
             <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-128">Estimated Time</th>
@@ -56,39 +58,34 @@
           </tr>
         </thead>
         <tbody>
-          @foreach ($learningPlans as $learningPlan)
+          @foreach ($plans as $plan)
           <tr>
-            <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $learningPlan->week_number }}</td>
-            <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $learningPlan->llo_id }}</td>
-            <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $learningPlan->study_material }}</td>
-            <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $learningPlan->learning_method }}</td>
-            <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $learningPlan->estimated_time }}</td>
-            <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $learningPlan->updated_at }}</td>
+            <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $plan->id }}</td>
+            <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $plan->syllabus_id }}</td>
+            <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $plan->llo_id }}</td>
+            <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $plan->week_number }}</td>
+            <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $plan->study_material }}</td>
+            <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $plan->learning_method }}</td>
+            <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $plan->estimated_time }}</td>
+            <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $plan->updated_at }}</td>
             <td class="text-gray-600 px-6 py-3 border-t border-gray-100">
               <div class="flex flex-wrap space-x-4">
-                <form action="{{ route('syllabi.learning-plans.edit', [$syllabi, $learningPlan->id]) }}" method="GET">
-                  <button class="btn btn-warning btn-sm" value="{{ $learningPlan->id }}">Edit</button>
+                <form action="{{ route('syllabi.learning-plans.edit', [$syllabus, $plan->id]) }}" method="GET">
+                  <button class="btn btn-warning btn-sm" value="{{ $plan->id }}">Edit</button>
                 </form>
 
-                <form action="{{ route('syllabi.learning-plans.destroy', [$syllabi, $learningPlan->id]) }}" method="POST">
+                <form action="{{ route('syllabi.learning-plans.destroy', [$syllabus, $plan->id]) }}" method="POST">
                   @csrf
                   @method('delete')
-
-                  <button class="btn btn-error btn-sm" value="{{ $learningPlan->id }}" onclick="return confirm('Are you sure?')">Delete
+                  <button class="btn btn-error btn-sm" value="{{ $plan->id }}" onclick="return confirm('Are you sure?')">Delete
                   </button>
                 </form>
-
               </div>
             </td>
           </tr>
           @endforeach
         </tbody>
       </table>
-      @else
-      <br>
-      <h1 class="text-2xl font-extrabold text-center" style="font-weight: 900;">Data tidak ditemukan</h1>
-      <br>
-      @endif
     </div>
   </div>
 </x-app-layout>
