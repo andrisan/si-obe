@@ -23,33 +23,42 @@
         <!--awal form create-->
         <div class="flex flex-row justify-center">
             <div class="block p-6 rounded-lg shadow-2xl bg-white max-w-md basis-1/2">
-                <form>
+                <form action="{{ route('faculties.departments.store', [$faculty]) }}" method="post">
+                    @csrf
                     <div class="form-group mb-6">
-                        <label for="exampleInputEmail1" class="form-label inline-block mb-2 text-gray-700">
-                            Faculty
-                        </label>
-                        <input type="text"
-                            class="form-control block w-full px-3 py-1.5 text-gray-700 bg-white border border-solid border-gray-400 rounded"
-                            id="DeptName" placeholder="Name">
+                        <h1>{{$faculty->name}}</h1>
+                       
+                     
                     </div>
                     <div class="form-group mb-6">
-                        <label for="exampleInputPassword1" class="form-label inline-block mb-2 text-gray-700">
+                        <label  class="form-label inline-block mb-2 text-gray-700">
                             Department
                         </label>
                         <input type="text"
-                            class="form-control block w-full px-3 py-1.5 text-gray-700 bg-white border border-solid border-gray-400 rounded"
-                            id="SPName" placeholder="Name">
+                        class="form-control block w-full px-3 py-1.5 text-gray-700 bg-white border border-solid border-gray-400 rounded"
+                         placeholder="Masukkan id fakultas" name="faculty_id">
+                        <input type="text"
+                            class="form-control mt-5 block w-full px-3 py-1.5 text-gray-700 bg-white border border-solid border-gray-400 rounded"
+                             placeholder="Nama Departement baru" name="name">
+                       
                     </div>
+                    <div class="flex space-x-3">
+                        <button type="submit"    class="btn px-6 py-2.5 text-white font-medium text-xs rounded shadow-md">
+                         <a href="{{route('faculties.departments.index',[$faculty])}}">  CREATE</a> 
+                        </button>
 
-                    <button type="submit" class="btn px-6 py-2.5 text-white font-medium text-xs rounded shadow-md">
-                        CREATE
-                    </button>
-                    <button type="submit" class="btn px-6 py-2.5 text-white font-medium text-xs rounded shadow-md">
-                        CANCEL
-                    </button>
                 </form>
+                <div class="card-actions ml-4 ">
+                    <form action="{{ route('faculties.departments.index', [$faculty]) }}"> <button
+                            class="btn btn-outline btn-error">Cancel</button></form>
+
+
+
+                </div>
             </div>
+
         </div>
-        <!--akhir form create-->
+    </div>
+    <!--akhir form create-->
     </div>
 </x-app-layout>
