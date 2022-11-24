@@ -49,8 +49,8 @@ class IntendedLearningOutcomeController extends Controller
     public function store(Request $request, Syllabus $syllabus)
     {
         $validateData = $request->validate([
-        'position'=> 'required',
-        'description'=> 'required',
+        'position'=> 'required|numeric',
+        'description'=> 'required|string',
     ]);
         $syllabus->intentedLearningOutcomes()->create($validateData);
 
@@ -97,8 +97,8 @@ class IntendedLearningOutcomeController extends Controller
     {
 
         $validateData = $request->validate([
-        'position'=> 'required',
-        'description'=> 'required',
+        'position'=> 'required|numeric',
+        'description'=> 'required|string',
     ]);
         $ilo->update($validateData);
 
