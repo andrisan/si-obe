@@ -14,12 +14,12 @@ class LearningPlanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($syllabi)
+    public function index($syllabus)
     {
 
-        $learningPlans = LearningPlan::where('syllabus_id', $syllabi)->get();
+        $learningPlans = LearningPlan::where('syllabus_id', $syllabus)->get();
         return view('learning-plans.index', [
-            'syllabi' => $syllabi,
+            'syllabi' => $syllabus,
             // 'learningPlans' => $syllabi->learningPlans()->paginate(4)
             'learningPlans' => $learningPlans
         ]);
@@ -30,10 +30,10 @@ class LearningPlanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Syllabus $syllabi)
+    public function create(Syllabus $syllabus)
     {
         return view('learning-plans.create', [
-            'syllabi' => $syllabi
+            'syllabi' => $syllabus
         ]);
     }
 
@@ -43,21 +43,24 @@ class LearningPlanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Syllabus $syllabi)
+    public function store(Request $request, Syllabus $syllabus)
     {
         $validated = $request->validate([
-            'WeekNumber' => 'required|numeric',
-            'LLO_ID' => 'required|numeric',
-            'studyMaterial' => 'required|string',
-            'learningMethod' => 'required|string',
-            'estTime' => 'required|numeric',
-            'updatedAt' => 'required|numeric',
+            'id' => 'required|numeric',
+            'syllabus_id' => 'required|numeric',
+            'week_number' => 'required|integer',
+            'llo_id' => 'required|numeric',
+            'study_material' => 'required|string',
+            'learning_method' => 'required|string',
+            'estimated_time' => 'required|string',
+            'created_at' => 'date',
+            'updated_at' => 'date',
         ]);
 
-        $syllabi->learningPlans()->create($validated);
+        $syllabus->learningPlan()->create($validated);
 
         return redirect()->route('syllabi.learning-plans.index', [
-            'syllabi' => $syllabi
+            'syllabi'=>$syllabus
         ]);
     }
 
@@ -67,9 +70,9 @@ class LearningPlanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Syllabus $syllabi, LessonLearningOutcome $lessonLearningOutcome, LearningPlan $learningPlan)
+    public function show(Syllabus $syllabus, LessonLearningOutcome $lessonLearningOutcome, LearningPlan $learningPlan)
     {
-        ddd($syllabi, $lessonLearningOutcome, $learningPlan);
+        ddd($syllabus, $lessonLearningOutcome, $learningPlan);
     }
 
     /**
@@ -78,10 +81,11 @@ class LearningPlanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Syllabus $syllabi)
+    public function edit(Syllabus $syllabus, LearningPlan $learningPlan)
     {
         return  view('learning-plans.edit', [
-            'syllabi' => $syllabi
+            'syllabi' => $syllabus,
+            'learningPlan' => $learningPlan
         ]);
     }
 
@@ -92,24 +96,23 @@ class LearningPlanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Syllabus $syllabi, LearningPlan $learningPlan)
+    public function update(Request $request, Syllabus $syllabus, LearningPlan $learningPlan)
     {
         $validated = $request->validate([
-            'WeekNumber' => 'required|numeric',
-            'LLO_ID' => 'required|numeric',
-            'studyMaterial' => 'required|string',
-            'learningMethod' => 'required|string',
-            'estTime' => 'required|numeric',
-            'updatedAt' => 'required|numeric',
+            'id' => 'required|numeric',
+            'week_number' => 'required|integer',
+            'study_material' => 'required|string',
+            'learning_method' => 'required|string',
+            'estimated_time' => 'required|string',
+            'updated_at' => 'date',
         ]);
 
         $learningPlan->update($validated);
 
-        return redirect(route('syllabi.learning-plans.index', [
-                'syllabi'=> $syllabi,
-                'learningPlan'=> $learningPlan
-
-    ]));
+        return redirect()->route('syllabi.learning-plans.index', [
+            'syllabi' => $syllabus,
+            'learningPlan' => $learningPlan
+    ]);
     }
 
     /**
@@ -118,12 +121,12 @@ class LearningPlanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Syllabus $syllabi, LearningPlan $learningPlan)
+    public function destroy(Syllabus $syllabus, LearningPlan $learningPlan)
     {
         $learningPlan->delete();
         
         return redirect()->route('syllabi.learning-plans.index', [
-            'syllabi' => $syllabi
+            'syllabi' => $syllabus
         ]);
     }
 }
