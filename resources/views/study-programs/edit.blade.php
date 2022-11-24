@@ -12,19 +12,21 @@
           <div class="card w-96 bg-base-100">
             <div class="card-body items-center text-center">
               <div class="form-control w-full max-w-xs">
-                <label class="label">
-                  <span class="label-text">ID Program Study</span>
-                </label>
-                <input type="text" class="input input-bordered w-full max-w-xs" value="123" />
-                <label class="label">
-                  <span class="label-text">Nama Program Study</span>
-                </label>
-                <input type="text" class="input input-bordered w-full max-w-xs" value="Program Study A" />
+                <form method="POST" action="{{ route('faculties.departments.study-programs.update', [$faculty, $department, $studyProgram]) }}">
+                  @csrf
+                  @method('patch')
+                  <label class="label">
+                    <span class="label-text">Nama Program Study</span>
+                  </label>
+                  <input type="text" class="input input-bordered w-full max-w-xs" name="name" value="{{ old('name', $studyProgram->name) }}" />
+                  <div class="card-actions justify-end mt-4">
+                    <button class="btn btn-error m-2"><a  href="{{ route('faculties.departments.study-programs.index', [$faculty, $department]) }}">Cancel</a></button>
+                    <button class="btn btn-success m-2">Save</button>
+                  </div>
+                </form>
+                
               </div>
-              <div class="card-actions justify-end mt-4">
-                <button class="btn btn-error m-2">Cancel</button>
-                <button class="btn btn-success m-2">Save</button>
-              </div>
+              
             </div>
           </div>
         </div>
