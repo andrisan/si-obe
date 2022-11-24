@@ -22,7 +22,7 @@
                         <th>
                            
                         <div>
-                        <form action="{{ route('syllabi.assignment-plans.create', [$syllabus]) }}" method= "get">
+                        <form action="{{ route('syllabi.assignment-plans.create', $syllabus) }}" method= "get">
                               <button class="btn border-outline bg-blue-400 hover:bg-blue-700 hover:text-white 
                               text-white font-bold btn-outline"><strong>Create</strong></button>
                         </form>
@@ -34,39 +34,28 @@
                     <tbody>
                       @foreach($plans as $plan)
                       <tr>
-                        <th>{{ $plan->id }}</th> 
+                        <td>{{ $plan->id }}</td> 
                         <td>{{ $plan->title }}</td> 
                         <td>{{ $plan->description }}</td> 
                         <td>{{ $plan->created_at }}</td> 
                         <td>{{ $plan->updated_at }}</td> 
                         <td>{{ $plan->assignment_style }}</td> 
                         <td>
-
-                        <form action="{{ route('syllabi.assignment-plans.edit', [$syllabus, $plan->id]) }}" method="get">
-                        <button class="btn bg-blue-300 hover:bg-blue-600 hover:text-white text-white font-bold btn-outline"><strong>Edit</strong></button>
-                        </form>
-
-                        <form action="{{ route('syllabi.assignment-plans.destroy', [$syllabus, $plan->id]) }}" method="post">
-                        @csrf
-                        @method('delete')
-                          <button class="btn btn-error hover:bg-red-600 hover:text-white text-white font-bold" value="{{ $plan->id }}"  
-                          onclick="return confirm('Yakin ingin menghapus data?');"><strong>Delete</strong></button>
-                          </form>
-                          
+                        <div class="card-actions justify-end pt-5">
+                            <form action="{{ route('syllabi.assignment-plans.edit', [$syllabus, $plan->id]) }}" method="get">
+                              <button class="btn btn-warning btn-sm" value="{{ $plan->id }}"><strong>Edit</strong></button>
+                            </form>
+                            <form action="{{ route('syllabi.assignment-plans.destroy', [$syllabus, $plan->id]) }}" method="post">
+                                @csrf
+                                @method('delete')
+                                <button class="btn btn-error btn-sm" value="{{ $plan->id }}" onclick="return confirm('Yakin ingin menghapus data?');"><strong>Delete</strong></button>
+                            </form>
+                        </div>
                         </td>
                       </tr>
                       @endforeach
                     </tbody> 
                   </table>
-                  <div class="btn-group mt-5">
-                    <button class="btn btn-xs btn-info">1</button>
-                    <button class="btn btn-xs">2</button>
-                    <button class="btn btn-xs">3</button>
-                  </div>
-
-
-                </div>
-                
                 </div>
             </div>
         </div>
