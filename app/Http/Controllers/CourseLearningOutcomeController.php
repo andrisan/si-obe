@@ -13,7 +13,7 @@ class CourseLearningOutcomeController extends Controller
      */
     public function index()
     {
-        return view('course-learning-outcomes.index');
+        //
     }
 
     /**
@@ -25,6 +25,8 @@ class CourseLearningOutcomeController extends Controller
     {
         //
     }
+    // button create
+    
 
     /**
      * Store a newly created resource in storage.
@@ -56,9 +58,9 @@ class CourseLearningOutcomeController extends Controller
      */
     public function edit($id)
     {
-        return view('course-learning-outcomes.edit');
+        return view('clos.edit');
     }
-
+   
     /**
      * Update the specified resource in storage.
      *
@@ -81,4 +83,6 @@ class CourseLearningOutcomeController extends Controller
     {
         //
     }
+    // button delete
+    
 }

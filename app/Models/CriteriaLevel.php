@@ -19,6 +19,11 @@ class CriteriaLevel extends Model
 
     public $timestamps = false;
 
+    public function studentGrades()
+    {
+        return $this->hasMany(StudentGrade::class);
+    }
+
     protected $fillable = [
         'point',
         'title',

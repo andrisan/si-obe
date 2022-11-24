@@ -15,4 +15,9 @@ class AssignmentPlanTask extends Model
     {
         return $this->hasOne(Criteria::class, 'id', 'criteria_id');
     }
+
+    public function gradingPlans()
+    {
+        return $this->hasMany(GradingPlan::class);
+    }
 }
