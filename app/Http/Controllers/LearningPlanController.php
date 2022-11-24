@@ -75,13 +75,14 @@ class LearningPlanController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Syllabus $syllabi)
+    public function edit(Syllabus $syllabi,  LearningPlan $learningPlans)
     {
         return  view('learning-plans.edit', [
-            'syllabi' => $syllabi
+            'syllabi' => $syllabi,
+            'learningPlans' => $learningPlans
         ]);
     }
 
@@ -92,7 +93,7 @@ class LearningPlanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Syllabus $syllabi, LearningPlan $learningPlan)
+    public function update(Request $request, Syllabus $syllabi, LearningPlan $learningPlans)
     {
         $validated = $request->validate([
             'WeekNumber' => 'required|numeric',
@@ -105,11 +106,11 @@ class LearningPlanController extends Controller
 
         $learningPlan->update($validated);
 
-        return redirect(route('syllabi.learning-plans.index', [
+        return redirect() -> route  ('syllabi.learning-plans.index', [
                 'syllabi'=> $syllabi,
-                'learningPlan'=> $learningPlan
+                'learningPlans'=> $learningPlans
 
-    ]));
+    ]);
     }
 
     /**
