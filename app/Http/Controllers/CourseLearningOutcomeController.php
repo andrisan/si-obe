@@ -42,6 +42,8 @@ class CourseLearningOutcomeController extends Controller
             'ilo' => $ilo,
         ]);
     }
+    // button create
+    
 
     /**
      * Store a newly created resource in storage.
@@ -92,7 +94,7 @@ class CourseLearningOutcomeController extends Controller
             'clo' => $clo,
         ]);
     }
-
+   
     /**
      * Update the specified resource in storage.
      *
@@ -134,4 +136,6 @@ class CourseLearningOutcomeController extends Controller
             'ilo' => $ilo,
         ]);
     }
+    // button delete
+    
 }
