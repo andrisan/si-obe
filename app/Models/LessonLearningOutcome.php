@@ -11,6 +11,11 @@ class LessonLearningOutcome extends Model
 
     public $timestamps = false;
 
+    protected $fillable = [
+        'position',
+        'description'
+    ];
+
     public function courseLearningOutcome()
     {
         return $this->belongsTo(CourseLearningOutcome::class);

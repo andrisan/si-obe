@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Models\IntendedLearningOutcome;
+use App\Models\CourseLearningOutcome;
+use App\Models\LessonLearningOutcome;
 
 class LessonLearningOutcomeController extends Controller
 {
@@ -11,9 +15,17 @@ class LessonLearningOutcomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($syllabus, $ilo, $clo)
     {
-        //
+        $clos = LessonLearningOutcome::where('id', $clo)->get();
+        $llos = LessonLearningOutcome::where('clo_id', $clo)->get();
+
+        return view('lesson-learning-outcomes.index', [
+            'syllabus' => $syllabus,
+            'ilo' => $ilo,
+            'clos' => $clos,
+            'llos' => $llos
+        ]);
     }
 
     /**
@@ -21,9 +33,13 @@ class LessonLearningOutcomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($syllabus, $ilo, CourseLearningOutcome $clo)
     {
-        return view('lesson-learning-outcomes.create');
+        return view('lesson-learning-outcomes.create',[
+            'syllabus' => $syllabus,
+            'ilo' => $ilo,
+            'clo' => $clo
+        ]);
     }
 
     /**
@@ -32,9 +48,20 @@ class LessonLearningOutcomeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $syllabus, $ilo, CourseLearningOutcome $clo)
     {
-        //
+        $validated = $request->validate([
+            'position' => 'required|numeric',
+            'description' => 'required|string',
+        ]);
+
+        $clo->lessonLearningOutcomes()->create($validated);
+
+        return redirect()->route('syllabi.ilos.clos.llos.index',[
+            'syllabus' => $syllabus,
+            'ilo' => $ilo,
+            'clo' => $clo
+        ]);
     }
 
     /**
@@ -43,9 +70,9 @@ class LessonLearningOutcomeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+
     }
 
     /**
@@ -54,9 +81,14 @@ class LessonLearningOutcomeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($syllabus, $ilo, $clo, LessonLearningOutcome $llo)
     {
-
+        return view('lesson-learning-outcomes.edit', [
+            'syllabus' => $syllabus,
+            'ilo' => $ilo,
+            'clo' => $clo,
+            'llo' => $llo
+        ]);
     }
 
     /**
@@ -66,9 +98,20 @@ class LessonLearningOutcomeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $syllabus, $ilo, $clo, LessonLearningOutcome $llo)
     {
-        //
+        $validated = $request->validate([
+            'position' => 'required|numeric',
+            'description' => 'required|string',
+        ]);
+
+        $llo->update($validated);
+
+        return redirect()->route('syllabi.ilos.clos.llos.index',[
+            'syllabus' => $syllabus,
+            'ilo' => $ilo,
+            'clo' => $clo
+        ]);
     }
 
     /**
@@ -77,8 +120,14 @@ class LessonLearningOutcomeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($syllabus, $ilo, $clo, LessonLearningOutcome $llo)
     {
-        //
+        $llo->delete();
+
+        return redirect()->route('syllabi.ilos.clos.llos.index',[
+            'syllabus' => $syllabus,
+            'ilo' => $ilo,
+            'clo' => $clo
+        ]);
     }
 }
