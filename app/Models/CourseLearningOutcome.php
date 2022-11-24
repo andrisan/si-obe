@@ -19,4 +19,9 @@ class CourseLearningOutcome extends Model
     {
         return $this->hasMany(LessonLearningOutcome::class, 'clo_id');
     }
+
+    protected $fillable = [
+        'position',
+        'description'
+    ];
 }

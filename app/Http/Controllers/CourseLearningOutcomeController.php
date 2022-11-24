@@ -2,7 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Syllabus;
+use App\Models\IntendedLearningOutcome;
+use App\Models\CourseLearningOutcome;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CourseLearningOutcomeController extends Controller
 {
@@ -11,9 +19,15 @@ class CourseLearningOutcomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($syllabus, $ilo)
     {
-        //
+        $clos = CourseLearningOutcome::where('ilo_id', $ilo)->orderBy('position')->get();
+
+        return view('course-learning-outcomes.index', [
+            'syllabus' => $syllabus,
+            'ilo' => $ilo,
+            'clos' => $clos,
+        ]);
     }
 
     /**
@@ -21,9 +35,12 @@ class CourseLearningOutcomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($syllabus, IntendedLearningOutcome $ilo)
     {
-        //
+        return view('course-learning-outcomes.create', [
+            'syllabus' => $syllabus,
+            'ilo' => $ilo,
+        ]);
     }
     // button create
     
@@ -34,9 +51,19 @@ class CourseLearningOutcomeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $syllabus, IntendedLearningOutcome $ilo)
     {
-        //
+        $validated = $request->validate([
+            'position' => 'required|numeric',
+            'description' => 'required|string',
+        ]);
+
+        $ilo->courseLearningOutcomes()->create($validated);
+        
+        return redirect()->route('syllabi.ilos.clos.index', [
+            'syllabus' => $syllabus,
+            'ilo' => $ilo,
+        ]);
     }
 
     /**
@@ -53,24 +80,43 @@ class CourseLearningOutcomeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param Syllabus $syllabus
+     * @param IntendedLearningOutcome $intendedLearningOutcome
+     * @param CourseLearningOutcome $courseLearningOutcome
+     * 
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($syllabus, $ilo, CourseLearningOutcome $clo)
     {
-        return view('clos.edit');
+        return view('course-learning-outcomes.edit', [
+            'syllabus' => $syllabus,
+            'ilo' => $ilo,
+            'clo' => $clo,
+        ]);
     }
    
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param Syllabus $syllabus
+     * @param IntendedLearningOutcome $intendedLearningOutcome
+     * @param CourseLearningOutcome $courseLearningOutcome
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $syllabus, $ilo, CourseLearningOutcome $clo): RedirectResponse
     {
-        //
+        $validated = $request->validate([
+            'position' => 'required|numeric',
+            'description' => 'required|string',
+        ]);
+
+        $clo->update($validated);
+
+        return redirect()->route('syllabi.ilos.clos.index', [
+            'syllabus' => $syllabus,
+            'ilo' => $ilo,
+        ]);
     }
 
     /**
@@ -79,9 +125,16 @@ class CourseLearningOutcomeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($syllabus, $ilo, CourseLearningOutcome $clo)
     {
+
         //
+        $clo->delete();
+
+        return redirect()->route('syllabi.ilos.clos.index', [
+            'syllabus' => $syllabus,
+            'ilo' => $ilo,
+        ]);
     }
     // button delete
     
