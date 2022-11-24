@@ -15,14 +15,11 @@ class FacultyController extends Controller
      */
     public function index()
     {
-        //
-        $faculties = DB::table('faculty')
-                    ->leftjoin('department', 'department.faculty_id', '=', 'faculty.id')
-                    ->select('faculty.id', 'faculty.name', DB::raw('count(department.faculty_id) as jumlahProdi'))
-                    ->groupBy('faculty.id')
-                    ->get();
+        
+        $faculties = Faculty::all();
 
-        return view('faculties.index', ['faculties' => $faculties]);
+        return view('faculties.index', [
+            'faculties' => $faculties]);
     }
 
     /**
@@ -41,9 +38,18 @@ class FacultyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string'
+        ]);
+
+        $faculty = new Faculty();
+        $faculty->name = $validated['name'];
+        $faculty->save();
+
+        return redirect()->intended('faculties');
     }
 
     /**
@@ -54,7 +60,7 @@ class FacultyController extends Controller
      */
     public function show(Faculty $faculty)
     {
-        ddd($faculty);
+        
     }
 
     /**
@@ -63,10 +69,10 @@ class FacultyController extends Controller
      * @param  \App\Models\Faculty  $faculty
      * @return \Illuminate\Http\Response
      */
+
     public function edit(Faculty $faculty)
     {
-        //
-        return view('faculties.edit');
+        return view('faculties.edit', ['faculty'=>$faculty]);
     }
 
     /**
@@ -79,6 +85,15 @@ class FacultyController extends Controller
     public function update(Request $request, Faculty $faculty)
     {
         //
+        $validated = $request->validate([
+            'name' => 'required|string'
+        ]);
+
+        $faculty->update([
+            'name' => $validated['name']
+        ]);
+        
+        return redirect()->intended('faculties');
     }
 
     /**
@@ -90,5 +105,8 @@ class FacultyController extends Controller
     public function destroy(Faculty $faculty)
     {
         //
+        $faculty->delete();
+
+        return back();
     }
 }

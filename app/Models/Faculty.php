@@ -9,6 +9,8 @@ class Faculty extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name'];
+
     public $timestamps = false;
 
     public function departments()
