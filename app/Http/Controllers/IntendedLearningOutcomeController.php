@@ -2,7 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\IntendedLearningOutcome;
+use App\Models\Syllabus;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
+
+
 
 class IntendedLearningOutcomeController extends Controller
 {
@@ -11,9 +18,13 @@ class IntendedLearningOutcomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($syllabus)
     {
-        //
+        $ilo = IntendedLearningOutcome::where('syllabus_id', $syllabus)->orderBy('position')->get();
+       return view('intended-learning-outcomes.index',[
+            'syllabus' => $syllabus,
+            'ilo' => $ilo
+        ]);
     }
 
     /**
@@ -21,9 +32,12 @@ class IntendedLearningOutcomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Syllabus $syllabus)
     {
-        return view('intended-learning-outcomes.create');
+        return view('intended-learning-outcomes.create',[
+            'syllabus' =>$syllabus
+        ]);
+
     }
 
     /**
@@ -32,18 +46,25 @@ class IntendedLearningOutcomeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Syllabus $syllabus)
     {
-        //
-    }
+        $validateData = $request->validate([
+        'position'=> 'required|numeric',
+        'description'=> 'required|string',
+    ]);
+        $syllabus->intentedLearningOutcomes()->create($validateData);
 
+        return redirect()-> route ('syllabi.ilos.index',[
+        'syllabus' => $syllabus,
+    ]);
+    }
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
         //
     }
@@ -51,24 +72,39 @@ class IntendedLearningOutcomeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param Syllabus $syllabus
+     * @param IntendedLearningOutcome $intendedLearningOutcome
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($syllabus,IntendedLearningOutcome $ilo)
     {
-        return view('intended-learning-outcomes.edit');
+        // return view('intended-learning-outcomes.edit');
+        return view ('intended-learning-outcomes.edit',[
+            'syllabus' => $syllabus,
+            'ilo'   => $ilo
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param Syllabus $syllabus
+     * @param IntendedLearningOutcome $intendedLearningOutcome
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $syllabus, IntendedLearningOutcome $ilo)
     {
-        //
+
+        $validateData = $request->validate([
+        'position'=> 'required|numeric',
+        'description'=> 'required|string',
+    ]);
+        $ilo->update($validateData);
+
+        return redirect()-> route ('syllabi.ilos.index',[
+        'syllabus' => $syllabus,
+    ]);
     }
 
     /**
@@ -76,9 +112,11 @@ class IntendedLearningOutcomeController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     *
      */
     public function destroy($id)
     {
-        //
+        DB::table('intended_learning_outcomes')->where('id',$id)->delete();
+        return back();
     }
 }

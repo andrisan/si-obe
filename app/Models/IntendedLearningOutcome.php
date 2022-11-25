@@ -15,4 +15,8 @@ class IntendedLearningOutcome extends Model
     {
         return $this->hasMany(CourseLearningOutcome::class, 'ilo_id');
     }
+    protected $fillable =[
+        'position',
+        'description'
+    ];
 }
