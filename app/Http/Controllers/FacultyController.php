@@ -18,7 +18,7 @@ class FacultyController extends Controller
     public function index()
     {
         
-        $faculties = Faculty::all();
+        $faculties = Faculty::orderBy('id')->paginate(3);
 
         return view('faculties.index', [
             'faculties' => $faculties]);
@@ -115,6 +115,6 @@ class FacultyController extends Controller
     {
         $faculty->delete();
 
-        return back();
+        return redirect('faculties');
     }
 }
