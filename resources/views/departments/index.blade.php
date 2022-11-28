@@ -27,16 +27,22 @@ $rows = collect($departments)->all()['data'] ?? [];
                         <!--dropdown pilih fakultas-->
                         <div class="dropdown">
                             <div class="dropdown dropdown-end ml-10">
-                                <label tabindex="0" class="btn m-1">Nama Fakultas</label>
-                                <ul tabindex="0"
-                                    class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+                                <select name="forma" onchange="location = this.value;"
+                                    class="select input-bordered w-full max-w-xs" selected>
+                                    <option disabled selected>Nama Fakultas</option>
                                     @foreach ($faculties as $faculty)
-                                        <li><a @selected(true)
-                                                href="/faculties/{{ $faculty->id }}/departments/">{{ $faculty->name }}</a>
-                                        </li>
+                                        @if (old('faculty') == $faculty->id)
+                                            <option selected value="/faculties/{{ $faculty->id }}/departments">
+                                                {{ $faculty->name }}</option>
+                                        @else
+                                            <option selected value="/faculties/{{ $faculty->id }}/departments">
+                                                {{ $faculty->name }}</option>
+                                        @endif
                                     @endforeach
 
-                                </ul>
+                                </select>
+
+
 
 
                             </div>
@@ -45,7 +51,7 @@ $rows = collect($departments)->all()['data'] ?? [];
                         </div>
                         @foreach ($departments as $department)
                         @endforeach
-                        <a href="/faculties/{{ $department->faculty_id }}/departments/create" class="btn ">
+                        <a href="{{route('faculties.departments.create',$faculty,$department)}}" class="btn ">
 
                             tambah
 
@@ -73,9 +79,10 @@ $rows = collect($departments)->all()['data'] ?? [];
                                 </thead>
                                 <tbody>
                                     <!-- row 1 -->
+                                    <?php $i = 1; ?>
                                     @foreach ($departments as $department)
                                         <tr class="hover">
-                                            <th>{{ $department['id'] }}</th>
+                                            <th>{{ $i }}</th>
                                             <td>{{ $department['name'] }}</td>
                                             <td>
                                                 <div class="flex  ">
@@ -98,6 +105,7 @@ $rows = collect($departments)->all()['data'] ?? [];
                                                 </div>
                                             </td>
                                         </tr>
+                                        <?php $i += 1; ?>
                                     @endforeach
 
                                     <!-- row 2 -->
