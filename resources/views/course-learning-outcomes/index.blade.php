@@ -63,6 +63,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    {{ $clos->links() }}
                 </div>
             </div>
         </div>

@@ -22,7 +22,7 @@ class CourseLearningOutcomeController extends Controller
      */
     public function index($syllabus, $ilo)
     {
-        $clos = CourseLearningOutcome::where('ilo_id', $ilo)->orderBy('position')->get();
+        $clos = CourseLearningOutcome::where('ilo_id', $ilo)->orderBy('position')->paginate(5)->get();
 
         return view('course-learning-outcomes.index', [
             'syllabus' => $syllabus,
