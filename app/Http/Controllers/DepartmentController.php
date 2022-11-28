@@ -109,17 +109,11 @@ class DepartmentController extends Controller
      */
     public function update(Request $request, $faculty, Department $department)
     {
-
         //
-
-
-
         $department->update([
 
             'name' => $request->name
         ]);
-
-
         return redirect()->route('faculties.departments.index', $faculty);
     }
 
@@ -134,10 +128,6 @@ class DepartmentController extends Controller
         //
 
         $department->delete();
-
-        $department->delete();
-
-
         return redirect()->route('faculties.departments.index', [
             'department' => $department,
             'faculty' => $faculty,
