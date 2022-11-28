@@ -51,7 +51,7 @@ $rows = collect($departments)->all()['data'] ?? [];
                         </div>
                         @foreach ($departments as $department)
                         @endforeach
-                        <a href="{{route('faculties.departments.create',$faculty,$department)}}" class="btn ">
+                        <a href="{{ route('faculties.departments.create', $faculty) }}" class=" btn-primary btn ml-5">
 
                             tambah
 
@@ -99,6 +99,7 @@ $rows = collect($departments)->all()['data'] ?? [];
                                                         @csrf
                                                         @method('delete')
                                                         <button class="btn btn-error btn-sm"
+                                                            onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();"
                                                             value="{{ $department->id }}">Delete</button>
 
                                                     </form>
