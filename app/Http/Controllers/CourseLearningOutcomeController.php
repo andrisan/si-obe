@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Syllabus;
 use App\Models\IntendedLearningOutcome;
 use App\Models\CourseLearningOutcome;
+use App\Models\LessonLearningOutcome;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -72,9 +73,16 @@ class CourseLearningOutcomeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($syllabus, $ilo, CourseLearningOutcome $clo)
     {
-        //
+        $llos = CourseLearningOutcome::where('clo_id', $clo)->orderBy('position')->get();
+
+        return view('course-learning-outcomes.show', [
+            'syllabus' => $syllabus,
+            'ilo' => $ilo,
+            'clo' => $clo,
+            'llos' => $llos,
+        ]);
     }
 
     /**
