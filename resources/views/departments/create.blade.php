@@ -26,25 +26,25 @@
                 <form action="{{ route('faculties.departments.store', [$faculty]) }}" method="post">
                     @csrf
                     <div class="form-group mb-6">
-                        <h1>{{$faculty->name}}</h1>
-                       
-                     
+                        <h1>{{ $faculty->name }}</h1>
+
+
                     </div>
                     <div class="form-group mb-6">
-                        <label  class="form-label inline-block mb-2 text-gray-700">
+                        <label class="form-label inline-block mb-2 text-gray-700">
                             Department
                         </label>
                         <input type="text"
-                        class="form-control block w-full px-3 py-1.5 text-gray-700 bg-white border border-solid border-gray-400 rounded"
-                         placeholder="Masukkan id fakultas" name="faculty_id">
+                            class="form-control block w-full px-3 py-1.5 text-gray-700 bg-white border border-solid border-gray-400 rounded"
+                            placeholder="Masukkan id fakultas" name="faculty_id">
                         <input type="text"
                             class="form-control mt-5 block w-full px-3 py-1.5 text-gray-700 bg-white border border-solid border-gray-400 rounded"
-                             placeholder="Nama Departement baru" name="name">
-                       
+                            placeholder="Nama Departement baru" name="name">
+
                     </div>
                     <div class="flex space-x-3">
-                        <button type="submit"    class="btn px-6 py-2.5 text-white font-medium text-xs rounded shadow-md">
-                         <a href="{{route('faculties.departments.index',[$faculty])}}">  CREATE</a> 
+                        <button type="submit" class="btn px-6 py-2.5 text-white font-medium text-xs rounded shadow-md">
+                            <a href="{{ route('faculties.departments.index', [$faculty]) }}"> CREATE</a>
                         </button>
 
                 </form>

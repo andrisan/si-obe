@@ -51,13 +51,11 @@ class DepartmentController extends Controller
      */
     public function store(Request $request, Faculty $faculty, Department $department)
     {
-
-     
-
-        $department->create([
-            'name' => $request->name,
-            'faculty_id' => $request->faculty_id,
+        $validated = $request->validate([
+            'name' => 'required|string',
+        
         ]);
+        $faculty->departments()->create($validated);
 
         return redirect()->route(
             'faculties.departments.index',$faculty
@@ -94,9 +92,7 @@ class DepartmentController extends Controller
         //
 
 
-        // $faculty = DB::table('faculties')->where('id',$id)->first();
-        // $department = DB::table('departments')->where('id',$id)->first();
-        // return view('departments.edit',['department'=>$department],['faculty'=>$faculty]);
+     
         
         return view('departments.edit', [
             'department' => $department,
