@@ -38,7 +38,7 @@
                                         <td>{{ $faculty->name }}</td>
                                         <td>
                                             <div class="flex items-strecth">
-                                                <form action="faculties/{{ $faculty->id }}/edit" method="get">
+                                                {{-- <form action="faculties/{{ $faculty->id }}/edit" method="get">
                                                     <button class="btn btn-warning btn-sm m-1"
                                                         value="{{ $faculty->id }}">Edit</button>
                                                 </form>
@@ -47,6 +47,10 @@
                                                     @method('delete')
                                                     <button class="btn btn-error btn-sm m-1" value="{{ $faculty->id }}"
                                                         onclick="return confirm('Yakin ingin menghapus data ?');">Delete</button>
+                                                </form> --}}
+                                                <a href="{{ route('faculties.show', [$faculty]) }}">
+                                                    <button class="btn btn-warning btn-sm m-1">Detail</button>
+                                                </a>
                                                 </form>
                                             </div>
                                         </td>

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Department;
 use App\Models\Faculty;
+use App\Models\StudyProgram;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -60,7 +62,14 @@ class FacultyController extends Controller
      */
     public function show(Faculty $faculty)
     {
-        
+        // $studyPrograms = Department::where('faculty_id', $faculty->id)->get();
+        $studyPrograms = StudyProgram::all();
+
+        return view('faculties.show', [
+            'faculty'=>$faculty,
+            'departments'=>$faculty->departments()->orderBy('id')->paginate(2),
+            'studyPrograms'=>$studyPrograms
+        ]);
     }
 
     /**
@@ -93,7 +102,7 @@ class FacultyController extends Controller
             'name' => $validated['name']
         ]);
         
-        return redirect()->intended('faculties');
+        return redirect(route('faculties.show', [$faculty]));
     }
 
     /**
@@ -104,7 +113,6 @@ class FacultyController extends Controller
      */
     public function destroy(Faculty $faculty)
     {
-        //
         $faculty->delete();
 
         return back();

@@ -23,9 +23,9 @@
                       <div class="card-actions justify-end mt-4">
                         <button class="btn btn-primary" type="submit">Simpan</button>
                       </form>
-                        <form action="{{ route('faculties.index') }}">
-                          <button class="btn btn-outline btn-error font-bold">Cancel</button>
-                        </form>
+                      <a href="{{ route('faculties.show', [$faculty]) }}">
+                        <button class="btn btn-outline btn-error font-bold">Cancel</button>
+                      </a>
                     </div>
                   </div>
               </div>
