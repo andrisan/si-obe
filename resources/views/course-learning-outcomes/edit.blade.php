@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-2xl text-gray-800 leading-tight">
-            Edit: Course Learning Outcome
+            EDIT: Course Learning Outcome
         </h2>
     </x-slot>
 
@@ -13,6 +13,7 @@
                     @csrf
                     @method('patch')
                     <div class="pb-4">
+                        <h2 class="font-semibold text-3xl text-center">EDIT: Course Learning Outcomes</h2>
                         <div class="pb-2"><label for="position"><strong class="font-semibold text-gray-900 dark:text-white">Position</strong></label></div>
                         <input type="text" name="position" placeholder="Position" class="input input-bordered w-full max-w-xs" value="{{ old('position', $clo->position) }}"/> <br>
                         <x-input-error :messages="$errors->get('position')" class="mt-2" />
