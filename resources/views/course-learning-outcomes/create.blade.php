@@ -14,7 +14,7 @@
                   <form action="{{ route('syllabi.ilos.clos.store', [$syllabus, $ilo]) }}" method="post">
                     <div class="pb-4">
                     @csrf
-                    <h2 class="font-semibold text-3xl text-center">Input Your New Course Learning Outcomes</h2>
+                    <h2 class="font-semibold text-3xl text-center">CREATE: Course Learning Outcomes</h2>
                         <div class="pb-2"><label for="position"><strong class="font-semibold text-gray-900 dark:text-white">Position</strong></label></div>
                         <input type="text" placeholder="Posisi CLO" class="input input-bordered w-full max-w-xs" name="position"/> <br>
                         <x-input-error :messages="$errors->get('position')" class="mt-2" />
