@@ -2,7 +2,7 @@
 
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Daftar Departemen') }}
+            {{ __('Detail Fakultas') }}
         </h2>
     </x-slot>
 
@@ -16,22 +16,22 @@
                         </div>
                         <div class="grid flex-grow place-items-end align-top">
                             <div class="flex flex-col lg:flex-row">
-                                <div class="grid flex-grow place-items-start mr-2">
+                                <div class="grid flex-grow mr-2">
                                     <a href="{{ route('faculties.index') }}">
-                                        <button class="btn btn-black font-bold btn-sm text-white">Back</button>
+                                        <button class="btn rounded-full btn-black font-bold btn-sm text-white"><img class="w-6 h-6" src="{{ asset('img/icon-back.png') }}" alt=""></button>
                                     </a>
                                 </div>
-                                <div class="grid flex-grow place-items-center mr-2">
+                                <div class="grid flex-grow mr-2">
                                     <a href="{{ route('faculties.edit', [$faculty]) }}">
-                                        <button class="btn btn-accent font-bold btn-sm text-white">Edit</button>
+                                        <button class="btn rounded-full btn-accent font-bold btn-sm text-white"><img class="w-5 h-5" src="{{ asset('img/icon-edit.png') }}" alt=""></button>
                                     </a>
                                 </div>
-                                <div class="grid flex-grow place-items-end">
+                                <div class="grid flex-grow">
                                     <form action="{{ route('faculties.destroy', [$faculty]) }}" method="post">
                                         @csrf
                                         @method('delete')
-                                        <button class="btn btn-error font-bold btn-sm text-white" value="{{ $faculty->id }}"
-                                            onclick="return confirm('Yakin ingin menghapus data ?');">Delete</button>
+                                        <button class="btn rounded-full btn-error font-bold btn-sm text-white hover:bg-red-500" value="{{ $faculty->id }}"
+                                            onclick="return confirm('Yakin ingin menghapus data ?');"><img class="w-5 h-5" src="{{ asset('img/icon-delete.png') }}" alt=""></button>
                                     </form>
                                 </div>
                             </div>
@@ -39,7 +39,7 @@
                     </div>
                     <div class="grid">
                         <a href="{{ route('faculties.departments.index', [$faculty]) }}">
-                            <button class="btn btn-warning font-bold mt-4 btn-sm text-black">Manage Department</button>
+                            <button class="btn btn-black hover:bg-white hover:text-black text-white font-bold rounded border-black border-2 hover:border-black btn-sm mt-8">Manage Department</button>
                         </a>
                     </div>
                     <div class="overflow-x-auto py-4">
@@ -61,7 +61,7 @@
                                         <td>{{ $department->name }}
                                             <div class="flex items-strecth">
                                                 <a href="{{ route('faculties.departments.study-programs.index', [$faculty, $department]) }}">
-                                                    <button class="btn btn-xs text-white">Manage Prodi</button>
+                                                    <button class="btn btn-black hover:bg-white hover:text-black text-white font-bold rounded border-black border-2 hover:border-black btn-xs">Manage Prodi</button>
                                                 </a>
                                             </div>
                                         </td>
