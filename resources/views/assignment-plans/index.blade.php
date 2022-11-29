@@ -4,22 +4,22 @@
             {{ __('Assignment Plans') }}
         </h2>
     </x-slot>
-
+    
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                <div class="overflow-x-auto">
-                  <table class="table table-compact w-full">
+                <div>
+                  <table class="w-full">
                     <thead>
                       <tr>
                         <th>id</th> 
-                        <th>title</th> 
-                        <th>description</th> 
-                        <th>created_at</th> 
-                        <th>updated_at</th> 
-                        <th>assignment_style</th> 
-                        <th>
+                        <th class="w-[45rem] px-32">title</th> 
+                        <th class="w-[45rem] px-32">description</th> 
+                        <th class="w-[20rem]">created_at</th> 
+                        <th class="w-[20rem]">updated_at</th> 
+                        <th class="w-[20rem]">assignment_style</th> 
+                        <th class="w-36 p-10">
                            
                         <div>
                         <form action="{{ route('syllabi.assignment-plans.create', $syllabus) }}" method= "get">
@@ -35,13 +35,13 @@
                       @foreach($plans as $plan)
                       <tr>
                         <td>{{ $plan->id }}</td> 
-                        <td>{{ $plan->title }}</td> 
-                        <td>{{ $plan->description }}</td> 
-                        <td>{{ $plan->created_at }}</td> 
-                        <td>{{ $plan->updated_at }}</td> 
-                        <td>{{ $plan->assignment_style }}</td> 
-                        <td>
-                        <div class="card-actions justify-end pt-5">
+                        <td class="px-5">{{ $plan->title }}</td> 
+                        <td class="px-5">{{ $plan->description }}</td> 
+                        <td class="px-5">{{ $plan->created_at }}</td> 
+                        <td class="px-5">{{ $plan->updated_at }}</td> 
+                        <td class="px-5">{{ $plan->assignment_style }}</td> 
+                        <td class="w-36">
+                        <div class="flex card-actions justify-center pt-5">
                             <form action="{{ route('syllabi.assignment-plans.edit', [$syllabus, $plan->id]) }}" method="get">
                               <button class="btn btn-warning btn-sm" value="{{ $plan->id }}"><strong>Edit</strong></button>
                             </form>
