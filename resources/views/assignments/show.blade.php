@@ -1,4 +1,7 @@
 @php use Carbon\Carbon; @endphp
+
+@section('pageTitle', "$courseClass->name Assigment Detail")
+
 <x-app-layout>
   <x-slot name="header">
     <div class="flex flex-row gap-4">
