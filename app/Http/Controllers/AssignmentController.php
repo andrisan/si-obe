@@ -51,7 +51,7 @@ class AssignmentController extends Controller
             'course_class_id' => 'required|numeric',
             'assigned_date' => 'required|date',
             'due_date' => 'required|date',
-            'note' => 'string',
+            'note' => 'nullable|string',
         ]);
 
         $assignment->create($validated);
@@ -103,7 +103,7 @@ class AssignmentController extends Controller
             'assignment_plan_id' => 'required|numeric',
             'assigned_date' => 'required|date',
             'due_date' => 'required|date',
-            'note' => 'string',
+            'note' => 'nullable|string',
         ]);
 
         $assignment->update($validated);
