@@ -50,7 +50,6 @@ class AssignmentController extends Controller
         $validated = $request->validate([
             'assignment_plan_id' => 'required|numeric',
             'course_class_id' => 'required|numeric',
-            'assigned_date' => 'required|date',
             'due_date' => 'required|date',
             'note' => 'nullable|string',
         ]);
@@ -108,7 +107,6 @@ class AssignmentController extends Controller
     {
         $validated = $request->validate([
             'assignment_plan_id' => 'required|numeric',
-            'assigned_date' => 'required|date',
             'due_date' => 'required|date',
             'note' => 'nullable|string',
         ]);
