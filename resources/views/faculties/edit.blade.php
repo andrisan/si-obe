@@ -21,10 +21,10 @@
                         <input type="text" class="input input-bordered w-full max-w-xs text-neutral" name="name" value="{{ $faculty->name }}"/>
                       </div>
                       <div class="card-actions justify-end mt-4">
-                        <button class="btn btn-primary" type="submit">Simpan</button>
+                        <button class="btn bg-green-400 hover:bg-white hover:text-green-400 text-white font-bold rounded border-green-400 border-2 hover:border-green-400" type="submit">Simpan</button>
                       </form>
                       <a href="{{ route('faculties.show', [$faculty]) }}">
-                        <button class="btn btn-outline btn-error font-bold">Cancel</button>
+                        <button class="btn bg-red-400 hover:bg-white hover:text-red-400 text-white font-bold rounded border-red-400 border-2 hover:border-red-400">Cancel</button>
                       </a>
                     </div>
                   </div>

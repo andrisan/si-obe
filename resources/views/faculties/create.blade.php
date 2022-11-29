@@ -17,8 +17,8 @@
                                 <input type="text" placeholder="Type here" class="input input-bordered input-ghost input-l w-full max-w-xl mb-4   " name="name"/>
                             </div>
                             <div class="actions justify-start">
-                                <button class="btn bg-green-500 hover:bg-white hover:text-green-500 text-white font-bold rounded border-green-500 border-2 hover:border-green-500 btn-sm mr-2">Tambah</button>
-                                <button class="btn bg-red-500 hover:bg-white hover:text-red-500 text-white font-bold rounded border-red-500 border-2 hover:border-red-500 btn-sm"><a href="{{ route('faculties.index') }}">Cancel</a></button>
+                                <button class="btn bg-green-400 hover:bg-white hover:text-green-400 text-white font-bold rounded border-green-400 border-2 hover:border-green-400 mr-2">Tambah</button>
+                                <button class="btn bg-red-400 hover:bg-white hover:text-red-400 text-white font-bold rounded border-red-400 border-2 hover:border-red-400"><a href="{{ route('faculties.index') }}">Cancel</a></button>
                             </div>
                         </form>
                     </div>
