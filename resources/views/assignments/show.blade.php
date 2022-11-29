@@ -30,18 +30,11 @@
                         alt="" class="w-7">
                   </div>
                 </div>
-                <div class="text-2xl font-bold ">
-                    <h1>{{ $assignment->assignmentPlan->title ??null }}</h1>
-                </div>
+                <div>
+                  <h1 class="text-2xl font-bold mb-2">{{ $assignment->assignmentPlan->title ??null }}</h1>
+                  <p>Due Date : {{ Carbon::parse( $assignment->due_date)->format("M d, Y") }}</p>
               </div>
-          </div>
 
-          <div class="footer items-center px-6 py-4 bg-neutral text-neutral-content">
-              <div class="items-center grid-flow-col">
-                  <p>Assigned Date : {{ Carbon::parse( $assignment->assigned_date)->format("M d, Y") }}</p>
-              </div>
-              <div class="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
-                  <p>Due Date: {{ Carbon::parse( $assignment->due_date)->format("M d, Y") }}</p>
               </div>
           </div>
 

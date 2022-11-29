@@ -46,13 +46,6 @@
                                     <h1 class="font-bold py-2">Deadline</h1>
                                     <div class="flex-row flex gap-10">
                                         <div class="1">
-                                            <input type="datetime-local" placeholder="Type here" name="assigned_date"
-                                                class="input input-bordered w-full max-w-xs" value="{{  old('note', $assignment->assigned_date) }}">
-                                            <x-input-error :messages="$errors->get('assigned_date')" class="mt-2" />  
-                                        </div>
-                                        <h1 class="font-bold text-3xl" style="margin-right:-1.5rem; margin-left:-1.25rem;">-
-                                        </h1>
-                                        <div class="2">
                                             <input type="datetime-local" placeholder="Type here" name="due_date"
                                                 class="input input-bordered w-full max-w-xs" value="{{  old('note', $assignment->due_date) }}">
                                             <x-input-error :messages="$errors->get('due_date')" class="mt-2" /> 
