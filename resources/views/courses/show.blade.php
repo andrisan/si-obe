@@ -25,7 +25,7 @@
                         <h2 class="card-title pb-5">{{$course->name}}</h2>
                         <div class="grid grid-cols-3 grid-flow-row gap-4">
                             <p class="py-3">Study Program</p>
-                            <div class="col-span-2">: {{$course->code}}</div>
+                            <div class="col-span-2">: {{$course->studyProgram()->find($course->study_program_id)->name}}</div>
                             <p class="py-3">Class Code</p>
                             <div class="col-span-2">: {{$course->code}}</div>
                             <p class="py-3">Course Type</p>
