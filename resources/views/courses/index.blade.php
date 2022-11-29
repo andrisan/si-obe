@@ -62,7 +62,7 @@
                                     <p class="pb-10">{{$course->short_description}}</p>
                                     <!-- <p class="pb-10">{{$course->study_material_summary}}</p> -->
                                     <br>
-                                    <p>Created by {{ $name[$course->id] }}</p>
+                                    <p>Created by {{ $course->creator()->find($course->creator_user_id)->name }}</p>
 
                                     <div class="pt-5 card-actions border-t-2">
                                         <p><strong>Minimal requirement:</strong> {{$course->minimal_requirement}}</p>
@@ -70,7 +70,7 @@
 
 
                                     <!-- <div class="card-actions justify-start pt-3">
-                                                
+
                                                 <form action="{{route('courses.destroy', $course->id)}}" method="post">
                                                     @csrf
                                                     @method('delete')
@@ -78,10 +78,10 @@
                                                 </form>
                                             </div> -->
                                     <div class="card-actions justify-start pt-3">
-                                        <form action="/courses/{{ $course->id }}/edit" method="get">
+                                        <form action="{{ route('courses.show',$course->id) }}" method="get">
                                             <button class="text-blue-600 my-4 mr-4 pr-7" value="{{ $course->id }}"><strong>Open</strong></button>
                                         </form>
-                                        <form action="/courses/{{ $course->id }}/edit" method="get">
+                                        <form action="{{ route('courses.edit',$course->id) }}" method="get">
                                             <button class="m-4 pl-96 ml-96" value="{{ $course->id }}"><strong>Edit</strong></button>
                                         </form>
                                         <form action="{{route('courses.destroy', $course->id)}}" method="post">
