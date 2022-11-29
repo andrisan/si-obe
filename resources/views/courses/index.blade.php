@@ -81,7 +81,7 @@
                                             </div> -->
                                     <div class="card-actions justify-start pt-3">
                                         <form action="{{ route('courses.show',$course->id) }}" method="get">
-                                            <button class="text-blue-600 my-4 mr-4 pr-7" value="{{ $course->id }}"><strong>Open</strong></button>
+                                            <button class="text-blue-600 my-4 mr-4 pr-3" value="{{ $course->id }}"><strong>Open Details</strong></button>
                                         </form>
                                         <form action="{{ route('courses.edit',$course->id) }}" method="get">
                                             <button class="m-4 pl-96 ml-96" value="{{ $course->id }}"><strong>Edit</strong></button>
