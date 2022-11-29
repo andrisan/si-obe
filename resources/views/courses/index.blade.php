@@ -37,7 +37,7 @@
                                     </div>
                                 </div>
 
-                                <div class="form-control pl-5 text-sm max-w-xl mb-10 mt-5" id="kodekelas">
+                                <!-- <div class="form-control pl-5 text-sm max-w-xl mb-10 mt-5" id="kodekelas">
                                     <div class="input-group mt-2">
                                         <input type="text" placeholder="course name" class="input max-w-xs border-gray-200 bg-gray-200 w-full" />
                                         {{-- <select class="select select-bordered hover:bg-base text-gray-400 bg-gray-200">
@@ -52,7 +52,7 @@
                                             </svg>
                                         </button>
                                     </div>
-                                </div>
+                                </div> -->
 
                                 @foreach ($courses as $course)
                                 <div class="card-normal shadow-lg ml-5 px-5 mr-5 mb-10">
@@ -60,22 +60,36 @@
                                         <h2 class="card-title">{{$course->name}}</h2>
                                         <p>{{$course->code}} - <strong>{{$course->type}}</strong> - {{$course->learning_media}} - <strong>{{$course->course_credit}} SKS</strong> </p>
                                         <p class="pb-10">{{$course->short_description}}</p>
-                                        <p class="pb-10">{{$course->study_material_summary}}</p>
+                                        <!-- <p class="pb-10">{{$course->study_material_summary}}</p> -->
+                                        <br>
                                         <p>Created by {{ $name[$course->id] }}</p>
 
                                         <div class="pt-5 card-actions border-t-2">
                                             <p><strong>Minimal requirement:</strong> {{$course->minimal_requirement}}</p>
                                         </div>
-                                        <div class="card-actions justify-end pt-3">
-                                            <form action="/courses/{{ $course->id }}/edit" method="get">
-                                                <button class="text-blue-600 m-4" value="{{ $course->id }}"><strong>Edit</strong></button>
-                                            </form>
-                                            <form action="{{route('courses.destroy', $course->id)}}" method="post">
-                                                @csrf
-                                                @method('delete')
-                                                <button class="m-4" value="{{ $course->id }}" onclick="return confirm('Yakin ingin menghapus data?');"><strong>Delete</strong></button>
-                                            </form>
-                                        </div>
+                                        
+                                        
+                                            <!-- <div class="card-actions justify-start pt-3">
+                                                
+                                                <form action="{{route('courses.destroy', $course->id)}}" method="post">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button class="m-4" value="{{ $course->id }}" onclick="return confirm('Yakin ingin menghapus data?');"><strong>Delete</strong></button>
+                                                </form>
+                                            </div> -->
+                                            <div class="card-actions justify-start pt-3">
+                                                <form action="/courses/{{ $course->id }}/edit" method="get">
+                                                    <button class="text-blue-600 my-4 mr-4 pr-7" value="{{ $course->id }}"><strong>Open</strong></button>
+                                                </form>
+                                                <form action="/courses/{{ $course->id }}/edit" method="get">
+                                                    <button class="m-4 pl-96 ml-96" value="{{ $course->id }}"><strong>Edit</strong></button>
+                                                </form>
+                                                <form action="{{route('courses.destroy', $course->id)}}" method="post">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button class="text-red-600 my-4 ml-4" value="{{ $course->id }}" onclick="return confirm('Yakin ingin menghapus data?');"><strong>Delete</strong></button>
+                                                </form>
+                                            </div>
                                     </div>
                                 </div>
                                 @endforeach
