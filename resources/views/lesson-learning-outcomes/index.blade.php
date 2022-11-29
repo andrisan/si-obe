@@ -1,3 +1,5 @@
+@section('pageTitle', "Lesson Learning Outcome")
+
 <script src="https://kit.fontawesome.com/b79c47ea42.js" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/61cc44f0a1.js" crossorigin="anonymous"></script>
 
@@ -7,10 +9,7 @@
             {{ __('Lesson Learning Outcome') }}
         </h2>
     </x-slot>
-
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.38.0/dist/full.css" rel="stylesheet" type="text/css" />
-    <html data-theme="light"></html>
-
+    
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -31,10 +30,6 @@
                                     <tr>
                                         <td class="font-bold">Kode CLO</td>
                                         <td>: {{ $clo->id }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="font-bold">Posisi</td>
-                                        <td>: {{ $clo->position }}</td>
                                     </tr>
                                     <tr>
                                         <td class="font-bold">Deskripsi</td>
