@@ -75,7 +75,7 @@ class CourseLearningOutcomeController extends Controller
      */
     public function show($syllabus, $ilo, CourseLearningOutcome $clo)
     {
-        $llos = CourseLearningOutcome::where('clo_id', $clo)->orderBy('position')->get();
+        $llos = LessonLearningOutcome::where('clo_id', $clo)->orderBy('position')->get();
 
         return view('course-learning-outcomes.show', [
             'syllabus' => $syllabus,
