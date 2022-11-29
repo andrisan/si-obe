@@ -47,6 +47,9 @@
               </div>
           </div>
 
+
+<div class="flex flex-row-reverse justify-between">
+
               <div class="tombol justify-end flex flex-row gap-2 py-5 px-10">
                 <form action="{{ route('course-classes.assignments.edit', [$courseClass, $assignment]) }}" method="get">
                   <button class="btn btn-active btn-warning w-24" value="">Edit</button>
@@ -61,6 +64,23 @@
                   </button>
                 </form>
               </div>
+{{-- Ngelink ke Student Grades --}}
+              <div class="nilai py-5 px-10">
+ <form method="GET" action="{{ route('student-grades.index', [$assignment]) }}">
+                <input type="hidden" name="assignment_id" id="assignment_id" value="{{ $assignment->id}}">
+                <button class="btn btn-active  btn-success w-24">
+                    Isi Nilai
+                </button>
+              </form>
+
+
+              </div>
+            </div>
+
+                         
+
+            {{-- End --}}
+            
           </div>
       </div>
   </div>
