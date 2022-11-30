@@ -12,13 +12,13 @@
                     <div class="p-6 bg-white border-b border-gray-200">
                         <div class="container p-4 text-primary mt-2 text-sm">
                             <form>
-                                <label class="uppercase font-bold  text-blue-600" for="fname">nama kelas</label><br>
+                                <label class="uppercase font-bold  text-black" for="fname">nama kelas</label><br>
                                 <input type="text" placeholder="Enter Your Username" class="input input-bordered input-ghost input-l w-full max-w-xl mb-2 mt-2" />
                             </form>
                         </div>
             
                         <div class="max-w-xl ml-4">
-                            <label class="uppercase font-bold text-sm text-blue-600" for="fname">unggah</label>
+                            <label class="uppercase font-bold text-sm text-black" for="fname">unggah</label>
                             <label
                                 class="flex mt-2 justify-center w-full h-32 px-4 transition bg-white border-2 border-gray-300 border-dashed rounded-md appearance-none cursor-pointer hover:border-gray-400 focus:outline-none">
                                 <span class="flex items-center space-x-2">

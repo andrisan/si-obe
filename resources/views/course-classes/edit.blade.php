@@ -12,7 +12,7 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                   <div class="container mx-auto">
                     <!-- Judul -->
-                    <div class="container text-start p-4 text-2xl border-primary border-b-2 text-primary mt-4">
+                    <div class="container text-start p-4 text-2xl border-black border-b-2 text-black mt-4">
                         <h1 class="font-bold text-3xl">Edit Course Class</h1>
                     </div>
                     <!-- Akhir judul -->
@@ -27,16 +27,40 @@
                             <a class="mr-10 tab tab-active">Edit Course Class</a>
                           </div>
                         <br>
-                          <p class="ml-5 uppercase font-bold text-sm">Edit Nama Kelas</p>
+                          <p class="ml-5 uppercase font-bold text-sm">Nama Kelas</p>
                           <div class="ml-5">
                             <form>
-                                <input type="text" placeholder="Enter text here" class="input input-bordered input-ghost input-sm w-full max-w-xs mb-4 mt-2" />
+                                <input type="text" placeholder="Enter text here" class="input input-bordered input-ghost input-sm w-full max-w-xs mb-4 mt-1" />
                             </form>
                           </div>
-                          <div class="max-w-xl mt-9 ml-5">
+                          <p class="ml-5 uppercase font-bold text-sm mt-1">Kode Kelas</p>
+                          <div class="ml-5">
+                            <form>
+                                <input type="text" placeholder="Enter text here" class="input input-bordered input-ghost input-sm w-full max-w-xs mb-4 mt-1" />
+                            </form>
+                          </div>
+                          <p class="ml-5 uppercase font-bold text-sm mt-1">Mata Kuliah</p>
+                          <div class="ml-5">
+                            <form>
+                                <input type="text" placeholder="Enter text here" class="input input-bordered input-ghost input-sm w-full max-w-xs mb-4 mt-1" />
+                            </form>
+                          </div>
+                          <p class="ml-5 uppercase font-bold text-sm mt-1"> Kode Mata Kuliah</p>
+                          <div class="ml-5">
+                            <form>
+                                <input type="text" placeholder="Enter text here" class="input input-bordered input-ghost input-sm w-full max-w-xs mb-4 mt-1" />
+                            </form>
+                          </div>
+                          <p class="ml-5 uppercase font-bold text-sm mt-1">Jenis</p>
+                          <div class="ml-5">
+                            <form>
+                                <input type="text" placeholder="Enter text here" class="input input-bordered input-ghost input-sm w-full max-w-xs mb-4 mt-1" />
+                            </form>
+                          </div>
+                          <div class="max-w-xl mt-1 ml-5">
                             <label class="uppercase font-bold text-sm" for="fname">Edit Thumbnail </label>
                             <label
-                                class="flex mt-2 justify-center w-full h-32 px-4 transition bg-white border-2 border-gray-300 border-dashed rounded-md appearance-none cursor-pointer hover:border-gray-400 focus:outline-none">
+                                class="flex mt-1 justify-center w-full h-32 px-4 transition bg-white border-2 border-gray-300 border-dashed rounded-md appearance-none cursor-pointer hover:border-gray-400 focus:outline-none">
                                 <span class="flex items-center space-x-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-600" fill="none" viewBox="0 0 24 24"
                                         stroke="currentColor" stroke-width="2">
@@ -51,19 +75,18 @@
                                 <input type="file" name="file_upload" class="hidden">
                             </label>
                             <button class="bg-none hover:bg-blue-500 hover:text-white text-blue-500 font-bold py-2 px-4 rounded mt-4 border-blue-500 border-2">
-                                Unggah
+                                Simpan
                             </button>
                         </div>
                         </div> 
                         <div class="drawer-side">
                           <label for="my-drawer-2" class="drawer-overlay"></label> 
-                          <ul class="menu p-4 overflow-y-auto w-80 text-primary-content font-semibold border-primary border-r-2 bg-primary">
+                          <ul class="menu p-4 overflow-y-auto w-80 text-white font-semibold border-black border-r-2 bg-black">
                             <!-- Sidebar content here -->
-                            <li><a class="mb-8 hover:bg-primary-content hover:text-primary">Home</a></li>
-                            <li><a class="mb-8 hover:bg-primary-content hover:text-primary">Course Class</a></li>
-                            <li><a class="mb-8 hover:bg-primary-content hover:text-primary">Add Course Class</a></li>
-                            <li><a class="mb-8 hover:bg-primary-content hover:text-primary">Join Course Class</a></li>
-                            <li><a class="mb-8 hover:bg-primary-content hover:text-primary">Username</a></li>
+                            <li><a href="{{route('classes.index')}}" class="mb-8 hover:bg-white hover:text-black">Course Class</a></li>
+                            <li><a href="{{route('classes.create')}}" class="mb-8 hover:bg-white hover:text-black">Add Course Class</a></li>
+                            <li><a class="mb-8 hover:bg-white hover:text-black">Join Course Class</a></li>
+                            <li><a class="mb-8 hover:bg-white hover:text-black">Username</a></li>
                           </ul>
                         
                         </div>

@@ -75,7 +75,7 @@ class CourseClassController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('course-classes.edit');
     }
 
     /**
@@ -98,6 +98,17 @@ class CourseClassController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $class->delete();
+
+        if (Auth::user()->role == 'student') {
+            return view('course-classes.index2');
+        }
+
+        $classesCourseId = CourseClass::where('creator_user_id', Auth::user()->id)->pluck('course_id');
+
+        return view('course-classes.index', [
+            'classes'=>CourseClass::where('creator_user_id', Auth::user()->id)->paginate(2),
+            'courses'=>Course::find($classesCourseId),
+        ]);
     }
 }
