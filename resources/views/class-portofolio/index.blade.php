@@ -20,10 +20,6 @@
                     <th rowspan="2" class="w-10 border-x-2 border-t-2 border-black">No</th>
                     <th rowspan="2" class="w-[35rem] border-x-2 border-t-2 border-black">Sub-Capaian Mata Kuliah</th>
                     <th colspan="10" class="w-[35rem] border-2 border-t-2 border-black">Bobot(%)</th>
-                    <th rowspan="2" class="w-44 border-x-2 border-t-2 border-black">Jumlah Mahasiswa</th>
-                    <th rowspan="2" class="w-44 border-x-2 border-t-2 border-black">Jumlah Mahasiswa Lulus</th>
-                    <th rowspan="2" class="w-44 border-x-2 border-t-2 border-black">Persentase Mahasiswa Lulus</th>
-                    <th rowspan="2" class="w-44 border-x-2 border-t-2 border-black">Persentase Mahasiswa Tidak Lulus</th>
                 </tr>
                 <tr class="border-x-2 border-black h-10">
                     <th class="border-x-2 border-black">LK-01</th>
@@ -52,10 +48,6 @@
                     <td class="border-2 border-black">0</td>
                     <td class="border-2 border-black">2,5</td>
                     <td class="border-2 border-black">0</td>
-                    <td rowspan="8" class="border-2 border-black">40</td>
-                    <td rowspan="8" class="border-2 border-black">40</td>
-                    <td rowspan="8" class="border-2 border-black">100%</td>
-                    <td rowspan="8" class="border-2 border-black">0%</td>
                 </tr>
                 <tr class="border-2 border-black h-14">
                     <td class="border-2 border-black">2</td>
@@ -157,6 +149,26 @@
                 </tr>
             </tbody>
           </table>
+      </div>
+      <div class="mt-10">
+        <table class="table-fixed  mx-auto">
+        <thead class="text-black">
+                <tr class="h-10">
+                    <th class="w-[24rem] border-x-2 border-2 border-black">Jumlah Mahasiswa</th>
+                    <th class="w-[24rem] border-x-2 border-2 border-black">Jumlah Mahasiswa Lulus</th>
+                    <th class="w-[24rem] border-2 border-2 border-black">Persentase Mahasiswa Lulus(%)</th>
+                    <th class="w-[24rem] border-2 border-2 border-black">Persentase Mahasiswa Tidak Lulus(%)</th>
+                </tr>
+            </thead>
+            <tbody class="text-center text-black">
+            <tr class="border-2 border-black h-14">
+                    <td class="border-2 border-black">55</td>
+                    <td class="border-2 border-black">50</td>
+                    <td class="border-2 border-black">95%</td>
+                    <td class="border-2 border-black">5%</td>
+                </tr>
+            </tbody>
+        </table>
       </div>
                 </div>
             </div>
