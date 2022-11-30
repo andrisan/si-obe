@@ -22,7 +22,9 @@ class CourseClassController extends Controller
     public function index()
     {
         if (Auth::user()->role == 'student') {
-            return view('course-classes.index2');
+            return view('course-classes.index2', [
+                'classes'=>User::find(Auth::user()->id)->students()->get(),
+            ]);
         }
 
         $classesCourseId = CourseClass::where('creator_user_id', Auth::user()->id)->pluck('course_id');

@@ -32,58 +32,55 @@
                         </div>
                     </div>
 
-                    <div class="flex px-16 mt-2 ">
-                        <table class="table-fixed w-full">
+                  <button
+                      class="ml-16 my-4 btn btn-success rounded-md hover:bg-green-200 hover:text-slate-400 ">Tambah</button>
 
-                            <thead>
-                                <tr>
-                                    <th class="">No</th>
-                                    <th class="">Kelas</th>
-                                    <th class="">Kode Kelas</th>
-                                    <th class="">Mata Kuliah</th>
-                                    <th class="">Kode Mata Kuliah</th>
-                                    <th class="">Jenis</th>
-                                    <th class="">Action</th>
-                                </tr>
-                            </thead>
+                  <div class="flex px-16 mt-2 ">
+                      <table class="table-fixed w-full">
 
-                            <tbody class=" border-2 border-black text-center">
-                                <?php $i = 1; ?>
-                                @foreach ($classes as $class)
-                                    <tr class="border-2 h-14">
-                                        <td width="400px">{{ $i }}</td>
-                                        <td width="400px">{{ $class->name }}</td>
-                                        <td width="400px">{{ $class->class_code }}</td>
-                                        <td width="400px">
-                                            {{ $courses->where('id', $class->course_id)->pluck('name')->first() }}
-                                        </td>
-                                        <td width="400px">
-                                            {{ $courses->where('id', $class->course_id)->pluck('code')->first() }}
-                                        </td>
-                                        <td width="400px">
-                                            {{ $courses->where('id', $class->course_id)->pluck('type')->first() }}
-                                        </td>
-                                        <td>
-                                            <button
-                                                class="btn  btn-warning hover:bg-red-200 hover:text-slate-400  btn-xs sm:btn-sm md:btn-sm rounded-md w-16 mr-1 ">
-                                                Edit
-                                            </button>
-                                            <button
-                                                class="btn  btn-error hover:bg-red-200 hover:text-slate-400  btn-xs sm:btn-sm md:btn-sm rounded-md w-16">
-                                                Delete
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <?php $i++; ?>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="mt-5">
-                        {{ $classes->links() }}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                          <thead>
+                              <tr>
+                                  <th class="">No</th>
+                                  <th class="">Thumbnail Image</th>
+                                  <th class="">Kelas</th>
+                                  <th class="">Kode Kelas</th>
+                                  <th class="">Mata Kuliah</th>
+                                  <th class="">Kode Mata Kuliah</th>
+                                  <th class="">Jenis</th>
+                                  <th class="">Action</th>
+                              </tr>
+                          </thead>
+
+                          <tbody class=" border-2 border-black text-center">
+                              <?php $i=1 ?>
+                              @foreach ($classes as $class)
+                              <tr class="border-2 h-14">
+                                  <td width="100px">{{ $i }}</td>
+                                  <td width="100px">
+                                      <img src="{{ $class->thumbnail_img }}" alt=" ">
+                                  </td>
+                                  <td width="400px">{{ $class->name }}</td>
+                                  <td width="400px">{{ $class->class_code }}</td>
+                                  <td width="400px">{{ $class->course->name }}</td>
+                                  <td width="400px">{{ $class->course->code }}</td>
+                                  <td width="400px">{{ $class->course->type }}</td>
+                                  <td>
+                                      <button
+                                          class="btn  btn-warning hover:bg-red-200 hover:text-slate-400  btn-xs sm:btn-sm md:btn-sm rounded-md w-16 mr-1 ">Edit</button>
+                                      <button
+                                          class="btn  btn-error hover:bg-red-200 hover:text-slate-400  btn-xs sm:btn-sm md:btn-sm rounded-md w-16 ">Delete</button>
+                                  </td>
+                              </tr>
+                              <?php $i++ ?>
+                              @endforeach
+                          </tbody>
+                      </table>
+                  </div>
+                  <div class="mt-5">
+                      {{ $classes->links() }}
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
 </x-app-layout>

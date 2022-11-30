@@ -17,17 +17,15 @@
                   <div class="">
                       <select name="" id="" class="shadow-lg  w-52 px-2 py-2 rounded-md text-black ml-16 mb-2 h-10">
                               <option value="books">PILIHAN MATA KULIAH</option>
-                              <option value="html">Pengembangan Aplikasi Web</option>
-                              <option value="css">Algoritma Dan Struktur Data</option>
-                              <option value="php">Sistem Basis Data</option>
-                              <option value="js">Pemrograman Dasar</option>
-                
+                              @foreach ($classes as $class)
+                              <option value="books">{{ $class->course->name }}</option>
+                              @endforeach
                       </select>
                   </div>
           
                   </div>
                 
-                    <button class="ml-16 my-4 btn btn-success rounded-md hover:bg-green-200 hover:text-slate-400 ">Tambah</button>
+                    <button class="ml-16 my-4 btn btn-success rounded-md hover:bg-green-200 hover:text-slate-400 ">Join</button>
               
                   <div class="flex px-16 mt-2 ">
                     <table class="table-fixed w-full">
@@ -35,76 +33,36 @@
                       <thead>
                         <tr>
                           <th  class="">No</th>
-                          <th  class="">Prodi</th>
-                          <th  class="">Kode MK</th>
-                          <th  class="">Mata Kuliah</th>
+                          <th  class="">Thumbnail Image</th>
                           <th  class="">Kelas</th>
+                          <th  class="">Mata Kuliah</th>
+                          <th  class="">Kode Mata Kuliah</th>
                           <th  class="">Pengajar</th>
+                          <th  class="">Jenis</th>
                           <th  class="">Action</th>
                         </tr>
                       </thead>
                   
                       <tbody class=" border-2 border-black text-center">
+                        <?php $i=1?>
+                        @foreach ($classes as $class)
                         <tr class="border-2 h-14">
-                          <td width="100px">1</td>
-                            <td width="100px">Teknologi Informasi</td>
-                            <td width="400px">CIT62012</td>
-                            <td width="400px">Pengembangan Aplikasi Web</td>
-                            <td width="400px">B</td>
-                            <td width="400px">Andri Santoso, S.kom., M.Sc.,</td>
+                          <td width="400px">{{ $i }}</td>
+                            <td width="400px">
+                              <img src="{{ $class->thumbnail_img }}" alt="">
+                            </td>
+                            <td width="400px">{{ $class->name }}</td>
+                            <td width="400px">{{ $class->course->name }}</td>
+                            <td width="400px">{{ $class->course->code }}</td>
+                            <td width="400px">{{ $class->creator->name }}</td>
+                            <td width="400px">{{ $class->course->type }}</td>
                             <td >
                               <button class="btn  btn-warning hover:bg-red-200 hover:text-slate-400  btn-xs sm:btn-sm md:btn-sm rounded-md w-16 mr-1 ">Edit</button>
                               <button class="btn  btn-error hover:bg-red-200 hover:text-slate-400  btn-xs sm:btn-sm md:btn-sm rounded-md w-16 ">Delete</button>
                             </td>
                         </tr>
-                        <tr class="border-2 h-14">
-                          <td width="100px">2</td>
-                            <td width="100px">Teknologi Informasi</td>
-                            <td width="400px">CIT62012</td>
-                            <td width="400px">Pengembangan Aplikasi Web</td>
-                            <td width="400px">A</td>
-                            <td width="400px">Andri Santoso, S.kom., M.Sc.,</td>
-                            <td >
-                              <button class="btn  btn-warning hover:bg-red-200 hover:text-slate-400  btn-xs sm:btn-sm md:btn-sm rounded-md w-16 mr-1 ">Edit</button>
-                              <button class="btn  btn-error hover:bg-red-200 hover:text-slate-400  btn-xs sm:btn-sm md:btn-sm rounded-md w-16 ">Delete</button>
-                            </td>
-                          </tr>
-                          <tr class="border-2 h-14">
-                            <td width="100px">3</td>
-                              <td width="100px">Sistem Informasi</td>
-                              <td width="400px">CIT62013</td>
-                              <td width="400px">Pengembangan Aplikasi Web</td>
-                              <td width="400px">C</td>
-                              <td width="400px">Andri Santoso, S.kom., M.Sc.,</td>
-                              <td >
-                                <button class="btn  btn-warning hover:bg-red-200 hover:text-slate-400  btn-xs sm:btn-sm md:btn-sm rounded-md w-16 mr-1 ">Edit</button>
-                                <button class="btn  btn-error hover:bg-red-200 hover:text-slate-400  btn-xs sm:btn-sm md:btn-sm rounded-md w-16 ">Delete</button>
-                              </td>
-                            </tr>  
-                            <tr class="border-2 h-14">
-                              <td width="100px">4</td>
-                                <td width="100px">Sistem Informasi</td>
-                                <td width="400px">CIT62013</td>
-                                <td width="400px">Pengembangan Aplikasi Web</td>
-                                <td width="400px">B</td>
-                                <td width="400px">Andri Santoso, S.kom., M.Sc.,</td>
-                                <td >
-                                  <button class="btn  btn-warning hover:bg-red-200 hover:text-slate-400  btn-xs sm:btn-sm md:btn-sm rounded-md w-16 mr-1 ">Edit</button>
-                                  <button class="btn  btn-error hover:bg-red-200 hover:text-slate-400  btn-xs sm:btn-sm md:btn-sm rounded-md w-16 ">Delete</button>
-                                </td>
-                              </tr>  
-                              <tr class="border-2 h-14">
-                                <td width="100px">5</td>
-                                  <td width="100px">Teknik Informatika</td>
-                                  <td width="400px">CIT62015</td>
-                                  <td width="400px">Pengembangan Aplikasi Web</td>
-                                  <td width="400px">D</td>
-                                  <td width="400px">Andri Santoso, S.kom., M.Sc.,</td>
-                                  <td >
-                                    <button class="btn  btn-warning hover:bg-red-200 hover:text-slate-400  btn-xs sm:btn-sm md:btn-sm rounded-md w-16 mr-1 ">Edit</button>
-                                    <button class="btn  btn-error hover:bg-red-200 hover:text-slate-400  btn-xs sm:btn-sm md:btn-sm rounded-md w-16 ">Delete</button>
-                                  </td>
-                                </tr>    
+                        <?php $i++?>
+                        @endforeach
                         </tbody>
                       </table>
                     </div>
