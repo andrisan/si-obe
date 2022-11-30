@@ -19,8 +19,10 @@ class StudyProgramController extends Controller
      */
     public function index(Faculty $faculty, Department $department, )
     {
+        $departments = Department::all();
         return view('study-programs.index',[
             'faculty'=>$faculty,
+            'departments' => $departments,
             'department'=>$department,
             'studyPrograms'=>$department->studyPrograms()->paginate(3)
         ]);
