@@ -24,25 +24,23 @@ $rows = collect($departments)->all()['data'] ?? [];
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 bg-white border-b border-gray-200">
+                       
                         <!--dropdown pilih fakultas-->
                         <div class="dropdown">
                             <div class="dropdown dropdown-end ml-10">
+                                
                                 <select name="forma" onchange="location = this.value;"
-                                    class="select input-bordered w-full max-w-xs" selected>
+                                    class="select input-bordered w-full max-w-xs" >
                                     <option disabled selected>Nama Fakultas</option>
+                                    
                                     @foreach ($faculties as $faculty)
-                                        @if (old('faculty') == $faculty->id)
-                                            <option selected value="/faculties/{{ $faculty->id }}/departments">
-                                                {{ $faculty->name }}</option>
-                                        @else
-                                            <option selected value="/faculties/{{ $faculty->id }}/departments">
-                                                {{ $faculty->name }}</option>
-                                        @endif
-                                    @endforeach
+                                        <option   value="{{ route('faculties.departments.index', $faculty) }}">
+                                            {{ $faculty->name }}</option>
+                                    
+                                            @endforeach
 
                                 </select>
-
-
+                               
 
 
                             </div>
@@ -51,8 +49,9 @@ $rows = collect($departments)->all()['data'] ?? [];
                         </div>
                         @foreach ($departments as $department)
                         @endforeach
-                        <a href="{{ route('faculties.departments.create', $faculty) }}" class=" btn-primary btn ml-5">
 
+                        <a class="btn btn-primary ml-5"
+                            href="/faculties/{{ $department->faculty_id }}/departments/create">
                             tambah
 
                         </a>
@@ -86,11 +85,6 @@ $rows = collect($departments)->all()['data'] ?? [];
                                             <td>{{ $department['name'] }}</td>
                                             <td>
                                                 <div class="flex  ">
-
-
-
-
-
                                                     <a href="/faculties/{{ $department->faculty_id }}/departments/{{ $department->id }}/edit"
                                                         class="btn btn-warning btn-sm">Edit</a>
                                                     <form
