@@ -24,7 +24,7 @@
         <!--awal form create-->
         <div class="flex flex-row justify-center">
             <div class="block p-6 rounded-lg shadow-2xl bg-white max-w-md basis-1/2">
-                <form action="{{ route('faculties.departments.store', [$faculty]) }}" method="post">
+                <form action="{{ route('faculties.departments.store', $faculty) }}" method="post">
                     @csrf
                     <div class="form-group mb-6">
                         <h1>{{ $faculty->name }}</h1>
@@ -41,10 +41,10 @@
                                     <option disabled selected>{{ $faculty->name }}</option>
                                     
                                         @if (old('faculty') == $faculty->id)
-                                            <option selected value="/faculties/{{ $faculty->id }}/departments">
+                                            <option selected value="/faculties/{{ $faculty->id }}/departments" name="faculty_id">
                                                 {{ $faculty->name }}</option>
                                         @else
-                                            <option selected value="/faculties/{{ $faculty->id }}/departments">
+                                            <option selected value="/faculties/{{ $faculty->id }}/departments" name="faculty_id">
                                                 {{ $faculty->name }}</option>
                                         @endif
 
