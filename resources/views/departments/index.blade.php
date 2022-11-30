@@ -32,9 +32,9 @@ $rows = collect($departments)->all()['data'] ?? [];
                                     class="select input-bordered w-full max-w-xs" >
                                     <option disabled selected>Nama Fakultas</option>
                                     
-                                    @foreach ($faculties as $faculty)
-                                        <option   value="{{ route('faculties.departments.index', $faculty) }}">
-                                            {{ $faculty->name }}</option>
+                                    @foreach ($faculties as $faculties)
+                                        <option   value="{{ route('faculties.departments.index', $faculties) }}">
+                                            {{ $faculties->name }}</option>
                                     
                                             @endforeach
 
@@ -50,7 +50,7 @@ $rows = collect($departments)->all()['data'] ?? [];
                         @endforeach
 
                         <a class="btn btn-primary ml-5"
-                            href="/faculties/{{ $department->faculty_id }}/departments/create">
+                            href="{{ route('faculties.departments.create',$faculty) }}">
                             tambah
 
                         </a>
@@ -110,6 +110,7 @@ $rows = collect($departments)->all()['data'] ?? [];
                         <!--batas bawah-->
                     </div>
                 </div>
+                
             </div>
         </div>
         </template>
