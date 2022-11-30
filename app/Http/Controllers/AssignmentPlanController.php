@@ -48,11 +48,11 @@ class AssignmentPlanController extends Controller
     public function store(Request $request, Syllabus $syllabus)
     {
         $validated = $request->validate([
-            'id' => 'required|string',
+          //  'id' => 'required|string',
             'title' => 'required|string',
             'description' => 'required|string',
-            'created_at' => 'required|string',
-            'updated_at' => 'required|string',
+           // 'created_at' => 'required|string',
+           // 'updated_at' => 'required|string',
         //    'is_group_assignment' => 'required|numeric',
             'assignment_style' => 'required|string'
         //    'output_instruction' => 'required|string',
@@ -103,11 +103,11 @@ class AssignmentPlanController extends Controller
     public function update(Request $request, $syllabus, $plan)
     {
         $validated = $request->validate([
-            'id' => 'required|string',
+            //'id' => 'required|string',
             'title' => 'required|string',
             'description' => 'required|string',
-            'created_at' => 'required|string',
-            'updated_at' => 'required|string',
+           // 'created_at' => 'required|string',
+           // 'updated_at' => 'required|string',
         //    'is_group_assignment' => 'required|numeric',
             'assignment_style' => 'required|string'
         //    'output_instruction' => 'required|string',
