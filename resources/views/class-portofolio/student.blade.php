@@ -41,18 +41,18 @@
                                     </th>
                                     <th  rowspan="2" bgcolor="#AFC7F5">NIM
                                     </th>
-                                    <th  colspan="5" bgcolor="#AFC7F5">LEMBAR KERJA</th>
+                                    <th  colspan="5" bgcolor="#AFC7F5">SUB-CPMK</th>
                                     <th  rowspan="2" bgcolor="#AFC7F5">TOTAL NILAI</th>
                                     <th  rowspan="2" bgcolor="#AFC7F5">NILAI AKHIR</th>
 
                                 </tr>
                                 
                                 <tr >
-                                    <th  bgcolor="#AFC7F5">LK01</th>
-                                    <th  bgcolor="#AFC7F5">LK02</th>
-                                    <th  bgcolor="#AFC7F5">LK03</th>
-                                    <th  bgcolor="#AFC7F5">LK04</th>
-                                    <th  bgcolor="#AFC7F5">LK05</th>
+                                    <th  bgcolor="#AFC7F5">1</th>
+                                    <th  bgcolor="#AFC7F5">2</th>
+                                    <th  bgcolor="#AFC7F5">3</th>
+                                    <th  bgcolor="#AFC7F5">4</th>
+                                    <th  bgcolor="#AFC7F5">5</th>
 
                                 </tr>
                                 
