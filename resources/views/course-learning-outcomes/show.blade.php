@@ -11,9 +11,11 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
+                <h2 class="font-semibold text-3xl text-center">DETAIL: Course Learning Outcomes</h2>
                 <div class="pb-2"><label for="position"><strong class="font-semibold text-gray-900 dark:text-white">No &emsp;&emsp;&emsp;&nbsp;: {{ $clo-> position }}</strong></label></div>
                 <div class="pb-2"><label for="description"><strong class="font-semibold text-gray-900 dark:text-white">Deskripsi &nbsp;: {{ $clo->description }}</strong></label></div>
                 <br>
+                <h2 class="font-bold text-2xl text-center pb-3">Lesson Learning Outcome</h2>
                 <table class="table-fixed w-full">
                         <thead>
                             <tr class="border-2 h-10">
