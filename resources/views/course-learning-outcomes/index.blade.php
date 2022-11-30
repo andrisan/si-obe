@@ -1,6 +1,8 @@
 <script src="https://kit.fontawesome.com/b79c47ea42.js" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/61cc44f0a1.js" crossorigin="anonymous"></script>
 
+@section('pageTitle', "Course Learning Outcome")
+
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
