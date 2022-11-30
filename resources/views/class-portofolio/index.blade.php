@@ -1,3 +1,4 @@
+<title>Class Portofolio {{ $cc->title }}</title>
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -22,16 +23,11 @@
                     <th colspan="10" class="w-[35rem] border-2 border-t-2 border-black">Bobot(%)</th>
                 </tr>
                 <tr class="border-x-2 border-black h-10">
-                    <th class="border-x-2 border-black">LK-01</th>
-                    <th class="border-x-2 border-black">LK-02</th>
-                    <th class="border-x-2 border-black">LK-03</th>
-                    <th class="border-x-2 border-black">LK-04</th>
-                    <th class="border-x-2 border-black">LK-05</th>
-                    <th class="border-x-2 border-black">LK-06</th>
-                    <th class="border-x-2 border-black">LK-07</th>
-                    <th class="border-x-2 border-black">LK-08</th>
-                    <th class="border-x-2 border-black">UTS</th>
-                    <th class="border-x-2 border-black">UAS</th>
+                    @foreach ($cc->assignments->assignmentPlan as $ap)
+                        
+                    <th class="border-x-2 border-black">{{ $ap->title }}</th>
+                     
+                    @endforeach
                 </tr>
             </thead>
             <tbody class="text-center text-black">
