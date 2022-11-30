@@ -12,9 +12,8 @@
                 <div data-theme="light" class="p-10">
                     <div class="grid">
                         <div class="grid justify-start">
-                            <button class="btn btn-black hover:bg-white hover:text-black text-white font-bold rounded border-black border-2 hover:border-black mb-2 btn-md">
-                                <a href="{{ route('faculties.create') }}">Tambah Fakultas</a>
-                            </button>
+                            <a href="{{ route('faculties.create') }}">
+                            <button class="btn btn-black hover:bg-white hover:text-black text-white font-bold rounded border-black border-2 hover:border-black mb-2 btn-dm">Tambah Fakultas</button>
                         </div>
                     </div>
                     <div class="overflow-x-auto py-4">
