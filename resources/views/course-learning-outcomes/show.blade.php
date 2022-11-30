@@ -9,7 +9,8 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                <div class="pb-2"><label for="position"><strong class="font-semibold text-gray-900 dark:text-white">Nomor : {{ $clo-> position}}</strong></label></div>
+                <div class="pb-2"><label for="position"><strong class="font-semibold text-gray-900 dark:text-white">No : {{ $clo-> position }}</strong></label></div>
+                <div class="pb-2"><label for="position"><strong class="font-semibold text-gray-900 dark:text-white">Deskripsi : {{ $clo->description }}</strong></label></div>
                 </div>
             </div>
         </div>
