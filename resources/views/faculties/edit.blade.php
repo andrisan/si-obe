@@ -11,10 +11,8 @@
                 <div class="p-6 bg-white border-b border-gray-200 flex justify-center">
                     <div class="card w-96 bg-white text-neutral-content">
                         <div class="card-body items-center text-center">
+                          <div class="card-title text-neutral">Nama Fakultas</div>
                             <div class="form-control w-full max-w-xs">
-                                <label class="label">
-                                    <span class="label-text">Nama Fakultas</span>
-                                </label>
                                 <form action="/faculties/{{ $faculty->id }}" method="post">
                                     @csrf
                                     @method('put')
