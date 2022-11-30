@@ -23,9 +23,9 @@
                     <th colspan="10" class="w-[35rem] border-2 border-t-2 border-black">Bobot(%)</th>
                 </tr>
                 <tr class="border-x-2 border-black h-10">
-                    @foreach ($cc->assignments->assignmentPlan as $ap)
+                    @foreach ($cc->assignments as $assignment)
                         
-                    <th class="border-x-2 border-black">{{ $ap->title }}</th>
+                    <th class="border-x-2 border-black">{{ $assignment->assignmentPlan->title }}</th>
                      
                     @endforeach
                 </tr>
