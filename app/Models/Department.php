@@ -15,5 +15,5 @@ class Department extends Model
         return $this->hasMany(StudyProgram::class);
     }
     protected $fillable = ['name','faculty_id'];
-
+    
 }
