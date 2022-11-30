@@ -18,9 +18,13 @@
                             </div>
                             <div class="actions justify-start">
                                 <button class="btn bg-green-400 hover:bg-white hover:text-green-400 text-white font-bold rounded border-green-400 border-2 hover:border-green-400 mr-2">Tambah</button>
-                                <button class="btn bg-red-400 hover:bg-white hover:text-red-400 text-white font-bold rounded border-red-400 border-2 hover:border-red-400"><a href="{{ route('faculties.index') }}">Cancel</a></button>
                             </div>
                         </form>
+                        <div class="actions justify-start">
+                            <a href="{{ route('faculties.index') }}">
+                                <button class="btn bg-red-400 hover:bg-white hover:text-red-400 text-white font-bold rounded border-red-400 border-2 hover:border-red-400">Cancel</button>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
