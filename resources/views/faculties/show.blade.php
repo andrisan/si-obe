@@ -14,7 +14,7 @@
                         <div class="grid flex-grow place-items-start">
                             <h1 class="text-4xl font-semibold">{{ $faculty->name }}</h1>
                         </div>
-                        <div class="grid flex-grow place-items-end align-top">
+                        <div class="grid flex-grow place-items-end">
                             <div class="flex flex-col lg:flex-row">
                                 <div class="grid flex-grow mr-2">
                                     <a href="{{ route('faculties.index') }}">
