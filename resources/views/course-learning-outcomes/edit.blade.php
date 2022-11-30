@@ -1,11 +1,17 @@
+<?php
+use App\Models\CourseLearningOutcome;
+    
+
+?>
 
 
-@section('pageTitle', "Edit Criteria Level - $clo->id")
+
+@section('pageTitle', "Edit Course Learning Outcome - $clo->id")
 
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-2xl text-gray-800 leading-tight">
-        {{ __('Edit: Course Learning Outcome').": $clo->id" }}
+        {{ __('Edit Course Learning Outcome').": $clo->id" }}
         </h2>
     </x-slot>
 
