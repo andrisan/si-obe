@@ -1,3 +1,4 @@
+@section('pageTitle', "Intended Learning Outcome")
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -21,7 +22,7 @@
                           </tr>
                         </thead>
                         <tbody class=" border-2 border-black text-center">
-                          @foreach ($ilo as $ilo)
+                          @foreach ($ilos as $ilo)
                           <tr class="border-2 h-14">
                             <td>{{$ilo['id']}}</td>
                             <td>{{$ilo['position']}}</td>
@@ -39,6 +40,9 @@
                         </tbody>
                       </table>
                   </div>
+                  <div class="mt-10 px-14">
+                   {{$ilos->links() }}
+                </div>
                 </div>
             </div>
         </div>
