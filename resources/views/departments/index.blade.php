@@ -23,23 +23,22 @@ $rows = collect($departments)->all()['data'] ?? [];
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 bg-white border-b border-gray-200">
-                       
+
                         <!--dropdown pilih fakultas-->
                         <div class="dropdown">
                             <div class="dropdown dropdown-end ml-10">
-                                
+
                                 <select name="forma" onchange="location = this.value;"
-                                    class="select input-bordered w-full max-w-xs" >
+                                    class="select input-bordered w-full max-w-xs">
                                     <option disabled selected>Nama Fakultas</option>
-                                    
+
                                     @foreach ($faculties as $faculties)
-                                        <option   value="{{ route('faculties.departments.index', $faculties) }}">
+                                        <option value="{{ route('faculties.departments.index', $faculties) }}">
                                             {{ $faculties->name }}</option>
-                                    
-                                            @endforeach
+                                    @endforeach
 
                                 </select>
-                               
+
 
 
                             </div>
@@ -49,8 +48,7 @@ $rows = collect($departments)->all()['data'] ?? [];
                         @foreach ($departments as $department)
                         @endforeach
 
-                        <a class="btn btn-primary ml-5"
-                            href="{{ route('faculties.departments.create',$faculty) }}">
+                        <a class="btn btn-primary ml-5" href="{{ route('faculties.departments.create', $faculty) }}">
                             tambah
 
                         </a>
@@ -65,6 +63,7 @@ $rows = collect($departments)->all()['data'] ?? [];
 
                         <br>
                         <!--Tabel departments-->
+                        @if ($departments->isNotEmpty())
                         <div class="overflow-x-auto">
                             <table class="table w-full text-center">
                                 <!-- head -->
@@ -82,6 +81,7 @@ $rows = collect($departments)->all()['data'] ?? [];
                                         <tr class="hover">
                                             <th>{{ $i }}</th>
                                             <td>{{ $department['name'] }}</td>
+                                            
                                             <td>
                                                 <div class="flex  ">
                                                     <a href="/faculties/{{ $department->faculty_id }}/departments/{{ $department->id }}/edit"
@@ -99,6 +99,7 @@ $rows = collect($departments)->all()['data'] ?? [];
                                                 </div>
                                             </td>
                                         </tr>
+                                        
                                         <?php $i += 1; ?>
                                     @endforeach
 
@@ -107,10 +108,18 @@ $rows = collect($departments)->all()['data'] ?? [];
                                 </tbody>
                             </table>
                         </div>
+                        @endif
+
+                        @if ($departments->isEmpty())
+                            <div class="py-2">
+                                <h1 class="ml-5 font-bold text-center">Data Departemen Kosong</h1>
+                            </div>
+                        @endif
+                        
                         <!--batas bawah-->
                     </div>
                 </div>
-                
+
             </div>
         </div>
         </template>
