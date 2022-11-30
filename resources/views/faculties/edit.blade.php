@@ -1,3 +1,4 @@
+@section('pageTitle', 'Edit Faculty')
 <x-app-layout>
   <x-slot name="header">
       <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -10,7 +11,6 @@
               <div class="p-6 bg-white border-b border-gray-200 flex justify-center">
                 <div class="card w-96 bg-white text-neutral-content">
                   <div class="card-body items-center text-center">
-                    <h2 class="card-title text-neutral">Edit Fakultas</h2>
                     <div class="form-control w-full max-w-xs">
                       <label class="label">
                         <span class="label-text">Nama Fakultas</span>
