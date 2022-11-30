@@ -37,7 +37,7 @@
                        <div class="dropdown dropdown-end ml-10">
                                 <select name="forma" onchange="location = this.value;"
                                     class="select input-bordered w-full max-w-xs" selected>
-                                    <option disabled selected>Nama Fakultas</option>
+                                    <option disabled selected>{{ $faculty->name }}</option>
                                     
                                         @if (old('faculty') == $faculty->id)
                                             <option selected value="/faculties/{{ $faculty->id }}/departments">
