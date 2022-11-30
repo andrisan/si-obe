@@ -7,6 +7,8 @@ use App\Models\Faculty;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+
 
 class DepartmentController extends Controller
 {
@@ -15,14 +17,17 @@ class DepartmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($faculty)
+    public function index( $faculty)
     {
         //
-        $department = Department::where('faculty_id', $faculty)->orderBy('faculty_id')->get();
+         $department = Department::where('faculty_id', $faculty)->orderBy('faculty_id')->get();
         $faculty = Faculty::all();
         return view('departments.index', [
             'departments' => $department,
             'faculties' => $faculty
+            
+                        
+            
         ]);
     }
 
@@ -31,15 +36,17 @@ class DepartmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Faculty $faculty, Department $department)
+    public function create(Faculty $faculty)
     {
         //
 
 
-
+         $department = Department::where('faculty_id', $faculty)->orderBy('faculty_id')->get();
         return view('departments.create', [
             'faculty' => $faculty,
-            'department' => $department,
+            'department' => $department
+                        
+                       
         ]);
     }
 
