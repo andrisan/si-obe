@@ -29,7 +29,7 @@ class Assignment extends Model
 
     public function assignmentPlan()
     {
-        return $this->hasMany(AssignmentPlan::class);
+        return $this->belongsTo(AssignmentPlan::class);
     }
     
 }
