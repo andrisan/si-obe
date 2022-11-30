@@ -18,15 +18,9 @@ class CourseController extends Controller
     public function index()
     {
         $courses = Course::get();
-        foreach ($courses as $course) {
-            $name[$course->id] = User::where('id','=',$course->creator_user_id)->value('name');
-        }
-
-//        dd($name);
 
         return view('courses.index',[
             'courses' => $courses,
-            'name' => $name,
         ]);
 
     }
@@ -40,11 +34,9 @@ class CourseController extends Controller
     public function create()
     {
         $studyPrograms = StudyProgram::get();
-        $userCreator = User::get();
 
         return view('courses.create', [
             'studyPrograms' => $studyPrograms,
-            'userCreator' => $userCreator
         ]);
     }
 
@@ -97,9 +89,8 @@ class CourseController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Course $course){
-        $courses = Course::get();
-        return view('courses.index', [
-            'courses' => $courses
+        return view('courses.show', [
+            'course' => $course
         ]);
     }
 
