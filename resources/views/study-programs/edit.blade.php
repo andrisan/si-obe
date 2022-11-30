@@ -1,3 +1,4 @@
+@section('pageTitle', "Edit Program Studi")
 <x-app-layout>
   <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -16,9 +17,10 @@
                   @csrf
                   @method('patch')
                   <label class="label">
-                    <span class="label-text">Nama Program Study</span>
+                    <span class="label-text">Nama Program Studi</span>
                   </label>
                   <input type="text" class="input input-bordered w-full max-w-xs" name="name" value="{{ old('name', $studyProgram->name) }}" />
+                  <x-input-error :messages="$errors->get('name')" class="mt-2" />
                   <div class="card-actions justify-end mt-4">
                     <button class="btn btn-error m-2"><a  href="{{ route('faculties.departments.study-programs.index', [$faculty, $department]) }}">Cancel</a></button>
                     <button class="btn btn-success m-2">Save</button>
