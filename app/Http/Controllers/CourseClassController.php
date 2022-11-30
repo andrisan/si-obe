@@ -40,7 +40,7 @@ class CourseClassController extends Controller
      */
     public function create()
     {
-        //
+        return view('course-classes.create');
     }
 
     /**
