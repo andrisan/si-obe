@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
+use App\Models\CourseClass;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CourseClassController extends Controller
 {
@@ -11,9 +15,22 @@ class CourseClassController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    // public function index()
+    // {
+    //     return view('course-classes.index');
+    // }
     public function index()
     {
-        return view('course-classes.index');
+        if (Auth::user()->role == 'student') {
+            return view('course-classes.index2');
+        }
+
+        $classesCourseId = CourseClass::where('creator_user_id', Auth::user()->id)->pluck('course_id');
+
+        return view('course-classes.index', [
+            'classes'=>CourseClass::where('creator_user_id', Auth::user()->id)->paginate(2),
+            'courses'=>Course::find($classesCourseId),
+        ]);
     }
 
     /**
