@@ -6,7 +6,7 @@ use App\Models\CourseLearningOutcome;
 
 
 
-@section('pageTitle', "Edit Course Learning Outcome - $clo->id")
+@section('pageTitle', "Edit Course Learning Outcome")
 
 <x-app-layout>
     <x-slot name="header">
