@@ -9,8 +9,8 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                <div class="pb-2"><label for="position"><strong class="font-semibold text-gray-900 dark:text-white">No : {{ $llo-> position }}</strong></label></div>
-                <div class="pb-2"><label for="position"><strong class="font-semibold text-gray-900 dark:text-white">Deskripsi : {{ $llo->description }}</strong></label></div>
+                <div class="pb-2"><label for="position"><strong class="font-semibold text-gray-900 dark:text-white">No &emsp;&emsp;&emsp;: {{ $clo-> position }}</strong></label></div>
+                <div class="pb-2"><label for="description"><strong class="font-semibold text-gray-900 dark:text-white">Deskripsi : {{ $clo->description }}</strong></label></div>
                 <table class="table-fixed w-full">
                         <thead>
                             <tr class="border-2 h-10">
