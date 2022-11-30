@@ -1,7 +1,7 @@
 <x-app-layout>
 <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Course Learning Outcome') }}
+            {{ __('DETAIL: Course Learning Outcome') }}
         </h2>
     </x-slot>
 
@@ -9,6 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
+                <h2 class="font-semibold text-3xl text-center">DETAIL: Course Learning Outcome</h2>
                 <div class="pb-2"><label for="position"><strong class="font-semibold text-gray-900 dark:text-white">No : {{ $clo->position }}</strong></label></div>
                 <div class="pb-2"><label for="position"><strong class="font-semibold text-gray-900 dark:text-white">Deskripsi : {{ $clo->description }}</strong></label></div>
                 <table class="table-fixed w-full">
