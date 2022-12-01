@@ -28,8 +28,8 @@
                             <div class="pb-2"><label for="position">
                                 <strong class="font-semibold text-md pt-4 tracking-widest  lg:text-lg  text-black">Description</strong></label>
                             </div>
-                            <textarea value="{{ old('description', $ilo->description ) }}" name="description"
-                                class="h-52 textarea textarea-bordered w-full" placeholder="Deskripsi CLO"></textarea>
+                            <input value="{{ old('description', $ilo->description ) }}" name="description"
+                                class="h-52 textarea textarea-bordered w-full" placeholder="Deskripsi CLO">
                             @error('description')
                             <div class=" text-red-600 ">{{$message}}</div>
                             @enderror
