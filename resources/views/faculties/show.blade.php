@@ -16,23 +16,10 @@
                         </div>
                         <div class="grid flex-grow place-items-end">
                             <div class="flex flex-col lg:flex-row">
-                                <div class="grid flex-grow mr-2">
+                                <div class="grid flex-grow">
                                     <a href="{{ route('faculties.index') }}">
                                         <button class="btn rounded-full btn-black font-bold btn-sm text-white"><img class="w-5 h-5" src="{{ asset('img/icon-back.png') }}" alt=""></button>
                                     </a>
-                                </div>
-                                <div class="grid flex-grow mr-2">
-                                    <a href="{{ route('faculties.edit', [$faculty]) }}">
-                                        <button class="btn rounded-full btn-accent font-bold btn-sm text-white"><img class="w-5 h-5" src="{{ asset('img/icon-edit.png') }}" alt=""></button>
-                                    </a>
-                                </div>
-                                <div class="grid flex-grow">
-                                    <form action="{{ route('faculties.destroy', [$faculty]) }}" method="post">
-                                        @csrf
-                                        @method('delete')
-                                        <button class="btn rounded-full btn-error font-bold btn-sm text-white hover:bg-red-500" value="{{ $faculty->id }}"
-                                            onclick="return confirm('Yakin ingin menghapus data ?');"><img class="w-5 h-5" src="{{ asset('img/icon-delete.png') }}" alt=""></button>
-                                    </form>
                                 </div>
                             </div>
                         </div>

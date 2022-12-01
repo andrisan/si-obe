@@ -15,6 +15,7 @@
                         <div class="grid justify-start">
                             <a href="{{ route('faculties.create') }}">
                             <button class="btn btn-black hover:bg-white hover:text-black text-white font-bold rounded border-black border-2 hover:border-black mb-2 btn-md">Tambah Fakultas</button>
+                            </a>
                         </div>
                     </div>
                     <div class="overflow-x-auto py-4">
@@ -32,12 +33,20 @@
                                 @foreach ($faculties as $faculty)
                                     <tr>
                                         <th>{{ $i }}</th>
-                                        <td>{{ $faculty->name }}</td>
+                                        <td><a href="{{ route('faculties.show', [$faculty]) }}">{{ $faculty->name }}</a></td>
                                         <td class="text-center">
-                                            <div class="flex     justify-center">
-                                                <a href="{{ route('faculties.show', [$faculty]) }}">
-                                                    <button class="btn bg-orange-600 hover:bg-white hover:text-orange-600 text-white font-bold py-2 px-4 rounded border-orange-600 border-2 hover:border-orange-600 btn-sm">Detail</button>
+                                            <div class="flex justify-center">
+                                                <a href="{{ route('faculties.edit', [$faculty]) }}">
+                                                    <button class="btn bg-orange-600 hover:bg-orange-700 hover:text-orange-600 rounded-full border-orange-600 border-2 hover:border-orange-700 btn-sm"><img class="w-5 h-5" src="{{ asset('img/icon-edit.png') }}" alt=""></button>
                                                 </a>
+                                            </div>
+                                            <div class="flex justify-center mt-2">
+                                                <form action="{{ route('faculties.destroy', [$faculty]) }}" method="POST">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button class="btn rounded-full btn-error font-bold btn-sm text-white hover:bg-red-500" value="{{ $faculty->id }}"
+                                                        onclick="return confirm('Yakin ingin menghapus data ?');"><img class="w-5 h-5" src="{{ asset('img/icon-delete.png') }}" alt="">
+                                                    </button>
                                                 </form>
                                             </div>
                                         </td>
