@@ -1,3 +1,5 @@
+@section('pageTitle', 'Learning Plan Index')
+
 <x-app-layout>
   <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -59,7 +61,7 @@
           @foreach ($plans as $plan)
           <tr>
             <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $plan->id }}</td>
-            <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $plan->llo_id }}</td>
+            <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $plan->lessonLearningOutcome->description }}</td>
             <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $plan->week_number }}</td>
             <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $plan->study_material }}</td>
             <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $plan->learning_method }}</td>
