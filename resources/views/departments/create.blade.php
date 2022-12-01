@@ -32,29 +32,8 @@
 
                     </div>
                     <div class="form-group mb-6">
-                        <label class="form-label inline-block mb-2 text-gray-700">
-                            Department
-                        </label>
-                       <div class="dropdown dropdown-end ml-10">
-                                <select name="forma" onchange="location = this.value;"
-                                    class="select input-bordered w-full max-w-xs" selected>
-                                    <option disabled selected>{{ $faculty->name }}</option>
-                                    
-                                        @if (old('faculty') == $faculty->id)
-                                            <option selected value="/faculties/{{ $faculty->id }}/departments" name="faculty_id">
-                                                {{ $faculty->name }}</option>
-                                        @else
-                                            <option selected value="/faculties/{{ $faculty->id }}/departments" name="faculty_id">
-                                                {{ $faculty->name }}</option>
-                                        @endif
-
-                                </select>
-
-
-
-
-                            </div>
-
+                       
+                       
                         <input type="text"
                             class="form-control mt-5 block w-full px-3 py-1.5 text-gray-700 bg-white border border-solid border-gray-400 rounded"
                             placeholder="Nama Departement baru" name="name">
