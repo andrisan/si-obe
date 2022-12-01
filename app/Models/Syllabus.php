@@ -25,4 +25,9 @@ class Syllabus extends Model
     {
         return $this->hasMany(AssignmentPlan::class, 'syllabus_id');
     }
+    
+    public function learningPlans()
+    {
+        return $this->hasMany(LearningPlan::class);
+    }
 }
