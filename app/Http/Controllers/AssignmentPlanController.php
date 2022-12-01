@@ -86,11 +86,11 @@ class AssignmentPlanController extends Controller
      */
     public function edit( $syllabus, $plan)
     {
+        $plan= AssignmentPlan::where('id', $plan)->first();
           return view('assignment-plans.edit',[
             'syllabus' => $syllabus,
             'plan'=> $plan
           ]);  
-        
     }
 
     /**
@@ -118,11 +118,11 @@ class AssignmentPlanController extends Controller
         $plan = AssignmentPlan::find($plan);
 
         $plan->syllabus_id = $syllabus;
-        $plan->id = $validated['id'];
+        // $plan->id = $plan;
         $plan->title = $validated['title'];
         $plan->description = $validated['description'];
-        $plan->created_at = $validated['created_at'];
-        $plan->updated_at = $validated['updated_at'];
+        // $plan->created_at = $validated['created_at'];
+        // $plan->updated_at = $validated['updated_at'];
         $plan->assignment_style = $validated['assignment_style'];
        // $plan->output_instruction = $validated['output_instruction'];
        // $plan->submission_instruction = $validated['submission_instruction'];

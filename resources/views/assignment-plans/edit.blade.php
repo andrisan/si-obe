@@ -13,26 +13,23 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                 <form action="{{ route('syllabi.assignment-plans.update', [$syllabus, $plan]) }}" method="post">
                 @csrf
-                @method('put')
-            
-
+                @method('patch')
                         <div class="container p-4 text-primary text-sm">
                                 <label class="uppercase font-bold  text-blue-600" for="name">Title</label><br>
-                                <input type="text" placeholder="Masukkan input" class="input input-bordered w-full max-w-xs" name="title" /> <br>
+                                <input type="text" placeholder="Title" class="input input-bordered w-full max-w-xs" name="title"  value="{{ old('title', $plan->title) }}"/> <br>
                                 <x-input-error :messages="$errors->get('title')" class="mt-2" />
                         </div>
                         <div class="container p-4 text-primary text-sm">
                                 <label class="uppercase font-bold  text-blue-600" for="name">Description</label><br>
-                                <input type="text" placeholder="Masukkan input" class="input input-bordered w-full max-w-xs" name="description"/> <br>
+                                <input type="text" placeholder="Description" class="input input-bordered w-full max-w-xs" name="description" value="{{ old('description', $plan->description) }}"/> <br>
                                 <x-input-error :messages="$errors->get('description')" class="mt-2" />
                          </div>
 
                         <div class="container p-4 text-primary text-sm">
                                 <label class="uppercase font-bold  text-blue-600" for="name">Assignment style</label><br>
-                                <input type="text" placeholder="Masukkan input" class="input input-bordered w-full max-w-xs" name="assignment_style"/> <br>
+                                <input type="text" placeholder="Assignment style" class="input input-bordered w-full max-w-xs" name="assignment_style" value="{{ old('assignment_style', $plan->assignment_style) }}"/> <br>
                                 <x-input-error :messages="$errors->get('assignment_style')" class="mt-2" />
                         </div>
-                        
                         
                         <input type="submit" value="Save" class="btn btn-active rounded-md " />
                         <a href="{{ route('syllabi.assignment-plans.index', [$syllabus]) }}" class="btn btn-outline rounded-md">Cancel</a>
