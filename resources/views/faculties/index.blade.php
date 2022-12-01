@@ -23,16 +23,16 @@
                             <!-- head -->
                             <thead>
                                 <tr>
-                                    <th>Nomor</th>
+                                    {{-- <th>Nomor</th> --}}
                                     <th>Nama Fakultas</th>
                                     <th class="text-center">Opsi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $i = 1; ?>
+                                {{-- <?php $i = 1; ?> --}}
                                 @foreach ($faculties as $faculty)
                                     <tr>
-                                        <th>{{ $i }}</th>
+                                        {{-- <th>{{ $i }}</th> --}}
                                         <td><a href="{{ route('faculties.show', [$faculty]) }}">{{ $faculty->name }}</a></td>
                                         <td class="text-center">
                                             <div class="flex justify-center">
@@ -51,7 +51,7 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    <?php $i++; ?>
+                                    {{-- <?php $i++; ?> --}}
                                 @endforeach
                             </tbody>
                         </table>
