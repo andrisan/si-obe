@@ -17,8 +17,7 @@ class LearningPlanController extends Controller
      */
     public function index($syllabus)
     {
-        
-        $plan = LearningPlan::where('syllabus_id', $syllabus)->paginate(5);
+        $plan = LearningPlan::with("lessonLearningOutcome")->where('syllabus_id', $syllabus)->paginate(5);
         $syllabus = Syllabus::find($syllabus);
         return view('learning-plans.index', [
             'syllabus' => $syllabus,
