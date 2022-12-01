@@ -20,7 +20,6 @@ class AssignmentPlanController extends Controller
     public function index($syllabus)
     {
         $plans= AssignmentPlan::where('syllabus_id', $syllabus)->get();
-
         return view('assignment-plans.index', [
             'syllabus' => $syllabus,
             'plans' => $plans
@@ -53,11 +52,11 @@ class AssignmentPlanController extends Controller
             'description' => 'required|string',
            // 'created_at' => 'required|string',
            // 'updated_at' => 'required|string',
-        //    'is_group_assignment' => 'required|numeric',
-            'assignment_style' => 'required|string'
-        //    'output_instruction' => 'required|string',
-        //    'submission_instruction' => 'required|string',
-        //    'deadline_instruction' => 'required|string',
+             'is_group_assignment' => 'required|numeric',
+             'assignment_style' => 'required|string',
+             'output_instruction' => 'required|string',
+             'submission_instruction' => 'required|string',
+            'deadline_instruction' => 'required|string',
         ]);
 
         $syllabus->assignmentPlans()->create($validated);
@@ -73,8 +72,13 @@ class AssignmentPlanController extends Controller
      * @param  \App\Models\AssignmentPlan  $assignmentPlan
      * @return \Illuminate\Http\Response
      */
-    public function show()
-    {
+    public function show( $syllabus, $plan)
+     {
+        $plan= AssignmentPlan::where('id', $plan)->first();
+        return view('assignment-plans.show',[
+            'syllabus' => $syllabus,
+            'plan'=> $plan
+        ]);
 
     }
 
@@ -108,11 +112,11 @@ class AssignmentPlanController extends Controller
             'description' => 'required|string',
            // 'created_at' => 'required|string',
            // 'updated_at' => 'required|string',
-        //    'is_group_assignment' => 'required|numeric',
-            'assignment_style' => 'required|string'
-        //    'output_instruction' => 'required|string',
-        //    'submission_instruction' => 'required|string',
-        //    'deadline_instruction' => 'required|string',
+             'is_group_assignment' => 'required|numeric',
+             'assignment_style' => 'required|string',
+             'output_instruction' => 'required|string',
+             'submission_instruction' => 'required|string',
+              'deadline_instruction' => 'required|string',
         ]);
 
         $plan = AssignmentPlan::find($plan);
@@ -123,10 +127,10 @@ class AssignmentPlanController extends Controller
         $plan->description = $validated['description'];
         // $plan->created_at = $validated['created_at'];
         // $plan->updated_at = $validated['updated_at'];
-        $plan->assignment_style = $validated['assignment_style'];
-       // $plan->output_instruction = $validated['output_instruction'];
-       // $plan->submission_instruction = $validated['submission_instruction'];
-       // $plan->deadline_instruction = $validated['deadline_instruction'];
+         $plan->assignment_style = $validated['assignment_style'];
+        $plan->output_instruction = $validated['output_instruction'];
+        $plan->submission_instruction = $validated['submission_instruction'];
+        $plan->deadline_instruction = $validated['deadline_instruction'];
 
         $plan->save();
 

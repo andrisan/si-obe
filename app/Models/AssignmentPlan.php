@@ -10,12 +10,14 @@ class AssignmentPlan extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id',
         'title',
         'description',
-        'created_at',
-        'updated_at',
-        'assignment_style'
+        'assignment_style',
+        'output_instruction',
+        'submission_instruction',
+        'deadline_instruction',
+        'is_group_assignment'
+
     ];
 
     public function assignmentPlanTasks()

@@ -30,6 +30,30 @@
                                 <input type="text" placeholder="Assignment style" class="input input-bordered w-full max-w-xs" name="assignment_style" value="{{ old('assignment_style', $plan->assignment_style) }}"/> <br>
                                 <x-input-error :messages="$errors->get('assignment_style')" class="mt-2" />
                         </div>
+
+                        <div class="container p-4 text-primary text-sm">
+                                <label class="uppercase font-bold  text-blue-600" for="name">Output Instruction</label><br>
+                                <input type="text" placeholder="Output Instruction" class="input input-bordered w-full max-w-xs" name="output_instruction" value="{{ old('output_instruction', $plan->output_instruction) }}"/> <br>
+                                <x-input-error :messages="$errors->get('output_instruction')" class="mt-2" />
+                        </div>
+
+                        <div class="container p-4 text-primary text-sm">
+                                <label class="uppercase font-bold  text-blue-600" for="name">Submission Instruction</label><br>
+                                <input type="text" placeholder="Submission Instruction" class="input input-bordered w-full max-w-xs" name="submission_instruction" value="{{ old('submission_instruction', $plan->submission_instruction) }}"/> <br>
+                                <x-input-error :messages="$errors->get('submission_instruction')" class="mt-2" />
+                        </div>
+
+                        <div class="container p-4 text-primary text-sm">
+                                <label class="uppercase font-bold  text-blue-600" for="name">Deadline Instruction</label><br>
+                                <input type="text" placeholder="Deadline Instruction" class="input input-bordered w-full max-w-xs" name="deadline_instruction" value="{{ old('deadline_instruction', $plan->deadline_instruction) }}"/> <br>
+                                <x-input-error :messages="$errors->get('deadline_instruction')" class="mt-2" />
+                        </div>
+
+                        <div class="container p-4 text-primary text-sm">
+                                <label class="uppercase font-bold  text-blue-600" for="name">Is Group Assignment</label><br>
+                                <input type="text" placeholder="Is Group Assignment" class="input input-bordered w-full max-w-xs" name="is_group_assignment" value="{{ old('is_group_assignment', $plan->is_group_assignment) }}"/> <br>
+                                <x-input-error :messages="$errors->get('is_group_assignment')" class="mt-2" />
+                        </div>
                         
                         <input type="submit" value="Save" class="btn btn-active rounded-md " />
                         <a href="{{ route('syllabi.assignment-plans.index', [$syllabus]) }}" class="btn btn-outline rounded-md">Cancel</a>

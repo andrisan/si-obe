@@ -15,33 +15,27 @@
                   <table class="w-full">
                     <thead>
                       <tr>
-                        <th>id</th> 
+                        <th >id</th> 
                         <th class="w-[45rem] px-32">title</th> 
-                        <th class="w-[45rem] px-32">description</th> 
-                        <th class="w-[20rem]">created_at</th> 
-                        <th class="w-[20rem]">updated_at</th> 
-                        <th class="w-[20rem]">assignment_style</th> 
-                        <th class="w-36 p-10">
-                           
+
+                        
+                        <th class="w-36 p-10">   
                         <div>
                         <form action="{{ route('syllabi.assignment-plans.create', $syllabus) }}" method= "get">
                               <button class="btn border-outline bg-blue-400 hover:bg-blue-700 hover:text-white 
                               text-white font-bold btn-outline"><strong>Create</strong></button>
                         </form>
                         </div>
-
                         </th>
+
                       </tr>
                     </thead> 
                     <tbody>
                       @foreach($plans as $plan)
                       <tr>
-                        <td>{{ $plan->id }}</td> 
+                        <td class="px-5">{{ $plan->id }}</td>      
                         <td class="px-5">{{ $plan->title }}</td> 
-                        <td class="px-5">{{ $plan->description }}</td> 
-                        <td class="px-5">{{ $plan->created_at }}</td> 
-                        <td class="px-5">{{ $plan->updated_at }}</td> 
-                        <td class="px-5">{{ $plan->assignment_style }}</td> 
+
                         <td class="w-36">
                         <div class="flex card-actions justify-center pt-5">
                             <form action="{{ route('syllabi.assignment-plans.edit', [$syllabus, $plan->id]) }}" method="get">
@@ -53,13 +47,23 @@
                                 <button class="btn btn-error btn-sm" value="{{ $plan->id }}" onclick="return confirm('Yakin ingin menghapus data?');"><strong>Delete</strong></button>
                             </form>
                         </div>
+                        <div class="flex card-actions justify-center pt-5">
+                        <form action="{{ route('syllabi.assignment-plans.show', [$syllabus, $plan->id]) }}" method="get">
+                          <button class="text-blue-600" value="{{ $plan->id }}"><strong>Open Details</strong></button>
+                        </form>      
+                        </div>
                         </td>
                       </tr>
                       @endforeach
                     </tbody> 
                   </table>
+
+                
+
                 </div>
             </div>
         </div>
     </div>
+
+    
 </x-app-layout>
