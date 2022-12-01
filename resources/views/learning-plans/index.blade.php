@@ -1,7 +1,7 @@
 <x-app-layout>
   <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-      {{  __('Learning Plan')  }}
+      {{ $syllabus->title }}
     </h2>
   </x-slot>
 
@@ -47,13 +47,11 @@
         <thead>
           <tr class="text-left">
             <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-16">Kode</th>
-            <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-16">Syllabus</th>
             <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-16">LLO</th>
             <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-16">Week</th>
             <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-256">Study Material</th>
             <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-128">Learning Method</th>
             <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-128">Estimated Time</th>
-            <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-128">Last Update</th>
             <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-52">Action</th>
           </tr>
         </thead>
@@ -61,13 +59,11 @@
           @foreach ($plans as $plan)
           <tr>
             <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $plan->id }}</td>
-            <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $plan->syllabus_id }}</td>
             <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $plan->llo_id }}</td>
             <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $plan->week_number }}</td>
             <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $plan->study_material }}</td>
             <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $plan->learning_method }}</td>
             <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $plan->estimated_time }}</td>
-            <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $plan->updated_at }}</td>
             <td class="text-gray-600 px-6 py-3 border-t border-gray-100">
               <div class="flex flex-wrap space-x-4">
                 <form action="{{ route('syllabi.learning-plans.edit', [$syllabus, $plan->id]) }}" method="GET">
@@ -84,6 +80,7 @@
             </td>
           </tr>
           @endforeach
+          {{ $plans->links() }}
         </tbody>
       </table>
     </div>
