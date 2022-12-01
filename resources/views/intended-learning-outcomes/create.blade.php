@@ -39,7 +39,7 @@
                             <br>
                             <div class="mt-5 ml-10 pl-2">
                                 <button type="submit" name="submit" id="submit"
-                                    class="mr-4 btn rounded-md hover:bg-slate-200 hover:text-black">submit</button>
+                                    class="mr-4 btn rounded-md hover:bg-slate-200 hover:text-black">Save</button>
                                 <a href="{{route ('syllabi.ilos.index',[$syllabus])}}"
                                     class="btn btn-outline rounded-md "> Cancel</a>
                             </div>
