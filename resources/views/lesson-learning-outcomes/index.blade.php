@@ -33,7 +33,7 @@
                                     </tr>
                                     <tr>
                                         <td class="font-bold">Deskripsi</td>
-                                        <td>: {{ $clo->description}}</td>
+                                        <td><a href="{{ route('syllabi.ilos.clos.index', [$syllabus, $ilo]) }}">: {{ $clo->description}}</a></td>
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -50,22 +50,18 @@
                         <table class="table-fixed w-full">
                             <thead>
                                 <tr class="bg-[#F7F7F9] border-2 h-10">
-                                    <th class="w-auto">Kode CLO</th>
-                                    <th class="w-auto">Kode LLO</th>
                                     <th class="w-auto">Posisi</th>
-                                    <th class="w-auto">deskripsi</th>
+                                    <th class="w-auto">Deskripsi</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody class="text-center border-2 border-black text-black">
                             @foreach($llos as $llo) 
                             <tr class="border-2 h-14">
-                                <td>{{ $llo->clo_id }}</td>   
-                                <td>{{ $llo->id }}</td>
                                 <td>{{ $llo->position }}</td>
                                 <td>{{ $llo->description }}</td>    
                                 <td>
-                                    <div class="card-actions justify-end pt-5">
+                                    <div class="card-actions justify-center pt-5">
                                         <form action="{{ route('syllabi.ilos.clos.llos.edit', [$syllabus, $ilo, $clo, $llo->id]) }}" method="get">
                                             <button class="btn btn-warning btn-sm" value="{{ $llo->id }}"><strong>Edit</strong></button>
                                         </form>
