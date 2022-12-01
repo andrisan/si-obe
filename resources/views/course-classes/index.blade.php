@@ -65,17 +65,17 @@
                                         <td>
                                                 <div class="">
                                                     <a href="{{route('classes.edit', [$class->id])}}">
-                                                        <button class="btn btn-warning hover:bg-white hover:text-warning btn-xs sm:btn-sm md:btn-sm rounded-md text-white">
-                                                            Edit
+                                                        <button class="btn btn-warning hover:bg-white hover:text-warning btn-xs sm:btn-sm md:btn-sm rounded-full text-white">
+                                                            <img class="w-5 h-5" src="{{ asset('img/icon-edit.png') }}" alt="">
                                                         </button>
                                                     </a>
                                                 </div>
-                                                <div class="">
+                                                <div class="mt-2">
                                                     <form action="{{ route('classes.destroy', [$class]) }}" method="post">
                                                         @csrf
                                                         @method('delete')
-                                                        <button class="btn btn-error hover:bg-white hover:text-error btn-xs sm:btn-sm md:btn-sm rounded-md text-white" value="{{ $class->id }}"
-                                                            onclick="return confirm('Yakin ingin menghapus data ?');">Delete</button>
+                                                        <button class="btn btn-error hover:bg-white hover:text-error btn-xs sm:btn-sm md:btn-sm rounded-full text-white" value="{{ $class->id }}"
+                                                            onclick="return confirm('Yakin ingin menghapus data ?');"><img class="w-5 h-5" src="{{ asset('img/icon-delete.png') }}" alt=""></button>
                                                     </form>
                                                 </div>
                                             {{-- <button class="btn btn-error hover:bg-white hover:text-error btn-xs sm:btn-sm md:btn-sm rounded-md w-16 text-white">
