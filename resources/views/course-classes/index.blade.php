@@ -57,8 +57,8 @@
                                         <td width="80px">{{ $i }}</td>
                                         <td width="150px">{{ $class->name }}</td>
                                         <td width="100px">{{ $class->class_code }}</td>
-                                        <td width="400px">{{ $class->name }}</td>
-                                        <td width="400px">{{ $class->class_code }}</td>
+                                        {{-- <td width="400px">{{ $class->name }}</td> --}}
+                                        {{-- <td width="400px">{{ $class->class_code }}</td> --}}
                                         <td width="400px">{{ $class->course->name }}</td>
                                         <td width="400px">{{ $class->course->code }}</td>
                                         <td width="400px">{{ $class->course->type }}</td>
