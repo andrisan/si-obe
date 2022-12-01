@@ -45,12 +45,12 @@
                             <label for="sudy_material" class="label">
                                 <span class="label-text">Study Material</span>
                             </label>
-                            <input type="text" placeholder="Masukkan input" class="input input-bordered w-full max-w-xs" name="study_material" />
+                            <textarea placeholder="Masukkan input" class="w-full max-w-xs" name="study_material"></textarea>
 
                             <label for="learning_method" class="label">
                                 <span class="label-text">Learning Method</span>
                             </label>
-                            <input type="text" placeholder="Masukkan input" class="input input-bordered w-full max-w-xs" name="learning_method" />
+                            <textarea placeholder="Masukkan input" class="w-full max-w-xs" name="learning_method"></textarea>
 
                             <label for="estimated_time" class="label">
                                 <span class="label-text">Estimated Time</span>
