@@ -2,7 +2,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Membuat Capaian Pembelajaran Baru
+            Tampil Intended Learning Outcome
         </h2>
     </x-slot>
 
@@ -13,6 +13,7 @@
                     <h1 class="font-bold text-lg my-8 ml-8">Position : <span class="font-semibold text-base">{{$ilo['position']}}</span></h1>
                     <h1 class="font-bold text-lg mt-8 mb-4 ml-8">Description : </h1>
                     <p class="font-semibold text-base ml-8">{{$ilo['description']}}</p>
+                    <a href="{{route ('syllabi.ilos.index',[$syllabus])}}" class="btn rounded-md hover:bg-slate-200 hover:text-black mt-10 "> Back</a>
                 </div>
             </div>
         </div>
