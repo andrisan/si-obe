@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Syllabus;
 use App\Models\LearningPlan;
+use App\Models\LessonLearningOutcome;
 
 class LearningPlanController extends Controller
 {
@@ -16,11 +17,14 @@ class LearningPlanController extends Controller
      */
     public function index($syllabus)
     {
-        $plan = LearningPlan::where('syllabus_id', $syllabus)->get();
+        
+        $plan = LearningPlan::where('syllabus_id', $syllabus)->paginate(5);
+        $syllabus = Syllabus::find($syllabus);
         return view('learning-plans.index', [
             'syllabus' => $syllabus,
             'plans' => $plan
         ]);
+
     }
 
     /**
@@ -30,8 +34,10 @@ class LearningPlanController extends Controller
      */
     public function create(Syllabus $syllabus)
     {
+        $llos = LessonLearningOutcome::all();
         return view('learning-plans.create', [
-            'syllabus' => $syllabus
+            'syllabus' => $syllabus,
+            'llos' => $llos
         ]);
     }
 
@@ -77,9 +83,12 @@ class LearningPlanController extends Controller
      */
     public function edit($syllabus, $plan)
     {
+        $plan = LearningPlan::find($plan);
+        $llos = LessonLearningOutcome::all();
         return  view('learning-plans.edit', [
             'syllabus' => $syllabus,
-            'plan' => $plan
+            'plan' => $plan,
+            'llos' => $llos
         ]);
     }
 
