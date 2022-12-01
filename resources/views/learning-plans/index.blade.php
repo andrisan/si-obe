@@ -80,9 +80,9 @@
             </td>
           </tr>
           @endforeach
-          {{ $plans->links() }}
         </tbody>
       </table>
     </div>
+    {{ $plans->links() }}
   </div>
 </x-app-layout>
