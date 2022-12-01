@@ -1,3 +1,5 @@
+@section('pageTitle', 'Edit Learning Plan')
+
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-2xl text-gray-800 leading-tight">
@@ -22,11 +24,13 @@
                         <label for="llo" class="label">
                             <span class="label-text">Kode LLO</span>
                         </label>
-                        
-                        <select class="select select-bordered w-full max-w-xs" placeholder="Masukkan input" name="llo_id" value="{{ $plan->llo_id }}">
-                                @foreach ($llos as $llo)
-                                    <option>{{ $llo->id }}</option>
-                                @endforeach
+
+                        <select class="select select-bordered w-full max-w-xs" placeholder="Masukkan input" name="llo_id">
+                            @foreach ($llos as $llo)
+                            <option value={{$llo->id}} @if($plan->llo_id == $llo->id)
+                                selected
+                                @endif >{{ $llo->description }}</option>
+                            @endforeach
                         </select>
 
                         <label for=" week_number" class="label">
@@ -48,8 +52,13 @@
                             <span class="label-text">Estimated Time</span>
                         </label>
                         <input type="text" placeholder="Masukkan input" class="input input-bordered w-full max-w-xs" name="estimated_time" value="{{ $plan->estimated_time }}" />
-                        <input type=" submit" value="Save" class="btn btn-active rounded-md " />
-                        <a href="{{ route('syllabi.learning-plans.index', [$syllabus]) }}" class="btn btn-outline rounded-md">Cancel</a>
+                        <div class="py-4">
+                        <button type="submit" value="Save" class="btn btn-active btn-success rounded-md mr-4">Save</button>
+                        <button class="btn btn-warning rounded-md">
+                            <a href="{{ route('syllabi.learning-plans.index', [$syllabus]) }}">Cancel</a>
+                        </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
