@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Assignment;
 use App\Models\CourseClass;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 
 class AssignmentController extends Controller
@@ -19,9 +20,9 @@ class AssignmentController extends Controller
         return view('assignments.index', [
             'courseClass' => $courseClass,
             'assignments' => $courseClass
-                                ->assignments()
-                                ->orderBy('id', 'desc')
-                                ->paginate(4)
+                ->assignments()
+                ->orderBy('id', 'desc')
+                ->paginate(4)
         ]);
     }
 
@@ -49,12 +50,17 @@ class AssignmentController extends Controller
         $validated = $request->validate([
             'assignment_plan_id' => 'required|numeric',
             'course_class_id' => 'required|numeric',
-            'assigned_date' => 'required|date',
             'due_date' => 'required|date',
-            'note' => 'string',
+            'note' => 'nullable|string',
         ]);
 
-        $assignment->create($validated);
+        $assignment->assignment_plan_id = $validated['assignment_plan_id'];
+        $assignment->course_class_id = $validated['course_class_id'];
+        $assignment->assigned_date = Carbon::now('Asia/Jakarta');
+        $assignment->due_date = $validated['due_date'];
+        $assignment->note = $validated['note'];
+
+        $assignment->save();
 
         return redirect()->route('course-classes.assignments.index', [
             $courseClass
@@ -101,9 +107,8 @@ class AssignmentController extends Controller
     {
         $validated = $request->validate([
             'assignment_plan_id' => 'required|numeric',
-            'assigned_date' => 'required|date',
             'due_date' => 'required|date',
-            'note' => 'string',
+            'note' => 'nullable|string',
         ]);
 
         $assignment->update($validated);
