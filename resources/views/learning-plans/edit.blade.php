@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-2xl text-gray-800 leading-tight">
-            {{ __('Edit Learning Plan') }}
+            {{ $plan->study_material }}
         </h2>
     </x-slot>
 
@@ -12,36 +12,43 @@
                     <form action="{{ route('syllabi.learning-plans.update', [$syllabus, $plan]) }}" method="post">
                         @csrf
                         @method('patch')
-                        <label for="week_number" class="label">
+                        <div class="hidden">
+                            <label for="syllabus" class="label">
                                 <span class="label-text">Kode Syllabus</span>
                             </label>
-                            <input type="number" placeholder="Masukkan input" class="input input-bordered w-full max-w-xs" name="syllabus_id"/>
+                            <input type="number" placeholder="Masukkan input" class="input input-bordered w-full max-w-xs" name="syllabus_id" value="{{ $plan->syllabus_id }}" />
+                        </div>
 
-                            <label for="week_number" class="label">
-                                <span class="label-text">Kode LLO</span>
-                            </label>
-                            <input type="number" placeholder="Masukkan input" class="input input-bordered w-full max-w-xs" name="llo_id"/>
+                        <label for="llo" class="label">
+                            <span class="label-text">Kode LLO</span>
+                        </label>
+                        
+                        <select class="select select-bordered w-full max-w-xs" placeholder="Masukkan input" name="llo_id" value="{{ $plan->llo_id }}">
+                                @foreach ($llos as $llo)
+                                    <option>{{ $llo->id }}</option>
+                                @endforeach
+                        </select>
 
-                            <label for="week_number" class="label">
-                                <span class="label-text">Week Number</span>
-                            </label>
-                            <input type="number" placeholder="Masukkan input" class="input input-bordered w-full max-w-xs" name="week_number"/>
+                        <label for=" week_number" class="label">
+                            <span class="label-text">Week Number</span>
+                        </label>
+                        <input type="number" placeholder="Masukkan input" class="input input-bordered w-full max-w-xs" name="week_number" value="{{ $plan->week_number }}" />
 
-                            <label for="sudy_material" class="label">
-                                <span class="label-text">Study Material</span>
-                            </label>
-                            <input type="text" placeholder="Masukkan input" class="input input-bordered w-full max-w-xs" name="study_material" />
-                            
-                            <label for="learning_method" class="label">
-                                <span class="label-text">Learning Method</span>
-                            </label>
-                            <input type="text" placeholder="Masukkan input" class="input input-bordered w-full max-w-xs" name="learning_method" />
+                        <label for=" sudy_material" class="label">
+                            <span class="label-text">Study Material</span>
+                        </label>
+                        <input type="text" placeholder="Masukkan input" class="input input-bordered w-full max-w-xs" name="study_material" value="{{ $plan->study_material }}" />
 
-                            <label for="estimated_time" class="label">
-                                <span class="label-text">Estimated Time</span>
-                            </label>
-                            <input type="text" placeholder="Masukkan input" class="input input-bordered w-full max-w-xs" name="estimated_time" />
-                        <input type="submit" value="Save" class="btn btn-active rounded-md " />
+                        <label for=" learning_method" class="label">
+                            <span class="label-text">Learning Method</span>
+                        </label>
+                        <input type="text" placeholder="Masukkan input" class="input input-bordered w-full max-w-xs" name="learning_method" value="{{ $plan->learning_method }}" />
+
+                        <label for=" estimated_time" class="label">
+                            <span class="label-text">Estimated Time</span>
+                        </label>
+                        <input type="text" placeholder="Masukkan input" class="input input-bordered w-full max-w-xs" name="estimated_time" value="{{ $plan->estimated_time }}" />
+                        <input type=" submit" value="Save" class="btn btn-active rounded-md " />
                         <a href="{{ route('syllabi.learning-plans.index', [$syllabus]) }}" class="btn btn-outline rounded-md">Cancel</a>
                 </div>
             </div>
