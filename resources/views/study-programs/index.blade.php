@@ -1,3 +1,4 @@
+@section('pageTitle', "Daftar Program Studi")
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -14,11 +15,15 @@
                 <div class="p-6 bg-white border-b border-gray-200 ">
                     <!--dropdown pilih departemen-->
                     <div class="dropdown">
-                        <label tabindex="0" class="btn m-1">Departments</label>
-                        <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-                            <li><a href="">{{$department->name}}</a></li>
-                        </ul>
+                        <select name="" onchange="location = this.value;" id="" class="px-5 w-52 py-2">
+                            <option selected disabled>Departemen</option>
+                            @foreach ($departments as $departments)
+                            <option value="{{route('faculties.departments.study-programs.index',[$faculty, $departments])}}">{{$departments->name}}</option>
+                            @endforeach
+                            
+                        </select>
                     </div>
+
 
                     <div class="flex ">
                         <div class="w-3/4">
@@ -67,44 +72,54 @@
 
                     <br>
                     <!--Tabel Study Programs-->
-                        <div class="overflow-x-auto">
-                            <table class="table w-full text-center">
-                        <!-- head -->
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Study Program</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($studyPrograms as $studyProgram)
-                                <!-- row 1 -->
-                            <tr class="hover">
-                                <th>{{ $loop->index + $studyPrograms->firstItem() }}</th>
-                                <td>{{ $studyProgram->name}}</td>
-                                <td>
-                                    <div class="flex flex-wrap space-x-3">
-                                        <button class="btn btn-warning btn-sm"> <a href="{{ route('faculties.departments.study-programs.edit', [$faculty, $department, $studyProgram]) }}">Edit</a></button>
-                                        <form method="POST" action="{{ route('faculties.departments.study-programs.destroy', [$faculty, $department, $studyProgram]) }}">
-                                            @csrf
-                                            @method('delete')
-        
-                                            <button class="btn btn-error btn-sm"
-                                                    onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
-                                                {{ __('Delete') }}
-                                            </button>
-                                        </form>
-                                    </div>
-                                    
-                                </td>
-                            </tr>
+                    @if ($studyPrograms->isNotEmpty())
+                    <div class="overflow-x-auto">
+                        <table class="table w-full text-center">
+                    <!-- head -->
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Study Program</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($studyPrograms as $studyProgram)
+                        <!-- row 1 -->
+                    <tr class="hover">
+                        <th>{{ $loop->index + $studyPrograms->firstItem() }}</th>
+                        <td>{{ $studyProgram->name}}</td>
+                        <td>
+                            <div class="flex flex-wrap space-x-3">
+                                <button class="btn btn-warning btn-sm"> <a href="{{ route('faculties.departments.study-programs.edit', [$faculty, $department, $studyProgram]) }}">Edit</a></button>
+                                <form method="POST" action="{{ route('faculties.departments.study-programs.destroy', [$faculty, $department, $studyProgram]) }}">
+                                    @csrf
+                                    @method('delete')
+
+                                    <button class="btn btn-error btn-sm"
+                                            onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
+                                        {{ __('Delete') }}
+                                    </button>
+                                </form>
+                            </div>
                             
-                            @endforeach
-                            
-                        </tbody>
-                    </table>
-            </div>
+                        </td>
+                    </tr>
+                    
+                    @endforeach
+
+                    </tbody>
+                </table>
+        </div>  
+                    @endif
+
+                    @if ($studyPrograms->isEmpty())
+
+                    <div class="bg-yellow-400 py-2">
+                        <h1 class="ml-10 font-bold">Data Program Studi Belum Ada</h1>
+                    </div>
+                        
+                    @endif
                     <!--batas bawah-->
                 </div>
             </div>
