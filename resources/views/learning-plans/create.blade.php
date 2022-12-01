@@ -1,3 +1,5 @@
+@section('pageTitle', 'Create Learning Plan')
+
 <x-app-layout>
     <x-slot name="header">
         <div class="flex justify-between">
@@ -31,7 +33,7 @@
                             </label>
                             <select class="select select-bordered w-full max-w-xs" placeholder="Masukkan input" name="llo_id">
                                 @foreach ($llos as $llo)
-                                    <option>{{ $llo->id }}</option>
+                                    <option value={{$llo->id}}> {{ $llo->description }} </option>
                                 @endforeach
                             </select>
 
@@ -56,8 +58,8 @@
                             <input type="text" placeholder="Masukkan input" class="input input-bordered w-full max-w-xs" name="estimated_time" />
                         </div>
                         <div class="card-actions justify-end mt-4">
+                        <input type="submit" value="Create" class="btn btn-success m-2 " />
                             <a href="{{ route('syllabi.learning-plans.index', [$syllabus]) }}" class="btn btn-error m-2">Cancel</a>
-                            <input type="submit" value="Create" class="btn btn-success m-2 " />
                         </div>
                     </form>
                 </div>
