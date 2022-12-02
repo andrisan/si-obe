@@ -42,7 +42,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('faculties', FacultyController::class);
     Route::resource('courses', CourseController::class);
     Route::resource('syllabi', SyllabusController::class);
-    Route::resource('rubrics', RubricController::class)->middleware('rubricAuth');
+    Route::resource('rubrics', RubricController::class)->middleware(['roles:admin,teacher']);
     Route::resource('classes', CourseClassController::class);
     Route::resource('student-grades', StudentGradeController::class);
 
