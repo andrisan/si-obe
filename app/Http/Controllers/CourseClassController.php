@@ -73,12 +73,10 @@ class CourseClassController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(CourseClass $courseClass)
     {
         if (Auth::user()->role == 'teacher') {
-            return view('course-classes.edit', [
-                'classes'=>User::find(Auth::user()->id)->students()->get(),
-            ]);
+            return view('course-classes.edit', ['courseClass' =>$courseClass]);
         }
         else{
             abort(403);
