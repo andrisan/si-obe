@@ -1,83 +1,69 @@
+<title>Index Assignment Plans</title>
+
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Assignment Plans') }}
         </h2>
     </x-slot>
-
+    
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <!---Assignment style-->
-                      <select class="select select-bordered border-info w-full max-w-xs mx-10 mb-10 mt-5">
-                        <option disabled selected>Assignment Style</option>
-                        <option>Multiple choice</option>
-                        <option>Essay</option>
-                        <option>Simple question</option>
-                      </select>
-                    <!--end Assignment style-->
+                <div>
+                  <table class="w-full">
+                    <thead>
+                      <tr>
+                        <th >id</th> 
+                        <th class="w-[45rem] px-32">title</th> 
 
-                    <!--deadline -->
-                      <div class="form-control float-right mx-10 mt-5">
-                        <label class="input-group input-group-md" >
-                          <span><img src="img/Vector.png"/></span>
-                          <input type="text" placeholder="DD/MM/YYYY" class="input input-bordered input-md mb-0"/>
-                        </label>
-                      </div>
-                    <!--end deadline-->
+                        
+                        <th class="w-36 p-10">   
+                        <div>
+                        <form action="{{ route('syllabi.assignment-plans.create', $syllabus) }}" method= "get">
+                              <button class="btn border-outline bg-blue-400 hover:bg-blue-700 hover:text-white 
+                              text-white font-bold btn-outline"><strong>Create</strong></button>
+                        </form>
+                        </div>
+                        </th>
 
-                    <!-- card title-->
-                      <div class="card float-left shadow-xl mx-10">
-                          <div class="card w-96 shadow-xl mt-10 mx-10  bg-stone-300">
-                            <div class="card-body card-bordered">
-                              <div class="form-control w-full">
-                                <input type="text" placeholder="Title" class="input input-bordered w-full mb-5"/>
-                                <div class="form-control mb-5">
-                                  <textarea class="textarea textarea-bordered h-24" placeholder="Description"></textarea>
-                                </div>
-                                <div class="form-control w-52">
-                                  <label class="cursor-pointer label">
-                                    <span class="label-text">Group Assignment</span> 
-                                    <input type="checkbox" class="toggle toggle-info" checked />
-                                  </label>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                            <!--output-->
-                              <div>
-                                <div class="card w-96 bg-base-100 shadow-xl mt-10 mb-10 mx-10">
-                                  <div class="card-body bg-stone-300">
-                                  <h2 class="card-title">Output</h2>
-                                    <div class="form-control w-full">
-                                      <div class="form-control mb-5">
-                                        <textarea class="textarea textarea-bordered h-24" placeholder="Text here"></textarea>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            <!--end output-->
-                      </div>
-                    <!--end card -->
+                      </tr>
+                    </thead> 
+                    <tbody>
+                      @foreach($plans as $plan)
+                      <tr>
+                        <td class="px-5">{{ $plan->id }}</td>      
+                        <td class="px-5">{{ $plan->title }}</td> 
 
-                    <!--  submissioninstruction-->
-                      <div class="form-control mx-10">
-                        <label class="label">
-                          <span class="label-text">Submission Instruction</span>
-                        </label> 
-                        <textarea class="textarea textarea-bordered mt-5 mb-5 h-24" placeholder="Text here"></textarea>
-                      </div>
-                        <!--button-->
-                          <div class="navbar-end mx-10 mt-5">
-                              <button class="btn btn-info">Simpan</button>
-                          </div>
-                        <!--end button-->
-                      <!--end instruction-->
-                    </div>
+                        <td class="w-36">
+                        <div class="flex card-actions justify-center pt-5">
+                            <form action="{{ route('syllabi.assignment-plans.edit', [$syllabus, $plan->id]) }}" method="get">
+                              <button class="btn btn-warning btn-sm" value="{{ $plan->id }}"><strong>Edit</strong></button>
+                            </form>
+                            <form action="{{ route('syllabi.assignment-plans.destroy', [$syllabus, $plan->id]) }}" method="post">
+                                @csrf
+                                @method('delete')
+                                <button class="btn btn-error btn-sm" value="{{ $plan->id }}" onclick="return confirm('Yakin ingin menghapus data?');"><strong>Delete</strong></button>
+                            </form>
+                        </div>
+                        <div class="flex card-actions justify-center pt-5">
+                        <form action="{{ route('syllabi.assignment-plans.show', [$syllabus, $plan->id]) }}" method="get">
+                          <button class="text-blue-600" value="{{ $plan->id }}"><strong>Open Details</strong></button>
+                        </form>      
+                        </div>
+                        </td>
+                      </tr>
+                      @endforeach
+                    </tbody> 
+                  </table>
+
+                
+
                 </div>
             </div>
         </div>
     </div>
+
+    
 </x-app-layout>
