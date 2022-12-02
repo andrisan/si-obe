@@ -75,7 +75,14 @@ class CourseClassController extends Controller
      */
     public function edit($id)
     {
-        return view('course-classes.edit');
+        if (Auth::user()->role == 'teacher') {
+            return view('course-classes.edit', [
+                'classes'=>User::find(Auth::user()->id)->students()->get(),
+            ]);
+        }
+        else{
+            abort(403);
+        }
     }
 
     /**
