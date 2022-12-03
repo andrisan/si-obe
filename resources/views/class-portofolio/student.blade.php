@@ -48,11 +48,11 @@
                                 </tr>
                                 
                                 <tr >
-                                    <th  bgcolor="#AFC7F5">1</th>
-                                    <th  bgcolor="#AFC7F5">2</th>
-                                    <th  bgcolor="#AFC7F5">3</th>
-                                    <th  bgcolor="#AFC7F5">4</th>
-                                    <th  bgcolor="#AFC7F5">5</th>
+                                    <th class="hover:opacity-75 cursor-pointer" bgcolor="#AFC7F5">2</th>
+                                    <th class="hover:opacity-75 cursor-pointer" bgcolor="#AFC7F5">3</th>
+                                    <th class="hover:opacity-75 cursor-pointer" bgcolor="#AFC7F5">1</th>
+                                    <th class="hover:opacity-75 cursor-pointer" bgcolor="#AFC7F5">4</th>
+                                    <th class="hover:opacity-75 cursor-pointer" bgcolor="#AFC7F5">5</th>
 
                                 </tr>
                                 
