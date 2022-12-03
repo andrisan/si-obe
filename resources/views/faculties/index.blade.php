@@ -23,16 +23,15 @@
                             <!-- head -->
                             <thead>
                                 <tr>
-                                    {{-- <th>Nomor</th> --}}
+                                    <th>Nomor</th>
                                     <th>Nama Fakultas</th>
                                     <th class="text-center">Opsi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {{-- <?php $i = 1; ?> --}}
                                 @foreach ($faculties as $faculty)
                                     <tr>
-                                        {{-- <th>{{ $i }}</th> --}}
+                                        <td>{{ $loop->index + $faculties->firstItem() }}</td>
                                         <td><a href="{{ route('faculties.show', [$faculty]) }}">{{ $faculty->name }}</a></td>
                                         <td class="text-center">
                                             <div class="flex justify-center">
