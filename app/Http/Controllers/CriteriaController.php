@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Criteria;
+use App\Models\Rubric;
+use App\Models\LessonLearningOutcome;
 
 class CriteriaController extends Controller
 {
@@ -13,7 +16,7 @@ class CriteriaController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -47,9 +50,12 @@ class CriteriaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Rubric $rubric, Criterias $criterias)
     {
-        return view('criteria.show');
+            return view('criterias.show', [
+                'rubric' => $rubric,
+                'criterias' => $criterias
+            ]);
     }
 
     /**
