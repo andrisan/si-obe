@@ -31,18 +31,18 @@ class Criteria extends Model
         'max_point'
     ];
 
-    public function criteria()
+    public function rubric()
     {
-        return $this->hasOne(Criteria::class);
-    }
-
-    public function rubrics()
-    {
-        return $this->hasOne(Rubrics::class, 'rubric_id');
+        return $this->belongsTo(Rubric::class, 'rubric_id');
     }
 
     public function lessonLearningOutcome()
     {
         return $this->belongsTo(LessonLearningOutcome::class,'llo_id');
+    }
+
+    public function criteriaLevels()
+    {
+        return $this->hasMany(CriteriaLevel::class);
     }
 }
