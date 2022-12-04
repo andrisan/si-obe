@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Assignment;
 use Illuminate\Http\Request;
 use App\Models\StudentGrade;
 
@@ -14,12 +15,18 @@ class StudentGradeController extends Controller
      */
     public function index(Request $request)
     {
-        $student_grades = StudentGrade::where('assignment_id', $request->assignment_id)->get();
-        $assignment_id = $request->assignment_id;
+        // $student_grades = StudentGrade::where('assignment_id', $request->assignment_id)->get();
+        // $assignment_id = $request->assignment_id;
+        // // dd($student_grades);
+        // return view('student-grades.index', [ 
+        //     'student_grades' => $student_grades,
+        //     'assignment_id' => $assignment_id
+        // ]);
+
+        $assignments = Assignment::where('id', $request->assignment_id)->get();
         // dd($student_grades);
-        return view('student-grades.index', [
-            'student_grades' => $student_grades,
-            'assignment_id' => $assignment_id
+        return view('student-grades.index', [ 
+            'assignments' => $assignments
         ]);
     }
 

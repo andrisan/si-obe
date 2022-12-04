@@ -43,7 +43,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    public function Student_Data()
+    public function StudentData()
     {
         return $this->hasOne(StudentData::class, 'id');
     }
