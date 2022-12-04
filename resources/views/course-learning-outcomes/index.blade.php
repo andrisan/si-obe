@@ -13,13 +13,18 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-20 text-black">
+                    <div class="pb-6">
+                        <h1 class="text-4xl font-extrabold pb-2" style="font-weight: 900;">Intended Learning Outcome</h1>
+                        <a href="{{ route('syllabi.ilos.index', [$syllabus]) }}" class="link text-[#2E65F3]">
+                            {{$ilos->position}} - {{ $ilos['description']}}
+                        </a>
+                    </div>
                     <div class="flex justify-between border-b-2 pb-4 ">
                         <div class="judul">
                             <h1 class="text-2xl font-extrabold" style="font-weight: 900;">Course Learning Outcome</h1>
                         </div>
-                       
                     </div>
-            
+
                     <nav class="">
                         <ul class="flex space-x-2 font-extrabold">
                             <li class="text-[#2E65F3]">Syllabi <span class="mx-2">/</span> </li>
@@ -27,47 +32,46 @@
                             <li class=""> CLO </li>
                         </ul>
                     </nav>
-            
+
                     <div class="flex  mt-5 space-x-5 relative pb-2">
                         <div class="right-0 float-right absolute">
                             <a href="{{ route('syllabi.ilos.clos.create', [$syllabus, $ilo]) }}"><button class="bg-[#2E65F3] px-5 py-2 rounded-md text-white" placeholder="Tambah"> <span class="font-bold  text-white rounded-full border-white"></span>Tambah</button></a>
                         </div>
                     </div>
                     <div class="mt-10">
-                    <table class="table-fixed w-full">
-                        <thead>
-                            <tr class="border-2 h-10">
-                            <th class="w-10">No</th>
-                            <th class="w-[35rem]">Description</th>
-                            <th class=" w-60">Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody class=" border-2 border-black text-center">
-                            @foreach ($clos as $clo)
-                            <tr class="border-2 h-14">
-                            <td>{{$clo['position']}}</td>    
-                            <td class="text-justify-center">{{$clo['description']}}</td>
-                            <td class="flex space-x-8 justify-center mt-2">
-                                <a href="{{ route('syllabi.ilos.clos.show', [$syllabus, $ilo, $clo->id]) }}" class="btn btn-outline btn-sm my-1">Detail</a>
-                                <a href="{{ route('syllabi.ilos.clos.edit', [$syllabus, $ilo, $clo['id']]) }}" class="my-2"><i class="fa-solid fa-pen-to-square text-blue-800"></i></a>
-                                <form method="POST" action="{{ route('syllabi.ilos.clos.destroy', [$syllabus, $ilo, $clo['id']]) }}">
-                                    @csrf
-                                    @method('delete')
+                        <table class="table-fixed w-full">
+                            <thead>
+                                <tr class="border-2 h-10">
+                                    <th class="w-10">No</th>
+                                    <th class="w-[35rem]">Description</th>
+                                    <th class=" w-60">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody class=" border-2 border-black text-center">
+                                @foreach ($clos as $clo)
+                                <tr class="border-2 h-14">
+                                    <td>{{$clo['position']}}</td>
+                                    <td class="text-justify-center">{{$clo['description']}}</td>
+                                    <td class="flex space-x-8 justify-center mt-2">
+                                        <a href="{{ route('syllabi.ilos.clos.show', [$syllabus, $ilo, $clo->id]) }}" class="btn btn-outline btn-sm my-1">Detail</a>
+                                        <a href="{{ route('syllabi.ilos.clos.edit', [$syllabus, $ilo, $clo['id']]) }}" class="my-2"><i class="fa-solid fa-pen-to-square text-blue-800"></i></a>
+                                        <form method="POST" action="{{ route('syllabi.ilos.clos.destroy', [$syllabus, $ilo, $clo['id']]) }}">
+                                            @csrf
+                                            @method('delete')
 
-                                    <button class="my-2"
-                                            onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
-                                            <i class="fa-solid fa-trash-can text-red-600"></i>
-                                    </button>
-                                </form>
-                            
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                    {{ $clos->links() }}
+                                            <button class="my-2" onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
+                                                <i class="fa-solid fa-trash-can text-red-600"></i>
+                                            </button>
+                                        </form>
+
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        {{ $clos->links() }}
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 </x-app-layout>
