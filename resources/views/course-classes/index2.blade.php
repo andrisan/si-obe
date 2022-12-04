@@ -33,7 +33,7 @@
                       <thead>
                         <tr>
                           <th  class="">No</th>
-                          <th  class="">Thumbnail Image</th>
+                          {{-- <th  class="">Thumbnail Image</th> --}}
                           <th  class="">Kelas</th>
                           <th  class="">Mata Kuliah</th>
                           <th  class="">Kode Mata Kuliah</th>
@@ -44,13 +44,12 @@
                       </thead>
                   
                       <tbody class=" border-2 border-black text-center">
-                        <?php $i=1?>
                         @foreach ($classes as $class)
                         <tr class="border-2 h-14">
-                          <td width="400px">{{ $i }}</td>
-                            <td width="400px">
+                          <td width="400px">{{ $loop->index + $classes->firstItem() }}</td>
+                            {{-- <td width="400px">
                               <img src="{{ $class->thumbnail_img }}" alt="">
-                            </td>
+                            </td> --}}
                             <td width="400px">{{ $class->name }}</td>
                             <td width="400px">{{ $class->course->name }}</td>
                             <td width="400px">{{ $class->course->code }}</td>
@@ -61,11 +60,13 @@
                               <button class="btn  btn-error hover:bg-red-200 hover:text-slate-400  btn-xs sm:btn-sm md:btn-sm rounded-md w-16 ">Delete</button>
                             </td>
                         </tr>
-                        <?php $i++?>
                         @endforeach
                         </tbody>
                       </table>
                     </div>
+                    <div class="mt-5">
+                      {{ $classes->links() }}
+                  </div>
                 </div>
             </div>
         </div>

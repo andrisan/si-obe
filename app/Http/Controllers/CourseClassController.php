@@ -23,7 +23,7 @@ class CourseClassController extends Controller
     {
         if (Auth::user()->role == 'student') {
             return view('course-classes.index2', [
-                'classes'=>User::find(Auth::user()->id)->students()->get(),
+                'classes'=>User::find(Auth::user()->id)->students()->paginate(2),
             ]);
         }
 
