@@ -6,6 +6,7 @@ use App\Models\Department;
 use App\Models\Faculty;
 use App\Models\StudyProgram;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class FacultyController extends Controller
@@ -17,7 +18,10 @@ class FacultyController extends Controller
      */
     public function index()
     {
-        
+        if (Auth::user()->role != 'admin') {
+            return abort(403);
+        }
+
         $faculties = Faculty::orderBy('id')->paginate(3);
 
         return view('faculties.index', [
