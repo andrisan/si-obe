@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Models;
+use App\Models\Rubric;
+use App\Models\LessonLearningOutcome;
 
 use DateTime;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -23,17 +25,24 @@ class Criteria extends Model
 
     protected $fillable = [
         'title',
+        'rubric_id',
+        'llo_id',
         'description',
         'max_point'
     ];
 
-    public function criteriaLevels()
+    public function criteria()
     {
-        return $this->hasMany(CriteriaLevel::class);
+        return $this->hasOne(Criteria::class);
     }
 
-    public function assignmentPlanTasks()
+    public function rubrics()
     {
-        return $this->hasMany(AssignmentPlanTask::class);
+        return $this->hasOne(Rubrics::class, 'rubric_id');
+    }
+
+    public function lessonLearningOutcome()
+    {
+        return $this->belongsTo(LessonLearningOutcome::class,'llo_id');
     }
 }
