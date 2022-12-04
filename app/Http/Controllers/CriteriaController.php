@@ -50,9 +50,10 @@ class CriteriaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Rubric $rubric, Criterias $criterias)
+    public function show($rubric, $criterias)
     {
-            return view('criterias.show', [
+        $criterias = Criteria::with("LessonLearningOutcome")->find($criterias);
+            return view('criteria.show', [
                 'rubric' => $rubric,
                 'criterias' => $criterias
             ]);
