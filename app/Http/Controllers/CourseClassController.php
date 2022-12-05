@@ -139,7 +139,7 @@ class CourseClassController extends Controller
         ]);
     }
 
-    public function join(){
-
+    public function join(Request $request){
+        
     }
 }
