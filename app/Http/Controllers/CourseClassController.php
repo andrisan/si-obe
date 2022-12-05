@@ -140,6 +140,8 @@ class CourseClassController extends Controller
     }
 
     public function join(Request $request){
-        
+        if (Auth::user() != 'student') {
+            abort(403);
+        }
     }
 }
