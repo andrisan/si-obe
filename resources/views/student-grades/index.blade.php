@@ -8,7 +8,6 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
                     <div class="col-span-3 p-10 shadow-xl justify-items-auto overflow-y-auto">
                         <h1 class="text-4xl font-semibold ">Student Grade - Assignment 1</h1>
                         {{-- <h1 class="text-4xl font-semibold ">Student Grade - {{ $student_grades->AssignmentPlanTask->code }}</h1> --}}
@@ -70,7 +69,6 @@
                             </table>
                         </div>
                      </div>
-                </div>
              </div>
         </div>
     </div>
