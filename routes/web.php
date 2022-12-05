@@ -50,7 +50,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('faculties.departments', DepartmentController::class);
         Route::resource('faculties.departments.study-programs', StudyProgramController::class);
         Route::resource('syllabi.ilos', IntendedLearningOutcomeController::class);
-        Route::resource('syllabi.ilos.clos', CourseLearningOutcomeController::class);
         Route::resource('syllabi.ilos.clos.llos', LessonLearningOutcomeController::class);
         Route::resource('syllabi.learning-plans', LearningPlanController::class);
         Route::resource('syllabi.assignment-plans', AssignmentPlanController::class);
@@ -59,5 +58,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('course-classes.assignments', AssignmentController::class);
     });
 });
+
+Route::resource('syllabi.ilos.clos', CourseLearningOutcomeController::class)->middleware('isTeacher');
 
 require __DIR__ . '/auth.php';
