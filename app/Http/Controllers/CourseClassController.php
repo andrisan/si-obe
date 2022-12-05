@@ -103,7 +103,7 @@ class CourseClassController extends Controller
         if (Auth::user()->role == 'teacher') {
             $validated = $request->validate([
                 'name' => 'required|string',
-                'thumbnail_img' => 'required',
+                'thumbnail_img' => 'required|image|mimes:png,jpg,jpeg,svg',
                 'class_code' => 'required|string',
             ]);
     
