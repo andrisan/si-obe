@@ -32,7 +32,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $i = 1; $nol = 0?>
+                                    <?php $i = 1; $nol = 0; $check = false?>
                                     @foreach ($assignments as $assignment)
                                         @foreach ($assignment->CourseClass->students as $student)
                                         <tr>
@@ -44,16 +44,22 @@
                                             <td>
                                                 @foreach ($studentGrades as $sg)
                                                     @if ($sg->student_user_id === $student->id)
-                                                        <?php $nol = $sg->nilai ?>  
+                                                        <?php $nol = $sg->nilai; $check = true; ?>  
                                                     @endif
                                                 @endforeach
                                                 {{ $nol }}
                                             </td>
                                             {{-- <td>{{ ($sg->Criteria_Level->point??null)/($sg->Criteria_Level->Criteria->max_point??null)*100 }}</td>  --}}
                                             <td class="flex gap-2">
+                                                @if($check)
                                                 {{-- <form action="{{ route('student-grades.edit', [$sg->id]) }}">  --}}
                                                     <button class="btn btn-warning btn-sm">Edit</button>
                                                 {{-- </form> --}}
+                                                @else
+                                                {{-- <form action="{{ route('student-grades.edit', [$sg->id]) }}">  --}}
+                                                    <button class="btn btn-primary btn-sm">Create</button>
+                                                {{-- </form> --}}
+                                                @endif
                                                 <form method="POST" action="{{-- {{ route('student-grades.destroy', [$student_grades->id]) }}--}}">
                                                     @csrf
                                                     @method('delete')
