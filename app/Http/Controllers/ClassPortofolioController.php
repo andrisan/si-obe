@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\CourseClass;
+use App\Models\LessonLearningOutcome;
 
 class ClassPortofolioController extends Controller
 {
@@ -106,6 +107,6 @@ class ClassPortofolioController extends Controller
             'cc' => $courseClass,
             'llo' => $llo,
             'userData' => $dataReturn,
-        ]);
+        ]);
     }
 }
