@@ -95,18 +95,14 @@ class CourseClassController extends Controller
         if (Auth::user()->role == 'teacher') {
             $validated = $request->validate([
                 'name' => 'required|string',
-                'role' => 'required|in:admin,teacher,student',
-                'email' => 'required|string|email',
+                'thumbnail_img' => 'required',
+                'class_code' => 'required|string',
             ]);
     
             $courseClass->update($validated);
 
-            $classesCourseId = CourseClass::where('creator_user_id', Auth::user()->id)->pluck('course_id');
-    
-            return view('course-classes.index', [
-                'classes'=>CourseClass::where('creator_user_id', Auth::user()->id)->paginate(2),
-                'courses'=>Course::find($classesCourseId),
-            ]);
+            return redirect(route('course-classes.index'));
+ 
         }
         else{
             abort(403);
