@@ -13,7 +13,7 @@ class StudentGradeController extends Controller
      */
     public function index()
     {
-        //
+        return view('student-grades.index');
     }
 
     /**
@@ -44,7 +44,7 @@ class StudentGradeController extends Controller
      */
     public function show($id)
     {
-        //
+           
     }
 
     /**

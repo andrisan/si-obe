@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AssignmentPlan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Models\Syllabus;
+use App\Models\AssignmentPlan;
+
+
+
 
 class AssignmentPlanController extends Controller
 {
@@ -12,9 +17,13 @@ class AssignmentPlanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($syllabus)
     {
-        //
+        $plans= AssignmentPlan::where('syllabus_id', $syllabus)->get();
+        return view('assignment-plans.index', [
+            'syllabus' => $syllabus,
+            'plans' => $plans
+        ]);
     }
 
     /**
@@ -22,9 +31,11 @@ class AssignmentPlanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Syllabus $syllabus)
     {
-        //
+        return view('assignment-plans.create',[
+            'syllabus' => $syllabus
+        ]);
     }
 
     /**
@@ -33,9 +44,26 @@ class AssignmentPlanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Syllabus $syllabus)
     {
-        //
+        $validated = $request->validate([
+          //  'id' => 'required|string',
+            'title' => 'required|string',
+            'description' => 'required|string',
+           // 'created_at' => 'required|string',
+           // 'updated_at' => 'required|string',
+             'is_group_assignment' => 'required|numeric',
+             'assignment_style' => 'required|string',
+             'output_instruction' => 'required|string',
+             'submission_instruction' => 'required|string',
+            'deadline_instruction' => 'required|string',
+        ]);
+
+        $syllabus->assignmentPlans()->create($validated);
+
+        return redirect()->route('syllabi.assignment-plans.index',[
+            'syllabus'=> $syllabus
+        ]);
     }
 
     /**
@@ -44,9 +72,14 @@ class AssignmentPlanController extends Controller
      * @param  \App\Models\AssignmentPlan  $assignmentPlan
      * @return \Illuminate\Http\Response
      */
-    public function show(AssignmentPlan $assignmentPlan)
-    {
-        //
+    public function show( $syllabus, $plan)
+     {
+        $plan= AssignmentPlan::where('id', $plan)->first();
+        return view('assignment-plans.show',[
+            'syllabus' => $syllabus,
+            'plan'=> $plan
+        ]);
+
     }
 
     /**
@@ -55,9 +88,13 @@ class AssignmentPlanController extends Controller
      * @param  \App\Models\AssignmentPlan  $assignmentPlan
      * @return \Illuminate\Http\Response
      */
-    public function edit(AssignmentPlan $assignmentPlan)
+    public function edit( $syllabus, $plan)
     {
-        //
+        $plan= AssignmentPlan::where('id', $plan)->first();
+          return view('assignment-plans.edit',[
+            'syllabus' => $syllabus,
+            'plan'=> $plan
+          ]);  
     }
 
     /**
@@ -67,9 +104,39 @@ class AssignmentPlanController extends Controller
      * @param  \App\Models\AssignmentPlan  $assignmentPlan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, AssignmentPlan $assignmentPlan)
+    public function update(Request $request, $syllabus, $plan)
     {
-        //
+        $validated = $request->validate([
+            //'id' => 'required|string',
+            'title' => 'required|string',
+            'description' => 'required|string',
+           // 'created_at' => 'required|string',
+           // 'updated_at' => 'required|string',
+             'is_group_assignment' => 'required|numeric',
+             'assignment_style' => 'required|string',
+             'output_instruction' => 'required|string',
+             'submission_instruction' => 'required|string',
+              'deadline_instruction' => 'required|string',
+        ]);
+
+        $plan = AssignmentPlan::find($plan);
+
+        $plan->syllabus_id = $syllabus;
+        // $plan->id = $plan;
+        $plan->title = $validated['title'];
+        $plan->description = $validated['description'];
+        // $plan->created_at = $validated['created_at'];
+        // $plan->updated_at = $validated['updated_at'];
+         $plan->assignment_style = $validated['assignment_style'];
+        $plan->output_instruction = $validated['output_instruction'];
+        $plan->submission_instruction = $validated['submission_instruction'];
+        $plan->deadline_instruction = $validated['deadline_instruction'];
+
+        $plan->save();
+
+        return redirect()->route('syllabi.assignment-plans.index',[
+            'syllabus' => $syllabus
+        ]);
     }
 
     /**
@@ -78,8 +145,12 @@ class AssignmentPlanController extends Controller
      * @param  \App\Models\AssignmentPlan  $assignmentPlan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(AssignmentPlan $assignmentPlan)
+    public function destroy($syllabus, $plan)
     {
-        //
+        $del = AssignmentPlan::where('id', $plan)->delete();
+
+        return redirect()->route('syllabi.assignment-plans.index',[
+            'syllabus' => $syllabus
+        ]);
     }
 }

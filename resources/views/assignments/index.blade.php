@@ -1,4 +1,7 @@
 @php use Carbon\Carbon; @endphp
+
+@section('pageTitle', "$courseClass->name Assigment")
+
 <x-app-layout>
     <x-slot name="header">
 

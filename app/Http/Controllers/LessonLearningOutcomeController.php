@@ -18,7 +18,7 @@ class LessonLearningOutcomeController extends Controller
     public function index($syllabus, $ilo, $clo)
     {
         $clos = LessonLearningOutcome::where('id', $clo)->get();
-        $llos = LessonLearningOutcome::where('clo_id', $clo)->get();
+        $llos = LessonLearningOutcome::where('clo_id', $clo)->orderBy('position')->get();
 
         return view('lesson-learning-outcomes.index', [
             'syllabus' => $syllabus,

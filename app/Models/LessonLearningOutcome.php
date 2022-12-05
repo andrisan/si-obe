@@ -20,4 +20,9 @@ class LessonLearningOutcome extends Model
     {
         return $this->belongsTo(CourseLearningOutcome::class);
     }
+
+    public function learningPlan()
+    {
+        return $this->hasMany(LearningPlan::class, 'llo_id');
+    }
 }
