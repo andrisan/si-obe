@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AssignmentController;
 use App\Http\Controllers\AssignmentPlanController;
+use App\Http\Controllers\ClassPortofolioController;
 use App\Http\Controllers\CourseClassController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CourseLearningOutcomeController;
@@ -59,5 +60,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('course-classes.assignments', AssignmentController::class);
     });
 });
+
+Route::get('class-portofolio/{courseClass}', [ClassPortofolioController::class, 'index'])->name('class-portofolio.index')->middleware('auth');
+Route::get('class-portofolio/{courseClass}/students', [ClassPortofolioController::class, 'student'])->name('class-portofolio.student')->middleware('auth');
 
 require __DIR__ . '/auth.php';

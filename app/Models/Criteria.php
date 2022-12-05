@@ -27,7 +27,7 @@ class Criteria extends Model
         'max_point'
     ];
 
-    public function criteriaLevels()
+    public function criteriaLevel()
     {
         return $this->hasMany(CriteriaLevel::class);
     }
@@ -35,5 +35,10 @@ class Criteria extends Model
     public function assignmentPlanTasks()
     {
         return $this->hasMany(AssignmentPlanTask::class);
+    }
+
+    public function lessonLearningOutcome()
+    {
+        return $this->belongsTo(LessonLearningOutcome::class, 'llo_id');
     }
 }
