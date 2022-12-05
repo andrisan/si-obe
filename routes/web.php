@@ -43,15 +43,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('faculties', FacultyController::class);
     Route::resource('courses', CourseController::class);
     Route::resource('syllabi', SyllabusController::class);
-    Route::resource('rubrics', RubricController::class);
+    Route::resource('rubrics', RubricController::class)->middleware(['roles:admin,teacher']);
     Route::resource('classes', CourseClassController::class);
     Route::resource('student-grades', StudentGradeController::class);
 
     Route::scopeBindings()->group(function () {
         Route::resource('faculties.departments', DepartmentController::class);
         Route::resource('faculties.departments.study-programs', StudyProgramController::class);
-        Route::resource('syllabi.ilos', IntendedLearningOutcomeController::class);
-        Route::resource('syllabi.ilos.clos', CourseLearningOutcomeController::class);
+        Route::resource('syllabi.ilos', IntendedLearningOutcomeController::class)->middleware(['roles:admin,teacher']);
+        Route::resource('syllabi.ilos.clos', CourseLearningOutcomeController::class)->middleware(['roles:teacher']);
         Route::resource('syllabi.ilos.clos.llos', LessonLearningOutcomeController::class);
         Route::resource('syllabi.learning-plans', LearningPlanController::class);
         Route::resource('syllabi.assignment-plans', AssignmentPlanController::class);

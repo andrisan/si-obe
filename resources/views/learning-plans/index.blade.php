@@ -1,161 +1,65 @@
+@section('pageTitle', 'Learning Plan Index')
+
 <x-app-layout>
-  <x-slot name="header">
-    <div class="flex justify-between">
-      <div class="items-start">
-        <h2 class="font-semibold   text-4xl text-gray-800 leading-tight">
-          {{ __('Learning Plans') }}
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ $syllabus->title }}
         </h2>
-      </div>
+    </x-slot>
 
-      <div class="items-end">
-        <img src="{{ asset('img/Vector(2).png') }}" alt="">
-      </div>
-    </div>
-  </x-slot>
+    <div class="max-w-7xl mx-auto p-8">
+        <div class="flex flex-row sm:justify-end mb-3 px-4 sm:px-0 -mr-2 sm:-mr-3">
+            <div class="order-5 sm:order-6 mr-2 sm:mr-3">
+                <a href="{{ route('syllabi.learning-plans.create', [$syllabus]) }}" class="w-full bg-white border border-gray-300 rounded-md shadow-sm px-2.5 sm:px-4 py-2 inline-flex justify-center text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    <span class="pr-1">New Learning Plan</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
 
-  <div class="grid grid-cols-4 divide-y w-full h-full">
-    <div class="col-span-1 grid grid-flow-row grid-rows-none auto-rows-max divide-y overflow-y-scroll h-full">
-      <div class="text-xl font-bold p-5">
-        <label>Teknologi Informasi</label>
-      </div>
-      <div class="grid grid-flow-row grid-rows-none p-5">
-        <div class="flex flex-wrap py-2">
-          <label class="px-4">Analisis dan Desain Sistem Informasi</label>
-        </div>
-        <div class="flex flex-wrap py-2">
-          <label class="px-4">Algoritma dan Struktur Data</label>
-        </div>
-        <div class="flex flex-wrap py-2">
-          <label class="px-4">Jaringan Komputer Dasar</label>
-        </div>
-        <div class="flex flex-wrap py-2">
-          <label class="px-4">Pemrograman Aplikasi Web</label>
-        </div>
-        <div class="flex flex-wrap py-2">
-          <label class="px-4">Pemrograman Basis Data</label>
-        </div>
-      </div>
-    </div>
-    <div class="col-span-3 p-10 shadow-xl justify-items-auto overflow-y-auto">
-      <div class="overflow-x-auto py-4">
-        <table class="table table-zebra w-full">
-          <!-- head -->
-          <thead>
-            <tr>
-              <th>No.</th>
-              <th>Study Material</th>
-              <th>Learning Methode</th>
-              <th>Estimated Time</th>
-              <th>Opsi</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>Introduction</td>
-              <td>Synchronus</td>
-              <td>100 minutes</td>
-              <td>
-                <button class="btn btn-success btn-sm">Edit</button>
-                <button class="btn btn-error btn-sm">Delete</button>
-              </td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>MVC</td>
-              <td>Synchronus</td>
-              <td>120 minutes</td>
-              <td>
-                <button class="btn btn-success btn-sm">Edit</button>
-                <button class="btn btn-error btn-sm">Delete</button>
-              </td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>PHP</td>
-              <td>Asynchronus</td>
-              <td>120 minutes</td>
-              <td>
-                <button class="btn btn-success btn-sm">Edit</button>
-                <button class="btn btn-error btn-sm">Delete</button>
-              </td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td>PBD</td>
-              <td>Asynchronus</td>
-              <td>45 minutes</td>
-              <td>
-                <button class="btn btn-success btn-sm">Edit</button>
-                <button class="btn btn-error btn-sm">Delete</button>
-              </td>
-            </tr>
-            <tr>
-              <td>5</td>
-              <td>PHP Basics</td>
-              <td>Synchronus</td>
-              <td>100 minutes</td>
-              <td>
-                <button class="btn btn-success btn-sm">Edit</button>
-                <button class="btn btn-error btn-sm">Delete</button>
-              </td>
-            </tr>
-            <tr>
-              <td>6</td>
-              <td>Laravel</td>
-              <td>Asynchronus</td>
-              <td>45 minutes</td>
-              <td>
-                <button class="btn btn-success btn-sm">Edit</button>
-                <button class="btn btn-error btn-sm">Delete</button>
-              </td>
-            </tr>
-            <tr>
-              <td>7</td>
-              <td>Linked List</td>
-              <td>Synchronus</td>
-              <td>200 minutes</td>
-              <td>
-                <button class="btn btn-success btn-sm">Edit</button>
-                <button class="btn btn-error btn-sm">Delete</button>
-              </td>
-            </tr>
-            <tr>
-              <td>8</td>
-              <td>HTML</td>
-              <td>Asynchronus</td>
-              <td>100 minutes</td>
-              <td>
-                <button class="btn btn-success btn-sm">Edit</button>
-                <button class="btn btn-error btn-sm">Delete</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="grid grid-cols-8 gap-4 py-4">
-        <button class="btn btn-accent col-end-1">Tambah</button>
-      </div>
-      <form>
-        <div class="flex justify-end p-4">
-          <div>
-            <input class="btn btn-outline btn-active m-1" type="button" value="Prev">
-          </div>
-          <div>
-            <input class="btn btn-outline btn-active m-1" type="button" value="1">
-          </div>
-          <div>
-            <input class="btn btn-outline btn-active m-1" type="button" value="2">
-          </div>
-          <div>
-            <input class="btn btn-outline btn-active m-1" type="button" value="3">
-          </div>
-          <div>
-            <input class="btn btn-outline btn-active m-1" type="button" value="Next">
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
 
+                </a>
+            </div>
+        </div>
+        <div class="mb-5 overflow-x-auto bg-white rounded-lg shadow overflow-y-auto relative">
+
+            <table class="border-collapse table-auto w-full bg-white table-striped relative">
+                <thead>
+                    <tr class="text-left">
+                        <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-16">No</th>
+                        <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-128">LLO</th>
+                        <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-128">Study Material</th>
+                        <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-128">Learning Method</th>
+                        <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-16">Week</th>
+                        <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-52">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($plans as $plan)
+                    <tr>
+                        <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $plan->id }}</td>
+                        <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $plan->lessonLearningOutcome->description }}</td>
+                        <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $plan->study_material }}</td>
+                        <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $plan->learning_method }}</td>
+                        <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $plan->week_number }}</td>
+                        <td class="text-gray-600 px-6 py-3 border-t border-gray-100">
+                            <div class="flex flex-wrap space-x-4">
+                                <form action="{{ route('syllabi.learning-plans.edit', [$syllabus, $plan->id]) }}" method="GET">
+                                    <button class="btn btn-warning btn-sm" value="{{ $plan->id }}">Edit</button>
+                                </form>
+
+                                <form action="{{ route('syllabi.learning-plans.destroy', [$syllabus, $plan->id]) }}" method="POST">
+                                    @csrf
+                                    @method('delete')
+                                    <button class="btn btn-error btn-sm" value="{{ $plan->id }}" onclick="return confirm('Are you sure?')">Delete
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+        {{ $plans->links() }}
+    </div>
 </x-app-layout>

@@ -1,3 +1,4 @@
+<title>Rubrics</title>
 <x-app-layout>
     <x-slot name="header">
         <div class="flex justify-between">
@@ -28,16 +29,14 @@
                         <table class="table mx-auto w-full">
                             <thead class="text-black">
                                 <tr class="h-10 bg-slate-400">
-                                    <th class="w-16 text-base text-current">No.</th>
                                     <th class="w-[45rem] text-base text-current">Judul</th>
                                     <th class="text-center text-base text-current">Action</th>
                                 </tr>
                             </thead>
                             <tbody class="text-left text-regular">
-                                <?php $i = 1 ?>
+                                
                                 @foreach ($rubric as $rub)
                                 <tr class="h-10">
-                                    <td>{{ $i }}</td>
                                     <td>
                                         <a href="{{ route('rubrics.show', $rub) }}">{{ $rub->title }}</a>
                                     </td>
@@ -56,7 +55,7 @@
                                     </td>
                                 </tr>
                             </tbody>
-                            <?php $i += 1 ?>
+                            
                             @endforeach
                         </table>
                     </div>
