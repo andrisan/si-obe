@@ -56,19 +56,10 @@
                                                             <span class="text-blue-600 underline">browse</span>
                                                         </span>
                                                     </span>
-                                                    <form action="/classes/{{ $courseClass->thumbnail_img }}/edit"
-                                                        method="post">
-                                                        @csrf
-                                                        @method('put')
-                                                        <input type="file" name="file_upload" class="hidden">
+                                                    
                                                 </label>
-                                                <button
-                                                    class="bg-none hover:bg-blue-500 hover:text-white text-blue-500 font-bold py-2 px-4 rounded mt-4 border-blue-500 border-2">
-                                                    Simpan
-                                                </button>
-                                                <form action="/classes/{{ $courseClass->thumbnail_img }}/edit">
-                                                    <button
-                                                        class="bg-none hover:bg-red-500 hover:text-white text-red-500 font-bold py-2 px-4 rounded mt-4 border-red-500 border-2">Cancel</button>
+                                                <button class="bg-none hover:bg-blue-500 hover:text-white text-blue-500 font-bold py-2 px-4 rounded mt-4 border-blue-500 border-2">Simpan</button>
+                                                <button class="bg-none hover:bg-red-500 hover:text-white text-red-500 font-bold py-2 px-4 rounded mt-4 border-red-500 border-2"><a href="{{route('classes.index')}}"> Cancel</a></button>
                                                 </form>
                                             </div>
 
