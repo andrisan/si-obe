@@ -90,7 +90,7 @@ class CourseClassController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, CourseClass $courseClass)
     {
         if (Auth::user()->role == 'teacher') {
             $validated = $request->validate([
