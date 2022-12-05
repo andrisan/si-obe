@@ -56,7 +56,7 @@ class CourseClassController extends Controller
         $validateData = $request->validate([
             'name'=> 'required|string',
             'thumbnail_img'=> 'required|image|mimes:png,jpg,jpeg,svg',
-            'class_code'=> 'required|string',
+            'class_code'=> 'required|uuid',
         ]);
         //ISien disini ndra
             $classesCourseId ->CourseClass()->create($validateData);
@@ -104,7 +104,7 @@ class CourseClassController extends Controller
             $validated = $request->validate([
                 'name' => 'required|string',
                 'thumbnail_img' => 'required|image|mimes:png,jpg,jpeg,svg',
-                'class_code' => 'required|string',
+                'class_code' => 'required|uuid',
             ]);
     
             $courseClass->update($validated);
@@ -137,5 +137,9 @@ class CourseClassController extends Controller
             'classes'=>CourseClass::where('creator_user_id', Auth::user()->id)->paginate(2),
             'courses'=>Course::find($classesCourseId),
         ]);
+    }
+
+    public function join(Request $request){
+        
     }
 }
