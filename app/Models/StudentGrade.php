@@ -9,8 +9,8 @@ class StudentGrade extends Model
 {
     use HasFactory;
 
-    public function criteria_levels()
+    public function criteriaLevel()
     {
-        return $this->belongsTo(CriteriaLevel::class);
+        return $this->belongsTo(CriteriaLevel::class, 'criteria_level_id');
     }
 }
