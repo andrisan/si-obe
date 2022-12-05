@@ -25,54 +25,21 @@
                 </tr>
             </thead>
             <tbody class="text-center text-black">
+                <?php $i = 1; ?>
+                @foreach ($lloTotalPoint as $llo)
+                <?php
+                    $lloPoint = $llo['point'] / $studentSum;
+                    $lloTotal = $lloPoint / $llo['maxPoint'] * 100;
+
+                ?>
                 <tr class="border-2 border-black h-14">
-                    <td class="border-2 border-black">1</td>
-                    <td class="text-justify px-3 border-2 border-black">Mahasiswa mampu memahami konsep website dinamis</td>
-                    <td class="border-2 border-black">10</td>
-                    <td class="border-2 border-black">0</td>
+                    <td class="border-2 border-black">{{ $i }}</td>
+                    <td class="text-justify px-3 border-2 border-black">{{ $llo['description'] }}</td>
+                    <td class="border-2 border-black">{{ round($lloTotal, 2) }}%</td>
+                    <td class="border-2 border-black">{{ round($lloPoint, 2) }}</td>
                 </tr>
-                <tr class="border-2 border-black h-14">
-                    <td class="border-2 border-black">2</td>
-                    <td class="text-justify px-3 border-2 border-black">Mahasiswa mampu memahami perbedaan website dinamis dan statis</td>
-                    <td class="border-2 border-black">0</td>
-                    <td class="border-2 border-black">10</td>
-                </tr>
-                <tr class="border-2 border-black h-14">
-                    <td class="border-2 border-black">3</td>
-                    <td class="text-justify px-3 border-2 border-black">Mahasiswa mampu memahami dan mengimplementasikan server-side-scripting untuk membuat website</td>
-                    <td class="border-2 border-black">0</td>
-                    <td class="border-2 border-black">0</td>
-                </tr>
-                <tr class="border-2 border-black h-14">
-                    <td class="border-2 border-black">4</td>
-                    <td class="text-justify px-3 border-2 border-black">Mahasiswa mampu mengimplementasikan server-side-scripting untuk mengelola file di server</td>
-                    <td class="border-2 border-black">0</td>
-                    <td class="border-2 border-black">0</td>
-                </tr>
-                <tr class="border-2 border-black h-14">
-                    <td class="border-2 border-black">5</td>
-                    <td class="text-justify px-3 border-2 border-black">Mahasiswa mampu mengimplementasikan server-side-scripting untuk mengelola data di database</td>
-                    <td class="border-2 border-black">0</td>
-                    <td class="border-2 border-black">0</td>
-                </tr>
-                <tr class="border-2 border-black h-14">
-                    <td class="border-2 border-black">6</td>
-                    <td class="text-justify px-3 border-2 border-black">Mahasiswa mampu memahami konsep MVC</td>
-                    <td class="border-2 border-black">0</td>
-                    <td class="border-2 border-black">0</td>
-                </tr>
-                <tr class="border-2 border-black h-14">
-                    <td class="border-2 border-black">7</td>
-                    <td class="text-justify px-3 border-2 border-black">Mahasiswa mampu memahami dan mengimplementasikan salah satu framework PHP untuk membuat website dinamis</td>
-                    <td class="border-2 border-black">0</td>
-                    <td class="border-2 border-black">0</td>
-                </tr>
-                <tr class="border-2 border-black h-14">
-                    <td class="border-2 border-black">8</td>
-                    <td class="text-justify px-3 border-2 border-black">Mahasiswa mampu mengimplementasikan teknologi AJAX untuk membuat website</td>
-                    <td class="border-2 border-black">0</td>
-                    <td class="border-2 border-black">0</td>
-                </tr>
+                <?php $i++ ?>
+                @endforeach
             </tbody>
           </table>
       </div>
@@ -88,14 +55,14 @@
             </thead>
             <tbody class="text-center text-black">
                 <tr class="border-2 border-black h-14">
-                    <td class="border-2 border-black">50</td>
-                    <td class="border-2 border-black">5</td>
-                    <td class="border-2 border-black">95%</td>
-                    <td class="border-2 border-black">5%</td>
+                    <td class="border-2 border-black">{{ $lulus }}</td>
+                    <td class="border-2 border-black">{{ $gagal }}</td>
+                    <td class="border-2 border-black">{{ round($lulus / $studentSum * 100, 2) }}%</td>
+                    <td class="border-2 border-black">{{ round($gagal / $studentSum * 100, 2) }}%</td>
                 </tr>
                 <tr class="border-2 border-black h-14">
                     <td class="border-2 border-black font-bold">Jumlah Mahasiswa</td>
-                    <td colspan="3" class="border-2 border-black">55</td>
+                    <td colspan="3" class="border-2 border-black">{{ $cc->students->count() }}</td>
                 </tr>
             </tbody>
         </table>
