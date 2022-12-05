@@ -53,7 +53,15 @@ class CourseClassController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'name'=> 'required|string',
+            'thumbnail_img'=> 'required|image|mimes:png,jpg,jpeg,svg',
+            'class_code'=> 'required|string',
+        ]);
+        //ISien disini ndra
+            $classesCourseId ->CourseClass()->create($validateData);
+    
+            return redirect()-> route ('classes');
     }
 
     /**
