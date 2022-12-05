@@ -20,4 +20,9 @@ class LessonLearningOutcome extends Model
     {
         return $this->belongsTo(CourseLearningOutcome::class);
     }
+
+    public function criteria()
+    {
+        return $this->hasMany(Criteria::class, 'llo_id');
+    }
 }
