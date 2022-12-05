@@ -92,7 +92,11 @@ class CourseClassController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if (Auth::user()->role == 'teacher') {
+        }
+        else{
+            abort(403);
+        }
     }
 
     /**
