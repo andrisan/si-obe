@@ -11,12 +11,19 @@
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 bg-white border-b border-gray-200">
                         <div class="container p-4 text-primary mt-2 text-sm">
-                            <form>
-                                <label class="uppercase font-bold  text-black" for="fname">nama kelas</label><br>
-                                <input type="text" placeholder="Enter Your Username" class="input input-bordered input-ghost input-l w-full max-w-xl mb-2 mt-2" />
+                        <label class="uppercase font-bold  text-black" for="fname">nama kelas</label><br>
+                            <form action="{{ route('classes.store') }}" method="POST">
+                                @csrf
+                                <input type="text" placeholder="Masukkan Nama Kelas" class="input input-bordered input-ghost input-l w-full max-w-xl mb-2 mt-2" name="name" required />
                             </form>
                         </div>
-            
+                        <div class="max-w-xl ml-4">
+                        <label class="uppercase font-bold  text-black" for="fname">id kelas</label><br>    
+                            <form action="{{ route('classes.store') }}" method="POST">
+                                @csrf
+                                <input type="uuid" placeholder="" class="input input-bordered input-ghost input-l w-full max-w-xl mb-2 mt-2"class_code="class_code" required />
+                                </form>
+                        </div>
                         <div class="max-w-xl ml-4">
                             <label class="uppercase font-bold text-sm text-black" for="fname">unggah</label>
                             <label
@@ -32,16 +39,19 @@
                                         <span class="text-blue-600 underline">browse</span>
                                     </span>
                                 </span>
-                                <input type="file" name="file_upload" class="hidden">
+                                <form action="{{ route('classes.store') }}" method="POST">
+                                @csrf
+                                <input type="file" name="file_upload" class="hidden" required>
+                                </form>
                             </label>
-                            <button class="bg-none hover:bg-blue-600 hover:text-white text-blue-600 font-bold py-2 px-4 rounded mt-4 border-blue-600 border-2">
+                            <button class="bg-none hover:bg-blue-600 hover:text-white text-blue-600 font-bold py-2 px-4 rounded mt-4 border-blue-600 border-2" type="submit">
                                 Unggah
                             </button>
                         </div>
                         <br>
                         <br>
                         <div class="mt-4 ml-4">
-                            <button class="bg-blue-600 hover:bg-white hover:text-blue-600 text-white font-bold py-2 px-4 rounded border-blue-600 border-2">
+                            <button class="bg-blue-600 hover:bg-white hover:text-blue-600 text-white font-bold py-2 px-4 rounded border-blue-600 border-2" type="submit">
                                 Create Class
                             </button>
                         </div>
