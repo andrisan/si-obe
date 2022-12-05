@@ -27,42 +27,45 @@
                                         <th>NIM</th>
                                         <th>Nama Mahasiswa</th>
                                         <th>Kelas</th>
-                                        <th>Plan Task</th>
                                         <th>Nilai</th>
                                         <th>Opsi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $i = 1 ?>
+                                    <?php $i = 1; $nol = 0?>
                                     @foreach ($assignments as $assignment)
-                                        @foreach ($assignment->CourseClass->students as $item)
-                                            @foreach ($assignment->assignmentPlan->assignmentPlanTasks as $item2)
-                                            <tr>
-                                                <td>{{ $i }}</td>
-                                                {{-- <td>{{ $sg->assignment_id??null }}</td> --}}
-                                                <td>{{ $item->StudentData->student_id_number??null }}</td>
-                                                <td>{{ $item->name??null }}</td>
-                                                <td>{{ $assignment->CourseClass->name??null }}</td>
-                                                <td>{{ $item2->code??null }}</td> 
-                                                {{-- <td>{{ $item3->point??null }}</td>  --}}
-                                                {{-- <td>{{ ($sg->Criteria_Level->point??null)/($sg->Criteria_Level->Criteria->max_point??null)*100 }}</td>  --}}
-                                                <td class="flex gap-2">
-                                                    {{-- <form action="{{ route('student-grades.edit', [$sg->id]) }}">  --}}
-                                                        <button class="btn btn-warning btn-sm">Edit</button>
-                                                    {{-- </form> --}}
-                                                    <form method="POST" action="{{-- {{ route('student-grades.destroy', [$student_grades->id]) }}--}}">
-                                                        @csrf
-                                                        @method('delete')
-    
-                                                        <button class="btn btn-error btn-sm"
-                                                                onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
-                                                            Delete
-                                                        </button> 
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                            <?php $i++ ?>        
-                                            @endforeach
+                                        @foreach ($assignment->CourseClass->students as $student)
+                                        <tr>
+                                            <td>{{ $i }}</td>
+                                            {{-- <td>{{ $sg->assignment_id??null }}</td> --}}
+                                            <td>{{ $student->StudentData->student_id_number??null }}</td>
+                                            <td>{{ $student->name??null }}</td>
+                                            <td>{{ $assignment->CourseClass->name??null }}</td>
+                                            <td>
+                                                @foreach ($studentGrades as $sg)
+                                                    @if ($sg->student_user_id === $student->id)
+                                                        <?php $nol = $sg->nilai ?>  
+                                                    @endif
+                                                @endforeach
+                                                {{ $nol }}
+                                            </td>
+                                            {{-- <td>{{ ($sg->Criteria_Level->point??null)/($sg->Criteria_Level->Criteria->max_point??null)*100 }}</td>  --}}
+                                            <td class="flex gap-2">
+                                                {{-- <form action="{{ route('student-grades.edit', [$sg->id]) }}">  --}}
+                                                    <button class="btn btn-warning btn-sm">Edit</button>
+                                                {{-- </form> --}}
+                                                <form method="POST" action="{{-- {{ route('student-grades.destroy', [$student_grades->id]) }}--}}">
+                                                    @csrf
+                                                    @method('delete')
+
+                                                    <button class="btn btn-error btn-sm"
+                                                            onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
+                                                        Delete
+                                                    </button> 
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        <?php $i++ ?>        
                                         @endforeach
                                     @endforeach
                                 </tbody>

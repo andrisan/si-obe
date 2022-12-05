@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Assignment;
-use Illuminate\Http\Request;
 use App\Models\StudentGrade;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class StudentGradeController extends Controller
 {
@@ -15,18 +17,18 @@ class StudentGradeController extends Controller
      */
     public function index(Request $request)
     {
-        // $student_grades = StudentGrade::where('assignment_id', $request->assignment_id)->get();
-        // $assignment_id = $request->assignment_id;
-        // // dd($student_grades);
-        // return view('student-grades.index', [ 
-        //     'student_grades' => $student_grades,
-        //     'assignment_id' => $assignment_id
-        // ]);
-
         $assignments = Assignment::where('id', $request->assignment_id)->get();
-        // dd($student_grades);
+        $studentGrades = DB::table('student_grades')
+                            ->select(DB::raw('student_grades.student_user_id, sum(criteria_levels.`point`) as nilai'))
+                            ->join('criteria_levels', 'criteria_levels.id', '=','student_grades.criteria_level_id')
+                            ->where('assignment_id', '=', $request->assignment_id)
+                            ->groupBy('student_grades.student_user_id')
+                            ->get();
+
+        // dd($studentGrades);
         return view('student-grades.index', [ 
-            'assignments' => $assignments
+            'assignments' => $assignments,
+            'studentGrades' => $studentGrades
         ]);
     }
 
