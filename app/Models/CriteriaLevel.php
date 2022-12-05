@@ -21,7 +21,12 @@ class CriteriaLevel extends Model
 
     public function studentGrades()
     {
-        return $this->hasMany(StudentGrade::class);
+        return $this->hasMany(StudentGrade::class, 'criteria_level_id');
+    }
+
+    public function criteria()
+    {
+        return $this->belongsTo(Criteria::class, 'criteria_id');
     }
 
     protected $fillable = [
