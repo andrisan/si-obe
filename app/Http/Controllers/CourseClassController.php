@@ -93,6 +93,15 @@ class CourseClassController extends Controller
     public function update(Request $request, $id)
     {
         if (Auth::user()->role == 'teacher') {
+            $validated = $request->validate([
+                'name' => 'required|string',
+                'role' => 'required|in:admin,teacher,student',
+                'email' => 'required|string|email',
+            ]);
+    
+            $user->update($validated);
+    
+            return redirect(route('users.index'));
         }
         else{
             abort(403);
