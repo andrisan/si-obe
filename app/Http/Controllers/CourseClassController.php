@@ -99,9 +99,14 @@ class CourseClassController extends Controller
                 'email' => 'required|string|email',
             ]);
     
-            $user->update($validated);
+            $courseClass->update($validated);
+
+            $classesCourseId = CourseClass::where('creator_user_id', Auth::user()->id)->pluck('course_id');
     
-            return redirect(route('users.index'));
+            return view('course-classes.index', [
+                'classes'=>CourseClass::where('creator_user_id', Auth::user()->id)->paginate(2),
+                'courses'=>Course::find($classesCourseId),
+            ]);
         }
         else{
             abort(403);
