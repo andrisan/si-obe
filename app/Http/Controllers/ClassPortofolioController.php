@@ -78,8 +78,34 @@ class ClassPortofolioController extends Controller
 
     public function student(CourseClass $courseClass)
     {
+        $dataReturn = collect();
+        foreach ($courseClass->students as $student) {
+            $nim = $student->studentData->student_id_number;
+            $name = $student->name;
+            $cpmk = collect();
+            $llo = LessonLearningOutcome::all();
+            foreach ($llo as $llo) {
+                $temp = 0;
+                $maxPoint = 0;
+                foreach ($llo->criteria as $criteria) {
+                    foreach ($student->studentGrade as $sg) {
+                        if ($criteria->id != $sg->criteriaLevel->criteria_id) {
+                            continue;
+                        }
+                        $temp += $sg->criteriaLevel->point;
+                    }
+                    $maxPoint += $criteria->max_point;
+                }
+                $cpmk->push(['point' => $temp, 'maxPoint' => $maxPoint]);
+            }
+            $dataReturn->push(['name' => $name, 'nim' => $nim, 'cpmk' => $cpmk]);
+        }
+ 
+        $llo = LessonLearningOutcome::all();
         return view('class-portofolio.student', [
-            'cc' => $courseClass
-        ]);
+            'cc' => $courseClass,
+            'llo' => $llo,
+            'userData' => $dataReturn,
+        ]);
     }
 }
