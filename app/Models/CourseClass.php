@@ -15,7 +15,7 @@ class CourseClass extends Model
             'course_class_id', 'student_user_id');
     }
 
-    public function assignment()
+    public function assignments()
     {
         return $this->hasMany(Assignment::class, 'course_class_id');
     }

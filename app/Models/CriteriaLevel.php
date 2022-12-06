@@ -34,9 +34,4 @@ class CriteriaLevel extends Model
         'title',
         'description'
     ];
-
-    public function Criteria()
-    {
-        return $this->belongsTo(Criteria::class, 'criteria_id');
-    }
 }
