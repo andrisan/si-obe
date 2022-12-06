@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AssignmentController;
 use App\Http\Controllers\AssignmentPlanController;
+use App\Http\Controllers\ClassPortofolioController;
 use App\Http\Controllers\CourseClassController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CourseLearningOutcomeController;
@@ -42,15 +43,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('faculties', FacultyController::class);
     Route::resource('courses', CourseController::class);
     Route::resource('syllabi', SyllabusController::class);
-    Route::resource('rubrics', RubricController::class);
+    Route::resource('rubrics', RubricController::class)->middleware(['roles:admin,teacher']);
     Route::resource('classes', CourseClassController::class);
     Route::resource('student-grades', StudentGradeController::class);
 
     Route::scopeBindings()->group(function () {
         Route::resource('faculties.departments', DepartmentController::class);
         Route::resource('faculties.departments.study-programs', StudyProgramController::class);
-        Route::resource('syllabi.ilos', IntendedLearningOutcomeController::class);
-        Route::resource('syllabi.ilos.clos', CourseLearningOutcomeController::class);
+        Route::resource('syllabi.ilos', IntendedLearningOutcomeController::class)->middleware(['roles:admin,teacher']);
+        Route::resource('syllabi.ilos.clos', CourseLearningOutcomeController::class)->middleware(['roles:teacher']);
         Route::resource('syllabi.ilos.clos.llos', LessonLearningOutcomeController::class);
         Route::resource('syllabi.learning-plans', LearningPlanController::class);
         Route::resource('syllabi.assignment-plans', AssignmentPlanController::class);
@@ -59,5 +60,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('course-classes.assignments', AssignmentController::class);
     });
 });
+
+Route::get('class-portofolio/{courseClass}', [ClassPortofolioController::class, 'index'])->name('class-portofolio.index')->middleware('auth');
+Route::get('class-portofolio/{courseClass}/students', [ClassPortofolioController::class, 'student'])->name('class-portofolio.student')->middleware('auth');
 
 require __DIR__ . '/auth.php';

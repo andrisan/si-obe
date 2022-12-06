@@ -11,6 +11,10 @@ class StudentGrade extends Model
 {
     use HasFactory;
 
+    public function criteriaLevel()
+    {
+        return $this->belongsTo(CriteriaLevel::class, 'criteria_level_id');
+    }
     public function User()
     {
         return $this->belongsTo(User::class, 'student_user_id');
@@ -18,10 +22,6 @@ class StudentGrade extends Model
     public function Assignment()
     {
         return $this->belongsTo(Assignment::class, 'assignment_id');
-    }
-    public function Criteria_Level()
-    {
-        return $this->belongsTo(CriteriaLevel::class, 'criteria_level_id');
     }
     public function AssignmentPlanTask()
     {

@@ -36,4 +36,9 @@ class Criteria extends Model
     {
         return $this->hasMany(AssignmentPlanTask::class);
     }
+
+    public function lessonLearningOutcome()
+    {
+        return $this->belongsTo(LessonLearningOutcome::class, 'llo_id');
+    }
 }
