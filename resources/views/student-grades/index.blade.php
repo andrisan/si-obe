@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="col-span-3 p-10 shadow-xl justify-items-auto overflow-y-auto">
-                        <h1 class="text-4xl font-semibold ">Student Grade - Assignment 1</h1>
+                        <h1 class="text-4xl font-semibold ">Student Grade - Kelas : {{ $listStudents->first()->kelas }}</h1>
                         {{-- <h1 class="text-4xl font-semibold ">Student Grade - {{ $student_grades->AssignmentPlanTask->code }}</h1> --}}
                         {{-- <h1>{{ $assignment_id }}</h1> --}}
                         <div class="overflow-x-auto py-8">
@@ -54,11 +54,11 @@
                                                     <button class="btn btn-error btn-sm"
                                                             onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
                                                         Delete
-                                                    </button> 
+                                                    </button>
                                                 </form>
                                             </td>
                                         </tr>
-                                        <?php $i++ ?>        
+                                        <?php $i++ ?>
                                     @endforeach
                                 </tbody>
                             </table>
