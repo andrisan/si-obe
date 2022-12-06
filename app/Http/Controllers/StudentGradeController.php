@@ -38,6 +38,7 @@ class StudentGradeController extends Controller
 
         foreach ($listStudents as $ls) {
             foreach ($studentGrades as $sg) {
+                
                 // debug manual
                 // $cek = $ls->id === $sg->student_user_id;
                 // echo "$ls->id === $sg->student_user_id $cek <br>";
@@ -66,9 +67,9 @@ class StudentGradeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id)
+    public function create(Request $request)
     {
-        return view('layouts.studentgrades');
+        return view('student-grades.create');
     }
     /**
      * Store a newly created resource in storage.
@@ -97,9 +98,12 @@ class StudentGradeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        return view('student-grades.edit');
+        // dd($id);
+        return view('student-grades.edit', [ 
+            
+        ]);
     }
 
     /**
