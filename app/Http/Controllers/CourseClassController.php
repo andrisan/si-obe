@@ -64,7 +64,7 @@ class CourseClassController extends Controller
         $validateData = $request->validate([
             'name'=> 'required|string',
             'thumbnail_img'=> 'required|image|mimes:png,jpg,jpeg,svg',
-            'class_code'=> 'required|uuid',
+            'class_code'=> 'required|string',
         ]);
         //ISien disini ndra
             $classesCourseId ->CourseClass()->create($validateData);
@@ -112,7 +112,7 @@ class CourseClassController extends Controller
             $validated = $request->validate([
                 'name' => 'required|string',
                 'thumbnail_img' => 'required|image|mimes:png,jpg,jpeg,svg',
-                'class_code' => 'required|uuid',
+                'class_code' => 'required|string',
             ]);
     
             $courseClass->update($validated);
