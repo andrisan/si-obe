@@ -7,6 +7,7 @@ use App\Models\CourseClass;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class CourseClassController extends Controller
 {
@@ -143,5 +144,20 @@ class CourseClassController extends Controller
         if (Auth::user() != 'student') {
             abort(403);
         }
+
+        $validated = $request->validate([
+            'class_code' => 'require|uuid'
+        ]);
+
+        $classesCourseId = CourseClass::select('id')->where('class_code', $validated['class_code'])->get();
+
+        $studentUserId = Auth::user()->id;
+
+        DB::table('join_classes')->insert([
+            'course_class_id' => $classesCourseId,
+            'student_user_id' => $studentUserId
+        ]);
+
+        return redirect(route('course-classes.index'));
     }
 }
