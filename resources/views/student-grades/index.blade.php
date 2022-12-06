@@ -34,10 +34,11 @@
                                             <td>{{ $ls->nim??null }}</td>
                                             <td>{{ $ls->namaMhs??null }}</td>
                                             <td>{{ $ls->kelas??null }}</td>
-                                            <td>{{ $ls->nilai??null }}</td>
+                                            <td>{{ $ls->nilai??0 }}</td>
                                             {{-- <td>{{ ($sg->Criteria_Level->point??null)/($sg->Criteria_Level->Criteria->max_point??null)*100 }}</td>  --}}
                                             <td class="flex gap-2">
-                                                @if($ls->btnCek)
+                                            <?php $cek = $ls->btnCek ?? false?>
+                                                @if($cek)
                                                 {{-- <form action="{{ route('student-grades.edit') }}">  --}}
                                                     <button class="btn btn-warning btn-sm">Edit</button>
                                                 {{-- </form> --}}

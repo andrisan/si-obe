@@ -19,41 +19,43 @@ class StudentGradeController extends Controller
     {
         // $listStudents = Assignment::where('id', $request->assignment_id)->get();
         $listStudents = DB::table('assignments')
-                        ->select(DB::raw('assignments.id as idAssignment, users.id,
+            ->select(DB::raw('assignments.id as idAssignment, users.id,
                             student_data.student_id_number as nim, users.name as namaMhs, course_classes.name as kelas'))
-                        ->join('course_classes', 'course_classes.id', '=','assignments.course_class_id')
-                        ->join('join_classes', 'join_classes.course_class_id', '=','course_classes.id')
-                        ->join('users', 'users.id', '=','join_classes.student_user_id')
-                        ->join('student_data', 'student_data.id', '=','users.id')
-                        ->where('assignments.id', '=', $request->assignment_id)
-                        ->get();
+            ->join('course_classes', 'course_classes.id', '=', 'assignments.course_class_id')
+            ->join('join_classes', 'join_classes.course_class_id', '=', 'course_classes.id')
+            ->join('users', 'users.id', '=', 'join_classes.student_user_id')
+            ->join('student_data', 'student_data.id', '=', 'users.id')
+            ->where('assignments.id', '=', $request->assignment_id)
+            ->get();
 
         $studentGrades = DB::table('student_grades')
-                            ->select(DB::raw('student_grades.student_user_id, sum(criteria_levels.`point`) as nilai'))
-                            ->join('criteria_levels', 'criteria_levels.id', '=','student_grades.criteria_level_id')
-                            ->where('assignment_id', '=', $request->assignment_id)
-                            ->groupBy('student_grades.student_user_id')
-                            ->get();
+            ->select(DB::raw('student_grades.student_user_id, sum(criteria_levels.`point`) as nilai'))
+            ->join('criteria_levels', 'criteria_levels.id', '=', 'student_grades.criteria_level_id')
+            ->where('assignment_id', '=', $request->assignment_id)
+            ->groupBy('student_grades.student_user_id')
+            ->get();
+
 
         foreach ($listStudents as $ls) {
             foreach ($studentGrades as $sg) {
                 // debug manual
                 // $cek = $ls->id === $sg->student_user_id;
                 // echo "$ls->id === $sg->student_user_id $cek <br>";
+
                 if ($ls->id === $sg->student_user_id) {
                     $ls->nilai = $sg->nilai;
                     $ls->btnCek = true;
                     break;
-                } else {
-                    $ls->nilai = 0;
-                    $ls->btnCek = false;
                 }
-                
+                // else {
+                //     $ls->nilai = 0;
+                //     $ls->btnCek = false;
+                // }
             }
         }
         // dd($studentGrades, $listStudents);
 
-        return view('student-grades.index', [ 
+        return view('student-grades.index', [
             'listStudents' => $listStudents,
             'studentGrades' => $studentGrades
         ]);
@@ -87,7 +89,6 @@ class StudentGradeController extends Controller
      */
     public function show($id)
     {
-           
     }
 
     /**
