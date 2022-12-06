@@ -11,13 +11,8 @@
                     <div class="col-span-3 p-10 shadow-xl justify-items-auto overflow-y-auto">
                         <h1 class="text-4xl font-semibold ">Student Grade - Assignment 1</h1>
                         {{-- <h1 class="text-4xl font-semibold ">Student Grade - {{ $student_grades->AssignmentPlanTask->code }}</h1> --}}
-                        <div class="grid grid-cols-8 gap-4 py-4">
-                            {{-- <form action="student-grades/create?{{ $assignment_id }}" method="get">
-                                <button class="btn btn-accent col-end-1">Tambah</button>
-                            </form> --}}
-                        </div>
                         {{-- <h1>{{ $assignment_id }}</h1> --}}
-                        <div class="overflow-x-auto py-4">
+                        <div class="overflow-x-auto py-8">
                             <table class="table table-zebra w-full">
                                 <!-- head -->
                                 <thead>
@@ -32,27 +27,18 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $i = 1; $nol = 0; $check = false?>
-                                    @foreach ($assignments as $assignment)
-                                        @foreach ($assignment->CourseClass->students as $student)
+                                    <?php $i = 1;?>
+                                    @foreach ($listStudents as $ls)
                                         <tr>
                                             <td>{{ $i }}</td>
-                                            {{-- <td>{{ $sg->assignment_id??null }}</td> --}}
-                                            <td>{{ $student->StudentData->student_id_number??null }}</td>
-                                            <td>{{ $student->name??null }}</td>
-                                            <td>{{ $assignment->CourseClass->name??null }}</td>
-                                            <td>
-                                                @foreach ($studentGrades as $sg)
-                                                    @if ($sg->student_user_id === $student->id)
-                                                        <?php $nol = $sg->nilai; $check = true; ?>  
-                                                    @endif
-                                                @endforeach
-                                                {{ $nol }}
-                                            </td>
+                                            <td>{{ $ls->nim??null }}</td>
+                                            <td>{{ $ls->namaMhs??null }}</td>
+                                            <td>{{ $ls->kelas??null }}</td>
+                                            <td>{{ $ls->nilai??null }}</td>
                                             {{-- <td>{{ ($sg->Criteria_Level->point??null)/($sg->Criteria_Level->Criteria->max_point??null)*100 }}</td>  --}}
                                             <td class="flex gap-2">
-                                                @if($check)
-                                                {{-- <form action="{{ route('student-grades.edit', [$sg->id]) }}">  --}}
+                                                @if($ls->btnCek)
+                                                {{-- <form action="{{ route('student-grades.edit') }}">  --}}
                                                     <button class="btn btn-warning btn-sm">Edit</button>
                                                 {{-- </form> --}}
                                                 @else
@@ -72,7 +58,6 @@
                                             </td>
                                         </tr>
                                         <?php $i++ ?>        
-                                        @endforeach
                                     @endforeach
                                 </tbody>
                             </table>
