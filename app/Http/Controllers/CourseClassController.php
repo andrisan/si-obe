@@ -28,6 +28,13 @@ class CourseClassController extends Controller
             ]);
         }
 
+        //Fitur Search
+        if(request('search')){
+            $classesCourseid->where('name','like','%'. request('search'.'%'));
+        }
+
+        //End Search
+
         $classesCourseId = CourseClass::where('creator_user_id', Auth::user()->id)->pluck('course_id');
 
         return view('course-classes.index', [
