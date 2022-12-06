@@ -1,4 +1,4 @@
-@section('pageTitle', "Create Departement")
+@section('pageTitle', 'Create Departement')
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -32,11 +32,13 @@
 
                     </div>
                     <div class="form-group mb-6">
-                       
-                       
+
+
                         <input type="text"
                             class="form-control mt-5 block w-full px-3 py-1.5 text-gray-700 bg-white border border-solid border-gray-400 rounded"
                             placeholder="Nama Departement baru" name="name">
+                        <x-input-error :messages="$errors->get('name')" class="mt-2" />
+
 
                     </div>
                     <div class="flex space-x-3">
