@@ -62,7 +62,7 @@ class CourseClassController extends Controller
         //ISien disini ndra
             $classesCourseId ->CourseClass()->create($validateData);
     
-            return redirect()-> route ('classes');
+            return redirect()-> route('classes');
     }
 
     /**
@@ -141,15 +141,16 @@ class CourseClassController extends Controller
     }
 
     public function join(Request $request){
-        if (Auth::user() != 'student') {
+        if (Auth::user()->role != 'student') {
             abort(403);
         }
+         
 
         $validated = $request->validate([
-            'class_code' => 'require|uuid'
+            'class_code' => 'required|string'
         ]);
 
-        $classesCourseId = CourseClass::select('id')->where('class_code', $validated['class_code'])->get();
+        $classesCourseId = CourseClass::where('class_code', $validated['class_code'])->value('id');
 
         $studentUserId = Auth::user()->id;
 
@@ -158,6 +159,6 @@ class CourseClassController extends Controller
             'student_user_id' => $studentUserId
         ]);
 
-        return redirect(route('course-classes.index'));
+        return redirect(route('classes.index'));
     }
 }
