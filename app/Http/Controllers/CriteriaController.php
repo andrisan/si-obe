@@ -47,18 +47,33 @@ class CriteriaController extends Controller
      */
     public function store(Request $request, Rubric $rubric )
     {
-        $validated = $request->validate([
-            //
-              'title' => 'required|string',
-               'llo' => 'required|string',
-               'level' => 'required|string',
-              'max_point' => 'required|double',
-              'description' => 'required|string',
-          ]);
+        // $validated = $request->validate([
+        //     //
+        //     'llo' => 'required|string',
+        //       'title' => 'required|string',
+        //       'description' => 'required|string',
+        //       'max_point' => 'required|string',
+        //   ]);
   
-          $rubric->criteria()->create($validated);
+        //   dd($validated);
+        //   $rubric->criterias()->create($validated);
+
+          $validated = $request->validate([
+            'title' => 'required|string',
+              'llo' => 'required|string',
+              'max_point' => 'required|string',
+              'description' => 'required|string',   
+        ]);
+
+        $criteria = new Criteria();
+        $criteria->rubric_id = $rubric->id;
+        $criteria->llo_id = 3;
+        $criteria->title = $validated['title'];
+        $criteria->description = $validated['description'];
+        $criteria->max_point = $validated['max_point'];
+        $criteria->save();
   
-          return redirect()->route('rubrics.criterias.show',[
+          return redirect()->route('rubrics.criterias.index',[
               'rubric'=> $rubric
           ]);
     }
@@ -85,10 +100,14 @@ class CriteriaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Rubric $rubric, $criterias)
     {
         //
-        return view('criteria.edit');
+        $criterias= Criteria::where('id', $criterias)->first();
+          return view('criteria.edit',[
+            'rubric' => $rubric,
+            'criterias' => $criterias
+          ]);
     }
 
     /**
@@ -98,11 +117,33 @@ class CriteriaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Rubric $rubric, Criteria $criteria)
     {
         //
-    }
+        $validated = $request->validate([
+            //
+              'title' => 'required|string',
+              'max_point' => 'required|string',
+              'description' => 'required|string',
+          ]);
 
+        //   $criterias = Criteria::find($criterias);
+
+        //   $criterias->Title = $validated['title'];
+        //   $criterias->LLO = $validated['llo'];
+        //   $criterias->Max_Point = $validated['max_point'];
+        //   $criterias->Description = $validated['description'];
+  
+        //   $criterias->save();
+
+          $criteria->update([
+            'title' => $validated['title'],
+            'description' => $validated['description'],
+            'max_point' => $validated['max_point']
+        ]);
+  
+          return redirect()->route('rubrics.criterias.show',[$rubric, $criteria]);
+    }
     /**
      * Remove the specified resource from storage.
      *
@@ -115,5 +156,3 @@ class CriteriaController extends Controller
     }
 
 }
-
-
