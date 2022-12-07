@@ -105,13 +105,13 @@ class CourseClassController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(CourseClass $courseClass)
+    public function edit(CourseClass $class)
     {
         $courses = Course::all();
         if (Auth::user()->role == 'teacher') {
-            return view('course-classes.edit', ['courseClass' =>$courseClass,'courses'=> $courses]);
+            return view('course-classes.edit', ['class' =>$class,'courses'=> $courses]);
         } else if (Auth::user()->role == 'admin') {
-            return view('course-classes.edit', ['courseClass' =>$courseClass,'courses'=> $courses]);
+            return view('course-classes.edit', ['class' =>$class,'courses'=> $courses]);
         }
         else{
             abort(403);
@@ -125,7 +125,7 @@ class CourseClassController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CourseClass $courseClass)
+    public function update(Request $request, CourseClass $class)
     {
         if (Auth::user()->role == 'teacher'|| 'admin') {
              $validateData = $request->validate([
@@ -136,7 +136,7 @@ class CourseClassController extends Controller
             'thumbnail_img'=> 'required|image|mimes:png',
         ]);
              $validateData['thumbnail_img'] = $request->file('thumbnail_img')->store('thumbnail');
-            $courseClass->update([
+            $class->update([
                  'name' => $validateData['name'],
                  'course_id' => $validateData['course_id'],
                  'creator_user_id' => $validateData['creator_user_id'],
