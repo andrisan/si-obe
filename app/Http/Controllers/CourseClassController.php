@@ -107,10 +107,11 @@ class CourseClassController extends Controller
      */
     public function edit(CourseClass $courseClass)
     {
+        $courses = Course::all();
         if (Auth::user()->role == 'teacher') {
-            return view('course-classes.edit', ['courseClass' =>$courseClass]);
+            return view('course-classes.edit', ['courseClass' =>$courseClass,'courses'=> $courses]);
         } else if (Auth::user()->role == 'admin') {
-            return view('course-classes.edit', ['courseClass' =>$courseClass]);
+            return view('course-classes.edit', ['courseClass' =>$courseClass,'courses'=> $courses]);
         }
         else{
             abort(403);
