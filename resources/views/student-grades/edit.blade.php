@@ -14,7 +14,7 @@
 
                     <div class="grid grid-cols-2">
                         <div>
-                            <h2 class="text-lg"><b>{{ $grade->user->name}}</b></h2>
+                            <h2 class="text-lg"><b>{{ $grades->first()->user->name}}</b></h2>
                             <p>Status Pengumpulan</p>
                         </div>
                         <div class="text-right">
@@ -28,26 +28,29 @@
                     <p>Mampu menjelaskan konsep pemrograman basis data dalam pengembangan aplikasi</p>
                     <br>
 
-                    <form method="post" action="{{route('student-grades.update', $grade->id) }}">
+                    <form method="post" action="{{route('student-grades.update', $grades->first()->id) }}">
+                        <input type="hidden" name="assignment_id" value="{{ $grades->first()->assignment_id }}">
+                        <input type="hidden" name="user_id" value="{{ $grades->first()->student_user_id }}">
                         @csrf
                         @method('patch')
-                        <div class="btn-group">
-                            @foreach($criterias as $criteria)
-                                <input type="radio" name="criteria_level_id" data-title="{{ $criteria->point }}" class="btn px-16" value="{{ $criteria->id }}" @checked($criteria->id === $grade->criteria_level_id)/>
-                            @endforeach
-                            <!-- <input type="radio" name="options" data-title="baik (3pts)" class="btn px-16" />
-                            <input type="radio" name="options" data-title="cukup (2pts)" class="btn px-16" checked />
-                            <input type="radio" name="options" data-title="kurang (1pts)" class="btn px-16" /> -->
-                        </div>
+                        @foreach($grades as $grade)
+                            <div class="btn-group">
+                                @foreach($grade->range as $criteria)
+                                    <input type="radio" name="criteria_level_id{{ $loop->parent->index }}" data-title="{{ $criteria->point }}" class="btn px-16" value="{{ $criteria->id }}" @checked($criteria->id === $grade->criteria_level_id)/>
+                                @endforeach
+                            </div>
+                            <br>
+                        @endforeach
 
                         <div class="card-actions justify-end pt-5">
                             {{-- <form action="{{ route('student-grades.index') }}">--}}
                             <button class="btn btn-outline" type="submit">Save</button>
 
                             {{-- <form action="{{ route('student-grades.index') }}">--}}
-                            <a class="btn btn-outline" href="/student-grades/?assignment_id={{ $grade->assignment_id }}">Cancel</a>
+                            <a class="btn btn-outline" href="/student-grades/?assignment_id={{ $grades->first()->assignment_id }}">Cancel</a>
 
                         </div>
+
                     </form>
 
 

@@ -103,18 +103,22 @@ class StudentGradeController extends Controller
     public function edit(Request $request)
     {
 //        dd($request);
-        $grade = StudentGrade
+        $grades = StudentGrade
             ::where('assignment_id',$request->assignment_id)
             ->where('student_user_id',$request->user_id)
-            ->first();
-        $criterias = CriteriaLevel::where('criteria_id','=',$grade->assignmentPlanTask->criteria_id)->get();
-//        dd($grade);
+            ->get();
+//        dd($request->size);
+
+        foreach ($grades as $grade) {
+            $grade->range = CriteriaLevel::where('criteria_id',$grade->assignmentPlanTask->criteria_id)->get();
+        }
+//        dd($grades);
         // dd($id);
         // dd($grade->assignmentPlanTask->criteria_id);
         // dd($criteria);
         return view('student-grades.edit', [
-            'grade' => $grade,
-            'criterias' => $criterias,
+            'grades' => $grades,
+//            'criterias' => $criterias,
         ]);
     }
 
@@ -125,19 +129,20 @@ class StudentGradeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $grade = StudentGrade::find($id);
-//        dd($request);
-
 //        dd($request->all());
 
-        $grade->criteria_level_id = $request->criteria_level_id;
+        $grades = StudentGrade
+            ::where('assignment_id',$request->assignment_id)
+            ->where('student_user_id',$request->user_id)
+            ->get();
 
-        $grade->update();
-
-        $request->instance()->query->set('assignment_id', '3');
-//        dd($request->all());
+        $i=0;
+        foreach($grades as $grade) {
+            $grade->criteria_level_id = $request->all()["criteria_level_id$i"];
+            $grade->update();
+        }
 
         return redirect('/student-grades/?assignment_id='.$grade->assignment_id);
     }
