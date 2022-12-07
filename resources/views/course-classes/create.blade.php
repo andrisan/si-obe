@@ -30,9 +30,9 @@
                                     @endforeach
                                 </select>
                                 <br>
-                                <label class="uppercase font-bold  text-black" for="course_id">Creator User
-                                    Id</label><br>
-                                <input type="text" placeholder="Masukkan Kode Kelas"
+                                <label class="uppercase font-bold  text-black" for="course_id">Creator User Id</label>
+                                <br>
+                                <input type="text" placeholder="Masukkan Creator User ID"
                                     class="input input-bordered input-ghost input-l w-full max-w-xl mb-2 mt-2"
                                     name="creator_user_id" required />
 
