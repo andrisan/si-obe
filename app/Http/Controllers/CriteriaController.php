@@ -28,10 +28,12 @@ class CriteriaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Rubric $rubric)
     {
 
-        return view('criteria.create');
+        return view('criteria.create', [
+            'rubric' => $rubric
+        ]);      
 
         //
 
@@ -43,10 +45,24 @@ class CriteriaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Rubric $rubric )
     {
-        //
+        $validated = $request->validate([
+            //
+              'title' => 'required|string',
+               'llo' => 'required|string',
+               'level' => 'required|string',
+              'max_point' => 'required|double',
+              'description' => 'required|string',
+          ]);
+  
+          $rubric->criteria()->create($validated);
+  
+          return redirect()->route('rubrics.criterias.show',[
+              'rubric'=> $rubric
+          ]);
     }
+
 
     /**
      * Display the specified resource.
