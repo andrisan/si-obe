@@ -39,11 +39,11 @@
                                             <td class="flex gap-2">
                                             <?php $cek = $ls->btnCek ?? false?>
                                                 @if($cek)
-                                                <a href="student-grades/edit?assignment_id={{$ls->idAssignment}}&user_id={{$ls->id}}">
+                                                <a href="/student-grades/edit?assignment_id={{$ls->idAssignment}}&user_id={{$ls->id}}">
                                                     <button class="btn btn-warning btn-sm">Edit</button>
                                                 </a>
                                                 @else
-                                                <a href="student-grades/create?assignment_id={{$ls->idAssignment}}&user_id={{$ls->id}}">
+                                                <a href="/student-grades/create?assignment_id={{$ls->idAssignment}}&user_id={{$ls->id}}">
                                                     <button class="btn btn-primary btn-sm">Create</button>
                                                 </a>
                                                 @endif

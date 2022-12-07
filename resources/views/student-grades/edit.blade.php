@@ -26,14 +26,14 @@
                     </div>
 
                     <p>Mampu menjelaskan konsep pemrograman basis data dalam pengembangan aplikasi</p>
-                    <br />
+                    <br>
 
-                    <form action="post" action="{{route('student-grades.update', $grade->id) }}">
+                    <form method="post" action="{{route('student-grades.update', $grade->id) }}">
                         @csrf
                         @method('patch')
                         <div class="btn-group">
                             @foreach($criterias as $criteria)
-                            <input type="radio" name="options" data-title="{{ $criteria->point }}" class="btn px-16" />
+                                <input type="radio" name="criteria_level_id" data-title="{{ $criteria->point }}" class="btn px-16" value="{{ $criteria->id }}" @checked($criteria->id === $grade->criteria_level_id)/>
                             @endforeach
                             <!-- <input type="radio" name="options" data-title="baik (3pts)" class="btn px-16" />
                             <input type="radio" name="options" data-title="cukup (2pts)" class="btn px-16" checked />
@@ -43,10 +43,10 @@
                         <div class="card-actions justify-end pt-5">
                             {{-- <form action="{{ route('student-grades.index') }}">--}}
                             <button class="btn btn-outline" type="submit">Save</button>
-                            
+
                             {{-- <form action="{{ route('student-grades.index') }}">--}}
-                            <a class="btn btn-outline" href="{{ route('student-grades.index') }}">Cancel</a>
-                            
+                            <a class="btn btn-outline" href="/student-grades/?assignment_id={{ $grade->assignment_id }}">Cancel</a>
+
                         </div>
                     </form>
 

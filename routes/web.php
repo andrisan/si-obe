@@ -45,7 +45,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('syllabi', SyllabusController::class);
     Route::resource('rubrics', RubricController::class)->middleware(['roles:admin,teacher']);
     Route::resource('classes', CourseClassController::class);
-    Route::resource('student-grades', StudentGradeController::class);
+
+    Route::get('student-grades/edit', [StudentGradeController::class, 'edit']);
+    Route::resource('student-grades', StudentGradeController::class, ['except' => [
+        'edit'
+    ]]);
 
     Route::scopeBindings()->group(function () {
         Route::resource('faculties.departments', DepartmentController::class);

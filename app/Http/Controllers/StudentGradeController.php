@@ -39,7 +39,7 @@ class StudentGradeController extends Controller
 
         foreach ($listStudents as $ls) {
             foreach ($studentGrades as $sg) {
-                
+
                 // debug manual
                 // $cek = $ls->id === $sg->student_user_id;
                 // echo "$ls->id === $sg->student_user_id $cek <br>";
@@ -70,6 +70,7 @@ class StudentGradeController extends Controller
      */
     public function create(Request $request)
     {
+
         return view('student-grades.create');
     }
     /**
@@ -99,11 +100,15 @@ class StudentGradeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, $id)
+    public function edit(Request $request)
     {
-        $grade = StudentGrade::find($id);
+//        dd($request);
+        $grade = StudentGrade
+            ::where('assignment_id',$request->assignment_id)
+            ->where('student_user_id',$request->user_id)
+            ->first();
         $criterias = CriteriaLevel::where('criteria_id','=',$grade->assignmentPlanTask->criteria_id)->get();
-        // dd($grade->User);
+//        dd($grade);
         // dd($id);
         // dd($grade->assignmentPlanTask->criteria_id);
         // dd($criteria);
@@ -122,7 +127,16 @@ class StudentGradeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+//        dd($request);
+        $grade = StudentGrade::find($id);
+
+//        dd($request->all());
+
+        $grade->criteria_level_id = $request->criteria_level_id;
+
+        $grade->update();
+
+        return view('student-grades.index');
     }
 
     /**
