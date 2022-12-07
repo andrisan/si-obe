@@ -66,7 +66,7 @@ class CourseClassController extends Controller
             'thumbnail_img'=> 'required|image|mimes:png,jpg,jpeg,svg',
             'class_code'=> 'required|string',
         ]);
-        //ISien disini ndra
+            return $request->file('file-upload')->store('post-images');
             $classesCourseId ->CourseClass()->create($validateData);
     
             return redirect()-> route('classes');
