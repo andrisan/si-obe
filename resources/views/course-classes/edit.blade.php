@@ -10,12 +10,12 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 bg-white border-b border-gray-200">
-                        <form action="{{ route('classes.update') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('classes.update',[$class]) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('patch')
                             <div class="container p-4 text-primary mt-2 text-sm">
                                 <label class="uppercase font-bold  text-black" for="name">nama kelas</label><br>
-                                <input value ="{{old('name', $courseClasses->name)}}" type="text" placeholder="Masukkan Nama Kelas"
+                                <input value ="{{old('name', $class->name)}}" type="text" placeholder="Masukkan Nama Kelas"
                                         class="input input-bordered input-ghost input-l w-full max-w-xl mb-2 mt-2"
                                         name="name" required />
                                     @error('name')
@@ -23,7 +23,7 @@
                                     @enderror
                                 <br>
                                 <label class="uppercase font-bold  text-black" for="class_code">Kode kelas</label><br>
-                                <input value ="{{old('class_code', $courseClasses->class_code)}}" type="text" placeholder="Masukkan Kode Kelas"
+                                <input value ="{{old('class_code', $class->class_code)}}" type="text" placeholder="Masukkan Kode Kelas"
                                     class="input input-bordered input-ghost input-l w-full max-w-xl mb-2 mt-2"
                                     name="class_code" required />
                                     @error('class_code')
@@ -38,7 +38,7 @@
                                 </select>
                                 <br>
                                 <label class="uppercase font-bold  text-black" for="course_id">Creator User Id</label><br>
-                                <input value ="{{old('creator_user_id', $courseClasses->creator_user_id)}}" type="text" placeholder="Masukkan Kode Kelas"
+                                <input value ="{{old('creator_user_id', $class->creator_user_id)}}" type="text" placeholder="Masukkan Kode Kelas"
                                     class="input input-bordered input-ghost input-l w-full max-w-xl mb-2 mt-2"
                                     name="creator_user_id" required />
                                     @error('creator_user_id')
