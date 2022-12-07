@@ -69,7 +69,7 @@ class CourseClassController extends Controller
             'course_id'=> 'required|integer',
             'creator_user_id'=> 'required|integer',
             'class_code'=> 'required|string',
-            'thumbnail_img'=> 'required|image|mimes:png,jpg,jpeg,svg',
+            'thumbnail_img'=> 'required|image|mimes:png',
         ]);
         
         $validateData['thumbnail_img'] = $request->file('thumbnail_img')->store('thumbnail');
@@ -133,7 +133,7 @@ class CourseClassController extends Controller
             'course_id'=> 'required|integer',
             'creator_user_id'=> 'required|integer',
             'class_code'=> 'required|string',
-            'thumbnail_img'=> 'required|image|mimes:png,jpg,jpeg,svg',
+            'thumbnail_img'=> 'required|image|mimes:png',
         ]);
              $validateData['thumbnail_img'] = $request->file('thumbnail_img')->store('thumbnail');
             $courseClass->update([
