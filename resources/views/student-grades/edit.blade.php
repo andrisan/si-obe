@@ -1,7 +1,9 @@
+@section('pageTitle', $grades->first()->user->name)
+
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-2xl text-gray-800 leading-tight">
-            Edit: Student Grades
+        <h2 class="font-semibold   text-4xl text-gray-800 leading-tight">
+            {{$grades->first()->user->name}}
         </h2>
     </x-slot>
 
@@ -10,36 +12,19 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-
-
-                    <div class="grid grid-cols-2">
-                        <div>
-                            <h2 class="text-lg"><b>{{ $grades->first()->user->name}}</b></h2>
-                            <p>Status Pengumpulan</p>
-                        </div>
-                        <div class="text-right">
-                            <h2 class="text-lg"><b>100/100</b></h2>
-                            <p>Status Penilaian</p>
-                        </div>
-                        <br>
-
-                    </div>
-
-                    <p>Mampu menjelaskan konsep pemrograman basis data dalam pengembangan aplikasi</p>
-                    <br>
-
+                    <div class=""></div>
                     <form method="post" action="{{route('student-grades.update', $grades->first()->id) }}">
                         <input type="hidden" name="assignment_id" value="{{ $grades->first()->assignment_id }}">
                         <input type="hidden" name="user_id" value="{{ $grades->first()->student_user_id }}">
                         @csrf
                         @method('patch')
                         @foreach($grades as $grade)
-                            <div class="btn-group">
-                                @foreach($grade->range as $criteria)
-                                    <input type="radio" name="criteria_level_id{{ $loop->parent->index }}" data-title="{{ $criteria->point }}" class="btn px-16" value="{{ $criteria->id }}" @checked($criteria->id === $grade->criteria_level_id)/>
-                                @endforeach
-                            </div>
-                            <br>
+                        <p class="mb-5">Mampu menjelaskan konsep pemrograman basis data dalam pengembangan aplikasi</p>
+                        <div class="btn-group mb-10 justify-center">
+                            @foreach($grade->range as $criteria)
+                            <input type="radio" name="criteria_level_id{{ $loop->parent->index }}" data-title="{{ $criteria->point }}" class="btn px-16" value="{{ $criteria->id }}" @checked($criteria->id === $grade->criteria_level_id)/>
+                            @endforeach
+                        </div>
                         @endforeach
 
                         <div class="card-actions justify-end pt-5">
