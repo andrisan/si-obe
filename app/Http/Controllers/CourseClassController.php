@@ -63,13 +63,13 @@ class CourseClassController extends Controller
     {
         $validateData = $request->validate([
             'name'=> 'required|string',
-            'thumbnail_img'=> 'required|string',
+            'thumbnail_img'=> 'required|image|mimes:png,jpg,jpeg,svg',
             'class_code'=> 'required|string',
         ]);
 
-        $courseClass = new CourseClass;
-        $courseClass::insert($validateData);
-    
+        $validateData['thumbnail_img'] = $request->file('thumbnail_img')->store('thumbnail');
+        CourseClass::create($validateData);
+        
         return redirect()-> route('classes');
     }
 
