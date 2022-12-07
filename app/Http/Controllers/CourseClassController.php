@@ -63,15 +63,24 @@ class CourseClassController extends Controller
     {
         $validateData = $request->validate([
             'name'=> 'required|string',
+            'course_id'=> 'required|integer',
+            'creator_user_id'=> 'required|integer',
             'class_code'=> 'required|string',
             'thumbnail_img'=> 'required|image|mimes:png,jpg,jpeg,svg',
-            
         ]);
-
-        $validateData['thumbnail_img'] = $request->file('thumbnail_img')->store('thumbnail');
-        CourseClass::create($validateData);
         
-        return redirect()-> route('classes');
+        $validateData['thumbnail_img'] = $request->file('thumbnail_img')->store('thumbnail');
+
+        $classes = new CourseClass();
+        $classes->name = $validateData['name'];
+        $classes->course_id = $validateData['course_id'];
+        $classes->creator_user_id = $validateData['creator_user_id'] ;
+        $classes->class_code = $validateData['class_code'];
+        $classes->thumbnail_img = $validateData['thumbnail_img'];
+
+        $classes->save();
+                
+        return redirect()-> route('classes.index');
     }
 
     /**
