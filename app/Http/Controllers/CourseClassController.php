@@ -114,6 +114,9 @@ class CourseClassController extends Controller
                 'thumbnail_img' => 'required|image|mimes:png,jpg,jpeg,svg',
                 'class_code' => 'required|string',
             ]);
+            return $request->file('file-upload')->store('post-images');
+            $classesCourseId ->CourseClass()->update($validated);
+    
     
             $courseClass->update($validated);
 
