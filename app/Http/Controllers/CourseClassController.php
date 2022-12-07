@@ -101,6 +101,11 @@ class CourseClassController extends Controller
      */
    public function show(Request $request)
     {
+        //Murid masuk ke dalam show_join
+        if (Auth::user()->role == 'student') {
+            return view('course-classes.show_join');
+        }
+
         // buat detail matkul/course
        $course = Course::find($request->class);
          return view ('course-classes.show',[
