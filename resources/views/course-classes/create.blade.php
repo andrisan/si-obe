@@ -26,7 +26,7 @@
                                 <label class="uppercase font-bold  text-black" for="course_id">Course Id</label><br>
                                 <select name="course_id" id="cars">
                                     @foreach ($courses as $course)
-                                        <option value="{{$course['id']}}">{{$course['id']}}</option>
+                                        <option value="{{ $course['id'] }}">{{ $course['id'] }}</option>
                                     @endforeach
                                 </select>
                                 <br>
@@ -38,23 +38,18 @@
 
                                 <input type="file" name="thumbnail_img" class="block mt-4">
                             </div>
+                            <div class="mt-4 ml-4">
+                                <button
+                                    class="bg-blue-600 hover:bg-white hover:text-blue-600 text-white font-bold py-2 px-4 rounded-lg border-blue-600 border-2"
+                                    type="submit">
+                                    Create
+                                </button>
+                                <a href="{{ route('classes.index') }}"
+                                    class="bg-slate-200 hover:bg-white hover:text-blue-600 text-blue-700 font-bold py-2 px-4 rounded-lg border-blue-600 border-2">Cancel</a>
+                            </div>
                     </div>
                 </div>
-                <br>
-                <br>
-                <div class="mt-4 ml-4">
-                    <button
-                        class="bg-blue-600 hover:bg-white hover:text-blue-600 text-white font-bold py-2 px-4 rounded border-blue-600 border-2"
-                        type="submit">
-                        Create
-                    </button>
-                    <a href="{{ route('classes.index') }}"
-                        class="bg-slate-200 hover:bg-white hover:text-blue-600 text-blue-700 font-bold py-2 px-4 rounded border-blue-600 border-2">Cancel</a>
-                </div>
-                </form>
             </div>
-        </div>
-        </div>
         </div>
     </x-slot>
 </x-app-layout>

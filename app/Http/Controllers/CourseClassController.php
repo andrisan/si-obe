@@ -94,6 +94,7 @@ class CourseClassController extends Controller
      */
    public function show(Request $request)
     {
+        // buat detail matkul/course
         $class = CourseClass::find($request->class);
 
         return view('course-classes.show_join');
@@ -154,20 +155,17 @@ class CourseClassController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(CourseClass $class)
     {
         $class->delete();
 
-        if (Auth::user()->role == 'student') {
-            return view('course-classes.index2');
-        }
+        // if (Auth::user()->role == 'student') {
+        //     return view('course-classes.index2');
+        // }
 
-        $classesCourseId = CourseClass::where('creator_user_id', Auth::user()->id)->pluck('course_id');
+        // $classesCourseId = CourseClass::where('creator_user_id', Auth::user()->id)->pluck('course_id');
 
-        return view('course-classes.index', [
-            'classes'=>CourseClass::where('creator_user_id', Auth::user()->id)->paginate(2),
-            'courses'=>Course::find($classesCourseId),
-        ]);
+        return back();
     }
 
     public function join(Request $request){
