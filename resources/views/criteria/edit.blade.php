@@ -15,20 +15,19 @@
                     @csrf
                     @method('put')
                     <div class="pb-4">
-                        <div class="pb-2"><label for="title"><strong class="font-semibold text-gray-900 dark:text-white">Title</strong></label></div>
+                        <div class="pb-2"><label for="title"><strong class="font-semibold">Title</strong></label></div>
                         <input type="text" placeholder="Title" class="input input-bordered w-full max-w-xs" name="title" value="{{ $criterias->title }}"/> <br>
                     </div>
                     <div class="pb-4">
-                    <div class="pb-2"><label for="description"><strong class="font-semibold text-gray-900 dark:text-white">Description</strong></label></div>
-                    <input type="text" placeholder="Description" class="input input-bordered w-full max-w-xs" name="description" value="{{ $criterias->description }}"/> <br>
-                    </div>
-                    <div class="pb-4">
-                        <div class="pb-2"><label for="max"><strong class="font-semibold text-gray-900 dark:text-white">Max_Point</strong></label></div>
+                        <div class="pb-2"><label for="max"><strong class="font-semibold">Max_Point</strong></label></div>
                         <input type="text" placeholder="Max_point" class="input input-bordered w-full max-w-xs" name="max_point" value="{{ $criterias->max_point }}"/> <br>
                     </div>
+                    <div class="pb-4">
+                        <div class="pb-2"><label for="description"><strong class="font-semibold">Description</strong></label></div>
+                        <textarea type="text" class="rounded-md mt-2 h-52" name="description"  cols="33" rows="10" >{{ $criterias->description }}</textarea>
+                    </div>
                     <input type="submit" value="Save" class="btn btn-active rounded-md " />
-                
-                <a href="{{ route('rubrics.criterias.index', [$rubric]) }}" class="btn btn-outline rounded-md">Cancel</a>
+                    <a href="{{ route('rubrics.criterias.index', [$rubric]) }}" class="btn btn-outline rounded-md">Cancel</a>
                 
                 </div>
                 </form>

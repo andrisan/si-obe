@@ -11,7 +11,7 @@
     </x-slot>
 
     <div class="py-12 max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <div class="flex flex-row sm:justify-end mb-3 px-4 sm:px-0 -mr-2 sm:-mr-3">
+        <div class="flex flex-row mb-3 px-4 sm:px-0 -mr-2 sm:-mr-3">
              <div class="p-20 bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="flex justify-between border-b-2 pb-4 ">
                     <h1 class="text-2xl font-extrabold" style="font-weight: 900;">Criterias Details</h1>
@@ -47,12 +47,9 @@
                                     @csrf
                                     @method('delete')
                                     <button class="basis-full px-4 py-1 m-1 bg-red-600 rounded-xl text-white text-sm font-bold " value="{{ $criterias->id }}" onclick="return confirm('Are you sure?')">Delete</button>
-
                                     <a href="{{ route('rubrics.criterias.index', [$rubric]) }}" class="basis-full px-4 py-1 m-1 bg-blue-600 rounded-xl text-white text-sm font-bold">Back</a>
-                                </form>
-                                 
+                                </form>            
                             </div>
-
                         </div>
                     </div>
                 </div>
