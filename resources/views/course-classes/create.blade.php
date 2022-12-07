@@ -17,9 +17,10 @@
                                 <input type="text" placeholder="Masukkan Nama Kelas" class="input input-bordered input-ghost input-l w-full max-w-xl mb-2 mt-2" name="name" required />
                             <br></br>
                             <label class="uppercase font-bold  text-black" for="fname">Kode kelas</label><br>
-                                <input type="text" placeholder="Masukkan Kode Kelas" class="input input-bordered input-ghost input-l w-full max-w-xl mb-2 mt-2" name="name" required />
-                            </div>                        
-                            <div class="max-w-xl ml-4">
+                                <input type="text" placeholder="Masukkan Kode Kelas" class="input input-bordered input-ghost input-l w-full max-w-xl mb-2 mt-2" name="class_code" required />
+                            </div>
+                            <input type="file" name="thumbnail_img">
+                            <!-- <div class="max-w-xl ml-4">
                                 <label class="uppercase font-bold text-sm text-black" for="fname">unggah</label>
                                 <label
                                     class="flex mt-2 justify-center w-full h-32 px-4 transition bg-white border-2 border-gray-300 border-dashed rounded-md appearance-none cursor-pointer hover:border-gray-400 focus:outline-none">
@@ -39,7 +40,7 @@
                                 <button class="bg-none hover:bg-blue-600 hover:text-white text-blue-600 font-bold py-2 px-4 rounded mt-4 border-blue-600 border-2" type="submit">
                                     Unggah
                                 </button>
-                            </div>
+                            </div> -->
                             <br>
                             <br>
                             <div class="mt-4 ml-4">
