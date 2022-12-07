@@ -20,17 +20,25 @@ class CourseClassController extends Controller
     // {
     //     return view('course-classes.index');
     // }
-    public function index()
+   public function index(Request $request)
     {
         if (Auth::user()->role == 'student') {
             return view('course-classes.index2', [
                 'classes'=>User::find(Auth::user()->id)->students()->paginate(6),
             ]);
         }
+        $classes= CourseClass::all();
+        
 
         //Fitur Search
-        if(request('search')){
-            $classesCourseid->where('name','like','%'. request('search'.'%'));
+        if(!request('search')){
+         $classes=CourseClass::where('creator_user_id', Auth::user()->id)->paginate(6);
+        }else{
+            $cari =  $request->search;
+            $classes = DB::table('course_classes')
+		->where('name','like',"%".$cari."%")
+		->paginate(6);
+            // $classes->CourseClass::where('name','like','%'. request('search'.'%'))->get();
         }
 
         //End Search
@@ -38,11 +46,10 @@ class CourseClassController extends Controller
         $classesCourseId = CourseClass::where('creator_user_id', Auth::user()->id)->pluck('course_id');
 
         return view('course-classes.index', [
-            'classes'=>CourseClass::where('creator_user_id', Auth::user()->id)->paginate(6),
+            'classes'=>$classes,
             'courses'=>Course::find($classesCourseId),
         ]);
     }
-
     /**
      * Show the form for creating a new resource.
      *
