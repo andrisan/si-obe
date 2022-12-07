@@ -66,11 +66,8 @@ class CourseClassController extends Controller
             'thumbnail_img'=> 'required|string',
             'class_code'=> 'required|string',
         ]);
-            return $request->file('file-upload')->store('post-images');
-            // $classesCourseId ->CourseClass()->create($validateData);
 
         $courseClass = new CourseClass;
-
         $courseClass::insert($validateData);
     
         return redirect()-> route('classes');
@@ -120,10 +117,8 @@ class CourseClassController extends Controller
                 'thumbnail_img' => 'required|string',
                 'class_code' => 'required|string',
             ]);
-            return $request->file('file-upload')->store('post-images');
-            $courseClass ->CourseClass()->update($validated);
-    
-    
+
+            $courseClass ->CourseClass()->update($validated);    
             $courseClass->update($validated);
 
             return redirect(route('course-classes.index'));
@@ -161,7 +156,6 @@ class CourseClassController extends Controller
             abort(403);
         }
          
-
         $validated = $request->validate([
             'class_code' => 'required|string'
         ]);
