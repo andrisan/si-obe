@@ -45,19 +45,31 @@
                                 <div class="card-title text-neutral font-extrabold">
                                     <p>{{$class->course->name}}</p>
                                 </div>
-                                <a>{{$class->class_code}}<a>
-                                <div class="card-actions justify-end">
-                                    <a href="{{route('classes.edit', [$class->id])}}">
-                                        <button class="btn btn-warning hover:bg-amber-500 btn-xs hover:border-amber-500 sm:btn-sm md:btn-sm rounded-full">
-                                            <img class="w-5 h-5" src="{{ asset('img/icon-edit.png') }}" alt="">
-                                        </button>
-                                    </a>
-                                    <form action="{{ route('classes.destroy', [$class]) }}" method="post">
-                                        @csrf
-                                        @method('delete')
-                                        <button class="btn btn-error hover:bg-red-500 hover:border-red-500 btn-xs sm:btn-sm md:btn-sm rounded-full" value="{{ $class->id }}"
-                                            onclick="return confirm('Yakin ingin menghapus data ?');"><img class="w-5 h-5" src="{{ asset('img/icon-delete.png') }}" alt=""></button>
-                                    </form>
+                                <a>{{$class->course->code}} ({{$class->course->type}})<a>
+                                <a class="font-bold">Kelas {{$class->name}}</a>
+                                {{-- <p>{{$class->class_code}}</p> --}}
+
+                                <div class="card-actions grid flex-grow">
+                                    <div class="grid flex-grow justify-start">
+                                        <a>
+                                            <button class="btn btn-warning hover:bg-amber-500 btn-xs hover:border-amber-500 sm:btn-sm md:btn-sm rounded-full">
+                                                {{$class->class_code}}
+                                            </button>
+                                        </a> 
+                                    </div>
+                                    <div class="grid flex-grow justify-end">
+                                        <a href="{{route('classes.edit', [$class->id])}}">
+                                            <button class="btn btn-warning hover:bg-amber-500 btn-xs hover:border-amber-500 sm:btn-sm md:btn-sm rounded-full">
+                                                <img class="w-5 h-5" src="{{ asset('img/icon-edit.png') }}" alt="">
+                                            </button>
+                                        </a>
+                                        <form action="{{ route('classes.destroy', [$class]) }}" method="post">
+                                            @csrf
+                                            @method('delete')
+                                            <button class="btn btn-error hover:bg-red-500 hover:border-red-500 btn-xs sm:btn-sm md:btn-sm rounded-full" value="{{ $class->id }}"
+                                                onclick="return confirm('Yakin ingin menghapus data ?');"><img class="w-5 h-5" src="{{ asset('img/icon-delete.png') }}" alt=""></button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>

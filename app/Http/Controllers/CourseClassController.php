@@ -24,7 +24,7 @@ class CourseClassController extends Controller
     {
         if (Auth::user()->role == 'student') {
             return view('course-classes.index2', [
-                'classes'=>User::find(Auth::user()->id)->students()->paginate(2),
+                'classes'=>User::find(Auth::user()->id)->students()->paginate(6),
             ]);
         }
 
@@ -38,7 +38,7 @@ class CourseClassController extends Controller
         $classesCourseId = CourseClass::where('creator_user_id', Auth::user()->id)->pluck('course_id');
 
         return view('course-classes.index', [
-            'classes'=>CourseClass::where('creator_user_id', Auth::user()->id)->paginate(2),
+            'classes'=>CourseClass::where('creator_user_id', Auth::user()->id)->paginate(6),
             'courses'=>Course::find($classesCourseId),
         ]);
     }
