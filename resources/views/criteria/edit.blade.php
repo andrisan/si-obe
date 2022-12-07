@@ -13,21 +13,23 @@
                     @csrf
                     @method('put')
                     <div class="pb-4">
-                        <div class="pb-2"><label for="title"><strong class="font-semibold text-gray-900 dark:text-white">Judul</strong></label></div>
-                        <input type="text" placeholder="Judul" class="input input-bordered w-full max-w-xs" name="title"/> <br>
+                        <div class="pb-2"><label for="title"><strong class="font-semibold text-gray-900 dark:text-white">Title</strong></label></div>
+                        <input type="text" placeholder="Title" class="input input-bordered w-full max-w-xs" name="title" value="{{ $criterias->title }}"/> <br>
                     </div>
                     <div class="pb-4">
-                    <div class="pb-2"><label for="description"><strong class="font-semibold text-gray-900 dark:text-white">Deskripsi</strong></label></div>
-                        <textarea class="textarea textarea-bordered w-full" placeholder="Deskripsi" name="description"></textarea>
+                    <div class="pb-2"><label for="description"><strong class="font-semibold text-gray-900 dark:text-white">Description</strong></label></div>
+                    <input type="text" placeholder="Description" class="input input-bordered w-full max-w-xs" name="description" value="{{ $criterias->description }}"/> <br>
                     </div>
                     <div class="pb-4">
-                        <div class="pb-2"><label for="max"><strong class="font-semibold text-gray-900 dark:text-white">beban</strong></label></div>
-                        <input type="text" placeholder="Bobot" class="input input-bordered w-full max-w-xs" name="max_point"/> <br>
+                        <div class="pb-2"><label for="max"><strong class="font-semibold text-gray-900 dark:text-white">Max_Point</strong></label></div>
+                        <input type="text" placeholder="Max_point" class="input input-bordered w-full max-w-xs" name="max_point" value="{{ $criterias->max_point }}"/> <br>
                     </div>
                     <input type="submit" value="Save" class="btn btn-active rounded-md " />
-                </form>
-                <button class="btn btn-outline rounded-md">Cancel</button>
+                
+                <a href="{{ route('rubrics.criterias.index', [$rubric]) }}" class="btn btn-outline rounded-md">Cancel</a>
+                
                 </div>
+                </form>
             </div>
         </div>
     </div>

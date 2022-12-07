@@ -47,7 +47,10 @@
                                     @csrf
                                     @method('delete')
                                     <button class="basis-full px-4 py-1 m-1 bg-red-600 rounded-xl text-white text-sm font-bold " value="{{ $criterias->id }}" onclick="return confirm('Are you sure?')">Delete</button>
+
+                                    <a href="{{ route('rubrics.criterias.index', [$rubric]) }}" class="basis-full px-4 py-1 m-1 bg-blue-600 rounded-xl text-white text-sm font-bold">Back</a>
                                 </form>
+                                 
                             </div>
 
                         </div>

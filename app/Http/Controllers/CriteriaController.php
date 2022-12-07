@@ -150,9 +150,13 @@ class CriteriaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($rubric, $criterias)
     {
-        //
+        $del = Criteria::where('id', $criterias)->delete();
+
+        return redirect()->route('rubrics.criterias.index',[
+            'rubric' => $rubric
+        ]);
     }
 
 }
