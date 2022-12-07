@@ -40,9 +40,13 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div>
-                            <input type="submit" value="Input nilai" class="btn btn-success m-2">
-                            <a href="{{route('student-grades.store')}}"></a>
+                        
+                        <div class="card-actions justify-end pt-5">
+                            {{-- <form action="/student-grades/?assignment_id={{$assignmentid}}">--}}
+                            <button class="btn btn-success" type="submit">Save</button>
+
+                            {{-- <form action="{{ route('student-grades.index') }}">--}}
+                            <a class="btn btn-error" href="/student-grades/?assignment_id={{ $assignmentid }}">Cancel</a>
                         </div>
                         
                     </form>

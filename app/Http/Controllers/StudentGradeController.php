@@ -98,8 +98,7 @@ class StudentGradeController extends Controller
      */
     public function store(Request $request)
     {
-        
-        $assignmentid = $request->query('assignment_id');
+        $assignmentid = $request->assignment_id;
         StudentGrade::create($request->all());
 
         return redirect('/student-grades/?assignment_id='.$assignmentid);
