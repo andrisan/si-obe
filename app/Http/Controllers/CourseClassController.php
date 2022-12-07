@@ -119,7 +119,7 @@ class CourseClassController extends Controller
                 'class_code' => 'required|string',
             ]);
             return $request->file('file-upload')->store('post-images');
-            $classesCourseId ->CourseClass()->update($validated);
+            $courseClass ->CourseClass()->update($validated);
     
     
             $courseClass->update($validated);
