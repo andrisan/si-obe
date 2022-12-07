@@ -24,7 +24,7 @@
                         <input type="hidden" name="student_user_id" value="{{ $userid }}">
                         <br>
                         <div>
-                            <h1 class="text-xl font-bold">Masukkan Learning Plan Task</h1>
+                            <h1 class="text-xl font-bold">Masukkan Assignment Plan Task</h1>
                             <select name="assignment_plan_task_id" placeholder="-">
                                 @foreach ($plantasks as $plan)
                                 <option value="{{$plan->id}}">{{$plan->code}} | {{Str::limit($plan->description, 130)}}</option>
