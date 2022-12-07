@@ -35,56 +35,35 @@
                         </div>
                     </div>
 
-                    <div class="flex px-16 mt-2 ">
-                        <table class="table-fixed w-full">
-
-                            <thead>
-                                <tr>
-                                    <th width="80px">No</th>
-                                    <th width="150">Kelas</th>
-                                    <th width="100">Kode Kelas</th>
-                                    <th class="">Mata Kuliah</th>
-                                    <th class="">Kode Mata Kuliah</th>
-                                    <th class="">Jenis</th>
-                                    <th class="">Action</th>
-                                </tr>
-                            </thead>
-
-                            <tbody class=" border-2 border-black text-center">
-                                <?php $i = 1; ?>
-                                @foreach ($classes as $class)
-                                    <tr class="border-2 h-14">
-                                        <td width="80px">{{ $loop->index + $classes->firstItem() }}</td>
-                                        <td width="150px">{{ $class->name }}</td>
-                                        <td width="100px">{{ $class->class_code }}</td>
-                                        <td width="400px">{{ $class->course->name }}</td>
-                                        <td width="400px">{{ $class->course->code }}</td>
-                                        <td width="400px">{{ $class->course->type }}</td>
-                                        <td>
-                                                <div class="">
-                                                    <a href="{{route('classes.edit', [$class->id])}}">
-                                                        <button class="btn btn-warning hover:bg-white hover:text-warning btn-xs sm:btn-sm md:btn-sm rounded-full text-white">
-                                                            <img class="w-5 h-5" src="{{ asset('img/icon-edit.png') }}" alt="">
-                                                        </button>
-                                                    </a>
-                                                </div>
-                                                <div class="mt-2">
-                                                    <form action="{{ route('classes.destroy', [$class]) }}" method="post">
-                                                        @csrf
-                                                        @method('delete')
-                                                        <button class="btn btn-error hover:bg-white hover:text-error btn-xs sm:btn-sm md:btn-sm rounded-full text-white" value="{{ $class->id }}"
-                                                            onclick="return confirm('Yakin ingin menghapus data ?');"><img class="w-5 h-5" src="{{ asset('img/icon-delete.png') }}" alt=""></button>
-                                                    </form>
-                                                </div>
-                                            {{-- <button class="btn btn-error hover:bg-white hover:text-error btn-xs sm:btn-sm md:btn-sm rounded-md w-16 text-white">
-                                                Delete
-                                            </button> --}}
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                    <div class="flex flex-wrap data">
+                        <?php $i = 1; ?>
+                        @foreach ($classes as $class)
+                          <!-- Konten1 -->
+                        <div class="card w-80 bg-white shadow-xl my-8 mx-8" style="backgorund-image: {{ ($class->thumbnail_img) }}">
+                            {{-- <img class="w-full"> --}}
+                            <div class="card-body p-6">
+                                <div class="card-title text-neutral font-extrabold">
+                                    <p>{{$class->name}}</p>
+                                </div>
+                                <a>{{$class->class_code}}<a>
+                                <div class="card-actions justify-end">
+                                    <a href="{{route('classes.edit', [$class->id])}}">
+                                        <button class="btn btn-warning hover:bg-amber-500 btn-xs hover:border-amber-500 sm:btn-sm md:btn-sm rounded-full">
+                                            <img class="w-5 h-5" src="{{ asset('img/icon-edit.png') }}" alt="">
+                                        </button>
+                                    </a>
+                                    <form action="{{ route('classes.destroy', [$class]) }}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button class="btn btn-error hover:bg-red-500 hover:border-red-500 btn-xs sm:btn-sm md:btn-sm rounded-full" value="{{ $class->id }}"
+                                            onclick="return confirm('Yakin ingin menghapus data ?');"><img class="w-5 h-5" src="{{ asset('img/icon-delete.png') }}" alt=""></button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
                     </div>
+
                     <div class="mt-5">
                         {{ $classes->links() }}
                     </div>
