@@ -63,8 +63,8 @@ class CourseClassController extends Controller
     {
         $validateData = $request->validate([
             'name'=> 'required|string',
-            'thumbnail_img'=> 'required|image|mimes:png,jpg,jpeg,svg',
             'class_code'=> 'required|string',
+            'thumbnail_img'=> 'required|mimes:png,jpg,jpeg,svg'
         ]);
 
         $validateData['thumbnail_img'] = $request->file('thumbnail_img')->store('thumbnail');
