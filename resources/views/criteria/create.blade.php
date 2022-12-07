@@ -17,14 +17,14 @@
                     <div class="p-10">
                         <h1 class="text-black">Title</h1>
                         <div class="mt-2">
-                            <input class="rounded-md w-80" placeholder="Enter text here..." type="text">
+                            <input class="rounded-md w-80" placeholder="Enter text here..." type="text" name="title">
                             <x-input-error :messages="$errors->get('title')" class="mt-2" />
                         </div>
                         
                             <div class="mt-5">
                                 <h1 class="text-black">LLO</h1>
                                 <input type="text" class="mt-2 w-80 rounded-md" placeholder="Enter Text Here..."
-                                    name="" id="">
+                                    name="llo" id="">
                                     <x-input-error :messages="$errors->get('llo')" class="mt-2" />
                             </div>
 
@@ -32,13 +32,13 @@
                           <div class="mt-5">
                                 <h1 class="text-black">max point</h1>
                                 <input type="text" class="mt-2 w-80 rounded-md" placeholder="Enter Text Here..."
-                                    name="" id="">
+                                    name="max_point" >
                                     <x-input-error :messages="$errors->get('max_point')" class="mt-2" />
                             </div>
 
                         <div class="mt-5 ">
                             <h1 class="text-black">D E S C R I P T I O N</h1>
-                            <textarea class="rounded-md mt-2 h-52" name="" id="" cols="30" rows="10"></textarea>
+                            <textarea class="rounded-md mt-2 h-52" name="description"  cols="30" rows="10"></textarea>
                         </div>
                         <x-input-error :messages="$errors->get('description')" class="mt-2" />
 
