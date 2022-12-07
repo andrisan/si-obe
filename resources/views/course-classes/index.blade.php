@@ -39,11 +39,11 @@
                         <?php $i = 1; ?>
                         @foreach ($classes as $class)
                           <!-- Konten1 -->
-                        <div class="card w-80 bg-white shadow-xl my-8 mx-8" style="backgorund-image: {{ ($class->thumbnail_img) }}">
-                            {{-- <img class="w-full"> --}}
+                        <div class="card w-80 bg-img bg-blend-overlay shadow-xl my-8 mx-8">
+                            <img class="w-full" src="{{ asset('img/GambarCourse 1.png')}}">
                             <div class="card-body p-6">
                                 <div class="card-title text-neutral font-extrabold">
-                                    <p>{{$class->name}}</p>
+                                    <p>{{$class->course->name}}</p>
                                 </div>
                                 <a>{{$class->class_code}}<a>
                                 <div class="card-actions justify-end">
