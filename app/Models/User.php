@@ -52,4 +52,14 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasOne(StudentData::class, 'id');
     }
+
+    public function courseClass()
+    {
+        return $this->belongsToMany(
+            CourseClass::class,
+            'join_classes',
+            'student_user_id',
+            'course_class_id'
+        );
+    }
 }
