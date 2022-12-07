@@ -101,8 +101,11 @@ class StudentGradeController extends Controller
      */
     public function store(Request $request)
     {
-        
-        return redirect('/student-grades/?assignment_id='.$grade->assignment_id);
+        $grades = StudentGrade
+            ::where('assignment_id',$request->assignment_id)
+            ->where('student_user_id',$request->user_id)
+            ->get();
+        return redirect('/student-grades/?assignment_id='.$grades->assignment_id);
     }
 
     /**
