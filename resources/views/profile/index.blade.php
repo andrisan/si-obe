@@ -27,19 +27,17 @@
                             <div class="grid flex-grow place-items-start">
                               <h2 class="card-title font-extrabold text-blue-600">User Details</h2>
                               <p class="mt-2"><strong>Username</strong></p>
-                              <p>{{ Auth::user()->name }}</p>
+                              <p>{{ $user->name }}</p>
                               <p class="mt-2"><strong>NIM</strong></p>
-                              <p>215150700111033</p>
+                              <p>{{ $user->studentData->student_id_number ?? "Belum memiliki NIM"}}</p>
                               <p class="mt-2"><strong>Role</strong></p>
-                              <p>Student</p>
+                              <p>{{ $user->role }}</p>
                               <p class="mt-2"><strong>Email Address</strong></p>
-                              <p><a class="hover:text-warning" href="https://mail.google.com/">{{ Auth::user()->email }}</a></p>
-                              <p class="mt-2"><strong>Password</strong></p>
-                              <p>KamuNanyeeaa?</p>
+                              <p><a class="hover:text-warning" href="https://mail.google.com/">{{ $user->email }}</a></p>
                               <br>
                               <div class="card-actions">
                                 <button class="bg-blue-600 hover:bg-white hover:text-blue-600 text-white font-bold py-2 px-4 rounded border-blue-600 border-2">
-                                  <a href="profile/grade">
+                                  <a href="{{ route('profile.grade') }}">
                                     Grade
                                   </a>
                                 </button>
@@ -57,10 +55,10 @@
                           <ul class="menu p-4 overflow-y-auto w-80 text-white font-semibold bg-black">
                             <!-- Sidebar content here -->
                             <li><a href="dashboard" class="mb-8 hover:bg-white hover:text-blue-600">Home</a></li>
-                            <li><a href="course-classes" class="mb-8 hover:bg-white hover:text-blue-600">Course Class</a></li>
-                            <li><a href="course-classes/create" class="mb-8 hover:bg-white hover:text-blue-600">Add Course Class</a></li>
-                            <li><a href="course-classes/join/{id}" class="mb-8 hover:bg-white hover:text-blue-600">Join Course Class</a></li>
-                            <li><a href="profile" class="mb-8 hover:bg-white hover:text-blue-600">Profile</a></li>
+                            <li><a href="{{ route('classes.index') }}" class="mb-8 hover:bg-white hover:text-blue-600">Course Class</a></li>
+                            @if ($user->role != 'student')            
+                            <li><a href="{{ route('classes.create') }}" class="mb-8 hover:bg-white hover:text-blue-600">Add Course Class</a></li>
+                            @endif
                           </ul>
                         </div>
                       </div>
