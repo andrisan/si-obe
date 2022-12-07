@@ -16,13 +16,13 @@
                                 <div class="drawer-content flex flex-col">
                                     <!-- Page content here -->
                                     <div class="tabs">
-                                        <a class="mr-10 tab">Home ></a>
-                                        <a class="mr-10 tab">Course Class ></a>
-                                        <a class="mr-10 tab tab-active">Edit Course Class</a>
+                                        <a href="{{route('dashboard')}}" class="mr-10 tab">Home ></a>
+                                        <a href="{{route('classes.index')}}" class="mr-10 tab">Course Class ></a>
+                                        <a class="mr-10 tab tab-active">Edit</a>
                                     </div>
                                     <br>
                                     <div class="ml-5">
-                                        <form action="/classes//edit" method="post">
+                                        <form action="/classes/{$courseClass->id}/edit" method="post">
                                             @csrf
                                             @method('put')
                                             <p class=" uppercase font-bold text-sm">Nama Kelas</p>

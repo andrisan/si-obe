@@ -64,7 +64,7 @@ class CourseClassController extends Controller
         $validateData = $request->validate([
             'name'=> 'required|string',
             'class_code'=> 'required|string',
-            'thumbnail_img'=> 'required|mimes:png,jpg,jpeg,svg'
+            'thumbnail_img'=> 'required|image|mimes:png,jpg,jpeg,svg',
         ]);
 
         $validateData['thumbnail_img'] = $request->file('thumbnail_img')->store('thumbnail');
@@ -94,7 +94,9 @@ class CourseClassController extends Controller
      */
     public function edit(CourseClass $courseClass)
     {
-        if (Auth::user()->role == 'teacher' || 'admin') {
+        if (Auth::user()->role == 'teacher') {
+            return view('course-classes.edit', ['courseClass' =>$courseClass]);
+        } else if (Auth::user()->role == 'admin') {
             return view('course-classes.edit', ['courseClass' =>$courseClass]);
         }
         else{
@@ -111,15 +113,15 @@ class CourseClassController extends Controller
      */
     public function update(Request $request, CourseClass $courseClass)
     {
-        if (Auth::user()->role == 'teacher'|| 'admin') {
+        if (Auth::user()->role == 'teacher') {
             $validated = $request->validate([
                 'name' => 'required|string',
-                'thumbnail_img' => 'required|mimes:png,jpg,jpeg,svg',
+                'thumbnail_img' => 'required|image|mimes:png,jpg,jpeg,svg',
                 'class_code' => 'required|string',
             ]);
    
             $courseClass->update($validated);
-            
+
             if ($request->file('thumbnail_img')) {
                 $validated['thumbnail_img'] = $request->file('thumbnail_img')->store('thumbnail');
             }
