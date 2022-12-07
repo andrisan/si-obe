@@ -8,7 +8,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\Criteria;
+use App\Models\AssignmentPlanTask;
+use App\Models\StudentData;
 use App\Models\CriteriaLevel;
+use App\Models\User;
+
 
 class StudentGradeController extends Controller
 {
@@ -71,26 +75,19 @@ class StudentGradeController extends Controller
      */
     public function create(Request $request)
     {
-        //dd($request);
-        $grades = StudentGrade
-        ::where('assignment_id',$request->assignment_id)
-        ->where('student_user_id',$request->user_id)
-        ->get();
-        
-        // dd($grades);
-        // if(!isset($grades)){
-        //     $grades->
-        // }
-
-        foreach ($grades as $grade) {
-            $grade->range = CriteriaLevel::where('criteria_id',$grade->assignmentPlanTask->criteria_id)->get();
-        }
-        // dd($id);
-        // dd($grade->assignmentPlanTask->criteria_id);
-        // dd($criteria);
+        $assignmentid = $request->query('assignment_id');
+        $userid = $request->query('user_id');
+        $username = User::where('id', $userid)->first();
+        $assignment = Assignment::where('id', $assignmentid)->first();
+        $plantasks = AssignmentPlanTask::get();
+        $criterialevels = CriteriaLevel::get();
         return view('student-grades.create', [
-        'grades' => $grades,
-        //'criterias' => $criterias,
+            'username' => $username->name,
+            'assignment' => $assignment->note,
+            'assignmentid' => $assignmentid,
+            'userid' => $userid,
+            'plantasks' => $plantasks,
+            'criterialevels' => $criterialevels
         ]);
     }
     /**
@@ -101,11 +98,11 @@ class StudentGradeController extends Controller
      */
     public function store(Request $request)
     {
-        $grades = StudentGrade
-            ::where('assignment_id',$request->assignment_id)
-            ->where('student_user_id',$request->user_id)
-            ->get();
-        return redirect('/student-grades/?assignment_id='.$grades->assignment_id);
+        
+        $assignmentid = $request->query('assignment_id');
+        StudentGrade::create($request->all());
+
+        return redirect('/student-grades/?assignment_id='.$assignmentid);
     }
 
     /**
