@@ -94,7 +94,9 @@ class CourseClassController extends Controller
      */
     public function edit(CourseClass $courseClass)
     {
-        if (Auth::user()->role == 'teacher' || 'admin') {
+        if (Auth::user()->role == 'teacher') {
+            return view('course-classes.edit', ['courseClass' =>$courseClass]);
+        } else if (Auth::user()->role == 'admin') {
             return view('course-classes.edit', ['courseClass' =>$courseClass]);
         }
         else{
@@ -111,7 +113,7 @@ class CourseClassController extends Controller
      */
     public function update(Request $request, CourseClass $courseClass)
     {
-        if (Auth::user()->role == 'teacher'|| 'admin') {
+        if (Auth::user()->role == 'teacher') {
             $validated = $request->validate([
                 'name' => 'required|string',
                 'thumbnail_img' => 'required|string',
