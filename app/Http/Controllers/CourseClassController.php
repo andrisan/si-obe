@@ -118,7 +118,6 @@ class CourseClassController extends Controller
                 'class_code' => 'required|string',
             ]);
 
-            $courseClass ->CourseClass()->update($validated);    
             $courseClass->update($validated);
 
             return redirect(route('course-classes.index'));
