@@ -126,17 +126,25 @@ class CourseClassController extends Controller
      */
     public function update(Request $request, CourseClass $courseClass)
     {
-        if (Auth::user()->role == 'teacher') {
-            $validated = $request->validate([
-                'name' => 'required|string',
-                'thumbnail_img' => 'required|image|mimes:png,jpg,jpeg,svg',
-                'class_code' => 'required|string',
+        if (Auth::user()->role == 'teacher'|| 'admin') {
+             $validateData = $request->validate([
+            'name'=> 'required|string',
+            'course_id'=> 'required|integer',
+            'creator_user_id'=> 'required|integer',
+            'class_code'=> 'required|string',
+            'thumbnail_img'=> 'required|image|mimes:png,jpg,jpeg,svg',
+        ]);
+             $validateData['thumbnail_img'] = $request->file('thumbnail_img')->store('thumbnail');
+            $courseClass->update([
+                 'name' => $validateData['name'],
+                 'course_id' => $validateData['course_id'],
+                 'creator_user_id' => $validateData['creator_user_id'],
+                 'class_code' => $validateData['class_code'],
+                 'thumbnail_img' => $validateData['thumbnail_img'],
             ]);
-   
-            $courseClass->update($validated);
 
-                $validated['thumbnail_img'] = $request->file('thumbnail_img')->store('thumbnail');
         }
+        return redirect()-> route('classes.index');
     }
 
     /**
