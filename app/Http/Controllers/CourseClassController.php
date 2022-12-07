@@ -78,9 +78,13 @@ class CourseClassController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+   public function show(Request $request)
     {
-        return view('course-classes.show_join');
+        $class = CourseClass::find($request->class);
+
+        return view('course-classes.show',[
+            'class' -> $class
+        ]);
     }
 
     /**
