@@ -14,9 +14,14 @@ class CriteriaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($rubric)
     {
-        
+        $criteria = Criteria::with("lessonLearningOutcome")->where('rubric_id',$rubric);
+        $rubric = Rubric::find($rubric);
+        return view('criteria.index', [
+            'rubric' => $rubric,
+            'criterias' => $criteria
+        ]);
     }
 
     /**
@@ -52,7 +57,7 @@ class CriteriaController extends Controller
      */
     public function show($rubric, $criterias)
     {
-        $criterias = Criteria::with("LessonLearningOutcome")->find($criterias);
+        $criterias = Criteria::with("LessonLearningOutcome")->where('rubric_id',$rubric)->find($criterias);
             return view('criteria.show', [
                 'rubric' => $rubric,
                 'criterias' => $criterias

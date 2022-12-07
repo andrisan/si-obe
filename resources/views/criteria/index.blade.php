@@ -13,7 +13,7 @@
     <div class="py-12 max-w-7xl mx-auto sm:px-6 lg:px-8">
     <div class="flex flex-row sm:justify-end mb-3 px-4 sm:px-0 -mr-2 sm:-mr-3">
             <div class="order-5 sm:order-6 mr-2 sm:mr-3">
-                <a href="{{ route('rubrics.criterias.create', [$rubric, $criterias->id])}}" class="w-full bg-white border border-gray-300 rounded-md shadow-sm px-2.5 sm:px-4 py-2 inline-flex justify-center text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                <a href="{{ route('rubrics.criterias.create', [$rubric])}}" class="w-full bg-white border border-gray-300 rounded-md shadow-sm px-2.5 sm:px-4 py-2 inline-flex justify-center text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     <span class="pr-1">New Criterias</span>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -54,27 +54,29 @@
                     </tr>
                 </thead>
                 <tbody class="border-2 border-black text-black">
+                    @foreach ($criterias as $criteria)
                     <tr class="border-2 h-14">
-                        <td class="px-6 py-3 border-t border-gray-100">{{ $criterias->id }}</td>
-                        <td class="px-6 py-3 border-t border-gray-100">{{ $criterias->title }}</td>
+                        <td class="px-6 py-3 border-t border-gray-100">{{ $criteria->id }}</td>
+                        <td class="px-6 py-3 border-t border-gray-100">{{ $criteria->title }}</td>
                         <td>
                             <div class="flex flex-wrap m-1">
-                                <form action="{{ route('rubrics.criterias.edit', [$rubric, $criterias->id]) }}" method="GET">
+                                <form action="{{ route('rubrics.criterias.edit', [$rubric, $criteria->id]) }}" method="GET">
                                     <button class="basis-full px-4 py-1 m-1 bg-yellow-600 rounded-xl text-white text-sm font-bold">Edit</button>
                                 </form>
 
-                                <form action="{{ route('rubrics.criterias.destroy', [$rubric, $criterias->id]) }}" method="POST">
+                                <form action="{{ route('rubrics.criterias.destroy', [$rubric, $criteria->id]) }}" method="POST">
                                     @csrf
                                     @method('delete')
                                     <button class="basis-full px-4 py-1 m-1 bg-red-600 rounded-xl text-white text-sm font-bold " value="{{ $criterias->id }}" onclick="return confirm('Are you sure?')">Delete</button>
                                 </form>
                                 
-                                <form action="{{route('rubrics.criterias.show', [$rubric, $criterias->id]) }}" method="get">
-                                    <button class="text-blue-600" value="{{ $criterias->id }}"><strong>Open Details</strong></button>
+                                <form action="{{route('rubrics.criterias.show', [$rubric, $criteria->id]) }}" method="get">
+                                    <button class="text-blue-600" value="{{ $criteria->id }}"><strong>Open Details</strong></button>
                                 </form>  
                             </div>
                         </td>
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
