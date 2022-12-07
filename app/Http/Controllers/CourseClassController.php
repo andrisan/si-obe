@@ -102,9 +102,10 @@ class CourseClassController extends Controller
    public function show(Request $request)
     {
         // buat detail matkul/course
-        $class = CourseClass::find($request->class);
-
-        return view('course-classes.show_join');
+       $course = Course::find($request->class);
+         return view ('course-classes.show',[
+        'course' => $course,
+        ]);
     }
 
     /**
