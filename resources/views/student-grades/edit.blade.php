@@ -11,9 +11,10 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
 
+
                     <div class="grid grid-cols-2">
                         <div>
-                            <h2 class="text-lg"><b>Nama Mahasiswa</b></h2>
+                            <h2 class="text-lg"><b>{{ $grade->user->name}}</b></h2>
                             <p>Status Pengumpulan</p>
                         </div>
                         <div class="text-right">
@@ -22,27 +23,35 @@
                         </div>
                         <br>
 
-                        <!-- colapse -->
-                    <div tabindex="0" class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box col-span-2" id="rubrik">
-                        <div class="collapse-title text-xl font-medium">
-                            <div class="grid md:grid-cols-10 gap-4">
-                            <div class="col-span-8">NO1-1</div>
-                            <button class="btn-sm bg-white text-red-600 rounded-full bg-transparent">clear</button>
-                            <div><input type="text" placeholder="" value="../3" class="input w-full input-sm max-w-sm input-bordered" readonly /></div>
-                            </div>
-                        </div>
-                        <div class="collapse-content">
-                            <p>Mampu menjelaskan konsep pemrograman basis data dalam pengembangan aplikasi</p>
-                            <br />
-                            <div class="btn-group">
-                            <input type="radio" name="options" data-title="baik (3pts)" class="btn px-16" />
-                            <input type="radio" name="options" data-title="cukup (2pts)" class="btn px-16" checked />
-                            <input type="radio" name="options" data-title="kurang (1pts)" class="btn px-16" />
-                            </div>
-                        </div>
                     </div>
-                    <!-- end colapse -->
-                    </div> 
+
+                    <p>Mampu menjelaskan konsep pemrograman basis data dalam pengembangan aplikasi</p>
+                    <br />
+
+                    <form action="post" action="{{route('student-grades.update', $grade->id) }}">
+                        @csrf
+                        @method('patch')
+                        <div class="btn-group">
+                            @foreach($criterias as $criteria)
+                            <input type="radio" name="options" data-title="{{ $criteria->point }}" class="btn px-16" />
+                            @endforeach
+                            <!-- <input type="radio" name="options" data-title="baik (3pts)" class="btn px-16" />
+                            <input type="radio" name="options" data-title="cukup (2pts)" class="btn px-16" checked />
+                            <input type="radio" name="options" data-title="kurang (1pts)" class="btn px-16" /> -->
+                        </div>
+
+                        <div class="card-actions justify-end pt-5">
+                            {{-- <form action="{{ route('student-grades.index') }}">--}}
+                            <button class="btn btn-outline" type="submit">Save</button>
+                            
+                            {{-- <form action="{{ route('student-grades.index') }}">--}}
+                            <a class="btn btn-outline" href="{{ route('student-grades.index') }}">Cancel</a>
+                            
+                        </div>
+                    </form>
+
+
+
                 </div>
             </div>
         </div>

@@ -7,6 +7,7 @@ use App\Models\StudentGrade;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\CriteriaLevel;
 
 class StudentGradeController extends Controller
 {
@@ -100,9 +101,15 @@ class StudentGradeController extends Controller
      */
     public function edit(Request $request, $id)
     {
+        $grade = StudentGrade::find($id);
+        $criterias = CriteriaLevel::where('criteria_id','=',$grade->assignmentPlanTask->criteria_id)->get();
+        // dd($grade->User);
         // dd($id);
-        return view('student-grades.edit', [ 
-            
+        // dd($grade->assignmentPlanTask->criteria_id);
+        // dd($criteria);
+        return view('student-grades.edit', [
+            'grade' => $grade,
+            'criterias' => $criterias,
         ]);
     }
 
