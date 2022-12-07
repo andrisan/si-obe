@@ -71,8 +71,27 @@ class StudentGradeController extends Controller
      */
     public function create(Request $request)
     {
+        //dd($request);
+        $grades = StudentGrade
+        ::where('assignment_id',$request->assignment_id)
+        ->where('student_user_id',$request->user_id)
+        ->get();
+        
+        // dd($grades);
+        // if(!isset($grades)){
+        //     $grades->
+        // }
 
-        return view('student-grades.create');
+        foreach ($grades as $grade) {
+            $grade->range = CriteriaLevel::where('criteria_id',$grade->assignmentPlanTask->criteria_id)->get();
+        }
+        // dd($id);
+        // dd($grade->assignmentPlanTask->criteria_id);
+        // dd($criteria);
+        return view('student-grades.create', [
+        'grades' => $grades,
+        //'criterias' => $criterias,
+        ]);
     }
     /**
      * Store a newly created resource in storage.
@@ -82,7 +101,8 @@ class StudentGradeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        return redirect('/student-grades/?assignment_id='.$grade->assignment_id);
     }
 
     /**
