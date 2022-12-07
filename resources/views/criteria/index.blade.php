@@ -68,6 +68,10 @@
                                     @method('delete')
                                     <button class="basis-full px-4 py-1 m-1 bg-red-600 rounded-xl text-white text-sm font-bold " value="{{ $criterias->id }}" onclick="return confirm('Are you sure?')">Delete</button>
                                 </form>
+                                
+                                <form action="{{route('rubrics.criterias.show', [$rubric, $criterias->id]) }}" method="get">
+                                    <button class="text-blue-600" value="{{ $criterias->id }}"><strong>Open Details</strong></button>
+                                </form>  
                             </div>
                         </td>
                     </tr>
