@@ -114,11 +114,15 @@ class CourseClassController extends Controller
         if (Auth::user()->role == 'teacher'|| 'admin') {
             $validated = $request->validate([
                 'name' => 'required|string',
-                'thumbnail_img' => 'required|string',
+                'thumbnail_img' => 'required|mimes:png,jpg,jpeg,svg',
                 'class_code' => 'required|string',
             ]);
-
+   
             $courseClass->update($validated);
+            
+            if ($request->file('thumbnail_img')) {
+                $validated['thumbnail_img'] = $request->file('thumbnail_img')->store('thumbnail');
+            }
 
             return redirect(route('course-classes.index'));
  
