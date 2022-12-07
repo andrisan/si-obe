@@ -64,7 +64,7 @@ class CourseClassController extends Controller
         $validateData = $request->validate([
             'name'=> 'required|string',
             'class_code'=> 'required|string',
-            'thumbnail_img'=> 'required|mimes:png,jpg,jpeg,svg'
+            'thumbnail_img'=> 'required|image|mimes:png,jpg,jpeg,svg',
         ]);
 
         $validateData['thumbnail_img'] = $request->file('thumbnail_img')->store('thumbnail');
@@ -116,7 +116,7 @@ class CourseClassController extends Controller
         if (Auth::user()->role == 'teacher') {
             $validated = $request->validate([
                 'name' => 'required|string',
-                'thumbnail_img' => 'required|string',
+                'thumbnail_img' => 'required|image|mimes:png,jpg,jpeg,svg',
                 'class_code' => 'required|string',
             ]);
 
