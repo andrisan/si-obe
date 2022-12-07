@@ -50,7 +50,10 @@ class CourseClassController extends Controller
      */
     public function create()
     {
-        return view('course-classes.create');
+        $courses = Course::all();
+        return view('course-classes.create',[
+            'courses'=> $courses
+        ]);
     }
 
     /**
