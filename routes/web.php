@@ -47,6 +47,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('classes', CourseClassController::class);
 
     Route::get('student-grades/edit', [StudentGradeController::class, 'edit']);
+    Route::get('student-grades/create', [StudentGradeController::class, 'create']);
     Route::resource('student-grades', StudentGradeController::class, ['except' => [
         'edit'
     ]]);
