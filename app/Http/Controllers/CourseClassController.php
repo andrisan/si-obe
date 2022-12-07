@@ -63,13 +63,17 @@ class CourseClassController extends Controller
     {
         $validateData = $request->validate([
             'name'=> 'required|string',
-            'thumbnail_img'=> 'required|image|mimes:png,jpg,jpeg,svg',
+            'thumbnail_img'=> 'required|string',
             'class_code'=> 'required|string',
         ]);
             return $request->file('file-upload')->store('post-images');
-            $classesCourseId ->CourseClass()->create($validateData);
+            // $classesCourseId ->CourseClass()->create($validateData);
+
+        $courseClass = new CourseClass;
+
+        $courseClass::insert($validateData);
     
-            return redirect()-> route('classes');
+        return redirect()-> route('classes');
     }
 
     /**
@@ -82,9 +86,7 @@ class CourseClassController extends Controller
     {
         $class = CourseClass::find($request->class);
 
-        return view('course-classes.show',[
-            'class' -> $class
-        ]);
+        return view('course-classes.show_join');
     }
 
     /**
@@ -115,7 +117,7 @@ class CourseClassController extends Controller
         if (Auth::user()->role == 'teacher'|| 'admin') {
             $validated = $request->validate([
                 'name' => 'required|string',
-                'thumbnail_img' => 'required|image|mimes:png,jpg,jpeg,svg',
+                'thumbnail_img' => 'required|string',
                 'class_code' => 'required|string',
             ]);
             return $request->file('file-upload')->store('post-images');
