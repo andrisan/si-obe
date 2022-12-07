@@ -9,6 +9,11 @@ class CourseClass extends Model
 {
     use HasFactory;
     public $timestamps = true;
+    protected $fillable = [
+        'name',
+        'class_code',
+        'thumnbnail_img'
+    ];
 
     public function students()
     {
