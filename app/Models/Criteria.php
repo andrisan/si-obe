@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+
 use App\Models\Rubric;
 use App\Models\LessonLearningOutcome;
 
@@ -11,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property int $id
  * @property int $rubric_id
- * @property int $llo_id
+ * @property int $llo
  * @property string $title
  * @property string $description
  * @property float $max_point
@@ -22,13 +23,13 @@ use Illuminate\Database\Eloquent\Model;
 class Criteria extends Model
 {
     use HasFactory;
+    // use HasCriteria;
 
     protected $fillable = [
         'title',
-        'rubric_id',
-        'llo_id',
-        'description',
-        'max_point'
+        'llo',
+        'max_point',
+        'description'
     ];
 
     public function rubric()
@@ -45,4 +46,9 @@ class Criteria extends Model
     {
         return $this->hasMany(CriteriaLevel::class);
     }
+
+    // public function criteria()
+    // {
+    //     return $this->hasMany(Criteria::class, 'criteria_id');
+    // }
 }
