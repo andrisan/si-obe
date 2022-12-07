@@ -19,7 +19,9 @@
                             <label class="uppercase font-bold  text-black" for="class_code">Kode kelas</label><br>
                                 <input type="text" placeholder="Masukkan Kode Kelas" class="input input-bordered input-ghost input-l w-full max-w-xl mb-2 mt-2" name="class_code" required />
                             </div>
-                            <input type="file" name="thumbnail_img">
+                            <div class="container p-4 text-primary mt-2 text-sm">
+                                <input type="file" name="thumbnail_img">
+                            </div>
                             <!-- <div class="max-w-xl ml-4">
                                 <label class="uppercase font-bold text-sm text-black" for="fname">unggah</label>
                                 <label
