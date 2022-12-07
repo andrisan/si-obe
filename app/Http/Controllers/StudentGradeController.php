@@ -127,8 +127,8 @@ class StudentGradeController extends Controller
      */
     public function update(Request $request, $id)
     {
-//        dd($request);
         $grade = StudentGrade::find($id);
+//        dd($request);
 
 //        dd($request->all());
 
@@ -136,7 +136,10 @@ class StudentGradeController extends Controller
 
         $grade->update();
 
-        return view('student-grades.index');
+        $request->instance()->query->set('assignment_id', '3');
+//        dd($request->all());
+
+        return redirect('/student-grades/?assignment_id='.$grade->assignment_id);
     }
 
     /**
