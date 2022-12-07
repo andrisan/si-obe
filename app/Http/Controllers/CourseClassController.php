@@ -112,7 +112,7 @@ class CourseClassController extends Controller
      */
     public function update(Request $request, CourseClass $courseClass)
     {
-        if (Auth::user()->role == 'teacher') {
+        if (Auth::user()->role == 'teacher'|| 'admin') {
             $validated = $request->validate([
                 'name' => 'required|string',
                 'thumbnail_img' => 'required|image|mimes:png,jpg,jpeg,svg',
