@@ -34,7 +34,7 @@
                                             <span class="text-blue-600 underline">browse</span>
                                         </span>
                                     </span>
-                                    <input type="file" name="file_upload" class="hidden" required>
+                                    <input type="text" name="file_upload" class="hidden" required>
                                 </label>
                                 <button class="bg-none hover:bg-blue-600 hover:text-white text-blue-600 font-bold py-2 px-4 rounded mt-4 border-blue-600 border-2" type="submit">
                                     Unggah
