@@ -16,8 +16,7 @@ class CriteriaController extends Controller
      */
     public function index($rubric)
     {
-        $criteria = Criteria::with("lessonLearningOutcome")->where('rubric_id',$rubric);
-        $rubric = Rubric::find($rubric);
+        $criteria = Criteria::where('rubric_id',$rubric)->get();
         return view('criteria.index', [
             'rubric' => $rubric,
             'criterias' => $criteria

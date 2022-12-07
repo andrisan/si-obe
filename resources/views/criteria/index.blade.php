@@ -11,7 +11,7 @@
     </x-slot>
 
     <div class="py-12 max-w-7xl mx-auto sm:px-6 lg:px-8">
-    <div class="flex flex-row sm:justify-end mb-3 px-4 sm:px-0 -mr-2 sm:-mr-3">
+        <div class="flex flex-row sm:justify-end mb-3 px-4 sm:px-0 -mr-2 sm:-mr-3">
             <div class="order-5 sm:order-6 mr-2 sm:mr-3">
                 <a href="{{ route('rubrics.criterias.create', [$rubric])}}" class="w-full bg-white border border-gray-300 rounded-md shadow-sm px-2.5 sm:px-4 py-2 inline-flex justify-center text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     <span class="pr-1">New Criterias</span>
@@ -37,7 +37,7 @@
 
             <div class="flex  mt-5 space-x-5 relative">
                 <div class="">
-                    
+
                 </div>
                 <div class="">
                     <button></button>
@@ -48,8 +48,9 @@
             <table class="mt-10 table-fixed w-full">
                 <thead>
                     <tr class="bg-[#F7F7F9] border-2 h-10">
-                        <th class="w-32">No</th>
+                        <th class="w-16">No</th>
                         <th class="w-64">Title</th>
+                        <th class="w-32">Max Point</th>
                         <th class="w-32">Aksi</th>
                     </tr>
                 </thead>
@@ -58,21 +59,27 @@
                     <tr class="border-2 h-14">
                         <td class="px-6 py-3 border-t border-gray-100">{{ $criteria->id }}</td>
                         <td class="px-6 py-3 border-t border-gray-100">{{ $criteria->title }}</td>
+                        <td class="px-6 py-3 border-t border-gray-100">{{ $criteria->max_point }}</td>
                         <td>
-                            <div class="flex flex-wrap m-1">
-                                <form action="{{ route('rubrics.criterias.edit', [$rubric, $criteria->id]) }}" method="GET">
-                                    <button class="basis-full px-4 py-1 m-1 bg-yellow-600 rounded-xl text-white text-sm font-bold">Edit</button>
-                                </form>
+                            <div>
+                                <div class="flex flex-wrap mx-1 mt-2">
+                                    <form action="{{ route('rubrics.criterias.edit', [$rubric, $criteria->id]) }}" method="GET">
+                                        <button class="basis-full px-4 py-1 m-1 bg-yellow-600 rounded-xl text-white text-sm font-bold">Edit</button>
+                                    </form>
 
-                                <form action="{{ route('rubrics.criterias.destroy', [$rubric, $criteria->id]) }}" method="POST">
-                                    @csrf
-                                    @method('delete')
-                                    <button class="basis-full px-4 py-1 m-1 bg-red-600 rounded-xl text-white text-sm font-bold " value="{{ $criterias->id }}" onclick="return confirm('Are you sure?')">Delete</button>
-                                </form>
-                                
-                                <form action="{{route('rubrics.criterias.show', [$rubric, $criteria->id]) }}" method="get">
-                                    <button class="text-blue-600" value="{{ $criteria->id }}"><strong>Open Details</strong></button>
-                                </form>  
+                                    <form action="{{ route('rubrics.criterias.destroy', [$rubric, $criteria->id]) }}" method="POST">
+                                        @csrf
+                                        @method('delete')
+                                        <button class="basis-full px-4 py-1 m-1 bg-red-600 rounded-xl text-white text-sm font-bold " value="{{ $criteria->id }}" onclick="return confirm('Are you sure?')">Delete</button>
+                                    </form>
+
+                                </div>
+
+                                <div class="mx-4">
+                                    <form action="{{route('rubrics.criterias.show', [$rubric, $criteria->id]) }}" method="get">
+                                        <button class="text-blue-600" value="{{ $criteria->id }}"><strong>Open Details</strong></button>
+                                    </form>
+                                </div>
                             </div>
                         </td>
                     </tr>
