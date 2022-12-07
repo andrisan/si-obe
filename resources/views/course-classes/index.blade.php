@@ -44,7 +44,7 @@
                             <img class="w-full" src="{{ asset('img/GambarCourse 1.png')}}">
                             <div class="card-body p-6">
                                 <div class="card-title text-neutral font-extrabold">
-                                    <a href="" class="text-blue-400">{{$class->course->name}}</a>
+                                    <a href="{{route('classes.show',[$class['course_id']])}}" class="text-blue-400">{{$class->course->name}}</a>
                                 </div>
                                 <div class="grid flex-grow place-items-start">
                                     <button class="btn btn-disabled sm:btn-xs md:btn-xs rounded-md normal-case text-white">
