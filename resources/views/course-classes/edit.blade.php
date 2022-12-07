@@ -26,7 +26,7 @@
                                 <input value ="{{old('class_code', $courseClasses->class_code)}}" type="text" placeholder="Masukkan Kode Kelas"
                                     class="input input-bordered input-ghost input-l w-full max-w-xl mb-2 mt-2"
                                     name="class_code" required />
-                                    @error('name')
+                                    @error('class_code')
                                     <div class="text-red-600">{{$message}}</div>
                                     @enderror
                                 <br>
@@ -38,10 +38,13 @@
                                 </select>
                                 <br>
                                 <label class="uppercase font-bold  text-black" for="course_id">Creator User Id</label><br>
-                                <input type="text" placeholder="Masukkan Kode Kelas"
+                                <input value ="{{old('creator_user_id', $courseClasses->creator_user_id)}}" type="text" placeholder="Masukkan Kode Kelas"
                                     class="input input-bordered input-ghost input-l w-full max-w-xl mb-2 mt-2"
                                     name="creator_user_id" required />
-
+                                    @error('creator_user_id')
+                                    <div class="text-red-600">{{$message}}</div>
+                                    @enderror
+                                    <br>
                                 <input type="file" name="thumbnail_img" class="block mt-4">
                             </div>
                     </div>
