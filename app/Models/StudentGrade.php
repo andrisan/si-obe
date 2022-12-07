@@ -11,6 +11,13 @@ class StudentGrade extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'student_user_id',
+        'assignment_id',
+        'assignment_plan_task_id',
+        'criteria_level_id'
+    ];
+
     public function criteriaLevel()
     {
         return $this->belongsTo(CriteriaLevel::class, 'criteria_level_id');
