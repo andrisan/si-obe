@@ -123,19 +123,7 @@ class CourseClassController extends Controller
    
             $courseClass->update($validated);
 
-<<<<<<< HEAD
-              return redirect()-> route('classes');
-=======
-            if ($request->file('thumbnail_img')) {
                 $validated['thumbnail_img'] = $request->file('thumbnail_img')->store('thumbnail');
-            }
-
-            return redirect(route('course-classes.index'));
->>>>>>> d3b74aa6d3d4d6ee299db796ce196a67080250d8
- 
-        }
-        else{
-            abort(403);
         }
     }
 
