@@ -7,6 +7,7 @@ use App\Models\StudentGrade;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Criteria;
 use App\Models\CriteriaLevel;
 
 class StudentGradeController extends Controller
@@ -112,13 +113,14 @@ class StudentGradeController extends Controller
         foreach ($grades as $grade) {
             $grade->range = CriteriaLevel::where('criteria_id',$grade->assignmentPlanTask->criteria_id)->get();
         }
+        
 //        dd($grades);
         // dd($id);
         // dd($grade->assignmentPlanTask->criteria_id);
         // dd($criteria);
         return view('student-grades.edit', [
             'grades' => $grades,
-//            'criterias' => $criterias,
+ //          'criteria' => $criteria
         ]);
     }
 
@@ -142,6 +144,7 @@ class StudentGradeController extends Controller
         foreach($grades as $grade) {
             $grade->criteria_level_id = $request->all()["criteria_level_id$i"];
             $grade->update();
+            $i++;
         }
 
         return redirect('/student-grades/?assignment_id='.$grade->assignment_id);
