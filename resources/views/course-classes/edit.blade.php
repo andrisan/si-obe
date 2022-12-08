@@ -33,10 +33,13 @@
                                     <div class="text-red-600">{{ $message }}</div>
                                 @enderror
                                 <br>
-                                <label class="uppercase font-bold  text-black" for="course_id">Course Id</label><br>
+                                <label class="uppercase font-bold  text-black" for="course_id">Course</label><br>
                                 <select name="course_id" id="cars">
+                                    <option value="{{ $class->course->id }}">{{ $class->course->name}}</option>
                                     @foreach ($courses as $course)
-                                        <option value="{{ $course['id'] }}">{{ $course['id'] }}</option>
+                                    @if ($course->id != $class->course->id)
+                                    <option value="{{ $course['id'] }}">{{ $course->name}}</option>
+                                    @endif
                                     @endforeach
                                 </select>
                                 <br>
