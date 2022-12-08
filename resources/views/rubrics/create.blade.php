@@ -34,7 +34,10 @@
                                         class="input input-bordered w-full max-w-xs" style="background-color: white" />
                                     <x-input-error :messages="$errors->get('title')" class="mt-2" />
                                 </div>
-                                <input type="submit" class="btn btn-primary mt-7 flex justify-self-start">
+                                <div class="flex">
+                                    <button class="btn btn-outline mt-7 hover:bg-slate-50 hover:text-black"><a href="{{ route('rubrics.index') }}">Cancel</a></button>
+                                    <input type="submit" class="btn btn-primary mt-7 ml-3">
+                                </div>
                             </form>
                         </div>
 
