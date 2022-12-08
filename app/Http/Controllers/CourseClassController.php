@@ -189,7 +189,7 @@ class CourseClassController extends Controller
         return back();
     }
 
-    public function show_join(Request $request){
+    public function show_join(){
         return view('course-classes.show_join');
     }
 
