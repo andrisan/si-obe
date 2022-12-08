@@ -10,7 +10,9 @@ class Syllabus extends Model
     use HasFactory;
 
     public $timestamps = false;
-
+    // protected $fillable = [
+    //     'title',
+    // ];
     public function studyProgram()
     {
         return $this->belongsTo(Course::class, 'course_id');
