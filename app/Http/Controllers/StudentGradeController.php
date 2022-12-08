@@ -122,24 +122,17 @@ class StudentGradeController extends Controller
      */
     public function edit(Request $request)
     {
-//        dd($request);
         $grades = StudentGrade
             ::where('assignment_id',$request->assignment_id)
             ->where('student_user_id',$request->user_id)
             ->get();
-//        dd($request->size);
 
         foreach ($grades as $grade) {
             $grade->range = CriteriaLevel::where('criteria_id',$grade->assignmentPlanTask->criteria_id)->get();
         }
-        
-//        dd($grades);
-        // dd($id);
-        // dd($grade->assignmentPlanTask->criteria_id);
-        // dd($criteria);
+
         return view('student-grades.edit', [
             'grades' => $grades,
- //          'criteria' => $criteria
         ]);
     }
 
@@ -152,7 +145,6 @@ class StudentGradeController extends Controller
      */
     public function update(Request $request)
     {
-//        dd($request->all());
 
         $grades = StudentGrade
             ::where('assignment_id',$request->assignment_id)
@@ -161,7 +153,7 @@ class StudentGradeController extends Controller
 
         $i=0;
         foreach($grades as $grade) {
-            $grade->criteria_level_id = $request->all()["criteria_level_id$i"];
+            $grade->criteria_level_id = $request->input("criteria_level_id$i");
             $grade->update();
             $i++;
         }
