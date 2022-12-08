@@ -43,7 +43,7 @@
                     </div>
                     <div class="flex space-x-3">
                         <button type="submit" class="btn px-6 py-2.5 text-white font-medium text-xs rounded shadow-md">
-                            <a href="{{ route('faculties.departments.index', [$faculty]) }}"> CREATE</a>
+                           create
                         </button>
 
                 </form>
