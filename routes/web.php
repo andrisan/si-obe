@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\FacultyController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudyProgramController;
 use App\Http\Controllers\UserController;
 
@@ -63,5 +64,8 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::get('class-portofolio/{courseClass}', [ClassPortofolioController::class, 'index'])->name('class-portofolio.index')->middleware('auth');
 Route::get('class-portofolio/{courseClass}/students', [ClassPortofolioController::class, 'student'])->name('class-portofolio.student')->middleware('auth');
+
+Route::get('profile', [ProfileController::class, 'index'])->name('profile.index')->middleware('auth');
+Route::get('profile/grade', [ProfileController::class, 'grade'])->name('profile.grade')->middleware('auth');
 
 require __DIR__ . '/auth.php';
