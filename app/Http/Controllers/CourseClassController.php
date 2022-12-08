@@ -205,7 +205,7 @@ class CourseClassController extends Controller
         $classesCourseId = CourseClass::where('class_code', $validated['class_code'])->value('id');
 
         if ($classesCourseId == null) {
-            return redirect(route('classes.index'));
+            return redirect(route('classes.show_join'));
         }
 
         $studentUserId = Auth::user()->id;
