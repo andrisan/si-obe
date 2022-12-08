@@ -43,9 +43,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('courses', CourseController::class);
     Route::resource('syllabi', SyllabusController::class);
     Route::resource('rubrics', RubricController::class);
-    Route::get('/classes/join/',
-    [CourseClassController::class, 'show_join'])->name('classes.show_join');
     Route::post('/classes/join/process', [CourseClassController::class, 'join'])->name('classes.join');
+    Route::get('/classes/join/',[CourseClassController::class, 'show_join'])->name('classes.show_join');
     Route::resource('classes', CourseClassController::class);
     Route::resource('student-grades', StudentGradeController::class);
 
