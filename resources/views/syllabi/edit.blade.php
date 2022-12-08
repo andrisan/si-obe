@@ -27,24 +27,14 @@
             <input type="text" class="input text-neutral input-bordered bg-white w-full h-18"
             value="{{ $syllabus->title }}" name="title" />
           </div>
-          <div class="form-control w-full px-10">
-            <label class="label">
-              <span class="label-text text-neutral font-bold">Author</span>
-            </label>
-            <input type="text" class=" input text-neutral input-bordered bg-white w-full h-18" />
-          </div>
+          
         </div>
 
         <div>
-          <div class="form-control w-full px-10">
-            <label class="label">
-              <span class="label-text text-neutral font-bold">Head of Study Program</span>
-            </label>
-            <textarea class="textarea text-neutral input-bordered  bg-white w-full h-full"></textarea>
-          </div>
+         
 
           <div class="px-10 pt-3 border-gray-400" style="float:right">
-            <a class="btn btn-outline " href="/syllabi">Save</a>
+            <button type="submit"  class="btn btn-outline " >Save</button>
           </div>
         </div>
       </div>
