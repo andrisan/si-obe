@@ -30,16 +30,14 @@
                                     @endforeach
                                 </select>
                                 <br>
-                            
+
 
                                 <input type="file" name="thumbnail_img" class="block mt-4">
                             </div>
                             <div class="mt-4 ml-4">
                                 <button
                                     class="bg-blue-600 hover:bg-white hover:text-blue-600 text-white font-bold py-2 px-4 rounded-lg border-blue-600 border-2"
-                                    type="submit">
-                                    Create
-                                </button>
+                                    type="submit">Save</button>
                                 <a href="{{ route('classes.index') }}"
                                     class="bg-slate-200 hover:bg-white hover:text-blue-600 text-blue-700 font-bold py-2 px-4 rounded-lg border-blue-600 border-2">Cancel</a>
                             </div>

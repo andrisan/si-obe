@@ -12,7 +12,7 @@
                   <div class="grid flex-grow mx-14 my-4 mb-10">
                       <div class="flex flex-col lg:flex-row">
                           <div class="grid flex-grow place-items-start">
-                              <form class="flex items-center">   
+                              {{-- <form class="flex items-center">   
                                   <label for="simple-search" class="sr-only">Search</label>
                                   <div class="relative w-full">
                                       <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -24,7 +24,7 @@
                                       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                                       <span class="sr-only">Search</span>
                                   </button>
-                              </form>
+                              </form> --}}
                           </div>
                           <div class="grid flex-grow place-items-end">
                               <a href="{{route('classes.show_join')}}">
@@ -44,7 +44,12 @@
                           <img class="w-full" src="{{ asset('img/GambarCourse 1.png')}}">
                           <div class="card-body p-6">
                               <div class="card-title text-neutral font-extrabold">
-                                  <a href="" class="text-blue-400">{{$class->course->name}}</a>
+                                  <a class="mb-1 relative group text-blue-400" href="{{route('classes.show',[$class['course_id']])}}">
+                                      <span>{{$class->course->name}}</span>
+                                      <span class="absolute -bottom-1 left-1/2 w-0 h-0.5 bg-blue-400 group-hover:w-1/2 group-hover:transition-all"></span>
+                                      <span class="absolute -bottom-1 right-1/2 w-0 h-0.5 bg-blue-400 group-hover:w-1/2 group-hover:transition-all"></span>
+                                  </a>
+                                  {{-- <a href="{{route('classes.show',[$class['course_id']])}}" class="text-blue-400 hover:text-blue-600">{{$class->course->name}}</a> --}}
                               </div>
                               <div class="flex flex-col lg:flex-row">
                                   <div class="grid flex-grow place-items-start">
