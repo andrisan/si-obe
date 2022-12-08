@@ -31,9 +31,11 @@ class CriteriaController extends Controller
      */
     public function create(Rubric $rubric)
     {
-
+        
+        $llos = LessonLearningOutcome::all();
         return view('criteria.create', [
-            'rubric' => $rubric
+            'rubric' => $rubric,
+            'llos' => $llos
         ]);      
 
         //
