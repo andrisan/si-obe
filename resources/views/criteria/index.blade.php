@@ -44,7 +44,7 @@
                 <tbody class="border-2 border-black text-black">
                     @foreach ($criterias as $criteria)
                     <tr class="border-2 h-14">
-                        <td class="px-6 py-3 border-t border-gray-100">{{ $criteria->id }}</td>
+                        <td class="px-6 py-3 border-t border-gray-100">{{ $loop->index+1 }}</td>
                         <td class="px-6 py-3 border-t border-gray-100">{{ $criteria->title }}</td>
                         <td class="px-6 py-3 border-t border-gray-100">{{ $criteria->max_point }}</td>
                         <td>

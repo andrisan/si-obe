@@ -30,11 +30,16 @@
                                 <div class="py-3 col-span-2">: {{ $criterias->max_point }}</div>
                                 <p class="py-3">Description</p>
                                 <div class="py-3 col-span-2">: {{$criterias->description}}</div>
+                                <p class="py-3">Criteria Levels</p>
+                                <div class="py-3 col-span-2">:
+                                @foreach($criterias->criteriaLevels as $cl)
+                                    {{ $loop->index+1 }}. {{$cl->title}} <br> 
+                                @endforeach
+                                </div>
                                 <p class="py-3">Created At</p>
                                 <div class="py-3 col-span-2">: {{$criterias->created_at}}</div>
                                 <p class="py-3">Updated At</p>
-                                <div class="py-3 col-span-2">: {{$criterias->updated_at }}</div>
-                            
+                                <div class="py-3 col-span-2">: {{$criterias->updated_at }}</div>                                
                             </div>
                         </tr>
                     </tbody>
@@ -47,9 +52,12 @@
                                     @csrf
                                     @method('delete')
                                     <button class="basis-full px-4 py-1 m-1 bg-red-600 rounded-xl text-white text-sm font-bold " value="{{ $criterias->id }}" onclick="return confirm('Are you sure?')">Delete</button>
+
                                     <a href="{{ route('rubrics.criterias.index', [$rubric]) }}" class="basis-full px-4 py-1 m-1 bg-blue-600 rounded-xl text-white text-sm font-bold">Back</a>
-                                </form>            
+                                </form>
+                                 
                             </div>
+
                         </div>
                     </div>
                 </div>
