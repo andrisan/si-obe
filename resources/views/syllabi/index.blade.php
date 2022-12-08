@@ -80,6 +80,7 @@
                 </table>
             </div>
             <div>
+                <h1 class="text-center text-2xl my-10 font-bold">intended learning outcomes</h1>
                 <table class="table w-full text-center border">
                     <thead>
 
@@ -91,19 +92,21 @@
                     </thead>
                     <tbody>
                         @foreach ($ilos as $ilo)
-                        <tr>
-                            <th>{{ $ilo->id }}</th>
-                            <th>{{ $ilo->position }}</th>
-                            <th>{{ $ilo->description }}</th>
-                        </tr>
+                            <tr>
+                                <th>{{ $ilo->id }}</th>
+                                <th>{{ $ilo->position }}</th>
+                                <th>{{ $ilo->description }}</th>
+                            </tr>
                         @endforeach
                     </tbody>
                 </table>
-                <div>
+                <div class="mt-10">
                     <button class="btn btn-primary">
-                        @foreach($syllabus as $syllabi)
-                        <a href='{{ route('syllabi.ilos.index', $syllabi->id) }}' >lihat ilos</a>
+                        @foreach ($syllabus as $syllabi)
+                            <a href='{{ route('syllabi.ilos.index', $syllabi->id) }}'>
                         @endforeach
+                       Lihat ilos
+                        </a>
                     </button>
                 </div>
             </div>
