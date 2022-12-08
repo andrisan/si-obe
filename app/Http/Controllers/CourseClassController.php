@@ -29,8 +29,18 @@ class CourseClassController extends Controller
         }
 
         if (Auth::user()->role == 'admin') {
+
+            if(!request('search')){
+                $classes=CourseClass::paginate(6);
+            }else{
+                $cari =  $request->search;
+                $classes = CourseClass::where('name','like','%'. $cari.'%')->paginate(6);
+        }
+
+
+
             return view('course-classes.index', [
-                'classes'=>CourseClass::paginate(6),
+                'classes'=>$classes
             ]);
         }
         $classes= CourseClass::all();
