@@ -11,7 +11,7 @@ class Syllabus extends Model
 
     public $timestamps = false;
     protected $fillable = [
-        'title',
+        'title','head_of_study_program','author'
     ];
     public function studyProgram()
     {
