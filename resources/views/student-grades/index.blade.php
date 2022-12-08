@@ -49,7 +49,7 @@
                                                     <button class="btn btn-primary btn-sm">Create</button>
                                                 </a>
                                                 @endif
-                                                <form method="POST" action="{{-- {{ route('student-grades.destroy', [$student_grades->id]) }}--}}">
+                                                <form method="POST" action=" {{ route('student-grades.destroy', [$ls->id, $ls->idAssignment]) }}">
                                                     @csrf
                                                     @method('delete')
 

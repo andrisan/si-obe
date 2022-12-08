@@ -124,15 +124,25 @@ class StudentGradeController extends Controller
     {
         $grades = StudentGrade
             ::where('assignment_id',$request->assignment_id)
-            ->where('student_user_id',$request->user_id)
+            ->where('user_id',$request->user_id)
             ->get();
+        $assignment = Assignment::find($request->assignment_id);
 
-        foreach ($grades as $grade) {
-            $grade->range = CriteriaLevel::where('criteria_id',$grade->assignmentPlanTask->criteria_id)->get();
-        }
+        $apts = $assignment->assignmentPlan->assignmentPlanTasks;
+
+        dd($grades);
+
+//        foreach ($apts as $apt) {
+//            dd($apt->criteria->criteriaLevels);
+//        }
+
+//        foreach ($grades as $grade) {
+//            $grade->range = CriteriaLevel::where('criteria_id',$grade->assignmentPlanTask->criteria_id)->get();
+//        }
 
         return view('student-grades.edit', [
             'grades' => $grades,
+            'apts' => $apts,
         ]);
     }
 
@@ -167,8 +177,11 @@ class StudentGradeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        $grade = StudentGrade
+            ::find($id);
+
+        dd($grade);
     }
 }

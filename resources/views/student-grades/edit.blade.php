@@ -18,13 +18,13 @@
                         <input type="hidden" name="user_id" value="{{ $grades->first()->student_user_id }}">
                         @csrf
                         @method('patch')
-                        @foreach($grades as $grade)
-                        <p class="mb-5"> {{$grade->assignmentPlanTask->criteria->title}} </p>
-                        <div class="btn-group mb-10 justify-center">
-                            @foreach($grade->range as $criteria)
-                            <input type="radio" name="criteria_level_id{{ $loop->parent->index }}" data-title="{{ $criteria->point }}" class="btn px-16" value="{{ $criteria->id }}" @checked($criteria->id === $grade->criteria_level_id)/>
-                            @endforeach
-                        </div>
+                        @foreach($apts as $apt)
+                            <p class="mb-5"> {{$apt->criteria->title}} </p>
+                            <div class="btn-group mb-10 justify-center">
+                                @foreach($apt->criteria->criteriaLevels as $criteria)
+                                    <input type="radio" name="criteria_level_id{{ $loop->parent->index }}" data-title="{{ $criteria->point }}" class="btn px-16" value="{{ $criteria->id }}" @checked($criteria->id === $grade->criteria_level_id)/>
+                                @endforeach
+                            </div>
                         @endforeach
 
                         <div class="card-actions justify-end pt-5">
