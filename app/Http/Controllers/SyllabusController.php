@@ -80,6 +80,15 @@ class SyllabusController extends Controller
     public function update(Request $request, Syllabus $syllabus)
     {
         //
+        $validate = $request->validate([
+        'title'=>'required|string',
+        'author'=>'required|string'
+       ]);
+       $syllabus->update([
+        'title'=>$validate['title'],
+        'author'=>$validate['author'],
+       ]);
+        return redirect()->route('syllabi.index');
     }
 
     /**
