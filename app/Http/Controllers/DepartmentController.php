@@ -117,10 +117,11 @@ class DepartmentController extends Controller
     public function update(Request $request, $faculty, Department $department)
     {
         //
-        $department->update([
+       $validated = $request->validate([
+        'name' => 'required|string'
+       ]);
 
-            'name' => $request->name
-        ]);
+       $department->update($validated);
         return redirect()->route('faculties.departments.index', $faculty);
     }
 
