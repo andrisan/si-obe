@@ -38,7 +38,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        <p class="mx-20">*tingkat keberhasilan dengan tresshold 50%</p>
+                        <p class="mx-20">*tingkat keberhasilan dengan threshold 50%</p>
                     </div>
                     <div class="mt-10">
                         <table class="table-fixed  mx-auto">
