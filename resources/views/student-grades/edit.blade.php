@@ -22,7 +22,7 @@
                             <p class="mb-5"> {{$apt->criteria->title}} </p>
                             <div class="btn-group mb-10 justify-center">
                                 @foreach($apt->criteria->criteriaLevels as $criteria)
-                                    <input type="radio" name="criteria_level_id{{ $loop->parent->index }}" data-title="{{ $criteria->point }}" class="btn px-16" value="{{ $criteria->id }}" @checked($criteria->id === $grade->criteria_level_id)/>
+                                    <input type="radio" name="criteria_level_id{{ $loop->parent->index }}" data-title="{{ $criteria->point }}" class="btn px-16" value="{{ $criteria->id }}" {{--@checked($criteria->id === $grade->criteria_level_id)--}}/>
                                 @endforeach
                             </div>
                         @endforeach

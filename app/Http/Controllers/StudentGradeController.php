@@ -124,13 +124,12 @@ class StudentGradeController extends Controller
     {
         $grades = StudentGrade
             ::where('assignment_id',$request->assignment_id)
-            ->where('user_id',$request->user_id)
+            ->where('student_user_id',$request->user_id)
             ->get();
         $assignment = Assignment::find($request->assignment_id);
-
         $apts = $assignment->assignmentPlan->assignmentPlanTasks;
 
-        dd($grades);
+//        dd($grades);
 
 //        foreach ($apts as $apt) {
 //            dd($apt->criteria->criteriaLevels);
@@ -155,20 +154,27 @@ class StudentGradeController extends Controller
      */
     public function update(Request $request)
     {
-
+//        dd($request->all());
         $grades = StudentGrade
             ::where('assignment_id',$request->assignment_id)
             ->where('student_user_id',$request->user_id)
             ->get();
+        $assignment = Assignment::find($request->assignment_id);
+        $apts = $assignment->assignmentPlan->assignmentPlanTasks;
 
-        $i=0;
-        foreach($grades as $grade) {
-            $grade->criteria_level_id = $request->input("criteria_level_id$i");
-            $grade->update();
+        $i = 0;
+        foreach ($apts as $apt) {
+            $grade = $grades->where('assignment_plan_task_id',$apt->id)->first();
+            if (!$grade) {
+
+            } else {
+                $grade->criteria_level_id = $request->input("criteria_level_id$i");
+                $grade->update();
+            }
             $i++;
         }
 
-        return redirect('/student-grades/?assignment_id='.$grade->assignment_id);
+        return redirect('/student-grades/?assignment_id='.$request->assignment_id);
     }
 
     /**
