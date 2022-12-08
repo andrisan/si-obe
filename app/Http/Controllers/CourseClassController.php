@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class CourseClassController extends Controller
 {
@@ -87,8 +88,6 @@ class CourseClassController extends Controller
         $validateData = $request->validate([
             'name'=> 'required|string',
             'course_id'=> 'required|integer',
-        
-            'class_code'=> 'required|string',
             'thumbnail_img'=> 'required|image|mimes:png,jpg,jpeg,svg',
         ]);
         
@@ -98,7 +97,7 @@ class CourseClassController extends Controller
         $classes->name = $validateData['name'];
         $classes->course_id = $validateData['course_id'];
         $classes->creator_user_id = Auth::user()->id ;
-        $classes->class_code = $validateData['class_code'];
+        $classes->class_code = (String) Str::uuid();
         $classes->thumbnail_img = $validateData['thumbnail_img'];
 
         $classes->save();
@@ -154,7 +153,6 @@ class CourseClassController extends Controller
              $validateData = $request->validate([
             'name'=> 'required|string',
             'course_id'=> 'required|integer',
-            'class_code'=> 'required|string',
             'thumbnail_img'=> 'required|image|mimes:png,jpg,jpeg,svg',
         ]);
              $validateData['thumbnail_img'] = $request->file('thumbnail_img')->store('thumbnail');
@@ -162,7 +160,6 @@ class CourseClassController extends Controller
                  'name' => $validateData['name'],
                  'course_id' => $validateData['course_id'],
                  'creator_user_id' => Auth::user()->id,
-                 'class_code' => $validateData['class_code'],
                  'thumbnail_img' => $validateData['thumbnail_img'],
             ]);
 
