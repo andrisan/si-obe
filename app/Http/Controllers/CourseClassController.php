@@ -27,6 +27,22 @@ class CourseClassController extends Controller
                 'classes'=>User::find(Auth::user()->id)->students()->paginate(6),
             ]);
         }
+
+        if (Auth::user()->role == 'admin') {
+
+            if(!request('search')){
+                $classes=CourseClass::paginate(6);
+            }else{
+                $cari =  $request->search;
+                $classes = CourseClass::where('name','like','%'. $cari.'%')->paginate(6);
+        }
+
+
+
+            return view('course-classes.index', [
+                'classes'=>$classes
+            ]);
+        }
         $classes= CourseClass::all();
         
 
@@ -35,10 +51,7 @@ class CourseClassController extends Controller
          $classes=CourseClass::where('creator_user_id', Auth::user()->id)->paginate(6);
         }else{
             $cari =  $request->search;
-            $classes = DB::table('course_classes')
-		->where('name','like',"%".$cari."%")
-		->paginate(6);
-            // $classes->CourseClass::where('name','like','%'. request('search'.'%'))->get();
+            $classes = CourseClass:: where('creator_user_id',Auth::user()->id)->where('name','like','%'. $cari.'%')->paginate(6);
         }
 
         //End Search
@@ -74,7 +87,7 @@ class CourseClassController extends Controller
         $validateData = $request->validate([
             'name'=> 'required|string',
             'course_id'=> 'required|integer',
-            'creator_user_id'=> 'required|integer',
+        
             'class_code'=> 'required|string',
             'thumbnail_img'=> 'required|image|mimes:png,jpg,jpeg,svg',
         ]);
@@ -84,7 +97,7 @@ class CourseClassController extends Controller
         $classes = new CourseClass();
         $classes->name = $validateData['name'];
         $classes->course_id = $validateData['course_id'];
-        $classes->creator_user_id = $validateData['creator_user_id'] ;
+        $classes->creator_user_id = Auth::user()->id ;
         $classes->class_code = $validateData['class_code'];
         $classes->thumbnail_img = $validateData['thumbnail_img'];
 
@@ -141,7 +154,6 @@ class CourseClassController extends Controller
              $validateData = $request->validate([
             'name'=> 'required|string',
             'course_id'=> 'required|integer',
-            'creator_user_id'=> 'required|integer',
             'class_code'=> 'required|string',
             'thumbnail_img'=> 'required|image|mimes:png,jpg,jpeg,svg',
         ]);
@@ -149,7 +161,7 @@ class CourseClassController extends Controller
             $class->update([
                  'name' => $validateData['name'],
                  'course_id' => $validateData['course_id'],
-                 'creator_user_id' => $validateData['creator_user_id'],
+                 'creator_user_id' => Auth::user()->id,
                  'class_code' => $validateData['class_code'],
                  'thumbnail_img' => $validateData['thumbnail_img'],
             ]);

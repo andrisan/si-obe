@@ -33,22 +33,15 @@
                                     <div class="text-red-600">{{ $message }}</div>
                                 @enderror
                                 <br>
-                                <label class="uppercase font-bold  text-black" for="course_id">Course Id</label><br>
+                                <label class="uppercase font-bold  text-black" for="course_id">Course</label><br>
                                 <select name="course_id" id="cars">
+                                    <option value="{{ $class->course->id }}">{{ $class->course->name}}</option>
                                     @foreach ($courses as $course)
-                                        <option value="{{ $course['id'] }}">{{ $course['id'] }}</option>
+                                    @if ($course->id != $class->course->id)
+                                    <option value="{{ $course['id'] }}">{{ $course->name}}</option>
+                                    @endif
                                     @endforeach
                                 </select>
-                                <br>
-                                <label class="uppercase font-bold  text-black" for="course_id">Creator User
-                                    Id</label><br>
-                                <input value="{{ old('creator_user_id', $class->creator_user_id) }}" type="text"
-                                    placeholder="Masukkan Kode Kelas"
-                                    class="input input-bordered input-ghost input-l w-full max-w-xl mb-2 mt-2"
-                                    name="creator_user_id" required />
-                                @error('creator_user_id')
-                                    <div class="text-red-600">{{ $message }}</div>
-                                @enderror
                                 <br>
                                 <input type="file" name="thumbnail_img" class="block mt-4">
                             </div>

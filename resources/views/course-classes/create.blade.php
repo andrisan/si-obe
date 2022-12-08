@@ -23,18 +23,14 @@
                                     class="input input-bordered input-ghost input-l w-full max-w-xl mb-2 mt-2"
                                     name="class_code" required />
                                 <br>
-                                <label class="uppercase font-bold  text-black" for="course_id">Course Id</label><br>
+                                <label class="uppercase font-bold  text-black" for="course_id">Course</label><br>
                                 <select name="course_id" id="cars">
                                     @foreach ($courses as $course)
-                                        <option value="{{ $course['id'] }}">{{ $course['id'] }}</option>
+                                    <option value="{{ $course['id'] }}">{{ $course->name}}</option>
                                     @endforeach
                                 </select>
                                 <br>
-                                <label class="uppercase font-bold  text-black" for="course_id">Creator User Id</label>
-                                <br>
-                                <input type="text" placeholder="Masukkan Creator User ID"
-                                    class="input input-bordered input-ghost input-l w-full max-w-xl mb-2 mt-2"
-                                    name="creator_user_id" required />
+                            
 
                                 <input type="file" name="thumbnail_img" class="block mt-4">
                             </div>
