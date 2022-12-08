@@ -32,12 +32,12 @@
                             </div>
 
 
-                          <div class="mt-5">
+                          <!-- <div class="mt-5">
                                 <h1 class="text-black">max point</h1>
                                 <input type="text" class="mt-2 w-80 rounded-md" placeholder="Enter Text Here..."
                                     name="max_point" >
                                     <x-input-error :messages="$errors->get('max_point')" class="mt-2" />
-                            </div>
+                            </div> -->
 
                         <div class="mt-5 ">
                             <h1 class="text-black">D E S C R I P T I O N</h1>

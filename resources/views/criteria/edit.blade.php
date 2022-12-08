@@ -17,14 +17,17 @@
                     <div class="pb-4">
                         <div class="pb-2"><label for="title"><strong class="font-semibold">Title</strong></label></div>
                         <input type="text" placeholder="Title" class="input input-bordered w-full max-w-xs" name="title" value="{{ $criterias->title }}"/> <br>
+                        <x-input-error :messages="$errors->get('title')" class="mt-2" />
                     </div>
-                    <div class="pb-4">
+                    <!-- <div class="pb-4">
                         <div class="pb-2"><label for="max"><strong class="font-semibold">Max_Point</strong></label></div>
                         <input type="text" placeholder="Max_point" class="input input-bordered w-full max-w-xs" name="max_point" value="{{ $criterias->max_point }}"/> <br>
-                    </div>
+                        <x-input-error :messages="$errors->get('title')" class="mt-2" />
+                    </div> -->
                     <div class="pb-4">
                         <div class="pb-2"><label for="description"><strong class="font-semibold">Description</strong></label></div>
                         <textarea type="text" class="rounded-md mt-2 h-52" name="description"  cols="33" rows="10" >{{ $criterias->description }}</textarea>
+                        <x-input-error :messages="$errors->get('description')" class="mt-2" />
                     </div>
                     <input type="submit" value="Save" class="btn btn-active rounded-md " />
                     <a href="{{ route('rubrics.criterias.index', [$rubric]) }}" class="btn btn-outline rounded-md">Cancel</a>
