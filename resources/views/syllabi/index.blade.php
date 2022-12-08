@@ -1,7 +1,11 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Rencana Pembelajaran Semester - Pemrograman Basis Data') }}
+            @foreach ($course as $courses)
+            {{ __('Rencana Pembelajaran Semester - '.$courses->name) }}
+            @endforeach
+           
+
         </h2>
     </x-slot>
 
@@ -10,86 +14,58 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="flex flex-col lg:flex-row">
-                            <div class="grid flex-grow place-item-start">
-                                <p class="text-blue-600 font-semibold ml-4">Kode</p>
-                                <p class="text-black ml-4 mb-2">CSD60001</p>
-                                <p></p>
-                                <p class="text-blue-600 font-semibold ml-4">Semester</p>
-                                <p class="text-black ml-4 mb-2">3</p>
-                                <p class="text-blue-600 font-semibold ml-4">Course ID</p>
-                                <p class="text-black ml-4 mb-4">CSD60001</p>
-                            </div>
-                            <div class="grid flex-grow"></div>
-                            <div class="grid flex-grow"></div>
-                            <div class="grid flex-grow"></div>
-                            <div class="grid flex-grow"></div>
-                            <div class="grid flex-grow"></div>
-                            <div class="grid flex-grow"></div>
-                            <div class="grid flex-grow"></div>
-                            <div class="grid flex-grow"></div>
-                            <div class="grid flex-grow place-item-end">
-                                <button class="bg-blue-300 btn btn-active btn-outline btn-md text-white">Edit</button>
-                                <button class="bg-blue-300  mt-5 btn btn-active btn-outline text-white">Create New</button>
-                                <br>
-                            </div>
-                    </div>
+                        <div class="grid flex-grow place-item-start">
+                            @foreach ($course as $courses)
+                                <h1><span class="text-blue-500 font-bold">Mata Kuliah</span> <br> {{ $courses->name }}
+                                </h1>
 
-                    <div class="bg-gray-300 shadow-xl p-20 rounded-lg">
-                        <div class="flex space-x-20">
-                            <div class="">
-                                <h1 class="text-black font-bold">Dosen Penyusun RPS</h1>
-                                <h1 class="bg-white text-black px-5 py-2 rounded-lg">Issa Arwani, S.Kom, M.Sc</h1>
-                            </div>
-                            <div class="">
-                                <h1 class="text-black font-bold">Ketua Program Studi</h1>
-                                <h1 class="bg-white text-black px-5 py-2 rounded-lg">Ir. Widhy Hayuhardhika N.P, S.Kom., M.Kom.</h1>
-                            </div>
+                                <h1 class="text-black"> <span class="text-blue-500 font-bold">Course id</span> <br>
+                                    {{ $courses->id }}</h1>
+                            @endforeach
+
                         </div>
 
-                        <div class="mt-10">
-                            <h1 class="text-black font-bold">Deskripsi Singkat MK</h1>
-                            <p class="bg-white text-black px-5 py-2 rounded-lg">Mata kuliah ini Pemrograman Basis Data merupakan mata kuliah wajib yang bisa diambil setelah lulus mata kuliah Sistem Basis Data.</p>
+                        <div class="">
+                            @foreach ($syllabus as $syllabi)
+                                <a href="{{ route('syllabi.edit', $syllabi) }}"><button
+                                        class="btn btn-primary px-8">EDIT</button></a> <br>
+                                <a href="{{ route('syllabi.create') }}"><button
+                                        class="btn btn-primary mt-5 px-5">Create</button></a>
+                            @endforeach
+
                         </div>
 
-                        <div class="mt-10">
-                            <h1 class="text-black font-bold">Capaian Pembelajaran</h1>
-                            <div class="bg-white text-black px-5 py-2 rounded-lg">
-                                <p class="">CPL: Mampu merancang dan mengimplementasikan solusi teknologi informasi terintegrasi yang diperlukan.</p>
-                                <p class="">CPMK: Mampu menyampaikan hasil rancangan dan implementasi projek secara ilmiah</p>
-                            </div>
-                        </div>
 
-                        <div class="flex mt-10 space-x-36">
-                            <div class="">
-                                <h1 class="text-black font-bold">MK Prasyarat dan Nilai Minimal</h1>
-                                <div class="bg-white text-black px-5 py-2 rounded-lg">
-                                    <h1 class="">Sistem Basis Data - (D)</h1>
-                                </div>
-                            </div>
-                            <div class="">
-                                <h1 class="text-black font-bold">Bahan Kajian</h1>
-                                <div class="bg-white text-black px-5 py-2 rounded-lg">
-                                    <h1 class="">Sistem Basis Data</h1>
-                                    <h1 class="">Stored Procedure </h1>
-                                    <h1 class="">Logika Pemrograman</h1>
-                                    <h1 class="">Cursor</h1>
-                                    <h1 class="">Trigger</h1>
-                                </div>
-                            </div>
-                            <div class="">
-                                <h1 class="text-black font-bold">Dosen Pengampu</h1>
-                                <div class="bg-white text-black px-5 py-2 rounded-lg">
-                                    <h1>Welly Pramono</h1>
-                                    <h1>Issa Arwani</h1>
-                                    <h1>Agus Wahyu Widodo</h1>
-                                    <h1>Andri Santoso</h1>
-                                </div>
-                            </div>
-                        </div>
+
+
                     </div>
 
 
                 </div>
+            </div>
+            <div class=" ">
+                <table class="table w-full text-center border ">
+
+
+                    <thead>
+                        <tr class="">
+                            <th>Nama Syllabi</th>
+                            <th>Ketua Program Studi</th>
+                            <th>Dosen Penyusun RPS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($syllabus as $syllabi)
+                            <tr class="">
+                                <th>{{ $syllabi->title }}</th>
+                                <th>{{ $syllabi->head_of_study_program }}</th>
+                                <th>{{ $syllabi->author }}</th>
+                            </tr>
+                        @endforeach
+
+                    </tbody>
+
+                </table>
             </div>
         </div>
     </div>
