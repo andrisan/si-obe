@@ -18,20 +18,30 @@
 
       <div class="grid grid-cols-1 pb-5">
         <div>
-          <form action="{{ route('syllabi.store', [$course]) }}">
+          <form action="{{ route('syllabi.store') }}"method="post">
+                @csrf
             <div class="form-control w-full px-10">
+              <div class="dropdown">
+                <select name="course_id" id="">
+                 @foreach ($course as $courses)
+                 <option value="{{ $courses->id }}">{{$courses->id   }}</option>
+                 @endforeach
+                 
+                </select>
+               </div>
               <label class="label">
                 
   
                 <span class="label-text text-neutral font-bold">Syllabus Name</span>
               </label>
-              <input type="text" class="input text-neutral input-bordered bg-white w-full h-18" />
+              <input type="text" class="input text-neutral input-bordered bg-white w-full h-18"  name="title" required />
             </div>
             <div class="form-control w-full px-10">
               <label class="label">
                 <span class="label-text text-neutral font-bold">Author</span>
               </label>
-              <input type="text" class=" input text-neutral input-bordered bg-white w-full h-18" />
+             
+              <input name="author" type="text" class=" input text-neutral input-bordered bg-white w-full h-18" />
             </div>
           </div>
   
@@ -40,7 +50,7 @@
               <label class="label">
                 <span class="label-text text-neutral font-bold">Head of Study Program</span>
               </label>
-              <textarea class="textarea text-neutral input-bordered bg-white w-full h-full"></textarea>
+              <textarea name="head_of_study_program" class="textarea text-neutral input-bordered bg-white w-full h-full"></textarea>
             </div>
   
             <div class="px-10 pt-3" style="float:right">
