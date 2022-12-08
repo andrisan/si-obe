@@ -19,11 +19,11 @@ class SyllabusController extends Controller
         //
         $course = Course::all();
         $syllabi = Syllabus::all();
-        return view('syllabi.index',[
-            'course'=>$course,
-            'syllabus'=>$syllabi
-            
-            
+        return view('syllabi.index', [
+            'course' => $course,
+            'syllabus' => $syllabi
+
+
         ]);
     }
 
@@ -35,6 +35,14 @@ class SyllabusController extends Controller
     public function create()
     {
         //
+        $course = Course::all();
+        return view(
+            'syllabi.create',
+            [
+                'course' => $course
+            ]
+
+        );
     }
 
     /**
@@ -46,6 +54,20 @@ class SyllabusController extends Controller
     public function store(Request $request)
     {
         //
+        $validated = $request->validate([
+            'title' => 'required|string',
+            'head_of_study_program' => 'required|string',
+            'author'=> 'required|string'
+        ]);
+        $course = Course::where('title', $validated['title'])->get();
+
+        $syllabus = new Syllabus();
+        $syllabus->title = $validated['title'];
+        $syllabus->title = $course->first()->id;
+        $syllabus->save();
+        return redirect()->route(
+            'faculties.departments.index'
+        );
     }
 
     /**
@@ -68,10 +90,12 @@ class SyllabusController extends Controller
     public function edit(Syllabus $syllabus)
     {
         //
-        return view('syllabi.edit',[
-            'syllabus'=>$syllabus
-        ]
-    );   
+        return view(
+            'syllabi.edit',
+            [
+                'syllabus' => $syllabus
+            ]
+        );
     }
 
     /**
