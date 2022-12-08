@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Syllabus;
 use Illuminate\Http\Request;
+use App\Models\Course;
+
 
 class SyllabusController extends Controller
 {
@@ -15,6 +17,14 @@ class SyllabusController extends Controller
     public function index()
     {
         //
+        $course = Course::all();
+        $syllabi = Syllabus::all();
+        return view('syllabi.index',[
+            'course'=>$course,
+            'syllabus'=>$syllabi
+            
+            
+        ]);
     }
 
     /**
