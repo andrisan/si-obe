@@ -105,10 +105,13 @@ class CriteriaController extends Controller
     public function edit(Rubric $rubric, $criterias)
     {
         //
+        $llos = LessonLearningOutcome::all();
         $criterias= Criteria::where('id', $criterias)->first();
+        
           return view('criteria.edit',[
             'rubric' => $rubric,
-            'criterias' => $criterias
+            'criterias' => $criterias,
+            'llos' => $llos
           ]);
     }
 
@@ -125,23 +128,14 @@ class CriteriaController extends Controller
         $validated = $request->validate([
             //
               'title' => 'required|string',
-              'max_point' => 'required|string',
               'description' => 'required|string',
+              'llo' => 'required|string'
           ]);
-
-        //   $criterias = Criteria::find($criterias);
-
-        //   $criterias->Title = $validated['title'];
-        //   $criterias->LLO = $validated['llo'];
-        //   $criterias->Max_Point = $validated['max_point'];
-        //   $criterias->Description = $validated['description'];
-  
-        //   $criterias->save();
 
           $criteria->update([
             'title' => $validated['title'],
-            'description' => $validated['description'],
-            'max_point' => $validated['max_point']
+            'llo_id' =>  $validated['llo'],
+            'description' => $validated['description']
         ]);
   
           return redirect()->route('rubrics.criterias.show',[$rubric, $criteria]);

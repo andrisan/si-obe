@@ -27,7 +27,7 @@ class Criteria extends Model
 
     protected $fillable = [
         'title',
-        'llo',
+        'llo_id',
         'max_point',
         'description'
     ];

@@ -19,11 +19,17 @@
                         <input type="text" placeholder="Title" class="input input-bordered w-full max-w-xs" name="title" value="{{ $criterias->title }}"/> <br>
                         <x-input-error :messages="$errors->get('title')" class="mt-2" />
                     </div>
-                    <!-- <div class="pb-4">
-                        <div class="pb-2"><label for="max"><strong class="font-semibold">Max_Point</strong></label></div>
-                        <input type="text" placeholder="Max_point" class="input input-bordered w-full max-w-xs" name="max_point" value="{{ $criterias->max_point }}"/> <br>
-                        <x-input-error :messages="$errors->get('title')" class="mt-2" />
-                    </div> -->
+
+                    <div class="mt-5">
+                                <h1 class="text-black">LLO</h1>
+                                {{-- <input type="text" class="mt-2 w-80 rounded-md" placeholder="Enter Text Here..." name="llo" id="" value="{{ $criterias->llo }}"> --}}
+                                <select class="select select-bordered w-full max-w-xs" placeholder="Enter Text Here..." name="llo">
+                                    @foreach ($llos as $llo)
+                                    <option value={{$llo->id}}> {{ $llo->description }} </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            
                     <div class="pb-4">
                         <div class="pb-2"><label for="description"><strong class="font-semibold">Description</strong></label></div>
                         <textarea type="text" class="rounded-md mt-2 h-52" name="description"  cols="33" rows="10" >{{ $criterias->description }}</textarea>
