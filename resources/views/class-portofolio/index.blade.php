@@ -15,36 +15,30 @@
                             {{ strtoupper($cc->name) }}</h1>
                     </div>
 
-                    <div class="flex mt-10">
+                    <div class="flex flex-col mt-10">
                         <table class="table-fixed  mx-auto">
                             <thead class="text-black">
                                 <tr class="h-10">
                                     <th rowspan="2" class="w-10 border-x-2 border-t-2 border-black">No</th>
                                     <th rowspan="2" class="w-[50rem] border-x-2 border-t-2 border-black">Sub-Capaian
                                         Mata Kuliah</th>
-                                    <th class="w-[10rem] border-2 border-t-2 border-black">Tingkat Keberhasilan</th>
-                                    <th class="w-[10rem] border-2 border-t-2 border-black">Traceroute</th>
+                                    <th class="w-[10rem] border-2 border-t-2 border-black">Tingkat Keberhasilan*</th>
                                 </tr>
                             </thead>
                             <tbody class="text-center text-black">
                                 <?php $i = 1; ?>
                                 @foreach ($lloTotalPoint as $llo)
-                                    <?php
-                                    $lloPoint = $llo['point'] / $studentSum;
-                                    $lloTotal = ($lloPoint / $llo['maxPoint']) * 100;
-                                    
-                                    ?>
                                     <tr class="border-2 border-black h-14">
                                         <td class="border-2 border-black">{{ $i }}</td>
                                         <td class="text-justify px-3 border-2 border-black">{{ $llo['description'] }}
                                         </td>
-                                        <td class="border-2 border-black">{{ round($lloTotal, 2) }}%</td>
-                                        <td class="border-2 border-black">{{ round($lloPoint, 2) }}</td>
+                                        <td class="border-2 border-black">{{ round($llo['lulus'] / $cc->students->count() * 100, 2) }} %</td>
                                     </tr>
                                     <?php $i++; ?>
                                 @endforeach
                             </tbody>
                         </table>
+                        <p class="mx-20">*tingkat keberhasilan dengan threshold 50%</p>
                     </div>
                     <div class="mt-10">
                         <table class="table-fixed  mx-auto">
