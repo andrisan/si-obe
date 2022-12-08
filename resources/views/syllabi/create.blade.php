@@ -42,6 +42,8 @@
               </label>
              
               <input name="author" type="text" class=" input text-neutral input-bordered bg-white w-full h-18" />
+              <x-input-error :messages="$errors->get('title')" class="mt-2" />
+            
             </div>
           </div>
   
