@@ -37,9 +37,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::group(['middleware' => ['auth', 'verified']], function () {
+    Route::get('home', [DashboardController::class, 'index'])->name('dashboard');
 
-Route::group(['middleware' => 'auth'], function () {
     Route::resource('users', UserController::class);
     Route::resource('faculties', FacultyController::class);
     Route::resource('courses', CourseController::class);
