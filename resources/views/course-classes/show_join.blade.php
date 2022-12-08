@@ -40,7 +40,7 @@
                                 <input type="submit" class="btn bg-[#2E65F3] text-white font-semibold border-none mt-5 ml-72 block" value="Enroll Me" />
                             </form>
                         </div>
-
+                        <a href="{{route('classes.index')}}" class="btn rounded-md hover:bg-slate-200 hover:text-black mt-6 mx-6 "> Back</a>
                     </div>
                 </div>
 </x-app-layout>
