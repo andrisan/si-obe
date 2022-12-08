@@ -13,23 +13,21 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <div class="flex flex-col lg:flex-row">
-                        <div class="grid flex-grow place-item-start">
-                            @foreach ($course as $courses)
-                                <h1><span class="text-blue-500 font-bold">Mata Kuliah</span> <br> {{ $courses->name }}
-                                </h1>
-
-                                <h1 class="text-black"> <span class="text-blue-500 font-bold">Course id</span> <br>
-                                    {{ $courses->id }}</h1>
-                            @endforeach
-
+                    <div class="flex space-x-20 ">
+                        <div class="dropdown border">
+                            <select name="" id="">{course->name}
+                                @foreach ($course as $courses)
+                                    <option> {{ $courses->name }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
 
-                        <div class="">
+                        <div class="flex justify-end text-right">
 
                             <br>
                             <a href="{{ route('syllabi.create') }}"><button
-                                    class="btn btn-primary mt-5 px-5">Create</button></a>
+                                    class="btn btn-primary  px-5">Create</button></a>
 
 
                         </div>
@@ -51,6 +49,8 @@
                             <th>Nama Syllabi</th>
                             <th>Ketua Program Studi</th>
                             <th>Dosen Penyusun RPS</th>
+                            <th>Mata Kuliah</th>
+
                             <th>action</th>
                         </tr>
                     </thead>
@@ -60,14 +60,52 @@
                                 <th>{{ $syllabi->title }}</th>
                                 <th>{{ $syllabi->head_of_study_program }}</th>
                                 <th>{{ $syllabi->author }}</th>
-                            <th> <a href="{{ route('syllabi.edit', $syllabi->id) }}"><button
-                                        class="btn btn-primary px-8">EDIT</button></a> </tr>
+                                <th>{{ $courses->name }}</th>
+                                <th class="flex space-x-2"> <a href="{{ route('syllabi.edit', $syllabi->id) }}"><button
+                                            class="btn btn-primary px-8">EDIT</button></a>
+                                    <form action="{{ route('syllabi.destroy', $syllabi) }}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button
+                                            class="btn btn-primary "onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();"
+                                            value="{{ $syllabi->id }}">Delete</button>
+
+                                    </form>
+                            </tr>
                             </tr>
                         @endforeach
 
                     </tbody>
 
                 </table>
+            </div>
+            <div>
+                <table class="table w-full text-center border">
+                    <thead>
+
+                        <tr>
+                            <th>No</th>
+                            <th>Position</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($ilos as $ilo)
+                        <tr>
+                            <th>{{ $ilo->id }}</th>
+                            <th>{{ $ilo->position }}</th>
+                            <th>{{ $ilo->description }}</th>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                <div>
+                    <button class="btn btn-primary">
+                        @foreach($syllabus as $syllabi)
+                        <a href='{{ route('syllabi.ilos.index', $syllabi->id) }}' >lihat ilos</a>
+                        @endforeach
+                    </button>
+                </div>
             </div>
         </div>
     </div>
