@@ -24,7 +24,7 @@
               <div class="dropdown">
                 <select name="course_id" id="">
                  @foreach ($course as $courses)
-                 <option value="{{ $courses->id }}">{{$courses->id   }}</option>
+                 <option value="{{ $courses->id  }}">{{$courses->name   }}</option>
                  @endforeach
                  
                 </select>
