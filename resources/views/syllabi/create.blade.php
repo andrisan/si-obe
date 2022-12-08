@@ -18,33 +18,37 @@
 
       <div class="grid grid-cols-1 pb-5">
         <div>
-          <div class="form-control w-full px-10">
-            <label class="label">
-              <span class="label-text text-neutral font-bold">Syllabus Name</span>
-            </label>
-            <input type="text" class="input text-neutral input-bordered bg-white w-full h-18" />
+          <form action="{{ route('syllabi.store', [$course]) }}">
+            <div class="form-control w-full px-10">
+              <label class="label">
+                
+  
+                <span class="label-text text-neutral font-bold">Syllabus Name</span>
+              </label>
+              <input type="text" class="input text-neutral input-bordered bg-white w-full h-18" />
+            </div>
+            <div class="form-control w-full px-10">
+              <label class="label">
+                <span class="label-text text-neutral font-bold">Author</span>
+              </label>
+              <input type="text" class=" input text-neutral input-bordered bg-white w-full h-18" />
+            </div>
           </div>
-          <div class="form-control w-full px-10">
-            <label class="label">
-              <span class="label-text text-neutral font-bold">Author</span>
-            </label>
-            <input type="text" class=" input text-neutral input-bordered bg-white w-full h-18" />
+  
+          <div>
+            <div class="form-control w-full px-10">
+              <label class="label">
+                <span class="label-text text-neutral font-bold">Head of Study Program</span>
+              </label>
+              <textarea class="textarea text-neutral input-bordered bg-white w-full h-full"></textarea>
+            </div>
+  
+            <div class="px-10 pt-3" style="float:right">
+              <button class="btn btn-outline " href="/syllabi">Create</button>
+            </div>
           </div>
         </div>
-
-        <div>
-          <div class="form-control w-full px-10">
-            <label class="label">
-              <span class="label-text text-neutral font-bold">Head of Study Program</span>
-            </label>
-            <textarea class="textarea text-neutral input-bordered bg-white w-full h-full"></textarea>
-          </div>
-
-          <div class="px-10 pt-3" style="float:right">
-            <button class="btn btn-outline " href="/syllabi">Create</button>
-          </div>
-        </div>
-      </div>
+      </form>
 
     </div>
   </div>
