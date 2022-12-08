@@ -101,10 +101,6 @@ class CourseClassController extends Controller
      */
    public function show(Request $request)
     {
-        //Murid masuk ke dalam show_join
-        if (Auth::user()->role == 'student') {
-            return view('course-classes.show_join');
-        }
 
         // buat detail matkul/course
        $course = Course::find($request->class);
@@ -181,6 +177,10 @@ class CourseClassController extends Controller
         return back();
     }
 
+    public function show_join(Request $request){
+        return view('course-classes.show_join');
+    }
+
     public function join(Request $request){
         if (Auth::user()->role != 'student') {
             abort(403);
@@ -191,6 +191,10 @@ class CourseClassController extends Controller
         ]);
 
         $classesCourseId = CourseClass::where('class_code', $validated['class_code'])->value('id');
+
+        if ($classesCourseId == null) {
+            return redirect(route('classes.index'));
+        }
 
         $studentUserId = Auth::user()->id;
 
