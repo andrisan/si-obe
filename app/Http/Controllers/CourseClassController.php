@@ -41,11 +41,7 @@ class CourseClassController extends Controller
          $classes=CourseClass::where('creator_user_id', Auth::user()->id)->paginate(6);
         }else{
             $cari =  $request->search;
-        //     $classes = DB::table('course_classes')
-		// ->where('name','like',"%".$cari."%")
-		// ->paginate(6);
-        $classes = CourseClass::where('name','like','%'. $cari.'%')->paginate(6);
-            // $classes->CourseClass::where('name','like','%'. request('search'.'%'))->get();
+            $classes = CourseClass:: where('creator_user_id',Auth::user()->id)->where('name','like','%'. $cari.'%')->paginate(6);
         }
 
         //End Search
