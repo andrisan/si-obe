@@ -110,12 +110,10 @@ class SyllabusController extends Controller
     {
         //
        $validate = $request->validate([
-        'title'=>'required|string',
-        'author'=>'required|string'
+        'title'=>'required|string'
        ]);
        $syllabus->update([
-        'title'=>$validate['title'],
-        'author'=>$validate['author'],
+        'title'=>$validate['title']
        ]);
         return redirect()->route('syllabi.index');
     }
