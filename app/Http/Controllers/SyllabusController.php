@@ -68,6 +68,10 @@ class SyllabusController extends Controller
     public function edit(Syllabus $syllabus)
     {
         //
+        return view('syllabi.edit',[
+            'syllabus'=>$syllabus
+        ]
+    );   
     }
 
     /**
