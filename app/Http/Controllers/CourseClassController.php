@@ -27,6 +27,12 @@ class CourseClassController extends Controller
                 'classes'=>User::find(Auth::user()->id)->students()->paginate(6),
             ]);
         }
+
+        if (Auth::user()->role == 'admin') {
+            return view('course-classes.index', [
+                'classes'=>CourseClass::paginate(6),
+            ]);
+        }
         $classes= CourseClass::all();
         
 

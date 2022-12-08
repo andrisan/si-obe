@@ -1,7 +1,11 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            @if (Auth::user()->role == 'admin')
+            {{ __('Daftar Seluruh Kelas') }}
+            @else
             {{ __('Daftar Kelas Dosen') }}
+            @endif
         </h2>
     </x-slot>
 
@@ -28,9 +32,11 @@
                             </div>
                             <div class="grid flex-grow place-items-end">
                                 <a href="{{route('classes.create')}}">
+                                    @if (Auth::user()->role != 'admin')
                                     <button class="btn bg-gray-700 hover:bg-white hover:text-gray-700 text-white font-bold rounded-lg border-gray-700 border-2 hover:border-gray-700 btn-md">
                                         Tambah
                                     </button>
+                                    @endif
                                 </a>
                             </div>
                         </div>
@@ -59,13 +65,19 @@
                                         <button class="btn btn-disabled sm:btn-xs md:btn-xs rounded-md normal-case text-white">
                                             {{$class->class_code}}
                                         </button> 
+                                        {{-- JUN TOLONG BENERIN INI NAMA DOSENNYA--}}
+                                        @if (Auth::user()->role == 'admin')
+                                        <p>{{ $class->creator->name }}</p> 
+                                        @endif
                                     </div>
                                     <div class="grid flex-grow place-items-end">
+                                        @if (Auth::user()->role != 'admin')
                                         <a href="{{route('classes.edit', [$class->id])}}" class="mb-2">
                                             <button class="btn btn-warning hover:bg-amber-500 btn-xs hover:border-amber-500 sm:btn-sm md:btn-sm rounded-full">
                                                 <img class="w-5 h-5" src="{{ asset('img/icon-edit.png') }}" alt="">
                                             </button>
                                         </a>
+                                        @endif
                                         <form action="{{ route('classes.destroy', [$class]) }}" method="post">
                                             @csrf
                                             @method('delete')
