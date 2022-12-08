@@ -27,7 +27,7 @@
                               </form>
                           </div>
                           <div class="grid flex-grow place-items-end">
-                              <a href="{{route('classes.join')}}">
+                              <a href="{{route('classes.show_join')}}">
                                   <button class="btn bg-gray-700 hover:bg-white hover:text-gray-700 text-white font-bold rounded-lg border-gray-700 border-2 hover:border-gray-700 btn-md">
                                       Join New Class
                                   </button>
