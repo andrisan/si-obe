@@ -40,6 +40,8 @@
             </label>
             <input type="text" class="input text-neutral input-bordered bg-white w-full h-18"
             value="{{ $syllabus->head_of_study_program }}" name="head_of_study_program" />
+            <x-input-error :messages="$errors->get('title')" class="mt-2" />
+            
           </div>
           
         </div>
