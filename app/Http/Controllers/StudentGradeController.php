@@ -129,15 +129,7 @@ class StudentGradeController extends Controller
         $assignment = Assignment::find($request->assignment_id);
         $apts = $assignment->assignmentPlan->assignmentPlanTasks;
 
-//        dd($grades);
-
-//        foreach ($apts as $apt) {
-//            dd($apt->criteria->criteriaLevels);
-//        }
-
-//        foreach ($grades as $grade) {
-//            $grade->range = CriteriaLevel::where('criteria_id',$grade->assignmentPlanTask->criteria_id)->get();
-//        }
+//        dd($grades->where('assignment_plan_task_id',$apts[1]->id));
 
         return view('student-grades.edit', [
             'grades' => $grades,
@@ -165,11 +157,16 @@ class StudentGradeController extends Controller
         $i = 0;
         foreach ($apts as $apt) {
             $grade = $grades->where('assignment_plan_task_id',$apt->id)->first();
-            if (!$grade) {
-
-            } else {
+            if ($grade) {
                 $grade->criteria_level_id = $request->input("criteria_level_id$i");
                 $grade->update();
+            } elseif ($request->input("criteria_level_id$i")) {
+                $grade = new StudentGrade();
+                $grade->student_user_id = $request->user_id;
+                $grade->assignment_id = $request->assignment_id;
+                $grade->assignment_plan_task_id = $apt->id;
+                $grade->criteria_level_id = $request->input("criteria_level_id$i");
+                $grade->save();
             }
             $i++;
         }
@@ -185,8 +182,7 @@ class StudentGradeController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        $grade = StudentGrade
-            ::find($id);
+        $grade = StudentGrade::find($id);
 
         dd($grade);
     }

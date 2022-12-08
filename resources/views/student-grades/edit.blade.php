@@ -19,22 +19,22 @@
                         @csrf
                         @method('patch')
                         @foreach($apts as $apt)
-                        <p class="ml-9 my-5 text-lg"><b> {{$apt->criteria->title}} </b> </p>
+                            @php($grade = $grades->where('assignment_plan_task_id',$apt->id)->first())
+                            <p class="ml-9 my-5 text-lg"><b> {{$apt->criteria->title}} </b> </p>
 
-
-                        <div class="btn-group my-5 justify-center">
-                            @foreach($apt->criteria->criteriaLevels as $criteria)
-                            <div class="card w-44 h-36 bg-base border-2 my-1 rounded-lg mx-1">
-                                <div class="card-actions pr-5 mt-5 justify-end">
-                                    <input type="radio" name="criteria_level_id{{ $loop->parent->index }}" value="{{ $criteria->id }}" {{--@checked($criteria->id === $grade->criteria_level_id)--}} />
-                                </div>
-                                <div class="px-5 py-5">
-                                <p> <b> {{ $criteria->point }} </b> </p>
-                                <p>{{ $criteria->title }}</p>
-                                </div>
+                            <div class="btn-group my-5 justify-center">
+                                @foreach($apt->criteria->criteriaLevels as $criteria)
+                                    <div class="card w-44 h-36 bg-base border-2 my-1 rounded-lg mx-1">
+                                        <div class="card-actions pr-5 mt-5 justify-end">
+                                            <input type="radio" name="criteria_level_id{{ $loop->parent->index }}" value="{{ $criteria->id }}" @checked($grade && $criteria->id === $grade->criteria_level_id)/>
+                                        </div>
+                                        <div class="px-5 py-5">
+                                            <p> <b> {{ $criteria->point }} </b> </p>
+                                            <p>{{ $criteria->title }}</p>
+                                        </div>
+                                    </div>
+                                @endforeach
                             </div>
-                            @endforeach
-                        </div>
                         @endforeach
 
                         <div class="card-actions justify-end py-5 mr-9">
