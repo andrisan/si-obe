@@ -2,9 +2,9 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             @foreach ($course as $courses)
-            {{ __('Rencana Pembelajaran Semester - '.$courses->name) }}
+                {{ __('Rencana Pembelajaran Semester - ' . $courses->name) }}
             @endforeach
-           
+
 
         </h2>
     </x-slot>
@@ -26,12 +26,11 @@
                         </div>
 
                         <div class="">
-                            @foreach ($syllabus as $syllabi)
-                                <a href="{{ route('syllabi.edit', $syllabi) }}"><button
-                                        class="btn btn-primary px-8">EDIT</button></a> <br>
-                                <a href="{{ route('syllabi.create') }}"><button
-                                        class="btn btn-primary mt-5 px-5">Create</button></a>
-                            @endforeach
+
+                            <br>
+                            <a href="{{ route('syllabi.create') }}"><button
+                                    class="btn btn-primary mt-5 px-5">Create</button></a>
+
 
                         </div>
 
@@ -52,6 +51,7 @@
                             <th>Nama Syllabi</th>
                             <th>Ketua Program Studi</th>
                             <th>Dosen Penyusun RPS</th>
+                            <th>action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -60,6 +60,8 @@
                                 <th>{{ $syllabi->title }}</th>
                                 <th>{{ $syllabi->head_of_study_program }}</th>
                                 <th>{{ $syllabi->author }}</th>
+                            <th> <a href="{{ route('syllabi.edit', $syllabi->id) }}"><button
+                                        class="btn btn-primary px-8">EDIT</button></a> </tr>
                             </tr>
                         @endforeach
 
