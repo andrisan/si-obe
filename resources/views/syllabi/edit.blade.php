@@ -27,6 +27,20 @@
             <input type="text" class="input text-neutral input-bordered bg-white w-full h-18"
             value="{{ $syllabus->title }}" name="title" />
           </div>
+          <div class="form-control w-full px-10">
+            <label class="label">
+              <span class="label-text text-neutral font-bold">Author</span>
+            </label>
+            <input type="text" class="input text-neutral input-bordered bg-white w-full h-18"
+            value="{{ $syllabus->author }}" name="author" />
+          </div>
+          <div class="form-control w-full px-10">
+            <label class="label">
+              <span class="label-text text-neutral font-bold">Head program studi</span>
+            </label>
+            <input type="text" class="input text-neutral input-bordered bg-white w-full h-18"
+            value="{{ $syllabus->head_of_study_program }}" name="head_of_study_program" />
+          </div>
           
         </div>
 
