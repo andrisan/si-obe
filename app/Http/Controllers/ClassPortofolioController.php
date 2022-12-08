@@ -11,8 +11,8 @@ class ClassPortofolioController extends Controller
     public function index(CourseClass $courseClass)
     {
         //menghitung jumlah mahasiswa lulus dan tidak lulus
-        $lulus = 0;
-        $gagal = 0;
+        $berhasil = 0;
+        $tidakBerhasil = 0;
         $temp = 0;
 
         foreach ($courseClass->students as $student) {
@@ -21,57 +21,55 @@ class ClassPortofolioController extends Controller
                 $temp += $sg->criteriaLevel->point;
             }
             if ($temp > 50) {
-                $lulus++;
+                $berhasil++;
             } else {
-                $gagal++;
-            }
-        }
-
-        //menghitung ketercapaian untuk seluruh sub cpmk
-        //mendapatkan criteria sesuai llo
-        $llo = LessonLearningOutcome::all();
-        $criteriaCollection = collect();
-        foreach ($llo as $llo) {
-            foreach ($llo->criteria as $criteria) {
-                $criteriaCollection->push($criteria);
-            }
-        }
-
-
-        //mendapatkan criteriaLevel yang sesuai dengan class
-        $criteriaLevelCollection = collect();
-        foreach ($courseClass->students as $student) {
-            foreach ($student->studentGrade as $sg) {
-                $criteriaLevelCollection->push($sg->criteriaLevel);
+                $tidakBerhasil++;
             }
         }
 
         //mendapatkan total nilai untuk setiap sub cpmk
         $llo = LessonLearningOutcome::all();
         $llo_achieve = collect();
-        $count = 0;
         foreach ($llo as $llo) {
-            $count = 0;
-            $maxPoint = 0;
-            foreach ($criteriaCollection as $crit) {
-                if ($crit->llo_id != $llo->id) {
+            $lulus = 0;
+            $critPointTotal = 0;
+
+            foreach ($llo->criteria as $criteria) {
+                if ($llo->id != $criteria->llo_id) {
                     continue;
                 }
-                foreach ($criteriaLevelCollection as $cl) {
-                    if ($crit->id != $cl->criteria_id) {
+                $critPointTotal += $criteria->max_point;
+            }
+
+            foreach ($courseClass->students as $student) {
+                $clPointTotal = 0;
+
+                foreach ($llo->criteria as $criteria) {
+                    if ($llo->id != $criteria->llo_id) {
                         continue;
                     }
-                    $count += $cl->point;
+                    
+                    foreach ($student->studentGrade as $sg) {
+                        if ($sg->student_user_id != $student->id) {
+                            continue;
+                        }
+                        if ($sg->criteriaLevel->criteria_id != $criteria->id) {
+                            continue;
+                        }
+                        $clPointTotal += $sg->criteriaLevel->point;
+                    }
                 }
-                $maxPoint += $crit->max_point;
+                if ($clPointTotal >= $critPointTotal / 2) {
+                    $lulus++;
+                }
             }
-            $llo_achieve->push(['point' => $count, 'description' => $llo->description, 'maxPoint' => $maxPoint]);
+            $llo_achieve->push(['lulus' => $lulus, 'description' => $llo->description, 'maxPoint' => $critPointTotal]);
         }
 
         return view('class-portofolio.index', [
             'cc' => $courseClass,
-            'lulus' => $lulus,
-            'gagal' => $gagal,
+            'lulus' => $berhasil,
+            'gagal' => $tidakBerhasil,
             'lloTotalPoint' => $llo_achieve,
             'studentSum' => $courseClass->students->count()
         ]);
@@ -101,7 +99,7 @@ class ClassPortofolioController extends Controller
             }
             $dataReturn->push(['name' => $name, 'nim' => $nim, 'cpmk' => $cpmk]);
         }
- 
+
         $llo = LessonLearningOutcome::all();
         return view('class-portofolio.student', [
             'cc' => $courseClass,
