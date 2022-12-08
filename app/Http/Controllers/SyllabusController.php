@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\IntendedLearningOutcome;
 use App\Models\StudyProgram;
 use App\Models\Syllabus;
 use Illuminate\Http\Request;
@@ -17,12 +18,14 @@ class SyllabusController extends Controller
     public function index( )
     {
         //
-
+        
         $course = Course::all();
         $syllabi = Syllabus::all();
+        $ilos = IntendedLearningOutcome::all();
         return view('syllabi.index',[
             'course'=>$course,
-            'syllabus'=>$syllabi
+            'syllabus'=>$syllabi,
+            'ilos'=>$ilos
             
             
         ]);
@@ -109,12 +112,13 @@ class SyllabusController extends Controller
     public function update(Request $request, Syllabus $syllabus)
     {
         //
-       $validate = $request->validate([
-        'title'=>'required|string'
+       $validated = $request->validate([
+        'author'=>'required|string',
+        'title'=>'required|string',
+        'head_of_study_program'=>'required|string'
        ]);
-       $syllabus->update([
-        'title'=>$validate['title']
-       ]);
+       $syllabus->update($validated);
+
         return redirect()->route('syllabi.index');
     }
 
@@ -127,5 +131,8 @@ class SyllabusController extends Controller
     public function destroy(Syllabus $syllabus)
     {
         //
+        $syllabus->delete();
+
+        return redirect()->route('syllabi.index');
     }
 }
