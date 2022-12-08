@@ -40,16 +40,6 @@
                                     @endforeach
                                 </select>
                                 <br>
-                                <label class="uppercase font-bold  text-black" for="course_id">Creator User
-                                    Id</label><br>
-                                <input value="{{ old('creator_user_id', $class->creator_user_id) }}" type="text"
-                                    placeholder="Masukkan Kode Kelas"
-                                    class="input input-bordered input-ghost input-l w-full max-w-xl mb-2 mt-2"
-                                    name="creator_user_id" required />
-                                @error('creator_user_id')
-                                    <div class="text-red-600">{{ $message }}</div>
-                                @enderror
-                                <br>
                                 <input type="file" name="thumbnail_img" class="block mt-4">
                             </div>
                             <div class="mt-4 ml-4">
