@@ -205,10 +205,22 @@ class CourseClassController extends Controller
         $classesCourseId = CourseClass::where('class_code', $validated['class_code'])->value('id');
 
         if ($classesCourseId == null) {
-            return redirect(route('classes.show_join'));
+            $errorMessage = 'Kelas Tidak Ditemukan';
+            return view('course-classes.fail_join', [
+                'errorMessage' => $errorMessage,
+            ]);
         }
 
         $studentUserId = Auth::user()->id;
+
+        $joinClassExist = DB::table('join_classes')->where('course_class_id', $classesCourseId)->where('student_user_id', $studentUserId)->first();
+
+        if ($joinClassExist != null) {
+            $errorMessage = 'Anda Sudah Bergabung dengan Kelas Ini';
+            return view('course-classes.fail_join', [
+                'errorMessage' => $errorMessage,
+            ]);
+        }
 
         DB::table('join_classes')->insert([
             'course_class_id' => $classesCourseId,
