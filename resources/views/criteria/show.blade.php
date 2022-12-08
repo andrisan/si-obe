@@ -20,7 +20,7 @@
                     <tbody class="border-2 border-black text-black">
                          <tr class="border-2 h-14">
                             <div class="grid grid-cols-3 grid-flow-row gap-4">
-                                <p class="py-3">No</p>
+                                <p class="py-3">ID</p>
                                 <div class="py-3 col-span-2">: {{$criterias->id }}</div>
                                 <p class="py-3">Title</p>
                                 <div class="py-3 col-span-2">: {{$criterias->title }}</div>

@@ -64,16 +64,15 @@ class CriteriaController extends Controller
           $validated = $request->validate([
             'title' => 'required|string',
               'llo' => 'required|string',
-              'max_point' => 'required|string',
               'description' => 'required|string',   
         ]);
 
         $criteria = new Criteria();
         $criteria->rubric_id = $rubric->id;
-        $criteria->llo_id = 3;
+        $criteria->llo_id = $validated['llo'];
         $criteria->title = $validated['title'];
         $criteria->description = $validated['description'];
-        $criteria->max_point = $validated['max_point'];
+        $criteria->max_point = 6.25;
         $criteria->save();
   
           return redirect()->route('rubrics.criterias.index',[
