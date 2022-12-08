@@ -19,15 +19,25 @@
                         @csrf
                         @method('patch')
                         @foreach($apts as $apt)
-                            <p class="mb-5"> {{$apt->criteria->title}} </p>
-                            <div class="btn-group mb-10 justify-center">
-                                @foreach($apt->criteria->criteriaLevels as $criteria)
-                                    <input type="radio" name="criteria_level_id{{ $loop->parent->index }}" data-title="{{ $criteria->point }}" class="btn px-16" value="{{ $criteria->id }}" {{--@checked($criteria->id === $grade->criteria_level_id)--}}/>
-                                @endforeach
+                        <p class="ml-9 my-5 text-lg"><b> {{$apt->criteria->title}} </b> </p>
+
+
+                        <div class="btn-group my-5 justify-center">
+                            @foreach($apt->criteria->criteriaLevels as $criteria)
+                            <div class="card w-44 h-36 bg-base border-2 my-1 rounded-lg mx-1">
+                                <div class="card-actions pr-5 mt-5 justify-end">
+                                    <input type="radio" name="criteria_level_id{{ $loop->parent->index }}" value="{{ $criteria->id }}" {{--@checked($criteria->id === $grade->criteria_level_id)--}} />
+                                </div>
+                                <div class="px-5 py-5">
+                                <p> <b> {{ $criteria->point }} </b> </p>
+                                <p>{{ $criteria->title }}</p>
+                                </div>
                             </div>
+                            @endforeach
+                        </div>
                         @endforeach
 
-                        <div class="card-actions justify-end pt-5">
+                        <div class="card-actions justify-end py-5 mr-9">
                             {{-- <form action="{{ route('student-grades.index') }}">--}}
                             <button class="btn btn-outline" type="submit">Save</button>
 
