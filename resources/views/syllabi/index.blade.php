@@ -57,7 +57,7 @@
                     <tbody>
                         @foreach ($syllabus as $syllabi)
                             <tr class="">
-                                <th>{{ $syllabi->title }}</th>
+                                <th class="text-blue-400"><a href="{{ route('syllabi.show', [$syllabi]) }}">{{ $syllabi->title }}</a></th>
                                 <th>{{ $syllabi->head_of_study_program }}</th>
                                 <th>{{ $syllabi->author }}</th>
                                 <th>{{ $courses->name }}</th>
