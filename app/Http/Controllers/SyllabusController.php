@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\CourseLearningOutcome;
 use App\Models\IntendedLearningOutcome;
+use App\Models\LessonLearningOutcome;
 use App\Models\StudyProgram;
 use App\Models\Syllabus;
 use Illuminate\Http\Request;
@@ -85,6 +87,18 @@ class SyllabusController extends Controller
     public function show(Syllabus $syllabus)
     {
         //
+        $syllabus = Syllabus::all();
+        $ilos = IntendedLearningOutcome::all();
+        $clo = CourseLearningOutcome::all();
+        $llos = LessonLearningOutcome::all();
+        return view('syllabi.show',[
+        'syllabus'=>$syllabus,
+        'ilos'=>$ilos,
+        'clos'=>$clo,
+        "llos"=>$llos
+        ]
+        );
+
     }
 
     /**
