@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\LessonLearningOutcome;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -23,28 +25,31 @@ class ProfileController extends Controller
         $user = Auth::user();
 
         $nilaiAkhir =  0 ;
+        $nilaiHuruf = null;
         foreach ($user->studentGrade as $data) {
             $nilaiAkhir += $data->criteriaLevel->point;
         }
 
         if ($nilaiAkhir > 80) {
-            $nilaiAkhir = 'A';
+            $nilaiHuruf = 'A';
         } elseif ($nilaiAkhir > 75) {
-            $nilaiAkhir = 'B+';
+            $nilaiHuruf = 'B+';
         } elseif ($nilaiAkhir > 69) {
-            $nilaiAkhir = 'B';
+            $nilaiHuruf = 'B';
         } elseif ($nilaiAkhir > 60) {
-            $nilaiAkhir = 'C+';
+            $nilaiHuruf = 'C+';
         } elseif ($nilaiAkhir > 55) {
-            $nilaiAkhir = 'C';
+            $nilaiHuruf = 'C';
         } elseif ($nilaiAkhir > 50) {
-            $nilaiAkhir = 'D+';
+            $nilaiHuruf = 'D+';
         } elseif ($nilaiAkhir > 44) {
-            $nilaiAkhir = 'D';
+            $nilaiHuruf = 'D';
         } else {
-            $nilaiAkhir = 'E';
+            $nilaiHuruf = 'E';
         }
-        return view('profile.grade', ['user'=> $user, 'grade' => $nilaiAkhir]);
+
+        $llo = LessonLearningOutcome::all();
+        return view('profile.grade', ['user'=> $user, 'grade' => $nilaiAkhir, 'gradeLetter' => $nilaiHuruf, 'llo' => $llo]);
     }
 
     /**
