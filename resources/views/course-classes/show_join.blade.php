@@ -22,13 +22,15 @@
                             <li class="text-black"> Join <span class="mx-2"></span> </li>
                         </ul>
                     </nav> --}}
-
-                    <div class="matkul py-10">
+{{-- 
+                    <div class="matkul py-10"> --}}
                         {{-- belum tentu siswa mau join PAW, dan belum tentu dosen PAW diajar oleh pak andri --}}
-                        <h1 class=""><i class="fa-solid fa-book-open text-black"></i> <span class="mt-2 text-black text-3xl ml-5 font-extrabold">Pengembangan Aplikasi Web</span></h1>
+                        {{-- <h1 class=""><i class="fa-solid fa-book-open text-black"></i> <span class="mt-2 text-black text-3xl ml-5 font-extrabold">Pengembangan Aplikasi Web</span></h1>
                         <h1 class="mt-5 ml-16">Teacher : <span class="text-black font-bold">Andri Santoso, S.Kom, M.Sc</span></h1>
-                    </div>
+                    </div> --}}
 
+
+                    
                     <div class="student w-fit text-black">
                         <h1 class=""><i class="fa-solid fa-chevron-down"></i> <span class="text-3xl ml-5">Self Enrollment (Student)</span> </h1>
                         <div class="flex">
