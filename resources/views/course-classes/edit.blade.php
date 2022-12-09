@@ -36,6 +36,9 @@
                                 </select>
                                 <br>
                                 <input type="file" name="thumbnail_img" class="block mt-4">
+                                 @error('thumbnail_img')
+                                    <div class="text-red-600">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="mt-4 ml-4">
                                 <button
