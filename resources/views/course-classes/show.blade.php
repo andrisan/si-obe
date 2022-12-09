@@ -13,14 +13,7 @@
                     <p class="font-semibold text-base ml-8 mb-10">{{$course['name']}}</p>
                     <h1 class="font-bold text-lg mt-8 mb-4 ml-8">Kode Kelas : </h1>
                     <p class="font-semibold text-base ml-8 mb-10">{{$course['class_code']}}</p>
-                    <h1 class="font-bold text-lg mt-8 mb-4 ml-8">Kode Mata Kuliah : </h1>
-                    <p class="font-semibold text-base ml-8 mb-10">{{$course['code']}}</p>
-                    <h1 class="font-bold text-lg mt-8 mb-4 ml-8">Deskripsi: </h1>
-                    <p class="font-semibold text-base ml-8 mb-10">{{$course['short_description']}}</p>
-                    <h1 class="font-bold text-lg mt-8 mb-4 ml-8">Ringkasan Bahan Pembelajaran: </h1>
-                    <p class="font-semibold text-base ml-8 mb-10">{{$course['study_material_summary']}}</p>
-                    <h1 class="font-bold text-lg mt-8 mb-4 ml-8">Learning Media: </h1>
-                    <p class="font-semibold text-base ml-8 mb-10">{{$course['learning_media']}}</p>
+
 
                     <a href="{{route('classes.index')}}" class="btn rounded-md hover:bg-slate-200 hover:text-black mt-6 mx-6 "> Back</a>
                 </div>
