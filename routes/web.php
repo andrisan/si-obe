@@ -49,7 +49,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::resource('student-grades', StudentGradeController::class);
 
     Route::scopeBindings()->group(function () {
-        Route::resource('faculties.departments', DepartmentController::class);
+        Route::resource('faculties.departments', DepartmentController::class)->middleware(['roles:admin,teacher']);;
         Route::resource('faculties.departments.study-programs', StudyProgramController::class);
         Route::resource('syllabi.ilos', IntendedLearningOutcomeController::class)->middleware(['roles:admin,teacher']);
         Route::resource('syllabi.ilos.clos', CourseLearningOutcomeController::class)->middleware(['roles:teacher']);
