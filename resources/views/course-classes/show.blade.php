@@ -9,11 +9,11 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <h1 class="font-bold text-lg mt-8 mb-4 ml-8">Nama Kelas : </h1>
+                    <h1 class="font-bold text-lg mt-8 mb-4 ml-8">Nama Mata Kuliah : </h1>
                     <p class="font-semibold text-base ml-8 mb-10">{{$course['name']}}</p>
-                    <h1 class="font-bold text-lg mt-8 mb-4 ml-8">Tipe Kelas : </h1>
+                    <h1 class="font-bold text-lg mt-8 mb-4 ml-8">Tipe Mata Kuliah : </h1>
                     <p class="font-semibold text-base ml-8 mb-10">{{$course['type']}}</p>
-                    <h1 class="font-bold text-lg mt-8 mb-4 ml-8">Kode Kelas : </h1>
+                    <h1 class="font-bold text-lg mt-8 mb-4 ml-8">Kode Mata Kuliah : </h1>
                     <p class="font-semibold text-base ml-8 mb-10">{{$course['code']}}</p>
                     <h1 class="font-bold text-lg mt-8 mb-4 ml-8">Deskripsi: </h1>
                     <p class="font-semibold text-base ml-8 mb-10">{{$course['short_description']}}</p>
