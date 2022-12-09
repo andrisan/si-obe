@@ -115,7 +115,7 @@ class CourseClassController extends Controller
     {
 
         // buat detail matkul/course
-       $course = Course::find($request->class);
+       $course = CourseClass::find($request->class);
          return view ('course-classes.show',[
         'course' => $course,
         ]);
