@@ -26,6 +26,8 @@
             </label>
             <input type="text" class="input text-neutral input-bordered bg-white w-full h-18"
             value="{{ $syllabus->title }}" name="title" />
+            <x-input-error :messages="$errors->get('title')" class="mt-2" />
+
           </div>
           <div class="form-control w-full px-10">
             <label class="label">
@@ -33,6 +35,8 @@
             </label>
             <input type="text" class="input text-neutral input-bordered bg-white w-full h-18"
             value="{{ $syllabus->author }}" name="author" />
+            <x-input-error :messages="$errors->get('author')" class="mt-2" />
+
           </div>
           <div class="form-control w-full px-10">
             <label class="label">
@@ -40,7 +44,7 @@
             </label>
             <input type="text" class="input text-neutral input-bordered bg-white w-full h-18"
             value="{{ $syllabus->head_of_study_program }}" name="head_of_study_program" />
-            <x-input-error :messages="$errors->get('title')" class="mt-2" />
+            <x-input-error :messages="$errors->get('head_of_study_program')" class="mt-2" />
             
           </div>
           
