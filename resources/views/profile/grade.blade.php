@@ -12,7 +12,7 @@
                     <div class="col-span-3 p-10 shadow-xl justify-items-auto overflow-y-auto">
                         <!--"text-4xl font-semibold text-primary-content">Student Grade - Assignment 1</h1>-->
                         <div class="overflow-x-auto py-4">
-                            <table class="table table-zebra w-full">
+                            <table class="table-zebra w-full">
                                 <!-- head -->
                                 <thead>
                                     <tr>
@@ -44,20 +44,20 @@
 
                                             <!-- Put this part before </body> tag -->
                                             <input type="checkbox" id="my-modal-3" class="modal-toggle" />
-                                            <div class="modal">
-                                                <div class="modal-overlay relative mx-auto">
-                                                    <label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-                                                    <h3 class="text-lg font-bold">Detail Nilai Lembar Kerja</h3>
-                                                    <div class="table modal-box mx-auto">
-                                                        <table class="table table-zebra">
+                                            <div class="modal  mx-auto ">
+                                                <div class="modal-overlay relative    mx-auto">
+                                                    
+                                                    <div class="modal-box mx-auto w-[80rem]  ">
+                                                        <table class=" w-[100%] ">
                                                             <thead>
                                                                 <tr>
                                                                     <th></th>
-                                                                    <th class="text-lg font-bold" colspan="3">Detail Nilai Lembar Kerja</th>
+                                                                    <th class="text-lg font-bold" colspan="1">Detail Nilai Lembar Kerja</th>
+                                                                    <th class="text-lg font-bold" colspan="1"><label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2 fixed">✕</label></th>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr class="">
                                                                     <th>No</th>
-                                                                    <th>Lembar Kerja</th>
+                                                                    <th class="w-80">Lembar Kerja</th>
                                                                     <th>NILAI</th>
                                                                 </tr>
                                                             </thead>
@@ -66,7 +66,7 @@
                                                                 @foreach ($cc->assignment as $ass)
                                                                 <tr>
                                                                     <td>{{ $j }}</td>
-                                                                    <td>{{ $ass->assignmentPlan->title }}</td>
+                                                                    <td  >{{ $ass->assignmentPlan->title }}</td>
                                                                     <?php $point = 0; $maxPoint = 0;?>
                                                                     @foreach ($ass->studentGrades as $stud)
                                                                     <?php 
@@ -96,20 +96,19 @@
                                             <!-- Put this part before </body> tag -->
                                             <input type="checkbox" id="my-modal-2" class="modal-toggle" />
                                             <div class="modal">
-                                                <div class="modal-overlay relative mx-auto">
-                                                    <label for="my-modal-2" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-                                                    <h3 class="text-lg font-bold">Detail Nilai Sub CPMK</h3>
-                                                    <div class="table modal-box mx-auto">
-                                                        <table class="table table-zebra">
+                                                <div class="modal-overlay relative mx-auto ">
+                                                    <div class=" modal-box mx-auto">
+                                                        <table class="w-[100%]">
                                                             <thead>
                                                                 <tr>
                                                                     <th></th>
                                                                     <th class="text-lg font-bold" colspan="3">Detail Nilai Sub CPMK</th>
+                                                                    <th class="text-lg font-bold" colspan="1">  <label for="my-modal-2" class="btn btn-sm btn-circle absolute right-4 -mt-7">✕</label></th>
                                                                 </tr>
                                                                 <tr>
                                                                     <th>No</th>
-                                                                    <th>Sub CPMK</th>
-                                                                    <th>NILAI</th>
+                                                                    <th class="w-96">Sub CPMK</th>
+                                                                    <th class="w-24">NILAI</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
