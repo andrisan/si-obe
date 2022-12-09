@@ -182,8 +182,12 @@ class StudentGradeController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        $grade = StudentGrade::find($id);
+        $grades = StudentGrade::where('assignment_id', $request->assignmentId)->where('student_user_id', $request->userId)->get();
+        foreach($grades as $grade){
+            $grade->delete();
+        }
 
-        dd($grade);
+        // dd($grade);
+        return redirect('/student-grades/?assignment_id='.$request->assignmentId);
     }
 }
