@@ -19,11 +19,6 @@
                                     class="input input-bordered input-ghost input-l w-full max-w-xl mb-2 mt-2"
                                     name="name" required />
                                 <br>
-                                <label class="uppercase font-bold  text-black" for="class_code">Kode kelas</label><br>
-                                <input type="text" placeholder="Masukkan Kode Kelas"
-                                    class="input input-bordered input-ghost input-l w-full max-w-xl mb-2 mt-2"
-                                    name="class_code" required />
-                                <br>
                                 <label class="uppercase font-bold  text-black" for="course_id">Course</label><br>
                                 <select name="course_id" id="cars">
                                     @foreach ($courses as $course)
