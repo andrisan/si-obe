@@ -48,7 +48,7 @@
                         @foreach ($classes as $class)
                           <!-- Konten1 -->
                         <div class="card w-80 bg-img bg-blend-overlay shadow-xl my-8 mx-8">
-                            <img class="w-full" src="{{ asset('img/GambarCourse 1.png')}}">
+                            <img class="w-full" src="{{ url('storage/'.$class->thumbnail_img)}}">
                             <div class="card-body p-6">
                                 <div class="card-title text-neutral font-extrabold">
                                     <a class="mb-1 relative group text-blue-400" href="{{route('classes.show',[$class['id']])}}">
