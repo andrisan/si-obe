@@ -8,7 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
+use Hashids\Hashids;
 
 class CourseClassController extends Controller
 {
@@ -97,11 +97,19 @@ class CourseClassController extends Controller
         $classes->name = $validateData['name'];
         $classes->course_id = $validateData['course_id'];
         $classes->creator_user_id = Auth::user()->id ;
-        $classes->class_code = (String) Str::uuid();
         $classes->thumbnail_img = $validateData['thumbnail_img'];
 
         $classes->save();
-                
+        $classesId = $classes->id;
+
+        $hashids = new Hashids();
+
+        $classCode = $hashids->encode($classesId);
+
+        CourseClass::where('id', $classesId)->update([
+            'class_code' => $classCode,
+        ]);
+
         return redirect()-> route('classes.index');
     }
 
