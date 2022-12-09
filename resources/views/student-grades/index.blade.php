@@ -49,10 +49,12 @@
                                                     <button class="btn btn-primary btn-sm">Create</button>
                                                 </a>
                                                 @endif
-                                                <form method="POST" action=" {{ route('student-grades.destroy', [$ls->id, $ls->idAssignment]) }}">
+                                                <form method="POST" action=" {{ route('student-grades.destroy',[$ls->id]) }}">
                                                     @csrf
                                                     @method('delete')
 
+                                                    <input type="hidden" name="assignmentId" value="{{ $ls->idAssignment }}">
+                                                    <input type="hidden" name="userId" value="{{ $ls->id }}">
                                                     <button class="btn btn-error btn-sm"
                                                             onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
                                                         Delete
