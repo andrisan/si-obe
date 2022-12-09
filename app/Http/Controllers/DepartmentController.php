@@ -9,7 +9,6 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Auth;
 
 
 
@@ -23,19 +22,13 @@ class DepartmentController extends Controller
      */
     public function index( Faculty $faculty)
     {
-
         //
-        if (Auth::user()->role != 'admin') {
-            return abort(403);
-        }
-
         $faculties = Faculty::all();
-        $user = Auth::user();
+
         return view('departments.index',[
             'faculty'=>$faculty,
             'faculties'=>$faculties,
-            'departments'=>$faculty->departments()->paginate(10),
-            'user'=>$user
+            'departments'=>$faculty->departments()->paginate(10)
 
         ]);
     }
