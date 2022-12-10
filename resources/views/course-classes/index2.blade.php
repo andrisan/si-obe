@@ -42,7 +42,11 @@
                       @foreach ($classes as $class)
                         <!-- Konten1 -->
                       <div class="card w-80 bg-img bg-blend-overlay shadow-xl my-8 mx-8">
-                          <img class="w-full" src="{{ asset('img/GambarCourse 1.png')}}">
+                            @if (substr($class->thumbnail_img, 0, 6) == 'public')
+                            <img class="w-full" src="{{ url('storage/'.substr($class->thumbnail_img, 6))}}">
+                            @else
+                            <img class="w-full" src="{{ $class->thumbnail_img}}">
+                            @endif
                           <div class="card-body p-6">
                               <div class="card-title text-neutral font-extrabold">
                                   <a class="mb-1 relative group text-blue-400" href="{{route('classes.show',[$class['id']])}}">
