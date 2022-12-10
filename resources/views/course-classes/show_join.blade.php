@@ -1,5 +1,7 @@
 <script src="https://kit.fontawesome.com/01f732cd61.js" crossorigin="anonymous"></script>
 
+@section('pageTitle', 'Join Course Class')
+
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -22,15 +24,14 @@
                             <li class="text-black"> Join <span class="mx-2"></span> </li>
                         </ul>
                     </nav> --}}
-{{-- 
-                    <div class="matkul py-10"> --}}
-                        {{-- belum tentu siswa mau join PAW, dan belum tentu dosen PAW diajar oleh pak andri --}}
-                        {{-- <h1 class=""><i class="fa-solid fa-book-open text-black"></i> <span class="mt-2 text-black text-3xl ml-5 font-extrabold">Pengembangan Aplikasi Web</span></h1>
-                        <h1 class="mt-5 ml-16">Teacher : <span class="text-black font-bold">Andri Santoso, S.Kom, M.Sc</span></h1>
-                    </div> --}}
+
+                    <div class="matkul py-10">
+                        <h1 class=""><i class="fa-solid fa-book-open text-black"></i> <span class="mt-2 text-black text-3xl ml-5 font-extrabold">Join Course Class</span></h1>
+                        <h1 class="mt-5 ml-16">Student : <span class="text-black font-bold">{{ $username }}</span></h1>
+                    </div>
 
 
-                    
+
                     <div class="student w-fit text-black">
                         <h1 class=""><i class="fa-solid fa-chevron-down"></i> <span class="text-3xl ml-5">Self Enrollment (Student)</span> </h1>
                         <div class="flex">
