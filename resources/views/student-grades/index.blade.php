@@ -42,7 +42,7 @@
                                             <?php $cek = $ls->btnCek ?? false?>
                                                 @if($cek)
                                                 <a href="/student-grades/edit?assignment_id={{$ls->idAssignment}}&user_id={{$ls->id}}">
-                                                    <button class="btn btn-warning btn-sm">Edit</button>
+                                                    <button class="btn btn-warning btn-sm"><strong>Edit</strong></button>
                                                 </a>
                                                 @else
                                                 <a href="/student-grades/create?assignment_id={{$ls->idAssignment}}&user_id={{$ls->id}}">
@@ -55,9 +55,9 @@
 
                                                     <input type="hidden" name="assignmentId" value="{{ $ls->idAssignment }}">
                                                     <input type="hidden" name="userId" value="{{ $ls->id }}">
-                                                    <button class="btn btn-error btn-sm"
+                                                    <button class="btn btn-error btn-sm text-black-600"
                                                             onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
-                                                        Delete
+                                                            <strong>Delete</strong>
                                                     </button>
                                                 </form>
                                             </td>
