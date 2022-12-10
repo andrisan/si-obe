@@ -25,15 +25,6 @@
                                     <div class="text-red-600">{{ $message }}</div>
                                 @enderror
                                 <br>
-                                <label class="uppercase font-bold  text-black" for="class_code">Kode kelas</label><br>
-                                <input value="{{ old('class_code', $class->class_code) }}" type="text"
-                                    placeholder="Masukkan Kode Kelas"
-                                    class="input input-bordered input-ghost input-l w-full max-w-xl mb-2 mt-2"
-                                    name="class_code" required />
-                                @error('class_code')
-                                    <div class="text-red-600">{{ $message }}</div>
-                                @enderror
-                                <br>
                                 <label class="uppercase font-bold  text-black" for="course_id">Course</label><br>
                                 <select name="course_id" id="cars">
                                     <option value="{{ $class->course->id }}">{{ $class->course->name}}</option>
@@ -45,6 +36,9 @@
                                 </select>
                                 <br>
                                 <input type="file" name="thumbnail_img" class="block mt-4">
+                                 @error('thumbnail_img')
+                                    <div class="text-red-600">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="mt-4 ml-4">
                                 <button

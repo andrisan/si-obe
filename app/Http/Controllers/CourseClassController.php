@@ -91,7 +91,7 @@ class CourseClassController extends Controller
             'thumbnail_img'=> 'required|image|mimes:png,jpg,jpeg,svg',
         ]);
         
-        $validateData['thumbnail_img'] = $request->file('thumbnail_img')->store('thumbnail');
+        $validateData['thumbnail_img'] = $request->file('thumbnail_img')->store('public/thumbnail');
 
         $classes = new CourseClass();
         $classes->name = $validateData['name'];
@@ -123,7 +123,7 @@ class CourseClassController extends Controller
     {
 
         // buat detail matkul/course
-       $course = Course::find($request->class);
+       $course = CourseClass::find($request->class);
          return view ('course-classes.show',[
         'course' => $course,
         ]);
