@@ -195,7 +195,10 @@ class CourseClassController extends Controller
     }
 
     public function show_join(){
-        return view('course-classes.show_join');
+        $username = Auth::user()->name;
+        return view('course-classes.show_join', [
+            'username' => $username,
+        ]);
     }
 
     public function join(Request $request){
