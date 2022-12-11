@@ -9,6 +9,7 @@ use App\Models\LessonLearningOutcome;
 use App\Models\StudyProgram;
 use App\Models\Syllabus;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SyllabusController extends Controller
 {
@@ -20,6 +21,9 @@ class SyllabusController extends Controller
     public function index( )
     {
         //
+        if(Auth::user()->role!= 'admin'){
+            return abort(403);
+        }
         
         $course = Course::all();
         $syllabi = Syllabus::all();
