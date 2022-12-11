@@ -18,6 +18,6 @@ class Rubric extends Model
 
     public function criterias()
     {
-        return $this->hasMany(Criteria::class);
+        return $this->hasMany(Criteria::class, 'rubric_id');
     }
 }
