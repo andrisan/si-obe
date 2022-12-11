@@ -1,8 +1,7 @@
 <?php
-
 $rows = collect($departments)->all()['data'] ?? [];
 ?>
-
+@section('pageTitle', "Departement")
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -24,19 +23,22 @@ $rows = collect($departments)->all()['data'] ?? [];
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 bg-white border-b border-gray-200">
+
                         <!--dropdown pilih fakultas-->
                         <div class="dropdown">
                             <div class="dropdown dropdown-end ml-10">
-                                <label tabindex="0" class="btn m-1">Nama Fakultas</label>
-                                <ul tabindex="0"
-                                    class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-                                    @foreach ($faculties as $faculty)
-                                        <li><a @selected(true)
-                                                href="/faculties/{{ $faculty->id }}/departments/">{{ $faculty->name }}</a>
-                                        </li>
+
+                                <select name="forma" onchange="location = this.value;"
+                                    class="select input-bordered w-full max-w-xs">
+                                    <option disabled selected>Nama Fakultas</option>
+
+                                    @foreach ($faculties as $faculties)
+                                        <option value="{{ route('faculties.departments.index', $faculties) }}">
+                                            {{ $faculties->name }}</option>
                                     @endforeach
 
-                                </ul>
+                                </select>
+
 
 
                             </div>
@@ -45,8 +47,8 @@ $rows = collect($departments)->all()['data'] ?? [];
                         </div>
                         @foreach ($departments as $department)
                         @endforeach
-                        <a href="/faculties/{{ $department->faculty_id }}/departments/create" class="btn ">
 
+                        <a class="btn btn-primary ml-5" href="{{ route('faculties.departments.create', $faculty) }}">
                             tambah
 
                         </a>
@@ -61,6 +63,7 @@ $rows = collect($departments)->all()['data'] ?? [];
 
                         <br>
                         <!--Tabel departments-->
+                        @if ($departments->isNotEmpty())
                         <div class="overflow-x-auto">
                             <table class="table w-full text-center">
                                 <!-- head -->
@@ -73,17 +76,14 @@ $rows = collect($departments)->all()['data'] ?? [];
                                 </thead>
                                 <tbody>
                                     <!-- row 1 -->
+                                    <?php $i = 1; ?>
                                     @foreach ($departments as $department)
                                         <tr class="hover">
-                                            <th>{{ $department['id'] }}</th>
+                                            <th>{{ $i }}</th>
                                             <td>{{ $department['name'] }}</td>
+                                            
                                             <td>
                                                 <div class="flex  ">
-
-
-
-
-
                                                     <a href="/faculties/{{ $department->faculty_id }}/departments/{{ $department->id }}/edit"
                                                         class="btn btn-warning btn-sm">Edit</a>
                                                     <form
@@ -92,12 +92,15 @@ $rows = collect($departments)->all()['data'] ?? [];
                                                         @csrf
                                                         @method('delete')
                                                         <button class="btn btn-error btn-sm"
+                                                            onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();"
                                                             value="{{ $department->id }}">Delete</button>
 
                                                     </form>
                                                 </div>
                                             </td>
                                         </tr>
+                                        
+                                        <?php $i += 1; ?>
                                     @endforeach
 
                                     <!-- row 2 -->
@@ -105,9 +108,18 @@ $rows = collect($departments)->all()['data'] ?? [];
                                 </tbody>
                             </table>
                         </div>
+                        @endif
+
+                        @if ($departments->isEmpty())
+                            <div class="py-2">
+                                <h1 class="ml-5 font-bold text-center">Data Departemen Kosong</h1>
+                            </div>
+                        @endif
+                        
                         <!--batas bawah-->
                     </div>
                 </div>
+
             </div>
         </div>
         </template>

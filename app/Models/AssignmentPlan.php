@@ -24,4 +24,9 @@ class AssignmentPlan extends Model
     {
         return $this->hasMany(AssignmentPlanTask::class, 'assignment_plan_id');
     }
+
+    public function rubrics()
+    {
+        return $this->hasOne(Rubric::class);
+    }
 }

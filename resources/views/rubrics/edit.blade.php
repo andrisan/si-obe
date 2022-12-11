@@ -77,8 +77,9 @@
                         </div>
                     </div>--}}
                     <div>
-
-                        <input type="submit" value="Simpan" class="btn btn-primary mt-7 flex justify-self-start">
+                        <div class="flex">
+                            <button class="btn btn-outline mt-2 hover:bg-slate-50 hover:text-black"><a href="{{ route('rubrics.index') }}">Cancel</a></button>
+                            <input type="submit" value="Simpan" class="btn btn-primary mt-2 ml-3"></div>
                         </form>
                     </div>
 

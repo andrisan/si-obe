@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class ProfileController extends Controller
 {
@@ -13,7 +14,37 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        return view( 'profile.index');
+        $user = Auth::user();
+        return view('profile.index', ['user'=> $user]);
+    }
+
+    public function grade()
+    {
+        $user = Auth::user();
+
+        $nilaiAkhir =  0 ;
+        foreach ($user->studentGrade as $data) {
+            $nilaiAkhir += $data->criteriaLevel->point;
+        }
+
+        if ($nilaiAkhir > 80) {
+            $nilaiAkhir = 'A';
+        } elseif ($nilaiAkhir > 75) {
+            $nilaiAkhir = 'B+';
+        } elseif ($nilaiAkhir > 69) {
+            $nilaiAkhir = 'B';
+        } elseif ($nilaiAkhir > 60) {
+            $nilaiAkhir = 'C+';
+        } elseif ($nilaiAkhir > 55) {
+            $nilaiAkhir = 'C';
+        } elseif ($nilaiAkhir > 50) {
+            $nilaiAkhir = 'D+';
+        } elseif ($nilaiAkhir > 44) {
+            $nilaiAkhir = 'D';
+        } else {
+            $nilaiAkhir = 'E';
+        }
+        return view('profile.grade', ['user'=> $user, 'grade' => $nilaiAkhir]);
     }
 
     /**
