@@ -37,9 +37,9 @@
                                 @endforeach
                                 </div>
                                 <p class="py-3">Created At</p>
-                                <div class="py-3 col-span-2">: {{$criterias->created_at}}</div>
+                                <div class="py-3 col-span-2">: {{$criterias->created_at->format('D, d M Y h:i A')}}</div>
                                 <p class="py-3">Updated At</p>
-                                <div class="py-3 col-span-2">: {{$criterias->updated_at }}</div>                                
+                                <div class="py-3 col-span-2">: {{$criterias->updated_at->format('D, d M Y h:i A')}}</div>                                
                             </div>
                         </tr>
                     </tbody>
