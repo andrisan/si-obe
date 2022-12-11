@@ -99,7 +99,24 @@ class StudentGradeController extends Controller
     public function store(Request $request)
     {
         $assignmentid = $request->assignment_id;
-        StudentGrade::create($request->all());
+        $studentid = $request->student_user_id;
+        $plan1 = $request->assignment_plan_task_id;
+        $criteria1 = $request->criteria_level_id;
+        $plan2 = $request->assignment_plan_task_id2;
+        $criteria2 = $request->criteria_level_id2;
+
+        $data = [
+            ['student_user_id' => $studentid,
+            'assignment_id' => $assignmentid,
+            'assignment_plan_task_id' => $plan1,
+            'criteria_level_id' => $criteria1],
+            ['student_user_id' => $studentid,
+            'assignment_id' => $assignmentid,
+            'assignment_plan_task_id' => $plan2,
+            'criteria_level_id' => $criteria2]
+        ];
+        
+        StudentGrade::insert($data); // Eloquent approach
 
         return redirect('/student-grades/?assignment_id='.$assignmentid);
     }
