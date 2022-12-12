@@ -21,7 +21,7 @@ class CourseClass extends Model
             'course_class_id', 'student_user_id');
     }
 
-    public function assignment()
+    public function assignments()
     {
         return $this->hasMany(Assignment::class, 'course_class_id');
     }
@@ -31,16 +31,11 @@ class CourseClass extends Model
         return $this->hasMany(User::class);
     }
 
-    public function course()
-    {
-        return $this->belongsTo(Course::class, 'course_id');
-    }
-
     public function creator()
     {
         return $this->belongsTo(User::class, 'creator_user_id');
     }
-    
+
     public function course()
     {
         return $this->belongsTo(Course::class);
