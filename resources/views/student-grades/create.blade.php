@@ -1,109 +1,79 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Kelas Mahasiswa') }}
+        <h2 class="font-semibold text-2xl text-gray-800 leading-tight">
+            Create Student Grades
         </h2>
     </x-slot>
 
+    <!-- cek -->
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                  <div class="mb-5 "><a class="text-blue-700" href="">Student Grades</a>  <span class="mx-4">/</span>   <a href="">  Pengembangan Aplikasi Web </a></div>
-                  <div class="flex ">
-                    <form class="my-4" action="">
-                      <input type="text"placeholder="ID Tugas" class="shadow-lg rounded-md h-10 ml-16 mb-2">
-                        <select name="" id="" class="shadow-lg  w-52 px-2 py-2 rounded-md text-black ml-16 mb-2 h-10">
-                                <option value="books">PILIHAN MATA KULIAH</option>
-                                <option value="html">Pengembangan Aplikasi Web</option>
-                                <option value="css">Algoritma Dan Struktur Data</option>
-                                <option value="php">Sistem Basis Data</option>
-                                <option value="js">Pemrograman Dasar</option>
+                    <h1 class="text-3xl font-bold">{{ $username }}</h1>
+                    <br>
+                    <h1><b>Deskripsi tugas</b></h1>
+                    <h1>{{ $assignment }}</h1>
+                    <br>
+                    <h1 class="text-center text-2xl font-bold">Input Nilai</h1>
 
-                        </select>
-                  </form>
-                  </div>
-                  <div class="flex px-16 mt-2 ">
-                    <table class="table-fixed w-full">
-  
-                      <thead>
-                        <tr>
-                          <th  class="">No</th>
-                          <th  class="">Nama Mahasiswa</th>
-                          <th  class="">NIM</th>
-                          <th  class="">Kelas</th>
-                          <th  class="">Program Studi</th>
-                          <th  class="">Nilai</th>
-                          <th  class="">Action</th>
-                        </tr>
-                      </thead>
-                  
-                      <tbody class=" border-2 border-black text-center">
-                        <tr class="border-2 h-14">
-                          <td width="100px">1</td>
-                            <td width="100px">Gunawan Dwi Irawan</td>
-                            <td width="400px">215150701111009</td>
-                            <td width="400px">B</td>
-                            <td width="400px">Teknologi Informasi</td>
-                            <td width="100px"><input type="text" class="w-24 h-6 rounded-lg border-blue-600"></td>
-                            <td >
-                              <button class="btn  btn-error bg-red-600 text-slate-100 hover:bg-red-200 hover:text-slate-400  btn-xs sm:btn-sm md:btn-sm rounded-md w-16 mr-1 ">Delete</button>
-                              <button class="btn  btn-primary bg-blue-600 text-slate-100 hover:bg-blue-200 hover:text-slate-400  btn-xs sm:btn-sm md:btn-sm rounded-md w-16 ">Save</button>
-                            </td>
-                        </tr>
-                        <tr class="border-2 h-14">
-                          <td width="100px">2</td>
-                            <td width="100px">Andhika Permana</td>
-                            <td width="400px">215150711111026</td>
-                            <td width="400px">B</td>
-                            <td width="400px">Teknologi Informasi</td>
-                            <td width="400px"><input type="text" class="w-24 h-6 rounded-lg border-blue-600"></td>
-                            <td >
-                                <button class="btn  btn-error bg-red-600 text-slate-100 hover:bg-red-200 hover:text-slate-400  btn-xs sm:btn-sm md:btn-sm rounded-md w-16 mr-1 ">Delete</button>
-                                <button class="btn  btn-primary bg-blue-600 text-slate-100 hover:bg-blue-200 hover:text-slate-400  btn-xs sm:btn-sm md:btn-sm rounded-md w-16 ">Save</button>
-                            </td>
-                          </tr>
-                          <tr class="border-2 h-14">
-                            <td width="100px">3</td>
-                              <td width="100px">Rusli Puspitasari</td>
-                              <td width="400px">215150711011029</td>
-                              <td width="400px">B</td>
-                              <td width="400px">Teknologi Informasi</td>
-                              <td width="400px"><input type="text" class="w-24 h-6 rounded-lg border-blue-600"></td>
-                              <td >
-                                <button class="btn  btn-error bg-red-600 text-slate-100 hover:bg-red-200 hover:text-slate-400  btn-xs sm:btn-sm md:btn-sm rounded-md w-16 mr-1 ">Delete</button>
-                                <button class="btn  btn-primary bg-blue-600 text-slate-100 hover:bg-blue-200 hover:text-slate-400  btn-xs sm:btn-sm md:btn-sm rounded-md w-16 ">Save</button>
-                            </td>
-                            </tr>
-                            <tr class="border-2 h-14">
-                              <td width="100px">4</td>
-                                <td width="100px">Fandi Nur Santo</td>
-                                <td width="400px">215150711011017</td>
-                                <td width="400px">B</td>
-                                <td width="400px">Teknologi Informasi</td>
-                                <td width="400px"><input type="text" class="w-24 h-6 rounded-lg border-blue-600"></td>
-                                <td >
-                                  <button class="btn  btn-error bg-red-600 text-slate-100 hover:bg-red-200 hover:text-slate-400  btn-xs sm:btn-sm md:btn-sm rounded-md w-16 mr-1 ">Delete</button>
-                                  <button class="btn  btn-primary bg-blue-600 text-slate-100 hover:bg-blue-200 hover:text-slate-400  btn-xs sm:btn-sm md:btn-sm rounded-md w-16 ">Save</button>
-                              </td>
-                              </tr>
-                              <tr class="border-2 h-14">
-                                <td width="100px">5</td>
-                                  <td width="100px">Ihsan Nurul Izza</td>
-                                  <td width="400px">215150711011018</td>
-                                  <td width="400px">B</td>
-                                  <td width="400px">Teknologi Informasi</td>
-                                  <td width="400px"><input type="text" class="w-24 h-6 rounded-lg border-blue-600"></td>
-                                  <td >
-                                    <button class="btn  btn-error bg-red-600 text-slate-100 hover:bg-red-200 hover:text-slate-400  btn-xs sm:btn-sm md:btn-sm rounded-md w-16 mr-1 ">Delete</button>
-                                    <button class="btn  btn-primary bg-blue-600 text-slate-100 hover:bg-blue-200 hover:text-slate-400  btn-xs sm:btn-sm md:btn-sm rounded-md w-16 ">Save</button>
-                                </td>
-                                </tr>    
-                    </tbody>
-                  </table>
+
+                    <form method="post" action="{{route('student-grades.store')}}">
+                        @csrf
+                        <input type="hidden" name="assignment_id" value="{{ $assignmentid }}">
+                        <input type="hidden" name="student_user_id" value="{{ $userid }}">
+                        <br>
+                        <div>
+                        <h1 class="text-2xl font-bold text-center">Nilai 1</h1>
+                            <h1 class="text-xl font-bold">Masukkan Assignment Plan Task</h1>
+                            <select name="assignment_plan_task_id" placeholder="-">
+                                @foreach ($plantasks as $plan)
+                                <option value="{{$plan->id}}">{{$plan->code}} | {{Str::limit($plan->description, 130)}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <br>
+                        <div>
+                            <h1 class="text-xl font-bold">Masukkan Criteria Level</h1>
+                            <select name="criteria_level_id" placeholder="-">
+                                @foreach ($criterialevels as $criterialevel)
+                                <option value="{{$criterialevel->id}}">{{$criterialevel->point}} | {{Str::limit($criterialevel->title)}} | {{Str::limit($criterialevel->description,105)}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <br>
+                        <div>
+                            <h1 class="text-2xl font-bold text-center">Nilai 2</h1>
+                            <h1 class="text-xl font-bold">Masukkan Assignment Plan Task</h1>
+                            <select name="assignment_plan_task_id2" placeholder="-">
+                                @foreach ($plantasks as $plan)
+                                <option value="{{$plan->id}}">{{$plan->code}} | {{Str::limit($plan->description, 130)}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <br>
+                        <div>
+                            <h1 class="text-xl font-bold">Masukkan Criteria Level</h1>
+                            <select name="criteria_level_id2" placeholder="-">
+                                @foreach ($criterialevels as $criterialevel)
+                                <option value="{{$criterialevel->id}}">{{$criterialevel->point}} | {{Str::limit($criterialevel->title)}} | {{Str::limit($criterialevel->description,105)}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        
+                        <div class="card-actions justify-end pt-5">
+                            {{-- <form action="/student-grades/?assignment_id={{$assignmentid}}">--}}
+                            <button class="btn btn-success" type="submit">Save</button>
+
+                            {{-- <form action="{{ route('student-grades.index') }}">--}}
+                            <a class="btn btn-error" href="/student-grades/?assignment_id={{ $assignmentid }}">Cancel</a>
+                        </div>
+                        
+                    </form>
+
+
                 </div>
             </div>
         </div>
     </div>
-</div>
-</x-app-layout>                   
+</x-app-layout>

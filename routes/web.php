@@ -48,7 +48,12 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/classes/join/',[CourseClassController::class, 'show_join'])->name('classes.show_join');
     Route::resource('rubrics', RubricController::class)->middleware(['roles:admin,teacher']);
     Route::resource('classes', CourseClassController::class);
-    Route::resource('student-grades', StudentGradeController::class);
+
+    Route::get('student-grades/edit', [StudentGradeController::class, 'edit']);
+    Route::get('student-grades/create', [StudentGradeController::class, 'create']);
+    Route::resource('student-grades', StudentGradeController::class, ['except' => [
+        'edit'
+    ]]);
 
     Route::scopeBindings()->group(function () {
         Route::resource('faculties.departments', DepartmentController::class)->middleware(['roles:admin,teacher']);;

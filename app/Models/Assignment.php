@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+
 use App\Models\CourseClass;
 use App\Models\StudentGrade;
 use App\Models\AssignmentPlan;
@@ -32,4 +33,8 @@ class Assignment extends Model
         return $this->belongsTo(AssignmentPlan::class);
     }
     
+    public function CourseClass()
+    {
+        return $this->belongsTo(CourseClass::class, 'course_class_id');
+    }
 }
