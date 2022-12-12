@@ -1,14 +1,10 @@
+<title>Edit Rubrics</title>
 <x-app-layout>
     <x-slot name="header">
-        <div class="border-b-2 flex  justify-between border-blue-600">
+        <div>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight text-4xl">
                 Edit Rubric : {{ $rubric->title }}
             </h2>
-            <div class="mb-5 w-14">
-                <img src="{{ asset('img/Default.png') }}" alt="">
-
-            </div>
-            <style></style>
         </div>
 
     </x-slot>
@@ -81,8 +77,9 @@
                         </div>
                     </div>--}}
                     <div>
-
-                        <input type="submit" value="Simpan" class="btn btn-primary mt-7 flex justify-self-start">
+                        <div class="flex">
+                            <button class="btn btn-outline mt-2 hover:bg-slate-50 hover:text-black"><a href="{{ route('rubrics.index') }}">Cancel</a></button>
+                            <input type="submit" value="Simpan" class="btn btn-primary mt-2 ml-3"></div>
                         </form>
                     </div>
 

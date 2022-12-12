@@ -7,6 +7,11 @@ use App\Models\Faculty;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
+
+
+
 
 class DepartmentController extends Controller
 {
@@ -15,14 +20,16 @@ class DepartmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($faculty)
+    public function index( Faculty $faculty)
     {
         //
-        $department = Department::where('faculty_id', $faculty)->orderBy('faculty_id')->get();
-        $faculty = Faculty::all();
-        return view('departments.index', [
-            'departments' => $department,
-            'faculties' => $faculty
+        $faculties = Faculty::all();
+
+        return view('departments.index',[
+            'faculty'=>$faculty,
+            'faculties'=>$faculties,
+            'departments'=>$faculty->departments()->paginate(10)
+
         ]);
     }
 
@@ -31,15 +38,16 @@ class DepartmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Faculty $faculty, Department $department)
+    public function create(Faculty $faculty)
     {
         //
 
 
-
+         $department = Department::where('faculty_id', $faculty)->orderBy('faculty_id')->get();
         return view('departments.create', [
-            'faculty' => $faculty,
-            'department' => $department,
+            'faculty' => $faculty
+                        
+                       
         ]);
     }
 
@@ -49,16 +57,13 @@ class DepartmentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Faculty $faculty, Department $department)
+    public function store(Request $request,Faculty  $faculty)
     {
-
-     
-
-        $department->create([
-            'name' => $request->name,
-            'faculty_id' => $request->faculty_id,
+        $validated = $request->validate([
+            'name' => 'required|string',
+        
         ]);
-
+        $faculty->departments()->create($validated);
         return redirect()->route(
             'faculties.departments.index',$faculty
         );
@@ -94,9 +99,7 @@ class DepartmentController extends Controller
         //
 
 
-        // $faculty = DB::table('faculties')->where('id',$id)->first();
-        // $department = DB::table('departments')->where('id',$id)->first();
-        // return view('departments.edit',['department'=>$department],['faculty'=>$faculty]);
+     
         
         return view('departments.edit', [
             'department' => $department,
@@ -113,17 +116,12 @@ class DepartmentController extends Controller
      */
     public function update(Request $request, $faculty, Department $department)
     {
-
         //
+       $validated = $request->validate([
+        'name' => 'required|string'
+       ]);
 
-
-
-        $department->update([
-
-            'name' => $request->name
-        ]);
-
-
+       $department->update($validated);
         return redirect()->route('faculties.departments.index', $faculty);
     }
 
@@ -138,10 +136,6 @@ class DepartmentController extends Controller
         //
 
         $department->delete();
-
-        $department->delete();
-
-
         return redirect()->route('faculties.departments.index', [
             'department' => $department,
             'faculty' => $faculty,

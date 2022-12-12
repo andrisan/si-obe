@@ -21,9 +21,19 @@ class CourseClass extends Model
             'course_class_id', 'student_user_id');
     }
 
-    public function assignments()
+    public function assignment()
     {
-        return $this->hasMany(Assignment::class);
+        return $this->hasMany(Assignment::class, 'course_class_id');
+    }
+
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
+
+    public function course()
+    {
+        return $this->belongsTo(Course::class, 'course_id');
     }
 
     public function creator()

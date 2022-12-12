@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class StudentGrade extends Model
 {
     use HasFactory;
+
+    public function criteriaLevel()
+    {
+        return $this->belongsTo(CriteriaLevel::class, 'criteria_level_id');
+    }
 }

@@ -1,4 +1,7 @@
 @php use Carbon\Carbon; @endphp
+
+@section('pageTitle', "$courseClass->name Assigment Detail")
+
 <x-app-layout>
   <x-slot name="header">
     <div class="flex flex-row gap-4">
@@ -30,18 +33,11 @@
                         alt="" class="w-7">
                   </div>
                 </div>
-                <div class="text-2xl font-bold ">
-                    <h1>{{ $assignment->assignmentPlan->title ??null }}</h1>
-                </div>
+                <div>
+                  <h1 class="text-2xl font-bold mb-2">{{ $assignment->assignmentPlan->title ??null }}</h1>
+                  <p>Due Date : {{ Carbon::parse( $assignment->due_date)->format("M d, Y") }}</p>
               </div>
-          </div>
 
-          <div class="footer items-center px-6 py-4 bg-neutral text-neutral-content">
-              <div class="items-center grid-flow-col">
-                  <p>Assigned Date : {{ Carbon::parse( $assignment->assigned_date)->format("M d, Y") }}</p>
-              </div>
-              <div class="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
-                  <p>Due Date: {{ Carbon::parse( $assignment->due_date)->format("M d, Y") }}</p>
               </div>
           </div>
 
@@ -50,6 +46,9 @@
                   <h1>{{ $assignment->note }}</h1>
               </div>
           </div>
+
+
+<div class="flex flex-row-reverse justify-between">
 
               <div class="tombol justify-end flex flex-row gap-2 py-5 px-10">
                 <form action="{{ route('course-classes.assignments.edit', [$courseClass, $assignment]) }}" method="get">
@@ -65,6 +64,23 @@
                   </button>
                 </form>
               </div>
+{{-- Ngelink ke Student Grades --}}
+              <div class="nilai py-5 px-10">
+ <form method="GET" action="{{ route('student-grades.index', [$assignment]) }}">
+                <input type="hidden" name="assignment_id" id="assignment_id" value="{{ $assignment->id}}">
+                <button class="btn btn-active  btn-success w-24">
+                    Isi Nilai
+                </button>
+              </form>
+
+
+              </div>
+            </div>
+
+                         
+
+            {{-- End --}}
+            
           </div>
       </div>
   </div>

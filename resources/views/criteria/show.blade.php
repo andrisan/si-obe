@@ -1,3 +1,5 @@
+@section('pageTitle', 'Criterias Show')
+
 <script src="https://kit.fontawesome.com/b79c47ea42.js" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/61cc44f0a1.js" crossorigin="anonymous"></script>
 
@@ -7,71 +9,58 @@
             {{ __('Criteria') }}
         </h2>
     </x-slot>
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-20">
-                    <div class="flex justify-between border-b-2 pb-4 ">
-                        <div class="judul  ">
-                            <h1 class="text-2xl font-extrabold" style="font-weight: 900;">Criterias</h1>
+
+    <div class="py-12 max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="flex flex-row mb-3 px-4 sm:px-0 -mr-2 sm:-mr-3">
+             <div class="p-20 bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="flex justify-between border-b-2 pb-4 ">
+                    <h1 class="text-2xl font-extrabold" style="font-weight: 900;">Criterias Details</h1>
+                </div>
+
+                    <tbody class="border-2 border-black text-black">
+                         <tr class="border-2 h-14">
+                            <div class="grid grid-cols-3 grid-flow-row gap-4">
+                                <p class="py-3">ID</p>
+                                <div class="py-3 col-span-2">: {{$criterias->id }}</div>
+                                <p class="py-3">Title</p>
+                                <div class="py-3 col-span-2">: {{$criterias->title }}</div>
+                                <p class="py-3">LLO</p>
+                                <div class="py-3 col-span-2">: {{ $criterias->LessonLearningOutcome->description}}</div>
+                                <p class="py-3">Max Point</p>
+                                <div class="py-3 col-span-2">: {{ $criterias->max_point }}</div>
+                                <p class="py-3">Description</p>
+                                <div class="py-3 col-span-2">: {{$criterias->description}}</div>
+                                <p class="py-3">Criteria Levels</p>
+                                <div class="py-3 col-span-2">:
+                                @foreach($criterias->criteriaLevels as $cl)
+                                    {{ $loop->index+1 }}. {{$cl->title}} <br> 
+                                @endforeach
+                                </div>
+                                <p class="py-3">Created At</p>
+                                <div class="py-3 col-span-2">: {{$criterias->created_at->format('D, d M Y h:i A')}}</div>
+                                <p class="py-3">Updated At</p>
+                                <div class="py-3 col-span-2">: {{$criterias->updated_at->format('D, d M Y h:i A')}}</div>                                
+                            </div>
+                        </tr>
+                    </tbody>
+                            <div class="flex card-actions justify-center pt-5">
+                                <form action="{{ route('rubrics.criterias.edit', [$rubric, $criterias->id]) }}" method="GET">
+                                    <button class="basis-full px-4 py-1 m-1 bg-yellow-600 rounded-xl text-white text-sm font-bold">Edit</button>
+                                </form>
+
+                                <form action="{{ route('rubrics.criterias.destroy', [$rubric, $criterias->id]) }}" method="POST">
+                                    @csrf
+                                    @method('delete')
+                                    <button class="basis-full px-4 py-1 m-1 bg-red-600 rounded-xl text-white text-sm font-bold " value="{{ $criterias->id }}" onclick="return confirm('Are you sure?')">Delete</button>
+
+                                    <a href="{{ route('rubrics.criterias.index', [$rubric]) }}" class="basis-full px-4 py-1 m-1 bg-blue-600 rounded-xl text-white text-sm font-bold">Back</a>
+                                </form>
+                                 
+                            </div>
+
                         </div>
-            
-                        
-                        
                     </div>
-            
-                    <nav class="">
-                        <ul class="flex space-x-2 font-extrabold">
-                            <li class="text-[#2E65F3]">Rubrics <span class="mx-2">/</span> </li>
-                            <li class="">Criterias <span class="mx-2"></span> </li>
-                        </ul>
-                    </nav>
-            
-                    <div class="flex  mt-5 space-x-5 relative">
-                        <div class="">
-                            <input type="text" class="bg-[#F7F7F9] w-52 px-5 py-2 rounded-md text-black placeholder:text-black" placeholder="MASUKKAN INDIKATOR">
-                        </div>
-                        
-                        <div class="">
-                            <select name="" id="" class="bg-[#F7F7F9] w-52 px-5 py-2 rounded-md text-black">
-                                
-                                    <option value="books">PILIHAN INDIKATOR</option>
-                                    <option value="html">N01-1</option>
-                                    <option value="css">N01-2</option>
-                                    <option value="php">N02-1</option>
-                                    <option value="js">N0-2</option>
-                                  
-                            </select>
-                        </div>
-                        
-                    </div>
-            
-                    <div class="mt-10">
-                        <table class="table-fixed w-full">
-                            <thead>
-                              <tr class="bg-[#F7F7F9] border-2 h-10">
-                                <th class="w-10">No</th>
-                                <th class="w-44">INDIKATOR</th>
-                                <th class="w-[39rem]">DESKRIPSI</th>
-                                <th>BOBOT(%)</th>
-                                <th>AKSI</th>
-                              </tr>
-                            </thead>
-                            <tbody class="text-center border-2 border-black text-black">
-                              <tr class="border-2 h-14">
-                                <td>1</td>
-                                <td>N01-1</td>
-                                <td>Mampu melaksanakan konsep Pemrograman Basis Data dalam pengembangan aplikasi</td>
-                                <td >2.5</td>
-                                <td><button class="px-2 border-2 border-blue-700 rounded-xl text-blue-700 text-sm font-bold">Lihat Levels</button></td>
-                              </tr>
-                            
-                              
-                            </tbody>
-                          </table>
-                    </div>
+                </div>
             </div>
         </div>
-                    
-    </div>
 </x-app-layout>

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\IntendedLearningOutcome;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use App\Models\Syllabus;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -20,10 +23,10 @@ class IntendedLearningOutcomeController extends Controller
      */
     public function index($syllabus)
     {
-        $ilo = IntendedLearningOutcome::where('syllabus_id', $syllabus)->orderBy('position')->get();
+        $ilos = IntendedLearningOutcome::where('syllabus_id', $syllabus)->orderBy('position')->paginate(3);
        return view('intended-learning-outcomes.index',[
             'syllabus' => $syllabus,
-            'ilo' => $ilo
+            'ilos' => $ilos
         ]);
     }
 
@@ -64,9 +67,13 @@ class IntendedLearningOutcomeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show(Syllabus $syllabus, Request $request)
     {
-        //
+         $ilo = IntendedLearningOutcome::find($request->ilo);
+         return view ('intended-learning-outcomes.show',[
+        'syllabus' => $syllabus,
+        'ilo' => $ilo,
+        ]);
     }
 
     /**

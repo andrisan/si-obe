@@ -1,3 +1,5 @@
+<title>Create Assignment Plans</title>
+
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -9,44 +11,54 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-
-                        <div class="container p-4 text-primary mt-2 text-sm">
-                            <form>
-                                <label class="uppercase font-bold  text-blue-600" for="fname">Kode Kelas</label><br>
-                                <input type="text" placeholder="Enter Your Class Code" class="input input-bordered input-ghost input-l w-full max-w-xl mb-2 mt-2" />
-                            </form>
-                        </div>
+                <form action="{{ route('syllabi.assignment-plans.store', $syllabus) }}" method="post">
+                @csrf
 
                         <div class="container p-4 text-primary text-sm">
-                            <form>
-                                <label class="uppercase font-bold  text-blue-600" for="fname">Title</label><br>
-                                <input type="text" placeholder="Enter Your Title" class="input input-bordered input-ghost input-l w-full max-w-xl mb-4 mt-2" />
-                            </form>
+                                <label class="uppercase font-bold  text-blue-600" for="name">Title</label><br>
+                                <input type="text" placeholder="Masukkan input" class="input input-bordered w-full max-w-xs" name="title"/> <br>
+                                <x-input-error :messages="$errors->get('title')" class="mt-2" />
                         </div>
-
                         <div class="container p-4 text-primary text-sm">
-                            <form>
-                                <label class="uppercase font-bold  text-blue-600" for="fname">Description</label><br>
-                                <input type="text" placeholder="Enter Your Description" class="input input-bordered input-ghost input-l w-full max-w-xl mb-4 mt-2" />
-                            </form>
-                        </div>
-                        
-                        <div class="container p-4 text-primary text-sm">
-                            <form>
-                                <label class="uppercase font-bold  text-blue-600" for="fname">Deadline</label><br>
-                                <input type="text" placeholder="Enter Your Deadline" class="input input-bordered input-ghost input-l w-full max-w-xl mb-4 mt-2" />
-                            </form>
-                        </div>
-                    
-
-
-                        <div class="mt-4 ml-4">
-                            <button class="bg-blue-300 hover:bg-blue-600 hover:text-white text-white font-bold py-2 px-4 rounded border-outline border-2">
-                                Create Class
-                            </button>
+                                <label class="uppercase font-bold  text-blue-600" for="name">Description</label><br>
+                                <input type="text" placeholder="Masukkan input" class="input input-bordered w-full max-w-xs" name="description"/> <br>
+                                <x-input-error :messages="$errors->get('description')" class="mt-2" />
                         </div>
 
-                        
+
+                         <div class="container p-4 text-primary text-sm">
+                                <label class="uppercase font-bold  text-blue-600" for="name">Assignment style</label><br>
+                                <input type="text" placeholder="Masukkan input" class="input input-bordered w-full max-w-xs" name="assignment_style"/> <br>
+                                <x-input-error :messages="$errors->get('assignment_style')" class="mt-2" />
+                          </div>
+
+                          <div class="container p-4 text-primary text-sm">
+                                <label class="uppercase font-bold  text-blue-600" for="name">Output Instruction</label><br>
+                                <input type="text" placeholder="Masukkan input" class="input input-bordered w-full max-w-xs" name="output_instruction"/> <br>
+                                <x-input-error :messages="$errors->get('output_instruction')" class="mt-2" />
+                          </div>
+
+                          <div class="container p-4 text-primary text-sm">
+                                <label class="uppercase font-bold  text-blue-600" for="name">Submission Instruction</label><br>
+                                <input type="text" placeholder="Masukkan input" class="input input-bordered w-full max-w-xs" name="submission_instruction"/> <br>
+                                <x-input-error :messages="$errors->get('submission_instruction')" class="mt-2" />
+                          </div>
+
+                          <div class="container p-4 text-primary text-sm">
+                                <label class="uppercase font-bold  text-blue-600" for="name">Deadline Instruction</label><br>
+                                <input type="text" placeholder="Masukkan input" class="input input-bordered w-full max-w-xs" name="deadline_instruction"/> <br>
+                                <x-input-error :messages="$errors->get('deadline_instruction')" class="mt-2" />
+                          </div>
+
+                          <div class="container p-4 text-primary text-sm">
+                                <label class="uppercase font-bold  text-blue-600" for="name">Is Group Assignment</label><br>
+                                <input type="text" placeholder="Masukkan input" class="input input-bordered w-full max-w-xs" name="is_group_assignment"/> <br>
+                                <x-input-error :messages="$errors->get('is_group_assignment')" class="mt-2" />
+                          </div>
+
+                        <input type="submit" value="Save" class="btn btn-active rounded-md " />
+                        <a href="{{ route('syllabi.assignment-plans.index', [$syllabus]) }}" class="btn btn-outline rounded-md">Cancel</a>
+                     </form> 
                 </div>
             </div>
         </div>

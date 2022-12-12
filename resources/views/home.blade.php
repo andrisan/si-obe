@@ -1,10 +1,6 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+@section('pageTitle', "Home")
 
+<x-app-layout>
     <div class="py-5">
         <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white  shadow-sm sm:rounded-lg">
@@ -207,7 +203,7 @@
                                    <img src="{{ asset('img/Vector(1).png') }}" alt="">
                                    <h1 class="ml-5 text-black">Tugas 8 - Matkul 8</h1>
                                 </div>
-                               
+
                                 <h1 class="pt-4">All Courses...</h1>
 
                             </div>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AssignmentController;
 use App\Http\Controllers\AssignmentPlanController;
+use App\Http\Controllers\ClassPortofolioController;
 use App\Http\Controllers\CourseClassController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CourseLearningOutcomeController;
@@ -17,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\FacultyController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudyProgramController;
 use App\Http\Controllers\UserController;
 
@@ -35,24 +37,24 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::group(['middleware' => ['auth', 'verified']], function () {
+    Route::get('home', [DashboardController::class, 'index'])->name('dashboard');
 
-Route::group(['middleware' => 'auth'], function () {
     Route::resource('users', UserController::class);
     Route::resource('faculties', FacultyController::class);
     Route::resource('courses', CourseController::class);
     Route::resource('syllabi', SyllabusController::class);
-    Route::resource('rubrics', RubricController::class);
     Route::post('/classes/join/process', [CourseClassController::class, 'join'])->name('classes.join');
     Route::get('/classes/join/',[CourseClassController::class, 'show_join'])->name('classes.show_join');
+    Route::resource('rubrics', RubricController::class)->middleware(['roles:admin,teacher']);
     Route::resource('classes', CourseClassController::class);
     Route::resource('student-grades', StudentGradeController::class);
 
     Route::scopeBindings()->group(function () {
-        Route::resource('faculties.departments', DepartmentController::class);
+        Route::resource('faculties.departments', DepartmentController::class)->middleware(['roles:admin,teacher']);;
         Route::resource('faculties.departments.study-programs', StudyProgramController::class);
-        Route::resource('syllabi.ilos', IntendedLearningOutcomeController::class);
-        Route::resource('syllabi.ilos.clos', CourseLearningOutcomeController::class);
+        Route::resource('syllabi.ilos', IntendedLearningOutcomeController::class)->middleware(['roles:admin,teacher']);
+        Route::resource('syllabi.ilos.clos', CourseLearningOutcomeController::class)->middleware(['roles:teacher']);
         Route::resource('syllabi.ilos.clos.llos', LessonLearningOutcomeController::class);
         Route::resource('syllabi.learning-plans', LearningPlanController::class);
         Route::resource('syllabi.assignment-plans', AssignmentPlanController::class);
@@ -61,5 +63,11 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('course-classes.assignments', AssignmentController::class);
     });
 });
+
+Route::get('class-portofolio/{courseClass}', [ClassPortofolioController::class, 'index'])->name('class-portofolio.index')->middleware('auth');
+Route::get('class-portofolio/{courseClass}/students', [ClassPortofolioController::class, 'student'])->name('class-portofolio.student')->middleware('auth');
+
+Route::get('profile', [ProfileController::class, 'index'])->name('profile.index')->middleware('auth');
+Route::get('profile/grade', [ProfileController::class, 'grade'])->name('profile.grade')->middleware('auth');
 
 require __DIR__ . '/auth.php';
