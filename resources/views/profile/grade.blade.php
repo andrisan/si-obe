@@ -46,7 +46,7 @@
                                             <input type="checkbox" id="my-modal-3" class="modal-toggle" />
                                             <div class="modal  mx-auto ">
                                                 <div class="modal-overlay relative    mx-auto">
-                                                    
+
                                                     <div class="modal-box mx-auto w-[80rem]  ">
                                                         <table class=" w-[100%] ">
                                                             <thead>
@@ -63,17 +63,17 @@
                                                             </thead>
                                                             <tbody>
                                                                 <?php $j = 1; ?>
-                                                                @foreach ($cc->assignment as $ass)
+                                                                @foreach ($cc->assignments as $ass)
                                                                 <tr>
                                                                     <td>{{ $j }}</td>
                                                                     <td  >{{ $ass->assignmentPlan->title }}</td>
                                                                     <?php $point = 0; $maxPoint = 0;?>
                                                                     @foreach ($ass->studentGrades as $stud)
-                                                                    <?php 
+                                                                    <?php
                                                                         if ($stud->student_user_id != $user->id) {
                                                                             continue;
                                                                         }
-                                                                        $point += $stud->criteriaLevel->point; 
+                                                                        $point += $stud->criteriaLevel->point;
                                                                         $maxPoint += $stud->criteriaLevel->criteria->max_point;
                                                                         ?>
                                                                     @endforeach
@@ -119,8 +119,8 @@
                                                                     <td>{{ $llo->description }}</td>
                                                                     <?php $point = 0; $maxPoint = 0; ?>
                                                                     @foreach ($llo->criteria as $crit)
-                                                                    <?php 
-                                                                        $maxPoint += $crit->max_point; 
+                                                                    <?php
+                                                                        $maxPoint += $crit->max_point;
                                                                     ?>
                                                                     @foreach ($user->studentGrade as $stud)
                                                                     <?php

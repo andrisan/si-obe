@@ -25,14 +25,9 @@ class LessonLearningOutcome extends Model
     {
         return $this->hasMany(Criteria::class, 'llo_id');
     }
-    
+
     public function learningPlan()
     {
         return $this->hasMany(LearningPlan::class, 'llo_id');
-    }
-
-    public function criteria()
-    {
-        return $this->hasMany(Criteria::class, 'llo_id');
     }
 }

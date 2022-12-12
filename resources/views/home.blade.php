@@ -1,232 +1,151 @@
 @section('pageTitle', "Home")
 
 <x-app-layout>
-    <div class="py-5">
-        <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white  shadow-sm sm:rounded-lg">
-                <div class="p-10     bg-white border-b border-gray-200">
-                    <div class="flex lg:ml-16 space-x-6">
-                        <div class="   ">
-                            <div class="rounded-md h-16 p-2 w-72 bg-[#AFC7F5]  ">
-                                <div class="flex text-center items-center cursor-pointer  ">
-                                    <div class="gb ">
-                                        <img class="" src="{{ asset('img/Gambar Fakultas.png') }}" alt="">
-                                    </div>
-                                    <h2 class="ml-3 text-xl text-black">All Faculties</h2>
-                                </div>
-                            </div>
-                            <div class="mt-5 rounded-md h-16 p-2 w-72 bg-[#AFC7F5]  ">
-                                <div class="flex text-center items-center cursor-pointer  ">
-                                    <div class="gb ">
-                                        <img class="ml-2 w-10" src="{{ asset('img/Gambar Department.png') }}"
-                                            alt="">
-                                    </div>
-                                    <h2 class="ml-6 text-xl text-black">All Departements</h2>
-                                </div>
-                            </div>
-                            <div class="mt-5 rounded-md h-16 p-2 w-72 bg-[#AFC7F5]  ">
-                                <div class="flex text-center items-center cursor-pointer  ">
-                                    <div class="gb ">
-                                        <img class="" src="{{ asset('img/Gambar Program Studi.png') }}" alt="">
-                                    </div>
-                                    <h2 class="ml-3 text-xl text-black">All Study program</h2>
-                                </div>
-                            </div>
+    <div class="max-w-7xl mx-auto pt-8">
+        <div
+            class="flex w-full grid-flow-row grid-cols-12 items-start gap-4 overflow-y-hidden overflow-x-scroll px-10 pt-1 pb-10 xl:grid xl:overflow-x-auto xl:px-4">
+            <div
+                class="bg-base-100 rounded-box col-span-3 row-span-3 mx-2 grid w-72 flex-shrink-0 place-items-center items-center gap-4 p-4 py-8 shadow-xl xl:mx-0 xl:w-full">
+                <div>
+                    <div class="avatar">
+                        <div class="mask mask-squircle bg-base-content h-24 w-24 bg-opacity-10 p-px">
+                            <img src="https://avatars.dicebear.com/api/initials/{{ $user->name }}.svg" width="94"
+                                 height="94"
+                                 alt="{{ $user->name }}" class="mask mask-squircle">
                         </div>
-                        <div class="relative border-2 h-screen border-blue-400">
-                            <div class=" w-[72] px-10 rounded-sm bg-[#AFC7F5]">
-                                <div class="flex py-2 ">
-                                    <img src="{{ asset('img/Vector.png') }}" alt="">
-                                    <h1 class="text-xl text-left ml-2 text-black ">Course Classes</h1>
-                                </div>
-
-                            </div>
-                            <div class="   ">
-                                <div class="flex p-5">
-
-                                    <div class="w-72 h-60  bg-[#6F727A] ">
-                                        <figure><img class="h-full" src="{{ asset('img/GambarCourse 1.png') }}"
-                                                alt="Shoes" /></figure>
-                                        <div class="card-body">
-                                            <div class="text-white">
-                                                <div class="flex ">
-                                                    <h2 class="text-md  pr-5">Pemrograman Basis Data</h2>
-                                                    <h1 class="text-2xl">...</h1>
-                                                </div>
-                                                <p class="text-sm">Teknologi Informasi - B</p>
-
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="w-72 h-60 ml-5 bg-[#6F727A] ">
-                                        <figure><img class="h-full" src="{{ asset('img/GambarCourse 1.png') }}"
-                                                alt="Shoes" /></figure>
-                                        <div class="card-body">
-                                            <div class="text-white">
-                                                <div class="flex">
-                                                    <h2 class="text-md  pr-5">Pemrograman Basis Data</h2>
-                                                    <h1 class="text-2xl">...</h1>
-                                                </div>
-                                                <p class="text-sm">Teknologi Informasi - B</p>
-
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="flex px-5 ">
-
-                                    <div class="w-72 h-60  bg-[#6F727A] ">
-                                        <figure><img class="h-full" src="{{ asset('img/GambarCourse 1.png') }}"
-                                                alt="Shoes" /></figure>
-                                        <div class="card-body">
-                                            <div class="text-white">
-                                                <div class="flex">
-                                                    <h2 class="text-md  pr-5">Pemrograman Basis Data</h2>
-                                                    <h1 class="text-2xl">...</h1>
-                                                </div>
-                                                <p class="text-sm">Teknologi Informasi - B</p>
-
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="w-72 h-60 ml-5 bg-[#6F727A] ">
-                                        <figure><img class="h-full" src="{{ asset('img/GambarCourse 1.png') }}"
-                                                alt="Shoes" /></figure>
-                                        <div class="card-body">
-                                            <div class="text-white">
-                                                <div class="flex">
-                                                    <h2 class="text-md  pr-5">Pemrograman Basis Data</h2>
-                                                    <h1 class="text-2xl">...</h1>
-                                                </div>
-                                                <p class="text-sm">Teknologi Informasi - B</p>
-
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="text-right justify-end items-end flex mr-5 pb-2 mt-10 ">
-                                    <div class="flex ">
-                                        <h1 class="text-black py-1">Show</h1>
-                                        <select class="ml-5 py-1" name="" id="1">
-
-                                        </select>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="md:ml-">
-                            <div class="rounded-md p-2 w-72 bg-[#AFC7F5]  ">
-                                <div class="flex">
-                                    <img class="h-full" src="{{ asset('img/Assign.png') }}" alt="" />
-                                    <h1 class="ml-2 text-black">My Courses</h1>
-                                </div>
-
-                            </div>
-                            <div class="p-5 rounded-md mt-3  w-72 bg-[#AFC7F5] space-y-3  ">
-                                <div class="flex">
-                                    <img class="" src="{{ asset('img/frames.png') }}" alt="">
-                                   <h1 class="ml-5 text-black">Matkul 1</h1>
-                                </div>
-                                <div class="flex">
-                                    <img class="" src="{{ asset('img/frames.png') }}" alt="">
-                                   <h1 class="ml-5 text-black">Matkul 2</h1>
-                                </div>
-                                <div class="flex">
-                                    <img class="" src="{{ asset('img/frames.png') }}" alt="">
-                                   <h1 class="ml-5 text-black">Matkul 3</h1>
-                                </div>
-                                <div class="flex">
-                                    <img class="" src="{{ asset('img/frames.png') }}" alt="">
-                                   <h1 class="ml-5 text-black">Matkul 4</h1>
-                                </div>
-                                <div class="flex">
-                                    <img class="" src="{{ asset('img/frames.png') }}" alt="">
-                                   <h1 class="ml-5 text-black">Matkul 5</h1>
-                                </div>
-                                <div class="flex">
-                                    <img class="" src="{{ asset('img/frames.png') }}" alt="">
-                                   <h1 class="ml-5 text-black">Matkul 6</h1>
-                                </div>
-                                <div class="flex">
-                                    <img class="" src="{{ asset('img/frames.png') }}" alt="">
-                                   <h1 class="ml-5 text-black">Matkul 7</h1>
-                                </div>
-                                <div class="flex">
-                                   <img class="" src="{{ asset('img/frames.png') }}" alt="">
-                                   <h1 class="ml-5 text-black">Matkul 8</h1>
-                                </div>
-                                <h1 class="pt-4 text-gray-600">All Courses...</h1>
-
-                            </div>
-                            <div class="rounded-md mt-10 p-2 w-72 bg-[#AFC7F5]  ">
-                                <div class="flex">
-                                    <img class="h-full" src="{{ asset('img/Assign.png') }}" alt="" />
-                                    <h1 class="ml-2 text-black">My Courses</h1>
-                                </div>
-
-                            </div>
-                            <div class="p-3 rounded-md mt-3  w-72 border-2 border-blue-400 space-y-3  ">
-                                <div class="flex">
-                                   <img src="{{ asset('img/Vector(1).png') }}" alt="">
-                                   <h1 class="ml-5 text-black">Tugas 1 - Matkul 1</h1>
-                                </div>
-                                <div class="flex">
-                                   <img src="{{ asset('img/Vector(1).png') }}" alt="">
-                                   <h1 class="ml-5 text-black">Tugas 2 - Matkul 2</h1>
-                                </div>
-                                <div class="flex">
-                                   <img src="{{ asset('img/Vector(1).png') }}" alt="">
-                                   <h1 class="ml-5 text-black">Tugas 3 - Matkul 3</h1>
-                                </div>
-                                <div class="flex">
-                                   <img src="{{ asset('img/Vector(1).png') }}" alt="">
-                                   <h1 class="ml-5 text-black">Tugas 4 - Matkul 4</h1>
-                                </div>
-                                <div class="flex">
-                                   <img src="{{ asset('img/Vector(1).png') }}" alt="">
-                                   <h1 class="ml-5 text-black">Tugas 5 - Matkul 5</h1>
-                                </div>
-                                <div class="flex">
-                                   <img src="{{ asset('img/Vector(1).png') }}" alt="">
-                                   <h1 class="ml-5 text-black">Tugas 6 - Matkul 6</h1>
-                                </div>
-                                <div class="flex">
-                                   <img src="{{ asset('img/Vector(1).png') }}" alt="">
-                                   <h1 class="ml-5 text-black">Tugas 7 - Matkul 7</h1>
-                                </div>
-                                <div class="flex">
-                                   <img src="{{ asset('img/Vector(1).png') }}" alt="">
-                                   <h1 class="ml-5 text-black">Tugas 8 - Matkul 8</h1>
-                                </div>
-
-                                <h1 class="pt-4">All Courses...</h1>
-
-                            </div>
-
-                        </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                     </div>
                 </div>
+                <div>
+                    <div class="w-full">
+                        <div class="text-center">
+                            <div class="text-lg font-extrabold">{{ $user->name }}</div>
+                            <div class="text-base-content/70 my-3 text-sm">
+                                {{ $user->email }}
+                                @can('is-student')
+                                    @if(!empty($user->studentData->student_id_number))
+                                        <br>
+                                        {{ $user->studentData->student_id_number }}
+                                    @else
+                                        <div class="text-red-500">No student number</div>
+                                    @endif
+                                @endcan
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a href="{{ route('profile.index') }}" class="btn btn-accent btn-sm">
+                    Go to profile
+                </a>
             </div>
-        </div>
 
-    </x-app-layout>
+            @canany(['is-teacher', 'is-student'])
+                <div
+                    class="bg-base-100 rounded-box col-span-3 row-span-3 mx-2 flex w-72 flex-shrink-0 flex-col justify-center gap-4 p-4 shadow-xl xl:mx-0 xl:w-full">
+                    <div class="px-1 pt-3">
+                        <div class="text-xl font-extrabold pb-2">
+                            <a href="{{ route('classes.index') }}">
+                                {{ __('Your Classes') }}
+                            </a>
+                        </div>
+                        <div class="text-base-content">
+                            <ul class="menu overflow-visible p-0">
+                                @if($classes->count() > 0)
+                                    @foreach($classes as $class)
+                                        <li>
+                                            <a href="{{ route('classes.show', $class->id) }}">
+                                                <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg"
+                                                     fill="none"
+                                                     viewBox="0 0 24 24"
+                                                     class="mr-2 inline-block h-5 w-5 stroke-current">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                          stroke-width="2"
+                                                          d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
+                                                </svg>
+
+                                                {{ $class->name }}
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                @else
+                                    <li class="p-3 text-red-400">
+                                        @can('is-teacher')
+                                            Anda belum mengajar di kelas manapun
+                                        @else
+                                            Anda belum terdaftar di kelas manapun
+                                        @endcan
+                                    </li>
+                                @endif
+                            </ul>
+                        </div>
+                    </div>
+                    @php($btnText = $user->role == "teacher" ? __('Create Class'): __('Join Class'))
+                    @php($btnLink = $user->role == "teacher" ? route('classes.create'): route('classes.join'))
+                    <a href="{{ $btnLink }}" class="btn btn-secondary btn-block space-x-2">
+                    <span>{{ $btnText }}</span>
+                    </a>
+                </div>
+            @endcanany
+
+            @can('is-admin')
+                <div class="col-span-3 row-span-1 mx-2 grid w-72 flex-shrink-0 gap-4 xl:mx-0 xl:w-auto svelte-1n6ue57">
+                    <div class="bg-slate-300 text-accent-content rounded-box p-4 shadow-xl">
+                        <div class="flex items-center">
+                            <div class="flex-1 px-2">
+                                <h2 class="text-3xl font-extrabold">{{ $facultiesCount }}</h2>
+                                <p class="text-sm text-opacity-80">Fakultas</p>
+                            </div>
+                            <div class="flex-0">
+                                <div class="flex space-x-1">
+                                    <a href="{{ route('faculties.index') }}" aria-label="button component" class="btn btn-ghost btn-square">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                             class="inline-block h-6 w-6 stroke-current">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                  d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex-1 px-2 pt-4">
+                            <h2 class="text-3xl font-extrabold">{{ $departmentsCount }}</h2>
+                            <p class="text-sm text-opacity-80">Departemen</p>
+                        </div>
+                        <div class="flex-1 px-2 pt-4">
+                            <h2 class="text-3xl font-extrabold">{{ $studyProgramsCount }}</h2>
+                            <p class="text-sm text-opacity-80">Program Studi</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-base-100 rounded-box col-span-3 row-span-3 mx-2 flex w-72 flex-shrink-0 flex-col justify-center gap-4 p-4 shadow-xl xl:mx-0 xl:w-full">
+                    <div class="px-1 pt-3">
+                        <div class="text-xl font-extrabold pb-2">
+                            Mata Kuliah
+                        </div>
+                        <div class="text-base-content">
+                            <ul class="menu overflow-visible p-0">
+                                @if(!empty($courses))
+                                    @foreach($courses as $course)
+                                        <li>
+                                            <a href="{{ route('courses.show', $course) }}">
+                                                {{ $course->name }}
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                @else
+                                    <li class="p-3 text-red-400">
+                                        Belum ada kelas yang dibuat
+                                    </li>
+                                @endif
+                            </ul>
+                        </div>
+                    </div>
+                    <a href="{{ route('courses.index') }}" class="btn btn-secondary btn-block space-x-2">
+                        <span>Selengkapnya</span>
+                    </a>
+                </div>
+            @endcan
+        </div>
+    </div>
+</x-app-layout>

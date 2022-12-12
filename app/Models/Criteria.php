@@ -46,9 +46,4 @@ class Criteria extends Model
     {
         return $this->hasMany(CriteriaLevel::class);
     }
-
-    public function lessonLearningOutcome()
-    {
-        return $this->belongsTo(LessonLearningOutcome::class, 'llo_id');
-    }
 }
