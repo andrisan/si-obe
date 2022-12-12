@@ -23,7 +23,7 @@ class IntendedLearningOutcomeController extends Controller
      */
     public function index($syllabus)
     {
-        $ilos = IntendedLearningOutcome::where('syllabus_id', $syllabus)->orderBy('position')->paginate(3);
+       $ilos = IntendedLearningOutcome::where('syllabus_id', $syllabus)->orderBy('position')->paginate(3);
        return view('intended-learning-outcomes.index',[
             'syllabus' => $syllabus,
             'ilos' => $ilos
