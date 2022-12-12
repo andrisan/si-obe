@@ -16,11 +16,6 @@
                     <div class="drawer drawer-mobile">
                         <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
                         <div class="drawer-content flex flex-col">
-                          <!-- Page content here -->
-                          <div class="tabs">
-                            <a class="tab">Home     ></a> 
-                            <a class="tab-active">Profile     ></a> 
-                          </div>
         
                         <div class="card w-100 bg-base-100 shadow-xl ml-4 mr-4 mt-5 h-max">
                           <div class="card-body h-200 flex flex-col lg:flex-row">
@@ -49,17 +44,6 @@
                           </div>
                         </div>
                           
-                        </div> 
-                        <div class="drawer-side">
-                          <label for="my-drawer-2" class="drawer-overlay"></label> 
-                          <ul class="menu p-4 overflow-y-auto w-80 text-white font-semibold bg-black">
-                            <!-- Sidebar content here -->
-                            <li><a href="dashboard" class="mb-8 hover:bg-white hover:text-blue-600">Home</a></li>
-                            <li><a href="{{ route('classes.index') }}" class="mb-8 hover:bg-white hover:text-blue-600">Course Class</a></li>
-                            @if ($user->role != 'student')            
-                            <li><a href="{{ route('classes.create') }}" class="mb-8 hover:bg-white hover:text-blue-600">Add Course Class</a></li>
-                            @endif
-                          </ul>
                         </div>
                       </div>
                 </div>
