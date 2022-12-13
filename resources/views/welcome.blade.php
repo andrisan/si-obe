@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Si-OBE | Sistem Informasi OBE</title>
+    <title>si-OBE | Outcome Based Education</title>
 
     <!-- Fonts -->
     <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -25,8 +25,8 @@
         <div class="w-full flex items-center justify-between">
             <a class="flex items-center text-indigo-400 no-underline hover:no-underline font-bold text-2xl lg:text-4xl"
                href="#">
-                Si-<span
-                    class="bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-pink-500 to-purple-500">OBE</span>
+                <x-application-logo class="block h-8 pr-2 w-auto fill-current" />
+                si-<span class="bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-pink-500 to-purple-500">OBE</span>
             </a>
 
             <div class="flex w-1/2 justify-end content-center">
@@ -43,10 +43,10 @@
         <!--Left Col-->
         <div class="flex flex-col w-full xl:w-2/5 justify-center lg:items-start overflow-y-hidden">
             <h1 class="my-4 text-3xl md:text-5xl text-white opacity-75 font-bold leading-tight text-center md:text-left">
-                Selamat datang di Sistem Informasi OBE
+                Selamat datang di si-OBE
             </h1>
             <p class="leading-normal text-base md:text-2xl mb-8 text-center md:text-left">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quos sequi excepturi quasi.
+                Aplikasi manajemen nilai berbasis Outcome Based Education
             </p>
 
             <a href="/register" class="btn btn-accent space-x-2">
