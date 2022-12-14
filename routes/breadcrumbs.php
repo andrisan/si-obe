@@ -27,3 +27,9 @@ Breadcrumbs::for('criteria-levels.edit', function (BreadcrumbTrail $trail, $rubr
     $trail->push('Criteria Levels', route('rubrics.criterias.criteria-levels.index', [$rubric, $criteria]));
     $trail->push('Edit', route('rubrics.criterias.criteria-levels.edit', [$rubric, $criteria, $criteriaLevel]));
 });
+
+// Syllabi
+Breadcrumbs::for('syllabi.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Syllabi', route('syllabi.index'));
+});

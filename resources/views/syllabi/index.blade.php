@@ -1,115 +1,70 @@
+@section('pageTitle', "Syllabi")
+
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            @foreach ($course as $courses)
-                {{ __('Rencana Pembelajaran Semester - ' . $courses->name) }}
-            @endforeach
-
-
+            My Syllabi
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    <div class="flex space-x-20 ">
-                        <div class="dropdown border">
-                            <select name="" id="">{course->name}
-                                @foreach ($course as $courses)
-                                    <option> {{ $courses->name }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <div class="flex justify-end text-right">
-
-                            <br>
-                            <a href="{{ route('syllabi.create') }}"><button
-                                    class="btn btn-primary  px-5">Create</button></a>
-
-
-                        </div>
-
-
-
-
-                    </div>
-
-
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        {{ Breadcrumbs::render('syllabi.index') }}
+        <div class="pb-8">
+            <div class="flex flex-row sm:justify-end mb-3 px-4 sm:px-0 -mr-2 sm:-mr-3">
+                <div class="order-5 sm:order-6 mr-2 sm:mr-3">
+                    <a href="{{ route('syllabi.create') }}" class="w-full bg-white border border-gray-300 rounded-md shadow-sm px-2.5 sm:px-4 py-2 inline-flex justify-center text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        <span class="pr-1"><i class="fa fa-plus"></i> {{ __('Create New Syllabus') }}</span>
+                    </a>
                 </div>
             </div>
-            <div class=" ">
-                <table class="table w-full text-center border ">
-
-
-                    <thead>
-                        <tr class="">
-                            <th>Nama Syllabi</th>
-                            <th>Ketua Program Studi</th>
-                            <th>Dosen Penyusun RPS</th>
-                            <th>Mata Kuliah</th>
-
-                            <th>action</th>
+            @if($syllabi->count() > 0)
+                <div class="mb-5 overflow-x-auto bg-white rounded-lg shadow overflow-y-auto relative">
+                    <table class="border-collapse table-auto w-full bg-white table-striped relative">
+                        <thead>
+                        <tr class="text-left">
+                            <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-6">No</th>
+                            <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-64">Title</th>
+                            <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate ">Author</th>
+                            <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-128">Course</th>
+                            <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-48">Action</th>
                         </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($syllabus as $syllabi)
-                            <tr class="">
-                                <th class="text-blue-400"><a href="{{ route('syllabi.show', [$syllabi]) }}">{{ $syllabi->title }}</a></th>
-                                <th>{{ $syllabi->head_of_study_program }}</th>
-                                <th>{{ $syllabi->author }}</th>
-                                <th>{{ $courses->name }}</th>
-                                <th class="flex space-x-2"> <a href="{{ route('syllabi.edit', $syllabi->id) }}"><button
-                                            class="btn btn-primary px-8">EDIT</button></a>
-                                    <form action="{{ route('syllabi.destroy', $syllabi) }}" method="post">
-                                        @csrf
-                                        @method('delete')
-                                        <button
-                                            class="btn btn-primary "onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();"
-                                            value="{{ $syllabi->id }}">Delete</button>
-
-                                    </form>
-                            </tr>
-                            </tr>
-                        @endforeach
-
-                    </tbody>
-
-                </table>
-            </div>
-            <div>
-                <h1 class="text-center text-2xl my-10 font-bold">intended learning outcomes</h1>
-                <table class="table w-full text-center border">
-                    <thead>
-
-                        <tr>
-                            <th>No</th>
-                            <th>Position</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($ilos as $ilo)
+                        </thead>
+                        <tbody>
+                        @foreach ($syllabi as $syllabus)
                             <tr>
-                                <th>{{ $ilo->id }}</th>
-                                <th>{{ $ilo->position }}</th>
-                                <th>{{ $ilo->description }}</th>
+                                <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $loop->index + $syllabi->firstItem() }}</td>
+                                <td class="text-gray-600 px-6 py-3 border-t border-gray-100">
+                                    <a href="{{ route('syllabi.show', $syllabus->id) }}" class="text-blue-500 hover:text-blue-700">{{ $syllabus->title }}</a>
+                                </td>
+                                <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $syllabus->author }}</td>
+                                <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $syllabus->course->name }}</td>
+                                <td
+                                    class="text-gray-600 px-6 py-3 border-t border-gray-100">
+                                    <div class="flex flex-wrap space-x-4">
+                                        <a href="{{ route('syllabi.edit', $syllabus) }}" class="text-blue-500">Edit</a>
+                                        <form method="POST" action="{{ route('syllabi.destroy', $syllabus) }}">
+                                            @csrf
+                                            @method('delete')
+
+                                            <button class="text-red-500"
+                                                    onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
+                                                {{ __('Delete') }}
+                                            </button>
+                                        </form>
+
+                                    </div>
+                                </td>
                             </tr>
                         @endforeach
-                    </tbody>
-                </table>
-                <div class="mt-10">
-                    <button class="btn btn-primary">
-                        @foreach ($syllabus as $syllabi)
-                            <a href='{{ route('syllabi.ilos.index', $syllabi->id) }}'>
-                        @endforeach
-                       Lihat ilos
-                        </a>
-                    </button>
+                        </tbody>
+                    </table>
                 </div>
-            </div>
+                {{ $syllabi->links() }}
+            @else
+                <div class="text-center text-gray-600 p-8">
+                    {{ __('No syllabi found.') }}
+                </div>
+            @endif
         </div>
     </div>
 </x-app-layout>

@@ -16,19 +16,14 @@ class SyllabusController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index( )
     {
-        $course = Course::all();
-        $syllabi = Syllabus::all();
-        $ilos = IntendedLearningOutcome::all();
-        return view('syllabi.index',[
-            'course'=>$course,
-            'syllabus'=>$syllabi,
-            'ilos'=>$ilos
+        $syllabi = Syllabus::with('course')->paginate(5);
+        return view('syllabi.index', [
+            'syllabi' => $syllabi,
         ]);
-
     }
 
     /**

@@ -1,4 +1,4 @@
-@section('pageTitle', "Edit $criteria->title")
+@section('pageTitle', "Criteria Levels for $criteria->title")
 
 <x-app-layout>
     <x-slot name="header">
