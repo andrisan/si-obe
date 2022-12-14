@@ -20,11 +20,6 @@ class SyllabusController extends Controller
      */
     public function index( )
     {
-        //
-        if(Auth::user()->role!= 'admin'){
-            return abort(403);
-        }
-        
         $course = Course::all();
         $syllabi = Syllabus::all();
         $ilos = IntendedLearningOutcome::all();
@@ -32,10 +27,8 @@ class SyllabusController extends Controller
             'course'=>$course,
             'syllabus'=>$syllabi,
             'ilos'=>$ilos
-            
-            
         ]);
-        
+
     }
 
     /**
@@ -50,7 +43,7 @@ class SyllabusController extends Controller
         return view('syllabi.create',[
             'course'=>$course
         ]
-        
+
     );
     }
 

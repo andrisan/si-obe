@@ -3,9 +3,9 @@
     "version": "2.2.11",
     "width": 2600,
     "height": 2600,
-    "scrollTop": -1112.4729166666596,
-    "scrollLeft": -140.0000000000002,
-    "zoomLevel": 0.1,
+    "scrollTop": -544.9729392170821,
+    "scrollLeft": -515.8333128359593,
+    "zoomLevel": 1,
     "show": {
       "tableComment": true,
       "columnComment": true,
@@ -1565,9 +1565,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 737.3822,
-          "top": 473.5567,
-          "zIndex": 20,
+          "left": 640.7154,
+          "top": 528.5569,
+          "zIndex": 23,
           "widthName": 106.787109375,
           "widthComment": 60,
           "color": "#2196F3"
@@ -3594,8 +3594,8 @@
           "columnIds": [
             "48844d6f-e4da-4f3d-a5aa-3dfef5e81de3"
           ],
-          "x": 1187.34460234375,
-          "y": 709.8067,
+          "x": 1090.67780234375,
+          "y": 764.8069,
           "direction": "right"
         },
         "end": {
@@ -3812,7 +3812,7 @@
             "c4b6283a-1caf-4e70-b755-6d5aa701fe81"
           ],
           "x": 967,
-          "y": 1151.7866,
+          "y": 1199.7866,
           "direction": "left"
         },
         "constraintName": "fk_course_class_to_assignment",
@@ -3829,7 +3829,7 @@
             "8cee43b9-909a-4198-80a1-7860284cf0f3"
           ],
           "x": 476.055471875,
-          "y": 483.132,
+          "y": 568.8820000000001,
           "direction": "right"
         },
         "end": {
@@ -3855,7 +3855,7 @@
             "8cee43b9-909a-4198-80a1-7860284cf0f3"
           ],
           "x": 476.055471875,
-          "y": 568.8820000000001,
+          "y": 483.132,
           "direction": "right"
         },
         "end": {
@@ -3863,8 +3863,8 @@
           "columnIds": [
             "c58b49e1-3b85-4d8f-bdb8-9fb87e95308a"
           ],
-          "x": 737.3822,
-          "y": 631.0567,
+          "x": 640.7154,
+          "y": 686.0569,
           "direction": "left"
         },
         "constraintName": "fk_syllabus_to_assignment_plan",
@@ -3984,8 +3984,8 @@
           "columnIds": [
             "48844d6f-e4da-4f3d-a5aa-3dfef5e81de3"
           ],
-          "x": 962.363401171875,
-          "y": 788.5567,
+          "x": 865.696601171875,
+          "y": 843.5569,
           "direction": "bottom"
         },
         "end": {
@@ -3993,9 +3993,9 @@
           "columnIds": [
             "7fede121-e2bd-4ad9-a013-19b230f92207"
           ],
-          "x": 1184.046630859375,
-          "y": 1055.7866,
-          "direction": "top"
+          "x": 967,
+          "y": 1103.7866,
+          "direction": "left"
         },
         "constraintName": "fk_assignment_plan_to_assignment",
         "visible": true,
@@ -4036,8 +4036,8 @@
           "columnIds": [
             "48844d6f-e4da-4f3d-a5aa-3dfef5e81de3"
           ],
-          "x": 1187.34460234375,
-          "y": 552.3067,
+          "x": 1090.67780234375,
+          "y": 607.3069,
           "direction": "right"
         },
         "end": {

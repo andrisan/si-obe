@@ -23,7 +23,7 @@ class CriteriaLevelController extends Controller
         return view('criteria-levels.index', [
             'rubric' => $rubric,
             'criteria' => $criteria,
-            'criteriaLevels' => $criteria->criteriaLevels()->paginate(3)
+            'criteriaLevels' => $criteria->criteriaLevels()->orderBy('point','desc')->paginate(5)
         ]);
     }
 
@@ -51,7 +51,7 @@ class CriteriaLevelController extends Controller
         $validated = $request->validate([
             'point' => 'required|numeric',
             'title' => 'required|string',
-            'description' => 'string',
+            'description' => 'nullable|string',
         ]);
 
         $criteria->criteriaLevels()->create($validated);
@@ -109,7 +109,7 @@ class CriteriaLevelController extends Controller
         $validated = $request->validate([
             'point' => 'required|numeric',
             'title' => 'required|string',
-            'description' => 'string',
+            'description' => 'nullable|string',
         ]);
 
         $criteriaLevel->update($validated);
@@ -138,7 +138,7 @@ class CriteriaLevelController extends Controller
     public function destroy(Rubric $rubric, Criteria $criteria, CriteriaLevel $criteriaLevel)
     {
         $criteriaLevel->delete();
-        
+
         return redirect()->route('rubrics.criterias.criteria-levels.index', [
             'rubric' => $rubric,
             'criteria' => $criteria
