@@ -11,18 +11,30 @@
                 </div>
 
                 <!-- Navigation Links -->
+                @can('is-admin')
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-5 sm:flex">
+                        <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
+                            {{ __('Users') }}
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-5 sm:flex">
+                        <x-nav-link :href="route('courses.index')" :active="request()->routeIs('courses.index')">
+                            {{ __('Courses') }}
+                        </x-nav-link>
+                    </div>
+                @endcan
                 <div class="hidden space-x-8 sm:-my-px sm:ml-5 sm:flex">
                     <x-nav-link :href="route('classes.index')" :active="request()->routeIs('classes.index')">
                         {{ __('Classes') }}
                     </x-nav-link>
                 </div>
-                @can('is-teacher')
+                @canany(['is-teacher', 'is-admin'])
                 <div class="hidden space-x-8 sm:-my-px sm:ml-5 sm:flex">
                     <x-nav-link :href="route('syllabi.index')" :active="request()->routeIs('syllabi.index')">
                         {{ __('Syllabi') }}
                     </x-nav-link>
                 </div>
-                @endcan
+                @endcanany
             </div>
 
             <!-- Settings Dropdown -->

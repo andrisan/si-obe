@@ -44,24 +44,21 @@ Route::get('/', function () {
 // Authenticated and Verified
 Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('home', [DashboardController::class, 'index'])->name('dashboard');
-
+    Route::get('profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::resource('classes', CourseClassController::class);
-
     Route::scopeBindings()->group(function (){
         Route::resource('course-classes.assignments', AssignmentController::class);
     });
-    Route::get('profile', [ProfileController::class, 'index'])
-        ->name('profile.index');
 
     // Admin role
     Route::group(['middleware' => ['roles:admin']], function (){
         Route::resource('users', UserController::class);
-        Route::resource('faculties', FacultyController::class);
+        Route::resource('faculties', FacultyController::class)->except('show');
         Route::resource('courses', CourseController::class);
 
         Route::scopeBindings()->group(function () {
-            Route::resource('faculties.departments', DepartmentController::class);
-            Route::resource('faculties.departments.study-programs', StudyProgramController::class);
+            Route::resource('faculties.departments', DepartmentController::class)->except('show');
+            Route::resource('faculties.departments.study-programs', StudyProgramController::class)->except('show');
         });
     });
 
@@ -75,10 +72,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         Route::resource('student-grades', StudentGradeController::class, ['except' => [
             'edit'
         ]]);
-        Route::get('class-portofolio/{courseClass}', [ClassPortofolioController::class, 'index'])
-            ->name('class-portofolio.index');
-        Route::get('class-portofolio/{courseClass}/students', [ClassPortofolioController::class, 'student'])
-            ->name('class-portofolio.student');
+        Route::get('class-portofolio/{courseClass}', [ClassPortofolioController::class, 'index'])->name('class-portofolio.index');
+        Route::get('class-portofolio/{courseClass}/students', [ClassPortofolioController::class, 'student'])->name('class-portofolio.student');
 
         Route::scopeBindings()->group(function () {
             Route::resource('syllabi.ilos', IntendedLearningOutcomeController::class);
@@ -93,12 +88,9 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
     // Student
     Route::group(['middleware' => ['roles:student']], function (){
-        Route::post('/classes/join/process', [CourseClassController::class, 'join'])
-            ->name('classes.join');
-        Route::get('/classes/join/',[CourseClassController::class, 'show_join'])
-            ->name('classes.show_join');
-        Route::get('profile/grade', [ProfileController::class, 'grade'])
-            ->name('profile.grade')->middleware('auth');
+        Route::post('/classes/join/process', [CourseClassController::class, 'join'])->name('classes.join');
+        Route::get('/classes/join/',[CourseClassController::class, 'show_join'])->name('classes.show_join');
+        Route::get('profile/grade', [ProfileController::class, 'grade'])->name('profile.grade')->middleware('auth');
     });
 });
 

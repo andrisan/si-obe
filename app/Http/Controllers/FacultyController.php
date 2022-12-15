@@ -2,30 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Department;
 use App\Models\Faculty;
 use App\Models\StudyProgram;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class FacultyController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index()
     {
-        if (Auth::user()->role != 'admin') {
-            return abort(403);
-        }
+        $faculties = Faculty::paginate(10);
 
-        $faculties = Faculty::orderBy('id')->paginate(3);
-
-        return view('faculties.index', [
-            'faculties' => $faculties]);
+        return view('faculties.index', ['faculties' => $faculties]);
     }
 
     /**
@@ -93,11 +85,10 @@ class FacultyController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Faculty  $faculty
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function update(Request $request, Faculty $faculty)
     {
-        //
         $validated = $request->validate([
             'name' => 'required|string'
         ]);
@@ -105,8 +96,8 @@ class FacultyController extends Controller
         $faculty->update([
             'name' => $validated['name']
         ]);
-        
-        return redirect(route('faculties.show', [$faculty]));
+
+        return redirect(route('faculties.index'));
     }
 
     /**

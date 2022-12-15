@@ -2,38 +2,32 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Tambah Fakultas') }}
+            {{ __('Create New Faculty') }}
         </h2>
     </x-slot>
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200 flex justify-center">
-                    <div class="card w-96 bg-white text-neutral-content">
-                        <div class="card-body items-center text-center">
-                            <div class="card-title text-neutral">Nama Fakultas</div>
-                            <div class="form-control w-full max-w-xs">
-                                <form action="{{ route('faculties.store') }}" method="post">
-                                    @csrf
-                                    <input type="text" placeholder="Type here" class="input input-bordered input-ghost input-l w-full" name="name"required />
-                            </div>
-                            <div class="card-actions mt-2">
-                                <button
-                                    class="btn bg-green-400 hover:bg-white hover:text-green-400 text-white font-bold rounded border-green-400 border-2 hover:border-green-400"
-                                    type="submit">
-                                    Simpan
-                                </button>
-                                </form>
-                                <a href="{{ route('faculties.index')}}">
-                                    <button
-                                        class="btn bg-red-400 hover:bg-white hover:text-red-400 text-white font-bold rounded border-red-400 border-2 hover:border-red-400">
-                                        Cancel
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        {{ Breadcrumbs::render('faculties.create') }}
+        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="p-6 bg-white border-b border-gray-200">
+                <form method="POST" action="{{ route('faculties.store') }}">
+                    @csrf
+
+                    <div class="form-control w-full p-3">
+                        <label class="label">
+                            <span class="label-text">Faculty Name</span>
+                        </label>
+                        <input type="text" name="name" placeholder="Faculty Name"
+                               class="input input-bordered w-full max-w-xs" value="{{ old('name') }}"/>
+                        <x-input-error :messages="$errors->get('name')" class="mt-2"/>
                     </div>
-                </div>
+
+                    <div class="mt-4 p-4 space-x-2">
+                        <button type="submit" class="btn btn-sm px-7">
+                            Save
+                        </button>
+                        <a href="{{ route('faculties.index') }}">{{ __('Cancel') }}</a>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
