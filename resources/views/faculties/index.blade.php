@@ -1,4 +1,4 @@
-    @section('pageTitle', 'Faculty')
+    @section('pageTitle', 'Faculties')
 <x-app-layout>
 
     <x-slot name="header">
@@ -35,7 +35,7 @@
                                 <td
                                     class="text-gray-600 px-6 py-3 border-t border-gray-100">
                                     <div class="flex flex-wrap space-x-4">
-                                        <a href="{{ route('faculties.departments.index', $faculty) }}" class="text-blue-500">Manage Departemen</a>
+                                        <a href="{{ route('faculties.departments.index', $faculty) }}" class="text-amber-700">Manage Departemen</a>
                                         <a href="{{ route('faculties.edit', $faculty) }}" class="text-blue-500">Edit</a>
                                         <form method="POST" action="{{ route('faculties.destroy', $faculty) }}">
                                             @csrf
