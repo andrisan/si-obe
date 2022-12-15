@@ -18,7 +18,7 @@ class SyllabusController extends Controller
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function index( )
+    public function index()
     {
         $syllabi = Syllabus::with('course')->paginate(5);
         return view('syllabi.index', [
@@ -29,109 +29,121 @@ class SyllabusController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create()
     {
-        //
-        $course= Course::all();
-        return view('syllabi.create',[
-            'course'=>$course
-        ]
-
-    );
+        return view('syllabi.create', [
+                'courses' => Course::all()
+            ]
+        );
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request, Syllabus $syllabus)
+    public function store(Request $request)
     {
-        //
         $validated = $request->validate([
             'title' => 'required|string',
             'head_of_study_program' => 'required|string',
-            'author'=> 'required|string',
-            'course_id'=>'required'
+            'author' => 'required|string',
+            'course_id' => 'required'
         ]);
-       $syllabus = Syllabus::where('title', $validated['title'])->get();
 
         $syllabus = new Syllabus();
         $syllabus->title = $validated['title'];
         $syllabus->head_of_study_program = $validated['head_of_study_program'];
         $syllabus->author = $validated['author'];
-       $syllabus->course_id=$validated['course_id'];
+        $syllabus->course_id = $validated['course_id'];
         $syllabus->save();
-        return redirect()->route(
-            'syllabi.index'
-        );
+
+        return redirect()->route('syllabi.show', $syllabus);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Syllabus  $syllabus
-     * @return \Illuminate\Http\Response
+     * @param \App\Models\Syllabus $syllabus
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function show(Syllabus $syllabus)
+    public function show($id)
     {
-        //
-        $syllabus = Syllabus::all();
-        $ilos = IntendedLearningOutcome::all();
-        $clo = CourseLearningOutcome::all();
-        $llos = LessonLearningOutcome::all();
-        return view('syllabi.show',[
-        'syllabus'=>$syllabus,
-        'ilos'=>$ilos,
-        'clos'=>$clo,
-        "llos"=>$llos
-        ]
-        );
+        // get syllabus with course, ilos, llos, and clos
+        $syllabus = Syllabus::with(
+            'course', 'learningPlans',
+            'assignmentPlans',
+            'assignmentPlans.rubric',
+            'assignmentPlans.assignmentPlanTasks',
+            'assignmentPlans.assignmentPlanTasks.criteria',
+            'assignmentPlans.assignmentPlanTasks.criteria.lessonLearningOutcome',
+            'learningPlans.lessonLearningOutcome',
+            'intentedLearningOutcomes',
+            'intentedLearningOutcomes.courseLearningOutcomes',
+            'intentedLearningOutcomes.courseLearningOutcomes.lessonLearningOutcomes')
+            ->find($id);
 
+        $courseLearningOutcomes = $syllabus->intentedLearningOutcomes->map(function ($ilo) {
+            return $ilo->courseLearningOutcomes;
+        })->flatten();
+
+        $lessonLearningOutcomes = $courseLearningOutcomes->map(function ($clo) {
+            return $clo->lessonLearningOutcomes;
+        })->flatten();
+
+        return view('syllabi.show', [
+                'syllabus' => $syllabus,
+                'ilos' => $syllabus->intentedLearningOutcomes,
+                'clos' => $courseLearningOutcomes,
+                'llos' => $lessonLearningOutcomes,
+                'learningPlans' => $syllabus->learningPlans,
+                'assignmentPlans' => $syllabus->assignmentPlans
+            ]
+        );
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Syllabus  $syllabus
-     * @return \Illuminate\Http\Response
+     * @param \App\Models\Syllabus $syllabus
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function edit(Syllabus $syllabus)
     {
-        //
-        return view('syllabi.edit',[
-            'syllabus'=>$syllabus
-        ]
-    );
+        return view('syllabi.edit', [
+                'syllabus' => $syllabus,
+                'courses' => Course::all()
+            ]
+        );
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Syllabus  $syllabus
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Syllabus $syllabus
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, Syllabus $syllabus)
     {
-        //
-       $validated = $request->validate([
-        'author'=>'required|string',
-        'title'=>'required|string',
-        'head_of_study_program'=>'required|string'
-       ]);
-       $syllabus->update($validated);
+        $validated = $request->validate([
+            'author' => 'required|string',
+            'title' => 'required|string',
+            'head_of_study_program' => 'required|string',
+            'course_id' => 'required'
+        ]);
+        $syllabus->update($validated);
 
-        return redirect()->route('syllabi.index');
+        return redirect()->route('syllabi.show', $syllabus);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Syllabus  $syllabus
+     * @param \App\Models\Syllabus $syllabus
      * @return \Illuminate\Http\Response
      */
     public function destroy(Syllabus $syllabus)

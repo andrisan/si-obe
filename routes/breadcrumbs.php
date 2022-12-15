@@ -33,3 +33,25 @@ Breadcrumbs::for('syllabi.index', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
     $trail->push('Syllabi', route('syllabi.index'));
 });
+
+// Syllabi > Show
+Breadcrumbs::for('syllabi.show', function (BreadcrumbTrail $trail, $syllabus) {
+    $trail->parent('home');
+    $trail->push('Syllabi', route('syllabi.index'));
+    $trail->push($syllabus->title, route('syllabi.show', $syllabus));
+});
+
+// Syllabi > Create
+Breadcrumbs::for('syllabi.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Syllabi', route('syllabi.index'));
+    $trail->push('Create', route('syllabi.create'));
+});
+
+// Syllabi > Edit
+Breadcrumbs::for('syllabi.edit', function (BreadcrumbTrail $trail, $syllabus) {
+    $trail->parent('home');
+    $trail->push('Syllabi', route('syllabi.index'));
+    $trail->push($syllabus->title, route('syllabi.show', $syllabus));
+    $trail->push('Edit', route('syllabi.edit', $syllabus));
+});
