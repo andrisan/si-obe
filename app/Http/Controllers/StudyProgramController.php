@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Department;
 use App\Models\Faculty;
 use App\Models\StudyProgram;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
-
+use Illuminate\Http\Response;
 
 
 class StudyProgramController extends Controller
@@ -15,24 +18,22 @@ class StudyProgramController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index(Faculty $faculty, Department $department, )
     {
-        $departments = Department::all();
         return view('study-programs.index',[
             'faculty'=>$faculty,
-            'departments' => $departments,
             'department'=>$department,
-            'studyPrograms'=>$department->studyPrograms()->paginate(3)
+            'studyPrograms'=>$department->studyPrograms()->paginate(10)
         ]);
     }
 
    /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
-     */
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+    */
     public function create(Faculty $faculty, Department $department)
     {
         return view('study-programs.create',[
@@ -45,13 +46,13 @@ class StudyProgramController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
     public function store(Request $request, Faculty $faculty, Department $department)
     {
         $validated = $request->validate([
             'name' => 'required|string',
-        
+
         ]);
 
         $department->studyPrograms()->create($validated);
@@ -63,25 +64,15 @@ class StudyProgramController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Faculty $faculty, Department $department, StudyProgram $studyProgram)
-    {
-        ddd($faculty, $department, $studyProgram);
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Faculty $faculty
+     * @param Department $department
+     * @param StudyProgram $studyProgram
+     * @return Application|Factory|View
      */
     public function edit(Faculty $faculty, Department $department, StudyProgram $studyProgram)
     {
-        //
         return view('study-programs.edit', [
             'faculty' => $faculty,
             'department' => $department,
@@ -89,16 +80,17 @@ class StudyProgramController extends Controller
         ]);
     }
 
-   /**
+    /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Faculty $faculty
+     * @param Department $department
+     * @param StudyProgram $studyProgram
+     * @return RedirectResponse
      */
     public function update(Request $request, Faculty $faculty, Department $department, StudyProgram $studyProgram): RedirectResponse
     {
-        //
         $validated = $request->validate([
             'name' => 'required|string'
         ]);
@@ -115,17 +107,18 @@ class StudyProgramController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Faculty $faculty
+     * @param Department $department
+     * @param StudyProgram $studyProgram
+     * @return RedirectResponse
      */
     public function destroy(Faculty $faculty, Department $department, StudyProgram $studyProgram)
     {
-        //
         $studyProgram->delete();
-        
+
         return redirect()->route('faculties.departments.study-programs.index', [
             'faculty' => $faculty,
             'department' => $department
         ]);
-    } 
+    }
 }

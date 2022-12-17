@@ -43,6 +43,26 @@ Breadcrumbs::for('departments.edit', function (BreadcrumbTrail $trail, $faculty,
     $trail->push($department->name, route('faculties.departments.edit', [$faculty, $department]));
 });
 
+// Study Programs
+Breadcrumbs::for('study-programs.index', function (BreadcrumbTrail $trail, $faculty, $department) {
+    $trail->parent('home');
+    $trail->push($faculty->name, route('faculties.index'));
+    $trail->push($department->name, route('faculties.departments.index', $faculty));
+    $trail->push('Study Programs', route('faculties.departments.study-programs.index', [$faculty, $department]));
+});
+
+// Department Create
+Breadcrumbs::for('study-programs.create', function (BreadcrumbTrail $trail, $faculty, $department) {
+    $trail->parent('study-programs.index', $faculty, $department);
+    $trail->push('Create');
+});
+
+// Department Edit
+Breadcrumbs::for('study-programs.edit', function (BreadcrumbTrail $trail, $faculty, $department, $studyProgram) {
+    $trail->parent('study-programs.index', $faculty, $department);
+    $trail->push($studyProgram->name, route('faculties.departments.study-programs.edit', [$faculty, $department, $studyProgram]));
+});
+
 // Criteria Levels
 Breadcrumbs::for('criteria-levels.index', function (BreadcrumbTrail $trail, $rubric, $criteria) {
     $trail->parent('home');

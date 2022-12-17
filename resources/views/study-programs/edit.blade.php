@@ -1,38 +1,36 @@
-@section('pageTitle', "Edit Program Studi")
+@section('pageTitle', "Edit Study Program")
 <x-app-layout>
-  <x-slot name="header">
-    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-      {{ __('Edit Program Study') }}
-    </h2>
-  </x-slot>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Edit Program Study') }}
+        </h2>
+    </x-slot>
 
-  <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-      <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-        <div data-theme="light" class="p-6 flex justify-center">
-          <div class="card w-96 bg-base-100">
-            <div class="card-body items-center text-center">
-              <div class="form-control w-full max-w-xs">
+        {{ Breadcrumbs::render('study-programs.edit', $faculty, $department, $studyProgram) }}
+        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="p-6 bg-white border-b border-gray-200">
                 <form method="POST" action="{{ route('faculties.departments.study-programs.update', [$faculty, $department, $studyProgram]) }}">
-                  @csrf
-                  @method('patch')
-                  <label class="label">
-                    <span class="label-text">Nama Program Studi</span>
-                  </label>
-                  <input type="text" class="input input-bordered w-full max-w-xs" name="name" value="{{ old('name', $studyProgram->name) }}" />
-                  <x-input-error :messages="$errors->get('name')" class="mt-2" />
-                  <div class="card-actions justify-end mt-4">
-                    <button class="btn btn-error m-2"><a  href="{{ route('faculties.departments.study-programs.index', [$faculty, $department]) }}">Cancel</a></button>
-                    <button class="btn btn-success m-2">Save</button>
-                  </div>
+                    @csrf
+                    @method('patch')
+
+                    <div class="form-control w-full p-3">
+                        <label class="label">
+                            <span class="label-text">Study Program Name</span>
+                        </label>
+                        <input type="text" name="name" placeholder="Study Program Name"
+                               class="input input-bordered w-full max-w-xs" value="{{ old('name', $studyProgram->name) }}"/>
+                        <x-input-error :messages="$errors->get('name')" class="mt-2"/>
+                    </div>
+
+                    <div class="mt-4 p-4 space-x-2">
+                        <button type="submit" class="btn btn-sm px-7">
+                            Save
+                        </button>
+                        <a href="{{ route('faculties.departments.study-programs.index', [$faculty, $department]) }}">{{ __('Cancel') }}</a>
+                    </div>
                 </form>
-                
-              </div>
-              
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 </x-app-layout>
