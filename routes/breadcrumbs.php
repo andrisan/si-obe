@@ -123,13 +123,12 @@ Breadcrumbs::for('courses.index', function (BreadcrumbTrail $trail) {
 Breadcrumbs::for('courses.show', function (BreadcrumbTrail $trail, $course) {
     $trail->parent('home');
     $trail->push('Courses', route('courses.index'));
-    $trail->push($course->title, route('courses.show', $course));
+    $trail->push($course->name, route('courses.show', $course));
 });
 
 // Courses > Create
 Breadcrumbs::for('courses.create', function (BreadcrumbTrail $trail) {
-    $trail->parent('home');
-    $trail->push('Courses', route('courses.index'));
+    $trail->parent('courses.index');
     $trail->push('Create', route('courses.create'));
 });
 
@@ -137,7 +136,7 @@ Breadcrumbs::for('courses.create', function (BreadcrumbTrail $trail) {
 Breadcrumbs::for('courses.edit', function (BreadcrumbTrail $trail, $course) {
     $trail->parent('home');
     $trail->push('Courses', route('courses.index'));
-    $trail->push($course->title, route('courses.show', $course));
+    $trail->push($course->name, route('courses.show', $course));
     $trail->push('Edit', route('courses.edit', $course));
 });
 
