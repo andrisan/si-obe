@@ -55,7 +55,7 @@ class CourseController extends Controller
             'name' => 'required|string',
             'course_credit' => 'required|integer',
             'lab_credit' => 'required|integer',
-            'type' => 'in:Mandatory,Elective',
+            'type' => 'required|in:Mandatory,Elective',
             'short_description' => 'string',
             'minimal_requirement' => 'string',
             'study_material_summary' => 'string',

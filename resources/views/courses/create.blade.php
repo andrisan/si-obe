@@ -88,7 +88,7 @@
                                 <span class="label-text text-neutral font-bold">Course Type</span>
                             </label>
                             <select class="select text-neutral input-bordered bg-white w-full max-w-xl" name="type" id="type">
-                                <option></option>
+                                <option disabled selected>Select Course Type</option>
                                 <option>Mandatory</option>
                                 <option>Elective</option>
                             </select>
