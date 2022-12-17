@@ -45,9 +45,9 @@ Route::get('/', function () {
 Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('home', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('profile', [ProfileController::class, 'index'])->name('profile.index');
-    Route::resource('classes', CourseClassController::class);
+
     Route::scopeBindings()->group(function (){
-        Route::resource('course-classes.assignments', AssignmentController::class);
+        Route::resource('course-classes.assignments', AssignmentController::class)->except('index');
     });
 
     // Admin role
@@ -88,10 +88,12 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
     // Student
     Route::group(['middleware' => ['roles:student']], function (){
-        Route::post('/classes/join/process', [CourseClassController::class, 'join'])->name('classes.join');
-        Route::get('/classes/join/',[CourseClassController::class, 'show_join'])->name('classes.show_join');
+        Route::post('classes/join/process', [CourseClassController::class, 'join'])->name('classes.join');
+        Route::get('classes/join',[CourseClassController::class, 'show_join'])->name('classes.show_join');
         Route::get('profile/grade', [ProfileController::class, 'grade'])->name('profile.grade')->middleware('auth');
     });
+
+    Route::resource('classes', CourseClassController::class);
 });
 
 require __DIR__ . '/auth.php';

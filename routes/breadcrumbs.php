@@ -92,3 +92,56 @@ Breadcrumbs::for('syllabi.edit', function (BreadcrumbTrail $trail, $syllabus) {
     $trail->push($syllabus->title, route('syllabi.show', $syllabus));
     $trail->push('Edit', route('syllabi.edit', $syllabus));
 });
+
+// Courses
+Breadcrumbs::for('courses.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Courses', route('courses.index'));
+});
+
+// Courses > Show
+Breadcrumbs::for('courses.show', function (BreadcrumbTrail $trail, $course) {
+    $trail->parent('home');
+    $trail->push('Courses', route('courses.index'));
+    $trail->push($course->title, route('courses.show', $course));
+});
+
+// Courses > Create
+Breadcrumbs::for('courses.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Courses', route('courses.index'));
+    $trail->push('Create', route('courses.create'));
+});
+
+// Courses > Edit
+Breadcrumbs::for('courses.edit', function (BreadcrumbTrail $trail, $course) {
+    $trail->parent('home');
+    $trail->push('Courses', route('courses.index'));
+    $trail->push($course->title, route('courses.show', $course));
+    $trail->push('Edit', route('courses.edit', $course));
+});
+
+// Course classes
+Breadcrumbs::for('classes.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Classes', route('classes.index'));
+});
+
+// Course classes > Create
+Breadcrumbs::for('classes.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('classes.index');
+    $trail->push('Create', route('classes.create'));
+});
+
+// Course classes > Edit
+Breadcrumbs::for('classes.edit', function (BreadcrumbTrail $trail, $class) {
+    $trail->parent('classes.index');
+    $trail->push($class->name, route('classes.show', $class));
+    $trail->push('Edit', route('classes.edit', $class));
+});
+
+// Course classes > Join
+Breadcrumbs::for('classes.join', function (BreadcrumbTrail $trail) {
+    $trail->parent('classes.index');
+    $trail->push('Join', route('classes.join'));
+});

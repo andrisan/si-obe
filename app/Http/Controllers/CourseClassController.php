@@ -5,104 +5,91 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use App\Models\CourseClass;
 use App\Models\User;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Hashids\Hashids;
+use Illuminate\Support\Facades\Gate;
 
 class CourseClassController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
      */
     // public function index()
     // {
     //     return view('course-classes.index');
     // }
-   public function index(Request $request)
+    public function index(Request $request)
     {
-        if (Auth::user()->role == 'student') {
-            return view('course-classes.index2', [
-                'classes'=>User::find(Auth::user()->id)->students()->paginate(6),
-            ]);
+        if (Gate::allows('is-student')) {
+            $classes = Auth::user()->joinedClasses();
+        } else if (Gate::allows('is-teacher')) {
+            $classes = Auth::user()->createdClasses();
+        } else if (Gate::allows('is-admin')) {
+            $classes = CourseClass::orderBy('id');
+        } else {
+            return redirect()->route('login');
         }
 
-        if (Auth::user()->role == 'admin') {
-
-            if(!request('search')){
-                $classes=CourseClass::paginate(6);
-            }else{
-                $cari =  $request->search;
-                $classes = CourseClass::where('name','like','%'. $cari.'%')->paginate(6);
+        if ($request->has('search')) {
+            $classes = $classes->where('name', 'like', '%' . $request->search . '%');
         }
 
-
-
-            return view('course-classes.index', [
-                'classes'=>$classes
-            ]);
-        }
-        $classes= CourseClass::all();
-        
-
-        //Fitur Search
-        if(!request('search')){
-         $classes=CourseClass::where('creator_user_id', Auth::user()->id)->paginate(6);
-        }else{
-            $cari =  $request->search;
-            $classes = CourseClass:: where('creator_user_id',Auth::user()->id)->where('name','like','%'. $cari.'%')->paginate(6);
-        }
-
-        //End Search
-
-        $classesCourseId = CourseClass::where('creator_user_id', Auth::user()->id)->pluck('course_id');
+        $classes = $classes->paginate(9);
 
         return view('course-classes.index', [
-            'classes'=>$classes,
-            'courses'=>Course::find($classesCourseId),
+            'classes' => $classes,
         ]);
     }
+
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create()
     {
+        if (!(Gate::allows('is-teacher') || Gate::allows('is-admin'))) {
+            abort(403);
+        }
         $courses = Course::all();
-        return view('course-classes.create',[
-            'courses'=> $courses
+        return view('course-classes.create', [
+            'courses' => $courses
         ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
         $validateData = $request->validate([
-            'name'=> 'required|string',
-            'course_id'=> 'required|integer',
-            'thumbnail_img'=> 'required|image|mimes:png,jpg,jpeg,svg',
+            'name' => 'required|string',
+            'course_id' => 'required|integer',
+            'thumbnail_img' => 'required|image|mimes:png,jpg,jpeg,svg',
         ]);
-        
+
         $validateData['thumbnail_img'] = $request->file('thumbnail_img')->store('public/thumbnail');
 
         $classes = new CourseClass();
         $classes->name = $validateData['name'];
         $classes->course_id = $validateData['course_id'];
-        $classes->creator_user_id = Auth::user()->id ;
+        $classes->creator_user_id = Auth::user()->id;
         $classes->thumbnail_img = $validateData['thumbnail_img'];
 
         $classes->save();
         $classesId = $classes->id;
 
-        $hashids = new Hashids();
+        $hashids = new Hashids('', 5);
 
         $classCode = $hashids->encode($classesId);
 
@@ -110,75 +97,92 @@ class CourseClassController extends Controller
             'class_code' => $classCode,
         ]);
 
-        return redirect()-> route('classes.index');
+        return redirect()->route('classes.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $courseClassId
+     * @return Application|Factory|View
      */
-   public function show(Request $request)
+    public function show($courseClassId)
     {
+        if (Gate::allows("is-student")) {
+            $class = Auth::user()->joinedClasses()->where('course_class_id', $courseClassId)->first();
+        } else if (Gate::allows("is-teacher")) {
+            $class = Auth::user()->createdClasses()->where('id', $courseClassId)->first();
+        } else if (Gate::allows("is-admin")) {
+            $class = CourseClass::where('id', $courseClassId)->first();
+        } else {
+            abort(403);
+        }
 
-        // buat detail matkul/course
-       $course = CourseClass::find($request->class);
-         return view ('course-classes.show',[
-        'course' => $course,
+        if ($class == null) {
+            abort(404);
+        }
+
+        return view('course-classes.show', [
+            'courseClass' => $class,
+            'assignments' => $class->assignments,
         ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return Application|Factory|View
      */
     public function edit(CourseClass $class)
     {
-        $courses = Course::all();
-        if (Auth::user()->role == 'teacher') {
-            return view('course-classes.edit', ['class' =>$class,'courses'=> $courses]);
-        } else if (Auth::user()->role == 'admin') {
-            return view('course-classes.edit', ['class' =>$class,'courses'=> $courses]);
-        }
-        else{
+        if (!(Gate::allows('is-teacher') || Gate::allows('is-admin'))) {
             abort(403);
         }
+
+        $courses = Course::all();
+        return view('course-classes.edit', [
+            'class' => $class,
+            'courses' => $courses
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, CourseClass $class)
     {
-        if (Auth::user()->role == 'teacher'|| 'admin') {
-             $validateData = $request->validate([
-            'name'=> 'required|string',
-            'course_id'=> 'required|integer',
-            'thumbnail_img'=> 'required|image|mimes:png,jpg,jpeg,svg',
-        ]);
-             $validateData['thumbnail_img'] = $request->file('thumbnail_img')->store('public/thumbnail');
-            $class->update([
-                 'name' => $validateData['name'],
-                 'course_id' => $validateData['course_id'],
-                 'creator_user_id' => Auth::user()->id,
-                 'thumbnail_img' => $validateData['thumbnail_img'],
-            ]);
-
+        if (!(Gate::allows('is-teacher') || Gate::allows('is-admin'))) {
+            abort(403);
         }
-        return redirect()-> route('classes.index');
+
+        $validateData = $request->validate([
+            'name' => 'required|string',
+            'course_id' => 'required|integer',
+            'thumbnail_img' => 'image|mimes:png,jpg,jpeg,svg',
+        ]);
+        if ($request->hasFile('thumbnail_img')) {
+            $validateData['thumbnail_img'] = $request->file('thumbnail_img')->store('public/thumbnail');
+        }
+
+        $class->name = $validateData['name'];
+        $class->course_id = $validateData['course_id'];
+        if ($request->hasFile('thumbnail_img')) {
+            $class->thumbnail_img = $validateData['thumbnail_img'];
+        }
+        $class->save();
+
+        return redirect()->route('classes.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(CourseClass $class)
@@ -194,18 +198,17 @@ class CourseClassController extends Controller
         return back();
     }
 
-    public function show_join(){
-        $username = Auth::user()->name;
-        return view('course-classes.show_join', [
-            'username' => $username,
-        ]);
+    public function show_join()
+    {
+        return view('course-classes.show_join');
     }
 
-    public function join(Request $request){
-        if (Auth::user()->role != 'student') {
+    public function join(Request $request)
+    {
+        if (!(Gate::allows('is-student'))) {
             abort(403);
         }
-         
+
         $validated = $request->validate([
             'class_code' => 'required|string'
         ]);
@@ -213,7 +216,7 @@ class CourseClassController extends Controller
         $classesCourseId = CourseClass::where('class_code', $validated['class_code'])->value('id');
 
         if ($classesCourseId == null) {
-            $errorMessage = 'Kelas Tidak Ditemukan';
+            $errorMessage = 'Kelas tidak ditemukan';
             return view('course-classes.fail_join', [
                 'errorMessage' => $errorMessage,
             ]);
@@ -224,7 +227,7 @@ class CourseClassController extends Controller
         $joinClassExist = DB::table('join_classes')->where('course_class_id', $classesCourseId)->where('student_user_id', $studentUserId)->first();
 
         if ($joinClassExist != null) {
-            $errorMessage = 'Anda Sudah Bergabung dengan Kelas Ini';
+            $errorMessage = 'Anda sudah bergabung dengan kelas ini';
             return view('course-classes.fail_join', [
                 'errorMessage' => $errorMessage,
             ]);

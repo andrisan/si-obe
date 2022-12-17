@@ -6,52 +6,55 @@
         </h2>
     </x-slot>
 
-    <x-slot name="slot">
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6 bg-white border-b border-gray-200">
-                        <form action="{{ route('classes.update', [$class]) }}" method="POST"
-                            enctype="multipart/form-data">
-                            @csrf
-                            @method('patch')
-                            <div class="container p-4 text-primary mt-2 text-sm">
-                                <label class="uppercase font-bold  text-black" for="name">nama kelas</label><br>
-                                <input value="{{ old('name', $class->name) }}" type="text"
-                                    placeholder="Masukkan Nama Kelas"
-                                    class="input input-bordered input-ghost input-l w-full max-w-xl mb-2 mt-2"
-                                    name="name" required />
-                                @error('name')
-                                    <div class="text-red-600">{{ $message }}</div>
-                                @enderror
-                                <br>
-                                <label class="uppercase font-bold  text-black" for="course_id">Course</label><br>
-                                <select name="course_id" id="cars">
-                                    <option value="{{ $class->course->id }}">{{ $class->course->name}}</option>
-                                    @foreach ($courses as $course)
-                                    @if ($course->id != $class->course->id)
-                                    <option value="{{ $course['id'] }}">{{ $course->name}}</option>
-                                    @endif
-                                    @endforeach
-                                </select>
-                                <br>
-                                <input type="file" name="thumbnail_img" class="block mt-4">
-                                 @error('thumbnail_img')
-                                    <div class="text-red-600">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="mt-4 ml-4">
-                                <button
-                                    class="bg-blue-600 hover:bg-white hover:text-blue-600 text-white font-bold py-2 px-4 rounded-lg border-blue-600 border-2"
-                                    type="submit">
-                                    Save
-                                </button>
-                                <a href="{{ route('classes.index') }}"
-                                    class="bg-slate-200 hover:bg-white hover:text-blue-600 text-blue-700 font-bold py-2 px-4 rounded-lg border-blue-600 border-2">Cancel</a>
-                            </div>
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        {{ Breadcrumbs::render('classes.edit', $class) }}
+        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="p-6 bg-white border-b border-gray-200">
+                <form action="{{ route('classes.update', [$class]) }}" method="POST"
+                      enctype="multipart/form-data">
+                    @csrf
+                    @method('patch')
+
+                    <div class="form-control w-full p-3">
+                        <label class="label">
+                            <span class="label-text">Course</span>
+                        </label>
+                        <select class="select select-bordered w-full max-w-xs" name="course_id">
+                            <option disabled selected>Choose the course</option>
+                            @foreach ($courses as $course)
+                                <option
+                                    value="{{ $course->id }}" {{ (old("course_id", $class->course_id) == $course->id ? "selected":"") }}>{{ $course->name }}</option>
+                            @endforeach
+                        </select>
+                        <x-input-error :messages="$errors->get('course_id')" class="mt-2"/>
                     </div>
-                </div>
+
+                    <div class="form-control w-full p-3">
+                        <label class="label">
+                            <span class="label-text">Class Name</span>
+                        </label>
+                        <input type="text" name="name" placeholder="Class name"
+                               class="input input-bordered w-full max-w-xs" value="{{ old('name', $class->name) }}"/>
+                        <x-input-error :messages="$errors->get('name')" class="mt-2"/>
+                    </div>
+
+                    <div class="form-control w-full p-3">
+                        <label class="label">
+                            <span class="label-text">Thumbnail Image</span>
+                        </label>
+                        <input type="file" name="thumbnail_img" class="block mt-4">
+                        <x-input-error :messages="$errors->get('thumbnail_img')" class="mt-2"/>
+                    </div>
+
+                    <div class="mt-4 p-4 space-x-2">
+                        <button type="submit" class="btn btn-sm px-7">
+                            Save
+                        </button>
+                        <a href="{{ route('classes.index') }}">{{ __('Cancel') }}</a>
+                    </div>
+                </form>
             </div>
         </div>
-    </x-slot>
+    </div>
+
 </x-app-layout>
