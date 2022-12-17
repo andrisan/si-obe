@@ -2,58 +2,71 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{('Capaian Pembelajaran Lulusan')}}
+            {{ __('Intended Learning Outcomes') }}
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    <button class="px-8 mx-14 p-3 bg-green-400 rounded-md"><a
-                            href="{{route('syllabi.ilos.create',[$syllabus])}}">Tambah</a></button>
-                    <div class="flex px-16 mt-2">
-                        <table class="table-fixed w-full">
-                            <thead>
-                                <tr class="border-2 h-10">
-                                    <th class="w-10">No</th>
-                                    <th class="w-44">Position</th>
-                                    <th class="w-[35rem]">Description</th>
-                                    <th class=" w-60">Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody class=" border-2 border-black text-center">
-                                @foreach ($ilos as $ilo)
-                                <tr class="border-2 h-14">
-                                    <td>{{$ilo['id']}}</td>
-                                    <td>{{$ilo['position']}}</td>
-                                    <td class="text-justify">{{$ilo['description']}}</td>
-                                    <td class="flex space-x-8 justify-center mt-5">
-                                        <form action="/syllabi/{{$ilo->id}}/ilos/{{$ilo->id}}" method="post">
-                                            @method('delete')
-                                            @csrf
-                                            <button
-                                                class="btn  btn-primary hover:bg-blue-200 hover:text-slate-400  btn-xs sm:btn-sm md:btn-sm rounded-md mb-5"><a
-                                                    href="{{route ('syllabi.ilos.show',[$syllabus, $ilo['id']])}}">View</a></button>
-                                            <button
-                                                class="btn  btn-warning hover:bg-yellow-200 hover:text-slate-400  btn-xs sm:btn-sm md:btn-sm rounded-md mb-5"><a
-                                                    href="{{route ('syllabi.ilos.edit',[$syllabus, $ilo['id']])}}">Edit</a></button>
-                                            <button
-                                                class="btn btn-error hover:bg-red-200 hover:text-slate-400 btn-xs sm:btn-sm md:btn-sm rounded-md "
-                                                onclick="return confirm('Are you sure?')"
-                                                value="{{$ilo->id}}">Delete</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="px-14 mt-10">
-                    {{$ilos->links() }}
-                </div>
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        {{ Breadcrumbs::render('ilos.index', $syllabus) }}
+        <div class="pb-8">
+            <div class="flex flex-row sm:justify-end mb-3 px-4 sm:px-0 -mr-2 sm:-mr-3">
+                <div class="order-5 sm:order-6 mr-2 sm:mr-3">
+                    <x-button-link href="{{ route('syllabi.ilos.create',[$syllabus]) }}">
+                        <i class="fa fa-plus"></i> {{ __('Create New ILO') }}
+                    </x-button-link>
                 </div>
             </div>
+            @if($ilos->count() > 0)
+                <div class="mb-5 overflow-x-auto bg-white rounded-lg shadow overflow-y-auto relative">
+                    <table class="border-collapse table-auto w-full bg-white table-striped relative">
+                        <thead>
+                        <tr class="text-left">
+                            <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-6">
+                                No
+                            </th>
+                            <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate">
+                                Description
+                            </th>
+                            <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-128">
+                                Action
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach ($ilos as $ilo)
+                            <tr>
+                                <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $loop->index + $ilos->firstItem() }}</td>
+                                <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $ilo->description }}</td>
+                                <td
+                                    class="text-gray-600 px-6 py-3 border-t border-gray-100">
+                                    <div class="flex flex-wrap space-x-4">
+                                        <a href="{{ route('syllabi.ilos.clos.index', [$syllabus, $ilo]) }}"
+                                           class="text-amber-700">Manage CLOs</a>
+                                        <a href="{{ route('syllabi.ilos.edit', [$syllabus, $ilo]) }}"
+                                           class="text-blue-500">Edit</a>
+                                        <form method="POST" action="{{ route('syllabi.ilos.destroy', [$syllabus, $ilo]) }}">
+                                            @csrf
+                                            @method('delete')
+
+                                            <button class="text-red-500"
+                                                    onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
+                                                {{ __('Delete') }}
+                                            </button>
+                                        </form>
+
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                {{ $ilos->links() }}
+            @else
+                <div class="text-center p-8">
+                    No intended learning outcomes found.
+                </div>
+            @endif
         </div>
     </div>
 </x-app-layout>

@@ -1,6 +1,7 @@
 <?php
 use Diglactic\Breadcrumbs\Breadcrumbs;
 use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
+use Illuminate\Support\Str;
 
 Breadcrumbs::for('home', function (BreadcrumbTrail $trail) {
     $trail->push('Home', route('dashboard'));
@@ -111,6 +112,26 @@ Breadcrumbs::for('syllabi.edit', function (BreadcrumbTrail $trail, $syllabus) {
     $trail->push('Syllabi', route('syllabi.index'));
     $trail->push($syllabus->title, route('syllabi.show', $syllabus));
     $trail->push('Edit', route('syllabi.edit', $syllabus));
+});
+
+// ILOs
+Breadcrumbs::for('ilos.index', function (BreadcrumbTrail $trail, $syllabus) {
+    $trail->parent('home');
+    $trail->push('Syllabi', route('syllabi.index'));
+    $trail->push(Str::limit($syllabus->title, 30), route('syllabi.show', $syllabus));
+    $trail->push('ILOs', route('syllabi.ilos.index', $syllabus));
+});
+
+// ILOs > Create
+Breadcrumbs::for('ilos.create', function (BreadcrumbTrail $trail, $syllabus) {
+    $trail->parent('ilos.index', $syllabus);
+    $trail->push('Create', route('syllabi.ilos.create', $syllabus));
+});
+
+// ILOs > Edit
+Breadcrumbs::for('ilos.edit', function (BreadcrumbTrail $trail, $syllabus, $ilo) {
+    $trail->parent('ilos.index', $syllabus);
+    $trail->push(Str::limit($ilo->description, 30), route('syllabi.ilos.edit', [$syllabus, $ilo]));
 });
 
 // Courses

@@ -53,7 +53,7 @@
                                     <td>{{$clo['position']}}</td>
                                     <td class="text-justify-center">{{$clo['description']}}</td>
                                     <td class="flex space-x-8 justify-center mt-2">
-                                        <a href="{{ route('syllabi.ilos.clos.show', [$syllabus, $ilo, $clo->id]) }}" class="btn btn-outline btn-sm my-1">Detail</a>
+                                        <a href="{{ route('syllabi.ilos.clos.index', [$syllabus, $ilo]) }}" class="btn btn-outline btn-sm my-1">Detail</a>
                                         <a href="{{ route('syllabi.ilos.clos.edit', [$syllabus, $ilo, $clo['id']]) }}" class="my-2"><i class="fa-solid fa-pen-to-square text-blue-800"></i></a>
                                         <form method="POST" action="{{ route('syllabi.ilos.clos.destroy', [$syllabus, $ilo, $clo['id']]) }}">
                                             @csrf

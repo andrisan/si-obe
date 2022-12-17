@@ -18,6 +18,11 @@ class Syllabus extends Model
         return $this->belongsTo(Course::class, 'course_id');
     }
 
+    public function ilos()
+    {
+        return $this->intendedLearningOutcomes();
+    }
+
     public function intendedLearningOutcomes()
     {
         return $this->hasMany(IntendedLearningOutcome::class, 'syllabus_id');
