@@ -134,6 +134,15 @@ Breadcrumbs::for('ilos.edit', function (BreadcrumbTrail $trail, $syllabus, $ilo)
     $trail->push(Str::limit($ilo->description, 30), route('syllabi.ilos.edit', [$syllabus, $ilo]));
 });
 
+// CLOs
+Breadcrumbs::for('clos.index', function (BreadcrumbTrail $trail, $syllabus, $ilo) {
+    $trail->parent('home');
+    $trail->push('Syllabi', route('syllabi.index'));
+    $trail->push(Str::limit($syllabus->title, 30), route('syllabi.show', $syllabus));
+    $trail->push('ILOs', route('syllabi.ilos.index', $syllabus));
+    $trail->push('CLOs', route('syllabi.ilos.clos.index', [$syllabus, $ilo]));
+});
+
 // Courses
 Breadcrumbs::for('courses.index', function (BreadcrumbTrail $trail) {
     $trail->parent('home');

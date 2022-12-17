@@ -18,19 +18,14 @@ class CourseLearningOutcomeController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
-    public function index($syllabus, $ilo)
+    public function index(Syllabus $syllabus, IntendedLearningOutcome $ilo)
     {
-        $ilos = IntendedLearningOutcome::where('id', $ilo)->first();
-
-        $clos = CourseLearningOutcome::where('ilo_id', $ilo)->orderBy('position')->paginate(5);
-
         return view('course-learning-outcomes.index', [
             'syllabus' => $syllabus,
             'ilo' => $ilo,
-            'ilos' => $ilos,
-            'clos' => $clos,
+            'clos' => $ilo->courseLearningOutcomes()->orderBy('position')->paginate(10),
         ]);
     }
 
@@ -47,7 +42,7 @@ class CourseLearningOutcomeController extends Controller
         ]);
     }
     // button create
-    
+
 
     /**
      * Store a newly created resource in storage.
@@ -63,7 +58,7 @@ class CourseLearningOutcomeController extends Controller
         ]);
 
         $ilo->courseLearningOutcomes()->create($validated);
-        
+
         return redirect()->route('syllabi.ilos.clos.index', [
             'syllabus' => $syllabus,
             'ilo' => $ilo,
@@ -94,7 +89,7 @@ class CourseLearningOutcomeController extends Controller
      * @param Syllabus $syllabus
      * @param IntendedLearningOutcome $intendedLearningOutcome
      * @param CourseLearningOutcome $courseLearningOutcome
-     * 
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($syllabus, $ilo, CourseLearningOutcome $clo)
@@ -105,7 +100,7 @@ class CourseLearningOutcomeController extends Controller
             'clo' => $clo,
         ]);
     }
-   
+
     /**
      * Update the specified resource in storage.
      *
@@ -148,5 +143,5 @@ class CourseLearningOutcomeController extends Controller
         ]);
     }
     // button delete
-    
+
 }
