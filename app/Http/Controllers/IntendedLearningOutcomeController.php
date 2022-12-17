@@ -19,14 +19,13 @@ class IntendedLearningOutcomeController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
-    public function index($syllabus)
+    public function index(Syllabus $syllabus)
     {
-       $ilos = IntendedLearningOutcome::where('syllabus_id', $syllabus)->orderBy('position')->paginate(3);
        return view('intended-learning-outcomes.index',[
             'syllabus' => $syllabus,
-            'ilos' => $ilos
+            'ilos' => $syllabus->intendedLearningOutcomes()->orderBy('position')->paginate(3)
         ]);
     }
 
@@ -55,7 +54,7 @@ class IntendedLearningOutcomeController extends Controller
         'position'=> 'required|numeric',
         'description'=> 'required|string',
     ]);
-        $syllabus->intentedLearningOutcomes()->create($validateData);
+        $syllabus->intendedLearningOutcomes()->create($validateData);
 
         return redirect()-> route ('syllabi.ilos.index',[
         'syllabus' => $syllabus,

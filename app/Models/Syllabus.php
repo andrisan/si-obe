@@ -18,7 +18,7 @@ class Syllabus extends Model
         return $this->belongsTo(Course::class, 'course_id');
     }
 
-    public function intentedLearningOutcomes()
+    public function intendedLearningOutcomes()
     {
         return $this->hasMany(IntendedLearningOutcome::class, 'syllabus_id');
     }
