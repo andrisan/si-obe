@@ -121,6 +121,12 @@ Breadcrumbs::for('learning-plans.index', function (BreadcrumbTrail $trail, $syll
     $trail->push('Learning Plans', route('syllabi.learning-plans.index', $syllabus));
 });
 
+// Learning PLans > Create
+Breadcrumbs::for('learning-plans.create', function (BreadcrumbTrail $trail, $syllabus) {
+    $trail->parent('learning-plans.index', $syllabus);
+    $trail->push('Create', route('syllabi.learning-plans.create', $syllabus));
+});
+
 // ILOs
 Breadcrumbs::for('ilos.index', function (BreadcrumbTrail $trail, $syllabus) {
     $trail->parent('home');

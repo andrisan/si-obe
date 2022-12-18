@@ -2,69 +2,74 @@
 
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex justify-between">
-            <div class="items-start">
-                <h2 class="font-semibold text-2xl text-gray-800 leading-tight">
-                    {{ $syllabus->title }}
-                </h2>
-            </div>
-
-            <div class="items-end">
-                <img src="{{ asset('img/Vector(2).png') }}" alt="">
-            </div>
-        </div>
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __("New Learning Plan") }}
+        </h2>
+        <p>for {{ $syllabus->title }}</p>
     </x-slot>
 
-    <div class="hero min-h-screen bg-base-300">
-        <div class="hero-content text-center max-w-xl">
-            <div class="card w-96 bg-base-100">
-                <div class="card-body items-center text-center">
-                    <form action="{{ route('syllabi.learning-plans.store', [$syllabus]) }}" method="POST">
-                        <div class="form-control w-full max-w-xs">
-                            @csrf
-                            <div class="hidden">
-                                <label for="syllabus" class="label">
-                                    <span class="label-text">Kode Syllabus</span>
-                                </label>
-                                <input type="number" placeholder="Masukkan input" class="input input-bordered w-full max-w-xs" name="syllabus_id" value="{{ $syllabus->id }}" />
-                            </div>
-                            <label for="llo" class="label">
-                                <span class="label-text">LLO</span>
-                            </label>
-                            <select class="select select-bordered w-full max-w-xs" placeholder="Masukkan input" name="llo_id">
-                                @foreach ($llos as $llo)
-                                    <option value={{$llo->id}}> {{ $llo->description }} </option>
-                                @endforeach
-                            </select>
+    <div class="max-w-7xl mx-auto pb-10 sm:px-6 lg:px-8">
+        {{ Breadcrumbs::render('learning-plans.create', $syllabus) }}
+        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="p-6 bg-white border-b border-gray-200">
+                <form method="POST" action="{{ route('syllabi.learning-plans.store', $syllabus) }}">
+                    @csrf
 
-                            <label for="week_number" class="label">
-                                <span class="label-text">Week Number</span>
-                            </label>
-                            <input type="number" placeholder="Masukkan input" class="input input-bordered w-full max-w-xs" name="week_number" />
+                    <div class="form-control w-full p-3">
+                        <label class="label">
+                            <span class="label-text">LLO</span>
+                        </label>
+                        <select class="select select-bordered w-full max-w-xs" name="llo_id">
+                            <option disabled selected>Choose the LLO</option>
+                            @foreach ($llos as $llo)
+                                <option value="{{ $llo->id }}" {{ (old("llo_id") == $llo->id ? "selected":"") }}>{{ $llo->description }}</option>
+                            @endforeach
+                        </select>
+                        <x-input-error :messages="$errors->get('llo_id')" class="mt-2"/>
+                    </div>
 
-                            <label for="sudy_material" class="label">
-                                <span class="label-text">Study Material</span>
-                            </label>
-                            <textarea placeholder="Masukkan input" class="w-full max-w-xs" name="study_material"></textarea>
+                    <div class="form-control w-full p-3">
+                        <label class="label">
+                            <span class="label-text">Week Number</span>
+                        </label>
+                        <input type="number" name="week_number" placeholder="Week Number"
+                               class="input input-bordered w-full max-w-xs" value="{{ old('week_number') }}"/>
+                        <x-input-error :messages="$errors->get('week_number')" class="mt-2"/>
+                    </div>
 
-                            <label for="learning_method" class="label">
-                                <span class="label-text">Learning Method</span>
-                            </label>
-                            <textarea placeholder="Masukkan input" class="w-full max-w-xs" name="learning_method"></textarea>
+                    <div class="form-control w-full p-3">
+                        <label class="label">
+                            <span class="label-text">Study Material</span>
+                        </label>
+                        <textarea class="textarea text-neutral input-bordered bg-white w-full max-w-xl" name="study_material" placeholder="Study Material">{{ old('study_material') }}</textarea>
+                        <x-input-error :messages="$errors->get('study_material')" class="mt-2"/>
+                    </div>
 
-                            <label for="estimated_time" class="label">
-                                <span class="label-text">Estimated Time</span>
-                            </label>
-                            <input type="text" placeholder="Masukkan input" class="input input-bordered w-full max-w-xs" name="estimated_time" />
-                        </div>
-                        <div class="card-actions justify-end mt-4">
-                        <input type="submit" value="Create" class="btn btn-success m-2 " />
-                            <a href="{{ route('syllabi.learning-plans.index', [$syllabus]) }}" class="btn btn-error m-2">Cancel</a>
-                        </div>
-                    </form>
-                </div>
+                    <div class="form-control w-full p-3">
+                        <label class="label">
+                            <span class="label-text">Learning Method</span>
+                        </label>
+                        <textarea class="textarea text-neutral input-bordered bg-white w-full max-w-xl" name="learning_method" placeholder="Learning Method">{{ old('learning_method') }}</textarea>
+                        <x-input-error :messages="$errors->get('learning_method')" class="mt-2"/>
+                    </div>
+
+                    <div class="form-control w-full p-3">
+                        <label class="label">
+                            <span class="label-text">Estimated Time</span>
+                        </label>
+                        <input type="text" name="estimated_time" placeholder="Estimated Time"
+                               class="input input-bordered w-full max-w-xs" value="{{ old('estimated_time') }}"/>
+                        <x-input-error :messages="$errors->get('week_number')" class="mt-2"/>
+                    </div>
+
+                    <div class="mt-4 p-4 space-x-2">
+                        <button type="submit" class="btn btn-sm px-7">
+                            Save
+                        </button>
+                        <a href="{{ route_back_with_fallback('syllabi.learning-plans.index', $syllabus) }}">{{ __('Cancel') }}</a>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-
 </x-app-layout>
