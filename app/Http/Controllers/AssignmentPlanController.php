@@ -46,11 +46,12 @@ class AssignmentPlanController extends Controller
         $validated = $request->validate([
             'title' => 'required|string',
             'description' => 'required|string',
+            'objective' => 'string',
             'is_group_assignment' => 'string',
-            'assignment_style' => 'required|string',
-            'output_instruction' => 'required|string',
-            'submission_instruction' => 'required|string',
-            'deadline_instruction' => 'required|string',
+            'assignment_style' => 'string',
+            'output_instruction' => 'string',
+            'submission_instruction' => 'string',
+            'deadline_instruction' => 'string',
         ]);
 
         $validated['is_group_assignment'] = $request->has('is_group_assignment');

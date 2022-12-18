@@ -276,7 +276,13 @@
                                     </tr>
                                     <tr>
                                         <td class="text-gray-600 px-6 py-3 border-t border-gray-100">Grading Rubric</td>
-                                        <td class="text-gray-600 px-6 py-3 border-t border-gray-100">: <a class="text-blue-600 hover:text-blue-700" href="{{ route('rubrics.show', $assignmentPlan->rubric) }}">{{ $assignmentPlan->rubric->title }}</a></td>
+                                        <td class="text-gray-600 px-6 py-3 border-t border-gray-100">:
+                                            @if($assignmentPlan->rubric)
+                                            <a class="text-blue-600 hover:text-blue-700" href="{{ route('rubrics.show', $assignmentPlan->rubric) }}">{{ $assignmentPlan->rubric->title }}</a>
+                                            @else
+                                            <span class="badge badge-ghost p-3">No rubric has been set</span>
+                                            @endif
+                                        </td>
                                     </tr>
                                     </tbody>
                                 </table>

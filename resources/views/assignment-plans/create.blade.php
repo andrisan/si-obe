@@ -25,6 +25,14 @@
 
                     <div class="form-control w-full p-3">
                         <label class="label">
+                            <span class="label-text">Objective</span>
+                        </label>
+                        <textarea class="textarea text-neutral input-bordered bg-white w-full max-w-xl" name="objective" placeholder="Description">{{ old('objective') }}</textarea>
+                        <x-input-error :messages="$errors->get('objective')" class="mt-2"/>
+                    </div>
+
+                    <div class="form-control w-full p-3">
+                        <label class="label">
                             <span class="label-text">Description</span>
                         </label>
                         <textarea class="textarea text-neutral input-bordered bg-white w-full max-w-xl" name="description" placeholder="Description">{{ old('description') }}</textarea>
