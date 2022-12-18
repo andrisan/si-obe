@@ -37,9 +37,9 @@
                                 <td
                                     class="text-gray-600 px-6 py-3 border-t border-gray-100">
                                     <div class="flex flex-wrap space-x-4">
-                                        <a href="{{ route('syllabi.learning-plans.edit', [$syllabus, $plan]) }}"
+                                        <a href="{{ route('syllabi.assignment-plans.edit', [$syllabus, $plan]) }}"
                                            class="text-blue-500">Edit</a>
-                                        <form method="POST" action="{{ route('syllabi.learning-plans.destroy', [$syllabus, $plan]) }}">
+                                        <form method="POST" action="{{ route('syllabi.assignment-plans.destroy', [$syllabus, $plan]) }}">
                                             @csrf
                                             @method('delete')
 

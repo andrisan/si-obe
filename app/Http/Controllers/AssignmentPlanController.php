@@ -8,8 +8,6 @@ use App\Models\Syllabus;
 use App\Models\AssignmentPlan;
 
 
-
-
 class AssignmentPlanController extends Controller
 {
     /**
@@ -28,11 +26,11 @@ class AssignmentPlanController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create(Syllabus $syllabus)
     {
-        return view('assignment-plans.create',[
+        return view('assignment-plans.create', [
             'syllabus' => $syllabus
         ]);
     }
@@ -40,43 +38,42 @@ class AssignmentPlanController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request, Syllabus $syllabus)
     {
         $validated = $request->validate([
-          //  'id' => 'required|string',
             'title' => 'required|string',
             'description' => 'required|string',
-           // 'created_at' => 'required|string',
-           // 'updated_at' => 'required|string',
-             'is_group_assignment' => 'required|numeric',
-             'assignment_style' => 'required|string',
-             'output_instruction' => 'required|string',
-             'submission_instruction' => 'required|string',
+            'is_group_assignment' => 'string',
+            'assignment_style' => 'required|string',
+            'output_instruction' => 'required|string',
+            'submission_instruction' => 'required|string',
             'deadline_instruction' => 'required|string',
         ]);
 
+        $validated['is_group_assignment'] = $request->has('is_group_assignment');
+
         $syllabus->assignmentPlans()->create($validated);
 
-        return redirect()->route('syllabi.assignment-plans.index',[
-            'syllabus'=> $syllabus
+        return redirect()->route('syllabi.assignment-plans.index', [
+            'syllabus' => $syllabus
         ]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\AssignmentPlan  $assignmentPlan
+     * @param \App\Models\AssignmentPlan $assignmentPlan
      * @return \Illuminate\Http\Response
      */
-    public function show( $syllabus, $plan)
-     {
-        $plan= AssignmentPlan::where('id', $plan)->first();
-        return view('assignment-plans.show',[
+    public function show($syllabus, $plan)
+    {
+        $plan = AssignmentPlan::where('id', $plan)->first();
+        return view('assignment-plans.show', [
             'syllabus' => $syllabus,
-            'plan'=> $plan
+            'plan' => $plan
         ]);
 
     }
@@ -84,23 +81,23 @@ class AssignmentPlanController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\AssignmentPlan  $assignmentPlan
+     * @param \App\Models\AssignmentPlan $assignmentPlan
      * @return \Illuminate\Http\Response
      */
-    public function edit( $syllabus, $plan)
+    public function edit($syllabus, $plan)
     {
-        $plan= AssignmentPlan::where('id', $plan)->first();
-          return view('assignment-plans.edit',[
+        $plan = AssignmentPlan::where('id', $plan)->first();
+        return view('assignment-plans.edit', [
             'syllabus' => $syllabus,
-            'plan'=> $plan
-          ]);
+            'plan' => $plan
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\AssignmentPlan  $assignmentPlan
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\AssignmentPlan $assignmentPlan
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $syllabus, $plan)
@@ -109,13 +106,13 @@ class AssignmentPlanController extends Controller
             //'id' => 'required|string',
             'title' => 'required|string',
             'description' => 'required|string',
-           // 'created_at' => 'required|string',
-           // 'updated_at' => 'required|string',
-             'is_group_assignment' => 'required|numeric',
-             'assignment_style' => 'required|string',
-             'output_instruction' => 'required|string',
-             'submission_instruction' => 'required|string',
-              'deadline_instruction' => 'required|string',
+            // 'created_at' => 'required|string',
+            // 'updated_at' => 'required|string',
+            'is_group_assignment' => 'required|numeric',
+            'assignment_style' => 'required|string',
+            'output_instruction' => 'required|string',
+            'submission_instruction' => 'required|string',
+            'deadline_instruction' => 'required|string',
         ]);
 
         $plan = AssignmentPlan::find($plan);
@@ -126,14 +123,14 @@ class AssignmentPlanController extends Controller
         $plan->description = $validated['description'];
         // $plan->created_at = $validated['created_at'];
         // $plan->updated_at = $validated['updated_at'];
-         $plan->assignment_style = $validated['assignment_style'];
+        $plan->assignment_style = $validated['assignment_style'];
         $plan->output_instruction = $validated['output_instruction'];
         $plan->submission_instruction = $validated['submission_instruction'];
         $plan->deadline_instruction = $validated['deadline_instruction'];
 
         $plan->save();
 
-        return redirect()->route('syllabi.assignment-plans.index',[
+        return redirect()->route('syllabi.assignment-plans.index', [
             'syllabus' => $syllabus
         ]);
     }
@@ -141,14 +138,14 @@ class AssignmentPlanController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\AssignmentPlan  $assignmentPlan
+     * @param \App\Models\AssignmentPlan $assignmentPlan
      * @return \Illuminate\Http\Response
      */
     public function destroy($syllabus, $plan)
     {
         $del = AssignmentPlan::where('id', $plan)->delete();
 
-        return redirect()->route('syllabi.assignment-plans.index',[
+        return redirect()->route('syllabi.assignment-plans.index', [
             'syllabus' => $syllabus
         ]);
     }

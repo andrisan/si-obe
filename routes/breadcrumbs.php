@@ -140,6 +140,12 @@ Breadcrumbs::for('assignment-plans.index', function (BreadcrumbTrail $trail, $sy
     $trail->push('Assignment Plans', route('syllabi.assignment-plans.index', $syllabus));
 });
 
+// Assignment Plans > Create
+Breadcrumbs::for('assignment-plans.create', function (BreadcrumbTrail $trail, $syllabus) {
+    $trail->parent('assignment-plans.index', $syllabus);
+    $trail->push('Create', route('syllabi.assignment-plans.create', $syllabus));
+});
+
 // ILOs
 Breadcrumbs::for('ilos.index', function (BreadcrumbTrail $trail, $syllabus) {
     $trail->parent('home');

@@ -3,65 +3,85 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
+            {{ __('New Assignment Plan') }}
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                <form action="{{ route('syllabi.assignment-plans.store', $syllabus) }}" method="post">
-                @csrf
+    <div class="max-w-7xl mx-auto pb-10 sm:px-6 lg:px-8">
+        {{ Breadcrumbs::render('assignment-plans.create', $syllabus) }}
+        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="p-6 bg-white border-b border-gray-200">
+                <form method="POST" action="{{ route('syllabi.assignment-plans.store', $syllabus) }}">
+                    @csrf
 
-                        <div class="container p-4 text-primary text-sm">
-                                <label class="uppercase font-bold  text-blue-600" for="name">Title</label><br>
-                                <input type="text" placeholder="Masukkan input" class="input input-bordered w-full max-w-xs" name="title"/> <br>
-                                <x-input-error :messages="$errors->get('title')" class="mt-2" />
+                    <div class="form-control w-full p-3">
+                        <label class="label">
+                            <span class="label-text">Title</span>
+                        </label>
+                        <input type="text" name="title" placeholder="Title"
+                               class="input input-bordered w-full max-w-xl" value="{{ old('title') }}"/>
+                        <x-input-error :messages="$errors->get('title')" class="mt-2"/>
+                    </div>
+
+                    <div class="form-control w-full p-3">
+                        <label class="label">
+                            <span class="label-text">Description</span>
+                        </label>
+                        <textarea class="textarea text-neutral input-bordered bg-white w-full max-w-xl" name="description" placeholder="Description">{{ old('description') }}</textarea>
+                        <x-input-error :messages="$errors->get('description')" class="mt-2"/>
+                    </div>
+
+                    <div class="form-control w-full p-3">
+                        <label class="label">
+                            <span class="label-text">Assignment style</span>
+                        </label>
+                        <input type="text" name="assignment_style" placeholder="Assignment style"
+                               class="input input-bordered w-full max-w-xl" value="{{ old('assignment_style') }}"/>
+                        <x-input-error :messages="$errors->get('assignment_style')" class="mt-2"/>
+                    </div>
+
+                    <div class="form-control w-full p-3">
+                        <label class="label">
+                            <span class="label-text">Output Instruction</span>
+                        </label>
+                        <textarea class="textarea text-neutral input-bordered bg-white w-full max-w-xl" name="output_instruction" placeholder="Output Instruction">{{ old('output_instruction') }}</textarea>
+                        <x-input-error :messages="$errors->get('output_instruction')" class="mt-2"/>
+                    </div>
+
+                    <div class="form-control w-full p-3">
+                        <label class="label">
+                            <span class="label-text">Submission Instruction</span>
+                        </label>
+                        <textarea class="textarea text-neutral input-bordered bg-white w-full max-w-xl" name="submission_instruction" placeholder="Submission Instruction">{{ old('submission_instruction') }}</textarea>
+                        <x-input-error :messages="$errors->get('submission_instruction')" class="mt-2"/>
+                    </div>
+
+                    <div class="form-control w-full p-3">
+                        <label class="label">
+                            <span class="label-text">Deadline Instruction</span>
+                        </label>
+                        <textarea class="textarea text-neutral input-bordered bg-white w-full max-w-xl" name="deadline_instruction" placeholder="Deadline Instruction">{{ old('deadline_instruction') }}</textarea>
+                        <x-input-error :messages="$errors->get('deadline_instruction')" class="mt-2"/>
+                    </div>
+
+                    <div class="flex justify-start items-center p-3">
+                        <label class="label">
+                            <span class="label-text">Group Assignment</span>
+                        </label>
+                        <div class="px-4">
+                            <input name="is_group_assignment" id="is_group_assignment" type="checkbox">
                         </div>
-                        <div class="container p-4 text-primary text-sm">
-                                <label class="uppercase font-bold  text-blue-600" for="name">Description</label><br>
-                                <input type="text" placeholder="Masukkan input" class="input input-bordered w-full max-w-xs" name="description"/> <br>
-                                <x-input-error :messages="$errors->get('description')" class="mt-2" />
-                        </div>
+                    </div>
+                    <x-input-error :messages="$errors->get('is_group_assignment')" class="mt-2"/>
 
-
-                         <div class="container p-4 text-primary text-sm">
-                                <label class="uppercase font-bold  text-blue-600" for="name">Assignment style</label><br>
-                                <input type="text" placeholder="Masukkan input" class="input input-bordered w-full max-w-xs" name="assignment_style"/> <br>
-                                <x-input-error :messages="$errors->get('assignment_style')" class="mt-2" />
-                          </div>
-
-                          <div class="container p-4 text-primary text-sm">
-                                <label class="uppercase font-bold  text-blue-600" for="name">Output Instruction</label><br>
-                                <input type="text" placeholder="Masukkan input" class="input input-bordered w-full max-w-xs" name="output_instruction"/> <br>
-                                <x-input-error :messages="$errors->get('output_instruction')" class="mt-2" />
-                          </div>
-
-                          <div class="container p-4 text-primary text-sm">
-                                <label class="uppercase font-bold  text-blue-600" for="name">Submission Instruction</label><br>
-                                <input type="text" placeholder="Masukkan input" class="input input-bordered w-full max-w-xs" name="submission_instruction"/> <br>
-                                <x-input-error :messages="$errors->get('submission_instruction')" class="mt-2" />
-                          </div>
-
-                          <div class="container p-4 text-primary text-sm">
-                                <label class="uppercase font-bold  text-blue-600" for="name">Deadline Instruction</label><br>
-                                <input type="text" placeholder="Masukkan input" class="input input-bordered w-full max-w-xs" name="deadline_instruction"/> <br>
-                                <x-input-error :messages="$errors->get('deadline_instruction')" class="mt-2" />
-                          </div>
-
-                          <div class="container p-4 text-primary text-sm">
-                                <label class="uppercase font-bold  text-blue-600" for="name">Is Group Assignment</label><br>
-                                <input type="text" placeholder="Masukkan input" class="input input-bordered w-full max-w-xs" name="is_group_assignment"/> <br>
-                                <x-input-error :messages="$errors->get('is_group_assignment')" class="mt-2" />
-                          </div>
-
-                        <input type="submit" value="Save" class="btn btn-active rounded-md " />
-                        <a href="{{ route('syllabi.assignment-plans.index', [$syllabus]) }}" class="btn btn-outline rounded-md">Cancel</a>
-                     </form> 
-                </div>
+                    <div class="mt-4 p-4 space-x-2">
+                        <button type="submit" class="btn btn-sm px-7">
+                            Save
+                        </button>
+                        <a href="{{ route_back_with_fallback('syllabi.assignment-plans.index', $syllabus) }}">{{ __('Cancel') }}</a>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-        
 </x-app-layout>
