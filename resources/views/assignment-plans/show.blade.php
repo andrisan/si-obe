@@ -1,58 +1,53 @@
-@section('pageTitle', "$plan-> Assignment Plans Detail")
+@php use Carbon\Carbon; @endphp
+@section('pageTitle', $assignmentPlan->title)
 
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex justify-between">
-            <div class="items-start">
-                <h2 class="font-semibold   text-4xl text-gray-800 leading-tight">
-                  
-                </h2>
-            </div>
-        </div>
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Assignment Plan') }}
+        </h2>
     </x-slot>
 
-    <x-slot name="slot">
-        <div class="drawer-content flex flex-col px-10 pt-5 border-l border-slate-500">
-            <div class="pb-10">
-                <div class="border-b rounded-lg shadow-xl bg-white px-5 py-5">
-                    <div class="ml-5 mt-5 px-5 mb-5">
-                        <h2 class="card-title pb-5">Assignment Class Detail</h2>
-                        <div class="grid grid-cols-3 grid-flow-row gap-4">
-                            <p class="py-3">Title</p>
-                            <div class="py-3 col-span-2">: {{ $plan->title }}</div>
-                            <p class="py-3">Description</p>
-                            <div class="py-3 col-span-2">: {{$plan->description}}</div>
-                            <p class="py-3">Created At</p>
-                            <div class="py-3 col-span-2">: {{$plan->created_at}}</div>
-                            <p class="py-3">Updated At</p>
-                            <div class="py-3 col-span-2">: {{$plan->updated_at }}</div>
-                            <p class="py-3">Assignment Style</p>
-                            <div class="py-3 col-span-2">: {{ $plan->assignment_style }}</div>
-                            <p class="py-3">Output Instruction</p>
-                            <div class="py-3 col-span-2">: {{ $plan->output_instruction }}</div>
-                            <p class="py-3">Submission Instruction</p>
-                            <div class="py-3 col-span-2">: {{ $plan->submission_instruction }}</div>
-                            <p class="py-3">Deadline Instruction</p>
-                            <div class="py-3 col-span-2">: {{ $plan->deadline_instruction }}</div>
-                            <p class="py-3">Is Group Assignment</p>
-                            <div class="py-3 col-span-2">: {{ $plan->is_group_assignment }}</div>
+    <div class="max-w-7xl mx-auto pb-10 sm:px-6 lg:px-8">
+        {{ Breadcrumbs::render('assignment-plans.show', $syllabus, $assignmentPlan) }}
+        <div class="flex flex-row sm:justify-end mb-3 px-4 sm:px-0 -mr-2 sm:-mr-3">
+            <div class="order-5 sm:order-6 mr-2 sm:mr-3">
+                <x-button-link href="{{ route('syllabi.assignment-plans.edit', [$syllabus, $assignmentPlan]) }}">
+                    <i class="fa fa-edit"></i> {{ __('Edit') }}
+                </x-button-link>
+            </div>
+        </div>
+        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="p-6 bg-white border-b border-gray-200">
+                <div class="grid grid-cols-3 grid-flow-row gap-4">
+                    <p class="py-3">Title</p>
+                    <div class="py-3 col-span-2">: {{ $assignmentPlan->title }}</div>
 
-                        </div>
+                    <p class="py-3">Description</p>
+                    <div class="py-3 col-span-2">: {{$assignmentPlan->description}}</div>
 
-                        <div class="flex card-actions justify-center pt-5">
-                            <form action="{{ route('syllabi.assignment-plans.edit', [$syllabus, $plan->id]) }}" method="get">
-                              <button class="btn btn-warning btn-sm" value="{{ $plan->id }}"><strong>Edit</strong></button>
-                            </form>
-                            <form action="{{ route('syllabi.assignment-plans.destroy', [$syllabus, $plan->id]) }}" method="post">
-                                @csrf
-                                @method('delete')
-                                <button class="btn btn-error btn-sm" value="{{ $plan->id }}" onclick="return confirm('Yakin ingin menghapus data?');"><strong>Delete</strong></button>
-                            </form>
-                        </div>
-                    </div>
+                    <p class="py-3">Assignment Style</p>
+                    <div class="py-3 col-span-2">: {{ $assignmentPlan->assignment_style }}</div>
+
+                    <p class="py-3">Output Instruction</p>
+                    <div class="py-3 col-span-2">: {{ $assignmentPlan->output_instruction }}</div>
+
+                    <p class="py-3">Submission Instruction</p>
+                    <div class="py-3 col-span-2">: {{ $assignmentPlan->submission_instruction }}</div>
+
+                    <p class="py-3">Deadline Instruction</p>
+                    <div class="py-3 col-span-2">: {{ $assignmentPlan->deadline_instruction }}</div>
+
+                    <p class="py-3">Is Group Assignment</p>
+                    <div class="py-3 col-span-2">: {{ $assignmentPlan->is_group_assignment ? __('Yes'): __('No') }}</div>
+
+                    <p class="py-3">Created At</p>
+                    <div class="py-3 col-span-2">: {{ Carbon::parse($assignmentPlan->created_at)->format("M d, Y H:i") }}</div>
+
+                    <p class="py-3">Last Updated</p>
+                    <div class="py-3 col-span-2">: {{ Carbon::parse($assignmentPlan->updated_at)->format("M d, Y H:i") }}</div>
                 </div>
             </div>
         </div>
-    </x-slot>
-
+    </div>
 </x-app-layout>

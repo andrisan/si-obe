@@ -8,7 +8,6 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use App\Models\Syllabus;
 use App\Models\AssignmentPlan;
-use Illuminate\Http\Response;
 
 
 class AssignmentPlanController extends Controller
@@ -69,17 +68,16 @@ class AssignmentPlanController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\Models\AssignmentPlan $assignmentPlan
-     * @return \Illuminate\Http\Response
+     * @param Syllabus $syllabus
+     * @param AssignmentPlan $assignmentPlan
+     * @return Application|Factory|View
      */
-    public function show($syllabus, $plan)
+    public function show(Syllabus $syllabus, AssignmentPlan $assignmentPlan)
     {
-        $plan = AssignmentPlan::where('id', $plan)->first();
         return view('assignment-plans.show', [
             'syllabus' => $syllabus,
-            'plan' => $plan
+            'assignmentPlan' => $assignmentPlan
         ]);
-
     }
 
     /**

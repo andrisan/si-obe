@@ -24,8 +24,7 @@
                         <tr class="text-left">
                             <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-6">No</th>
                             <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate">Title</th>
-                            <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate">Description</th>
-                            <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-36">Action</th>
+                            <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-64">Action</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -33,10 +32,10 @@
                             <tr>
                                 <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $loop->index + $assignmentPlans->firstItem() }}</td>
                                 <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $plan->title }}</td>
-                                <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $plan->description }}</td>
                                 <td
                                     class="text-gray-600 px-6 py-3 border-t border-gray-100">
                                     <div class="flex flex-wrap space-x-4">
+                                        <a href="{{ route('syllabi.assignment-plans.show', [$syllabus, $plan]) }}" class="text-blue-700 hover:text-blue-500">Detail</a>
                                         <a href="{{ route('syllabi.assignment-plans.edit', [$syllabus, $plan]) }}"
                                            class="text-blue-500">Edit</a>
                                         <form method="POST" action="{{ route('syllabi.assignment-plans.destroy', [$syllabus, $plan]) }}">
