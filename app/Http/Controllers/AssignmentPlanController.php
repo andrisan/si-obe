@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Models\Syllabus;
 use App\Models\AssignmentPlan;
+use Illuminate\Http\Response;
 
 
 class AssignmentPlanController extends Controller
@@ -82,54 +85,41 @@ class AssignmentPlanController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param \App\Models\AssignmentPlan $assignmentPlan
-     * @return \Illuminate\Http\Response
+     * @param Syllabus $syllabus
+     * @param AssignmentPlan $assignmentPlan
+     * @return Application|Factory|View
      */
-    public function edit($syllabus, $plan)
+    public function edit(Syllabus $syllabus, AssignmentPlan $assignmentPlan)
     {
-        $plan = AssignmentPlan::where('id', $plan)->first();
         return view('assignment-plans.edit', [
             'syllabus' => $syllabus,
-            'plan' => $plan
+            'assignmentPlan' => $assignmentPlan
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\AssignmentPlan $assignmentPlan
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Syllabus $syllabus
+     * @param AssignmentPlan $assignmentPlan
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $syllabus, $plan)
+    public function update(Request $request, Syllabus $syllabus, AssignmentPlan $assignmentPlan)
     {
         $validated = $request->validate([
-            //'id' => 'required|string',
             'title' => 'required|string',
             'description' => 'required|string',
-            // 'created_at' => 'required|string',
-            // 'updated_at' => 'required|string',
-            'is_group_assignment' => 'required|numeric',
-            'assignment_style' => 'required|string',
-            'output_instruction' => 'required|string',
-            'submission_instruction' => 'required|string',
-            'deadline_instruction' => 'required|string',
+            'objective' => 'string',
+            'is_group_assignment' => 'string',
+            'assignment_style' => 'string',
+            'output_instruction' => 'string',
+            'submission_instruction' => 'string',
+            'deadline_instruction' => 'string',
         ]);
 
-        $plan = AssignmentPlan::find($plan);
-
-        $plan->syllabus_id = $syllabus;
-        // $plan->id = $plan;
-        $plan->title = $validated['title'];
-        $plan->description = $validated['description'];
-        // $plan->created_at = $validated['created_at'];
-        // $plan->updated_at = $validated['updated_at'];
-        $plan->assignment_style = $validated['assignment_style'];
-        $plan->output_instruction = $validated['output_instruction'];
-        $plan->submission_instruction = $validated['submission_instruction'];
-        $plan->deadline_instruction = $validated['deadline_instruction'];
-
-        $plan->save();
+        $validated['is_group_assignment'] = $request->has('is_group_assignment');
+        $assignmentPlan->update($validated);
 
         return redirect()->route('syllabi.assignment-plans.index', [
             'syllabus' => $syllabus
@@ -139,15 +129,13 @@ class AssignmentPlanController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Models\AssignmentPlan $assignmentPlan
-     * @return \Illuminate\Http\Response
+     * @param Syllabus $syllabus
+     * @param AssignmentPlan $assignmentPlan
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($syllabus, $plan)
+    public function destroy(Syllabus $syllabus, AssignmentPlan $assignmentPlan)
     {
-        $del = AssignmentPlan::where('id', $plan)->delete();
-
-        return redirect()->route('syllabi.assignment-plans.index', [
-            'syllabus' => $syllabus
-        ]);
+        $assignmentPlan->delete();
+        return back();
     }
 }

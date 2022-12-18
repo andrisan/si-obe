@@ -7,60 +7,90 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                <form action="{{ route('syllabi.assignment-plans.update', [$syllabus, $plan]) }}" method="post">
-                @csrf
-                @method('patch')
-                        <div class="container p-4 text-primary text-sm">
-                                <label class="uppercase font-bold  text-blue-600" for="name">Title</label><br>
-                                <input type="text" placeholder="Title" class="input input-bordered w-full max-w-xs" name="title"  value="{{ old('title', $plan->title) }}"/> <br>
-                                <x-input-error :messages="$errors->get('title')" class="mt-2" />
-                        </div>
-                        <div class="container p-4 text-primary text-sm">
-                                <label class="uppercase font-bold  text-blue-600" for="name">Description</label><br>
-                                <input type="text" placeholder="Description" class="input input-bordered w-full max-w-xs" name="description" value="{{ old('description', $plan->description) }}"/> <br>
-                                <x-input-error :messages="$errors->get('description')" class="mt-2" />
-                         </div>
+    <div class="max-w-7xl mx-auto pb-10 sm:px-6 lg:px-8">
+        {{ Breadcrumbs::render('assignment-plans.create', $syllabus) }}
+        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="p-6 bg-white border-b border-gray-200">
+                <form method="POST" action="{{ route('syllabi.assignment-plans.update', [$syllabus, $assignmentPlan]) }}">
+                    @csrf
+                    @method('patch')
 
-                        <div class="container p-4 text-primary text-sm">
-                                <label class="uppercase font-bold  text-blue-600" for="name">Assignment style</label><br>
-                                <input type="text" placeholder="Assignment style" class="input input-bordered w-full max-w-xs" name="assignment_style" value="{{ old('assignment_style', $plan->assignment_style) }}"/> <br>
-                                <x-input-error :messages="$errors->get('assignment_style')" class="mt-2" />
-                        </div>
+                    <div class="form-control w-full p-3">
+                        <label class="label">
+                            <span class="label-text">Title</span>
+                        </label>
+                        <input type="text" name="title" placeholder="Title"
+                               class="input input-bordered w-full max-w-xl" value="{{ old('title', $assignmentPlan->title) }}"/>
+                        <x-input-error :messages="$errors->get('title')" class="mt-2"/>
+                    </div>
 
-                        <div class="container p-4 text-primary text-sm">
-                                <label class="uppercase font-bold  text-blue-600" for="name">Output Instruction</label><br>
-                                <input type="text" placeholder="Output Instruction" class="input input-bordered w-full max-w-xs" name="output_instruction" value="{{ old('output_instruction', $plan->output_instruction) }}"/> <br>
-                                <x-input-error :messages="$errors->get('output_instruction')" class="mt-2" />
-                        </div>
+                    <div class="form-control w-full p-3">
+                        <label class="label">
+                            <span class="label-text">Objective</span>
+                        </label>
+                        <textarea class="textarea text-neutral input-bordered bg-white w-full max-w-xl" name="objective" placeholder="Objective">{{ old('objective', $assignmentPlan->objective) }}</textarea>
+                        <x-input-error :messages="$errors->get('objective')" class="mt-2"/>
+                    </div>
 
-                        <div class="container p-4 text-primary text-sm">
-                                <label class="uppercase font-bold  text-blue-600" for="name">Submission Instruction</label><br>
-                                <input type="text" placeholder="Submission Instruction" class="input input-bordered w-full max-w-xs" name="submission_instruction" value="{{ old('submission_instruction', $plan->submission_instruction) }}"/> <br>
-                                <x-input-error :messages="$errors->get('submission_instruction')" class="mt-2" />
-                        </div>
+                    <div class="form-control w-full p-3">
+                        <label class="label">
+                            <span class="label-text">Description</span>
+                        </label>
+                        <textarea class="textarea text-neutral input-bordered bg-white w-full max-w-xl" name="description" placeholder="Description">{{ old('description', $assignmentPlan->description) }}</textarea>
+                        <x-input-error :messages="$errors->get('description')" class="mt-2"/>
+                    </div>
 
-                        <div class="container p-4 text-primary text-sm">
-                                <label class="uppercase font-bold  text-blue-600" for="name">Deadline Instruction</label><br>
-                                <input type="text" placeholder="Deadline Instruction" class="input input-bordered w-full max-w-xs" name="deadline_instruction" value="{{ old('deadline_instruction', $plan->deadline_instruction) }}"/> <br>
-                                <x-input-error :messages="$errors->get('deadline_instruction')" class="mt-2" />
-                        </div>
+                    <div class="form-control w-full p-3">
+                        <label class="label">
+                            <span class="label-text">Assignment style</span>
+                        </label>
+                        <input type="text" name="assignment_style" placeholder="Assignment style"
+                               class="input input-bordered w-full max-w-xl" value="{{ old('assignment_style', $assignmentPlan->assignment_style) }}"/>
+                        <x-input-error :messages="$errors->get('assignment_style')" class="mt-2"/>
+                    </div>
 
-                        <div class="container p-4 text-primary text-sm">
-                                <label class="uppercase font-bold  text-blue-600" for="name">Is Group Assignment</label><br>
-                                <input type="text" placeholder="Is Group Assignment" class="input input-bordered w-full max-w-xs" name="is_group_assignment" value="{{ old('is_group_assignment', $plan->is_group_assignment) }}"/> <br>
-                                <x-input-error :messages="$errors->get('is_group_assignment')" class="mt-2" />
+                    <div class="form-control w-full p-3">
+                        <label class="label">
+                            <span class="label-text">Output Instruction</span>
+                        </label>
+                        <textarea class="textarea text-neutral input-bordered bg-white w-full max-w-xl" name="output_instruction" placeholder="Output Instruction">{{ old('output_instruction', $assignmentPlan->output_instruction) }}</textarea>
+                        <x-input-error :messages="$errors->get('output_instruction')" class="mt-2"/>
+                    </div>
+
+                    <div class="form-control w-full p-3">
+                        <label class="label">
+                            <span class="label-text">Submission Instruction</span>
+                        </label>
+                        <textarea class="textarea text-neutral input-bordered bg-white w-full max-w-xl" name="submission_instruction" placeholder="Submission Instruction">{{ old('submission_instruction', $assignmentPlan->submission_instruction) }}</textarea>
+                        <x-input-error :messages="$errors->get('submission_instruction')" class="mt-2"/>
+                    </div>
+
+                    <div class="form-control w-full p-3">
+                        <label class="label">
+                            <span class="label-text">Deadline Instruction</span>
+                        </label>
+                        <textarea class="textarea text-neutral input-bordered bg-white w-full max-w-xl" name="deadline_instruction" placeholder="Deadline Instruction">{{ old('deadline_instruction', $assignmentPlan->deadline_instruction) }}</textarea>
+                        <x-input-error :messages="$errors->get('deadline_instruction')" class="mt-2"/>
+                    </div>
+
+                    <div class="flex justify-start items-center p-3">
+                        <label class="label">
+                            <span class="label-text">Group Assignment</span>
+                        </label>
+                        <div class="px-4">
+                            <input name="is_group_assignment" id="is_group_assignment" type="checkbox" {{ $assignmentPlan->is_group_assignment ? "checked": "" }}>
                         </div>
-                        
-                        <input type="submit" value="Save" class="btn btn-active rounded-md " />
-                        <a href="{{ route('syllabi.assignment-plans.index', [$syllabus]) }}" class="btn btn-outline rounded-md">Cancel</a>
-                     </form> 
-                </div>
+                    </div>
+                    <x-input-error :messages="$errors->get('is_group_assignment')" class="mt-2"/>
+
+                    <div class="mt-4 p-4 space-x-2">
+                        <button type="submit" class="btn btn-sm px-7">
+                            Save
+                        </button>
+                        <a href="{{ route_back_with_fallback('syllabi.assignment-plans.index', $syllabus) }}">{{ __('Cancel') }}</a>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-        
 </x-app-layout>
