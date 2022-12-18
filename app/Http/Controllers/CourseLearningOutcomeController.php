@@ -32,30 +32,31 @@ class CourseLearningOutcomeController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param Syllabus $syllabus
+     * @param IntendedLearningOutcome $ilo
+     * @return Application|Factory|View
      */
-    public function create($syllabus, IntendedLearningOutcome $ilo)
+    public function create(Syllabus $syllabus, IntendedLearningOutcome $ilo)
     {
         return view('course-learning-outcomes.create', [
             'syllabus' => $syllabus,
             'ilo' => $ilo,
         ]);
     }
-    // button create
-
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
     public function store(Request $request, $syllabus, IntendedLearningOutcome $ilo)
     {
         $validated = $request->validate([
-            'position' => 'required|numeric',
             'description' => 'required|string',
         ]);
+        $newPosition = $ilo->courseLearningOutcomes()->max('position') + 1;
+        $validated['position'] = $newPosition;
 
         $ilo->courseLearningOutcomes()->create($validated);
 

@@ -11,12 +11,13 @@ class IntendedLearningOutcome extends Model
 
     public $timestamps = false;
 
-    public function courseLearningOutcomes()
-    {
-        return $this->hasMany(CourseLearningOutcome::class, 'ilo_id');
-    }
     protected $fillable =[
         'position',
         'description'
     ];
+
+    public function courseLearningOutcomes()
+    {
+        return $this->hasMany(CourseLearningOutcome::class, 'ilo_id');
+    }
 }
