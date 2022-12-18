@@ -35,7 +35,7 @@ class FakeDataSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(TruncateAllTables::class);
+//        $this->call(TruncateAllTables::class);
 
         $admin = User::factory()->create([
             'email' => 'admin@siobe.com',
@@ -59,8 +59,10 @@ class FakeDataSeeder extends Seeder
                         'study_program_id' => $study_program->id,
                         'creator_user_id' => $admin->id,
                     ])->each(function ($course) use ($teachers) {
+                        $teacher_creator_id = $teachers->random(1)->first()->id;
                         Syllabus::factory(1)->create([
                             'course_id' => $course->id,
+                            'creator_user_id' => $teacher_creator_id,
                         ])->each(function ($syllabus) {
                             $nIntendedOutcome = 5;
                             $ilos = array();
@@ -152,7 +154,7 @@ class FakeDataSeeder extends Seeder
 
                         CourseClass::factory(2)->create([
                             'course_id' => $course->id,
-                            'creator_user_id' => $teachers->random(1)->first()->id
+                            'creator_user_id' => $teacher_creator_id,
                         ])->each(function ($course_class) use ($course, $teachers) {
                             $studentsJoinThisClass = User::factory(rand(30, 40))->create([
                                 'role' => 'student',

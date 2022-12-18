@@ -20,7 +20,7 @@ class SyllabusController extends Controller
      */
     public function index()
     {
-        $syllabi = Syllabus::with('course')->paginate(5);
+        $syllabi = Syllabus::with('course')->where('creator_user_id', Auth::id())->paginate(10);
         return view('syllabi.index', [
             'syllabi' => $syllabi,
         ]);
@@ -59,6 +59,7 @@ class SyllabusController extends Controller
         $syllabus->head_of_study_program = $validated['head_of_study_program'];
         $syllabus->author = $validated['author'];
         $syllabus->course_id = $validated['course_id'];
+        $syllabus->creator_user_id = Auth::id();
         $syllabus->save();
 
         return redirect()->route('syllabi.show', $syllabus);
