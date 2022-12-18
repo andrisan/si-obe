@@ -17,7 +17,7 @@
                         <label class="label">
                             <span class="label-text">Description</span>
                         </label>
-                        <textarea class="textarea text-neutral input-bordered bg-white w-full max-w-xl" name="description" placeholder="Descriptionn of intended learning outcome">{{ old('description') }}</textarea>
+                        <textarea class="textarea text-neutral input-bordered bg-white w-full max-w-xl" name="description" placeholder="Description of intended learning outcome">{{ old('description') }}</textarea>
                         <x-input-error :messages="$errors->get('description')" class="mt-2"/>
                     </div>
 

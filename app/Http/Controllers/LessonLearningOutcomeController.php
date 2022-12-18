@@ -4,9 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\IntendedLearningOutcome;
 use App\Models\Syllabus;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Models\CourseLearningOutcome;
 use App\Models\LessonLearningOutcome;
+use Illuminate\Http\Response;
 
 class LessonLearningOutcomeController extends Controller
 {
@@ -28,9 +33,12 @@ class LessonLearningOutcomeController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param Syllabus $syllabus
+     * @param IntendedLearningOutcome $ilo
+     * @param CourseLearningOutcome $clo
+     * @return Application|Factory|View
      */
-    public function create($syllabus, $ilo, CourseLearningOutcome $clo)
+    public function create(Syllabus $syllabus, IntendedLearningOutcome $ilo, CourseLearningOutcome $clo)
     {
         return view('lesson-learning-outcomes.create',[
             'syllabus' => $syllabus,
@@ -42,15 +50,19 @@ class LessonLearningOutcomeController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Syllabus $syllabus
+     * @param IntendedLearningOutcome $ilo
+     * @param CourseLearningOutcome $clo
+     * @return RedirectResponse
      */
-    public function store(Request $request, $syllabus, $ilo, CourseLearningOutcome $clo)
+    public function store(Request $request, Syllabus $syllabus, IntendedLearningOutcome $ilo, CourseLearningOutcome $clo)
     {
         $validated = $request->validate([
-            'position' => 'required|numeric',
             'description' => 'required|string',
         ]);
+        $newPosition = $clo->lessonLearningOutcomes()->max('position') + 1;
+        $validated['position'] = $newPosition;
 
         $clo->lessonLearningOutcomes()->create($validated);
 
@@ -65,7 +77,7 @@ class LessonLearningOutcomeController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show()
     {
@@ -75,10 +87,13 @@ class LessonLearningOutcomeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Syllabus $syllabus
+     * @param IntendedLearningOutcome $ilo
+     * @param CourseLearningOutcome $clo
+     * @param LessonLearningOutcome $llo
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function edit($syllabus, $ilo, $clo, LessonLearningOutcome $llo)
+    public function edit(Syllabus $syllabus, IntendedLearningOutcome $ilo, CourseLearningOutcome $clo, LessonLearningOutcome $llo)
     {
         return view('lesson-learning-outcomes.edit', [
             'syllabus' => $syllabus,
@@ -91,9 +106,9 @@ class LessonLearningOutcomeController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(Request $request, $syllabus, $ilo, $clo, LessonLearningOutcome $llo)
     {
@@ -115,7 +130,7 @@ class LessonLearningOutcomeController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy($syllabus, $ilo, $clo, LessonLearningOutcome $llo)
     {

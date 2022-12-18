@@ -13,7 +13,7 @@
             <div class="flex flex-row sm:justify-end mb-3 px-4 sm:px-0 -mr-2 sm:-mr-3">
                 <div class="order-5 sm:order-6 mr-2 sm:mr-3">
                     <x-button-link href="{{ route('syllabi.ilos.clos.llos.create',[$syllabus, $ilo, $clo]) }}">
-                        <i class="fa fa-plus"></i> {{ __('Create New CLO') }}
+                        <i class="fa fa-plus"></i> {{ __('Create New LLO') }}
                     </x-button-link>
                 </div>
             </div>
