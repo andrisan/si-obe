@@ -62,7 +62,7 @@
                 {{ $learningPlans->links() }}
             @else
                 <div class="text-center p-8">
-                    No course learning outcomes found.
+                    <p class="text-gray-500">No learning plans found.</p>
                 </div>
             @endif
         </div>

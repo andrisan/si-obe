@@ -6,64 +6,62 @@
             {{ __('Assignment Plans') }}
         </h2>
     </x-slot>
-    
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                <div>
-                  <table class="w-full">
-                    <thead>
-                      <tr>
-                        <th >id</th> 
-                        <th class="w-[45rem] px-32">title</th> 
 
-                        
-                        <th class="w-36 p-10">   
-                        <div>
-                        <form action="{{ route('syllabi.assignment-plans.create', $syllabus) }}" method= "get">
-                              <button class="btn border-outline bg-blue-400 hover:bg-blue-700 hover:text-white 
-                              text-white font-bold btn-outline"><strong>Create</strong></button>
-                        </form>
-                        </div>
-                        </th>
-
-                      </tr>
-                    </thead> 
-                    <tbody>
-                      @foreach($plans as $plan)
-                      <tr>
-                        <td class="px-5">{{ $plan->id }}</td>      
-                        <td class="px-5">{{ $plan->title }}</td> 
-
-                        <td class="w-36">
-                        <div class="flex card-actions justify-center pt-5">
-                            <form action="{{ route('syllabi.assignment-plans.edit', [$syllabus, $plan->id]) }}" method="get">
-                              <button class="btn btn-warning btn-sm" value="{{ $plan->id }}"><strong>Edit</strong></button>
-                            </form>
-                            <form action="{{ route('syllabi.assignment-plans.destroy', [$syllabus, $plan->id]) }}" method="post">
-                                @csrf
-                                @method('delete')
-                                <button class="btn btn-error btn-sm" value="{{ $plan->id }}" onclick="return confirm('Yakin ingin menghapus data?');"><strong>Delete</strong></button>
-                            </form>
-                        </div>
-                        <div class="flex card-actions justify-center pt-5">
-                        <form action="{{ route('syllabi.assignment-plans.show', [$syllabus, $plan->id]) }}" method="get">
-                          <button class="text-blue-600" value="{{ $plan->id }}"><strong>Open Details</strong></button>
-                        </form>      
-                        </div>
-                        </td>
-                      </tr>
-                      @endforeach
-                    </tbody> 
-                  </table>
-
-                
-
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        {{ Breadcrumbs::render('assignment-plans.index', $syllabus) }}
+        <div class="pb-8">
+            <div class="flex flex-row sm:justify-end mb-3 px-4 sm:px-0 -mr-2 sm:-mr-3">
+                <div class="order-5 sm:order-6 mr-2 sm:mr-3">
+                    <x-button-link href="{{ route('syllabi.assignment-plans.create', [$syllabus]) }}">
+                        <i class="fa fa-plus"></i> {{ __('Create New Assignment Plan') }}
+                    </x-button-link>
                 </div>
             </div>
+            @if($assignmentPlans->count() > 0)
+                <div class="mb-5 overflow-x-auto bg-white rounded-lg shadow overflow-y-auto relative">
+                    <table class="border-collapse table-auto w-full bg-white table-striped relative">
+                        <thead>
+                        <tr class="text-left">
+                            <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-6">No</th>
+                            <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate">Title</th>
+                            <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate">Description</th>
+                            <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-36">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach ($assignmentPlans as $plan)
+                            <tr>
+                                <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $loop->index + $assignmentPlans->firstItem() }}</td>
+                                <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $plan->title }}</td>
+                                <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $plan->description }}</td>
+                                <td
+                                    class="text-gray-600 px-6 py-3 border-t border-gray-100">
+                                    <div class="flex flex-wrap space-x-4">
+                                        <a href="{{ route('syllabi.learning-plans.edit', [$syllabus, $plan]) }}"
+                                           class="text-blue-500">Edit</a>
+                                        <form method="POST" action="{{ route('syllabi.learning-plans.destroy', [$syllabus, $plan]) }}">
+                                            @csrf
+                                            @method('delete')
+
+                                            <button class="text-red-500"
+                                                    onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
+                                                {{ __('Delete') }}
+                                            </button>
+                                        </form>
+
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                {{ $assignmentPlans->links() }}
+            @else
+                <div class="text-center p-8">
+                    <p class="text-gray-600">No Assignment Plans found.</p>
+                </div>
+            @endif
         </div>
     </div>
-
-    
 </x-app-layout>

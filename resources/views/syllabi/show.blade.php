@@ -231,7 +231,7 @@
                         @foreach ($assignmentPlans as $assignmentPlan)
                         <div class="p-5">
                             <div class="text-center p-6">
-                                <h3 class="text-2xl font-bold">{{ __("Assignment Plan") }}</h3>
+                                <h3 class="text-2xl font-bold p-3">{{ __("Assignment Plan") }}</h3>
                                 <h3 class="text-xl font-semibold">{{ $assignmentPlan->title }}</h3>
                             </div>
                             <div class="px-4">

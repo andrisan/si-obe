@@ -15,14 +15,13 @@ class AssignmentPlanController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function index($syllabus)
+    public function index(Syllabus $syllabus)
     {
-        $plans= AssignmentPlan::where('syllabus_id', $syllabus)->get();
         return view('assignment-plans.index', [
             'syllabus' => $syllabus,
-            'plans' => $plans
+            'assignmentPlans' => $syllabus->assignmentPlans()->paginate(10),
         ]);
     }
 
@@ -94,7 +93,7 @@ class AssignmentPlanController extends Controller
           return view('assignment-plans.edit',[
             'syllabus' => $syllabus,
             'plan'=> $plan
-          ]);  
+          ]);
     }
 
     /**
