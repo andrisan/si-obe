@@ -2,65 +2,75 @@
 
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-2xl text-gray-800 leading-tight">
-            {{ $plan->study_material }}
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __("Edit Learning Plan") }}
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    <form action="{{ route('syllabi.learning-plans.update', [$syllabus, $plan]) }}" method="post">
-                        @csrf
-                        @method('patch')
-                        <div class="hidden">
-                            <label for="syllabus" class="label">
-                                <span class="label-text">Kode Syllabus</span>
-                            </label>
-                            <input type="number" placeholder="Masukkan input" class="input input-bordered w-full max-w-xs" name="syllabus_id" value="{{ $plan->syllabus_id }}" />
-                        </div>
+    <div class="max-w-7xl mx-auto pb-10 sm:px-6 lg:px-8">
+        {{ Breadcrumbs::render('learning-plans.edit', $syllabus, $learningPlan) }}
+        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="p-6 bg-white border-b border-gray-200">
+                <form method="POST" action="{{ route('syllabi.learning-plans.update', [$syllabus, $learningPlan]) }}">
+                    @csrf
+                    @method('patch')
 
-                        <label for="llo" class="label">
-                            <span class="label-text">Kode LLO</span>
+                    <div class="form-control w-full p-3">
+                        <label class="label">
+                            <span class="label-text">LLO</span>
                         </label>
-
-                        <select class="select select-bordered w-full max-w-xs" placeholder="Masukkan input" name="llo_id">
+                        <select class="select select-bordered w-full max-w-xs" name="llo_id">
+                            <option disabled selected>Choose the LLO</option>
                             @foreach ($llos as $llo)
-                            <option value={{$llo->id}} @if($plan->llo_id == $llo->id)
-                                selected
-                                @endif >{{ $llo->description }}</option>
+                                <option value="{{ $llo->id }}" {{ (old("llo_id", $learningPlan->llo_id) == $llo->id ? "selected":"") }}>{{ $llo->description }}</option>
                             @endforeach
                         </select>
+                        <x-input-error :messages="$errors->get('llo_id')" class="mt-2"/>
+                    </div>
 
-                        <label for=" week_number" class="label">
+                    <div class="form-control w-full p-3">
+                        <label class="label">
                             <span class="label-text">Week Number</span>
                         </label>
-                        <input type="number" placeholder="Masukkan input" class="input input-bordered w-full max-w-xs" name="week_number" value="{{ $plan->week_number }}" />
+                        <input type="number" name="week_number" placeholder="Week Number"
+                               class="input input-bordered w-full max-w-xs" value="{{ old('week_number', $learningPlan->week_number) }}"/>
+                        <x-input-error :messages="$errors->get('week_number')" class="mt-2"/>
+                    </div>
 
-                        <label for=" sudy_material" class="label">
+                    <div class="form-control w-full p-3">
+                        <label class="label">
                             <span class="label-text">Study Material</span>
                         </label>
-                        <textarea placeholder="Masukkan input" class="w-full max-w-xs" name="study_material" value="{{ $plan->study_material }}">{{ $plan->study_material }}</textarea>
+                        <textarea class="textarea text-neutral input-bordered bg-white w-full max-w-xl" name="study_material" placeholder="Study Material">{{ old('study_material', $learningPlan->study_material) }}</textarea>
+                        <x-input-error :messages="$errors->get('study_material')" class="mt-2"/>
+                    </div>
 
-                        <label for=" learning_method" class="label">
+                    <div class="form-control w-full p-3">
+                        <label class="label">
                             <span class="label-text">Learning Method</span>
                         </label>
-                        <textarea placeholder="Masukkan input" class="w-full max-w-xs" name="learning_method" value="{{ $plan->learning_method }}">{{ $plan->learning_method }}</textarea>
+                        <textarea class="textarea text-neutral input-bordered bg-white w-full max-w-xl" name="learning_method" placeholder="Learning Method">{{ old('learning_method', $learningPlan->learning_method) }}</textarea>
+                        <x-input-error :messages="$errors->get('learning_method')" class="mt-2"/>
+                    </div>
 
-                        <label for=" estimated_time" class="label">
+                    <div class="form-control w-full p-3">
+                        <label class="label">
                             <span class="label-text">Estimated Time</span>
                         </label>
-                        <input type="text" placeholder="Masukkan input" class="input input-bordered w-full max-w-xs" name="estimated_time" value="{{ $plan->estimated_time }}" />
-                        <div class="py-4">
-                        <button type="submit" value="Save" class="btn btn-active btn-success rounded-md mr-4">Save</button>
-                        <button class="btn btn-warning rounded-md">
-                            <a href="{{ route('syllabi.learning-plans.index', [$syllabus]) }}">Cancel</a>
+                        <input type="text" name="estimated_time" placeholder="Estimated Time"
+                               class="input input-bordered w-full max-w-xs" value="{{ old('estimated_time', $learningPlan->estimated_time) }}"/>
+                        <x-input-error :messages="$errors->get('estimated_time')" class="mt-2"/>
+                    </div>
+
+                    <div class="mt-4 p-4 space-x-2">
+                        <button type="submit" class="btn btn-sm px-7">
+                            Save
                         </button>
-                        </div>
-                    </form>
-                </div>
+                        <a href="{{ route_back_with_fallback('syllabi.learning-plans.index', $syllabus) }}">{{ __('Cancel') }}</a>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+
 </x-app-layout>

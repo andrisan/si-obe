@@ -59,7 +59,7 @@
                         </label>
                         <input type="text" name="estimated_time" placeholder="Estimated Time"
                                class="input input-bordered w-full max-w-xs" value="{{ old('estimated_time') }}"/>
-                        <x-input-error :messages="$errors->get('week_number')" class="mt-2"/>
+                        <x-input-error :messages="$errors->get('estimated_time')" class="mt-2"/>
                     </div>
 
                     <div class="mt-4 p-4 space-x-2">
