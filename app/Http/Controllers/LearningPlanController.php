@@ -13,17 +13,14 @@ class LearningPlanController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function index($syllabus)
+    public function index(Syllabus $syllabus)
     {
-        $plan = LearningPlan::with("lessonLearningOutcome")->where('syllabus_id', $syllabus)->paginate(5);
-        $syllabus = Syllabus::find($syllabus);
         return view('learning-plans.index', [
             'syllabus' => $syllabus,
-            'plans' => $plan
+            'learningPlans' => $syllabus->learningPlans()->paginate(10)
         ]);
-
     }
 
     /**
@@ -43,7 +40,7 @@ class LearningPlanController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request, Syllabus $syllabus)
@@ -59,14 +56,14 @@ class LearningPlanController extends Controller
         $syllabus->learningPlans()->create($validated);
 
         return redirect()->route('syllabi.learning-plans.index', [
-            'syllabus'=>$syllabus
+            'syllabus' => $syllabus
         ]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show()
@@ -77,14 +74,14 @@ class LearningPlanController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($syllabus, $plan)
     {
         $plan = LearningPlan::find($plan);
         $llos = LessonLearningOutcome::all();
-        return  view('learning-plans.edit', [
+        return view('learning-plans.edit', [
             'syllabus' => $syllabus,
             'plan' => $plan,
             'llos' => $llos
@@ -94,8 +91,8 @@ class LearningPlanController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $syllabus, $plan)
@@ -122,19 +119,19 @@ class LearningPlanController extends Controller
 
         return redirect()->route('syllabi.learning-plans.index', [
             'syllabus' => $syllabus,
-    ]);
+        ]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($syllabus, $plan)
     {
         $del = LearningPlan::where('id', $plan)->delete();
-        
+
         return redirect()->route('syllabi.learning-plans.index', [
             'syllabus' => $syllabus
         ]);

@@ -114,6 +114,13 @@ Breadcrumbs::for('syllabi.edit', function (BreadcrumbTrail $trail, $syllabus) {
     $trail->push('Edit', route('syllabi.edit', $syllabus));
 });
 
+// Learning PLans
+Breadcrumbs::for('learning-plans.index', function (BreadcrumbTrail $trail, $syllabus) {
+    $trail->parent('home');
+    $trail->push($syllabus->title, route('syllabi.show', $syllabus));
+    $trail->push('Learning Plans', route('syllabi.learning-plans.index', $syllabus));
+});
+
 // ILOs
 Breadcrumbs::for('ilos.index', function (BreadcrumbTrail $trail, $syllabus) {
     $trail->parent('home');
