@@ -5,13 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Syllabus;
 use App\Models\IntendedLearningOutcome;
 use App\Models\CourseLearningOutcome;
-use App\Models\LessonLearningOutcome;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class CourseLearningOutcomeController extends Controller
 {
@@ -47,10 +45,12 @@ class CourseLearningOutcomeController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
+     * @param Syllabus $syllabus
+     * @param IntendedLearningOutcome $ilo
      * @return RedirectResponse
      */
-    public function store(Request $request, $syllabus, IntendedLearningOutcome $ilo)
+    public function store(Request $request, Syllabus $syllabus, IntendedLearningOutcome $ilo)
     {
         $validated = $request->validate([
             'description' => 'required|string',
@@ -67,33 +67,14 @@ class CourseLearningOutcomeController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($syllabus, $ilo, CourseLearningOutcome $clo)
-    {
-        $llos = LessonLearningOutcome::where('clo_id', $clo['id'])->orderBy('position')->get();
-
-        return view('course-learning-outcomes.show', [
-            'syllabus' => $syllabus,
-            'ilo' => $ilo,
-            'clo' => $clo,
-            'llos' => $llos,
-        ]);
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param Syllabus $syllabus
-     * @param IntendedLearningOutcome $intendedLearningOutcome
-     * @param CourseLearningOutcome $courseLearningOutcome
-     *
-     * @return \Illuminate\Http\Response
+     * @param IntendedLearningOutcome $ilo
+     * @param CourseLearningOutcome $clo
+     * @return Application|Factory|View
      */
-    public function edit($syllabus, $ilo, CourseLearningOutcome $clo)
+    public function edit(Syllabus $syllabus, IntendedLearningOutcome $ilo, CourseLearningOutcome $clo)
     {
         return view('course-learning-outcomes.edit', [
             'syllabus' => $syllabus,
@@ -105,13 +86,13 @@ class CourseLearningOutcomeController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param Syllabus $syllabus
-     * @param IntendedLearningOutcome $intendedLearningOutcome
-     * @param CourseLearningOutcome $courseLearningOutcome
-     * @return \Illuminate\Http\Response
+     * @param IntendedLearningOutcome $ilo
+     * @param CourseLearningOutcome $clo
+     * @return RedirectResponse
      */
-    public function update(Request $request, $syllabus, $ilo, CourseLearningOutcome $clo): RedirectResponse
+    public function update(Request $request, Syllabus $syllabus, IntendedLearningOutcome $ilo, CourseLearningOutcome $clo): RedirectResponse
     {
         $validated = $request->validate([
             'position' => 'required|numeric',
@@ -129,20 +110,14 @@ class CourseLearningOutcomeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Syllabus $syllabus
+     * @param IntendedLearningOutcome $ilo
+     * @param CourseLearningOutcome $clo
+     * @return RedirectResponse
      */
-    public function destroy($syllabus, $ilo, CourseLearningOutcome $clo)
+    public function destroy(Syllabus $syllabus, IntendedLearningOutcome $ilo, CourseLearningOutcome $clo)
     {
-
-        //
         $clo->delete();
-
-        return redirect()->route('syllabi.ilos.clos.index', [
-            'syllabus' => $syllabus,
-            'ilo' => $ilo,
-        ]);
+        return back();
     }
-    // button delete
-
 }
