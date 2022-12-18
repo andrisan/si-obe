@@ -6,7 +6,7 @@
       {{ __('Syllabi Edit of ' . "$syllabus->title") }}
     </h2>
   </x-slot>
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto pb-10 sm:px-6 lg:px-8">
         {{ Breadcrumbs::render('syllabi.edit', $syllabus) }}
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 bg-white border-b border-gray-200">
@@ -58,7 +58,7 @@
                         <button type="submit" class="btn btn-sm px-7">
                             Save
                         </button>
-                        <a href="{{ route('syllabi.index') }}">{{ __('Cancel') }}</a>
+                        <a href="{{ cancel_route(route('syllabi.index')) }}">{{ __('Cancel') }}</a>
                     </div>
                 </form>
             </div>
