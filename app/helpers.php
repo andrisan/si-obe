@@ -1,15 +1,11 @@
 <?php
 
-if (! function_exists('cancel_route')) {
-    function cancel_route($fallback_url = null)
+if (! function_exists('route_back_with_fallback')) {
+    function route_back_with_fallback($name, $parameters = [], $absolute = true): string
     {
         $url = url()->previous();
-        if (empty($fallback_url)) {
-            return $url;
-        }
-
         if ($url == url()->current()) {
-            $url = $fallback_url;
+            $url = route($name, $parameters, $absolute);
         }
         return $url;
     }
