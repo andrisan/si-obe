@@ -11,7 +11,6 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Models\CourseLearningOutcome;
 use App\Models\LessonLearningOutcome;
-use Illuminate\Http\Response;
 
 class LessonLearningOutcomeController extends Controller
 {
@@ -74,17 +73,6 @@ class LessonLearningOutcomeController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function show()
-    {
-
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param Syllabus $syllabus
@@ -107,10 +95,13 @@ class LessonLearningOutcomeController extends Controller
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param  int  $id
-     * @return Response
+     * @param Syllabus $syllabus
+     * @param IntendedLearningOutcome $ilo
+     * @param CourseLearningOutcome $clo
+     * @param LessonLearningOutcome $llo
+     * @return RedirectResponse
      */
-    public function update(Request $request, $syllabus, $ilo, $clo, LessonLearningOutcome $llo)
+    public function update(Request $request, Syllabus $syllabus, IntendedLearningOutcome $ilo, CourseLearningOutcome $clo, LessonLearningOutcome $llo)
     {
         $validated = $request->validate([
             'position' => 'required|numeric',
@@ -129,17 +120,15 @@ class LessonLearningOutcomeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return Response
+     * @param Syllabus $syllabus
+     * @param IntendedLearningOutcome $ilo
+     * @param CourseLearningOutcome $clo
+     * @param LessonLearningOutcome $llo
+     * @return RedirectResponse
      */
-    public function destroy($syllabus, $ilo, $clo, LessonLearningOutcome $llo)
+    public function destroy(Syllabus $syllabus, IntendedLearningOutcome $ilo, CourseLearningOutcome $clo, LessonLearningOutcome $llo)
     {
         $llo->delete();
-
-        return redirect()->route('syllabi.ilos.clos.llos.index',[
-            'syllabus' => $syllabus,
-            'ilo' => $ilo,
-            'clo' => $clo
-        ]);
+        return back();
     }
 }

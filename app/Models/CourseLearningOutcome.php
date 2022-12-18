@@ -11,6 +11,11 @@ class CourseLearningOutcome extends Model
 
     public $timestamps = false;
 
+    protected $fillable = [
+        'position',
+        'description'
+    ];
+
     public function intendedLearningOutcome(){
         return $this->belongsTo(IntendedLearningOutcome::class);
     }
@@ -20,8 +25,8 @@ class CourseLearningOutcome extends Model
         return $this->hasMany(LessonLearningOutcome::class, 'clo_id');
     }
 
-    protected $fillable = [
-        'position',
-        'description'
-    ];
+    public function llos()
+    {
+        return $this->lessonLearningOutcomes();
+    }
 }
