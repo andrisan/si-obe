@@ -1,84 +1,71 @@
 @section('pageTitle', "Lesson Learning Outcome")
-
-<script src="https://kit.fontawesome.com/b79c47ea42.js" crossorigin="anonymous"></script>
-<script src="https://kit.fontawesome.com/61cc44f0a1.js" crossorigin="anonymous"></script>
-
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Lesson Learning Outcome') }}
+            {{ __('Lesson Learning Outcomes') }}
         </h2>
+        <p>for {{ $clo->description }}</p>
     </x-slot>
-    
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-20">
-                    <div class="flex flex-col border-b-2">
-                        <div>
-                            <h1 class="text-2xl font-extrabold" style="font-weight: 900;">Lesson Learning Outcome</h1>
-                        </div>
-                        <br>
-                        <div>
-                            <table>
-                                <tr>
-                                    <th></th>
-                                    <th></th>
-                                </tr>
-                                <tbody>
-                                    @foreach($clos as $clo)
-                                    <tr>
-                                        <td class="font-bold">Kode CLO</td>
-                                        <td>: {{ $clo->id }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="font-bold">Deskripsi</td>
-                                        <td><a href="{{ route('syllabi.ilos.clos.index', [$syllabus, $ilo]) }}">: {{ $clo->description}}</a></td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                        <br>
-                        <div>
-                            <form action="{{ route('syllabi.ilos.clos.llos.create', [$syllabus, $ilo, $clo]) }}" method="get">
-                                <button class="btn btn-success btn-sm"><strong>+ Tambah LLO</strong></button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="mt-10">
-                        <table class="table-fixed w-full">
-                            <thead>
-                                <tr class="bg-[#F7F7F9] border-2 h-10">
-                                    <th class="w-auto">Posisi</th>
-                                    <th class="w-auto">Deskripsi</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody class="text-center border-2 border-black text-black">
-                            @foreach($llos as $llo) 
-                            <tr class="border-2 h-14">
-                                <td>{{ $llo->position }}</td>
-                                <td>{{ $llo->description }}</td>    
-                                <td>
-                                    <div class="card-actions justify-center pt-5">
-                                        <form action="{{ route('syllabi.ilos.clos.llos.edit', [$syllabus, $ilo, $clo, $llo->id]) }}" method="get">
-                                            <button class="btn btn-warning btn-sm" value="{{ $llo->id }}"><strong>Edit</strong></button>
-                                        </form>
-                                        <form action="{{ route('syllabi.ilos.clos.llos.destroy', [$syllabus, $ilo, $clo, $llo->id]) }}" method="post">
-                                            @csrf
-                                            @method('delete')
-                                            <button class="btn btn-error btn-sm" value="{{ $llo->id }}" onclick="return confirm('Yakin ingin menghapus data?');"><strong>Delete</strong></button>
-                                        </form>
-                                    </div>
-                                </td>        
-                            </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        {{ Breadcrumbs::render('llos.index', $syllabus, $ilo, $clo) }}
+        <div class="pb-8">
+            <div class="flex flex-row sm:justify-end mb-3 px-4 sm:px-0 -mr-2 sm:-mr-3">
+                <div class="order-5 sm:order-6 mr-2 sm:mr-3">
+                    <x-button-link href="{{ route('syllabi.ilos.clos.llos.create',[$syllabus, $ilo, $clo]) }}">
+                        <i class="fa fa-plus"></i> {{ __('Create New CLO') }}
+                    </x-button-link>
                 </div>
             </div>
+            @if($llos->count() > 0)
+                <div class="mb-5 overflow-x-auto bg-white rounded-lg shadow overflow-y-auto relative">
+                    <table class="border-collapse table-auto w-full bg-white table-striped relative">
+                        <thead>
+                        <tr class="text-left">
+                            <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-6">
+                                No
+                            </th>
+                            <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate">
+                                Description
+                            </th>
+                            <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-128">
+                                Action
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach ($llos as $llo)
+                            <tr>
+                                <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $loop->index + $llos->firstItem() }}</td>
+                                <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $llo->description }}</td>
+                                <td
+                                    class="text-gray-600 px-6 py-3 border-t border-gray-100">
+                                    <div class="flex flex-wrap space-x-4">
+                                        <a href="{{ route('syllabi.ilos.clos.llos.edit', [$syllabus, $ilo, $clo, $llo]) }}"
+                                           class="text-blue-500">Edit</a>
+                                        <form method="POST" action="{{ route('syllabi.ilos.clos.llos.destroy', [$syllabus, $ilo, $clo, $llo]) }}">
+                                            @csrf
+                                            @method('delete')
+
+                                            <button class="text-red-500"
+                                                    onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
+                                                {{ __('Delete') }}
+                                            </button>
+                                        </form>
+
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                {{ $llos->links() }}
+            @else
+                <div class="text-center p-8">
+                    No lesson learning outcomes found.
+                </div>
+            @endif
         </div>
     </div>
 </x-app-layout>

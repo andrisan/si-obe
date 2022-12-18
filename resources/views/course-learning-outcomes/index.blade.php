@@ -5,6 +5,7 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Course Learning Outcome') }}
         </h2>
+        <p>for {{ $ilo->description }}</p>
     </x-slot>
 
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">

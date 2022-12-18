@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Models\IntendedLearningOutcome;
+use App\Models\Syllabus;
+use Illuminate\Http\Request;
 use App\Models\CourseLearningOutcome;
 use App\Models\LessonLearningOutcome;
 
@@ -13,18 +13,15 @@ class LessonLearningOutcomeController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function index($syllabus, $ilo, $clo)
+    public function index(Syllabus $syllabus, IntendedLearningOutcome $ilo, CourseLearningOutcome $clo)
     {
-        $clos = LessonLearningOutcome::where('id', $clo)->get();
-        $llos = LessonLearningOutcome::where('clo_id', $clo)->orderBy('position')->get();
-
         return view('lesson-learning-outcomes.index', [
             'syllabus' => $syllabus,
             'ilo' => $ilo,
-            'clos' => $clos,
-            'llos' => $llos
+            'clo' => $clo,
+            'llos' => $clo->lessonLearningOutcomes()->orderBy('position')->paginate(10),
         ]);
     }
 
