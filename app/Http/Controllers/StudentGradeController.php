@@ -72,54 +72,71 @@ class StudentGradeController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
     public function create(Request $request)
     {
-        $assignmentid = $request->query('assignment_id');
-        $userid = $request->query('user_id');
-        $username = User::where('id', $userid)->first();
-        $assignment = Assignment::where('id', $assignmentid)->first();
-        $plantasks = AssignmentPlanTask::get();
-        $criterialevels = CriteriaLevel::get();
+        $assignmentId = $request->get('assignment_id');
+        $assignment = $this->_findOrFailAssignment($assignmentId);
+
+        $userId = $request->query('user_id');
+        $user = $this->_findOrFailUser($userId);
+
         return view('student-grades.create', [
-            'username' => $username->name,
-            'assignment' => $assignment->note,
-            'assignmentid' => $assignmentid,
-            'userid' => $userid,
-            'plantasks' => $plantasks,
-            'criterialevels' => $criterialevels
+            'assignment' => $assignment,
+            'apts' => $assignment->assignmentPlan->assignmentPlanTasks,
+            'user' => $user,
         ]);
     }
+
+    public function _findOrFailAssignment($assignmentId)
+    {
+        $assignment = Assignment::with('assignmentPlan', 'assignmentPlan.assignmentPlanTasks')->find($assignmentId);
+        if (empty($assignment)) {
+            abort(404);
+        }
+        return $assignment;
+    }
+
+    public function _findOrFailUser($userId)
+    {
+        $user = User::where('id', $userId)->first();
+        if (empty($user)) {
+            abort(404);
+        }
+        return $user;
+    }
+
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
     public function store(Request $request)
     {
-        $assignmentid = $request->assignment_id;
-        $studentid = $request->student_user_id;
-        $plan1 = $request->assignment_plan_task_id;
-        $criteria1 = $request->criteria_level_id;
-        $plan2 = $request->assignment_plan_task_id2;
-        $criteria2 = $request->criteria_level_id2;
+        $assignmentId = $request->post('assignment_id');
+        $assignment = $this->_findOrFailAssignment($assignmentId);
 
-        $data = [
-            ['student_user_id' => $studentid,
-            'assignment_id' => $assignmentid,
-            'assignment_plan_task_id' => $plan1,
-            'criteria_level_id' => $criteria1],
-            ['student_user_id' => $studentid,
-            'assignment_id' => $assignmentid,
-            'assignment_plan_task_id' => $plan2,
-            'criteria_level_id' => $criteria2]
-        ];
+        $userId = $request->post('user_id');
+        $user = $this->_findOrFailUser($userId);
 
-        StudentGrade::insert($data); // Eloquent approach
+        $apts = $assignment->assignmentPlan->assignmentPlanTasks;
 
-        return redirect('/student-grades/?assignment_id='.$assignmentid);
+        $i = 0;
+        foreach ($apts as $apt) {
+            if ($request->input("criteria_level_id$i")) {
+                $grade = new StudentGrade();
+                $grade->student_user_id = $user->id;
+                $grade->assignment_id = $assignment->id;
+                $grade->assignment_plan_task_id = $apt->id;
+                $grade->criteria_level_id = $request->input("criteria_level_id$i");
+                $grade->save();
+            }
+            $i++;
+        }
+
+        return redirect()->route('student-grades.index', ['assignment_id' => $assignmentId]);
     }
 
     /**
@@ -142,16 +159,10 @@ class StudentGradeController extends Controller
     public function edit(Request $request)
     {
         $assignmentId = $request->get('assignment_id');
-        $assignment = Assignment::with('assignmentPlan', 'assignmentPlan.assignmentPlanTasks')->find($assignmentId);
-        if (empty($assignment)) {
-            abort(404);
-        }
+        $assignment = $this->_findOrFailAssignment($assignmentId);
 
         $userId = $request->query('user_id');
-        $user = User::where('id', $userId)->first();
-        if (empty($user)) {
-            abort(404);
-        }
+        $user = $this->_findOrFailUser($userId);
 
         $grades = StudentGrade::where('assignment_id', $assignmentId)
             ->where('student_user_id', $userId)
@@ -176,19 +187,12 @@ class StudentGradeController extends Controller
     public function update(Request $request)
     {
         $assignmentId = $request->post('assignment_id');
-        $assignment = Assignment::with('assignmentPlan', 'assignmentPlan.assignmentPlanTasks')->find($assignmentId);
-        if (empty($assignment)) {
-            abort(404);
-        }
+        $assignment = $this->_findOrFailAssignment($assignmentId);
 
         $userId = $request->post('user_id');
-        $user = User::where('id', $userId)->first();
-        if (empty($user)) {
-            abort(404);
-        }
+        $user = $this->_findOrFailUser($userId);
 
-        $grades = StudentGrade
-            ::where('assignment_id', $assignmentId)
+        $grades = StudentGrade::where('assignment_id', $assignmentId)
             ->where('student_user_id', $userId)
             ->get();
 
@@ -211,23 +215,26 @@ class StudentGradeController extends Controller
             $i++;
         }
 
-        return redirect('/student-grades/?assignment_id='.$request->assignment_id);
+        return redirect()->route('student-grades.index', ['assignment_id' => $assignmentId]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
-    public function destroy(Request $request, $id)
+    public function destroy(Request $request)
     {
-        $grades = StudentGrade::where('assignment_id', $request->assignmentId)->where('student_user_id', $request->userId)->get();
+        $assignmentId = $request->post('assignmentId');
+        $grades = StudentGrade::where([
+            ['assignment_id', '=', $assignmentId],
+            ['student_user_id', '=', $request->post('userId')],
+        ])->get();
+
         foreach($grades as $grade){
             $grade->delete();
         }
 
-        // dd($grade);
-        return redirect('/student-grades/?assignment_id='.$request->assignmentId);
+        return back();
     }
 }

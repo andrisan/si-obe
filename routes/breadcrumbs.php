@@ -317,3 +317,9 @@ Breadcrumbs::for('student-grades.edit', function (BreadcrumbTrail $trail, $assig
     $trail->parent('student-grades.index', $assignment);
     $trail->push('Edit');
 });
+
+// Student Grades > Create
+Breadcrumbs::for('student-grades.create', function (BreadcrumbTrail $trail, $assignment) {
+    $trail->parent('student-grades.index', $assignment);
+    $trail->push('Create');
+});

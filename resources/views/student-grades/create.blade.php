@@ -1,78 +1,59 @@
+@section('pageTitle', "Grade - ". $user->name)
+
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-2xl text-gray-800 leading-tight">
-            Create Student Grades
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Student Grade') }}
         </h2>
+        <table class="mt-5">
+            <tbody>
+            <tr>
+                <td>Student</td>
+                <td>: {{ $user->name }}</td>
+            </tr>
+            <tr>
+                <td><span class="mr-10">Assignment</span></td>
+                <td>: {{ $assignment->assignmentPlan->title }}</td>
+            </tr>
+            </tbody>
+        </table>
     </x-slot>
 
-    <!-- cek -->
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    <h1 class="text-3xl font-bold">{{ $username }}</h1>
-                    <br>
-                    <h1><b>Deskripsi tugas</b></h1>
-                    <h1>{{ $assignment }}</h1>
-                    <br>
-                    <h1 class="text-center text-2xl font-bold">Input Nilai</h1>
+    <div class="max-w-7xl mx-auto pb-10 sm:px-6 lg:px-8">
+        {{ Breadcrumbs::render('student-grades.create', $assignment) }}
+        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white border-b border-gray-200">
+                <form method="post" action="{{ route('student-grades.store') }}">
+                    <input type="hidden" name="assignment_id" value="{{ $assignment->id }}">
+                    <input type="hidden" name="user_id" value="{{ $user->id }}">
+                    @csrf
 
+                    @foreach($apts as $apt)
+                        <p class="ml-9 my-5 text-lg"><b> {{$apt->criteria->title}} </b> </p>
 
-                    <form method="post" action="{{route('student-grades.store')}}">
-                        @csrf
-                        <input type="hidden" name="assignment_id" value="{{ $assignmentid }}">
-                        <input type="hidden" name="student_user_id" value="{{ $userid }}">
-                        <br>
-                        <div>
-                        <h1 class="text-2xl font-bold text-center">Nilai 1</h1>
-                            <h1 class="text-xl font-bold">Masukkan Assignment Plan Task</h1>
-                            <select name="assignment_plan_task_id" placeholder="-">
-                                @foreach ($plantasks as $plan)
-                                <option value="{{$plan->id}}">{{$plan->code}} | {{Str::limit($plan->description, 130)}}</option>
-                                @endforeach
-                            </select>
+                        <div class="btn-group my-5 justify-center">
+                            @foreach($apt->criteria->criteriaLevels as $criteria)
+                                <div class="card w-44 h-36 bg-base border-2 my-1 rounded-lg mx-1">
+                                    <div class="card-actions pr-5 mt-5 justify-end">
+                                        <input type="radio" name="criteria_level_id{{ $loop->parent->index }}" value="{{ $criteria->id }}" />
+                                    </div>
+                                    <div class="px-5 py-5">
+                                        <p> <b> {{ $criteria->point }} </b> </p>
+                                        <p>{{ $criteria->title }}</p>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
-                        <br>
-                        <div>
-                            <h1 class="text-xl font-bold">Masukkan Criteria Level</h1>
-                            <select name="criteria_level_id" placeholder="-">
-                                @foreach ($criterialevels as $criterialevel)
-                                <option value="{{$criterialevel->id}}">{{$criterialevel->point}} | {{Str::limit($criterialevel->title)}} | {{Str::limit($criterialevel->description,105)}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <br>
-                        <div>
-                            <h1 class="text-2xl font-bold text-center">Nilai 2</h1>
-                            <h1 class="text-xl font-bold">Masukkan Assignment Plan Task</h1>
-                            <select name="assignment_plan_task_id2" placeholder="-">
-                                @foreach ($plantasks as $plan)
-                                <option value="{{$plan->id}}">{{$plan->code}} | {{Str::limit($plan->description, 130)}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <br>
-                        <div>
-                            <h1 class="text-xl font-bold">Masukkan Criteria Level</h1>
-                            <select name="criteria_level_id2" placeholder="-">
-                                @foreach ($criterialevels as $criterialevel)
-                                <option value="{{$criterialevel->id}}">{{$criterialevel->point}} | {{Str::limit($criterialevel->title)}} | {{Str::limit($criterialevel->description,105)}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        
-                        <div class="card-actions justify-end pt-5">
-                            {{-- <form action="/student-grades/?assignment_id={{$assignmentid}}">--}}
-                            <button class="btn btn-success" type="submit">Save</button>
+                    @endforeach
 
-                            {{-- <form action="{{ route('student-grades.index') }}">--}}
-                            <a class="btn btn-error" href="/student-grades/?assignment_id={{ $assignmentid }}">Cancel</a>
-                        </div>
-                        
-                    </form>
+                    <div class="mt-4 p-4 space-x-2">
+                        <button type="submit" class="btn btn-sm px-7">
+                            Save
+                        </button>
+                        <a href="{{ route('student-grades.index', ['assignment_id' => $assignment->id]) }}">{{ __('Cancel') }}</a>
+                    </div>
 
-
-                </div>
+                </form>
             </div>
         </div>
     </div>

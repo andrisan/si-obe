@@ -37,21 +37,22 @@
                                         <a href="/student-grades/edit?assignment_id={{$ls->idAssignment}}&user_id={{$ls->id}}">
                                             <button class="text-blue-500"><strong>Edit</strong></button>
                                         </a>
+
+                                        <form method="POST" action=" {{ route('student-grades.destroy',[$ls->id]) }}">
+                                            @csrf
+                                            @method('delete')
+                                            <input type="hidden" name="assignmentId" value="{{ $ls->idAssignment }}">
+                                            <input type="hidden" name="userId" value="{{ $ls->id }}">
+                                            <button class="text-red-500"
+                                                    onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
+                                                {{ __('Delete') }}
+                                            </button>
+                                        </form>
                                     @else
                                         <a href="/student-grades/create?assignment_id={{$ls->idAssignment}}&user_id={{$ls->id}}">
                                             <button class="text-blue-500">Create</button>
                                         </a>
                                     @endif
-                                    <form method="POST" action=" {{ route('student-grades.destroy',[$ls->id]) }}">
-                                        @csrf
-                                        @method('delete')
-                                        <input type="hidden" name="assignmentId" value="{{ $ls->idAssignment }}">
-                                        <input type="hidden" name="userId" value="{{ $ls->id }}">
-                                        <button class="text-red-500"
-                                                onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
-                                            {{ __('Delete') }}
-                                        </button>
-                                    </form>
                                 </div>
                             </td>
                         </tr>

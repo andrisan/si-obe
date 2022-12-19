@@ -1,4 +1,4 @@
-@section('pageTitle', $grades->first()->user->name)
+@section('pageTitle', "Grade - ".$grades->first()->user->name)
 
 <x-app-layout>
     <x-slot name="header">
