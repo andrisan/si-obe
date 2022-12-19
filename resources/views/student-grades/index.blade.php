@@ -5,7 +5,7 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Student Grades') }}
         </h2>
-        <p>Assignment Plan: {{ $assignment->assignmentPlan->title }}</p>
+        <p>Assignment: {{ $assignment->assignmentPlan->title }}</p>
     </x-slot>
 
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">

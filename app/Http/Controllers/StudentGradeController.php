@@ -4,7 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Assignment;
 use App\Models\StudentGrade;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\Criteria;
@@ -125,46 +130,68 @@ class StudentGradeController extends Controller
      */
     public function show($id)
     {
+        abort(404);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Application|Factory|View
      */
     public function edit(Request $request)
     {
-        $grades = StudentGrade
-            ::where('assignment_id',$request->assignment_id)
-            ->where('student_user_id',$request->user_id)
-            ->get();
-        $assignment = Assignment::find($request->assignment_id);
-        $apts = $assignment->assignmentPlan->assignmentPlanTasks;
+        $assignmentId = $request->get('assignment_id');
+        $assignment = Assignment::with('assignmentPlan', 'assignmentPlan.assignmentPlanTasks')->find($assignmentId);
+        if (empty($assignment)) {
+            abort(404);
+        }
 
-//        dd($grades->where('assignment_plan_task_id',$apts[1]->id));
+        $userId = $request->query('user_id');
+        $user = User::where('id', $userId)->first();
+        if (empty($user)) {
+            abort(404);
+        }
+
+        $grades = StudentGrade::where('assignment_id', $assignmentId)
+            ->where('student_user_id', $userId)
+            ->get();
+
+        $apts = $assignment->assignmentPlan->assignmentPlanTasks;
 
         return view('student-grades.edit', [
             'grades' => $grades,
             'apts' => $apts,
+            'assignment' => $assignment,
+            'user' => $user,
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Application|RedirectResponse|Redirector
      */
     public function update(Request $request)
     {
-//        dd($request->all());
+        $assignmentId = $request->post('assignment_id');
+        $assignment = Assignment::with('assignmentPlan', 'assignmentPlan.assignmentPlanTasks')->find($assignmentId);
+        if (empty($assignment)) {
+            abort(404);
+        }
+
+        $userId = $request->post('user_id');
+        $user = User::where('id', $userId)->first();
+        if (empty($user)) {
+            abort(404);
+        }
+
         $grades = StudentGrade
-            ::where('assignment_id',$request->assignment_id)
-            ->where('student_user_id',$request->user_id)
+            ::where('assignment_id', $assignmentId)
+            ->where('student_user_id', $userId)
             ->get();
-        $assignment = Assignment::find($request->assignment_id);
+
         $apts = $assignment->assignmentPlan->assignmentPlanTasks;
 
         $i = 0;

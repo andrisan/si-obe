@@ -307,5 +307,13 @@ Breadcrumbs::for('student-grades.index', function (BreadcrumbTrail $trail, $assi
     $class = $assignment->courseClass;
     $trail->push(Str::limit($class->name, 30), route('classes.show', $class));
     $trail->push(Str::limit($assignment->assignmentPlan->title, 30), route('classes.assignments.show', [$class, $assignment]));
-    $trail->push('Student Grades', route('student-grades.index'));
+    $trail->push('Student Grades', route('student-grades.index', [
+        'assignment_id' => $assignment->id
+    ]));
+});
+
+// Student Grades > Edit
+Breadcrumbs::for('student-grades.edit', function (BreadcrumbTrail $trail, $assignment) {
+    $trail->parent('student-grades.index', $assignment);
+    $trail->push('Edit');
 });
