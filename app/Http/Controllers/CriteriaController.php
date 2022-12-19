@@ -67,16 +67,12 @@ class CriteriaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
-     * @return Response
+     * @param Rubric $rubric
+     * @return RedirectResponse
      */
-    public function show($rubric, $criterias)
+    public function show(Rubric $rubric)
     {
-        $criterias = Criteria::with("LessonLearningOutcome")->where('rubric_id', $rubric)->find($criterias);
-        return view('criteria.show', [
-            'rubric' => $rubric,
-            'criterias' => $criterias
-        ]);
+        return redirect()->route('rubrics.show', $rubric);
     }
 
     /**

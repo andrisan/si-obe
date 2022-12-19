@@ -66,16 +66,11 @@ class CriteriaLevelController extends Controller
      * Display the specified resource.
      *
      * @param Rubric $rubric
-     * @param Criteria $criteria
-     * @param CriteriaLevel $criteriaLevel
      * @return RedirectResponse
      */
-    public function show(Rubric $rubric, Criteria $criteria, CriteriaLevel $criteriaLevel)
+    public function show(Rubric $rubric)
     {
-        return redirect()->route('rubrics.criterias.criteria-levels.index', [
-            'rubric' => $rubric,
-            'criteria' => $criteria,
-        ]);
+        return redirect()->route('rubrics.show', $rubric);
     }
 
     /**
