@@ -64,9 +64,7 @@ class AssignmentController extends Controller
 
         $assignment->save();
 
-        return redirect()->route('course-classes.assignments.index', [
-            $class
-        ]);
+        return redirect()->route('classes.show',  $class);
     }
 
     /**
