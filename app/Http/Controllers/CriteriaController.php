@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Models\Criteria;
-use App\Models\CriteriaLevel;
 use App\Models\Rubric;
 use App\Models\LessonLearningOutcome;
 use Illuminate\Http\Response;
@@ -25,7 +27,7 @@ class CriteriaController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Application|Factory|View
      */
     public function create(Rubric $rubric)
     {
@@ -80,18 +82,17 @@ class CriteriaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
-     * @return Response
+     * @param Rubric $rubric
+     * @param Criteria $criteria
+     * @return Application|Factory|View
      */
-    public function edit(Rubric $rubric, $criterias)
+    public function edit(Rubric $rubric, Criteria $criteria)
     {
-        //
         $llos = LessonLearningOutcome::all();
-        $criterias = Criteria::where('id', $criterias)->first();
 
         return view('criteria.edit', [
             'rubric' => $rubric,
-            'criterias' => $criterias,
+            'criteria' => $criteria,
             'llos' => $llos
         ]);
     }
@@ -99,18 +100,17 @@ class CriteriaController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
-     * @return Response
+     * @param Request $request
+     * @param Rubric $rubric
+     * @param Criteria $criteria
+     * @return RedirectResponse
      */
     public function update(Request $request, Rubric $rubric, Criteria $criteria)
     {
-        //
         $validated = $request->validate([
-            //
             'title' => 'required|string',
             'description' => 'required|string',
-            'llo' => 'required|string'
+            'llo' => 'required|numeric',
         ]);
 
         $criteria->update([
@@ -119,22 +119,19 @@ class CriteriaController extends Controller
             'description' => $validated['description']
         ]);
 
-        return redirect()->route('rubrics.criterias.show', [$rubric, $criteria]);
+        return redirect()->route('rubrics.show', $rubric);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
-     * @return Response
+     * @param Rubric $rubric
+     * @param Criteria $criteria
+     * @return RedirectResponse
      */
-    public function destroy($rubric, $criterias)
+    public function destroy(Rubric $rubric, Criteria $criteria)
     {
-        $del = Criteria::where('id', $criterias)->delete();
-
-        return redirect()->route('rubrics.criterias.index', [
-            'rubric' => $rubric
-        ]);
+        $criteria->delete();
+        return back();
     }
-
 }

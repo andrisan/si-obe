@@ -108,13 +108,25 @@
                                 </table>
                             </div>
                         @else
-                            <div class="border rounded text-center p-8 font-light text-sm text-gray-400">
+                            <div class="border rounded text-center p-8 font-light text-sm text-gray-400 m-4">
                                 No Criteria Levels found.
                             </div>
                         @endif
 
+                        <div class="flex justify-end">
+                            <form method="POST" action="{{ route('rubrics.criterias.destroy', [$rubric, $criteria]) }}">
+                                @csrf
+                                @method('delete')
+
+                                <button class="btn btn-sm btn-error text-white gap-2"
+                                        onclick="event.preventDefault(); confirm('Are you sure to delete this criteria?') && this.closest('form').submit();">
+                                    <i class="fa fa-trash"></i> {{ __('Delete Criteria') }}
+                                </button>
+                            </form>
+                        </div>
+
                         @if(!$loop->last)
-                            <div class="divider"><i class="fa-regular fa-bookmark"></i></div>
+                            <div class="divider text-emerald-500"><i class="fa-regular fa-bookmark"></i></div>
                         @endif
                     </div>
                 @endforeach
