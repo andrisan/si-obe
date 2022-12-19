@@ -19,7 +19,6 @@
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 bg-white border-b border-gray-200 flex ">
                         <div class="text-2xl font-bold ">
-
                             <h1>Assignments Edit</h1>
                         </div>
                     </div>
@@ -27,20 +26,18 @@
                     <div class="flex flex-row flex-wrap justify-between px-10 pt-10 ">
                         <div class=" ">
                             <div class="pt-1">
-                                <div class=" ">
-                                    <h1 class="font-bold py-2 ">Assignments Plan</h1>
-                                    <div class="form-control w-full lg:w-[28.5rem]">
-
-                                         <select name="assignment_plan_id" class="select select-bordered">
-                                            @foreach (AssignmentPlan::all() as $ap)
-                                                @if ($ap->title === $assignment->assignmentPlan->title)
-                                                    <option selected value="{{ old('assignment_plan-id',(int)$ap->id)}}">{{$ap->title }}</option>
-                                                @else
-                                                    <option value="{{ old('assignment_plan-id',(int)$ap->id)}}">{{$ap->title }}</option>
-                                                @endif
+                                <div>
+                                    <h1 class="font-bold">Assignment Plan</h1>
+                                    <p class="text-gray-400 text-sm pb-2">Assignment plan can only be used once per class</p>
+                                    <div class="form-control w-full lg:w-[28.5rem] ">
+                                        <select name="assignment_plan_id" class="select select-bordered">
+                                            <option disabled selected>Choose the assignment plan</option>
+                                            @foreach ($availableAssignmentPlans as $ap)
+                                                <option
+                                                    value="{{ $ap->id }}" {{ (old("assignment_plan_id", $assignment->assignment_plan_id) == $ap->id ? "selected":"") }}>{{$ap->title }}</option>
                                             @endforeach
                                         </select>
-                                        <x-input-error :messages="$errors->get('assignment_plan_id')" class="mt-2" />
+                                        <x-input-error :messages="$errors->get('assignment_plan_id')" class="mt-2"/>
                                     </div>
                                 </div>
 
@@ -70,13 +67,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tombol justify-end flex flex-row gap-2 py-5 px-10">
-                        <button class="btn btn-outline btn-error w-24">
-                            <a href="{{ route('classes.assignments.show', [$courseClass, $assignment]) }}">Cancel</a>
-                        </button>
-                        <button type="submit" class="btn btn-active btn-primary w-24">
+                    <div class="mt-4 p-4 space-x-2">
+                        <button type="submit" class="btn btn-sm px-7">
                             Save
                         </button>
+                        <a href="{{ route('classes.show', $courseClass) }}">{{ __('Cancel') }}</a>
                     </div>
                 </div>
             </form>

@@ -32,8 +32,9 @@ use App\Models\AssignmentPlan;
                         <div class=" ">
                             <div class="pt-1">
 
-                                <div class=" ">
-                                    <h1 class="font-bold py-2 ">Assignment Plan</h1>
+                                <div>
+                                    <h1 class="font-bold">Assignment Plan</h1>
+                                    <p class="text-gray-400 text-sm pb-2">Assignment plan can only be used once per class</p>
                                     <div class="form-control w-full lg:w-[28.5rem] ">
                                         <select name="assignment_plan_id" class="select select-bordered">
                                             <option disabled selected>Choose the assignment plan</option>
@@ -46,7 +47,7 @@ use App\Models\AssignmentPlan;
                                     </div>
                                 </div>
 
-                                <div class="tenggat">
+                                <div>
                                     <h1 class="font-bold py-2">Deadline</h1>
 
                                     <div class="flex-row flex gap-10">

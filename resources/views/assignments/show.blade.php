@@ -20,6 +20,14 @@
 
     <div class="py-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            @if(Session::has('error'))
+                <div class="alert alert-error shadow-lg my-3">
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <span>{{ Session::get('error') }}</span>
+                    </div>
+                </div>
+            @endif
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200 flex ">
                     <div class="flex flex-row gap-5">
@@ -45,19 +53,15 @@
 
 
                 <div class="flex flex-row-reverse justify-between">
-
-                    <div class="tombol justify-end flex flex-row gap-2 py-5 px-10">
-                        <form action="{{ route('classes.assignments.edit', [$courseClass, $assignment]) }}"
-                              method="get">
-                            <button class="btn btn-active btn-warning w-24" value="">Edit</button>
-                        </form>
-                        <form method="POST"
-                              action="{{ route('classes.assignments.destroy', [$courseClass, $assignment]) }}">
+                    <div class="justify-end flex flex-row gap-4 py-5 px-10">
+                        <a href="{{ route('classes.assignments.edit', [$courseClass, $assignment]) }}"
+                           class="text-blue-500">Edit</a>
+                        <form method="POST" action="{{ route('classes.assignments.destroy', [$courseClass, $assignment]) }}">
                             @csrf
                             @method('delete')
 
-                            <button class="btn btn-active btn-error w-24"
-                                    onclick="event.preventDefault(); confirm('Yakin ingin menghapus data?') && this.closest('form').submit();">
+                            <button class="text-red-500"
+                                    onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
                                 {{ __('Delete') }}
                             </button>
                         </form>
@@ -66,8 +70,8 @@
                     <div class="nilai py-5 px-10">
                         <form method="GET" action="{{ route('student-grades.index', [$assignment]) }}">
                             <input type="hidden" name="assignment_id" id="assignment_id" value="{{ $assignment->id}}">
-                            <button class="btn btn-active  btn-success w-24">
-                                Isi Nilai
+                            <button type="submit" class="btn btn-sm px-7">
+                                {{ __('Student Grades') }}
                             </button>
                         </form>
 

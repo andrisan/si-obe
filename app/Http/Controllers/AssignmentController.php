@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Assignment;
-use App\Models\AssignmentPlan;
 use App\Models\CourseClass;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -11,7 +10,6 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
-use Illuminate\Http\Response;
 
 class AssignmentController extends Controller
 {
@@ -25,6 +23,15 @@ class AssignmentController extends Controller
         abort(404);
     }
 
+    private function _getAvailableAssignmentPlans(CourseClass $class){
+        // @TODO: at the moment, user can only create one syllabus per course. Should be updated to allow multiple syllabus
+        $syllabus = $class->course->syllabuses()->where('creator_user_id', auth()->id())->first();
+        // get AssignmentPlan that is not used by this class
+        $availableAssignmentPlans = $syllabus->assignmentPlans()
+            ->whereNotIn('id', $class->assignments()->pluck('assignment_plan_id'))->get();
+        return $availableAssignmentPlans;
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -34,11 +41,7 @@ class AssignmentController extends Controller
      */
     public function create(CourseClass $class, Assignment $assignment)
     {
-        // @TODO: at the moment, user can only create one syllabus per course. Should be updated to allow multiple syllabus
-        $syllabus = $class->course->syllabuses()->where('creator_user_id', auth()->id())->first();
-        // get AssignmentPlan that is not used by this class
-        $availableAssignmentPlans = $syllabus->assignmentPlans()
-            ->whereNotIn('id', $class->assignments()->pluck('assignment_plan_id'))->get();
+        $availableAssignmentPlans = $this->_getAvailableAssignmentPlans($class);
 
         if ($availableAssignmentPlans->isEmpty()) {
             return redirect()->back()->with('error', 'You have no assignment plan available to create assignment');
@@ -99,13 +102,22 @@ class AssignmentController extends Controller
      *
      * @param CourseClass $class
      * @param Assignment $assignment
-     * @return Application|Factory|View
+     * @return Application|Factory|View|RedirectResponse
      */
     public function edit(CourseClass $class, Assignment $assignment)
     {
+        $availableAssignmentPlans = $this->_getAvailableAssignmentPlans($class);
+
+        if ($availableAssignmentPlans->isEmpty()) {
+            return redirect()->back()->with('error', 'All assignment plan has been used. One assignment plan can only be used once per class');
+        }
+
+        $availableAssignmentPlans->push($assignment->assignmentPlan);
+
         return view('assignments.edit', [
             'courseClass' => $class,
-            'assignment' => $assignment
+            'assignment' => $assignment,
+            'availableAssignmentPlans' => $availableAssignmentPlans
         ]);
     }
 
