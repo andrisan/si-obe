@@ -48,7 +48,7 @@ use Carbon\Carbon;
                             </h2>
                             @canany(['is-teacher', 'is-admin'])
                             <div class="order-5 sm:order-6 mr-2 sm:mr-3">
-                                <x-button-link href="{{ route('course-classes.assignments.create', $courseClass) }}">
+                                <x-button-link href="{{ route('classes.assignments.create', $courseClass) }}">
                                     <i class="fa fa-plus"></i> {{ __('Create New Assignment') }}
                                 </x-button-link>
                             </div>
@@ -58,7 +58,7 @@ use Carbon\Carbon;
                         <div class="grid grid-cols-1 gap-2 text-base-content">
                             @foreach($assignments as $assignment)
                                     <div class="p-3 w-full border border-gray-200 rounded-2xl hover:bg-red-50">
-                                        <a href="{{ route('course-classes.assignments.show', [$courseClass, $assignment]) }}">
+                                        <a href="{{ route('classes.assignments.show', [$courseClass, $assignment]) }}">
                                             <div class="text-left text-neutral-content py-3 px-5">
                                                 <div class="flex flex-row gap-5">
                                                     <div class="logo">

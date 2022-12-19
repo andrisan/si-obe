@@ -13,11 +13,11 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <form method="post" action="{{ route('course-classes.assignments.store', [$courseClass, $assignment]) }}">
+            <form method="post" action="{{ route('classes.assignments.store', [$courseClass, $assignment]) }}">
                 @csrf
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 bg-white border-b border-gray-200 flex ">
-                        
+
                         <div class="text-2xl font-bold ">
                             <h1>Assignments Create</h1>
                         </div>
@@ -28,11 +28,11 @@
                     <div class="flex flex-row flex-wrap justify-between px-10 pt-10 ">
                         <div class=" ">
                             <div class="pt-1">
-    
+
                                 <div class=" ">
                                     <h1 class="font-bold py-2 ">Assignment Plan</h1>
                                     <div class="form-control w-full lg:w-[28.5rem] ">
-                                    <select name="assignment_plan_id" class="select select-bordered"> 
+                                    <select name="assignment_plan_id" class="select select-bordered">
                                             @foreach (AssignmentPlan::all() as $ap)
                                                 <option value="{{ old('assignment_plan-id',(int)$ap->id)}}">{{$ap->title }}</option>
                                             @endforeach
@@ -40,27 +40,27 @@
                                         <x-input-error :messages="$errors->get('assignment_plan_id')" class="mt-2" />
                                     </div>
                                 </div>
-    
+
                                 <div class="tenggat">
                                     <h1 class="font-bold py-2">Deadline</h1>
-    
+
                                     <div class="flex-row flex gap-10">
                                         <div class="1">
                                             <input type="datetime-local" placeholder="Type here"
                                                 name="due_date" class="input input-bordered w-full max-w-xs ">
                                             <x-input-error :messages="$errors->get('due_date')" class="mt-2" />
                                         </div>
-    
+
                                     </div>
                                 </div>
-    
+
                             </div>
-    
-    
+
+
                         </div>
-    
+
                         <!-- Batas Flex-row -->
-    
+
                         <!-- bawahan -->
                         <div class="flex flex-col">
                             <div class="judul font-bold pt-2">
@@ -77,7 +77,7 @@
 
                     <div class="tombol justify-end flex flex-row gap-2 py-5 px-10">
                         <button class="btn btn-outline btn-error w-24">
-                            <a href="{{ route('course-classes.assignments.index', [$courseClass]) }}">Cancel</a>
+                            <a href="{{ route('classes.assignments.index', [$courseClass]) }}">Cancel</a>
                         </button>
                         <button class="btn btn-active btn-primary w-24">Save</button>
                     </div>

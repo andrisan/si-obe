@@ -46,10 +46,6 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('home', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('profile', [ProfileController::class, 'index'])->name('profile.index');
 
-    Route::scopeBindings()->group(function (){
-        Route::resource('course-classes.assignments', AssignmentController::class)->except('index');
-    });
-
     // Admin role
     Route::group(['middleware' => ['roles:admin']], function (){
         Route::resource('users', UserController::class);
@@ -94,6 +90,10 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     });
 
     Route::resource('classes', CourseClassController::class);
+
+    Route::scopeBindings()->group(function (){
+        Route::resource('classes.assignments', AssignmentController::class);
+    });
 });
 
 require __DIR__ . '/auth.php';

@@ -13,7 +13,7 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <form method="POST" action="{{ route('course-classes.assignments.update', [$courseClass, $assignment]) }}">
+            <form method="POST" action="{{ route('classes.assignments.update', [$courseClass, $assignment]) }}">
                 @csrf
                 @method('patch')
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -72,7 +72,7 @@
                     </div>
                     <div class="tombol justify-end flex flex-row gap-2 py-5 px-10">
                         <button class="btn btn-outline btn-error w-24">
-                            <a href="{{ route('course-classes.assignments.show', [$courseClass, $assignment]) }}">Cancel</a>
+                            <a href="{{ route('classes.assignments.show', [$courseClass, $assignment]) }}">Cancel</a>
                         </button>
                         <button type="submit" class="btn btn-active btn-primary w-24">
                             Save

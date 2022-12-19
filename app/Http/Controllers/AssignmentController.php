@@ -4,37 +4,37 @@ namespace App\Http\Controllers;
 
 use App\Models\Assignment;
 use App\Models\CourseClass;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
-use App\Http\Controllers\Controller;
+use Illuminate\Http\Response;
 
 class AssignmentController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return void
      */
-    public function index(CourseClass $courseClass)
+    public function index()
     {
-        return view('assignments.index', [
-            'courseClass' => $courseClass,
-            'assignments' => $courseClass
-                ->assignments()
-                ->orderBy('id', 'desc')
-                ->paginate(4)
-        ]);
+        abort(404);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param CourseClass $class
+     * @param Assignment $assignment
+     * @return Application|Factory|View
      */
-    public function create(CourseClass $courseClass, Assignment $assignment)
+    public function create(CourseClass $class, Assignment $assignment)
     {
         return view('assignments.create', [
-            'courseClass' => $courseClass,
+            'courseClass' => $class,
             'assignment' => $assignment
         ]);
     }
@@ -42,10 +42,12 @@ class AssignmentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param CourseClass $class
+     * @param Assignment $assignment
+     * @return RedirectResponse
      */
-    public function store(Request $request, CourseClass $courseClass, Assignment $assignment)
+    public function store(Request $request, CourseClass $class, Assignment $assignment)
     {
         $validated = $request->validate([
             'assignment_plan_id' => 'required|numeric',
@@ -63,20 +65,21 @@ class AssignmentController extends Controller
         $assignment->save();
 
         return redirect()->route('course-classes.assignments.index', [
-            $courseClass
+            $class
         ]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param CourseClass $class
+     * @param Assignment $assignment
+     * @return Application|Factory|View
      */
-    public function show(CourseClass $courseClass, Assignment $assignment)
+    public function show(CourseClass $class, Assignment $assignment)
     {
         return view('assignments.show', [
-            'courseClass' => $courseClass,
+            'courseClass' => $class,
             'assignment' => $assignment
         ]);
     }
@@ -84,13 +87,14 @@ class AssignmentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param CourseClass $class
+     * @param Assignment $assignment
+     * @return Application|Factory|View
      */
-    public function edit(CourseClass $courseClass, Assignment $assignment)
+    public function edit(CourseClass $class, Assignment $assignment)
     {
         return view('assignments.edit', [
-            'courseClass' => $courseClass,
+            'courseClass' => $class,
             'assignment' => $assignment
         ]);
     }
@@ -98,12 +102,12 @@ class AssignmentController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  CourseClass $courseClass
-     * @param  Assignment $assignment
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param CourseClass $class
+     * @param Assignment $assignment
+     * @return RedirectResponse
      */
-    public function update(Request $request, CourseClass $courseClass, Assignment $assignment)
+    public function update(Request $request, CourseClass $class, Assignment $assignment)
     {
         $validated = $request->validate([
             'assignment_plan_id' => 'required|numeric',
@@ -113,20 +117,19 @@ class AssignmentController extends Controller
 
         $assignment->update($validated);
 
-        return redirect()->route('course-classes.assignments.show', [$courseClass, $assignment]);
+        return redirect()->route('course-classes.assignments.show', [$class, $assignment]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  CourseClass $courseClass
+     * @param  CourseClass $class
      * @param  Assignment $assignment
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
-    public function destroy(CourseClass $courseClass, Assignment $assignment)
+    public function destroy(CourseClass $class, Assignment $assignment)
     {
         $assignment->delete();
-
-        return redirect()->route('course-classes.assignments.index', [$courseClass, $assignment]);
+        return redirect()->route('course-classes.show', $class);
     }
 }
