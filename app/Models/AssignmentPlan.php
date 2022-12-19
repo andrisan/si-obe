@@ -29,4 +29,9 @@ class AssignmentPlan extends Model
     {
         return $this->hasOne(Rubric::class);
     }
+
+    public function syllabus()
+    {
+        return $this->belongsTo(Syllabus::class, 'syllabus_id');
+    }
 }

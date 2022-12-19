@@ -1,4 +1,4 @@
-<title>Index Assignment Plans</title>
+@section('pageTitle', "Assignment Plans")
 
 <x-app-layout>
     <x-slot name="header">

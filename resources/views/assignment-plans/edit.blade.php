@@ -1,4 +1,4 @@
-<title>Edit Assignment Plans</title>
+@section('pageTitle', "Edit Assignment Plan")
 
 <x-app-layout>
     <x-slot name="header">

@@ -272,3 +272,17 @@ Breadcrumbs::for('classes.join', function (BreadcrumbTrail $trail) {
     $trail->parent('classes.index');
     $trail->push('Join', route('classes.join'));
 });
+
+// Rubrics
+Breadcrumbs::for('rubrics.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Rubrics', route('rubrics.index'));
+});
+
+// Rubrics > Create
+Breadcrumbs::for('rubrics.create', function (BreadcrumbTrail $trail, $syllabus, $assigmentPlan) {
+    $trail->parent('home');
+    $trail->push(Str::limit($syllabus->title, 30), route('syllabi.show', $syllabus));
+    $trail->push(Str::limit($assigmentPlan->title, 30), route('syllabi.assignment-plans.show', [$syllabus, $assigmentPlan]));
+    $trail->push('Create', route('rubrics.create'));
+});

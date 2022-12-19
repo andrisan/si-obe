@@ -1,48 +1,38 @@
-<title>Create Rubrics</title>
+@section('pageTitle', "Create New Rubric")
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Buat Rubrik Baru') }}
+            {{ __('New Rubric') }}
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="flex items-center justify-center py-10">
-                <div class="card border rounded-lg shadow-xl w-5/12 h-96 mx-auto bg-white">
-                    <div class="card-body items-center text-center justify-items-center">
-                        <div class="my-auto mx-auto">
-                            <h2 class="card-title text-2xl mb-4">Masukkan Rubrik Baru</h2>
-                            <form action={{ route('rubrics.store') }} method="POST">
-                                @csrf
-                                <div class="form-control w-full max-w-xs">
-                                    <label class="label">
-                                        <span class="label-text text-sm">Judul LEMBAR KERJA</span>
-                                    </label>
-                                    <select name="assignment_plan_title" class="select input-bordered w-full max-w-xs"
-                                        style="background-color: white">
-                                        <option disabled selected>Masukkan Judul LK</option>
-                                        @foreach ($assignmentPlan as $assignmentPlan)
-                                            <option>{{ $assignmentPlan->title }}</option>
-                                        @endforeach
-                                    </select>
-                                    <x-input-error :messages="$errors->get('assignment_plan_title')" class="mt-2" />
-                                    <label class="label">
-                                        <span class="label-text text-sm">JUDUL</span>
-                                    </label>
-                                    <input type="text" placeholder="Ketik Disini" name="title"
-                                        class="input input-bordered w-full max-w-xs" style="background-color: white" />
-                                    <x-input-error :messages="$errors->get('title')" class="mt-2" />
-                                </div>
-                                <div class="flex">
-                                    <button class="btn btn-outline mt-7 hover:bg-slate-50 hover:text-black"><a href="{{ route('rubrics.index') }}">Cancel</a></button>
-                                    <input type="submit" class="btn btn-primary mt-7 ml-3">
-                                </div>
-                            </form>
-                        </div>
-
-                    </div>
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        {{ Breadcrumbs::render('rubrics.create', $syllabus, $assignmentPlan) }}
+        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="p-6 border-b border-gray-200">
+                <div class="bg-yellow-50 p-5     m-2 w-2/3 rounded-xl">
+                    <p class="text-sm text-gray-500">You're creating new rubric for assignment plan: {{ $assignmentPlan->title }}</p>
                 </div>
+                <form method="POST" action="{{ route('rubrics.store') }}">
+                    @csrf
+
+                    <div class="form-control w-full p-3">
+                        <label class="label">
+                            <span class="label-text">Title</span>
+                        </label>
+                        <input type="hidden" name="assignment_plan_id" value="{{ $assignmentPlan->id }}">
+                        <input type="text" name="title" placeholder="Title"
+                               class="input input-bordered w-full max-w-xs" value="{{ old('title') }}"/>
+                        <x-input-error :messages="$errors->get('title')" class="mt-2"/>
+                    </div>
+
+                    <div class="mt-4 p-4 space-x-2">
+                        <button type="submit" class="btn btn-sm px-7">
+                            Save
+                        </button>
+                        <a href="{{ route_back_with_fallback('syllabi.assignment-plans.show', [$syllabus, $assignmentPlan]) }}">{{ __('Cancel') }}</a>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

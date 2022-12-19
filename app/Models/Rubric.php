@@ -20,4 +20,9 @@ class Rubric extends Model
     {
         return $this->hasMany(Criteria::class, 'rubric_id');
     }
+
+    public function assignmentPlan()
+    {
+        return $this->belongsTo(AssignmentPlan::class, 'assignment_plan_id');
+    }
 }

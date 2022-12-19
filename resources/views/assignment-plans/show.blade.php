@@ -41,11 +41,18 @@
                     <p class="py-3">Is Group Assignment</p>
                     <div class="py-3 col-span-2">: {{ $assignmentPlan->is_group_assignment ? __('Yes'): __('No') }}</div>
 
-                    <p class="py-3">Created At</p>
-                    <div class="py-3 col-span-2">: {{ Carbon::parse($assignmentPlan->created_at)->format("M d, Y H:i") }}</div>
-
-                    <p class="py-3">Last Updated</p>
-                    <div class="py-3 col-span-2">: {{ Carbon::parse($assignmentPlan->updated_at)->format("M d, Y H:i") }}</div>
+                    <p class="py-3">Rubric</p>
+                    <div class="py-3 col-span-2">
+                        @if($assignmentPlan->rubric)
+                            : <a class="text-blue-600 hover:text-blue-700" href="{{ route('rubrics.show', $assignmentPlan->rubric) }}">{{ $assignmentPlan->rubric->title }}</a>
+                        @else
+                            <div class="order-5 sm:order-6 mr-2 sm:mr-3">
+                                <a href="{{ route('rubrics.create', ["assignment_plan" => $assignmentPlan->id]) }}" class="bg-white border border-gray-300 rounded-md shadow-sm px-2.5 sm:px-4 py-2 inline-flex justify-center text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    <span class="pr-1"><i class="fa fa-plus" aria-hidden="true"></i> Create Rubric</span>
+                                </a>
+                            </div>
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>

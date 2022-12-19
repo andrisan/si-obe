@@ -248,7 +248,13 @@
                                                 return $assignmentPlanTask->criteria->lessonLearningOutcome->description;
                                             })->flatten();
                                         ?>
-                                        <td class="text-gray-600 px-6 py-3 border-t border-gray-100">: {{ $assignmentPlanLearningOutcomes->implode(', ') }}</td>
+                                        <td class="text-gray-600 px-6 py-3 border-t border-gray-100">:
+                                            @if($assignmentPlanLearningOutcomes->count() > 0)
+                                                {{ $assignmentPlanLearningOutcomes->implode(', ') }}
+                                            @else
+                                                <span class="badge badge-ghost p-3">Please set LLO in the rubric</span>
+                                            @endif
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td class="text-gray-600 px-6 py-3 border-t border-gray-100">Group Assignment</td>
@@ -276,11 +282,15 @@
                                     </tr>
                                     <tr>
                                         <td class="text-gray-600 px-6 py-3 border-t border-gray-100">Grading Rubric</td>
-                                        <td class="text-gray-600 px-6 py-3 border-t border-gray-100">:
+                                        <td class="text-gray-600 px-6 py-3 border-t border-gray-100">
                                             @if($assignmentPlan->rubric)
-                                            <a class="text-blue-600 hover:text-blue-700" href="{{ route('rubrics.show', $assignmentPlan->rubric) }}">{{ $assignmentPlan->rubric->title }}</a>
+                                            : <a class="text-blue-600 hover:text-blue-700" href="{{ route('rubrics.show', $assignmentPlan->rubric) }}">{{ $assignmentPlan->rubric->title }}</a>
                                             @else
-                                            <span class="badge badge-ghost p-3">No rubric has been set</span>
+                                                <div class="order-5 sm:order-6 mr-2 sm:mr-3">
+                                                    <a href="{{ route('rubrics.create', ["assignment_plan" => $assignmentPlan->id]) }}" class="bg-white border border-gray-300 rounded-md shadow-sm px-2.5 sm:px-4 py-2 inline-flex justify-center text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                                        <span class="pr-1"><i class="fa fa-plus" aria-hidden="true"></i> Create Rubric</span>
+                                                    </a>
+                                                </div>
                                             @endif
                                         </td>
                                     </tr>
