@@ -52,6 +52,13 @@ class CriteriaLevelController extends Controller
 
         $criteria->criteriaLevels()->create($validated);
 
+        $currentMaxPoint = $criteria->criteriaLevels()->max('point');
+        if ($currentMaxPoint != $criteria->max_point) {
+            $criteria->update([
+                'max_point' => $currentMaxPoint
+            ]);
+        }
+
         return redirect()->route('rubrics.show', $rubric);
     }
 
