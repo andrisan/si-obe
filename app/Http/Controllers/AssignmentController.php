@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Assignment;
+use App\Models\AssignmentPlan;
 use App\Models\CourseClass;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -29,13 +30,24 @@ class AssignmentController extends Controller
      *
      * @param CourseClass $class
      * @param Assignment $assignment
-     * @return Application|Factory|View
+     * @return Application|Factory|View|RedirectResponse
      */
     public function create(CourseClass $class, Assignment $assignment)
     {
+        // @TODO: at the moment, user can only create one syllabus per course. Should be updated to allow multiple syllabus
+        $syllabus = $class->course->syllabuses()->where('creator_user_id', auth()->id())->first();
+        // get AssignmentPlan that is not used by this class
+        $availableAssignmentPlans = $syllabus->assignmentPlans()
+            ->whereNotIn('id', $class->assignments()->pluck('assignment_plan_id'))->get();
+
+        if ($availableAssignmentPlans->isEmpty()) {
+            return redirect()->back()->with('error', 'You have no assignment plan available to create assignment');
+        }
+
         return view('assignments.create', [
             'courseClass' => $class,
-            'assignment' => $assignment
+            'assignment' => $assignment,
+            'availableAssignmentPlans' => $availableAssignmentPlans,
         ]);
     }
 
@@ -115,7 +127,7 @@ class AssignmentController extends Controller
 
         $assignment->update($validated);
 
-        return redirect()->route('course-classes.assignments.show', [$class, $assignment]);
+        return redirect()->route('classes.assignments.show', [$class, $assignment]);
     }
 
     /**
@@ -128,6 +140,6 @@ class AssignmentController extends Controller
     public function destroy(CourseClass $class, Assignment $assignment)
     {
         $assignment->delete();
-        return redirect()->route('course-classes.show', $class);
+        return redirect()->route('classes.show', $class);
     }
 }
