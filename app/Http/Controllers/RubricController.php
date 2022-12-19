@@ -83,12 +83,14 @@ class RubricController extends Controller
      * Display the specified resource.
      *
      * @param  Rubric $rubric
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
     public function show(Rubric $rubric)
     {
         return view('rubrics.show', [
-            'rubric' => $rubric
+            'rubric' => $rubric,
+            'assignmentPlan' => $rubric->assignmentPlan,
+            'syllabus' => $rubric->assignmentPlan->syllabus,
         ]);
     }
 

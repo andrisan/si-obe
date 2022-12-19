@@ -1,53 +1,121 @@
 <title>Rubrics {{ $rubric->title }}</title>
 <x-app-layout>
-  <x-slot name="header">
-    <div class="flex justify-between">
-      <div class="items-start">
-        <h2 class="font-semibold   text-4xl text-gray-800 leading-tight">
-          {{ $rubric->title }}
-        </h2>
-      </div>
-    </div>
-
-  </x-slot>
-
-  <div class="py-2 ">
-    <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-      <div class="bg-white border-2 border-blue-500 overflow-hidden shadow-sm sm:rounded-lg">
-        <div class="p-6 bg-white border-b border-gray-200">
-          <hr class="border-solid border-black rounded-md mb-2">
-          
-          {{-- loop start --}}
-          @foreach ($rubric->criterias as $criterias)
-          <div class="flex justify-between">
-            <h1 class="text-[#2E65F3] font-extrabold items-start">{{ $criterias->title }}</h1>
-            <div class="items-end">
-              <h1 class="font-extrabold text-black">/{{ $criterias->max_point }}</h1>
+    <x-slot name="header">
+        <div class="flex justify-between">
+            <div class="items-start">
+                <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                    {{ $rubric->title }}
+                </h2>
             </div>
-          </div>
-
-          <div>
-            <div class="py-5">
-              <h1 class="text-black text-lg font-bold">{{ $criterias->description }}</h1>
-            </div>
-
-            <!-- <div class="flex space-x-40 justify-center text-black underline-offset-2"> -->
-              <div class="grid grid-cols-3 gap-y-8 pb-10">
-              @foreach ($criterias->criteriaLevels as $cl)
-              <div class="px-5 py-2 w-60 bg-[#AFC7F5] cursor-pointer rounded-md">
-                <div class="flex justify-between font-bold">
-                  <h1 class="">{{ $cl->title }}</h1>
-                  <h1 class="text-sm">{{ $cl->point }} pts</h1>
-                </div>
-                <hr class="border-black">
-                <p class="font-regular py-2">{{ $cl->description }}</p>
-              </div>
-              @endforeach
-            </div>
-            <hr class="border-solid border-black rounded-md mb-2"> 
-          @endforeach
-          </div>
         </div>
-      </div>
+    </x-slot>
+
+    <div class="max-w-7xl mx-auto sm:px-6 pb-6 lg:px-8">
+        {{ Breadcrumbs::render('rubrics.show', $syllabus, $assignmentPlan, $rubric) }}
+        <div class="flex flex-row justify-end mb-3 px-4 sm:px-0 -mr-2 sm:-mr-3">
+            <div class="order-5 sm:order-6 mr-2 sm:mr-3">
+                <x-button-link :href="route('rubrics.criterias.create', $rubric)">
+                    <i class="fa fa-plus"></i> {{ __("Create Criteria") }}
+                </x-button-link>
+            </div>
+        </div>
+        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="p-6 bg-white border-b border-gray-200">
+                @if($rubric->criterias->count() > 0)
+                    @foreach ($rubric->criterias as $criteria)
+                    <div class="flex justify-between py-2">
+                        <h1 class="text-xl font-extrabold items-start">{{ $criteria->title }}</h1>
+                        <div class="items-end">
+                            <h1 class="font-extrabold text-black">{{ __("Max Point").": $criteria->max_point"}}</h1>
+                        </div>
+                    </div>
+                    <p class="p-3">{{ $criteria->description }}</p>
+
+                    <div class="py-5">
+                        <div class="flex flex-row justify-between mb-3 px-4 sm:px-0 -mr-2 sm:-mr-3">
+                            <h2 class="font-bold text-gray-500 p-3">Criteria Levels</h2>
+                            <div class="order-5 sm:order-6 mr-2 sm:mr-3">
+                                <x-button-link :href="route('rubrics.criterias.criteria-levels.create', [$rubric, $criteria])">
+                                    <i class="fa fa-plus"></i> {{ __("Add Level") }}
+                                </x-button-link>
+                            </div>
+                        </div>
+
+                        @php($criteriaLevels = $criteria->criteriaLevels)
+                        @if($criteriaLevels->count() > 0)
+                            <div class="mb-5 overflow-x-auto bg-white rounded-lg shadow overflow-y-auto relative">
+                                <table class="border-collapse table-auto w-full bg-white table-striped relative">
+                                    <thead>
+                                    <tr class="text-left">
+                                        <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-6">
+                                            No
+                                        </th>
+                                        <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-64">
+                                            Title
+                                        </th>
+                                        <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate ">
+                                            Point
+                                        </th>
+                                        <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-128">
+                                            Description
+                                        </th>
+                                        <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-48">
+                                            Action
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach ($criteriaLevels as $criteriaLevel)
+                                        <tr>
+                                            <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $loop->index + 1 }}</td>
+                                            <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $criteriaLevel->title }}</td>
+                                            <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $criteriaLevel->point }}</td>
+                                            <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $criteriaLevel->description ?? "-" }}</td>
+                                            <td
+                                                class="text-gray-600 px-6 py-3 border-t border-gray-100">
+                                                <div class="flex flex-wrap space-x-4">
+                                                    <a href="{{ route('rubrics.criterias.criteria-levels.edit', [$rubric, $criteria, $criteriaLevel]) }}"
+                                                       class="text-blue-500">Edit</a>
+                                                    <form method="POST"
+                                                          action="{{ route('rubrics.criterias.criteria-levels.destroy', [$rubric, $criteria, $criteriaLevel]) }}">
+                                                        @csrf
+                                                        @method('delete')
+
+                                                        <button class="text-red-500"
+                                                                onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
+                                                            {{ __('Delete') }}
+                                                        </button>
+                                                    </form>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        @else
+                            <div class="text-center p-8">
+                                No Criteria Levels found.
+                            </div>
+                        @endif
+
+                        @if(!$loop->last)
+                            <div class="divider"><i class="fa-regular fa-bookmark"></i></div>
+                        @endif
+                    </div>
+                @endforeach
+                @else
+                    <div class="text-center p-8 text-gray-400">
+                        No criteria found.
+                    </div>
+                @endif
+            </div>
+        </div>
     </div>
+
+    <div class="py-2 ">
+        <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
+
+        </div>
 </x-app-layout>

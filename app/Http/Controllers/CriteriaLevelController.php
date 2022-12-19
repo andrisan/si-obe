@@ -56,10 +56,7 @@ class CriteriaLevelController extends Controller
 
         $criteria->criteriaLevels()->create($validated);
 
-        return redirect()->route('rubrics.criterias.criteria-levels.index', [
-            'rubric' => $rubric,
-            'criteria' => $criteria,
-        ]);
+        return redirect()->route('rubrics.show', $rubric);
     }
 
     /**
@@ -121,10 +118,7 @@ class CriteriaLevelController extends Controller
             ]);
         }
 
-        return redirect()->route('rubrics.criterias.criteria-levels.index', [
-            'rubric' => $rubric,
-            'criteria' => $criteria
-        ]);
+        return redirect()->route('rubrics.show', $rubric);
     }
 
     /**
@@ -138,10 +132,6 @@ class CriteriaLevelController extends Controller
     public function destroy(Rubric $rubric, Criteria $criteria, CriteriaLevel $criteriaLevel)
     {
         $criteriaLevel->delete();
-
-        return redirect()->route('rubrics.criterias.criteria-levels.index', [
-            'rubric' => $rubric,
-            'criteria' => $criteria
-        ]);
+        return back();
     }
 }

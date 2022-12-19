@@ -286,3 +286,11 @@ Breadcrumbs::for('rubrics.create', function (BreadcrumbTrail $trail, $syllabus, 
     $trail->push(Str::limit($assigmentPlan->title, 30), route('syllabi.assignment-plans.show', [$syllabus, $assigmentPlan]));
     $trail->push('Create', route('rubrics.create'));
 });
+
+// Rubrics > Show
+Breadcrumbs::for('rubrics.show', function (BreadcrumbTrail $trail, $syllabus, $assigmentPlan, $rubric) {
+    $trail->parent('home');
+    $trail->push(Str::limit($syllabus->title, 30), route('syllabi.show', $syllabus));
+    $trail->push(Str::limit($assigmentPlan->title, 30), route('syllabi.assignment-plans.show', [$syllabus, $assigmentPlan]));
+    $trail->push(Str::limit($rubric->title, 30), route('rubrics.show', $rubric));
+});
