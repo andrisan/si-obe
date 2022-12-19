@@ -29,15 +29,15 @@
                                     @endforeach
                                 </select>
                             </div>
-                            
+
                     <div class="pb-4">
                         <div class="pb-2"><label for="description"><strong class="font-semibold">Description</strong></label></div>
                         <textarea type="text" class="rounded-md mt-2 h-52" name="description"  cols="33" rows="10" >{{ $criterias->description }}</textarea>
                         <x-input-error :messages="$errors->get('description')" class="mt-2" />
                     </div>
                     <input type="submit" value="Save" class="btn btn-active rounded-md " />
-                    <a href="{{ route('rubrics.criterias.index', [$rubric]) }}" class="btn btn-outline rounded-md">Cancel</a>
-                
+                    <a href="{{ route('rubrics.show', $rubric) }}">{{ __('Cancel') }}</a>
+
                 </div>
                 </form>
             </div>

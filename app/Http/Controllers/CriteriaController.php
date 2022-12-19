@@ -7,36 +7,33 @@ use App\Models\Criteria;
 use App\Models\CriteriaLevel;
 use App\Models\Rubric;
 use App\Models\LessonLearningOutcome;
+use Illuminate\Http\Response;
 
 class CriteriaController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return void
      */
-    public function index($rubric)
+    public function index()
     {
-        $criteria = Criteria::where('rubric_id',$rubric)->get();
-        return view('criteria.index', [
-            'rubric' => $rubric,
-            'criterias' => $criteria
-        ]);
+        abort(404);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create(Rubric $rubric)
     {
-        
+
         $llos = LessonLearningOutcome::all();
         return view('criteria.create', [
             'rubric' => $rubric,
             'llos' => $llos
-        ]);      
+        ]);
 
         //
 
@@ -46,7 +43,7 @@ class CriteriaController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function store(Request $request, Rubric $rubric )
     {
@@ -57,14 +54,14 @@ class CriteriaController extends Controller
         //       'description' => 'required|string',
         //       'max_point' => 'required|string',
         //   ]);
-  
+
         //   dd($validated);
         //   $rubric->criterias()->create($validated);
 
           $validated = $request->validate([
             'title' => 'required|string',
               'llo' => 'required|string',
-              'description' => 'required|string',   
+              'description' => 'required|string',
         ]);
 
         $criteria = new Criteria();
@@ -74,7 +71,7 @@ class CriteriaController extends Controller
         $criteria->description = $validated['description'];
         $criteria->max_point = 6.25;
         $criteria->save();
-  
+
           return redirect()->route('rubrics.criterias.index',[
               'rubric'=> $rubric
           ]);
@@ -85,7 +82,7 @@ class CriteriaController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show($rubric, $criterias)
     {
@@ -100,14 +97,14 @@ class CriteriaController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit(Rubric $rubric, $criterias)
     {
         //
         $llos = LessonLearningOutcome::all();
         $criterias= Criteria::where('id', $criterias)->first();
-        
+
           return view('criteria.edit',[
             'rubric' => $rubric,
             'criterias' => $criterias,
@@ -120,7 +117,7 @@ class CriteriaController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(Request $request, Rubric $rubric, Criteria $criteria)
     {
@@ -137,14 +134,14 @@ class CriteriaController extends Controller
             'llo_id' =>  $validated['llo'],
             'description' => $validated['description']
         ]);
-  
+
           return redirect()->route('rubrics.criterias.show',[$rubric, $criteria]);
     }
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy($rubric, $criterias)
     {

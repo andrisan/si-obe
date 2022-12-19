@@ -64,26 +64,18 @@ Breadcrumbs::for('study-programs.edit', function (BreadcrumbTrail $trail, $facul
     $trail->push($studyProgram->name, route('faculties.departments.study-programs.edit', [$faculty, $department, $studyProgram]));
 });
 
-// Criteria Levels
-Breadcrumbs::for('criteria-levels.index', function (BreadcrumbTrail $trail, $rubric, $criteria) {
-    $trail->parent('home');
-    $trail->push($rubric->title, route('rubrics.show', $rubric));
-    $trail->push($criteria->title, route('rubrics.criterias.show', [$rubric, $criteria]));
-    $trail->push('Criteria Levels', route('rubrics.criterias.criteria-levels.index', [$rubric, $criteria]));
-});
-
 // Criteria Levels > Create
-Breadcrumbs::for('criteria-levels.create', function (BreadcrumbTrail $trail, $rubric, $criteria) {
+Breadcrumbs::for('criteria-levels.create', function (BreadcrumbTrail $trail, $rubric) {
     $trail->parent('home');
-    $trail->push('Criteria Levels', route('rubrics.criterias.criteria-levels.index', [$rubric, $criteria]));
-    $trail->push('Create', route('rubrics.criterias.criteria-levels.create', [$rubric, $criteria]));
+    $trail->push(Str::limit($rubric->title, 30), route('rubrics.show', $rubric));
+    $trail->push('Create Criteria Level');
 });
 
 // Criteria Levels > Edit
-Breadcrumbs::for('criteria-levels.edit', function (BreadcrumbTrail $trail, $rubric, $criteria, $criteriaLevel) {
+Breadcrumbs::for('criteria-levels.edit', function (BreadcrumbTrail $trail, $rubric, $criteriaLevel) {
     $trail->parent('home');
-    $trail->push('Criteria Levels', route('rubrics.criterias.criteria-levels.index', [$rubric, $criteria]));
-    $trail->push('Edit', route('rubrics.criterias.criteria-levels.edit', [$rubric, $criteria, $criteriaLevel]));
+    $trail->push(Str::limit($rubric->title, 30), route('rubrics.show', $rubric));
+    $trail->push(Str::limit($criteriaLevel->title, 30));
 });
 
 // Syllabi

@@ -16,15 +16,11 @@ class CriteriaLevelController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Application|Factory|View
+     * @return void
      */
-    public function index(Rubric $rubric, Criteria $criteria)
+    public function index()
     {
-        return view('criteria-levels.index', [
-            'rubric' => $rubric,
-            'criteria' => $criteria,
-            'criteriaLevels' => $criteria->criteriaLevels()->orderBy('point','desc')->paginate(5)
-        ]);
+        abort(404);
     }
 
     /**

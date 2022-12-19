@@ -51,7 +51,7 @@ use App\Models\CriteriaLevel;
                         <button type="submit" class="btn btn-sm px-7">
                             Save
                         </button>
-                        <a href="{{ route('rubrics.criterias.criteria-levels.index', [$rubric, $criteria]) }}">{{ __('Cancel') }}</a>
+                        <a href="{{ route('rubrics.show', $rubric) }}">{{ __('Cancel') }}</a>
                     </div>
                 </form>
             </div>

@@ -49,7 +49,7 @@
 
                             <div class="mt-10 flex space-x-5">
                                 <input type="submit" value="CREATE" class="btn btn-active rounded-md " />
-                                <a href="{{ route('rubrics.criterias.index', [$rubric]) }}" class="btn btn-outline rounded-md">Cancel</a>
+                                <a href="{{ route('rubrics.show', $rubric) }}" class="btn btn-outline rounded-md">Cancel</a>
                             </div>
                         </div>
 
