@@ -19,11 +19,16 @@ class StudentGradeController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index(Request $request)
     {
-        // $listStudents = Assignment::where('id', $request->assignment_id)->get();
+        $assignmentId = $request->get('assignment_id');
+        $assignment = Assignment::with('assignmentPlan', 'courseClass')->find($assignmentId);
+        if (empty($assignment)) {
+            abort(404);
+        }
+
         $listStudents = DB::table('assignments')
             ->select(DB::raw('assignments.id as idAssignment, users.id,
                             student_data.student_id_number as nim, users.name as namaMhs, course_classes.name as kelas'))
@@ -44,27 +49,18 @@ class StudentGradeController extends Controller
 
         foreach ($listStudents as $ls) {
             foreach ($studentGrades as $sg) {
-
-                // debug manual
-                // $cek = $ls->id === $sg->student_user_id;
-                // echo "$ls->id === $sg->student_user_id $cek <br>";
-
                 if ($ls->id === $sg->student_user_id) {
                     $ls->nilai = $sg->nilai;
                     $ls->btnCek = true;
                     break;
                 }
-                // else {
-                //     $ls->nilai = 0;
-                //     $ls->btnCek = false;
-                // }
             }
         }
-        // dd($studentGrades, $listStudents);
 
         return view('student-grades.index', [
             'listStudents' => $listStudents,
-            'studentGrades' => $studentGrades
+            'studentGrades' => $studentGrades,
+            'assignment' => $assignment,
         ]);
     }
 
@@ -115,7 +111,7 @@ class StudentGradeController extends Controller
             'assignment_plan_task_id' => $plan2,
             'criteria_level_id' => $criteria2]
         ];
-        
+
         StudentGrade::insert($data); // Eloquent approach
 
         return redirect('/student-grades/?assignment_id='.$assignmentid);

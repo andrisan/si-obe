@@ -32,8 +32,8 @@ class Assignment extends Model
     {
         return $this->belongsTo(AssignmentPlan::class);
     }
-    
-    public function CourseClass()
+
+    public function courseClass()
     {
         return $this->belongsTo(CourseClass::class, 'course_class_id');
     }

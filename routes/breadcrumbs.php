@@ -300,3 +300,12 @@ Breadcrumbs::for('criteria-levels.edit', function (BreadcrumbTrail $trail, $rubr
     $trail->push(Str::limit($rubric->title, 30), route('rubrics.show', $rubric));
     $trail->push(Str::limit($criteriaLevel->title, 30));
 });
+
+// Student Grades
+Breadcrumbs::for('student-grades.index', function (BreadcrumbTrail $trail, $assignment) {
+    $trail->parent('home');
+    $class = $assignment->courseClass;
+    $trail->push(Str::limit($class->name, 30), route('classes.show', $class));
+    $trail->push(Str::limit($assignment->assignmentPlan->title, 30), route('classes.assignments.show', [$class, $assignment]));
+    $trail->push('Student Grades', route('student-grades.index'));
+});
