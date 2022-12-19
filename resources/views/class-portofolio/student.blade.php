@@ -1,117 +1,73 @@
+@section('pageTitle', 'Student Portofolio'. ' - ' . $cc->name)
 <x-app-layout>
     <x-slot name="header">
-
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Class Portofolio') }}
+        </h2>
     </x-slot>
 
-    <div class="py-5 px-20">
-        <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white  shadow-sm sm:rounded-lg">
-                <div class="p-10     bg-white border-b border-gray-200">
+    <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
+        {{ Breadcrumbs::render('class-portofolios.student', $cc) }}
+        <div class="pb-8">
+            <div class="mb-5 overflow-x-auto bg-white rounded-lg shadow overflow-y-auto relative">
+                <table class="border-collapse table-auto w-full bg-white table-striped relative">
+                    <tr>
+                        <th rowspan="2" class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-6">No</th>
+                        <th rowspan="2" class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate">Name</th>
+                        <th rowspan="2" class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-32">Student ID</th>
+                        <th colspan="{{ $llos->count() }}" class="text-center bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-2">LLO</th>
+                        <th rowspan="2" class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-32">TOTAL NILAI</th>
+                        <th rowspan="2" class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-32">Nilai Akhir</th>
+                    </tr>
+                    <tr>
+                        @foreach ($llos as $llo)
+                            <th class="bg-gray-50 text-center">
+                                <div class="tooltip tooltip-top cursor-pointer"
+                                     data-tip="{{ $llo->description }}">
+                                    {{ $llo->id }}
+                                </div>
+                            </th>
+                        @endforeach
+                    </tr>
 
-                    <div class="text-center">
-                        <h1 class="text-black text-3xl text-center mx-auto justify-center font-extrabold">LEMBAR
-                            PENILAIAN PORTOFOLIO
-                        </h1>
-                    </div>
-                    <div class="ml-10 mt-14">
+                    <?php $i = 1; ?>
+                    @foreach ($userData as $data)
+                        <tr>
+                            <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $i }}</td>
+                            <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $data['name'] }}</td>
+                            <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $data['nim'] }}</td>
+                            @foreach ($data['cpmk'] as $cpmk)
+                            <td class="text-center text-gray-600 px-6 py-3 border-t border-gray-100">{{ $cpmk['point'] }}</td>
+                            @endforeach
+                                <?php
+                                $totalPoint = $data['cpmk']->sum('point');
 
-                        <div class="flex text-black">
-                            <h1>Mata Kuliah <span class="pl-[6.1rem]">:</span></h1>
-                            <p class="ml-2">{{ $cc->course->name }}</p>
-                        </div>
-                        <div class="flex text-black justify-between">
-                            <h1 class="flex">Jumlah SKS <span class="pl-[6.5rem]">:</span>
-                                <p class="ml-2">{{ $cc->course->course_credit }} SKS</p>
-                            </h1>
-                            <h1 class="mr-10">Kelas: {{ $cc->name }}</h1>
-                        </div>
-
-                        <div class="mt-2    py-20 ">
-                            <style>
-                                .border- {
-                                    background: black;
+                                if ($totalPoint > 80) {
+                                    $pointLetter = 'A';
+                                } elseif ($totalPoint > 75) {
+                                    $pointLetter = 'B+';
+                                } elseif ($totalPoint > 69) {
+                                    $pointLetter = 'B';
+                                } elseif ($totalPoint > 60) {
+                                    $pointLetter = 'C+';
+                                } elseif ($totalPoint > 55) {
+                                    $pointLetter = 'C';
+                                } elseif ($totalPoint > 50) {
+                                    $pointLetter = 'D+';
+                                } elseif ($totalPoint > 44) {
+                                    $pointLetter = 'D';
+                                } else {
+                                    $pointLetter = 'E';
                                 }
-
-                                table,
-                                th,
-                                td {
-                                    border: black 2px solid;
-                                }
-                            </style>
-
-                            <table class="w-full border-colapse border-2 border-black" border="1" cellpadding="15">
-                                <tr>
-                                    <th rowspan="2" bgcolor="#AFC7F5">NO</th>
-                                    <th rowspan="2" bgcolor="#AFC7F5">NAMA
-                                    </th>
-                                    <th rowspan="2" bgcolor="#AFC7F5">NIM
-                                    </th>
-                                    <th colspan="{{ $llo->count() }}" bgcolor="#AFC7F5">SUB-CPMK</th>
-                                    <th rowspan="2" bgcolor="#AFC7F5">TOTAL NILAI</th>
-                                    <th rowspan="2" bgcolor="#AFC7F5">NILAI AKHIR</th>
-
-                                </tr>
-
-                                <tr>
-                                    @foreach ($llo as $llo)
-                                        <th bgcolor="#AFC7F5">
-                                            <div class="tooltip tooltip-top cursor-pointer"
-                                                data-tip="{{ $llo->description }}">
-                                                {{ $llo->id }}
-                                            </div>
-                                        </th>
-                                    @endforeach
-                                </tr>
-
-                                <?php $i = 1; ?>
-                                @foreach ($userData as $data)
-                                    <tr>
-                                        <td class="text-center">{{ $i }}</td>
-                                        <td class="text-center">{{ $data['name'] }}</td>
-                                        <td class="text-center">{{ $data['nim'] }}</td>
-                                        @foreach ($data['cpmk'] as $cpmk)
-                                            {{-- <td class="text-center">{{ round($cpmk['point'] / $cpmk['maxPoint'] * 100, 2)
-                                        }}%</td> --}}
-                                            <td class="text-center">{{ $cpmk['point'] }}</td>
-                                        @endforeach
-                                        <?php
-                                        $totalPoint = $data['cpmk']->sum('point');
-                                        
-                                        if ($totalPoint > 80) {
-                                            $pointLetter = 'A';
-                                        } elseif ($totalPoint > 75) {
-                                            $pointLetter = 'B+';
-                                        } elseif ($totalPoint > 69) {
-                                            $pointLetter = 'B';
-                                        } elseif ($totalPoint > 60) {
-                                            $pointLetter = 'C+';
-                                        } elseif ($totalPoint > 55) {
-                                            $pointLetter = 'C';
-                                        } elseif ($totalPoint > 50) {
-                                            $pointLetter = 'D+';
-                                        } elseif ($totalPoint > 44) {
-                                            $pointLetter = 'D';
-                                        } else {
-                                            $pointLetter = 'E';
-                                        }
-                                        ?>
-                                        <td class="text-center">{{ $totalPoint }}</td>
-                                        <td class="text-center">{{ $pointLetter }}</td>
-                                    </tr>
-                                    <?php $i++; ?>
-                                @endforeach
-                                </tfoot>
-                            </table>
-
-                        </div>
-                    </div>
-
-
-
-
-                </div>
+                                ?>
+                            <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $totalPoint }}</td>
+                            <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $pointLetter }}</td>
+                        </tr>
+                            <?php $i++; ?>
+                        @endforeach
+                        </tfoot>
+                </table>
             </div>
         </div>
     </div>
-
 </x-app-layout>

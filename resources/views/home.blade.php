@@ -31,6 +31,9 @@
                                 @endcan
                             </div>
                         </div>
+                        <div class="mt-2 text-center">
+                            <div class="badge badge-ghost">{{ $user->role }}</div>
+                        </div>
                     </div>
                 </div>
                 <a href="{{ route('profile.index') }}" class="btn btn-accent btn-sm">

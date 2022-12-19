@@ -34,6 +34,23 @@ use Carbon\Carbon;
                         </li>
                     </ul>
                 </div>
+                @canany(['is-teacher', 'is-admin'])
+                    <div class="bg-white p-5 mt-5 overflow-hidden shadow-sm sm:rounded-lg">
+                        <h2>Portofolio</h2>
+                        <div class="flex flex-col gap-2 mt-3">
+                            <a href="{{ route('class-portofolio.index', $courseClass) }}" class="w-full bg-white border border-gray-300 rounded-md shadow-sm px-2.5 sm:px-4 py-2 inline-flex justify-center text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            <span class="pr-1">
+                                <i class="fa-solid fa-bullseye"></i> LLO Portofolio
+                            </span>
+                            </a>
+                            <a href="{{ route('class-portofolio.student', $courseClass) }}" class="w-full bg-white border border-gray-300 rounded-md shadow-sm px-2.5 sm:px-4 py-2 inline-flex justify-center text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            <span class="pr-1">
+                                <i class="fa-solid fa-graduation-cap"></i> Student Portofolio
+                            </span>
+                            </a>
+                        </div>
+                    </div>
+                @endcanany
                 <!-- End of profile card -->
             </div>
             <!-- Right Side -->

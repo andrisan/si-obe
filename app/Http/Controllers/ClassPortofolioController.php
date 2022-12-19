@@ -48,7 +48,7 @@ class ClassPortofolioController extends Controller
                     if ($llo->id != $criteria->llo_id) {
                         continue;
                     }
-                    
+
                     foreach ($student->studentGrade as $sg) {
                         if ($sg->student_user_id != $student->id) {
                             continue;
@@ -71,7 +71,7 @@ class ClassPortofolioController extends Controller
             'lulus' => $berhasil,
             'gagal' => $tidakBerhasil,
             'lloTotalPoint' => $llo_achieve,
-            'studentSum' => $courseClass->students->count()
+            'studentSum' => $courseClass->students->count(),
         ]);
     }
 
@@ -82,8 +82,8 @@ class ClassPortofolioController extends Controller
             $nim = $student->studentData->student_id_number;
             $name = $student->name;
             $cpmk = collect();
-            $llo = LessonLearningOutcome::all();
-            foreach ($llo as $llo) {
+            $llos = LessonLearningOutcome::all();
+            foreach ($llos as $llo) {
                 $temp = 0;
                 $maxPoint = 0;
                 foreach ($llo->criteria as $criteria) {
@@ -103,7 +103,7 @@ class ClassPortofolioController extends Controller
         $llo = LessonLearningOutcome::all();
         return view('class-portofolio.student', [
             'cc' => $courseClass,
-            'llo' => $llo,
+            'llos' => $llos,
             'userData' => $dataReturn,
         ]);
     }

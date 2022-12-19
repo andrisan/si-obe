@@ -323,3 +323,17 @@ Breadcrumbs::for('student-grades.create', function (BreadcrumbTrail $trail, $ass
     $trail->parent('student-grades.index', $assignment);
     $trail->push('Create');
 });
+
+// Class Portfolios
+Breadcrumbs::for('class-portofolios.index', function (BreadcrumbTrail $trail, $class) {
+    $trail->parent('home');
+    $trail->push(Str::limit($class->name, 30), route('classes.show', $class));
+    $trail->push('LLO Portfolios', route('class-portofolio.index', $class));
+});
+
+// Class Portfolios > Student
+Breadcrumbs::for('class-portofolios.student', function (BreadcrumbTrail $trail, $class) {
+    $trail->parent('home');
+    $trail->push(Str::limit($class->name, 30), route('classes.show', $class));
+    $trail->push('Student Portfolios', route('class-portofolio.index', $class));
+});
