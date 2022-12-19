@@ -65,7 +65,6 @@
                         </tr>
                             <?php $i++; ?>
                         @endforeach
-                        </tfoot>
                 </table>
             </div>
         </div>
