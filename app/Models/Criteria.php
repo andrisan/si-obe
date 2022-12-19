@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property int $id
  * @property int $rubric_id
- * @property int $llo
+ * @property int $llo_id
  * @property string $title
  * @property string $description
  * @property float $max_point

@@ -24,12 +24,25 @@
                 @if($rubric->criterias->count() > 0)
                     @foreach ($rubric->criterias as $criteria)
                     <div class="flex justify-between py-2">
-                        <h1 class="text-xl font-extrabold items-start">{{ $criteria->title }}</h1>
-                        <div class="items-end">
-                            <h1 class="font-extrabold text-black">{{ __("Max Point").": $criteria->max_point"}}</h1>
+                        <div>
+                            <span class="text-xl font-extrabold items-start">{{ $criteria->title }}</span>
+                            <a href="{{ route('rubrics.criterias.edit', [$rubric, $criteria]) }}" class="ml-2">
+                                <i class="fa fa-edit text-blue-500"></i>
+                            </a>
+                        </div>
+                        <div>
+                            <h1 class="font-extrabold text-black">{{ __("Max Point").": " }}
+                                @if(empty($criteria->max_point))
+                                    <span class="font-light text-sm text-gray-400">Please define criteria level</span>
+                                @else
+                                    {{ $criteria->max_point }}
+                                @endif
+                            </h1>
                         </div>
                     </div>
+
                     <p class="p-3">{{ $criteria->description }}</p>
+                    <p class="badge badge-ghost p-4 mx-3">LLO : {{ $criteria->lessonLearningOutcome->description }}</p>
 
                     <div class="py-5">
                         <div class="flex flex-row justify-between mb-3 px-4 sm:px-0 -mr-2 sm:-mr-3">
@@ -95,7 +108,7 @@
                                 </table>
                             </div>
                         @else
-                            <div class="text-center p-8">
+                            <div class="border rounded text-center p-8 font-light text-sm text-gray-400">
                                 No Criteria Levels found.
                             </div>
                         @endif

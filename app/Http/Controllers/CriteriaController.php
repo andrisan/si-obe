@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Models\Criteria;
 use App\Models\CriteriaLevel;
@@ -24,44 +25,30 @@ class CriteriaController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create(Rubric $rubric)
     {
-
         $llos = LessonLearningOutcome::all();
         return view('criteria.create', [
             'rubric' => $rubric,
             'llos' => $llos
         ]);
-
-        //
-
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return Response
+     * @param Request $request
+     * @param Rubric $rubric
+     * @return RedirectResponse
      */
-    public function store(Request $request, Rubric $rubric )
+    public function store(Request $request, Rubric $rubric)
     {
-        // $validated = $request->validate([
-        //     //
-        //     'llo' => 'required|string',
-        //       'title' => 'required|string',
-        //       'description' => 'required|string',
-        //       'max_point' => 'required|string',
-        //   ]);
-
-        //   dd($validated);
-        //   $rubric->criterias()->create($validated);
-
-          $validated = $request->validate([
+        $validated = $request->validate([
             'title' => 'required|string',
-              'llo' => 'required|string',
-              'description' => 'required|string',
+            'llo' => 'required|numeric',
+            'description' => 'nullable|string',
         ]);
 
         $criteria = new Criteria();
@@ -69,54 +56,51 @@ class CriteriaController extends Controller
         $criteria->llo_id = $validated['llo'];
         $criteria->title = $validated['title'];
         $criteria->description = $validated['description'];
-        $criteria->max_point = 6.25;
         $criteria->save();
 
-          return redirect()->route('rubrics.criterias.index',[
-              'rubric'=> $rubric
-          ]);
+        return redirect()->route('rubrics.show', $rubric);
     }
 
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function show($rubric, $criterias)
     {
-        $criterias = Criteria::with("LessonLearningOutcome")->where('rubric_id',$rubric)->find($criterias);
-            return view('criteria.show', [
-                'rubric' => $rubric,
-                'criterias' => $criterias
-            ]);
+        $criterias = Criteria::with("LessonLearningOutcome")->where('rubric_id', $rubric)->find($criterias);
+        return view('criteria.show', [
+            'rubric' => $rubric,
+            'criterias' => $criterias
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function edit(Rubric $rubric, $criterias)
     {
         //
         $llos = LessonLearningOutcome::all();
-        $criterias= Criteria::where('id', $criterias)->first();
+        $criterias = Criteria::where('id', $criterias)->first();
 
-          return view('criteria.edit',[
+        return view('criteria.edit', [
             'rubric' => $rubric,
             'criterias' => $criterias,
             'llos' => $llos
-          ]);
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return Response
      */
     public function update(Request $request, Rubric $rubric, Criteria $criteria)
@@ -124,30 +108,31 @@ class CriteriaController extends Controller
         //
         $validated = $request->validate([
             //
-              'title' => 'required|string',
-              'description' => 'required|string',
-              'llo' => 'required|string'
-          ]);
+            'title' => 'required|string',
+            'description' => 'required|string',
+            'llo' => 'required|string'
+        ]);
 
-          $criteria->update([
+        $criteria->update([
             'title' => $validated['title'],
-            'llo_id' =>  $validated['llo'],
+            'llo_id' => $validated['llo'],
             'description' => $validated['description']
         ]);
 
-          return redirect()->route('rubrics.criterias.show',[$rubric, $criteria]);
+        return redirect()->route('rubrics.criterias.show', [$rubric, $criteria]);
     }
+
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function destroy($rubric, $criterias)
     {
         $del = Criteria::where('id', $criterias)->delete();
 
-        return redirect()->route('rubrics.criterias.index',[
+        return redirect()->route('rubrics.criterias.index', [
             'rubric' => $rubric
         ]);
     }

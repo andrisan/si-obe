@@ -64,20 +64,6 @@ Breadcrumbs::for('study-programs.edit', function (BreadcrumbTrail $trail, $facul
     $trail->push($studyProgram->name, route('faculties.departments.study-programs.edit', [$faculty, $department, $studyProgram]));
 });
 
-// Criteria Levels > Create
-Breadcrumbs::for('criteria-levels.create', function (BreadcrumbTrail $trail, $rubric) {
-    $trail->parent('home');
-    $trail->push(Str::limit($rubric->title, 30), route('rubrics.show', $rubric));
-    $trail->push('Create Criteria Level');
-});
-
-// Criteria Levels > Edit
-Breadcrumbs::for('criteria-levels.edit', function (BreadcrumbTrail $trail, $rubric, $criteriaLevel) {
-    $trail->parent('home');
-    $trail->push(Str::limit($rubric->title, 30), route('rubrics.show', $rubric));
-    $trail->push(Str::limit($criteriaLevel->title, 30));
-});
-
 // Syllabi
 Breadcrumbs::for('syllabi.index', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
@@ -285,4 +271,32 @@ Breadcrumbs::for('rubrics.show', function (BreadcrumbTrail $trail, $syllabus, $a
     $trail->push(Str::limit($syllabus->title, 30), route('syllabi.show', $syllabus));
     $trail->push(Str::limit($assigmentPlan->title, 30), route('syllabi.assignment-plans.show', [$syllabus, $assigmentPlan]));
     $trail->push(Str::limit($rubric->title, 30), route('rubrics.show', $rubric));
+});
+
+// Criterias > Create
+Breadcrumbs::for('criterias.create', function (BreadcrumbTrail $trail, $rubric) {
+    $trail->parent('home');
+    $trail->push(Str::limit($rubric->title, 30), route('rubrics.show', $rubric));
+    $trail->push('Create Criteria');
+});
+
+// Criterias > Edit
+Breadcrumbs::for('criterias.edit', function (BreadcrumbTrail $trail, $rubric, $criteria) {
+    $trail->parent('home');
+    $trail->push(Str::limit($rubric->title, 30), route('rubrics.show', $rubric));
+    $trail->push(Str::limit($criteria->title, 30));
+});
+
+// Criteria Levels > Create
+Breadcrumbs::for('criteria-levels.create', function (BreadcrumbTrail $trail, $rubric) {
+    $trail->parent('home');
+    $trail->push(Str::limit($rubric->title, 30), route('rubrics.show', $rubric));
+    $trail->push('Create Criteria Level');
+});
+
+// Criteria Levels > Edit
+Breadcrumbs::for('criteria-levels.edit', function (BreadcrumbTrail $trail, $rubric, $criteriaLevel) {
+    $trail->parent('home');
+    $trail->push(Str::limit($rubric->title, 30), route('rubrics.show', $rubric));
+    $trail->push(Str::limit($criteriaLevel->title, 30));
 });
