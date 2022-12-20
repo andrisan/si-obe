@@ -26,6 +26,9 @@ class AssignmentController extends Controller
     private function _getAvailableAssignmentPlans(CourseClass $class){
         // @TODO: at the moment, user can only create one syllabus per course. Should be updated to allow multiple syllabus
         $syllabus = $class->course->syllabuses()->where('creator_user_id', auth()->id())->first();
+
+        if (empty($syllabus)){ abort(404); }
+
         // get AssignmentPlan that is not used by this class
         $availableAssignmentPlans = $syllabus->assignmentPlans()
             ->whereNotIn('id', $class->assignments()->pluck('assignment_plan_id'))->get();

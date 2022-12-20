@@ -51,7 +51,7 @@
                     </div>
                 </div>
 
-
+                @can('is-teacher')
                 <div class="flex flex-row-reverse justify-between">
                     <div class="justify-end flex flex-row gap-4 py-5 px-10">
                         <a href="{{ route('classes.assignments.edit', [$courseClass, $assignment]) }}"
@@ -66,7 +66,7 @@
                             </button>
                         </form>
                     </div>
-                    {{-- Ngelink ke Student Grades --}}
+
                     <div class="nilai py-5 px-10">
                         <form method="GET" action="{{ route('student-grades.index', [$assignment]) }}">
                             <input type="hidden" name="assignment_id" id="assignment_id" value="{{ $assignment->id}}">
@@ -74,11 +74,9 @@
                                 {{ __('Student Grades') }}
                             </button>
                         </form>
-
-
                     </div>
                 </div>
-
+                @endcan
 
                 {{-- End --}}
 
