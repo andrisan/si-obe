@@ -34,38 +34,37 @@ class StudentGradeController extends Controller
             abort(404);
         }
 
-        $listStudents = DB::table('assignments')
-            ->select(DB::raw('assignments.id as idAssignment, users.id,
-                            student_data.student_id_number as nim, users.name as namaMhs, course_classes.name as kelas'))
-            ->join('course_classes', 'course_classes.id', '=', 'assignments.course_class_id')
-            ->join('join_classes', 'join_classes.course_class_id', '=', 'course_classes.id')
-            ->join('users', 'users.id', '=', 'join_classes.student_user_id')
-            ->join('student_data', 'student_data.id', '=', 'users.id')
-            ->where('assignments.id', '=', $request->assignment_id)
-            ->get();
-
-        $studentGrades = DB::table('student_grades')
-            ->select(DB::raw('student_grades.student_user_id, sum(criteria_levels.`point`) as nilai'))
-            ->join('criteria_levels', 'criteria_levels.id', '=', 'student_grades.criteria_level_id')
-            ->where('assignment_id', '=', $request->assignment_id)
-            ->groupBy('student_grades.student_user_id')
-            ->get();
-
-
-        foreach ($listStudents as $ls) {
-            foreach ($studentGrades as $sg) {
-                if ($ls->id === $sg->student_user_id) {
-                    $ls->nilai = $sg->nilai;
-                    $ls->btnCek = true;
-                    break;
-                }
-            }
+        $criteriaMaxPoint = 0;
+        $assignmentPlanTasks = AssignmentPlanTask::where('assignment_plan_id', $assignment->assignment_plan_id)->get();
+        foreach ($assignmentPlanTasks as $assignmentPlanTask) {
+            $criteriaMaxPoint += $assignmentPlanTask->criteria->max_point;
         }
 
+        $courseClassID = $assignment->courseClass->id;
+
+        $studentGrades = DB::select("select u.id as student_user_id, sd.student_id_number, u.name, grade.total_student_point
+                    from join_classes jc
+                    join users u on u.id  = jc.student_user_id
+                    left join student_data sd on sd.id = u.id
+                    left join (
+                        select student_user_id, sum(student_point) as total_student_point
+                        from (
+                            select sg.student_user_id, sum(cl.`point`) as student_point
+                                from student_grades sg
+                                join `assignments` a on a.id = sg.assignment_id
+                                join criteria_levels cl on cl.id = sg.criteria_level_id
+                                where a.course_class_id = $courseClassID and assignment_id = $assignmentId
+                                group by sg.student_user_id
+                        ) grade_llo
+                        group by student_user_id
+                    ) grade on grade.student_user_id = u.id
+                    where jc.course_class_id = $courseClassID
+                ", []);
+
         return view('student-grades.index', [
-            'listStudents' => $listStudents,
             'studentGrades' => $studentGrades,
             'assignment' => $assignment,
+            'maxPoint' => $criteriaMaxPoint
         ]);
     }
 

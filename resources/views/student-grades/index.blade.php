@@ -15,43 +15,62 @@
                 <table class="border-collapse table-auto w-full bg-white table-striped relative">
                     <thead>
                     <tr class="text-left">
-                        <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-6">No</th>
-                        <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate">ID</th>
-                        <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate">Student Name</th>
-                        <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate">Rubric</th>
-                        <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-48">Action</th>
+                        <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-6">
+                            No
+                        </th>
+                        <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate">
+                            ID
+                        </th>
+                        <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate">
+                            Student Name
+                        </th>
+                        <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-32">
+                            Rubric
+                        </th>
+                        <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate">
+                            Grade
+                        </th>
+                        <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-48">
+                            Action
+                        </th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach ($listStudents as $ls)
+                    @foreach ($studentGrades as $grade)
                         <tr>
                             <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $loop->index + 1 }}</td>
-                            <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $ls->nim }}</td>
-                            <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $ls->namaMhs }}</td>
-                            <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $ls->nilai ?? 0 }}</td>
+                            <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $grade->student_id_number }}</td>
+                            <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $grade->name }}</td>
+                            <td class="text-gray-600 px-6 py-3 border-t border-gray-100">
+                                <div class="flex justify-between">
+                                    <span class="font-semibold">{{ $grade->total_student_point ?? 0 }}</span>
+                                    <span class="text-gray-400"> / {{ $maxPoint }}</span>
+                                </div>
+                            </td>
+                            <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ ($grade->total_student_point ?? 0)/$maxPoint*100 }}</td>
                             <td
                                 class="text-gray-600 px-6 py-3 border-t border-gray-100">
                                 <div class="flex flex-wrap space-x-4">
-                                    @php($cek = $ls->btnCek ?? false)
-                                    @if($cek)
-                                        <a href="/student-grades/edit?assignment_id={{$ls->idAssignment}}&user_id={{$ls->id}}">
+                                    @if(empty($grade->total_student_point))
+                                        <a href="/student-grades/create?assignment_id={{ $assignment->id }}&user_id={{ $grade->student_user_id }}">
+                                            <button class="text-blue-500">Create</button>
+                                        </a>
+                                    @else
+                                        <a href="/student-grades/edit?assignment_id={{ $assignment->id }}&user_id={{ $grade->student_user_id }}">
                                             <button class="text-blue-500"><strong>Edit</strong></button>
                                         </a>
 
-                                        <form method="POST" action=" {{ route('student-grades.destroy',[$ls->id]) }}">
+                                        <form method="POST"
+                                              action=" {{ route('student-grades.destroy', 1) }}">
                                             @csrf
                                             @method('delete')
-                                            <input type="hidden" name="assignmentId" value="{{ $ls->idAssignment }}">
-                                            <input type="hidden" name="userId" value="{{ $ls->id }}">
+                                            <input type="hidden" name="assignmentId" value="{{ $assignment->id }}">
+                                            <input type="hidden" name="userId" value="{{ $grade->student_user_id }}">
                                             <button class="text-red-500"
                                                     onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
                                                 {{ __('Delete') }}
                                             </button>
                                         </form>
-                                    @else
-                                        <a href="/student-grades/create?assignment_id={{$ls->idAssignment}}&user_id={{$ls->id}}">
-                                            <button class="text-blue-500">Create</button>
-                                        </a>
                                     @endif
                                 </div>
                             </td>
