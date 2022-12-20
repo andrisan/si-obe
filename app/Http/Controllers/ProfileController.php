@@ -49,7 +49,12 @@ class ProfileController extends Controller
         }
 
         $llo = LessonLearningOutcome::all();
-        return view('profile.grade', ['user'=> $user, 'grade' => $nilaiAkhir, 'gradeLetter' => $nilaiHuruf, 'llo' => $llo]);
+        return view('profile.grade', [
+            'user'=> $user,
+            'grade' => $nilaiAkhir,
+            'gradeLetter' => $nilaiHuruf,
+            'llo' => $llo
+        ]);
     }
 
     /**
@@ -81,7 +86,7 @@ class ProfileController extends Controller
      */
     public function show($id)
     {
-        // 
+        //
     }
 
     /**

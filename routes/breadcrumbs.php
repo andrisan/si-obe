@@ -337,3 +337,10 @@ Breadcrumbs::for('class-portofolio.student', function (BreadcrumbTrail $trail, $
     $trail->push(Str::limit($class->name, 30), route('classes.show', $class));
     $trail->push('Student Portfolio', route('class-portofolio.index', $class));
 });
+
+// Profile > Grade
+Breadcrumbs::for('profile.grade', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Profile', route('profile.index'));
+    $trail->push('Grade', route('profile.grade'));
+});

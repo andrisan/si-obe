@@ -56,6 +56,11 @@
                         <x-dropdown-link :href="route('profile.index')">
                             {{ __('Profile') }}
                         </x-dropdown-link>
+                        @can('is-student')
+                            <x-dropdown-link :href="route('profile.grade')">
+                                {{ __('My Grade') }}
+                            </x-dropdown-link>
+                        @endcan
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
