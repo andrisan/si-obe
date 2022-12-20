@@ -3,7 +3,7 @@
     "version": "2.2.11",
     "width": 2600,
     "height": 2600,
-    "scrollTop": -459.97293921708206,
+    "scrollTop": -596,
     "scrollLeft": 0,
     "zoomLevel": 1,
     "show": {
@@ -189,7 +189,7 @@
           "active": false,
           "left": 22.6668,
           "top": 606.257,
-          "zIndex": 38,
+          "zIndex": 50,
           "widthName": 60,
           "widthComment": 60,
           "color": "#2196F3"
@@ -252,7 +252,7 @@
           "active": false,
           "left": 57.4994,
           "top": 1997.9642,
-          "zIndex": 8,
+          "zIndex": 7,
           "widthName": 60,
           "widthComment": 60,
           "color": "#FF5722"
@@ -338,7 +338,7 @@
           "active": false,
           "left": 59.5355,
           "top": 1722.9442,
-          "zIndex": 2,
+          "zIndex": 1,
           "widthName": 74.26171875,
           "widthComment": 60,
           "color": "#FF5722"
@@ -675,9 +675,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 29.574,
-          "top": 902.1561,
-          "zIndex": 36,
+          "left": 22.574,
+          "top": 996.1561,
+          "zIndex": 37,
           "widthName": 60,
           "widthComment": 60,
           "color": "#FF5722"
@@ -809,7 +809,7 @@
           "active": false,
           "left": 139.4456,
           "top": 78.668,
-          "zIndex": 15,
+          "zIndex": 14,
           "widthName": 168.9560546875,
           "widthComment": 60,
           "color": "#2196F3"
@@ -941,7 +941,7 @@
           "active": false,
           "left": 775.3361,
           "top": 24.6991,
-          "zIndex": 16,
+          "zIndex": 15,
           "widthName": 158.09521484375,
           "widthComment": 60,
           "color": "#2196F3"
@@ -1073,7 +1073,7 @@
           "active": false,
           "left": 1440.8927,
           "top": 60.2857,
-          "zIndex": 17,
+          "zIndex": 16,
           "widthName": 156.654296875,
           "widthComment": 60,
           "color": "#2196F3"
@@ -1297,7 +1297,7 @@
           "active": false,
           "left": 660.5675,
           "top": 227.4547,
-          "zIndex": 3,
+          "zIndex": 2,
           "widthName": 86.5634765625,
           "widthComment": 60,
           "color": "#2196F3"
@@ -1590,7 +1590,7 @@
           "active": false,
           "left": 640.7154,
           "top": 528.5569,
-          "zIndex": 21,
+          "zIndex": 19,
           "widthName": 106.787109375,
           "widthComment": 60,
           "color": "#2196F3"
@@ -1812,9 +1812,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 1113.3287,
-          "top": 1322.2411,
-          "zIndex": 32,
+          "left": 494.3287,
+          "top": 1515.2411,
+          "zIndex": 94,
           "widthName": 60,
           "widthComment": 60,
           "color": "#795548"
@@ -2009,13 +2009,36 @@
               "widthDefault": 60
             },
             "id": "7a098e6b-3231-46dc-9528-df05e32d3756"
+          },
+          {
+            "name": "syllabus_id",
+            "comment": "",
+            "dataType": "bigint unsigned",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 66.314453125,
+              "widthComment": 60,
+              "widthDataType": 89.4580078125,
+              "widthDefault": 60
+            },
+            "id": "9eb5d1a7-b02a-49b0-9d03-f83f9845ea0d"
           }
         ],
         "ui": {
           "active": false,
-          "left": 553.0086,
-          "top": 1516.5971,
-          "zIndex": 19,
+          "left": 837.0086,
+          "top": 1200.5971,
+          "zIndex": 93,
           "widthName": 91.59716796875,
           "widthComment": 60,
           "color": "#009688"
@@ -2076,9 +2099,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 953.729,
-          "top": 1854.1418,
-          "zIndex": 5,
+          "left": 1374.729,
+          "top": 1501.1418,
+          "zIndex": 90,
           "widthName": 72.814453125,
           "widthComment": 60,
           "color": "#009688"
@@ -2208,9 +2231,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 1260.9286,
+          "left": 1320.9286,
           "top": 817.0408,
-          "zIndex": 12,
+          "zIndex": 88,
           "widthName": 60,
           "widthComment": 60,
           "color": "#2196F3"
@@ -2363,9 +2386,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 1900.1625,
+          "left": 1921.1625,
           "top": 493.7674,
-          "zIndex": 11,
+          "zIndex": 82,
           "widthName": 60,
           "widthComment": 60,
           "color": "#2196F3"
@@ -2495,9 +2518,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 1972.8939,
-          "top": 810.8414,
-          "zIndex": 13,
+          "left": 2000.8939,
+          "top": 975.8414,
+          "zIndex": 81,
           "widthName": 81.47265625,
           "widthComment": 60,
           "color": "#2196F3"
@@ -2673,9 +2696,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 1591.5059,
-          "top": 1024.6752,
-          "zIndex": 10,
+          "left": 1410.5059,
+          "top": 1104.6752,
+          "zIndex": 84,
           "widthName": 91.62255859375,
           "widthComment": 60,
           "color": "#009688"
@@ -2736,9 +2759,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 1897.0541,
-          "top": 1341.8327,
-          "zIndex": 6,
+          "left": 557.0541,
+          "top": 1917.8327,
+          "zIndex": 86,
           "widthName": 77.17529296875,
           "widthComment": 60,
           "color": "#795548"
@@ -2822,15 +2845,342 @@
         ],
         "ui": {
           "active": false,
-          "left": 1340.4822,
-          "top": 287.1485,
-          "zIndex": 18,
+          "left": 1407.4822,
+          "top": 299.1485,
+          "zIndex": 79,
           "widthName": 83.67529296875,
           "widthComment": 60,
           "color": "#2196F3"
         },
         "visible": true,
         "id": "c34cf135-f562-44c0-9875-b7ce7d542db3"
+      },
+      {
+        "name": "assignment_plan_tasks",
+        "comment": "",
+        "columns": [
+          {
+            "name": "id",
+            "comment": "",
+            "dataType": "bigint unsigned",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": true,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 89.4580078125,
+              "widthDefault": 60
+            },
+            "id": "efab189f-38b0-467e-ab8d-742666507d78"
+          },
+          {
+            "name": "assignment_plan_id",
+            "comment": "",
+            "dataType": "bigint unsigned",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 117.63525390625,
+              "widthComment": 60,
+              "widthDataType": 89.4580078125,
+              "widthDefault": 60
+            },
+            "id": "148f5076-686d-481d-820d-9c76d748c785"
+          },
+          {
+            "name": "criteria_id",
+            "comment": "",
+            "dataType": "bigint unsigned",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 89.4580078125,
+              "widthDefault": 60
+            },
+            "id": "4f688e79-1815-4354-a126-12f73ad1746a"
+          },
+          {
+            "name": "code",
+            "comment": "",
+            "dataType": "varchar(512)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 75.6962890625,
+              "widthDefault": 60
+            },
+            "id": "15e0924e-5b87-42a2-a88b-d1e9531c0014"
+          },
+          {
+            "name": "description",
+            "comment": "",
+            "dataType": "text",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 64.8671875,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "95f49c3d-7345-4b67-b090-fb6302b5afec"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 1216.9559,
+          "top": 527.8702,
+          "zIndex": 8,
+          "widthName": 137.85888671875,
+          "widthComment": 60,
+          "color": "#03A9F4"
+        },
+        "visible": false,
+        "id": "0853eddc-8f20-4e3e-9bfa-5bf142fd72d5"
+      },
+      {
+        "name": "study_programs",
+        "comment": "",
+        "columns": [
+          {
+            "name": "id",
+            "comment": "",
+            "dataType": "bigint unsigned",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": true,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 89.4580078125,
+              "widthDefault": 60
+            },
+            "id": "8a928cf1-3740-4a06-ba22-5b61807c99d5"
+          },
+          {
+            "name": "department_id",
+            "comment": "",
+            "dataType": "bigint unsigned",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 85.10986328125,
+              "widthComment": 60,
+              "widthDataType": 89.4580078125,
+              "widthDefault": 60
+            },
+            "id": "4ecb58a5-ccd8-47b4-9ccc-6173ebe49d26"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 45.3688,
+          "top": 1524.7785,
+          "zIndex": 62,
+          "widthName": 95.208984375,
+          "widthComment": 60,
+          "color": "#FF5722"
+        },
+        "visible": true,
+        "id": "3c727061-333e-4265-a16d-cc3c3e0c5025"
+      },
+      {
+        "name": "assignment_plan_tasks",
+        "comment": "",
+        "columns": [
+          {
+            "name": "id",
+            "comment": "",
+            "dataType": "bigint unsigned",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": true,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 89.4580078125,
+              "widthDefault": 60
+            },
+            "id": "b6af21ee-028c-492d-aa51-8936e3dd3d9c"
+          },
+          {
+            "name": "assignment_plan_id",
+            "comment": "",
+            "dataType": "bigint unsigned",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 117.63525390625,
+              "widthComment": 60,
+              "widthDataType": 89.4580078125,
+              "widthDefault": 60
+            },
+            "id": "ac1e76df-fda8-4516-9256-8d56b89746ba"
+          },
+          {
+            "name": "criterion_id",
+            "comment": "",
+            "dataType": "bigint unsigned",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 65.58447265625,
+              "widthComment": 60,
+              "widthDataType": 89.4580078125,
+              "widthDefault": 60
+            },
+            "id": "8e0279e9-8b96-430b-b2e0-4fad68b0cff4"
+          },
+          {
+            "name": "code",
+            "comment": "",
+            "dataType": "varchar(512)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 75.6962890625,
+              "widthDefault": 60
+            },
+            "id": "c4e8da5a-c3af-4549-ac82-c0f7d8782459"
+          },
+          {
+            "name": "description",
+            "comment": "",
+            "dataType": "text",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 64.8671875,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "5f034adb-aef8-4001-8cf2-05377470dc8b"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 1273.4639,
+          "top": 529.1247,
+          "zIndex": 80,
+          "widthName": 137.85888671875,
+          "widthComment": 60,
+          "color": "#2196F3"
+        },
+        "visible": true,
+        "id": "d23ff9cb-1e66-40a2-b743-bc5052866168"
       },
       {
         "name": "assignments",
@@ -2977,342 +3327,15 @@
         ],
         "ui": {
           "active": false,
-          "left": 967,
-          "top": 1055.7866,
-          "zIndex": 4,
+          "left": 737,
+          "top": 917.7866,
+          "zIndex": 72,
           "widthName": 74.97900390625,
           "widthComment": 60,
           "color": "#009688"
         },
         "visible": true,
         "id": "36a80ffc-54ab-403a-a76f-e86e0319a9fb"
-      },
-      {
-        "name": "assignment_plan_tasks",
-        "comment": "",
-        "columns": [
-          {
-            "name": "id",
-            "comment": "",
-            "dataType": "bigint unsigned",
-            "default": "",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": true,
-              "unique": false,
-              "notNull": true
-            },
-            "ui": {
-              "active": false,
-              "pk": true,
-              "fk": false,
-              "pfk": false,
-              "widthName": 60,
-              "widthComment": 60,
-              "widthDataType": 89.4580078125,
-              "widthDefault": 60
-            },
-            "id": "efab189f-38b0-467e-ab8d-742666507d78"
-          },
-          {
-            "name": "assignment_plan_id",
-            "comment": "",
-            "dataType": "bigint unsigned",
-            "default": "",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": false,
-              "unique": false,
-              "notNull": true
-            },
-            "ui": {
-              "active": false,
-              "pk": false,
-              "fk": true,
-              "pfk": false,
-              "widthName": 117.63525390625,
-              "widthComment": 60,
-              "widthDataType": 89.4580078125,
-              "widthDefault": 60
-            },
-            "id": "148f5076-686d-481d-820d-9c76d748c785"
-          },
-          {
-            "name": "criteria_id",
-            "comment": "",
-            "dataType": "bigint unsigned",
-            "default": "",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": false,
-              "unique": false,
-              "notNull": false
-            },
-            "ui": {
-              "active": false,
-              "pk": false,
-              "fk": true,
-              "pfk": false,
-              "widthName": 60,
-              "widthComment": 60,
-              "widthDataType": 89.4580078125,
-              "widthDefault": 60
-            },
-            "id": "4f688e79-1815-4354-a126-12f73ad1746a"
-          },
-          {
-            "name": "code",
-            "comment": "",
-            "dataType": "varchar(512)",
-            "default": "",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": false,
-              "unique": false,
-              "notNull": true
-            },
-            "ui": {
-              "active": false,
-              "pk": false,
-              "fk": false,
-              "pfk": false,
-              "widthName": 60,
-              "widthComment": 60,
-              "widthDataType": 75.6962890625,
-              "widthDefault": 60
-            },
-            "id": "15e0924e-5b87-42a2-a88b-d1e9531c0014"
-          },
-          {
-            "name": "description",
-            "comment": "",
-            "dataType": "text",
-            "default": "",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": false,
-              "unique": false,
-              "notNull": true
-            },
-            "ui": {
-              "active": false,
-              "pk": false,
-              "fk": false,
-              "pfk": false,
-              "widthName": 64.8671875,
-              "widthComment": 60,
-              "widthDataType": 60,
-              "widthDefault": 60
-            },
-            "id": "95f49c3d-7345-4b67-b090-fb6302b5afec"
-          }
-        ],
-        "ui": {
-          "active": false,
-          "left": 1216.9559,
-          "top": 527.8702,
-          "zIndex": 9,
-          "widthName": 137.85888671875,
-          "widthComment": 60,
-          "color": "#03A9F4"
-        },
-        "visible": false,
-        "id": "0853eddc-8f20-4e3e-9bfa-5bf142fd72d5"
-      },
-      {
-        "name": "study_programs",
-        "comment": "",
-        "columns": [
-          {
-            "name": "id",
-            "comment": "",
-            "dataType": "bigint unsigned",
-            "default": "",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": true,
-              "unique": false,
-              "notNull": true
-            },
-            "ui": {
-              "active": false,
-              "pk": true,
-              "fk": false,
-              "pfk": false,
-              "widthName": 60,
-              "widthComment": 60,
-              "widthDataType": 89.4580078125,
-              "widthDefault": 60
-            },
-            "id": "8a928cf1-3740-4a06-ba22-5b61807c99d5"
-          },
-          {
-            "name": "department_id",
-            "comment": "",
-            "dataType": "bigint unsigned",
-            "default": "",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": false,
-              "unique": false,
-              "notNull": true
-            },
-            "ui": {
-              "active": false,
-              "pk": false,
-              "fk": true,
-              "pfk": false,
-              "widthName": 85.10986328125,
-              "widthComment": 60,
-              "widthDataType": 89.4580078125,
-              "widthDefault": 60
-            },
-            "id": "4ecb58a5-ccd8-47b4-9ccc-6173ebe49d26"
-          }
-        ],
-        "ui": {
-          "active": false,
-          "left": 45.3688,
-          "top": 1452.7785,
-          "zIndex": 7,
-          "widthName": 95.208984375,
-          "widthComment": 60,
-          "color": "#FF5722"
-        },
-        "visible": true,
-        "id": "3c727061-333e-4265-a16d-cc3c3e0c5025"
-      },
-      {
-        "name": "assignment_plan_tasks",
-        "comment": "",
-        "columns": [
-          {
-            "name": "id",
-            "comment": "",
-            "dataType": "bigint unsigned",
-            "default": "",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": true,
-              "unique": false,
-              "notNull": true
-            },
-            "ui": {
-              "active": false,
-              "pk": true,
-              "fk": false,
-              "pfk": false,
-              "widthName": 60,
-              "widthComment": 60,
-              "widthDataType": 89.4580078125,
-              "widthDefault": 60
-            },
-            "id": "b6af21ee-028c-492d-aa51-8936e3dd3d9c"
-          },
-          {
-            "name": "assignment_plan_id",
-            "comment": "",
-            "dataType": "bigint unsigned",
-            "default": "",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": false,
-              "unique": false,
-              "notNull": true
-            },
-            "ui": {
-              "active": false,
-              "pk": false,
-              "fk": true,
-              "pfk": false,
-              "widthName": 117.63525390625,
-              "widthComment": 60,
-              "widthDataType": 89.4580078125,
-              "widthDefault": 60
-            },
-            "id": "ac1e76df-fda8-4516-9256-8d56b89746ba"
-          },
-          {
-            "name": "criterion_id",
-            "comment": "",
-            "dataType": "bigint unsigned",
-            "default": "",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": false,
-              "unique": false,
-              "notNull": true
-            },
-            "ui": {
-              "active": false,
-              "pk": false,
-              "fk": true,
-              "pfk": false,
-              "widthName": 65.58447265625,
-              "widthComment": 60,
-              "widthDataType": 89.4580078125,
-              "widthDefault": 60
-            },
-            "id": "8e0279e9-8b96-430b-b2e0-4fad68b0cff4"
-          },
-          {
-            "name": "code",
-            "comment": "",
-            "dataType": "varchar(512)",
-            "default": "",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": false,
-              "unique": false,
-              "notNull": false
-            },
-            "ui": {
-              "active": false,
-              "pk": false,
-              "fk": false,
-              "pfk": false,
-              "widthName": 60,
-              "widthComment": 60,
-              "widthDataType": 75.6962890625,
-              "widthDefault": 60
-            },
-            "id": "c4e8da5a-c3af-4549-ac82-c0f7d8782459"
-          },
-          {
-            "name": "description",
-            "comment": "",
-            "dataType": "text",
-            "default": "",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": false,
-              "unique": false,
-              "notNull": false
-            },
-            "ui": {
-              "active": false,
-              "pk": false,
-              "fk": false,
-              "pfk": false,
-              "widthName": 64.8671875,
-              "widthComment": 60,
-              "widthDataType": 60,
-              "widthDefault": 60
-            },
-            "id": "5f034adb-aef8-4001-8cf2-05377470dc8b"
-          }
-        ],
-        "ui": {
-          "active": false,
-          "left": 1256.4639,
-          "top": 563.1247,
-          "zIndex": 14,
-          "widthName": 137.85888671875,
-          "widthComment": 60,
-          "color": "#2196F3"
-        },
-        "visible": true,
-        "id": "d23ff9cb-1e66-40a2-b743-bc5052866168"
       }
     ],
     "indexes": []
@@ -3409,8 +3432,8 @@
           "columnIds": [
             "43054ee7-f920-425c-b6a8-aeeaae784d1c"
           ],
-          "x": 303.86062109375,
-          "y": 902.1561,
+          "x": 296.86062109375,
+          "y": 996.1561,
           "direction": "top"
         },
         "end": {
@@ -3435,8 +3458,8 @@
           "columnIds": [
             "eb6a5784-3234-438e-b7c6-c5bbc6d44f00"
           ],
-          "x": 1113.3287,
-          "y": 1448.9911,
+          "x": 494.3287,
+          "y": 1641.9911,
           "direction": "left"
         },
         "end": {
@@ -3444,9 +3467,9 @@
           "columnIds": [
             "5dabd7f6-d6d0-4a94-8049-3520d6ca74f4"
           ],
-          "x": 578.1472421875,
-          "y": 1080.1561000000002,
-          "direction": "right"
+          "x": 434.003931640625,
+          "y": 1352.1561000000002,
+          "direction": "bottom"
         },
         "constraintName": "fk_users_to_course",
         "visible": true,
@@ -3461,17 +3484,17 @@
           "columnIds": [
             "cd17117f-8df9-4f49-a0da-4e2168c273d8"
           ],
-          "x": 757.401178125,
-          "y": 1749.5971,
-          "direction": "bottom"
+          "x": 1245.7937562500001,
+          "y": 1327.3471,
+          "direction": "right"
         },
         "end": {
           "tableId": "61716218-0b43-4a76-848c-9088da8d0825",
           "columnIds": [
             "04fec067-5594-4c69-aa47-136a98104d89"
           ],
-          "x": 953.729,
-          "y": 1909.1418,
+          "x": 1374.729,
+          "y": 1528.6418,
           "direction": "left"
         },
         "constraintName": "fk_class_to_join_class",
@@ -3487,18 +3510,18 @@
           "columnIds": [
             "eb6a5784-3234-438e-b7c6-c5bbc6d44f00"
           ],
-          "x": 1376.7163953125,
-          "y": 1575.7411,
-          "direction": "bottom"
+          "x": 1021.104090625,
+          "y": 1641.9911,
+          "direction": "right"
         },
         "end": {
           "tableId": "61716218-0b43-4a76-848c-9088da8d0825",
           "columnIds": [
             "cb532c09-e97e-4712-91b4-66ac86ad43fc"
           ],
-          "x": 1365.40233984375,
-          "y": 1909.1418,
-          "direction": "right"
+          "x": 1374.729,
+          "y": 1583.6418,
+          "direction": "left"
         },
         "constraintName": "fk_users_to_join_class",
         "visible": true,
@@ -3513,18 +3536,18 @@
           "columnIds": [
             "eb6a5784-3234-438e-b7c6-c5bbc6d44f00"
           ],
-          "x": 1113.3287,
-          "y": 1364.4911,
-          "direction": "left"
+          "x": 1021.104090625,
+          "y": 1557.4911,
+          "direction": "right"
         },
         "end": {
           "tableId": "a730fadd-8374-49ac-9f88-a6972060ea75",
           "columnIds": [
             "73b93409-b958-4f00-a5e5-6cb560c6bd54"
           ],
-          "x": 961.79375625,
-          "y": 1633.0971,
-          "direction": "right"
+          "x": 1041.4011781250001,
+          "y": 1454.0971,
+          "direction": "bottom"
         },
         "constraintName": "fk_users_to_class",
         "visible": true,
@@ -3539,7 +3562,7 @@
           "columnIds": [
             "1bd14cbd-ccf9-4b10-b311-1e6ca715f47a"
           ],
-          "x": 1695.02186171875,
+          "x": 1755.02186171875,
           "y": 902.7908,
           "direction": "right"
         },
@@ -3548,7 +3571,7 @@
           "columnIds": [
             "d548cc8e-3f27-47ab-a201-401111e9268d"
           ],
-          "x": 1900.1625,
+          "x": 1921.1625,
           "y": 637.7674,
           "direction": "left"
         },
@@ -3565,7 +3588,7 @@
           "columnIds": [
             "0d4d4a54-7034-4185-ade3-e614c364ec8a"
           ],
-          "x": 2090.82509765625,
+          "x": 2111.82509765625,
           "y": 685.7674,
           "direction": "bottom"
         },
@@ -3574,8 +3597,8 @@
           "columnIds": [
             "ade99609-9745-4e8a-83be-057d74e4a608"
           ],
-          "x": 2163.55649765625,
-          "y": 810.8414,
+          "x": 2191.55649765625,
+          "y": 975.8414,
           "direction": "top"
         },
         "constraintName": "fk_criterion_to_criterion_level",
@@ -3591,8 +3614,8 @@
           "columnIds": [
             "eb6a5784-3234-438e-b7c6-c5bbc6d44f00"
           ],
-          "x": 1640.104090625,
-          "y": 1512.3661,
+          "x": 1021.104090625,
+          "y": 1726.4911,
           "direction": "right"
         },
         "end": {
@@ -3600,9 +3623,9 @@
           "columnIds": [
             "81ed2def-3291-4687-aa94-6830c0355d80"
           ],
-          "x": 1824.08841953125,
-          "y": 1237.1752,
-          "direction": "bottom"
+          "x": 1410.5059,
+          "y": 1264.0502,
+          "direction": "left"
         },
         "constraintName": "fk_users_to_student_grade",
         "visible": true,
@@ -3626,7 +3649,7 @@
           "columnIds": [
             "9e3e3f88-095d-4db5-9fae-e3842029a16b"
           ],
-          "x": 1260.9286,
+          "x": 1320.9286,
           "y": 902.7908,
           "direction": "left"
         },
@@ -3643,18 +3666,18 @@
           "columnIds": [
             "eb6a5784-3234-438e-b7c6-c5bbc6d44f00"
           ],
-          "x": 1640.104090625,
-          "y": 1385.6161,
-          "direction": "right"
+          "x": 757.7163953125,
+          "y": 1768.7411,
+          "direction": "bottom"
         },
         "end": {
           "tableId": "0fd0a92f-1bf4-4eda-8625-b1aed79ff666",
           "columnIds": [
             "d4f08a65-c2ab-4f51-98d3-e4f3c1bf4b6f"
           ],
-          "x": 1897.0541,
-          "y": 1396.8327,
-          "direction": "left"
+          "x": 801.93300625,
+          "y": 1917.8327,
+          "direction": "top"
         },
         "constraintName": "fk_users_to_student",
         "visible": true,
@@ -3678,8 +3701,8 @@
           "columnIds": [
             "71f0531d-0f27-4e39-a8c7-07c170ef5f7a"
           ],
-          "x": 1340.4822,
-          "y": 352.3985,
+          "x": 1407.4822,
+          "y": 364.3985,
           "direction": "left"
         },
         "constraintName": "fk_study_plan_to_grading_plan",
@@ -3695,17 +3718,17 @@
           "columnIds": [
             "4657d146-705d-44b2-8314-0434023ca09d"
           ],
-          "x": 2163.55649765625,
-          "y": 982.3414,
-          "direction": "bottom"
+          "x": 2000.8939,
+          "y": 1061.5914,
+          "direction": "left"
         },
         "end": {
           "tableId": "b821c4aa-ee6c-441b-8347-7ec67293402e",
           "columnIds": [
             "512691cc-21ad-4502-bec1-6ef68e4dd382"
           ],
-          "x": 2056.6709390625,
-          "y": 1130.9252,
+          "x": 1875.6709390625,
+          "y": 1210.9252,
           "direction": "right"
         },
         "constraintName": "fk_criterion_level_to_student_grade",
@@ -3773,17 +3796,17 @@
           "columnIds": [
             "43054ee7-f920-425c-b6a8-aeeaae784d1c"
           ],
-          "x": 441.003931640625,
-          "y": 1258.1561000000002,
-          "direction": "bottom"
+          "x": 571.1472421875,
+          "y": 1174.1561000000002,
+          "direction": "right"
         },
         "end": {
           "tableId": "a730fadd-8374-49ac-9f88-a6972060ea75",
           "columnIds": [
             "dae5714f-e158-445a-b176-2528ca65b778"
           ],
-          "x": 553.0086,
-          "y": 1633.0971,
+          "x": 837.0086,
+          "y": 1263.9721,
           "direction": "left"
         },
         "constraintName": "fk_course_to_class",
@@ -3808,7 +3831,7 @@
           "columnIds": [
             "15c98cfa-cdf2-45fb-ae1a-43124774d2b8"
           ],
-          "x": 2090.82509765625,
+          "x": 2111.82509765625,
           "y": 493.7674,
           "direction": "top"
         },
@@ -3821,38 +3844,12 @@
         "relationshipType": "OneN",
         "startRelationshipType": "Dash",
         "start": {
-          "tableId": "a730fadd-8374-49ac-9f88-a6972060ea75",
-          "columnIds": [
-            "cd17117f-8df9-4f49-a0da-4e2168c273d8"
-          ],
-          "x": 757.401178125,
-          "y": 1516.5971,
-          "direction": "top"
-        },
-        "end": {
-          "tableId": "36a80ffc-54ab-403a-a76f-e86e0319a9fb",
-          "columnIds": [
-            "c4b6283a-1caf-4e70-b755-6d5aa701fe81"
-          ],
-          "x": 967,
-          "y": 1199.7866,
-          "direction": "left"
-        },
-        "constraintName": "fk_course_class_to_assignment",
-        "visible": true,
-        "id": "57a28a9b-dd66-48a5-acf7-865d98bee64f"
-      },
-      {
-        "identification": false,
-        "relationshipType": "OneN",
-        "startRelationshipType": "Dash",
-        "start": {
           "tableId": "948ef2d0-7acb-49c0-90d6-b0ca39a36eac",
           "columnIds": [
             "8cee43b9-909a-4198-80a1-7860284cf0f3"
           ],
           "x": 482.055471875,
-          "y": 702.257,
+          "y": 678.257,
           "direction": "right"
         },
         "end": {
@@ -3878,7 +3875,7 @@
             "8cee43b9-909a-4198-80a1-7860284cf0f3"
           ],
           "x": 482.055471875,
-          "y": 638.257,
+          "y": 630.257,
           "direction": "right"
         },
         "end": {
@@ -3965,7 +3962,7 @@
             "4ecb58a5-ccd8-47b4-9ccc-6173ebe49d26"
           ],
           "x": 246.152735546875,
-          "y": 1562.7785,
+          "y": 1634.7785,
           "direction": "bottom"
         },
         "constraintName": "fk_department_to_study_program",
@@ -3982,7 +3979,7 @@
             "8a928cf1-3740-4a06-ba22-5b61807c99d5"
           ],
           "x": 246.152735546875,
-          "y": 1452.7785,
+          "y": 1524.7785,
           "direction": "top"
         },
         "end": {
@@ -3990,65 +3987,13 @@
           "columnIds": [
             "df9f30ae-12d7-4031-b862-b2be3c6701af"
           ],
-          "x": 166.717310546875,
-          "y": 1258.1561000000002,
+          "x": 159.717310546875,
+          "y": 1352.1561000000002,
           "direction": "bottom"
         },
         "constraintName": "fk_study_program_to_course",
         "visible": true,
         "id": "706c6489-bf9c-44ce-b1fb-3f1eb80f7202"
-      },
-      {
-        "identification": false,
-        "relationshipType": "OneN",
-        "startRelationshipType": "Dash",
-        "start": {
-          "tableId": "c462963c-719a-4957-a420-041de68515e8",
-          "columnIds": [
-            "48844d6f-e4da-4f3d-a5aa-3dfef5e81de3"
-          ],
-          "x": 865.696601171875,
-          "y": 843.5569,
-          "direction": "bottom"
-        },
-        "end": {
-          "tableId": "36a80ffc-54ab-403a-a76f-e86e0319a9fb",
-          "columnIds": [
-            "7fede121-e2bd-4ad9-a013-19b230f92207"
-          ],
-          "x": 967,
-          "y": 1103.7866,
-          "direction": "left"
-        },
-        "constraintName": "fk_assignment_plan_to_assignment",
-        "visible": true,
-        "id": "f2e461b5-a555-473a-ab1e-0b41fa2f12fa"
-      },
-      {
-        "identification": false,
-        "relationshipType": "OneN",
-        "startRelationshipType": "Dash",
-        "start": {
-          "tableId": "36a80ffc-54ab-403a-a76f-e86e0319a9fb",
-          "columnIds": [
-            "8dbec3fd-0465-4f09-a7d4-20d2fd9b3386"
-          ],
-          "x": 1401.09326171875,
-          "y": 1151.7866,
-          "direction": "right"
-        },
-        "end": {
-          "tableId": "b821c4aa-ee6c-441b-8347-7ec67293402e",
-          "columnIds": [
-            "31e1a9b2-17c9-4c05-93af-fc1703654b84"
-          ],
-          "x": 1591.5059,
-          "y": 1130.9252,
-          "direction": "left"
-        },
-        "constraintName": "fk_assignment_to_student_grade",
-        "visible": true,
-        "id": "1b38ced9-d4ab-4040-97be-f5eb75572fcc"
       },
       {
         "identification": false,
@@ -4068,8 +4013,8 @@
           "columnIds": [
             "ac1e76df-fda8-4516-9256-8d56b89746ba"
           ],
-          "x": 1256.4639,
-          "y": 648.8747,
+          "x": 1273.4639,
+          "y": 614.8747,
           "direction": "left"
         },
         "constraintName": "fk_assignment_plans_to_assignment_plan_task",
@@ -4085,8 +4030,8 @@
           "columnIds": [
             "b6af21ee-028c-492d-aa51-8936e3dd3d9c"
           ],
-          "x": 1473.510530859375,
-          "y": 563.1247,
+          "x": 1490.510530859375,
+          "y": 529.1247,
           "direction": "top"
         },
         "end": {
@@ -4094,8 +4039,8 @@
           "columnIds": [
             "d6c66b62-f5ce-4dcc-ac9a-0a08c127fde7"
           ],
-          "x": 1573.06471953125,
-          "y": 417.6485,
+          "x": 1640.06471953125,
+          "y": 429.6485,
           "direction": "bottom"
         },
         "constraintName": "fk_assignment_plan_tasks_to_grading_plans",
@@ -4111,7 +4056,7 @@
           "columnIds": [
             "0d4d4a54-7034-4185-ade3-e614c364ec8a"
           ],
-          "x": 1900.1625,
+          "x": 1921.1625,
           "y": 541.7674,
           "direction": "left"
         },
@@ -4120,8 +4065,8 @@
           "columnIds": [
             "8e0279e9-8b96-430b-b2e0-4fad68b0cff4"
           ],
-          "x": 1690.55716171875,
-          "y": 605.9997,
+          "x": 1707.55716171875,
+          "y": 614.8747,
           "direction": "right"
         },
         "constraintName": "fk_criteria_to_assignment_plan_tasks",
@@ -4137,17 +4082,17 @@
           "columnIds": [
             "b6af21ee-028c-492d-aa51-8936e3dd3d9c"
           ],
-          "x": 1690.55716171875,
-          "y": 691.7497,
-          "direction": "right"
+          "x": 1490.510530859375,
+          "y": 700.6247,
+          "direction": "bottom"
         },
         "end": {
           "tableId": "b821c4aa-ee6c-441b-8347-7ec67293402e",
           "columnIds": [
             "2b07b454-e94c-4215-8424-68c4e2e9cd4e"
           ],
-          "x": 1824.08841953125,
-          "y": 1024.6752,
+          "x": 1643.08841953125,
+          "y": 1104.6752,
           "direction": "top"
         },
         "constraintName": "fk_assignment_plan_tasks_to_student_grades",
@@ -4163,9 +4108,9 @@
           "columnIds": [
             "eb6a5784-3234-438e-b7c6-c5bbc6d44f00"
           ],
-          "x": 1113.3287,
-          "y": 1533.4911,
-          "direction": "left"
+          "x": 757.7163953125,
+          "y": 1515.2411,
+          "direction": "top"
         },
         "end": {
           "tableId": "948ef2d0-7acb-49c0-90d6-b0ca39a36eac",
@@ -4173,12 +4118,116 @@
             "60eae292-94ce-4c22-8882-83f8242a5a76"
           ],
           "x": 482.055471875,
-          "y": 766.257,
+          "y": 774.257,
           "direction": "right"
         },
         "constraintName": "fk_users_to_syllabi",
         "visible": true,
         "id": "881a9434-ae18-45d9-a91d-f18a6c6dbfc8"
+      },
+      {
+        "identification": false,
+        "relationshipType": "ZeroN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "948ef2d0-7acb-49c0-90d6-b0ca39a36eac",
+          "columnIds": [
+            "8cee43b9-909a-4198-80a1-7860284cf0f3"
+          ],
+          "x": 482.055471875,
+          "y": 726.257,
+          "direction": "right"
+        },
+        "end": {
+          "tableId": "a730fadd-8374-49ac-9f88-a6972060ea75",
+          "columnIds": [
+            "9eb5d1a7-b02a-49b0-9d03-f83f9845ea0d"
+          ],
+          "x": 837.0086,
+          "y": 1390.7221,
+          "direction": "left"
+        },
+        "constraintName": "fk_syllabi_to_course_classes",
+        "visible": true,
+        "id": "792d9a17-3fdb-469d-974e-ee8c73b621b2"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "a730fadd-8374-49ac-9f88-a6972060ea75",
+          "columnIds": [
+            "cd17117f-8df9-4f49-a0da-4e2168c273d8"
+          ],
+          "x": 1041.4011781250001,
+          "y": 1200.5971,
+          "direction": "top"
+        },
+        "end": {
+          "tableId": "36a80ffc-54ab-403a-a76f-e86e0319a9fb",
+          "columnIds": [
+            "c4b6283a-1caf-4e70-b755-6d5aa701fe81"
+          ],
+          "x": 954.046630859375,
+          "y": 1109.7866,
+          "direction": "bottom"
+        },
+        "constraintName": "fk_course_class_to_assignment",
+        "visible": true,
+        "id": "57a28a9b-dd66-48a5-acf7-865d98bee64f"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "c462963c-719a-4957-a420-041de68515e8",
+          "columnIds": [
+            "48844d6f-e4da-4f3d-a5aa-3dfef5e81de3"
+          ],
+          "x": 865.696601171875,
+          "y": 843.5569,
+          "direction": "bottom"
+        },
+        "end": {
+          "tableId": "36a80ffc-54ab-403a-a76f-e86e0319a9fb",
+          "columnIds": [
+            "7fede121-e2bd-4ad9-a013-19b230f92207"
+          ],
+          "x": 954.046630859375,
+          "y": 917.7866,
+          "direction": "top"
+        },
+        "constraintName": "fk_assignment_plan_to_assignment",
+        "visible": true,
+        "id": "f2e461b5-a555-473a-ab1e-0b41fa2f12fa"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "36a80ffc-54ab-403a-a76f-e86e0319a9fb",
+          "columnIds": [
+            "8dbec3fd-0465-4f09-a7d4-20d2fd9b3386"
+          ],
+          "x": 1171.09326171875,
+          "y": 1013.7866,
+          "direction": "right"
+        },
+        "end": {
+          "tableId": "b821c4aa-ee6c-441b-8347-7ec67293402e",
+          "columnIds": [
+            "31e1a9b2-17c9-4c05-93af-fc1703654b84"
+          ],
+          "x": 1410.5059,
+          "y": 1157.8002,
+          "direction": "left"
+        },
+        "constraintName": "fk_assignment_to_student_grade",
+        "visible": true,
+        "id": "1b38ced9-d4ab-4040-97be-f5eb75572fcc"
       }
     ]
   }

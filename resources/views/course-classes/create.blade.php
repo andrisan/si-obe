@@ -17,12 +17,25 @@
                         </label>
                         <select class="select select-bordered w-full max-w-xs" name="course_id">
                             <option disabled selected>Choose the course</option>
-                            @foreach ($courses as $course)
+                            @foreach ($courses as $syllabus)
                                 <option
-                                    value="{{ $course->id }}" {{ (old("course_id") == $course->id ? "selected":"") }}>{{ $course->name }}</option>
+                                    value="{{ $syllabus->id }}" {{ (old("course_id") == $syllabus->id ? "selected":"") }}>{{ $syllabus->name }}</option>
                             @endforeach
                         </select>
                         <x-input-error :messages="$errors->get('course_id')" class="mt-2"/>
+                    </div>
+
+                    <div class="form-control w-full p-3">
+                        <label class="label">
+                            <span class="label-text">Syllabus</span>
+                        </label>
+                        <select class="select select-bordered w-full max-w-xs" name="syllabus_id">
+                            <option disabled selected>Choose the syllabus</option>
+                            @foreach ($syllabi as $syllabus)
+                                <option value="{{ $syllabus->id }}" {{ (old("syllabus_id") == $syllabus->id ? "selected":"") }}>{{ $syllabus->title }}</option>
+                            @endforeach
+                        </select>
+                        <x-input-error :messages="$errors->get('syllabus_id')" class="mt-2"/>
                     </div>
 
                     <div class="form-control w-full p-3">
@@ -38,7 +51,7 @@
                         <label class="label">
                             <span class="label-text">Thumbnail Image</span>
                         </label>
-                        <input type="file" name="thumbnail_img" class="file-input file-input-bordered w-full max-w-xs" />
+                        <input type="file" name="thumbnail_img" class="file-input file-input-bordered w-full max-w-xs"/>
                         <x-input-error :messages="$errors->get('thumbnail_img')" class="mt-2"/>
                     </div>
 

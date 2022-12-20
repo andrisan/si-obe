@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\CourseClass;
+use App\Models\Syllabus;
 use App\Models\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Hashids\Hashids;
@@ -19,7 +22,7 @@ class CourseClassController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|RedirectResponse
      */
     // public function index()
     // {
@@ -59,8 +62,10 @@ class CourseClassController extends Controller
             abort(403);
         }
         $courses = Course::all();
+        $mySyllabi = Syllabus::where('creator_user_id', Auth::id())->get();
         return view('course-classes.create', [
-            'courses' => $courses
+            'courses' => $courses,
+            'syllabi' => $mySyllabi,
         ]);
     }
 
@@ -68,26 +73,29 @@ class CourseClassController extends Controller
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function store(Request $request)
     {
         $validateData = $request->validate([
             'name' => 'required|string',
             'course_id' => 'required|integer',
-            'thumbnail_img' => 'required|image|mimes:png,jpg,jpeg,svg',
+            'syllabus_id' => 'required|integer',
+            'thumbnail_img' => 'nullable|image|mimes:png,jpg,jpeg,svg',
         ]);
 
-        $validateData['thumbnail_img'] = $request->file('thumbnail_img')->store('public/thumbnail');
+        $courseClass = new CourseClass();
+        $courseClass->name = $validateData['name'];
+        $courseClass->course_id = $validateData['course_id'];
+        $courseClass->syllabus_id = $validateData['syllabus_id'];
+        $courseClass->creator_user_id = Auth::user()->id;
 
-        $classes = new CourseClass();
-        $classes->name = $validateData['name'];
-        $classes->course_id = $validateData['course_id'];
-        $classes->creator_user_id = Auth::user()->id;
-        $classes->thumbnail_img = $validateData['thumbnail_img'];
+        if ($request->hasFile('thumbnail_img')) {
+            $courseClass->thumbnail_img = $request->file('thumbnail_img')->store('public/thumbnail');
+        }
 
-        $classes->save();
-        $classesId = $classes->id;
+        $courseClass->save();
+        $classesId = $courseClass->id;
 
         $hashids = new Hashids('', 5);
 
@@ -150,9 +158,9 @@ class CourseClassController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param CourseClass $class
+     * @return RedirectResponse
      */
     public function update(Request $request, CourseClass $class)
     {
@@ -163,7 +171,8 @@ class CourseClassController extends Controller
         $validateData = $request->validate([
             'name' => 'required|string',
             'course_id' => 'required|integer',
-            'thumbnail_img' => 'image|mimes:png,jpg,jpeg,svg',
+//            'syllabus_id' => 'required|integer',
+            'thumbnail_img' => 'nullable|image|mimes:png,jpg,jpeg,svg',
         ]);
         if ($request->hasFile('thumbnail_img')) {
             $validateData['thumbnail_img'] = $request->file('thumbnail_img')->store('public/thumbnail');
@@ -171,6 +180,7 @@ class CourseClassController extends Controller
 
         $class->name = $validateData['name'];
         $class->course_id = $validateData['course_id'];
+//        $class->syllabus_id = $validateData['syllabus_id'];
         if ($request->hasFile('thumbnail_img')) {
             $class->thumbnail_img = $validateData['thumbnail_img'];
         }
@@ -182,19 +192,12 @@ class CourseClassController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
-     * @return \Illuminate\Http\Response
+     * @param CourseClass $class
+     * @return RedirectResponse
      */
     public function destroy(CourseClass $class)
     {
         $class->delete();
-
-        // if (Auth::user()->role == 'student') {
-        //     return view('course-classes.index2');
-        // }
-
-        // $classesCourseId = CourseClass::where('creator_user_id', Auth::user()->id)->pluck('course_id');
-
         return back();
     }
 

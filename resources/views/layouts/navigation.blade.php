@@ -23,18 +23,18 @@
                         </x-nav-link>
                     </div>
                 @endcan
+                @canany(['is-teacher', 'is-admin'])
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-5 sm:flex">
+                        <x-nav-link :href="route('syllabi.index')" :active="request()->routeIs('syllabi.index')">
+                            {{ __('Syllabi') }}
+                        </x-nav-link>
+                    </div>
+                @endcanany
                 <div class="hidden space-x-8 sm:-my-px sm:ml-5 sm:flex">
                     <x-nav-link :href="route('classes.index')" :active="request()->routeIs('classes.index')">
                         {{ __('Classes') }}
                     </x-nav-link>
                 </div>
-                @canany(['is-teacher', 'is-admin'])
-                <div class="hidden space-x-8 sm:-my-px sm:ml-5 sm:flex">
-                    <x-nav-link :href="route('syllabi.index')" :active="request()->routeIs('syllabi.index')">
-                        {{ __('Syllabi') }}
-                    </x-nav-link>
-                </div>
-                @endcanany
             </div>
 
             <!-- Settings Dropdown -->

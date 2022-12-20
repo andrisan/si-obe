@@ -24,15 +24,13 @@ class AssignmentController extends Controller
     }
 
     private function _getAvailableAssignmentPlans(CourseClass $class){
-        // @TODO: at the moment, user can only create one syllabus per course. Should be updated to allow multiple syllabus
-        $syllabus = $class->course->syllabuses()->where('creator_user_id', auth()->id())->first();
+        $syllabus = $class->syllabus()->with('assignmentPlans')->first();
 
         if (empty($syllabus)){ abort(404); }
 
         // get AssignmentPlan that is not used by this class
-        $availableAssignmentPlans = $syllabus->assignmentPlans()
+        return $syllabus->assignmentPlans()
             ->whereNotIn('id', $class->assignments()->pluck('assignment_plan_id'))->get();
-        return $availableAssignmentPlans;
     }
 
     /**
@@ -47,7 +45,7 @@ class AssignmentController extends Controller
         $availableAssignmentPlans = $this->_getAvailableAssignmentPlans($class);
 
         if ($availableAssignmentPlans->isEmpty()) {
-            return redirect()->back()->with('error', 'You have no assignment plan available to create assignment');
+            return redirect()->back()->with('error', 'You have no assignment plan available to create an assignment');
         }
 
         return view('assignments.create', [

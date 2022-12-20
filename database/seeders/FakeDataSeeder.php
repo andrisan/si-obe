@@ -60,7 +60,7 @@ class FakeDataSeeder extends Seeder
                         'creator_user_id' => $admin->id,
                     ])->each(function ($course) use ($teachers) {
                         $teacher_creator_id = $teachers->random(1)->first()->id;
-                        Syllabus::factory(1)->create([
+                        $syllabus = Syllabus::factory(1)->create([
                             'course_id' => $course->id,
                             'creator_user_id' => $teacher_creator_id,
                         ])->each(function ($syllabus) {
@@ -155,6 +155,7 @@ class FakeDataSeeder extends Seeder
                         CourseClass::factory(2)->create([
                             'course_id' => $course->id,
                             'creator_user_id' => $teacher_creator_id,
+                            'syllabus_id' => $syllabus->first()->id,
                         ])->each(function ($course_class) use ($course, $teachers) {
                             $studentsJoinThisClass = User::factory(rand(30, 40))->create([
                                 'role' => 'student',

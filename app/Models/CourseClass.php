@@ -40,4 +40,9 @@ class CourseClass extends Model
     {
         return $this->belongsTo(Course::class);
     }
+
+    public function syllabus()
+    {
+        return $this->belongsTo(Syllabus::class);
+    }
 }
