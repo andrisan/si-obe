@@ -7,7 +7,7 @@
     </x-slot>
 
     <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
-        {{ Breadcrumbs::render('class-portofolios.student', $cc) }}
+        {{ Breadcrumbs::render('class-portofolio.student', $cc) }}
         <div class="pb-8">
             <div class="mb-5 overflow-x-auto bg-white rounded-lg shadow overflow-y-auto relative">
                 <table class="border-collapse table-auto w-full bg-white table-striped relative">
@@ -15,14 +15,14 @@
                         <th rowspan="2" class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-6">No</th>
                         <th rowspan="2" class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate">Name</th>
                         <th rowspan="2" class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-32">Student ID</th>
-                        <th colspan="{{ $llos->count() }}" class="text-center bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-2">LLO</th>
-                        <th rowspan="2" class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-32">TOTAL NILAI</th>
-                        <th rowspan="2" class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-32">Nilai Akhir</th>
+                        <th colspan="{{ $llos->count() }}" class="text-center bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-2">LLO Achievement</th>
+                        <th rowspan="2" class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-32">{{ __('Grade') }}</th>
+                        <th rowspan="2" class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-32">{{ __('Letter') }}</th>
                     </tr>
                     <tr>
                         @foreach ($llos as $llo)
                             <th class="bg-gray-50 text-center">
-                                <div class="tooltip tooltip-top cursor-pointer"
+                                <div class="tooltip tooltip-bottom cursor-pointer"
                                      data-tip="{{ $llo->description }}">
                                     {{ $llo->id }}
                                 </div>

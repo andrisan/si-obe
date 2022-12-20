@@ -14,13 +14,14 @@ class ClassPortofolioController extends Controller
         $berhasil = 0;
         $tidakBerhasil = 0;
         $temp = 0;
+        $threshold = 50;
 
         foreach ($courseClass->students as $student) {
             $temp = 0;
             foreach ($student->studentGrade as $sg) {
                 $temp += $sg->criteriaLevel->point;
             }
-            if ($temp > 50) {
+            if ($temp > $threshold) {
                 $berhasil++;
             } else {
                 $tidakBerhasil++;
@@ -72,6 +73,7 @@ class ClassPortofolioController extends Controller
             'gagal' => $tidakBerhasil,
             'lloTotalPoint' => $llo_achieve,
             'studentSum' => $courseClass->students->count(),
+            'threshold' => $threshold
         ]);
     }
 
