@@ -11,6 +11,12 @@ class AssignmentPlanTask extends Model
 
     public $timestamps = false;
 
+    protected $fillable = [
+        'code',
+        'criteria_id',
+        'description'
+    ];
+
     public function criteria()
     {
         return $this->hasOne(Criteria::class, 'id', 'criteria_id');

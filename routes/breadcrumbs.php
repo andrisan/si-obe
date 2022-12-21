@@ -111,6 +111,25 @@ Breadcrumbs::for('learning-plans.edit', function (BreadcrumbTrail $trail, $sylla
     $trail->push("Edit", route('syllabi.learning-plans.edit', [$syllabus, $learningPlan]));
 });
 
+// For all children of syllabi
+Breadcrumbs::for('syllabi.*', function (BreadcrumbTrail $trail, $syllabus) {
+    $trail->parent('home');
+    $trail->push("Syllabi", route('syllabi.index'));
+    $trail->push($syllabus->title, route('syllabi.show', $syllabus));
+});
+
+// Assignment Plan Tasks > Create
+Breadcrumbs::for('assignment-plan-tasks.create', function (BreadcrumbTrail $trail, $syllabus) {
+    $trail->parent('syllabi.*', $syllabus);
+    $trail->push('Create New Assignment Plan Task');
+});
+
+// Assignment Plan Tasks > Edit
+Breadcrumbs::for('assignment-plan-tasks.edit', function (BreadcrumbTrail $trail, $syllabus, $assignmentPlanTask) {
+    $trail->parent('syllabi.*', $syllabus);
+    $trail->push(Str::limit($assignmentPlanTask->description, 30));
+});
+
 // Assignment Plans
 Breadcrumbs::for('assignment-plans.index', function (BreadcrumbTrail $trail, $syllabus) {
     $trail->parent('home');
