@@ -114,26 +114,20 @@ Breadcrumbs::for('learning-plans.edit', function (BreadcrumbTrail $trail, $sylla
 // Assignment Plans
 Breadcrumbs::for('assignment-plans.index', function (BreadcrumbTrail $trail, $syllabus) {
     $trail->parent('home');
+    $trail->push("Syllabi", route('syllabi.index'));
     $trail->push($syllabus->title, route('syllabi.show', $syllabus));
-    $trail->push('Assignment Plans', route('syllabi.assignment-plans.index', $syllabus));
 });
 
 // Assignment Plans > Create
 Breadcrumbs::for('assignment-plans.create', function (BreadcrumbTrail $trail, $syllabus) {
     $trail->parent('assignment-plans.index', $syllabus);
-    $trail->push('Create', route('syllabi.assignment-plans.create', $syllabus));
+    $trail->push('Create Assignment Plan', route('syllabi.assignment-plans.create', $syllabus));
 });
 
 // Assignment Plans > Edit
 Breadcrumbs::for('assignment-plans.edit', function (BreadcrumbTrail $trail, $syllabus, $assignmentPlan) {
     $trail->parent('assignment-plans.index', $syllabus);
-    $trail->push("Edit", route('syllabi.assignment-plans.edit', [$syllabus, $assignmentPlan]));
-});
-
-// Assignment Plans > Show
-Breadcrumbs::for('assignment-plans.show', function (BreadcrumbTrail $trail, $syllabus, $assignmentPlan) {
-    $trail->parent('assignment-plans.index', $syllabus);
-    $trail->push(Str::limit($assignmentPlan->title, 20), route('syllabi.assignment-plans.show', [$syllabus, $assignmentPlan]));
+    $trail->push("Edit Assignment Plan", route('syllabi.assignment-plans.edit', [$syllabus, $assignmentPlan]));
 });
 
 // Learing Outcomes
@@ -238,18 +232,16 @@ Breadcrumbs::for('rubrics.index', function (BreadcrumbTrail $trail) {
 });
 
 // Rubrics > Create
-Breadcrumbs::for('rubrics.create', function (BreadcrumbTrail $trail, $syllabus, $assigmentPlan) {
+Breadcrumbs::for('rubrics.create', function (BreadcrumbTrail $trail, $syllabus) {
     $trail->parent('home');
     $trail->push(Str::limit($syllabus->title, 30), route('syllabi.show', $syllabus));
-    $trail->push(Str::limit($assigmentPlan->title, 30), route('syllabi.assignment-plans.show', [$syllabus, $assigmentPlan]));
     $trail->push('Create', route('rubrics.create'));
 });
 
 // Rubrics > Show
-Breadcrumbs::for('rubrics.show', function (BreadcrumbTrail $trail, $syllabus, $assigmentPlan, $rubric) {
+Breadcrumbs::for('rubrics.show', function (BreadcrumbTrail $trail, $syllabus, $rubric) {
     $trail->parent('home');
     $trail->push(Str::limit($syllabus->title, 30), route('syllabi.show', $syllabus));
-    $trail->push(Str::limit($assigmentPlan->title, 30), route('syllabi.assignment-plans.show', [$syllabus, $assigmentPlan]));
     $trail->push(Str::limit($rubric->title, 30), route('rubrics.show', $rubric));
 });
 

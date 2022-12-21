@@ -79,7 +79,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
                 Route::resource('syllabi.clos', CourseLearningOutcomeController::class)->except(['show', 'index']);
                 Route::resource('syllabi.llos', LessonLearningOutcomeController::class)->except(['show', 'index']);
                 Route::resource('syllabi.learning-plans', LearningPlanController::class);
-                Route::resource('syllabi.assignment-plans', AssignmentPlanController::class);
+                Route::resource('syllabi.assignment-plans', AssignmentPlanController::class)->except(['show', 'index']);
                 Route::resource('rubrics.criterias', CriteriaController::class);
                 Route::resource('rubrics.criterias.criteria-levels', CriteriaLevelController::class);
             });

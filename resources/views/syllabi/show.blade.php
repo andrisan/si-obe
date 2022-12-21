@@ -291,17 +291,30 @@
                     {{ __('Assignment Plan') }}
                 </h2>
                 <div class="order-5 sm:order-6 mr-2 sm:mr-3">
-                    <a href="{{ route('syllabi.assignment-plans.index', $syllabus) }}" class="w-full bg-white border border-gray-300 rounded-md shadow-sm px-2.5 sm:px-4 py-2 inline-flex justify-center text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                        <span class="pr-1"><i class="fa fa-indent"></i> Manage Assignment Plans</span>
-                    </a>
+                    <x-button-link href="{{ route('syllabi.assignment-plans.create', $syllabus) }}">
+                        <i class="fa fa-plus"></i> {{ __('Create New Assignment Plan') }}
+                    </x-button-link>
                 </div>
             </div>
             <div class="py-2">
                 @if($assignmentPlans->count() > 0)
                     <div class="mb-5 overflow-x-auto bg-white rounded-lg shadow overflow-y-auto relative">
                         @foreach ($assignmentPlans as $assignmentPlan)
-                        <div class="p-5">
-                            <div class="text-center p-6">
+                        <div class="p-5 border border-gray-200 rounded m-4">
+                            <div class="flex flex-row justify-end gap-3 pr-2">
+                                <a href="{{ route('syllabi.assignment-plans.edit', [$syllabus, $assignmentPlan]) }}"
+                                   class="text-blue-500"><i class="fa fa-edit"></i></a>
+                                <form method="POST" action="{{ route('syllabi.assignment-plans.destroy', [$syllabus, $assignmentPlan]) }}">
+                                    @csrf
+                                    @method('delete')
+
+                                    <button class="text-red-500"
+                                            onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </form>
+                            </div>
+                            <div class="text-center pb-6">
                                 <h3 class="text-2xl font-bold p-3">{{ __("Assignment Plan") }}</h3>
                                 <h3 class="text-xl font-semibold">{{ $assignmentPlan->title }}</h3>
                             </div>
@@ -315,6 +328,7 @@
                                     <tr>
                                         <td class="text-gray-600 px-6 py-3 border-t border-gray-100">LLO</td>
                                         <?php
+//                                            dd($assignmentPlan->assignmentPlanTasks);
                                             $assignmentPlanLearningOutcomes = $assignmentPlan->assignmentPlanTasks->map(function ($assignmentPlanTask) {
                                                 return $assignmentPlanTask->criteria->lessonLearningOutcome->description;
                                             })->flatten();
@@ -356,6 +370,15 @@
                                         <td class="text-gray-600 px-6 py-3 border-t border-gray-100">
                                             @if($assignmentPlan->rubric)
                                             : <a class="text-blue-600 hover:text-blue-700" href="{{ route('rubrics.show', $assignmentPlan->rubric) }}">{{ $assignmentPlan->rubric->title }}</a>
+                                                <form method="POST" action="{{ route('rubrics.destroy', $assignmentPlan->rubric) }}" class="inline">
+                                                    @csrf
+                                                    @method('delete')
+
+                                                    <button class="text-red-500 px-3"
+                                                            onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
+                                                </form>
                                             @else
                                                 <div class="order-5 sm:order-6 mr-2 sm:mr-3">
                                                     <a href="{{ route('rubrics.create', ["assignment_plan" => $assignmentPlan->id]) }}" class="bg-white border border-gray-300 rounded-md shadow-sm px-2.5 sm:px-4 py-2 inline-flex justify-center text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
@@ -369,16 +392,13 @@
                                 </table>
                             </div>
                         </div>
-                        @if(!$loop->last)
-                            <div class="divider"></div>
-                        @endif
                     @endforeach
                     </div>
                 @else
                     <div class="w-full h-full overflow-hidden shadow-sm sm:rounded-lg">
                         <div class="bg-white p-5 shadow-sm rounded-sm text-center">
                             <p class="text-gray-500">
-                                No weekly learning plan found.
+                                No assignment plan found.
                             </p>
                         </div>
                     </div>

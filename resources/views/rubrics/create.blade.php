@@ -7,7 +7,7 @@
     </x-slot>
 
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        {{ Breadcrumbs::render('rubrics.create', $syllabus, $assignmentPlan) }}
+        {{ Breadcrumbs::render('rubrics.create', $syllabus) }}
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 border-b border-gray-200">
                 <div class="bg-yellow-50 p-5     m-2 w-2/3 rounded-xl">
@@ -30,7 +30,7 @@
                         <button type="submit" class="btn btn-sm px-7">
                             Save
                         </button>
-                        <a href="{{ route_back_with_fallback('syllabi.assignment-plans.show', [$syllabus, $assignmentPlan]) }}">{{ __('Cancel') }}</a>
+                        <a href="{{ route('syllabi.show', $syllabus) }}">{{ __('Cancel') }}</a>
                     </div>
                 </form>
             </div>

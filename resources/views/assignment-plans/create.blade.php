@@ -86,7 +86,7 @@
                         <button type="submit" class="btn btn-sm px-7">
                             Save
                         </button>
-                        <a href="{{ route_back_with_fallback('syllabi.assignment-plans.index', $syllabus) }}">{{ __('Cancel') }}</a>
+                        <a href="{{ route('syllabi.show', $syllabus) }}">{{ __('Cancel') }}</a>
                     </div>
                 </form>
             </div>

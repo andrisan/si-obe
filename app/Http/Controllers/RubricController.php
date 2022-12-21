@@ -10,6 +10,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
 class RubricController extends Controller
@@ -17,7 +18,7 @@ class RubricController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Application|Factory|View
      */
     public function index()
     {
@@ -61,7 +62,7 @@ class RubricController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return RedirectResponse|\Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -98,7 +99,7 @@ class RubricController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  Rubric $rubric
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
     public function edit(Rubric $rubric)
     {
@@ -110,9 +111,9 @@ class RubricController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Rubric $rubric
-     * @param  Rubric $rubric
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Rubric $rubric
+     * @return RedirectResponse
      */
     public function update(Request $request, Rubric $rubric)
     {
@@ -131,25 +132,33 @@ class RubricController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  Rubric $rubric
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
     public function destroy(Rubric $rubric)
     {
-        foreach ($rubric->criterias as $criterias) {
-            foreach ($criterias->criteriaLevels as $cl) {
-                foreach ($cl->studentGrades as $sg) {
+        $criterias = $rubric->criterias;
+        foreach ($criterias as $criteria) {
+
+            $criteriaLevels = $criteria->criteriaLevels ?? [];
+            foreach ($criteriaLevels as $cl) {
+                $studentGrades = $cl->studentGrades ?? [];
+                foreach ($studentGrades as $sg) {
                     $sg->delete();
                 }
                 $cl->delete();
-            }foreach ($criterias->assignmentPlanTasks as $ap) {
-                foreach ($ap->gradingPlans as $gp) {
+            }
+
+            $assignmentPlanTasks = $criteria->assignmentPlanTasks ?? [];
+            foreach ($assignmentPlanTasks as $ap) {
+                $gradingPlans = $ap->gradingPlan ?? [];
+                foreach ($gradingPlans as $gp) {
                     $gp->delete();
                 }
                 $ap->delete();
             }
-            $criterias->delete();
+            $criteria->delete();
         }
         $rubric->delete();
-        return redirect()->route("rubrics.index");
+        return back();
     }
 }
