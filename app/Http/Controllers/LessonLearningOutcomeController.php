@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\IntendedLearningOutcome;
 use App\Models\Syllabus;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -15,34 +14,16 @@ use App\Models\LessonLearningOutcome;
 class LessonLearningOutcomeController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     */
-    public function index(Syllabus $syllabus, IntendedLearningOutcome $ilo, CourseLearningOutcome $clo)
-    {
-        return view('lesson-learning-outcomes.index', [
-            'syllabus' => $syllabus,
-            'ilo' => $ilo,
-            'clo' => $clo,
-            'llos' => $clo->lessonLearningOutcomes()->orderBy('position')->paginate(10),
-        ]);
-    }
-
-    /**
      * Show the form for creating a new resource.
      *
      * @param Syllabus $syllabus
-     * @param IntendedLearningOutcome $ilo
-     * @param CourseLearningOutcome $clo
      * @return Application|Factory|View
      */
-    public function create(Syllabus $syllabus, IntendedLearningOutcome $ilo, CourseLearningOutcome $clo)
+    public function create(Syllabus $syllabus)
     {
         return view('lesson-learning-outcomes.create',[
             'syllabus' => $syllabus,
-            'ilo' => $ilo,
-            'clo' => $clo
+            'clos' => CourseLearningOutcome::where('syllabus_id', $syllabus->id)->get(),
         ]);
     }
 
@@ -51,43 +32,36 @@ class LessonLearningOutcomeController extends Controller
      *
      * @param Request $request
      * @param Syllabus $syllabus
-     * @param IntendedLearningOutcome $ilo
-     * @param CourseLearningOutcome $clo
      * @return RedirectResponse
      */
-    public function store(Request $request, Syllabus $syllabus, IntendedLearningOutcome $ilo, CourseLearningOutcome $clo)
+    public function store(Request $request, Syllabus $syllabus)
     {
         $validated = $request->validate([
+            'code' => 'nullable|string|max:255',
+            'clo_id' => 'nullable|exists:course_learning_outcomes,id',
             'description' => 'required|string',
         ]);
-        $newPosition = $clo->lessonLearningOutcomes()->max('position') + 1;
+        $newPosition = $syllabus->lessonLearningOutcomes()->max('position') + 1;
         $validated['position'] = $newPosition;
 
-        $clo->lessonLearningOutcomes()->create($validated);
+        $syllabus->lessonLearningOutcomes()->create($validated);
 
-        return redirect()->route('syllabi.ilos.clos.llos.index',[
-            'syllabus' => $syllabus,
-            'ilo' => $ilo,
-            'clo' => $clo
-        ]);
+        return redirect()->route('syllabi.show', $syllabus);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param Syllabus $syllabus
-     * @param IntendedLearningOutcome $ilo
-     * @param CourseLearningOutcome $clo
      * @param LessonLearningOutcome $llo
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Application|Factory|View
      */
-    public function edit(Syllabus $syllabus, IntendedLearningOutcome $ilo, CourseLearningOutcome $clo, LessonLearningOutcome $llo)
+    public function edit(Syllabus $syllabus, LessonLearningOutcome $llo)
     {
         return view('lesson-learning-outcomes.edit', [
             'syllabus' => $syllabus,
-            'ilo' => $ilo,
-            'clo' => $clo,
-            'llo' => $llo
+            'llo' => $llo,
+            'clos' => CourseLearningOutcome::where('syllabus_id', $syllabus->id)->get(),
         ]);
     }
 
@@ -96,37 +70,31 @@ class LessonLearningOutcomeController extends Controller
      *
      * @param Request $request
      * @param Syllabus $syllabus
-     * @param IntendedLearningOutcome $ilo
-     * @param CourseLearningOutcome $clo
      * @param LessonLearningOutcome $llo
      * @return RedirectResponse
      */
-    public function update(Request $request, Syllabus $syllabus, IntendedLearningOutcome $ilo, CourseLearningOutcome $clo, LessonLearningOutcome $llo)
+    public function update(Request $request, Syllabus $syllabus, LessonLearningOutcome $llo)
     {
         $validated = $request->validate([
+            'code' => 'nullable|string|max:255',
+            'clo_id' => 'nullable|exists:course_learning_outcomes,id',
             'position' => 'required|numeric',
             'description' => 'required|string',
         ]);
 
         $llo->update($validated);
 
-        return redirect()->route('syllabi.ilos.clos.llos.index',[
-            'syllabus' => $syllabus,
-            'ilo' => $ilo,
-            'clo' => $clo
-        ]);
+        return redirect()->route('syllabi.show', $syllabus);
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param Syllabus $syllabus
-     * @param IntendedLearningOutcome $ilo
-     * @param CourseLearningOutcome $clo
      * @param LessonLearningOutcome $llo
      * @return RedirectResponse
      */
-    public function destroy(Syllabus $syllabus, IntendedLearningOutcome $ilo, CourseLearningOutcome $clo, LessonLearningOutcome $llo)
+    public function destroy(Syllabus $syllabus, LessonLearningOutcome $llo)
     {
         $llo->delete();
         return back();

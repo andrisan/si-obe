@@ -18,6 +18,7 @@ class IntendedLearningOutcomeController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Syllabus $syllabus
      * @return Application|Factory|View
      */
     public function index(Syllabus $syllabus)
@@ -31,6 +32,7 @@ class IntendedLearningOutcomeController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * @param Syllabus $syllabus
      * @return Application|Factory|View
      */
     public function create(Syllabus $syllabus)
@@ -43,12 +45,14 @@ class IntendedLearningOutcomeController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
+     * @param Syllabus $syllabus
      * @return RedirectResponse
      */
     public function store(Request $request, Syllabus $syllabus)
     {
         $validateData = $request->validate([
+            'code' => 'nullable|string|max:255',
             'description' => 'required|string',
         ]);
         // get new positionn for new ilo
@@ -57,21 +61,7 @@ class IntendedLearningOutcomeController extends Controller
 
         $syllabus->intendedLearningOutcomes()->create($validateData);
 
-        return redirect()->route('syllabi.ilos.index', [
-            'syllabus' => $syllabus,
-        ]);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param Syllabus $syllabus
-     * @param Request $request
-     * @return Response
-     */
-    public function show(Syllabus $syllabus, Request $request)
-    {
-
+        return redirect()->route('syllabi.show', $syllabus);
     }
 
     /**
@@ -102,13 +92,12 @@ class IntendedLearningOutcomeController extends Controller
     {
         $validateData = $request->validate([
             'position' => 'required|numeric',
+            'code' => 'nullable|string|max:255',
             'description' => 'required|string',
         ]);
         $ilo->update($validateData);
 
-        return redirect()->route('syllabi.ilos.index', [
-            'syllabus' => $syllabus,
-        ]);
+        return redirect()->route('syllabi.show', $syllabus);
     }
 
     /**

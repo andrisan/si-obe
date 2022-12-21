@@ -12,13 +12,15 @@ class LessonLearningOutcome extends Model
     public $timestamps = false;
 
     protected $fillable = [
+        'clo_id',
         'position',
-        'description'
+        'code',
+        'description',
     ];
 
     public function courseLearningOutcome()
     {
-        return $this->belongsTo(CourseLearningOutcome::class);
+        return $this->belongsTo(CourseLearningOutcome::class, 'clo_id');
     }
 
     public function criteria()
@@ -29,5 +31,10 @@ class LessonLearningOutcome extends Model
     public function learningPlan()
     {
         return $this->hasMany(LearningPlan::class, 'llo_id');
+    }
+
+    public function syllabus()
+    {
+        return $this->belongsTo(Syllabus::class);
     }
 }

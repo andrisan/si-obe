@@ -75,9 +75,9 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
             Route::get('class-portofolio/{courseClass}/students', [ClassPortofolioController::class, 'student'])->name('class-portofolio.student');
 
             Route::scopeBindings()->group(function () {
-                Route::resource('syllabi.ilos', IntendedLearningOutcomeController::class)->except('show');
-                Route::resource('syllabi.ilos.clos', CourseLearningOutcomeController::class)->except('show');
-                Route::resource('syllabi.ilos.clos.llos', LessonLearningOutcomeController::class)->except('show');
+                Route::resource('syllabi.ilos', IntendedLearningOutcomeController::class)->except(['show', 'index']);
+                Route::resource('syllabi.clos', CourseLearningOutcomeController::class)->except(['show', 'index']);
+                Route::resource('syllabi.llos', LessonLearningOutcomeController::class)->except(['show', 'index']);
                 Route::resource('syllabi.learning-plans', LearningPlanController::class);
                 Route::resource('syllabi.assignment-plans', AssignmentPlanController::class);
                 Route::resource('rubrics.criterias', CriteriaController::class);

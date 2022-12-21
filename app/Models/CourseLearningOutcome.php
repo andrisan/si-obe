@@ -12,12 +12,14 @@ class CourseLearningOutcome extends Model
     public $timestamps = false;
 
     protected $fillable = [
+        'ilo_id',
         'position',
-        'description'
+        'code',
+        'description',
     ];
 
     public function intendedLearningOutcome(){
-        return $this->belongsTo(IntendedLearningOutcome::class);
+        return $this->belongsTo(IntendedLearningOutcome::class, 'ilo_id');
     }
 
     public function lessonLearningOutcomes()
@@ -28,5 +30,10 @@ class CourseLearningOutcome extends Model
     public function llos()
     {
         return $this->lessonLearningOutcomes();
+    }
+
+    public function syllabus()
+    {
+        return $this->belongsTo(Syllabus::class);
     }
 }

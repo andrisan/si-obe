@@ -83,23 +83,15 @@ class SyllabusController extends Controller
             'assignmentPlans.assignmentPlanTasks.criteria.lessonLearningOutcome',
             'learningPlans.lessonLearningOutcome',
             'intendedLearningOutcomes',
-            'intendedLearningOutcomes.courseLearningOutcomes',
-            'intendedLearningOutcomes.courseLearningOutcomes.lessonLearningOutcomes')
+            'courseLearningOutcomes',
+            'lessonLearningOutcomes')
             ->find($id);
-
-        $courseLearningOutcomes = $syllabus->intendedLearningOutcomes->map(function ($ilo) {
-            return $ilo->courseLearningOutcomes;
-        })->flatten();
-
-        $lessonLearningOutcomes = $courseLearningOutcomes->map(function ($clo) {
-            return $clo->lessonLearningOutcomes;
-        })->flatten();
 
         return view('syllabi.show', [
                 'syllabus' => $syllabus,
-                'ilos' => $syllabus->intendedLearningOutcomes,
-                'clos' => $courseLearningOutcomes,
-                'llos' => $lessonLearningOutcomes,
+                'ilos' => $syllabus->intendedLearningOutcomes()->orderBy('position')->get(),
+                'clos' => $syllabus->courseLearningOutcomes()->orderBy('position')->get(),
+                'llos' => $syllabus->lessonLearningOutcomes()->orderBy('position')->get(),
                 'learningPlans' => $syllabus->learningPlans,
                 'assignmentPlans' => $syllabus->assignmentPlans
             ]

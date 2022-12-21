@@ -13,7 +13,8 @@ class IntendedLearningOutcome extends Model
 
     protected $fillable =[
         'position',
-        'description'
+        'description',
+        'code'
     ];
 
     public function courseLearningOutcomes()
@@ -24,5 +25,10 @@ class IntendedLearningOutcome extends Model
     public function clos()
     {
         return $this->courseLearningOutcomes();
+    }
+
+    public function syllabus()
+    {
+        return $this->belongsTo(Syllabus::class);
     }
 }

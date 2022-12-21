@@ -25,6 +25,15 @@
 
                     <div class="form-control w-full p-3">
                         <label class="label">
+                            <span class="label-text">Code</span>
+                        </label>
+                        <input type="text" name="code" placeholder="Code"
+                               class="input input-bordered w-full max-w-xs" value="{{ old('code') }}"/>
+                        <x-input-error :messages="$errors->get('code')" class="mt-2"/>
+                    </div>
+
+                    <div class="form-control w-full p-3">
+                        <label class="label">
                             <span class="label-text">Description</span>
                         </label>
                         <textarea class="textarea text-neutral input-bordered bg-white w-full max-w-xl" name="description" placeholder="Descriptionn of intended learning outcome">{{ old('description', $ilo->description) }}</textarea>
@@ -35,7 +44,7 @@
                         <button type="submit" class="btn btn-sm px-7">
                             Save
                         </button>
-                        <a href="{{ route('syllabi.ilos.index', $syllabus) }}">{{ __('Cancel') }}</a>
+                        <a href="{{ route('syllabi.show', $syllabus) }}">{{ __('Cancel') }}</a>
                     </div>
                 </form>
             </div>

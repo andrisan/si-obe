@@ -80,6 +80,7 @@ class FakeDataSeeder extends Seeder
                                 $clos[] = CourseLearningOutcome::factory()->create([
                                     'ilo_id' => $ilos[$iloIdx]->id,
                                     'position' => $key + 1,
+                                    'syllabus_id' => $syllabus->id,
                                 ]);
                             }
 
@@ -90,6 +91,7 @@ class FakeDataSeeder extends Seeder
                                 $llos[] = LessonLearningOutcome::factory()->create([
                                     'clo_id' => $clos[$cloidx]->id,
                                     'position' => $key + 1,
+                                    'syllabus_id' => $syllabus->id,
                                 ]);
                             }
                             // convert array to laravel collection

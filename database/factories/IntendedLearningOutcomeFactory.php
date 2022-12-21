@@ -17,6 +17,7 @@ class IntendedLearningOutcomeFactory extends Factory
     public function definition()
     {
         return [
+            'code' => fake()->unique()->regexify('[A-Z]{3}[0-9]{3}'),
             'description' => fake()->sentence,
         ];
     }

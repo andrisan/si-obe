@@ -136,67 +136,47 @@ Breadcrumbs::for('assignment-plans.show', function (BreadcrumbTrail $trail, $syl
     $trail->push(Str::limit($assignmentPlan->title, 20), route('syllabi.assignment-plans.show', [$syllabus, $assignmentPlan]));
 });
 
-// ILOs
-Breadcrumbs::for('ilos.index', function (BreadcrumbTrail $trail, $syllabus) {
+// Learing Outcomes
+Breadcrumbs::for('learning-outcomes.index', function (BreadcrumbTrail $trail, $syllabus) {
     $trail->parent('home');
     $trail->push('Syllabi', route('syllabi.index'));
-    $trail->push(Str::limit($syllabus->title, 30), route('syllabi.show', $syllabus));
-    $trail->push('ILOs', route('syllabi.ilos.index', $syllabus));
+    $trail->push($syllabus->title, route('syllabi.show', $syllabus));
 });
 
 // ILOs > Create
 Breadcrumbs::for('ilos.create', function (BreadcrumbTrail $trail, $syllabus) {
-    $trail->parent('ilos.index', $syllabus);
-    $trail->push('Create', route('syllabi.ilos.create', $syllabus));
+    $trail->parent('learning-outcomes.index', $syllabus);
+    $trail->push('Create ILO');
 });
 
 // ILOs > Edit
 Breadcrumbs::for('ilos.edit', function (BreadcrumbTrail $trail, $syllabus, $ilo) {
-    $trail->parent('ilos.index', $syllabus);
-    $trail->push(Str::limit($ilo->description, 30), route('syllabi.ilos.edit', [$syllabus, $ilo]));
-});
-
-// CLOs
-Breadcrumbs::for('clos.index', function (BreadcrumbTrail $trail, $syllabus, $ilo) {
-    $trail->parent('home');
-    $trail->push('Syllabi', route('syllabi.index'));
-    $trail->push(Str::limit($syllabus->title, 30), route('syllabi.show', $syllabus));
-    $trail->push('ILOs', route('syllabi.ilos.index', $syllabus));
-    $trail->push('CLOs', route('syllabi.ilos.clos.index', [$syllabus, $ilo]));
+    $trail->parent('learning-outcomes.index', $syllabus);
+    $trail->push(Str::limit($ilo->description, 30));
 });
 
 // CLOs > Create
-Breadcrumbs::for('clos.create', function (BreadcrumbTrail $trail, $syllabus, $ilo) {
-    $trail->parent('clos.index', $syllabus, $ilo);
-    $trail->push('Create', route('syllabi.ilos.clos.create', [$syllabus, $ilo]));
+Breadcrumbs::for('clos.create', function (BreadcrumbTrail $trail, $syllabus) {
+    $trail->parent('learning-outcomes.index', $syllabus);
+    $trail->push('Create CLO');
 });
 
 // CLOs > Edit
-Breadcrumbs::for('clos.edit', function (BreadcrumbTrail $trail, $syllabus, $ilo, $clo) {
-    $trail->parent('clos.index', $syllabus, $ilo);
-    $trail->push(Str::limit($clo->description, 30), route('syllabi.ilos.clos.edit', [$syllabus, $ilo, $clo]));
-});
-
-// LLOs
-Breadcrumbs::for('llos.index', function (BreadcrumbTrail $trail, $syllabus, $ilo, $clo) {
-    $trail->parent('home');
-    $trail->push('Syllabi', route('syllabi.index'));
-    $trail->push(Str::limit($syllabus->title, 30), route('syllabi.show', $syllabus));
-    $trail->push('ILOs', route('syllabi.ilos.index', $syllabus));
-    $trail->push('CLOs', route('syllabi.ilos.clos.index', [$syllabus, $ilo]));
-    $trail->push('LLOs', route('syllabi.ilos.clos.llos.index', [$syllabus, $ilo, $clo]));
+Breadcrumbs::for('clos.edit', function (BreadcrumbTrail $trail, $syllabus, $clo) {
+    $trail->parent('learning-outcomes.index', $syllabus);
+    $trail->push(Str::limit($clo->description, 30));
 });
 
 // LLOs > Create
-Breadcrumbs::for('llos.create', function (BreadcrumbTrail $trail, $syllabus, $ilo, $clo) {
-    $trail->parent('llos.index', $syllabus, $ilo, $clo);
-    $trail->push('Create', route('syllabi.ilos.clos.llos.create', [$syllabus, $ilo, $clo]));
+Breadcrumbs::for('llos.create', function (BreadcrumbTrail $trail, $syllabus) {
+    $trail->parent('learning-outcomes.index', $syllabus);
+    $trail->push('Create LLO');
 });
 
 // LLOs > Edit
-Breadcrumbs::for('llos.edit', function (BreadcrumbTrail $trail, $syllabus, $ilo, $clo, $llo) {
-    $trail->parent('llos.index', $syllabus, $ilo, $clo);
-    $trail->push(Str::limit($llo->description, 30), route('syllabi.ilos.clos.llos.edit', [$syllabus, $ilo, $clo, $llo]));
+Breadcrumbs::for('llos.edit', function (BreadcrumbTrail $trail, $syllabus, $llo) {
+    $trail->parent('learning-outcomes.index', $syllabus);
+    $trail->push(Str::limit($llo->description, 30));
 });
 
 // Courses

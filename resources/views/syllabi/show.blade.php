@@ -49,53 +49,81 @@
         <div class="pt-5">
             <div class="flex flex-row justify-between mb-3 sm:px-0 -mr-2 sm:-mr-3">
                 <h2 class="text-xl font-extrabold px-2 py-1">
-                    Intended Learning Outcomes
+                    Intended Learning Outcome (ILO)
                 </h2>
                 <div class="order-5 sm:order-6 mr-2 sm:mr-3">
-                    <a href="{{ route('syllabi.ilos.index', $syllabus) }}" class="w-full bg-white border border-gray-300 rounded-md shadow-sm px-2.5 sm:px-4 py-2 inline-flex justify-center text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                        <span class="pr-1"><i class="fa fa-indent"></i> Manage ILOs</span>
-                    </a>
+                    <x-button-link href="{{ route('syllabi.ilos.create',[$syllabus]) }}">
+                        <i class="fa fa-plus"></i> {{ __('Create New ILO') }}
+                    </x-button-link>
                 </div>
             </div>
             <div class="py-2">
-            @if($ilos->count() > 0)
-                <div class="overflow-x-auto bg-white rounded-lg shadow overflow-y-auto relative">
-                    <table class="border-collapse table-auto w-full bg-white table-striped relative">
-                        <thead>
-                        <tr class="text-left">
-                            <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-6">No</th>
-                            <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-128">Description</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach ($ilos as $ilo)
-                            <tr>
-                                <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $loop->index + 1 }}</td>
-                                <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $ilo->description ?? "-" }}</td>
-
+                @if($ilos->count() > 0)
+                    <div class="mb-5 overflow-x-auto bg-white rounded-lg shadow overflow-y-auto relative">
+                        <table class="border-collapse table-auto w-full bg-white table-striped relative">
+                            <thead>
+                            <tr class="text-left">
+                                <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-6">
+                                    No
+                                </th>
+                                <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate">
+                                    Code
+                                </th>
+                                <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate">
+                                    Description
+                                </th>
+                                <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-32">
+                                    Action
+                                </th>
                             </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            @else
-                <div class="w-full h-full overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="bg-white p-5 shadow-sm rounded-sm text-center">
-                        <p class="text-gray-500">No intended learning outcomes found.</p>
-                        <a href="{{ route('syllabi.ilos.create', [$syllabus]) }}" class="w-32 bg-white border border-gray-300 rounded-md shadow-sm px-2.5 sm:px-4 py-2 inline-flex justify-center text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                            <span class="pr-1"><i class="fa fa-plus"></i> Add ILOs</span>
-                        </a>
+                            </thead>
+                            <tbody>
+                            @foreach ($ilos as $ilo)
+                                <tr>
+                                    <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $loop->index + 1 }}</td>
+                                    <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $ilo->code }}</td>
+                                    <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $ilo->description }}</td>
+                                    <td
+                                        class="text-gray-600 px-6 py-3 border-t border-gray-100">
+                                        <div class="flex flex-wrap space-x-4">
+                                            <a href="{{ route('syllabi.ilos.edit', [$syllabus, $ilo]) }}"
+                                               class="text-blue-500"><i class="fa fa-edit"></i></a>
+                                            <form method="POST" action="{{ route('syllabi.ilos.destroy', [$syllabus, $ilo]) }}">
+                                                @csrf
+                                                @method('delete')
+
+                                                <button class="text-red-500"
+                                                        onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
                     </div>
-                </div>
-            @endif
+                @else
+                    <div class="w-full h-full overflow-hidden shadow-sm sm:rounded-lg">
+                        <div class="bg-white p-5 shadow-sm rounded-sm text-center">
+                            <p class="text-gray-500">No intended learning outcomes found.</p>
+                        </div>
+                    </div>
+                @endif
             </div>
         </div>
 
         <div class="pt-5">
             <div class="flex flex-row justify-between mb-3 sm:px-0 -mr-2 sm:-mr-3">
                 <h2 class="text-xl font-extrabold px-2 py-1">
-                    Course Learning Outcomes
+                    Course Learning Outcome (CLO)
                 </h2>
+                <div class="order-5 sm:order-6 mr-2 sm:mr-3">
+                    <x-button-link href="{{ route('syllabi.clos.create',[$syllabus]) }}">
+                        <i class="fa fa-plus"></i> {{ __('Create New CLO') }}
+                    </x-button-link>
+                </div>
             </div>
             <div class="py-2">
             @if($clos->count() > 0)
@@ -104,15 +132,34 @@
                         <thead>
                         <tr class="text-left">
                             <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-6">No</th>
-                            <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-128">Description</th>
+                            <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate">Code</th>
+                            <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate">Description</th>
+                            <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-32">Action</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach ($clos as $clo)
                             <tr>
                                 <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $loop->index + 1 }}</td>
-                                <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $clo->description ?? "-" }}</td>
+                                <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $clo->code ?? "-" }}</td>
+                                <td class="text-gray-600 px-6 py-3 border-t border-gray-100">
+                                    {{ $clo->description }} {{ empty($clo->intendedLearningOutcome) ? "" : "[".$clo->intendedLearningOutcome->code."]" }}
+                                </td>
+                                <td class="text-gray-600 px-6 py-3 border-t border-gray-100">
+                                    <div class="flex flex-wrap space-x-4">
+                                        <a href="{{ route('syllabi.clos.edit', [$syllabus, $clo]) }}"
+                                           class="text-blue-500"><i class="fa fa-edit"></i></a>
+                                        <form method="POST" action="{{ route('syllabi.clos.destroy', [$syllabus, $clo]) }}">
+                                            @csrf
+                                            @method('delete')
 
+                                            <button class="text-red-500"
+                                                    onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -131,8 +178,13 @@
         <div class="pt-5">
             <div class="flex flex-row justify-between mb-3 sm:px-0 -mr-2 sm:-mr-3">
                 <h2 class="text-xl font-extrabold px-2 py-1">
-                    Lesson Learning Outcomes
+                    Lesson Learning Outcome (LLO)
                 </h2>
+                <div class="order-5 sm:order-6 mr-2 sm:mr-3">
+                    <x-button-link href="{{ route('syllabi.llos.create', $syllabus) }}">
+                        <i class="fa fa-plus"></i> {{ __('Create New LLO') }}
+                    </x-button-link>
+                </div>
             </div>
             <div class="py-2">
             @if($llos->count() > 0)
@@ -141,15 +193,34 @@
                         <thead>
                         <tr class="text-left">
                             <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-6">No</th>
-                            <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-128">Description</th>
+                            <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate">Code</th>
+                            <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate">Description</th>
+                            <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-32">Action</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach ($llos as $llo)
                             <tr>
                                 <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $loop->index + 1 }}</td>
-                                <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $llo->description ?? "-" }}</td>
+                                <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $llo->code ?? "-" }}</td>
+                                <td class="text-gray-600 px-6 py-3 border-t border-gray-100">
+                                    {{ $llo->description }} {{ empty($llo->courseLearningOutcome) ? "" : "[".$llo->courseLearningOutcome->code."]" }}
+                                </td>
+                                <td class="text-gray-600 px-6 py-3 border-t border-gray-100">
+                                    <div class="flex flex-wrap space-x-4">
+                                        <a href="{{ route('syllabi.llos.edit', [$syllabus, $llo]) }}"
+                                           class="text-blue-500"><i class="fa fa-edit"></i></a>
+                                        <form method="POST" action="{{ route('syllabi.llos.destroy', [$syllabus, $llo]) }}">
+                                            @csrf
+                                            @method('delete')
 
+                                            <button class="text-red-500"
+                                                    onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>

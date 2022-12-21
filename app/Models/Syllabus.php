@@ -10,12 +10,28 @@ class Syllabus extends Model
     use HasFactory;
 
     public $timestamps = false;
+
     protected $fillable = [
-        'title','head_of_study_program','author'
+        'title', 'head_of_study_program', 'author'
     ];
     public function studyProgram()
     {
         return $this->belongsTo(Course::class, 'course_id');
+    }
+
+    public function intendedLearningOutcomes()
+    {
+        return $this->hasMany(IntendedLearningOutcome::class, 'syllabus_id');
+    }
+
+    public function courseLearningOutcomes()
+    {
+        return $this->hasMany(CourseLearningOutcome::class, 'syllabus_id');
+    }
+
+    public function lessonLearningOutcomes()
+    {
+        return $this->hasMany(LessonLearningOutcome::class, 'syllabus_id');
     }
 
     public function ilos()
@@ -23,9 +39,14 @@ class Syllabus extends Model
         return $this->intendedLearningOutcomes();
     }
 
-    public function intendedLearningOutcomes()
+    public function clos()
     {
-        return $this->hasMany(IntendedLearningOutcome::class, 'syllabus_id');
+        return $this->courseLearningOutcomes();
+    }
+
+    public function llos()
+    {
+        return $this->lessonLearningOutcomes();
     }
 
     public function assignmentPlans()
