@@ -48,7 +48,7 @@
                                     <label class="label">
                                         <span class="label-text">Password</span>
                                     </label>
-                                    <input type="password" name="password" placeholder="User's email" class="input input-bordered w-full max-w-xs" value="{{ old('password') }}"/>
+                                    <input type="password" name="password" placeholder="Password" class="input input-bordered w-full max-w-xs" value="{{ old('password') }}"/>
                                     <x-input-error :messages="$errors->get('password')" class="mt-2" />
                                 </div>
 
@@ -56,7 +56,7 @@
                                     <label class="label">
                                         <span class="label-text">Password Confirmation</span>
                                     </label>
-                                    <input type="password" name="password_confirmation" placeholder="User's email" class="input input-bordered w-full max-w-xs" value="{{ old('password_confirmation') }}"/>
+                                    <input type="password" name="password_confirmation" placeholder="Password Confirmation" class="input input-bordered w-full max-w-xs" value="{{ old('password_confirmation') }}"/>
                                     <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                                 </div>
                             </div>

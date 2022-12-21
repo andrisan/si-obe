@@ -64,6 +64,7 @@ class UserController extends Controller
         $user->name = $validated['name'];
         $user->email = $validated['email'];
         $user->role = $validated['role'];
+        $user->profile_completed = $validated['role'] != 'student';
         $user->password = bcrypt($validated['password']);
         $user->save();
 

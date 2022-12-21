@@ -341,6 +341,6 @@ Breadcrumbs::for('class-portofolio.student', function (BreadcrumbTrail $trail, $
 // Profile > Grade
 Breadcrumbs::for('profile.grade', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
-    $trail->push('Profile', route('profile.index'));
+    $trail->push('Profile', route('profile.show'));
     $trail->push('Grade', route('profile.grade'));
 });

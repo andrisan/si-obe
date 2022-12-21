@@ -31,7 +31,6 @@ class DashboardController extends Controller
     {
         $user = auth()->user();
 
-
         if (Gate::allows('is-admin')) {
             $facultiesCount = Faculty::count();
             $departmentsCount = Department::count();
@@ -54,6 +53,7 @@ class DashboardController extends Controller
             $classes = CourseClass::whereHas('students', function ($query) use ($user) {
                 $query->where('student_user_id', $user->id);
             })->get();
+
             return view('home', compact('user', 'classes'));
         }
     }

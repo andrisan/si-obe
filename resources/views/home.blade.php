@@ -36,7 +36,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="{{ route('profile.index') }}" class="btn btn-accent btn-sm">
+                <a href="{{ route('profile.show') }}" class="btn btn-accent btn-sm">
                     Go to profile
                 </a>
             </div>

@@ -3,15 +3,20 @@
 
 <x-app-layout>
     <div class="max-w-7xl mx-auto px-8 py-2">
-        @can('is-student')
         <div class="flex flex-row sm:justify-end my-3 px-4 sm:px-0 -mr-2 sm:-mr-3">
+            <div class="order-5 sm:order-6 mr-2 sm:mr-3">
+                <a href="{{ route('profile.edit') }}" class="w-full bg-white border border-gray-300 rounded-md shadow-sm px-2.5 sm:px-4 py-2 inline-flex justify-center text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    <span class="pr-1"><i class="fa fa-edit"></i> Edit Profile</span>
+                </a>
+            </div>
+            @can('is-student')
             <div class="order-5 sm:order-6 mr-2 sm:mr-3">
                 <a href="{{ route('profile.grade') }}" class="w-full bg-white border border-gray-300 rounded-md shadow-sm px-2.5 sm:px-4 py-2 inline-flex justify-center text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     <span class="pr-1"><i class="fa-solid fa-user-graduate"></i> My Grades</span>
                 </a>
             </div>
+            @endcan
         </div>
-        @endcan
 
         <div class="container mx-auto my-5">
             <div class="md:flex no-wrap md:-mx-2 ">

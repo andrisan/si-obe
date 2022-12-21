@@ -43,56 +43,60 @@ Route::get('/', function () {
 
 // Authenticated and Verified
 Route::group(['middleware' => ['auth', 'verified']], function () {
-    Route::get('home', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('profile', [ProfileController::class, 'index'])->name('profile.index');
 
-    // Admin role
-    Route::group(['middleware' => ['roles:admin']], function (){
-        Route::resource('users', UserController::class);
-        Route::resource('faculties', FacultyController::class)->except('show');
-        Route::resource('courses', CourseController::class);
+    Route::singleton('profile', ProfileController::class)->creatable();
 
-        Route::scopeBindings()->group(function () {
-            Route::resource('faculties.departments', DepartmentController::class)->except('show');
-            Route::resource('faculties.departments.study-programs', StudyProgramController::class)->except('show');
+    Route::group(['middleware' => ['profileCompleted']], function () {
+        Route::get('home', [DashboardController::class, 'index'])->name('dashboard');
+
+        // Admin role
+        Route::group(['middleware' => ['roles:admin']], function (){
+            Route::resource('users', UserController::class);
+            Route::resource('faculties', FacultyController::class)->except('show');
+            Route::resource('courses', CourseController::class);
+
+            Route::scopeBindings()->group(function () {
+                Route::resource('faculties.departments', DepartmentController::class)->except('show');
+                Route::resource('faculties.departments.study-programs', StudyProgramController::class)->except('show');
+            });
         });
-    });
 
-    // Teacher or admin roles
-    Route::group(['middleware' => ['roles:admin,teacher']], function (){
-        Route::resource('syllabi', SyllabusController::class);
-        Route::resource('rubrics', RubricController::class);
+        // Teacher or admin roles
+        Route::group(['middleware' => ['roles:admin,teacher']], function (){
+            Route::resource('syllabi', SyllabusController::class);
+            Route::resource('rubrics', RubricController::class);
 
-        Route::get('student-grades/edit', [StudentGradeController::class, 'edit']);
-        Route::get('student-grades/create', [StudentGradeController::class, 'create']);
-        Route::resource('student-grades', StudentGradeController::class, ['except' => [
-            'edit'
-        ]]);
-        Route::get('class-portofolio/{courseClass}', [ClassPortofolioController::class, 'index'])->name('class-portofolio.index');
-        Route::get('class-portofolio/{courseClass}/students', [ClassPortofolioController::class, 'student'])->name('class-portofolio.student');
+            Route::get('student-grades/edit', [StudentGradeController::class, 'edit']);
+            Route::get('student-grades/create', [StudentGradeController::class, 'create']);
+            Route::resource('student-grades', StudentGradeController::class, ['except' => [
+                'edit'
+            ]]);
+            Route::get('class-portofolio/{courseClass}', [ClassPortofolioController::class, 'index'])->name('class-portofolio.index');
+            Route::get('class-portofolio/{courseClass}/students', [ClassPortofolioController::class, 'student'])->name('class-portofolio.student');
 
-        Route::scopeBindings()->group(function () {
-            Route::resource('syllabi.ilos', IntendedLearningOutcomeController::class)->except('show');
-            Route::resource('syllabi.ilos.clos', CourseLearningOutcomeController::class)->except('show');
-            Route::resource('syllabi.ilos.clos.llos', LessonLearningOutcomeController::class)->except('show');
-            Route::resource('syllabi.learning-plans', LearningPlanController::class);
-            Route::resource('syllabi.assignment-plans', AssignmentPlanController::class);
-            Route::resource('rubrics.criterias', CriteriaController::class);
-            Route::resource('rubrics.criterias.criteria-levels', CriteriaLevelController::class);
+            Route::scopeBindings()->group(function () {
+                Route::resource('syllabi.ilos', IntendedLearningOutcomeController::class)->except('show');
+                Route::resource('syllabi.ilos.clos', CourseLearningOutcomeController::class)->except('show');
+                Route::resource('syllabi.ilos.clos.llos', LessonLearningOutcomeController::class)->except('show');
+                Route::resource('syllabi.learning-plans', LearningPlanController::class);
+                Route::resource('syllabi.assignment-plans', AssignmentPlanController::class);
+                Route::resource('rubrics.criterias', CriteriaController::class);
+                Route::resource('rubrics.criterias.criteria-levels', CriteriaLevelController::class);
+            });
         });
-    });
 
-    // Student
-    Route::group(['middleware' => ['roles:student']], function (){
-        Route::post('classes/join/process', [CourseClassController::class, 'join'])->name('classes.join');
-        Route::get('classes/join',[CourseClassController::class, 'show_join'])->name('classes.show_join');
-        Route::get('profile/grade', [ProfileController::class, 'grade'])->name('profile.grade')->middleware('auth');
-    });
+        // Student
+        Route::group(['middleware' => ['roles:student']], function (){
+            Route::post('classes/join/process', [CourseClassController::class, 'join'])->name('classes.join');
+            Route::get('classes/join',[CourseClassController::class, 'show_join'])->name('classes.show_join');
+            Route::get('profile/grade', [ProfileController::class, 'grade'])->name('profile.grade');
+        });
 
-    Route::resource('classes', CourseClassController::class);
+        Route::resource('classes', CourseClassController::class);
 
-    Route::scopeBindings()->group(function (){
-        Route::resource('classes.assignments', AssignmentController::class);
+        Route::scopeBindings()->group(function (){
+            Route::resource('classes.assignments', AssignmentController::class);
+        });
     });
 });
 
