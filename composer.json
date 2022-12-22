@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
+        "ext-bcmath": "*",
         "diglactic/laravel-breadcrumbs": "^8.0",
         "doctrine/dbal": "^3.5",
         "guzzlehttp/guzzle": "^7.2",
