@@ -319,7 +319,18 @@
         <div class="pt-5">
             <div class="flex flex-row justify-between mb-3 sm:px-0 -mr-2 sm:-mr-3">
                 <h2 class="text-xl font-extrabold px-2 py-1">
-                    {{ __('Assignment Plan') }}
+                    <?php
+                        // count total max_point from criteria in each assignmentPlanTasks
+                        $totalMaxPoint = 0;
+                        $assignmentPlans = $syllabus->assignmentPlans;
+                        foreach ($assignmentPlans as $assignmentPlan) {
+                            $assignmentPlanTasks = $assignmentPlan->assignmentPlanTasks;
+                            foreach ($assignmentPlanTasks as $assignmentPlanTask) {
+                                $totalMaxPoint += $assignmentPlanTask->criteria->max_point;
+                            }
+                        }
+                    ?>
+                    {{ __('Assignment Plan') }} <span class="badge badge-primary p-4">{{ $assignmentPlans->count() }} assignment(s) with {{ $totalMaxPoint }} collectible point(s)</span>
                 </h2>
                 <div class="order-5 sm:order-6 mr-2 sm:mr-3">
                     <x-button-link href="{{ route('syllabi.assignment-plans.create', $syllabus) }}">
