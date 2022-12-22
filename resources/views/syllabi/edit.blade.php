@@ -58,7 +58,7 @@
                         <button type="submit" class="btn btn-sm px-7">
                             Save
                         </button>
-                        <a href="{{ route_back_with_fallback('syllabi.index') }}">{{ __('Cancel') }}</a>
+                        <x-back-link>{{ __('Cancel') }}</x-back-link>
                     </div>
                 </form>
             </div>

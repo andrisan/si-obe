@@ -2,9 +2,12 @@
 
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ $syllabus->title }}
-        </h2>
+        <div class="flex justify-start gap-4">
+            <x-back-link />
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                {{ $syllabus->title }}
+            </h2>
+        </div>
     </x-slot>
 
     <div class="max-w-7xl mx-auto sm:px-6 pb-6 lg:px-8">

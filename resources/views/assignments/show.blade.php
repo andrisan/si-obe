@@ -5,16 +5,10 @@
 <x-app-layout>
     <x-slot name="header">
         <div class="flex flex-row gap-4">
-            <div class="p-1">
-                <a href="{{ route_back_with_fallback('classes.show', $courseClass) }}">
-                    <i class="fa fa-arrow-left"></i>
-                </a>
-            </div>
-            <div class="ke-2 mt-[4px]">
-                <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                    {{ __(' Assignment Detail')}}
-                </h2>
-            </div>
+            <x-back-link />
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                {{ __(' Assignment Detail')}}
+            </h2>
         </div>
     </x-slot>
 

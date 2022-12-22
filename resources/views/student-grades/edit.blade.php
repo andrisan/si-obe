@@ -1,22 +1,27 @@
-@section('pageTitle', "Grade - ".$grades->first()->user->name)
+@section('pageTitle', "Grade - ". $user->name)
 
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Student Grade') }}
-        </h2>
-        <table class="mt-5">
-            <tbody>
-            <tr>
-                <td>Student</td>
-                <td>: {{ $grades->first()->user->name }}</td>
-            </tr>
-            <tr>
-                <td><span class="mr-10">Assignment</span></td>
-                <td>: {{ $assignment->assignmentPlan->title }}</td>
-            </tr>
-            </tbody>
-        </table>
+        <div class="flex justify-start items-start gap-4">
+            <x-back-link />
+            <div>
+                <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                    {{ __('Student Grade') }}
+                </h2>
+                <table class="mt-5">
+                    <tbody>
+                    <tr>
+                        <td>Student</td>
+                        <td>: {{ $user->name }}</td>
+                    </tr>
+                    <tr>
+                        <td><span class="mr-10">Assignment</span></td>
+                        <td>: {{ $assignment->assignmentPlan->title }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </x-slot>
 
     <div class="max-w-7xl mx-auto pb-10 sm:px-6 lg:px-8">

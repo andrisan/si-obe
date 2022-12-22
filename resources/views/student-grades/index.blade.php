@@ -2,10 +2,15 @@
 
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Student Grades') }}
-        </h2>
-        <p>Assignment: {{ $assignment->assignmentPlan->title }}</p>
+        <div class="flex justify-start items-start gap-4">
+            <x-back-link />
+            <div>
+                <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                    {{ __('Student Grades') }}
+                </h2>
+                <p>Assignment: {{ $assignment->assignmentPlan->title }}</p>
+            </div>
+        </div>
     </x-slot>
 
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">

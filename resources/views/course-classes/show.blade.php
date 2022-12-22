@@ -32,6 +32,16 @@ use Carbon\Carbon;
                             <span>{{ __('Class code') }}</span>
                             <span class="ml-auto">{{ $courseClass->class_code }}</span>
                         </li>
+                        <li class="flex items-center py-3">
+                            <span>{{ __('Syllabus') }}</span>
+                            <span class="ml-auto">
+                                @if($courseClass->syllabus)
+                                    <a href="{{ route('syllabi.show', $courseClass->syllabus) }}" class="text-blue-700 hover:text-blue-600">{{ $courseClass->syllabus->title }}</a>
+                                @else
+                                    <span class="text-gray-400">Not set</span>
+                                @endif
+                            </span>
+                        </li>
                     </ul>
                 </div>
                 @canany(['is-teacher', 'is-admin'])
@@ -50,6 +60,17 @@ use Carbon\Carbon;
                             </a>
                         </div>
                     </div>
+
+                    <div class="bg-white p-5 mt-5 overflow-hidden shadow-sm sm:rounded-lg">
+                        <h2>Class Setting</h2>
+                        <div class="flex flex-col gap-2 mt-3">
+                            <a href="{{ route('classes.setting.edit', $courseClass) }}" class="w-full bg-white border border-gray-300 rounded-md shadow-sm px-2.5 sm:px-4 py-2 inline-flex justify-center text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            <span class="pr-1">
+                                <i class="fa-solid fa-gear"></i> Setting
+                            </span>
+                            </a>
+                        </div>
+                    </div>
                 @endcanany
                 <!-- End of profile card -->
             </div>
@@ -59,9 +80,7 @@ use Carbon\Carbon;
                     <div class="bg-base-100 rounded-box col-span-3 row-span-3 mx-2 flex w-72 flex-shrink-0 flex-col justify-center gap-4 p-4 shadow-xl xl:mx-0 xl:w-full">
                         <div class="flex flex-row justify-between mb-3 px-4 sm:px-0 -mr-2 sm:-mr-3">
                             <h2 class="text-xl font-extrabold py-2">
-                                <a href="{{ route('classes.index') }}">
-                                    {{ __('Assignments') }}
-                                </a>
+                                {{ __('Assignments') }}
                             </h2>
                             @canany(['is-teacher', 'is-admin'])
                             <div class="order-5 sm:order-6 mr-2 sm:mr-3">
