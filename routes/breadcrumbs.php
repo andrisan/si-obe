@@ -244,6 +244,13 @@ Breadcrumbs::for('classes.join', function (BreadcrumbTrail $trail) {
     $trail->push('Join', route('classes.join'));
 });
 
+// Course classes > Settings
+Breadcrumbs::for('classes.settings', function (BreadcrumbTrail $trail, $class) {
+    $trail->parent('classes.index');
+    $trail->push($class->name, route('classes.show', $class));
+    $trail->push('Settings');
+});
+
 // Rubrics
 Breadcrumbs::for('rubrics.index', function (BreadcrumbTrail $trail) {
     $trail->parent('home');

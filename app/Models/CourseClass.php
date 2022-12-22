@@ -8,11 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class CourseClass extends Model
 {
     use HasFactory;
+
     public $timestamps = true;
+
     protected $fillable = [
         'name',
         'class_code',
         'thumnbnail_img'
+    ];
+
+    protected $casts = [
+        'settings' => 'object',
     ];
 
     public function students()
