@@ -82,7 +82,7 @@
                         </div>
                     </div>
                     @php($btnText = $user->role == "teacher" ? __('Create Class'): __('Join Class'))
-                    @php($btnLink = $user->role == "teacher" ? route('classes.create'): route('classes.join'))
+                    @php($btnLink = $user->role == "teacher" ? route('classes.create'): route('classes.show_join'))
                     <a href="{{ $btnLink }}" class="btn btn-secondary btn-block space-x-2">
                     <span>{{ $btnText }}</span>
                     </a>

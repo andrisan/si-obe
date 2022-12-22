@@ -53,7 +53,7 @@ class ProfileController extends Controller
             'student_id_number' => 'required|numeric',
         ]);
 
-        $studentData = StudentData::where('student_id_number', $validated['student_id_number'])->first();
+        $studentData = StudentData::where('id', Auth::user()->id)->first();
         if ($studentData == null){
             $studentData = new StudentData();
             $studentData->id = Auth::id();
