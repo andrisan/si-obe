@@ -361,10 +361,14 @@
                                         <tr>
                                             <td class="text-gray-600 px-6 py-3 border-t border-gray-100">LLO</td>
                                                 <?php
-//                                            dd($assignmentPlan->assignmentPlanTasks);
-                                                $assignmentPlanLearningOutcomes = $assignmentPlan->assignmentPlanTasks->map(function ($assignmentPlanTask) {
-                                                    return $assignmentPlanTask->criteria->lessonLearningOutcome;
-                                                })->flatten();
+                                                $assignmentPlanLearningOutcomes = [];
+                                                foreach ($assignmentPlan->assignmentPlanTasks as $assignmentPlanTask) {
+                                                    if (empty($assignmentPlanTask->criteria)){
+                                                        continue;
+                                                    }
+                                                    $assignmentPlanLearningOutcomes[] = $assignmentPlanTask->criteria->lessonLearningOutcome;
+                                                }
+                                                $assignmentPlanLearningOutcomes = collect($assignmentPlanLearningOutcomes);
                                                 ?>
                                             <td class="text-gray-600 px-6 py-3 border-t border-gray-100">
                                                 @if($assignmentPlanLearningOutcomes->count() > 0)
@@ -377,7 +381,7 @@
                                                     </ul>
                                                 @else
                                                     <span
-                                                        class="badge badge-ghost p-3">Please set LLO in the assignment plan tasks</span>
+                                                        class="badge badge-ghost p-3">Please set the grading criteria for the assignment plan tasks</span>
                                                 @endif
                                             </td>
                                         </tr>
@@ -485,8 +489,11 @@
                                                     <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-32">
                                                         LLO
                                                     </th>
+                                                    <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-32">
+                                                        Grading Criteria
+                                                    </th>
                                                     <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate">
-                                                        Description
+                                                        Task Description
                                                     </th>
                                                     <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-32">
                                                         Action
@@ -498,7 +505,8 @@
                                                     <tr>
                                                         <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $loop->index + 1 }}</td>
                                                         <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $assignmentPlanTask->code }}</td>
-                                                        <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $assignmentPlanTask->criteria->lessonLearningOutcome->code }}</td>
+                                                        <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $assignmentPlanTask->criteria->lessonLearningOutcome->code ?? "-" }}</td>
+                                                        <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $assignmentPlanTask->criteria->title ?? "-" }}</td>
                                                         <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $assignmentPlanTask->description }}</td>
                                                         <td
                                                             class="text-gray-600 px-6 py-3 border-t border-gray-100">

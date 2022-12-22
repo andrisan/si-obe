@@ -40,7 +40,7 @@ class AssignmentPlanTasksController extends Controller
     {
         $validated = $request->validate([
             'code' => 'nullable|string|max:255',
-            'criteria_id' => 'required|exists:criterias,id',
+            'criteria_id' => 'nullable|exists:criterias,id',
             'description' => 'required|string',
         ]);
 
@@ -80,7 +80,7 @@ class AssignmentPlanTasksController extends Controller
     {
         $validated = $request->validate([
             'code' => 'nullable|string|max:255',
-            'criteria_id' => 'required|exists:criterias,id',
+            'criteria_id' => 'nullable|exists:criterias,id',
             'description' => 'required|string',
         ]);
 

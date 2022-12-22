@@ -20,7 +20,7 @@
                             <span class="label-text">Criteria</span>
                         </label>
                         <select class="select select-bordered w-full max-w-xs" name="criteria_id">
-                            <option disabled selected>Choose the criteria</option>
+                            <option value="" selected>Choose the criteria</option>
                             @foreach ($criterias as $criteria)
                                 <option
                                     value="{{ $criteria->id }}" {{ (old("criteria_id", $assignmentPlanTask->criteria_id) == $criteria->id ? "selected":"") }}>{{ $criteria->title }}</option>
