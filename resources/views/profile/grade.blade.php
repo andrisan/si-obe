@@ -119,7 +119,7 @@
                                                                         ?>
                                                                 @endforeach
                                                             @endforeach
-                                                            <td>{{ round($point / $maxPoint * 100, 2) }} %</td>
+                                                            <td>{{ $maxPoint == 0 ? $maxPoint : round($point / $maxPoint * 100, 2) }} %</td>
                                                         </tr>
                                                             <?php $j++; ?>
                                                     @endforeach
