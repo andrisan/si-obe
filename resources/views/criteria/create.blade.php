@@ -22,7 +22,7 @@
                             <option disabled selected>Choose the LLO</option>
                             @foreach ($llos as $llo)
                                 <option
-                                    value="{{ $llo->id }}" {{ (old("llo") == $llo->id ? "selected":"") }}>{{ $llo->description }}</option>
+                                    value="{{ $llo->id }}" {{ (old("llo") == $llo->id ? "selected":"") }}>[{{ $llo->code }}] {{ $llo->description }}</option>
                             @endforeach
                         </select>
                         <x-input-error :messages="$errors->get('llo')" class="mt-2"/>

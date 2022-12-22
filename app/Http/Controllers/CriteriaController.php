@@ -29,9 +29,16 @@ class CriteriaController extends Controller
      *
      * @return Application|Factory|View
      */
-    public function create(Rubric $rubric)
+    public function create($rubric_id)
     {
-        $llos = LessonLearningOutcome::all();
+        $rubric = Rubric::with('assignmentPlan.syllabus.lessonLearningOutcomes')->findOrFail($rubric_id);
+
+        $assignmentPlan = $rubric->assignmentPlan;
+        if (empty($assignmentPlan)) {
+            abort(404);
+        }
+        $llos = $assignmentPlan->syllabus->lessonLearningOutcomes;
+
         return view('criteria.create', [
             'rubric' => $rubric,
             'llos' => $llos
@@ -78,13 +85,15 @@ class CriteriaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param Rubric $rubric
+     * @param int $rubric_id
      * @param Criteria $criteria
      * @return Application|Factory|View
      */
-    public function edit(Rubric $rubric, Criteria $criteria)
+    public function edit(int $rubric_id, Criteria $criteria)
     {
-        $llos = LessonLearningOutcome::all();
+        $rubric = Rubric::with('assignmentPlan.syllabus.lessonLearningOutcomes')->findOrFail($rubric_id);
+
+        $llos = $rubric->assignmentPlan->syllabus->lessonLearningOutcomes;
 
         return view('criteria.edit', [
             'rubric' => $rubric,
