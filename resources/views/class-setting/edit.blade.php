@@ -25,12 +25,15 @@
                     @csrf
                     @method('patch')
 
-                    <div class="form-control w-full p-3">
+                    <div class="form-control">
                         <label class="label">
                             <span class="label-text">LLO Portofolio Threshold</span>
                         </label>
-                        <input type="text" name="llo_threshold" placeholder="LLO Portofolio Threshold"
-                               class="input input-bordered w-full max-w-xs" value="{{ old('llo_threshold', $class->settings->llo_threshold??"") }}"/>
+                        <label class="input-group">
+                            <input type="text" name="llo_threshold" placeholder="LLO Portofolio Threshold"
+                                   class="input input-bordered w-full max-w-xs" value="{{ old('llo_threshold', $class->settings->llo_threshold??"") }}"/>
+                            <span>%</span>
+                        </label>
                         <x-input-error :messages="$errors->get('llo_threshold')" class="mt-2"/>
                     </div>
 
@@ -38,7 +41,7 @@
                         <button type="submit" class="btn btn-sm px-7">
                             Save
                         </button>
-                        <a href="{{ route('classes.show', $class) }}">{{ __('Cancel') }}</a>
+                        <x-back-link>{{ __('Cancel') }}</x-back-link>
                     </div>
                 </form>
             </div>

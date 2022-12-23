@@ -2,78 +2,56 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use App\Models\CourseClass;
 use App\Models\LessonLearningOutcome;
+use Illuminate\Support\Facades\DB;
 
 class ClassPortofolioController extends Controller
 {
+    /**
+     * @param CourseClass $courseClass
+     * @return Application|Factory|View
+     */
     public function index(CourseClass $courseClass)
     {
-        //menghitung jumlah mahasiswa lulus dan tidak lulus
-        $berhasil = 0;
-        $tidakBerhasil = 0;
-        $temp = 0;
-        $threshold = 50;
-
-        foreach ($courseClass->students as $student) {
-            $temp = 0;
-            foreach ($student->studentGrade as $sg) {
-                $temp += $sg->criteriaLevel->point;
-            }
-            if ($temp > $threshold) {
-                $berhasil++;
-            } else {
-                $tidakBerhasil++;
-            }
+        $llo_threshold = $courseClass->settings->llo_threshold ?? null;
+        if (empty($llo_threshold)) {
+            return view('class-portofolio.index', [
+                'courseClass' => $courseClass,
+                'lloThreshold' => $llo_threshold
+            ]);
         }
 
-        //mendapatkan total nilai untuk setiap sub cpmk
-        $llo = LessonLearningOutcome::all();
-        $llo_achieve = collect();
-        foreach ($llo as $llo) {
-            $lulus = 0;
-            $critPointTotal = 0;
+        $totalStudentsCount = $courseClass->students()->count();
+        $courseClassID = $courseClass->id;
 
-            foreach ($llo->criteria as $criteria) {
-                if ($llo->id != $criteria->llo_id) {
-                    continue;
-                }
-                $critPointTotal += $criteria->max_point;
-            }
-
-            foreach ($courseClass->students as $student) {
-                $clPointTotal = 0;
-
-                foreach ($llo->criteria as $criteria) {
-                    if ($llo->id != $criteria->llo_id) {
-                        continue;
-                    }
-
-                    foreach ($student->studentGrade as $sg) {
-                        if ($sg->student_user_id != $student->id) {
-                            continue;
-                        }
-                        if ($sg->criteriaLevel->criteria_id != $criteria->id) {
-                            continue;
-                        }
-                        $clPointTotal += $sg->criteriaLevel->point;
-                    }
-                }
-                if ($clPointTotal >= $critPointTotal / 2) {
-                    $lulus++;
-                }
-            }
-            $llo_achieve->push(['lulus' => $lulus, 'description' => $llo->description, 'maxPoint' => $critPointTotal]);
-        }
+        /** @noinspection SqlNoDataSourceInspection */
+        $lloAchievements = DB::select("select *, $totalStudentsCount as 'total_student', n_passed_student/$totalStudentsCount*100 as llo_accomplishment from (
+                            select llo_id, code, description, count(llo_id) as n_passed_student from (
+                                select *, student_point/max_llo_point*100 as lesson_outcome_accomplishment from (
+                                    select sg.student_user_id, c.llo_id, llo.code, llo.description,
+                                    sum(cl.`point`) as student_point, sum(c.max_point) as max_llo_point
+                                    from student_grades sg
+                                    join `assignments` a on a.id = sg.assignment_id
+                                    join criteria_levels cl on cl.id = sg.criteria_level_id
+                                    join criterias c on c.id = cl.criteria_id
+                                    join lesson_learning_outcomes llo on llo.id = c.llo_id
+                                    where a.course_class_id = $courseClassID
+                                    group by sg.student_user_id, c.llo_id
+                                ) t1
+                            ) t2 where lesson_outcome_accomplishment > $llo_threshold
+                            group by llo_id
+                        ) t3");
+        $lloAchievements = collect($lloAchievements);
 
         return view('class-portofolio.index', [
-            'cc' => $courseClass,
-            'lulus' => $berhasil,
-            'gagal' => $tidakBerhasil,
-            'lloTotalPoint' => $llo_achieve,
-            'studentSum' => $courseClass->students->count(),
-            'threshold' => $threshold
+            'courseClass' => $courseClass,
+            'lloAchievements' => $lloAchievements,
+            'lloThreshold' => $llo_threshold
         ]);
     }
 
