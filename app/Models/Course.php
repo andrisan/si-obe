@@ -23,7 +23,7 @@ class Course extends Model
         return $this->hasMany(CourseClass::class);
     }
 
-    public function syllabuses()
+    public function syllabi()
     {
         return $this->hasMany(Syllabus::class);
     }

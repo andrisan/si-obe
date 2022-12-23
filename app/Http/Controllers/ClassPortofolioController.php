@@ -16,8 +16,10 @@ class ClassPortofolioController extends Controller
      * @param CourseClass $courseClass
      * @return Application|Factory|View
      */
-    public function index(CourseClass $courseClass)
+    public function index(int $classID)
     {
+        $courseClass = CourseClass::with('syllabus.lessonLearningOutcomes')->find($classID);
+
         $llo_threshold = $courseClass->settings->llo_threshold ?? null;
         if (empty($llo_threshold)) {
             return view('class-portofolio.index', [
@@ -26,11 +28,15 @@ class ClassPortofolioController extends Controller
             ]);
         }
 
+        $classLLOs = $courseClass->syllabus->lessonLearningOutcomes;
+        $classLLOsID = implode(',', $classLLOs->pluck('id')->toArray());
+
         $totalStudentsCount = $courseClass->students()->count();
         $courseClassID = $courseClass->id;
 
-        /** @noinspection SqlNoDataSourceInspection */
-        $lloAchievements = DB::select("select *, $totalStudentsCount as 'total_student', n_passed_student/$totalStudentsCount*100 as llo_accomplishment from (
+        $lloAchievements = DB::select("select llo.id, llo.code, llo.description, llop.n_passed_student, llop.llo_accomplishment, llop.total_student
+                        from lesson_learning_outcomes llo
+                        left join (select *, $totalStudentsCount as 'total_student', n_passed_student/$totalStudentsCount*100 as llo_accomplishment from (
                             select llo_id, code, description, count(llo_id) as n_passed_student from (
                                 select *, student_point/max_llo_point*100 as lesson_outcome_accomplishment from (
                                     select sg.student_user_id, c.llo_id, llo.code, llo.description,
@@ -45,13 +51,15 @@ class ClassPortofolioController extends Controller
                                 ) t1
                             ) t2 where lesson_outcome_accomplishment > $llo_threshold
                             group by llo_id
-                        ) t3");
+                        ) t3) llop on llo.id = llop.llo_id
+                        where llo.id in ($classLLOsID)");
         $lloAchievements = collect($lloAchievements);
 
         return view('class-portofolio.index', [
             'courseClass' => $courseClass,
             'lloAchievements' => $lloAchievements,
-            'lloThreshold' => $llo_threshold
+            'lloThreshold' => $llo_threshold,
+            'totalStudentsCount' => $totalStudentsCount
         ]);
     }
 

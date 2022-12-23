@@ -27,7 +27,7 @@
                             <tr class="text-left">
                                 <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-6">No</th>
                                 <th colspan="2" class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate">Lesson Learning Outcome (LLO)</th>
-                                <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-48">Passing rate*</th>
+                                <th colspan="2" class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate">Passing student*</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -36,7 +36,10 @@
                                     <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $loop->index + 1 }}</td>
                                     <td class="text-gray-600 px-6 py-3 border-t border-gray-100 w-24">[{{ $llo->code }}]</td>
                                     <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $llo->description }}</td>
-                                    <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ round($llo->llo_accomplishment, 2) }} %</td>
+                                    <td class="text-gray-600 px-6 py-3 border-t border-gray-100">
+                                        <span class="font-semibold">{{ $llo->n_passed_student ?? 0 }}</span><span class="text-gray-300"> / {{ $totalStudentsCount }}</span>
+                                    </td>
+                                    <td class="text-gray-600 px-6 py-3 border-t border-gray-100 font-semibold">{{ round($llo->llo_accomplishment, 2) }} %</td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -51,7 +54,7 @@
                     <div class="flex items-start gap-2 pl-2">
                         <p>* </p>
                         <p class="text-gray-500">
-                            passing rate is counted using the <span class="font-bold">LLO threshold of {{ $lloThreshold }}%</span><br>
+                            Passing student is a student who has LLO achievement greater than or equal to <span class="font-bold">LLO threshold of {{ $lloThreshold }}%</span><br>
                             <a href="{{ route('classes.setting.edit', $courseClass) }}" class="text-sm text-blue-500 hover:text-blue-600">change threshold</a>
                         </p>
 
