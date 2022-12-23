@@ -17,6 +17,9 @@
         {{ Breadcrumbs::render('student-grades.index', $assignment) }}
         <div class="pb-8">
             <div class="mb-5 overflow-x-auto bg-white rounded-lg shadow overflow-y-auto relative">
+                @if($maxPoint == 0)
+                    <p class="text-center text-gray-500 py-5">No criteria can be graded. Please define criteria and its level in syllabus for this assignment.</p>
+                @else
                 <table class="border-collapse table-auto w-full bg-white table-striped relative">
                     <thead>
                     <tr class="text-left">
@@ -83,6 +86,7 @@
                     @endforeach
                     </tbody>
                 </table>
+                @endif
             </div>
         </div>
     </div>

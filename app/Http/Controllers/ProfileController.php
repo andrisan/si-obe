@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\LessonLearningOutcome;
 use App\Models\StudentData;
+use App\Models\StudentGrade;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -13,6 +14,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class ProfileController extends Controller
 {
@@ -130,38 +132,101 @@ class ProfileController extends Controller
 
     public function grade()
     {
-        $user = Auth::user();
+        $user = User::with(
+            'joinedClasses.syllabus.lessonLearningOutcomes',
+            'joinedClasses.course','joinedClasses.assignments.studentGrades.criteriaLevel.criteria',
+            'joinedClasses.assignments.assignmentPlan')
+            ->find(Auth::id());
 
-        $nilaiAkhir =  0 ;
-        $nilaiHuruf = null;
-        foreach ($user->studentGrade as $data) {
-            $nilaiAkhir += $data->criteriaLevel->point;
+        $userClassesGrade = $user->joinedClasses;
+
+        $perAssignmentGrades = StudentGrade::select('assignments.course_class_id', DB::raw('SUM(criteria_levels.point) as point'))
+            ->join('assignments', 'student_grades.assignment_id', '=', 'assignments.id')
+            ->join('criteria_levels', 'student_grades.criteria_level_id', '=', 'criteria_levels.id')
+            ->groupBy('assignments.course_class_id')
+            ->where('student_user_id', $user->id)
+            ->get();
+
+        $perLloGrades = StudentGrade::select('assignments.course_class_id', 'criterias.llo_id', DB::raw('SUM(criteria_levels.point) as student_point'), DB::raw('SUM(criterias.max_point) as max_llo_point'))
+            ->join('assignments', 'student_grades.assignment_id', '=', 'assignments.id')
+            ->join('criteria_levels', 'student_grades.criteria_level_id', '=', 'criteria_levels.id')
+            ->join('criterias', 'criteria_levels.criteria_id', '=', 'criterias.id')
+            ->join('lesson_learning_outcomes', 'criterias.llo_id', '=', 'lesson_learning_outcomes.id')
+            ->where('student_user_id', $user->id)
+            ->groupBy('assignments.course_class_id', 'criterias.llo_id')
+            ->get();
+
+        foreach ($userClassesGrade as $classGrade){
+            $perAssignmentGrade = $perAssignmentGrades->filter(function ($grade) use ($classGrade) {
+                return $grade->course_class_id == $classGrade->id;
+            })->first();
+
+            if ($perAssignmentGrade != null) {
+                $perAssignmentGrade->letterGrade = $this->_getLetterGrade($perAssignmentGrade->point ?? 0);
+            }
+            $classGrade->userGrade = $perAssignmentGrade;
+
+            // per assignment grade
+            $ungradedAssignmentCount = 0;
+            $classAssignments = $classGrade->assignments;
+            foreach ($classAssignments as $assignment) {
+                $point = 0; $maxPoint = 0;
+                foreach ($assignment->studentGrades as $stud) {
+                    if ($stud->student_user_id != $user->id) {
+                        continue;
+                    }
+                    $point += $stud->criteriaLevel->point;
+                    $maxPoint += $stud->criteriaLevel->criteria->max_point;
+                }
+                if ($maxPoint == 0) {
+                    $ungradedAssignmentCount++;
+                }
+                $assignment->perAssignmentGrade = $maxPoint == 0 ?
+                    $maxPoint :
+                    round($point / $maxPoint * 100, 2);
+            }
+            $gradedAssignmentCount = $classAssignments->count() - $ungradedAssignmentCount;
+            $classGrade->gradingProgress = $classAssignments->count() == 0 ?
+                0 : round($gradedAssignmentCount / $classAssignments->count() * 100, 2);
+
+            // per LLO grade
+            $perLloGrade = $perLloGrades->filter(function ($grade) use ($classGrade) {
+                return $grade->course_class_id == $classGrade->id;
+            });
+
+            $classLLOs = $classGrade->syllabus->lessonLearningOutcomes;
+            foreach ($classLLOs as $llo) {
+                $lloGrade = $perLloGrade->filter(function ($grade) use ($llo) {
+                    return $grade->llo_id == $llo->id;
+                })->first();
+                $llo->perLLOGrade = $lloGrade == null ? 0 : round($lloGrade->student_point / $lloGrade->max_llo_point * 100, 2);
+            }
         }
 
-        if ($nilaiAkhir > 80) {
-            $nilaiHuruf = 'A';
-        } elseif ($nilaiAkhir > 75) {
-            $nilaiHuruf = 'B+';
-        } elseif ($nilaiAkhir > 69) {
-            $nilaiHuruf = 'B';
-        } elseif ($nilaiAkhir > 60) {
-            $nilaiHuruf = 'C+';
-        } elseif ($nilaiAkhir > 55) {
-            $nilaiHuruf = 'C';
-        } elseif ($nilaiAkhir > 50) {
-            $nilaiHuruf = 'D+';
-        } elseif ($nilaiAkhir > 44) {
-            $nilaiHuruf = 'D';
-        } else {
-            $nilaiHuruf = 'E';
-        }
-
-        $llo = LessonLearningOutcome::all();
         return view('profile.grade', [
             'user'=> $user,
-            'grade' => $nilaiAkhir,
-            'gradeLetter' => $nilaiHuruf,
-            'llo' => $llo
+            'userClassesGrade' => $userClassesGrade
         ]);
+    }
+
+    public function _getLetterGrade($point)
+    {
+        if ($point > 80) {
+            return 'A';
+        } elseif ($point > 75) {
+            return 'B+';
+        } elseif ($point > 69) {
+            return 'B';
+        } elseif ($point > 60) {
+            return 'C+';
+        } elseif ($point > 55) {
+            return 'C';
+        } elseif ($point > 50) {
+            return 'D+';
+        } elseif ($point > 44) {
+            return 'D';
+        } else {
+            return 'E';
+        }
     }
 }
