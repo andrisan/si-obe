@@ -114,7 +114,7 @@ class CriteriaController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required|string',
-            'description' => 'required|string',
+            'description' => 'nullable|string',
             'llo' => 'required|numeric',
         ]);
 

@@ -42,7 +42,11 @@
                     </div>
 
                     <p class="p-3">{{ $criteria->description }}</p>
-                    <p class="badge badge-ghost p-4 mx-3">LLO : {{ $criteria->lessonLearningOutcome->description }}</p>
+                    @php($llo = $criteria->lessonLearningOutcome)
+                    <div class="border rounded border-gray-200 p-4 mx-3">
+                        <span class="font-bold">{{ __("Lesson Learning Outcome: ") }}</span>
+                        {{ $llo->description }} [{{ $llo->code }}]
+                    </div>
 
                     <div class="py-5">
                         <div class="flex flex-row justify-between mb-3 px-4 sm:px-0 -mr-2 sm:-mr-3">
