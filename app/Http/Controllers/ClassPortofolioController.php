@@ -18,7 +18,8 @@ class ClassPortofolioController extends Controller
      */
     public function index(int $classID)
     {
-        $courseClass = CourseClass::with('syllabus.lessonLearningOutcomes')->find($classID);
+        $courseClass = CourseClass::with('syllabus.lessonLearningOutcomes')
+            ->findOrFail($classID);
 
         $llo_threshold = $courseClass->settings->llo_threshold ?? null;
         if (empty($llo_threshold)) {
@@ -28,13 +29,15 @@ class ClassPortofolioController extends Controller
             ]);
         }
 
-        $classLLOs = $courseClass->syllabus->lessonLearningOutcomes;
-        $classLLOsID = implode(',', $classLLOs->pluck('id')->toArray());
-
         $totalStudentsCount = $courseClass->students()->count();
         $courseClassID = $courseClass->id;
 
-        $lloAchievements = DB::select("select llo.id, llo.code, llo.description, llop.n_passed_student, llop.llo_accomplishment, llop.total_student
+        $classLLOs = $courseClass->syllabus->lessonLearningOutcomes;
+        if ($classLLOs->isEmpty()){
+            $lloAchievements = null;
+        } else {
+            $classLLOsID = implode(',', $classLLOs->pluck('id')->toArray());
+            $lloAchievements = DB::select("select llo.id, llo.code, llo.description, llop.n_passed_student, llop.llo_accomplishment, llop.total_student
                         from lesson_learning_outcomes llo
                         left join (select *, $totalStudentsCount as 'total_student', n_passed_student/$totalStudentsCount*100 as llo_accomplishment from (
                             select llo_id, code, description, count(llo_id) as n_passed_student from (
@@ -53,11 +56,11 @@ class ClassPortofolioController extends Controller
                             group by llo_id
                         ) t3) llop on llo.id = llop.llo_id
                         where llo.id in ($classLLOsID)");
-        $lloAchievements = collect($lloAchievements);
+        }
 
         return view('class-portofolio.index', [
             'courseClass' => $courseClass,
-            'lloAchievements' => $lloAchievements,
+            'lloAchievements' => collect($lloAchievements),
             'lloThreshold' => $llo_threshold,
             'totalStudentsCount' => $totalStudentsCount
         ]);

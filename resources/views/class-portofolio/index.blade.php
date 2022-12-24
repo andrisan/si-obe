@@ -45,24 +45,25 @@
                             </tbody>
                         </table>
                     </div>
+                    <div class="flex justify-between">
+                        <div class="flex items-start gap-2 pl-2">
+                            <p>* </p>
+                            <p class="text-gray-500">
+                                Passing student is a student who has LLO achievement greater than or equal to <span class="font-bold">LLO threshold of {{ $lloThreshold }}%</span><br>
+                                <a href="{{ route('classes.setting.edit', $courseClass) }}" class="text-sm text-blue-500 hover:text-blue-600">change threshold</a>
+                            </p>
+
+                        </div>
+                        <a href="{{ route('class-portofolio.student', $courseClass) }}" class="text-blue-500 pr-2">
+                            <i class="fa-solid fa-graduation-cap"></i> Students Portofolio
+                        </a>
+                    </div>
                 @else
-                    <div class="text-center p-8">
-                        No LLO portofolio found.
+                    <div class="text-center p-8 text-gray-500">
+                        No Lesson Learning Outcome (LLO) has been set for the syllabus of this class.
+                        Set it <a href="{{ route('syllabi.show', $courseClass->syllabus) }}" class="text-blue-500 hover:text-blue-600">here</a>.
                     </div>
                 @endif
-                <div class="flex justify-between">
-                    <div class="flex items-start gap-2 pl-2">
-                        <p>* </p>
-                        <p class="text-gray-500">
-                            Passing student is a student who has LLO achievement greater than or equal to <span class="font-bold">LLO threshold of {{ $lloThreshold }}%</span><br>
-                            <a href="{{ route('classes.setting.edit', $courseClass) }}" class="text-sm text-blue-500 hover:text-blue-600">change threshold</a>
-                        </p>
-
-                    </div>
-                    <a href="{{ route('class-portofolio.student', $courseClass) }}" class="text-blue-500 pr-2">
-                        <i class="fa-solid fa-graduation-cap"></i> Students Portofolio
-                    </a>
-                </div>
             </div>
         </div>
     @endif
