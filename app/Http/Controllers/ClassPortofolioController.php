@@ -66,14 +66,19 @@ class ClassPortofolioController extends Controller
         ]);
     }
 
-    public function student(CourseClass $courseClass)
+    public function student(int $courseClassID)
     {
+        $courseClass = CourseClass::with('students.studentData',
+            'students.studentGrade.criteriaLevel',
+            'syllabus.lessonLearningOutcomes.criteria')
+            ->findOrFail($courseClassID);
+
         $dataReturn = collect();
+        $llos = $courseClass->syllabus->lessonLearningOutcomes;
         foreach ($courseClass->students as $student) {
             $nim = $student->studentData->student_id_number;
             $name = $student->name;
             $cpmk = collect();
-            $llos = LessonLearningOutcome::all();
             foreach ($llos as $llo) {
                 $temp = 0;
                 $maxPoint = 0;
@@ -91,7 +96,6 @@ class ClassPortofolioController extends Controller
             $dataReturn->push(['name' => $name, 'nim' => $nim, 'cpmk' => $cpmk]);
         }
 
-        $llo = LessonLearningOutcome::all();
         return view('class-portofolio.student', [
             'cc' => $courseClass,
             'llos' => $llos,

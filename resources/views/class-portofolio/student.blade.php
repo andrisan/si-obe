@@ -9,7 +9,7 @@
         </div>
     </x-slot>
 
-    <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         {{ Breadcrumbs::render('class-portofolio.student', $cc) }}
         <div class="pb-8">
             <div class="mb-5 overflow-x-auto bg-white rounded-lg shadow overflow-y-auto relative">
@@ -24,10 +24,10 @@
                     </tr>
                     <tr>
                         @foreach ($llos as $llo)
-                            <th class="bg-gray-50 text-center">
+                            <th class="bg-gray-50 text-center font-semibold text-gray-500">
                                 <div class="tooltip tooltip-bottom cursor-pointer"
                                      data-tip="{{ $llo->description }}">
-                                    {{ $llo->id }}
+                                    {{ $llo->code }}
                                 </div>
                             </th>
                         @endforeach

@@ -60,7 +60,7 @@ class FakeDataSeeder extends Seeder
                         'creator_user_id' => $admin->id,
                     ])->each(function ($course) use ($teachers) {
                         $teacher_creator_id = $teachers->random(1)->first()->id;
-                        $syllabus = Syllabus::factory(1)->create([
+                        $syllabi = Syllabus::factory(2)->create([
                             'course_id' => $course->id,
                             'creator_user_id' => $teacher_creator_id,
                         ])->each(function ($syllabus) {
@@ -84,7 +84,7 @@ class FakeDataSeeder extends Seeder
                                 ]);
                             }
 
-                            $nLessonOutcome = 10;
+                            $nLessonOutcome = 6;
                             $lessonOutcomeMap = $this->rangeWithN(0, count($clos) - 1, $nLessonOutcome);
                             $llos = array();
                             foreach ($lessonOutcomeMap as $key => $cloidx) {
@@ -154,56 +154,61 @@ class FakeDataSeeder extends Seeder
                             });
                         }); // END Syllabus
 
-                        CourseClass::factory(2)->create([
-                            'course_id' => $course->id,
-                            'creator_user_id' => $teacher_creator_id,
-                            'syllabus_id' => $syllabus->first()->id,
-                        ])->each(function ($course_class) use ($course, $teachers) {
-                            $studentsJoinThisClass = User::factory(rand(30, 40))->create([
-                                'role' => 'student',
-                            ])->each(function ($student) {
+                        foreach ($syllabi as $syllabus) {
+                            CourseClass::factory(2)->create([
+                                'course_id' => $course->id,
+                                'creator_user_id' => $teacher_creator_id,
+                                'syllabus_id' => $syllabus->id,
+                                'settings' => [
+                                    'llo_threshold' => rand(50, 100),
+                                ]
+                            ])->each(function ($course_class) use ($teachers) {
+                                $studentsJoinThisClass = User::factory(rand(30, 40))->create([
+                                    'role' => 'student',
+                                ])->each(function ($student) {
                                     StudentData::factory()->create([
                                         'id' => $student->id,
                                     ]);
                                 });
 
-                            $course_class->students()->attach($studentsJoinThisClass);
+                                $course_class->students()->attach($studentsJoinThisClass);
 
-                            $assignmentPlans = $course->syllabuses->first()->assignmentPlans;
-                            // 1/3 of students have good grade
-                            $studentWithGoodGrade = $studentsJoinThisClass
-                                ->random(count($studentsJoinThisClass) / 3)
-                                ->all();
+                                $assignmentPlans = $course_class->syllabus->assignmentPlans;
+                                // 1/3 of students have good grade
+                                $studentWithGoodGrade = $studentsJoinThisClass
+                                    ->random(count($studentsJoinThisClass) / 3)
+                                    ->all();
 
-                            foreach ($assignmentPlans as $assignmentPlan) {
-                                $assignment = Assignment::factory()->create([
-                                    'assignment_plan_id' => $assignmentPlan->id,
-                                    'course_class_id' => $course_class->id,
-                                ]);
+                                foreach ($assignmentPlans as $assignmentPlan) {
+                                    $assignment = Assignment::factory()->create([
+                                        'assignment_plan_id' => $assignmentPlan->id,
+                                        'course_class_id' => $course_class->id,
+                                    ]);
 
-                                $assignmentPlanTasks = $assignmentPlan->assignmentPlanTasks;
+                                    $assignmentPlanTasks = $assignmentPlan->assignmentPlanTasks;
 
-                                foreach ($studentsJoinThisClass as $student){
-                                    foreach ($assignmentPlanTasks as $assignmentPlanTask) {
-                                        $criteria = $assignmentPlanTask->criteria;
-                                        $criteriaLevels = $criteria->criteriaLevels;
+                                    foreach ($studentsJoinThisClass as $student){
+                                        foreach ($assignmentPlanTasks as $assignmentPlanTask) {
+                                            $criteria = $assignmentPlanTask->criteria;
+                                            $criteriaLevels = $criteria->criteriaLevels;
 
-                                        if (in_array($student, $studentWithGoodGrade)) {
-                                            $criteriaLevel = $criteriaLevels->get(rand(0, 1));
-                                        } else {
-                                            $criteriaLevel = $criteriaLevels->random(1)->first();
+                                            if (in_array($student, $studentWithGoodGrade)) {
+                                                $criteriaLevel = $criteriaLevels->get(rand(0, 1));
+                                            } else {
+                                                $criteriaLevel = $criteriaLevels->random(1)->first();
+                                            }
+
+                                            StudentGrade::factory(1)->create([
+                                                'student_user_id' => $student->id,
+                                                'assignment_id' => $assignment->id,
+                                                'assignment_plan_task_id' => $assignmentPlanTask->criteria_id,
+                                                'criteria_level_id' => $criteriaLevel->id,
+                                            ]);
                                         }
-
-                                        StudentGrade::factory(1)->create([
-                                            'student_user_id' => $student->id,
-                                            'assignment_id' => $assignment->id,
-                                            'assignment_plan_task_id' => $assignmentPlanTask->criteria_id,
-                                            'criteria_level_id' => $criteriaLevel->id,
-                                        ]);
                                     }
                                 }
-                            }
-                        });
+                            });
+                        }
                     }); // END Course
                 });
             });

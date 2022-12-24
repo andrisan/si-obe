@@ -37,7 +37,7 @@
                                     <td class="text-gray-600 px-6 py-3 border-t border-gray-100 w-24">[{{ $llo->code }}]</td>
                                     <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $llo->description }}</td>
                                     <td class="text-gray-600 px-6 py-3 border-t border-gray-100">
-                                        <span class="font-semibold">{{ $llo->n_passed_student ?? 0 }}</span><span class="text-gray-300"> / {{ $totalStudentsCount }}</span>
+                                        <span class="font-semibold">{{ $llo->n_passed_student ?? 0 }}</span><span class="text-gray-400"> / {{ $totalStudentsCount }}</span>
                                     </td>
                                     <td class="text-gray-600 px-6 py-3 border-t border-gray-100 font-semibold">{{ round($llo->llo_accomplishment, 2) }} %</td>
                                 </tr>
