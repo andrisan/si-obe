@@ -251,6 +251,13 @@ Breadcrumbs::for('classes.settings', function (BreadcrumbTrail $trail, $class) {
     $trail->push('Settings');
 });
 
+// Classes members > Show
+Breadcrumbs::for('class-members.show', function (BreadcrumbTrail $trail, $class) {
+    $trail->parent('home');
+    $trail->push($class->name, route('classes.show', $class));
+    $trail->push('Members');
+});
+
 // Rubrics
 Breadcrumbs::for('rubrics.index', function (BreadcrumbTrail $trail) {
     $trail->parent('home');

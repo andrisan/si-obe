@@ -3,6 +3,7 @@
 use App\Http\Controllers\AssignmentController;
 use App\Http\Controllers\AssignmentPlanController;
 use App\Http\Controllers\AssignmentPlanTasksController;
+use App\Http\Controllers\ClassMemberController;
 use App\Http\Controllers\ClassPortofolioController;
 use App\Http\Controllers\ClassSettingController;
 use App\Http\Controllers\CourseClassController;
@@ -86,6 +87,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
                 Route::resource('rubrics.criterias', CriteriaController::class);
                 Route::resource('rubrics.criterias.criteria-levels', CriteriaLevelController::class);
                 Route::singleton('classes.setting', ClassSettingController::class);
+                Route::singleton('classes.members', ClassMemberController::class);
             });
         });
 
