@@ -117,39 +117,43 @@
                 @endcan
 
                 @can('is-student')
-                    @if ($studentGrade->isNotEmpty())
+                    @if ($studentGrades->isNotEmpty())
                         <div class="p-5">
                             <div class="flex justify-between">
-                                <h1 class="text-2xl font-semibold px-5 pt-5">My Grade</h1>
+                                <h1 class="text-2xl font-semibold pt-5">My Grade</h1>
                                 <div class="border rounded p-5 text-3xl font-bold">
                                     {{ round($totalCollectedPoint/$totalCriteriaPoint*100, 2) }}
                                 </div>
                             </div>
-                            @foreach($gradingCriterias as $c)
-                                <div class="p-5">
-                                    <p class="text-xl font-semibold">{{ $c->title }}</p>
-                                    <div class="grid gap-2 grid-cols-5">
-                                        @foreach($c->criteriaLevels as $cl)
-                                            @php($bgLevel = $cl->selected ? 'bg-emerald-100 shadow' : 'bg-gray-200')
-                                            <div class="border {{ $bgLevel }} rounded p-2">
-                                                <div class="flex justify-between">
-                                                    <p class="p-1">{{ $cl->title }}</p>
-                                                    <div class="p-1">
-                                                        <p>{{ $cl->point }}</p>
-                                                        @if($cl->selected)
-                                                            <p><i class="fa-solid fa-circle-check text-emerald-800"></i></p>
-                                                        @endif
+                            <div class="flex justify-between mt-5 py-2">
+                                <p class="text-gray-600">Rubric</p>
+                                <p><span class="font-bold">{{ $totalCollectedPoint }}</span>
+                                    <span class="font-semibold text-gray-400">/ {{ $totalCriteriaPoint }}</span></p>
+                            </div>
+                            <div class="border rounded">
+                                @foreach($gradingCriterias as $c)
+                                    <div class="p-5 {{ !$loop->last ? "border-b": "" }}">
+                                        <p class="font-semibold text-gray-500">Grade for [{{ $c->assignmentPlanTask->code ?? "-" }}] task</p>
+                                        <p class="text-xl font-semibold">{{ $c->title }}</p>
+                                        <div class="pb-5">{{ $c->description }}</div>
+                                        <div class="grid gap-2 grid-cols-5">
+                                            @foreach($c->criteriaLevels as $cl)
+                                                @php($bgLevel = $cl->selected ? 'bg-emerald-100 shadow' : 'bg-gray-200')
+                                                <div class="border {{ $bgLevel }} rounded p-2">
+                                                    <div class="flex justify-between">
+                                                        <p class="p-1">{{ $cl->title }}</p>
+                                                        <div class="p-1">
+                                                            <p>{{ $cl->point }}</p>
+                                                            @if($cl->selected)
+                                                                <p><i class="fa-solid fa-circle-check text-emerald-800"></i></p>
+                                                            @endif
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        @endforeach
+                                            @endforeach
+                                        </div>
                                     </div>
-                                </div>
-                            @endforeach
-                            <div class="pl-5 text-xl">
-                                Total Collected Point:
-                                <span class="font-bold">{{ $totalCollectedPoint }}</span>
-                                <span class="font-semibold text-gray-400">/ {{ $totalCriteriaPoint }}</span>
+                                @endforeach
                             </div>
                         </div>
                     @else
@@ -161,9 +165,6 @@
                         </div>
                     @endif
                 @endcan
-
-                {{-- End --}}
-
             </div>
         </div>
     </div>

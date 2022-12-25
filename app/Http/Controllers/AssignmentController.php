@@ -65,6 +65,7 @@ class AssignmentController extends Controller
      * @param CourseClass $class
      * @param Assignment $assignment
      * @return RedirectResponse
+     * @throws ValidationException
      */
     public function store(Request $request, CourseClass $class, Assignment $assignment)
     {
@@ -110,13 +111,12 @@ class AssignmentController extends Controller
      * Display the specified resource.
      *
      * @param CourseClass $class
-     * @param Assignment $assignment
+     * @param int $assignmentID
      * @return Application|Factory|View
      */
     public function show(CourseClass $class, int $assignmentID)
     {
         $assignment = $class->assignments()
-            ->with('assignmentPlan.assignmentPlanTasks')
             ->with('assignmentPlan.assignmentPlanTasks.criteria.lessonLearningOutcome')
             ->findOrFail($assignmentID);
 
@@ -125,23 +125,26 @@ class AssignmentController extends Controller
 
         // if role is student, get student's grade
         if (Auth::user()->role == 'student') {
-            $studentGrade = $assignment->studentGrades()
+            $studentGrades = $assignment->studentGrades()
                 ->where([
                     ['student_user_id', Auth::user()->id],
                     ['assignment_id', $assignment->id]
                 ])
                 ->with('criteriaLevel')
-                ->with('assignmentPlanTask.criteria.lessonLearningOutcome')
                 ->with('assignment.assignmentPlan.rubric.criterias.criteriaLevels')
                 ->get();
 
-            if ($studentGrade->isNotEmpty()) {
-                $totalCollectedPoint = $studentGrade->sum('criteriaLevel.point');
-                $gradingCriterias = $studentGrade->first()->assignment->assignmentPlan->rubric->criterias;
+            if ($studentGrades->isNotEmpty()) {
+                $totalCollectedPoint = $studentGrades->sum('criteriaLevel.point');
+                $gradingCriterias = $studentGrades->first()->assignment->assignmentPlan->rubric->criterias;
                 $totalCriteriaPoint = $gradingCriterias->sum('max_point');
+
                 foreach($gradingCriterias as $c){
+                    $c->assignmentPlanTask = $studentGrades->filter(function ($studentGrade, $key) use ($c) {
+                        return $studentGrade->assignmentPlanTask->criteria_id == $c->id;
+                    })->first()->assignmentPlanTask;
                     foreach ($c->criteriaLevels as $cl){
-                        $selectedGrade = $studentGrade->filter(function($grade) use ($cl) {
+                        $selectedGrade = $studentGrades->filter(function($grade) use ($cl) {
                             return $grade->criteria_level_id == $cl->id;
                         })->first();
                         $cl->selected = !empty($selectedGrade);
@@ -155,7 +158,7 @@ class AssignmentController extends Controller
             'assignment' => $assignment,
             'lessonLearningOutcomes' => $lessonLearningOutcomes,
             // for students
-            'studentGrade' => $studentGrade ?? null,
+            'studentGrades' => $studentGrades ?? null,
             'gradingCriterias' => $gradingCriterias ?? null,
             'totalCollectedPoint' => $totalCollectedPoint ?? 0,
             'totalCriteriaPoint' => $totalCriteriaPoint ?? 0
