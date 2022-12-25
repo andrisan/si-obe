@@ -29,14 +29,14 @@ class StudentGradeController extends Controller
     public function index(Request $request)
     {
         $assignmentId = $request->get('assignment_id');
-        $assignment = Assignment::with('assignmentPlan', 'courseClass')->find($assignmentId);
+        $assignment = Assignment::with('assignmentPlan.rubric.criterias',
+            'assignmentPlan.assignmentPlanTasks','courseClass.students')->find($assignmentId);
         if (empty($assignment)) {
             abort(404);
         }
 
         $criteriaMaxPoint = 0;
-        $assignmentPlanTasks = AssignmentPlanTask::where('assignment_plan_id', $assignment->assignment_plan_id)->get();
-        foreach ($assignmentPlanTasks as $assignmentPlanTask) {
+        foreach ($assignment->assignmentPlan->assignmentPlanTasks as $assignmentPlanTask) {
             $criteriaMaxPoint += $assignmentPlanTask->criteria->max_point;
         }
 
@@ -59,7 +59,7 @@ class StudentGradeController extends Controller
                         group by student_user_id
                     ) grade on grade.student_user_id = u.id
                     where jc.course_class_id = $courseClassID
-                ", []);
+                ");
 
         return view('student-grades.index', [
             'studentGrades' => $studentGrades,

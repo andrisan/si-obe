@@ -13,8 +13,9 @@ use App\Models\AssignmentPlan;
         </h2>
     </x-slot>
 
-    <div class="py-12">
+    <div class="pb-10">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            {{ Breadcrumbs::render('assignments.create', $courseClass) }}
             <form method="post" action="{{ route('classes.assignments.store', [$courseClass, $assignment]) }}">
                 @csrf
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -74,7 +75,7 @@ use App\Models\AssignmentPlan;
                             </div>
                             <div class="py-2">
                                 <div><textarea class=" textarea textarea-bordered lg:w-[40rem] sm:w-[39rem] w-[25.5rem]
-                                h-64" name="note" placeholder="Note"></textarea>
+                            h-64" name="note" placeholder="Note"></textarea>
                                     <x-input-error :messages="$errors->get('note')" class="mt-2"/>
                                 </div>
                             </div>
@@ -89,6 +90,6 @@ use App\Models\AssignmentPlan;
                     </div>
                 </div>
             </form>
-
         </div>
+    </div>
 </x-app-layout>

@@ -17,8 +17,23 @@
         {{ Breadcrumbs::render('student-grades.index', $assignment) }}
         <div class="pb-8">
             <div class="mb-5 overflow-x-auto bg-white rounded-lg shadow overflow-y-auto relative">
-                @if($maxPoint == 0)
-                    <p class="text-center text-gray-500 py-5">No criteria can be graded. Please define criteria and its level in syllabus for this assignment.</p>
+                @if(empty($assignment->assignmentPlan->rubric))
+                    <p class="text-center text-gray-500 py-5">
+                        Please create a rubric for "{{ $assignment->assignmentPlan->title }}" assignment plan in the <a href="{{ route('syllabi.show', $assignment->assignmentPlan->syllabus) }}" class="text-blue-500">Syllabus</a> of this class.
+                    </p>
+                @elseif($assignment->assignmentPlan->rubric->criterias->isEmpty())
+                    <p class="text-center text-gray-500 py-5">
+                        @php($rubric = $assignment->assignmentPlan->rubric)
+                        Please add criteria and its level to the rubric of <a href="{{ route("rubrics.show", $rubric) }}" class="text-blue-500">"{{ $rubric->title }}"</a>.
+                    </p>
+                @elseif($assignment->courseClass->students->isEmpty())
+                    <p class="text-center text-gray-500 py-5">
+                        No student enrolled in this class.
+                    </p>
+                @elseif($assignment->assignmentPlan->assignmentPlanTasks->isEmpty())
+                    <p class="text-center text-gray-500 py-5">
+                        Please add tasks to the assignment plan "{{ $assignment->assignmentPlan->title }}" in the <a href="{{ route('syllabi.show', $assignment->assignmentPlan->syllabus) }}" class="text-blue-500">Syllabus</a> of this class.
+                    </p>
                 @else
                 <table class="border-collapse table-auto w-full bg-white table-striped relative">
                     <thead>
@@ -55,7 +70,7 @@
                                     <span class="text-gray-400"> / {{ $maxPoint }}</span>
                                 </div>
                             </td>
-                            <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ ($grade->total_student_point ?? 0)/$maxPoint*100 }}</td>
+                            <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $maxPoint==0?0:($grade->total_student_point ?? 0)/$maxPoint*100 }}</td>
                             <td
                                 class="text-gray-600 px-6 py-3 border-t border-gray-100">
                                 <div class="flex flex-wrap space-x-4">

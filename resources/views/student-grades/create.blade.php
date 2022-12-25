@@ -37,7 +37,13 @@
                         <p class="ml-9 my-5 text-lg"><b> {{$apt->criteria->title}} </b> </p>
 
                         <div class="btn-group my-5 justify-center">
-                            @foreach($apt->criteria->criteriaLevels as $criteria)
+                            @if($apt->criteria->criteriaLevels->isEmpty())
+                                @php($rubric = $assignment->assignmentPlan->rubric)
+                                <div class="border border-gray-300 rounded w-full p-7 text-center text-gray-400 mx-10">
+                                    Please define levels for this criteria <a href="{{ route("rubrics.show", $rubric) }}" class="text-blue-500">here</a>
+                                </div>
+                            @else
+                                @foreach($apt->criteria->criteriaLevels as $criteria)
                                 <div class="card w-44 h-36 bg-base border-2 my-1 rounded-lg mx-1">
                                     <div class="card-actions pr-5 mt-5 justify-end">
                                         <input type="radio" name="criteria_level_id{{ $loop->parent->index }}" value="{{ $criteria->id }}" />
@@ -48,6 +54,7 @@
                                     </div>
                                 </div>
                             @endforeach
+                            @endif
                         </div>
                     @endforeach
 

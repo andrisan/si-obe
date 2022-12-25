@@ -125,8 +125,9 @@ use Carbon\Carbon;
                                                     <div class="truncate">
                                                         <h1 class="truncate text-[16px] font-bold text-black ">
                                                             {{ $assignment->assignmentPlan->title??null }}</h1>
-                                                        <p class="  text-black">
-                                                            {{ Carbon::parse( $assignment->assigned_date)->format("M d, Y") }}</p>
+                                                        <p class="text-sm text-gray-500">
+                                                            {{ __("Assigned on ") }} {{ Carbon::parse( $assignment->assigned_date)->format("M d, Y") }}
+                                                        </p>
                                                     </div>
                                                 </div>
                                             </div>

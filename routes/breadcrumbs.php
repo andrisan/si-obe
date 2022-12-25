@@ -258,6 +258,28 @@ Breadcrumbs::for('class-members.show', function (BreadcrumbTrail $trail, $class)
     $trail->push('Members');
 });
 
+// Assignments > Create
+Breadcrumbs::for('assignments.create', function (BreadcrumbTrail $trail, $class) {
+    $trail->parent('home');
+    $trail->push($class->name, route('classes.show', $class));
+    $trail->push('Create Assignment', route('classes.assignments.create', $class));
+});
+
+// Assignments > Edit
+Breadcrumbs::for('assignments.edit', function (BreadcrumbTrail $trail, $class, $assignment) {
+    $trail->parent('home');
+    $trail->push($class->name, route('classes.show', $class));
+    $trail->push(Str::limit($assignment->assignmentPlan->title, 40) ?? "-", route('classes.assignments.show', [$class, $assignment]));
+    $trail->push('Edit', route('classes.assignments.edit', [$class, $assignment]));
+});
+
+// Assignments > Show
+Breadcrumbs::for('assignments.show', function (BreadcrumbTrail $trail, $class, $assignment) {
+    $trail->parent('home');
+    $trail->push($class->name, route('classes.show', $class));
+    $trail->push(Str::limit($assignment->assignmentPlan->title, 40) ?? "-", route('classes.assignments.show', [$class, $assignment]));
+});
+
 // Rubrics
 Breadcrumbs::for('rubrics.index', function (BreadcrumbTrail $trail) {
     $trail->parent('home');

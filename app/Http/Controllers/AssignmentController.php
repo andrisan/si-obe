@@ -10,6 +10,9 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 
 class AssignmentController extends Controller
 {
@@ -65,12 +68,32 @@ class AssignmentController extends Controller
      */
     public function store(Request $request, CourseClass $class, Assignment $assignment)
     {
-        $validated = $request->validate([
+        $validator = Validator::make($request->all(), [
             'assignment_plan_id' => 'required|numeric',
             'course_class_id' => 'required|numeric',
-            'due_date' => 'required|date',
+            'due_date' => 'nullable|date',
             'note' => 'nullable|string',
         ]);
+
+        $validator->after(function ($validator) use ($request, $class) {
+            $availableAssignmentPlans = $this->_getAvailableAssignmentPlans($class);
+
+            if ($availableAssignmentPlans->isEmpty()) {
+                $validator->errors()->add('assignment_plan_id', 'You have no assignment plan available to create an assignment');
+            }
+
+            if (!$availableAssignmentPlans->contains('id', $request->assignment_plan_id)) {
+                $validator->errors()->add('assignment_plan_id', 'The selected assignment plan is invalid.');
+            }
+        });
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $validated = $validator->validated();
 
         $assignment->assignment_plan_id = $validated['assignment_plan_id'];
         $assignment->course_class_id = $validated['course_class_id'];
@@ -90,11 +113,52 @@ class AssignmentController extends Controller
      * @param Assignment $assignment
      * @return Application|Factory|View
      */
-    public function show(CourseClass $class, Assignment $assignment)
+    public function show(CourseClass $class, int $assignmentID)
     {
+        $assignment = $class->assignments()
+            ->with('assignmentPlan.assignmentPlanTasks')
+            ->with('assignmentPlan.assignmentPlanTasks.criteria.lessonLearningOutcome')
+            ->findOrFail($assignmentID);
+
+        $lessonLearningOutcomes = $assignment->assignmentPlan->assignmentPlanTasks
+            ->pluck('criteria.lessonLearningOutcome')->unique();
+
+        // if role is student, get student's grade
+        if (Auth::user()->role == 'student') {
+            $studentGrade = $assignment->studentGrades()
+                ->where([
+                    ['student_user_id', Auth::user()->id],
+                    ['assignment_id', $assignment->id]
+                ])
+                ->with('criteriaLevel')
+                ->with('assignmentPlanTask.criteria.lessonLearningOutcome')
+                ->with('assignment.assignmentPlan.rubric.criterias.criteriaLevels')
+                ->get();
+
+            if ($studentGrade->isNotEmpty()) {
+                $totalCollectedPoint = $studentGrade->sum('criteriaLevel.point');
+                $gradingCriterias = $studentGrade->first()->assignment->assignmentPlan->rubric->criterias;
+                $totalCriteriaPoint = $gradingCriterias->sum('max_point');
+                foreach($gradingCriterias as $c){
+                    foreach ($c->criteriaLevels as $cl){
+                        $selectedGrade = $studentGrade->filter(function($grade) use ($cl) {
+                            return $grade->criteria_level_id == $cl->id;
+                        })->first();
+                        $cl->selected = !empty($selectedGrade);
+                    }
+                }
+            }
+        }
+
         return view('assignments.show', [
             'courseClass' => $class,
-            'assignment' => $assignment
+            'assignment' => $assignment,
+            'lessonLearningOutcomes' => $lessonLearningOutcomes,
+            // for students
+            'studentGrade' => $studentGrade ?? null,
+            'gradingCriterias' => $gradingCriterias ?? null,
+            'totalCollectedPoint' => $totalCollectedPoint ?? 0,
+            'totalCriteriaPoint' => $totalCriteriaPoint ?? 0
         ]);
     }
 
@@ -108,11 +172,6 @@ class AssignmentController extends Controller
     public function edit(CourseClass $class, Assignment $assignment)
     {
         $availableAssignmentPlans = $this->_getAvailableAssignmentPlans($class);
-
-        if ($availableAssignmentPlans->isEmpty()) {
-            return redirect()->back()->with('error', 'All assignment plan has been used. One assignment plan can only be used once per class');
-        }
-
         $availableAssignmentPlans->push($assignment->assignmentPlan);
 
         return view('assignments.edit', [
@@ -129,14 +188,36 @@ class AssignmentController extends Controller
      * @param CourseClass $class
      * @param Assignment $assignment
      * @return RedirectResponse
+     * @throws ValidationException
      */
     public function update(Request $request, CourseClass $class, Assignment $assignment)
     {
-        $validated = $request->validate([
+        $validator = Validator::make($request->all(), [
             'assignment_plan_id' => 'required|numeric',
-            'due_date' => 'required|date',
+            'due_date' => 'nullable|date',
             'note' => 'nullable|string',
         ]);
+
+        $validator->after(function ($validator) use ($request, $class, $assignment) {
+            $availableAssignmentPlans = $this->_getAvailableAssignmentPlans($class);
+            $availableAssignmentPlans->push($assignment->assignmentPlan);
+
+            if ($availableAssignmentPlans->isEmpty() && $assignment->assignment_plan_id != (int) $request->assignment_plan_id) {
+                $validator->errors()->add('assignment_plan_id', 'An assignment plan can only be used once per class');
+            }
+
+            if (!$availableAssignmentPlans->contains('id', $request->assignment_plan_id)) {
+                $validator->errors()->add('assignment_plan_id', 'The selected assignment plan is invalid.');
+            }
+        });
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $validated = $validator->validated();
 
         $assignment->update($validated);
 
