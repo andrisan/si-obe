@@ -136,7 +136,7 @@ class ProfileController extends Controller
             'joinedClasses.syllabus.lessonLearningOutcomes',
             'joinedClasses.course','joinedClasses.assignments.studentGrades.criteriaLevel.criteria',
             'joinedClasses.assignments.assignmentPlan')
-            ->find(Auth::id());
+            ->findOrFail(Auth::id());
 
         $userClassesGrade = $user->joinedClasses;
 

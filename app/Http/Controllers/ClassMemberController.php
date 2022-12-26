@@ -20,7 +20,7 @@ class ClassMemberController extends Controller
     public function show($id)
     {
         $courseClass = CourseClass::with('students','creator', 'course')
-            ->find($id);
+            ->findOrFail($id);
 
         $students = $courseClass->students()->paginate(10)->through(fn ($user) => [
             'id' => $user->id,

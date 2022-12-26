@@ -30,10 +30,7 @@ class StudentGradeController extends Controller
     {
         $assignmentId = $request->get('assignment_id');
         $assignment = Assignment::with('assignmentPlan.rubric.criterias',
-            'assignmentPlan.assignmentPlanTasks','courseClass.students')->find($assignmentId);
-        if (empty($assignment)) {
-            abort(404);
-        }
+            'assignmentPlan.assignmentPlanTasks','courseClass.students')->findOrFail($assignmentId);
 
         $criteriaMaxPoint = 0;
         foreach ($assignment->assignmentPlan->assignmentPlanTasks as $assignmentPlanTask) {
@@ -90,11 +87,7 @@ class StudentGradeController extends Controller
 
     public function _findOrFailAssignment($assignmentId)
     {
-        $assignment = Assignment::with('assignmentPlan', 'assignmentPlan.assignmentPlanTasks')->find($assignmentId);
-        if (empty($assignment)) {
-            abort(404);
-        }
-        return $assignment;
+        return Assignment::with('assignmentPlan', 'assignmentPlan.assignmentPlanTasks')->findOrFail($assignmentId);
     }
 
     public function _findOrFailUser($userId)

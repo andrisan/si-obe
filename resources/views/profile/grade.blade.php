@@ -78,7 +78,7 @@
                                                         <tr>
                                                             <td class="align-top py-2">{{ $loop->index + 1 }}</td>
                                                             <td class="text-gray-500 py-2">{{ $assignment->assignmentPlan->title }}
-                                                                <a href="{{ route('classes.assignments.show', [$courseClass, $assignment]) }}"
+                                                                <a target="_blank" href="{{ route('classes.assignments.show', [$courseClass, $assignment]) }}"
                                                                    class="text-blue-500 text-sm"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                                                             </td>
                                                             <td class="align-top py-2 text-center">{{ $assignment->perAssignmentGrade }}</td>

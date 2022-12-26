@@ -85,7 +85,7 @@ class SyllabusController extends Controller
             'intendedLearningOutcomes',
             'courseLearningOutcomes',
             'lessonLearningOutcomes')
-            ->find($id);
+            ->findOrFail($id);
 
         return view('syllabi.show', [
                 'syllabus' => $syllabus,

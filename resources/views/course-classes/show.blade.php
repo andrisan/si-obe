@@ -27,22 +27,22 @@ use Carbon\Carbon;
             <div class="w-full md:w-3/12 md:mx-2">
                 <div class="bg-white p-5 overflow-hidden shadow-sm sm:rounded-lg">
                     <h2>Class Information</h2>
-                    <ul class="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
-                        <li class="flex items-center py-3">
-                            <span>{{ __('Class code') }}</span>
-                            <span class="ml-auto">{{ $courseClass->class_code }}</span>
-                        </li>
-                        <li class="flex items-center py-3">
-                            <span>{{ __('Syllabus') }}</span>
-                            <span class="ml-auto">
+                    <div class="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
+                        <div class="flex justify-between py-3">
+                            <p>{{ __('Class code') }}</p>
+                            <p>{{ $courseClass->class_code }}</p>
+                        </div>
+                        <div class="flex justify-between py-3 text-right">
+                            <p>{{ __('Syllabus') }}</p>
+                            <p>
                                 @if($courseClass->syllabus)
                                     <a href="{{ route('syllabi.show', $courseClass->syllabus) }}" class="text-blue-700 hover:text-blue-600">{{ $courseClass->syllabus->title }}</a>
                                 @else
                                     <span class="text-gray-400">Not set</span>
                                 @endif
-                            </span>
-                        </li>
-                    </ul>
+                            </p>
+                        </div>
+                    </div>
                     @canany(['is-teacher', 'is-admin'])
                     <div class="flex flex-col gap-2 mt-3">
                         <a href="{{ route('classes.members.show', $courseClass) }}" class="w-full bg-white border border-gray-300 rounded-md shadow-sm px-2.5 sm:px-4 py-2 inline-flex justify-center text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">

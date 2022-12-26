@@ -44,14 +44,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Authenticated and Verified
+// All authenticated and verified users
 Route::group(['middleware' => ['auth', 'verified']], function () {
-
     Route::singleton('profile', ProfileController::class)->creatable();
 
+    // All users with profile completed
     Route::group(['middleware' => ['profileCompleted']], function () {
-        Route::get('home', [DashboardController::class, 'index'])->name('dashboard');
-
         // Admin role
         Route::group(['middleware' => ['roles:admin']], function (){
             Route::resource('users', UserController::class);
@@ -86,23 +84,26 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
                 Route::resource('syllabi.assignment-plans.assignment-plan-tasks', AssignmentPlanTasksController::class)->except(['show', 'index']);
                 Route::resource('rubrics.criterias', CriteriaController::class);
                 Route::resource('rubrics.criterias.criteria-levels', CriteriaLevelController::class);
+                Route::resource('classes.assignments', AssignmentController::class);
+
                 Route::singleton('classes.setting', ClassSettingController::class);
                 Route::singleton('classes.members', ClassMemberController::class);
             });
         });
 
-        // Student
+        // Student role
         Route::group(['middleware' => ['roles:student']], function (){
             Route::post('classes/join/process', [CourseClassController::class, 'join'])->name('classes.join');
             Route::get('classes/join',[CourseClassController::class, 'show_join'])->name('classes.show_join');
             Route::get('profile/grade', [ProfileController::class, 'grade'])->name('profile.grade');
         });
 
+        // All roles
+        Route::get('home', [DashboardController::class, 'index'])->name('dashboard');
+        Route::get('syllabi/{syllabus}', [SyllabusController::class, 'show'])->name('syllabi.show');
         Route::resource('classes', CourseClassController::class);
-
-        Route::scopeBindings()->group(function (){
-            Route::resource('classes.assignments', AssignmentController::class);
-        });
+        Route::get('classes/{class}/assignments/{assignment}', [AssignmentController::class, 'show'])
+            ->name('classes.assignments.show')->scopeBindings();
     });
 });
 
