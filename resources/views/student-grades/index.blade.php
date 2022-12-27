@@ -70,7 +70,7 @@
                                     <span class="text-gray-400"> / {{ $maxPoint }}</span>
                                 </div>
                             </td>
-                            <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $maxPoint==0?0:($grade->total_student_point ?? 0)/$maxPoint*100 }}</td>
+                            <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $maxPoint==0?0:round(($grade->total_student_point ?? 0)/$maxPoint*100, 2) }}</td>
                             <td
                                 class="text-gray-600 px-6 py-3 border-t border-gray-100">
                                 <div class="flex flex-wrap space-x-4">

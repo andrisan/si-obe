@@ -33,30 +33,40 @@
                     <input type="hidden" name="user_id" value="{{ $user->id }}">
                     @csrf
 
-                    @foreach($apts as $apt)
-                        <p class="ml-9 my-5 text-lg"><b> {{$apt->criteria->title}} </b> </p>
+                    <div class="border rounded m-5">
+                        @foreach($apts as $apt)
+                            <div class="p-5 {{ !$loop->last ? "border-b": "" }}">
+                                <p class="text-lg font-semibold">{{$apt->criteria->title}}</p>
+                                <p class="text-sm text-gray-500">{{$apt->criteria->description}}</p>
+                                <p class="pt-5 font-bold">Task:</p>
+                                <div class="flex justify-end gap-4 px-5">
+                                    <p>[{{$apt->code}}]</p>
+                                    <p class="text-gray-500">{{ $apt->description }} </p>
+                                </div>
 
-                        <div class="btn-group my-5 justify-center">
-                            @if($apt->criteria->criteriaLevels->isEmpty())
-                                @php($rubric = $assignment->assignmentPlan->rubric)
-                                <div class="border border-gray-300 rounded w-full p-7 text-center text-gray-400 mx-10">
-                                    Please define levels for this criteria <a href="{{ route("rubrics.show", $rubric) }}" class="text-blue-500">here</a>
+                                <div class="btn-group my-5 justify-center">
+                                    @if($apt->criteria->criteriaLevels->isEmpty())
+                                        @php($rubric = $assignment->assignmentPlan->rubric)
+                                        <div class="border border-gray-300 rounded w-full p-7 text-center text-gray-400 mx-10">
+                                            Please define levels for this criteria <a href="{{ route("rubrics.show", $rubric) }}" class="text-blue-500">here</a>
+                                        </div>
+                                    @else
+                                        @foreach($apt->criteria->criteriaLevels as $criteria)
+                                            <div class="card w-44 h-36 bg-base border-2 my-1 rounded-lg mx-1">
+                                                <div class="card-actions pr-5 mt-5 justify-end">
+                                                    <input type="radio" name="criteria_level_id{{ $loop->parent->index }}" value="{{ $criteria->id }}" />
+                                                </div>
+                                                <div class="px-5 py-5">
+                                                    <p> <b> {{ $criteria->point }} </b> </p>
+                                                    <p>{{ $criteria->title }}</p>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    @endif
                                 </div>
-                            @else
-                                @foreach($apt->criteria->criteriaLevels as $criteria)
-                                <div class="card w-44 h-36 bg-base border-2 my-1 rounded-lg mx-1">
-                                    <div class="card-actions pr-5 mt-5 justify-end">
-                                        <input type="radio" name="criteria_level_id{{ $loop->parent->index }}" value="{{ $criteria->id }}" />
-                                    </div>
-                                    <div class="px-5 py-5">
-                                        <p> <b> {{ $criteria->point }} </b> </p>
-                                        <p>{{ $criteria->title }}</p>
-                                    </div>
-                                </div>
-                            @endforeach
-                            @endif
-                        </div>
-                    @endforeach
+                            </div>
+                        @endforeach
+                    </div>
 
                     <div class="mt-4 p-4 space-x-2">
                         <button type="submit" class="btn btn-sm px-7">

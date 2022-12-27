@@ -21,7 +21,7 @@
                             <option disabled selected>Choose the course</option>
                             @foreach ($courses as $course)
                                 <option
-                                    value="{{ $course->id }}" {{ ($syllabus->id == $course->id ? "selected":"") }}>{{ $course->name }}</option>
+                                    value="{{ $course->id }}" {{ (old("course_id", $syllabus->course_id) == $course->id ? "selected":"") }}>{{ $course->name }}</option>
                             @endforeach
                         </select>
                         <x-input-error :messages="$errors->get('course_id')" class="mt-2"/>
