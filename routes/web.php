@@ -87,7 +87,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
                 Route::resource('classes.assignments', AssignmentController::class);
 
                 Route::singleton('classes.setting', ClassSettingController::class);
-                Route::singleton('classes.members', ClassMemberController::class);
+                Route::singleton('classes.members', ClassMemberController::class)->creatable();
             });
         });
 

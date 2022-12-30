@@ -40,7 +40,7 @@
                             <p class="text-lg font-semibold">{{$apt->criteria->title}}</p>
                             <p class="text-sm text-gray-500">{{$apt->criteria->description}}</p>
                             <p class="pt-5 font-bold">Task:</p>
-                            <div class="flex justify-end gap-4 px-5">
+                            <div class="flex justify-start gap-4 px-5">
                                 <p>[{{$apt->code}}]</p>
                                 <p class="text-gray-500">{{ $apt->description }} </p>
                             </div>
