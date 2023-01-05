@@ -118,6 +118,7 @@ class AssignmentController extends Controller
     {
         $assignment = $class->assignments()
             ->with('assignmentPlan.assignmentPlanTasks.criteria.lessonLearningOutcome')
+            ->with('assignmentPlan.assignmentPlanTasks.criteria.criteriaLevels')
             ->findOrFail($assignmentID);
 
         $lessonLearningOutcomes = $assignment->assignmentPlan->assignmentPlanTasks
@@ -125,6 +126,10 @@ class AssignmentController extends Controller
 
         // if role is student, get student's grade
         if (Auth::user()->role == 'student') {
+            if (empty($assignment->assignmentPlan->assignmentPlanTasks)) {
+                abort(500);
+            }
+
             $studentGrades = $assignment->studentGrades()
                 ->where([
                     ['student_user_id', Auth::user()->id],
@@ -135,20 +140,15 @@ class AssignmentController extends Controller
                 ->get();
 
             if ($studentGrades->isNotEmpty()) {
-                $totalCollectedPoint = $studentGrades->sum('criteriaLevel.point');
-                $gradingCriterias = $studentGrades->first()->assignment->assignmentPlan->rubric->criterias;
-                $totalCriteriaPoint = $gradingCriterias->sum('max_point');
+                $assignment->assignmentHasBeenGraded = true;
+                $assignment->totalCollectedPoint = $studentGrades->sum('criteriaLevel.point');
+                $assignmentCriterias = $studentGrades->first()->assignment->assignmentPlan->rubric->criterias;
+                $assignment->totalCriteriaPoint = $assignmentCriterias->sum('max_point');
 
-                foreach($gradingCriterias as $c){
-                    $c->assignmentPlanTask = $studentGrades->filter(function ($studentGrade, $key) use ($c) {
-                        return $studentGrade->assignmentPlanTask->criteria_id == $c->id;
-                    })->first()->assignmentPlanTask;
-                    foreach ($c->criteriaLevels as $cl){
-                        $selectedGrade = $studentGrades->filter(function($grade) use ($cl) {
-                            return $grade->criteria_level_id == $cl->id;
-                        })->first();
-                        $cl->selected = !empty($selectedGrade);
-                    }
+                foreach ($assignment->assignmentPlan->assignmentPlanTasks as $assignmentPlanTask) {
+                    $assignmentPlanTask->criteria->criteriaLevels->each(function ($criteriaLevel) use ($studentGrades) {
+                        $criteriaLevel->isAchieved = $studentGrades->contains('criteria_level_id', $criteriaLevel->id);
+                    });
                 }
             }
         }
@@ -156,12 +156,7 @@ class AssignmentController extends Controller
         return view('assignments.show', [
             'courseClass' => $class,
             'assignment' => $assignment,
-            'lessonLearningOutcomes' => $lessonLearningOutcomes,
-            // for students
-            'studentGrades' => $studentGrades ?? null,
-            'gradingCriterias' => $gradingCriterias ?? null,
-            'totalCollectedPoint' => $totalCollectedPoint ?? 0,
-            'totalCriteriaPoint' => $totalCriteriaPoint ?? 0
+            'lessonLearningOutcomes' => $lessonLearningOutcomes
         ]);
     }
 

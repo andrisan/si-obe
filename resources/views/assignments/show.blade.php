@@ -7,7 +7,7 @@
 <x-app-layout>
     <x-slot name="header">
         <div class="flex flex-row gap-4">
-            <x-back-link />
+            <x-back-link/>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __(' Assignment Detail')}}
             </h2>
@@ -20,7 +20,11 @@
             @if(Session::has('error'))
                 <div class="alert alert-error shadow-lg my-3">
                     <div>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none"
+                             viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
                         <span>{{ Session::get('error') }}</span>
                     </div>
                 </div>
@@ -94,7 +98,8 @@
                         <div class="justify-end flex flex-row gap-4 py-5 px-10">
                             <a href="{{ route('classes.assignments.edit', [$courseClass, $assignment]) }}"
                                class="text-blue-500">Edit</a>
-                            <form method="POST" action="{{ route('classes.assignments.destroy', [$courseClass, $assignment]) }}">
+                            <form method="POST"
+                                  action="{{ route('classes.assignments.destroy', [$courseClass, $assignment]) }}">
                                 @csrf
                                 @method('delete')
 
@@ -107,7 +112,8 @@
 
                         <div class="nilai py-5 px-10">
                             <form method="GET" action="{{ route('student-grades.index', [$assignment]) }}">
-                                <input type="hidden" name="assignment_id" id="assignment_id" value="{{ $assignment->id}}">
+                                <input type="hidden" name="assignment_id" id="assignment_id"
+                                       value="{{ $assignment->id}}">
                                 <button type="submit" class="btn btn-sm px-7">
                                     {{ __('Student Grades') }}
                                 </button>
@@ -117,38 +123,52 @@
                 @endcan
 
                 @can('is-student')
-                    @if ($studentGrades->isNotEmpty())
+                    @if ($assignment->assignmentHasBeenGraded)
+                        <?php
+                        $totalCollectedPoint = $assignment->totalCollectedPoint;
+                        $totalCriteriaPoint = $assignment->totalCriteriaPoint;
+                        ?>
                         <div class="p-5">
                             <div class="flex justify-between">
                                 <h1 class="text-2xl font-semibold pt-5">My Grade</h1>
-                                <div class="border rounded p-5 text-3xl font-bold">
+                                <div class="border rounded p-5 text-3xl font-bold shadow">
                                     {{ round($totalCollectedPoint/$totalCriteriaPoint*100, 2) }}
                                 </div>
                             </div>
-                            <div class="flex justify-between mt-5 py-2">
+                            <div class="flex justify-between mt-5 p-2">
                                 <p class="text-gray-600">Rubric</p>
                                 <p><span class="font-bold">{{ $totalCollectedPoint }}</span>
                                     <span class="font-semibold text-gray-400">/ {{ $totalCriteriaPoint }}</span></p>
                             </div>
                             <div class="border rounded">
-                                @foreach($gradingCriterias as $c)
-                                    <div class="p-5 {{ !$loop->last ? "border-b": "" }}">
-                                        <p class="font-semibold text-gray-500">Grade for [{{ $c->assignmentPlanTask->code ?? "-" }}] task</p>
-                                        <p class="text-xl font-semibold">{{ $c->title }}</p>
-                                        <div class="pb-5">{{ $c->description }}</div>
-                                        <div class="grid gap-2 grid-cols-5">
-                                            @foreach($c->criteriaLevels as $cl)
-                                                @php($bgLevel = $cl->selected ? 'bg-emerald-100 shadow' : 'bg-gray-200')
+                                @foreach($assigmentTasks as $assignmentTask)
+                                    @php($taskCriteria = $assignmentTask->criteria)
+                                    <div class="flex justify-start">
+                                        <div class="m-2 bg-white w-10 h-10 rounded-lg shadow text-center items-center">
+                                            <span class="w-full h-full flex justify-center items-center text-2xl text-gray-600">{{ $loop->index + 1 }}</span>
+                                        </div>
+                                        <div class="font-semibold text-gray-500 px-2">
+                                            <span class="w-full h-full flex items-center">
+                                                [{{ $assignmentTask->code ?? "-" }}] {{ $assignmentTask->description }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="px-8 py-5 {{ !$loop->last ? "border-b": "" }}">
+                                        <p class="text-xl font-semibold">{{ $taskCriteria->title }}</p>
+                                        <div class="pb-5">{{ $taskCriteria->description }}</div>
+                                        <div class="grid gap-2 grid-cols-2 md:grid-cols-5">
+                                            @foreach($taskCriteria->criteriaLevels as $cl)
+                                                @php($bgLevel = $cl->isAchieved ? 'bg-emerald-100 shadow' : 'bg-gray-200')
                                                 <div class="border {{ $bgLevel }} rounded p-2">
                                                     <div class="flex justify-between">
                                                         <p class="p-1">{{ $cl->title }}</p>
-                                                        <div class="p-1">
-                                                            <p>{{ $cl->point }}</p>
-                                                            @if($cl->selected)
-                                                                <p><i class="fa-solid fa-circle-check text-emerald-800"></i></p>
-                                                            @endif
-                                                        </div>
+                                                        <p class="p-1">{{ $cl->point }}</p>
                                                     </div>
+                                                    @if($cl->isAchieved)
+                                                        <p class="text-center">
+                                                            <i class="fa-solid fa-circle-check text-emerald-800"></i>
+                                                        </p>
+                                                    @endif
                                                 </div>
                                             @endforeach
                                         </div>

@@ -86,7 +86,7 @@ use Carbon\Carbon;
             <!-- Right Side -->
             <div class="w-full md:w-9/12 mx-2 h-full overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="flex w-full grid-flow-row grid-cols-12 items-start gap-4">
-                    <div class="bg-base-100 rounded-box col-span-3 row-span-3 mx-2 flex w-72 flex-shrink-0 flex-col justify-center gap-4 p-4 shadow-xl xl:mx-0 xl:w-full">
+                    <div class="bg-base-100 rounded-box mx-2 flex w-full flex-col justify-center gap-4 p-4 shadow-xl">
                         <div class="flex flex-row justify-between mb-3 px-4 sm:px-0 -mr-2 sm:-mr-3">
                             <h2 class="text-xl font-extrabold py-2">
                                 {{ __('Assignments') }}
