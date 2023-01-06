@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -9,8 +10,6 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Models\Criteria;
 use App\Models\Rubric;
-use App\Models\LessonLearningOutcome;
-use Illuminate\Http\Response;
 
 class CriteriaController extends Controller
 {
@@ -24,24 +23,30 @@ class CriteriaController extends Controller
         abort(404);
     }
 
+    public function show()
+    {
+        abort(404);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
      * @return Application|Factory|View
+     * @throws AuthorizationException
      */
-    public function create($rubric_id)
+    public function create(Rubric $rubric)
     {
-        $rubric = Rubric::with('assignmentPlan.syllabus.lessonLearningOutcomes')->findOrFail($rubric_id);
+        $this->authorize('create', [Criteria::class, $rubric]);
 
-        $assignmentPlan = $rubric->assignmentPlan;
-        if (empty($assignmentPlan)) {
+        $rubric->load('assignmentPlan.syllabus.lessonLearningOutcomes');
+
+        if (empty($rubric->assignmentPlan)) {
             abort(404);
         }
-        $llos = $assignmentPlan->syllabus->lessonLearningOutcomes;
 
         return view('criteria.create', [
             'rubric' => $rubric,
-            'llos' => $llos
+            'llos' => $rubric->assignmentPlan->syllabus->lessonLearningOutcomes
         ]);
     }
 
@@ -51,9 +56,12 @@ class CriteriaController extends Controller
      * @param Request $request
      * @param Rubric $rubric
      * @return RedirectResponse
+     * @throws AuthorizationException
      */
     public function store(Request $request, Rubric $rubric)
     {
+        $this->authorize('create', [Criteria::class, $rubric]);
+
         $validated = $request->validate([
             'title' => 'required|string',
             'llo' => 'required|numeric',
@@ -70,35 +78,24 @@ class CriteriaController extends Controller
         return redirect()->route('rubrics.show', $rubric);
     }
 
-
-    /**
-     * Display the specified resource.
-     *
-     * @param Rubric $rubric
-     * @return RedirectResponse
-     */
-    public function show(Rubric $rubric)
-    {
-        return redirect()->route('rubrics.show', $rubric);
-    }
-
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $rubric_id
+     * @param Rubric $rubric
      * @param Criteria $criteria
      * @return Application|Factory|View
+     * @throws AuthorizationException
      */
-    public function edit(int $rubric_id, Criteria $criteria)
+    public function edit(Rubric $rubric, Criteria $criteria)
     {
-        $rubric = Rubric::with('assignmentPlan.syllabus.lessonLearningOutcomes')->findOrFail($rubric_id);
+        $this->authorize('update', $criteria);
 
-        $llos = $rubric->assignmentPlan->syllabus->lessonLearningOutcomes;
+        $rubric->load('assignmentPlan.syllabus.lessonLearningOutcomes');
 
         return view('criteria.edit', [
             'rubric' => $rubric,
             'criteria' => $criteria,
-            'llos' => $llos
+            'llos' => $rubric->assignmentPlan->syllabus->lessonLearningOutcomes
         ]);
     }
 
@@ -109,9 +106,12 @@ class CriteriaController extends Controller
      * @param Rubric $rubric
      * @param Criteria $criteria
      * @return RedirectResponse
+     * @throws AuthorizationException
      */
     public function update(Request $request, Rubric $rubric, Criteria $criteria)
     {
+        $this->authorize('update', $criteria);
+
         $validated = $request->validate([
             'title' => 'required|string',
             'description' => 'nullable|string',
@@ -133,9 +133,12 @@ class CriteriaController extends Controller
      * @param Rubric $rubric
      * @param Criteria $criteria
      * @return RedirectResponse
+     * @throws AuthorizationException
      */
     public function destroy(Rubric $rubric, Criteria $criteria)
     {
+        $this->authorize('delete', $criteria);
+
         $criteria->delete();
         return back();
     }

@@ -76,12 +76,12 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
             Route::get('class-portofolio/{courseClass}/students', [ClassPortofolioController::class, 'student'])->name('class-portofolio.student');
 
             Route::scopeBindings()->group(function () {
-                Route::resource('syllabi.ilos', IntendedLearningOutcomeController::class)->except(['show', 'index']);
-                Route::resource('syllabi.clos', CourseLearningOutcomeController::class)->except(['show', 'index']);
-                Route::resource('syllabi.llos', LessonLearningOutcomeController::class)->except(['show', 'index']);
+                Route::resource('syllabi.ilos', IntendedLearningOutcomeController::class);
+                Route::resource('syllabi.clos', CourseLearningOutcomeController::class);
+                Route::resource('syllabi.llos', LessonLearningOutcomeController::class);
                 Route::resource('syllabi.learning-plans', LearningPlanController::class);
-                Route::resource('syllabi.assignment-plans', AssignmentPlanController::class)->except(['show', 'index']);
-                Route::resource('syllabi.assignment-plans.assignment-plan-tasks', AssignmentPlanTasksController::class)->except(['show', 'index']);
+                Route::resource('syllabi.assignment-plans', AssignmentPlanController::class);
+                Route::resource('syllabi.assignment-plans.assignment-plan-tasks', AssignmentPlanTasksController::class);
                 Route::resource('rubrics.criterias', CriteriaController::class);
                 Route::resource('rubrics.criterias.criteria-levels', CriteriaLevelController::class);
                 Route::resource('classes.assignments', AssignmentController::class);

@@ -22,7 +22,9 @@
                         <select class="select select-bordered w-full max-w-xs" name="llo_id">
                             <option disabled selected>Choose the LLO</option>
                             @foreach ($llos as $llo)
-                                <option value="{{ $llo->id }}" {{ (old("llo_id", $learningPlan->llo_id) == $llo->id ? "selected":"") }}>{{ $llo->description }}</option>
+                                <option value="{{ $llo->id }}" {{ (old("llo_id", $learningPlan->llo_id) == $llo->id ? "selected":"") }}>
+                                    [{{ $llo->code }}] {{ $llo->description }}
+                                </option>
                             @endforeach
                         </select>
                         <x-input-error :messages="$errors->get('llo_id')" class="mt-2"/>

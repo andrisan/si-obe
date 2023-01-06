@@ -1,89 +1,36 @@
-<title>Edit Rubrics</title>
+@section('pageTitle', 'Edit Rubric - ' . $rubric->title)
 <x-app-layout>
     <x-slot name="header">
-        <div>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight text-4xl">
-                Edit Rubric : {{ $rubric->title }}
+        <div class="flex flex-row gap-4">
+            <x-back-link/>
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                {{ __('Edit Rubric') }}: {{ $rubric->title }}
             </h2>
         </div>
-
     </x-slot>
+    <div class="max-w-7xl mx-auto mt-10 sm:px-6 lg:px-8">
+        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="p-6 bg-white border-b border-gray-200">
+                <form method="POST" action="{{ route('rubrics.update', $rubric) }}">
+                    @csrf
+                    @method('patch')
 
-    <div class="py-5">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-10 bg-white rounded-md border-2">
-                    <div class="">
-                        <h1 class=" text-black text-3xl">
-                            Masukkan Judul Baru
-                            <form action="{{ route('rubrics.update', $rubric) }}" method="POST">
-                                @csrf
-                                @method('patch')
-                                <input placeholder="{{ $rubric->title }}" name="title" type="text" class="w-full rounded-md mt-2 bg-[#f8f8f8]" value="{{ old('title', $rubric->title)  }}">
-                                <x-input-error :messages="$errors->get('title')" class="mt-2" />
-                        </h1>
+                    <div class="form-control w-full p-3">
+                        <label class="label">
+                            <span class="label-text">Rubric Title</span>
+                        </label>
+                        <input type="text" name="title" placeholder="Rubric Title"
+                               class="input input-bordered w-full max-w-xs" value="{{ old('title', $rubric->title) }}"/>
+                        <x-input-error :messages="$errors->get('title')" class="mt-2"/>
                     </div>
 
-                    {{-- <div>
-                        <div class="flex mt-2 space-x-11">
-                            <div class="block pb-5 space-y-3 rounded-md border-2 border-black">
-                                <div class="px-3 py-1 mt-5">
-                                    <h1>Point</h1>
-                                    <input class="w-80 bg-[#E5E5E5] rounded-md" type="text" placeholder="">
-                                </div>
-                                <div class="px-3 py-1 mt-5">
-                                    <h1>Level</h1>
-                                    <input class="w-80 bg-[#E5E5E5] rounded-md" type="text" placeholder="">
-                                </div>
-                                <div class="px-3 py-1 mt-5">
-                                    <h1>Description</h1>
-                                    <input class="w-80 bg-[#E5E5E5] rounded-md" type="text" placeholder="">
-                                </div>
-
-
-                            </div>
-                            <div class="block pb-5 space-y-3 rounded-md border-2 border-black">
-                                <div class="px-3 py-1 mt-5">
-                                    <h1>Point</h1>
-                                    <input class="w-80 bg-[#E5E5E5] rounded-md" type="text" placeholder="">
-                                </div>
-                                <div class="px-3 py-1 mt-5">
-                                    <h1>Level</h1>
-                                    <input class="w-80 bg-[#E5E5E5] rounded-md" type="text" placeholder="">
-                                </div>
-                                <div class="px-3 py-1 mt-5">
-                                    <h1>Description</h1>
-                                    <input class="w-80 bg-[#E5E5E5] rounded-md" type="text" placeholder="">
-                                </div>
-
-
-                            </div>
-                            <div class="block pb-5 space-y-3 rounded-md border-2 border-black">
-                                <div class="px-3 py-1 mt-5">
-                                    <h1>Point</h1>
-                                    <input class="w-80 bg-[#E5E5E5] rounded-md" type="text" placeholder="">
-                                </div>
-                                <div class="px-3 py-1 mt-5">
-                                    <h1>Level</h1>
-                                    <input class="w-80 bg-[#E5E5E5] rounded-md" type="text" placeholder="">
-                                </div>
-                                <div class="px-3 py-1 mt-5">
-                                    <h1>Description</h1>
-                                    <input class="w-80 bg-[#E5E5E5] rounded-md" type="text" placeholder="">
-                                </div>
-
-
-                            </div>
-                        </div>
-                    </div>--}}
-                    <div>
-                        <div class="flex">
-                            <button class="btn btn-outline mt-2 hover:bg-slate-50 hover:text-black"><a href="{{ route('rubrics.index') }}">Cancel</a></button>
-                            <input type="submit" value="Simpan" class="btn btn-primary mt-2 ml-3"></div>
-                        </form>
+                    <div class="mt-4 p-4 space-x-2">
+                        <button type="submit" class="btn btn-sm px-7">
+                            Save
+                        </button>
+                        <x-back-link>Cancel</x-back-link>
                     </div>
-
-                </div>
+                </form>
             </div>
         </div>
     </div>

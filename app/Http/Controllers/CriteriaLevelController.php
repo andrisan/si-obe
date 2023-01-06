@@ -23,6 +23,11 @@ class CriteriaLevelController extends Controller
         abort(404);
     }
 
+    public function show()
+    {
+        abort(404);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -30,6 +35,8 @@ class CriteriaLevelController extends Controller
      */
     public function create(Rubric $rubric, Criteria $criteria)
     {
+        $this->authorize('create', [CriteriaLevel::class, $rubric]);
+
         return view('criteria-levels.create', [
             'rubric' => $rubric,
             'criteria' => $criteria,
@@ -44,6 +51,8 @@ class CriteriaLevelController extends Controller
      */
     public function store(Request $request, Rubric $rubric, Criteria $criteria)
     {
+        $this->authorize('create', [CriteriaLevel::class, $rubric]);
+
         $validated = $request->validate([
             'point' => 'required|numeric',
             'title' => 'required|string',
@@ -63,17 +72,6 @@ class CriteriaLevelController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param Rubric $rubric
-     * @return RedirectResponse
-     */
-    public function show(Rubric $rubric)
-    {
-        return redirect()->route('rubrics.show', $rubric);
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param Rubric $rubric
@@ -83,6 +81,8 @@ class CriteriaLevelController extends Controller
      */
     public function edit(Rubric $rubric, Criteria $criteria, CriteriaLevel $criteriaLevel)
     {
+        $this->authorize('update', $criteriaLevel);
+
         return view('criteria-levels.edit', [
             'rubric' => $rubric,
             'criteria' => $criteria,
@@ -101,6 +101,8 @@ class CriteriaLevelController extends Controller
      */
     public function update(Request $request, Rubric $rubric, Criteria $criteria, CriteriaLevel $criteriaLevel): RedirectResponse
     {
+        $this->authorize('update', $criteriaLevel);
+
         $validated = $request->validate([
             'point' => 'required|numeric',
             'title' => 'required|string',
@@ -129,6 +131,8 @@ class CriteriaLevelController extends Controller
      */
     public function destroy(Rubric $rubric, Criteria $criteria, CriteriaLevel $criteriaLevel)
     {
+        $this->authorize('delete', $criteriaLevel);
+
         $criteriaLevel->delete();
         return back();
     }

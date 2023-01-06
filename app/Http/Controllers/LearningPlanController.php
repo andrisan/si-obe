@@ -20,6 +20,8 @@ class LearningPlanController extends Controller
      */
     public function index(Syllabus $syllabus)
     {
+        $this->authorize('viewAny', [LearningPlan::class, $syllabus]);
+
         return view('learning-plans.index', [
             'syllabus' => $syllabus,
             'learningPlans' => $syllabus->learningPlans()->paginate(10)
@@ -33,10 +35,11 @@ class LearningPlanController extends Controller
      */
     public function create(Syllabus $syllabus)
     {
-        $llos = LessonLearningOutcome::all();
+        $this->authorize('create', [LearningPlan::class, $syllabus]);
+
         return view('learning-plans.create', [
             'syllabus' => $syllabus,
-            'llos' => $llos
+            'llos' => $syllabus->lessonLearningOutcomes()->get()
         ]);
     }
 
@@ -72,10 +75,12 @@ class LearningPlanController extends Controller
      */
     public function edit(Syllabus $syllabus, LearningPlan $learningPlan)
     {
+        $this->authorize('update', $learningPlan);
+
         return view('learning-plans.edit', [
             'syllabus' => $syllabus,
             'learningPlan' => $learningPlan,
-            'llos' => LessonLearningOutcome::all()
+            'llos' => $syllabus->lessonLearningOutcomes()->get()
         ]);
     }
 
@@ -89,6 +94,8 @@ class LearningPlanController extends Controller
      */
     public function update(Request $request, Syllabus $syllabus, LearningPlan $learningPlan)
     {
+        $this->authorize('update', $learningPlan);
+
         $validated = $request->validate([
             'llo_id' => 'required|numeric',
             'week_number' => 'required|integer',
@@ -113,6 +120,8 @@ class LearningPlanController extends Controller
      */
     public function destroy(Syllabus $syllabus, LearningPlan $learningPlan)
     {
+        $this->authorize('delete', $learningPlan);
+
         $learningPlan->delete();
         return back();
     }

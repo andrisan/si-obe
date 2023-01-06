@@ -8,15 +8,25 @@ use App\Models\IntendedLearningOutcome;
 use App\Models\LessonLearningOutcome;
 use App\Models\StudyProgram;
 use App\Models\Syllabus;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
 class SyllabusController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Syllabus::class, 'syllabus');
+    }
+
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Application|Factory|View
      */
     public function index()
     {
@@ -29,7 +39,7 @@ class SyllabusController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Application|Factory|View
      */
     public function create()
     {
@@ -43,7 +53,7 @@ class SyllabusController extends Controller
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function store(Request $request)
     {
@@ -68,13 +78,13 @@ class SyllabusController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\Models\Syllabus $syllabus
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @param Syllabus $syllabus
+     * @return Application|Factory|View
      */
-    public function show($id)
+    public function show(Syllabus $syllabus)
     {
         // get syllabus with course, ilos, llos, and clos
-        $syllabus = Syllabus::with(
+        $syllabus->load(
             'course', 'learningPlans',
             'assignmentPlans',
             'assignmentPlans.rubric',
@@ -84,25 +94,16 @@ class SyllabusController extends Controller
             'learningPlans.lessonLearningOutcome',
             'intendedLearningOutcomes',
             'courseLearningOutcomes',
-            'lessonLearningOutcomes')
-            ->findOrFail($id);
+            'lessonLearningOutcomes');
 
-        return view('syllabi.show', [
-                'syllabus' => $syllabus,
-                'ilos' => $syllabus->intendedLearningOutcomes()->orderBy('position')->get(),
-                'clos' => $syllabus->courseLearningOutcomes()->orderBy('position')->get(),
-                'llos' => $syllabus->lessonLearningOutcomes()->orderBy('position')->get(),
-                'learningPlans' => $syllabus->learningPlans,
-                'assignmentPlans' => $syllabus->assignmentPlans
-            ]
-        );
+        return view('syllabi.show', compact('syllabus'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param \App\Models\Syllabus $syllabus
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @param Syllabus $syllabus
+     * @return Application|Factory|View
      */
     public function edit(Syllabus $syllabus)
     {
@@ -117,8 +118,8 @@ class SyllabusController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Syllabus $syllabus
-     * @return \Illuminate\Http\RedirectResponse
+     * @param Syllabus $syllabus
+     * @return RedirectResponse
      */
     public function update(Request $request, Syllabus $syllabus)
     {
@@ -136,8 +137,8 @@ class SyllabusController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Models\Syllabus $syllabus
-     * @return \Illuminate\Http\Response
+     * @param Syllabus $syllabus
+     * @return Response
      */
     public function destroy(Syllabus $syllabus)
     {

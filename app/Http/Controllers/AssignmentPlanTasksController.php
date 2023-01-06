@@ -10,10 +10,19 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
 class AssignmentPlanTasksController extends Controller
 {
+    public function index()
+    {
+        abort(404);
+    }
+
+    public function show()
+    {
+        abort(404);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -21,6 +30,8 @@ class AssignmentPlanTasksController extends Controller
      */
     public function create(Syllabus $syllabus, AssignmentPlan $assignmentPlan)
     {
+        $this->authorize('create', [AssignmentPlanTask::class, $assignmentPlan]);
+
         return view('assignment-plan-tasks.create', [
             'syllabus' => $syllabus,
             'assignmentPlan' => $assignmentPlan,
@@ -38,6 +49,8 @@ class AssignmentPlanTasksController extends Controller
      */
     public function store(Request $request, Syllabus $syllabus, AssignmentPlan $assignmentPlan)
     {
+        $this->authorize('create', [AssignmentPlanTask::class, $assignmentPlan]);
+
         $validated = $request->validate([
             'code' => 'nullable|string|max:255',
             'criteria_id' => 'nullable|exists:criterias,id',
@@ -59,6 +72,8 @@ class AssignmentPlanTasksController extends Controller
      */
     public function edit(Syllabus $syllabus, AssignmentPlan $assignmentPlan, AssignmentPlanTask $assignmentPlanTask)
     {
+        $this->authorize('update', $assignmentPlanTask);
+
         return view('assignment-plan-tasks.edit', [
             'syllabus' => $syllabus,
             'assignmentPlan' => $assignmentPlan,
@@ -78,6 +93,8 @@ class AssignmentPlanTasksController extends Controller
      */
     public function update(Request $request, Syllabus $syllabus, AssignmentPlan $assignmentPlan, AssignmentPlanTask $assignmentPlanTask)
     {
+        $this->authorize('update', $assignmentPlanTask);
+
         $validated = $request->validate([
             'code' => 'nullable|string|max:255',
             'criteria_id' => 'nullable|exists:criterias,id',
@@ -99,6 +116,8 @@ class AssignmentPlanTasksController extends Controller
      */
     public function destroy(Syllabus $syllabus, AssignmentPlan $assignmentPlan, AssignmentPlanTask $assignmentPlanTask)
     {
+        $this->authorize('delete', $assignmentPlanTask);
+
         $assignmentPlanTask->delete();
         return back();
     }

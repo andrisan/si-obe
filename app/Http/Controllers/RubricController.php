@@ -22,6 +22,8 @@ class RubricController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', Rubric::class);
+
         $rubrics = Rubric::with(['assignmentPlan' => function($query) {
                 $query->with(['syllabus' => function($query) {
                     $query->where('creator_user_id', Auth::id());
@@ -45,13 +47,15 @@ class RubricController extends Controller
         $assignmentPlanId = $request->query('assignment_plan');
         if (empty($assignmentPlanId)) { return back(); }
 
+        $assignmentPlan = AssignmentPlan::with('syllabus')->findOrFail($assignmentPlanId);
+
+        $this->authorize('create', [Rubric::class, $assignmentPlan->syllabus]);
+
         // is rubric already created?
         $rubric = Rubric::where('assignment_plan_id', $assignmentPlanId)->first();
         if (!empty($rubric)) {
             return redirect()->route('rubrics.edit', $rubric);
         }
-
-        $assignmentPlan = AssignmentPlan::with('syllabus')->findOrFail($assignmentPlanId);
 
         return view('rubrics.create', [
             'assignmentPlan' => $assignmentPlan,
@@ -72,6 +76,11 @@ class RubricController extends Controller
             'assignment_plan_id' => 'required|integer',
         ]);
 
+        $assignmentPlan = AssignmentPlan::with('syllabus')->find($validated['assignment_plan_id']);
+        if(empty($assignmentPlan)) { return back(); }
+
+        $this->authorize('create', [Rubric::class, $assignmentPlan->syllabus]);
+
         $rubric = new Rubric();
         $rubric->title = $validated['title'];
         $rubric->assignment_plan_id = $validated['assignment_plan_id'];
@@ -88,6 +97,8 @@ class RubricController extends Controller
      */
     public function show(Rubric $rubric)
     {
+        $this->authorize('view', $rubric);
+
         return view('rubrics.show', [
             'rubric' => $rubric,
             'assignmentPlan' => $rubric->assignmentPlan,
@@ -103,6 +114,8 @@ class RubricController extends Controller
      */
     public function edit(Rubric $rubric)
     {
+        $this->authorize('update', $rubric);
+
         return view('rubrics.edit', [
             'rubric' => $rubric
         ]);
@@ -117,6 +130,8 @@ class RubricController extends Controller
      */
     public function update(Request $request, Rubric $rubric)
     {
+        $this->authorize('update', $rubric);
+
         $validated = $request->validate([
             'title' => 'required|string',
         ]);
@@ -125,7 +140,7 @@ class RubricController extends Controller
             'title' => $validated['title']
         ]);
 
-        return redirect()->route("rubrics.index");
+        return redirect()->route("rubrics.show", $rubric);
     }
 
     /**
@@ -136,6 +151,8 @@ class RubricController extends Controller
      */
     public function destroy(Rubric $rubric)
     {
+        $this->authorize('delete', $rubric);
+
         $criterias = $rubric->criterias;
         foreach ($criterias as $criteria) {
 

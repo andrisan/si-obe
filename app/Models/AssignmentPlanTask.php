@@ -26,4 +26,9 @@ class AssignmentPlanTask extends Model
     {
         return $this->hasMany(GradingPlan::class);
     }
+
+    public function assignmentPlan()
+    {
+        return $this->belongsTo(AssignmentPlan::class);
+    }
 }

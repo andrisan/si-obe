@@ -13,6 +13,16 @@ use App\Models\AssignmentPlan;
 
 class AssignmentPlanController extends Controller
 {
+    public function index()
+    {
+        abort(404);
+    }
+
+    public function show()
+    {
+        abort(404);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -20,6 +30,8 @@ class AssignmentPlanController extends Controller
      */
     public function create(Syllabus $syllabus)
     {
+        $this->authorize('create', [AssignmentPlan::class, $syllabus]);
+
         return view('assignment-plans.create', [
             'syllabus' => $syllabus
         ]);
@@ -34,6 +46,8 @@ class AssignmentPlanController extends Controller
      */
     public function store(Request $request, Syllabus $syllabus)
     {
+        $this->authorize('create', [AssignmentPlan::class, $syllabus]);
+
         $validated = $request->validate([
             'title' => 'required|string',
             'description' => 'required|string',
@@ -53,21 +67,6 @@ class AssignmentPlanController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param Syllabus $syllabus
-     * @param AssignmentPlan $assignmentPlan
-     * @return Application|Factory|View
-     */
-    public function show(Syllabus $syllabus, AssignmentPlan $assignmentPlan)
-    {
-        return view('assignment-plans.show', [
-            'syllabus' => $syllabus,
-            'assignmentPlan' => $assignmentPlan
-        ]);
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param Syllabus $syllabus
@@ -76,6 +75,8 @@ class AssignmentPlanController extends Controller
      */
     public function edit(Syllabus $syllabus, AssignmentPlan $assignmentPlan)
     {
+        $this->authorize('update', $assignmentPlan);
+
         return view('assignment-plans.edit', [
             'syllabus' => $syllabus,
             'assignmentPlan' => $assignmentPlan
@@ -92,6 +93,8 @@ class AssignmentPlanController extends Controller
      */
     public function update(Request $request, Syllabus $syllabus, AssignmentPlan $assignmentPlan)
     {
+        $this->authorize('update', $assignmentPlan);
+
         $validated = $request->validate([
             'title' => 'required|string',
             'description' => 'required|string',
@@ -118,6 +121,8 @@ class AssignmentPlanController extends Controller
      */
     public function destroy(Syllabus $syllabus, AssignmentPlan $assignmentPlan)
     {
+        $this->authorize('delete', $assignmentPlan);
+
         $assignmentPlan->delete();
         return back();
     }

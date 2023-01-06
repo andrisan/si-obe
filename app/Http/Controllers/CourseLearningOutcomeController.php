@@ -13,6 +13,16 @@ use Illuminate\Http\Request;
 
 class CourseLearningOutcomeController extends Controller
 {
+    public function index()
+    {
+        abort(404);
+    }
+
+    public function show()
+    {
+        abort(404);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -21,6 +31,8 @@ class CourseLearningOutcomeController extends Controller
      */
     public function create(Syllabus $syllabus)
     {
+        $this->authorize('create', [CourseLearningOutcome::class, $syllabus]);
+
         return view('course-learning-outcomes.create', [
             'syllabus' => $syllabus,
             'ilos' => IntendedLearningOutcome::where('syllabus_id', $syllabus->id)->get(),
@@ -36,6 +48,8 @@ class CourseLearningOutcomeController extends Controller
      */
     public function store(Request $request, Syllabus $syllabus)
     {
+        $this->authorize('create', [CourseLearningOutcome::class, $syllabus]);
+
         $validated = $request->validate([
             'code' => 'nullable|string|max:255',
             'ilo_id' => 'nullable|exists:intended_learning_outcomes,id',
@@ -58,6 +72,8 @@ class CourseLearningOutcomeController extends Controller
      */
     public function edit(Syllabus $syllabus, CourseLearningOutcome $clo)
     {
+        $this->authorize('update', $clo);
+
         return view('course-learning-outcomes.edit', [
             'syllabus' => $syllabus,
             'clo' => $clo,
@@ -75,6 +91,8 @@ class CourseLearningOutcomeController extends Controller
      */
     public function update(Request $request, Syllabus $syllabus, CourseLearningOutcome $clo): RedirectResponse
     {
+        $this->authorize('update', $clo);
+
         $validated = $request->validate([
             'ilo_id' => 'nullable|exists:intended_learning_outcomes,id',
             'code' => 'nullable|string|max:255',
@@ -96,6 +114,8 @@ class CourseLearningOutcomeController extends Controller
      */
     public function destroy(Syllabus $syllabus, CourseLearningOutcome $clo)
     {
+        $this->authorize('delete', $clo);
+
         $clo->delete();
         return back();
     }

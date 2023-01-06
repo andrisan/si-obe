@@ -1,4 +1,13 @@
-@php use Illuminate\Support\Facades\Gate; @endphp
+<?php
+use Illuminate\Support\Facades\Gate;
+
+$ilos = $syllabus->intendedLearningOutcomes()->orderBy('position')->get();
+$clos = $syllabus->courseLearningOutcomes()->orderBy('position')->get();
+$llos = $syllabus->lessonLearningOutcomes()->orderBy('position')->get();
+$learningPlans = $syllabus->learningPlans;
+$assignmentPlans = $syllabus->assignmentPlans;
+?>
+
 @section('pageTitle', $syllabus->title)
 
 <x-app-layout>
@@ -15,7 +24,7 @@
         {!! Gate::allows('is-teacher') || Gate::allows('is-admin') ? Breadcrumbs::render('syllabi.show', $syllabus): "<br/>";  !!}
         <div class="flex flex-row justify-between mb-3 sm:px-0 -mr-2 sm:-mr-3">
             <h2 class="text-xl font-extrabold px-2 py-1">
-                Basic Syllabus Information
+                Basic Information
             </h2>
             @canany(['is-teacher','is-admin'])
                 <div class="order-5 sm:order-6 mr-2 sm:mr-3">
@@ -31,21 +40,58 @@
                 <div class="bg-white p-4 shadow-sm rounded-sm">
                     <div class="p-4">
                         <div class="text-base-content">
-                            <div class="grid grid-cols-2">
-                                <div class="px-4 py-2 font-semibold">Title</div>
-                                <div class="px-4 py-2">: {{ $syllabus->title }}</div>
+                            <h2 class="text-xl font-bold text-gray-500 px-2 py-2">
+                                Syllabus Information
+                            </h2>
+                            @php
+                                $syllabusBasicInfo = [
+                                    'Title' => $syllabus->title,
+                                    'Author' => $syllabus->author,
+                                    'Head of Study Program' => $syllabus->head_of_study_program,
+                                ];
+                            @endphp
+                            <div class="px-2">
+                                <table class="table-auto w-full">
+                                    <tbody>
+                                    @foreach($syllabusBasicInfo as $key => $value)
+                                        <tr>
+                                            <td class="px-4 py-2 font-semibold w-64 align-top">{{ $key }}</td>
+                                            <td class="px-4 py-2 w-8 align-top">:</td>
+                                            <td class="px-4 py-2">{{ $value }}</td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
                             </div>
-                            <div class="grid grid-cols-2">
-                                <div class="px-4 py-2 font-semibold">Course Name</div>
-                                <div class="px-4 py-2">: {{ $syllabus->course->name }}</div>
-                            </div>
-                            <div class="grid grid-cols-2">
-                                <div class="px-4 py-2 font-semibold">Author</div>
-                                <div class="px-4 py-2">: {{ $syllabus->author }}</div>
-                            </div>
-                            <div class="grid grid-cols-2">
-                                <div class="px-4 py-2 font-semibold">Head of Study Program</div>
-                                <div class="px-4 py-2">: {{ $syllabus->head_of_study_program }}</div>
+                            <h2 class="text-xl font-bold text-gray-500 px-2 py-2 mt-5">
+                                Course Information
+                            </h2>
+                            @php
+                            $course = $syllabus->course;
+                            $courseInfo = [
+                                'Course Code' => $course->code,
+                                'Course Name' => $course->name,
+                                'Course Type' => ucfirst($course->type),
+                                'Description' => $course->short_description,
+                                'Course Credit' => $course->course_credit,
+                                'Practicum Credit' => $course->lab_credit,
+                                'Minimal Requirement' => $course->minimal_requirement,
+                                'Study Material Summary' => $course->study_material_summary,
+                                'Learning Media' => $course->learning_media,
+                            ];
+                            @endphp
+                            <div class="px-2">
+                                <table class="table-auto w-full">
+                                    <tbody>
+                                    @foreach($courseInfo as $key => $value)
+                                        <tr>
+                                            <td class="px-4 py-2 font-semibold w-64 align-top">{{ $key }}</td>
+                                            <td class="px-4 py-2 w-8 align-top">:</td>
+                                            <td class="px-4 py-2">{{ $value }}</td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -75,7 +121,7 @@
                                 <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-6">
                                     No
                                 </th>
-                                <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate">
+                                <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-32">
                                     Code
                                 </th>
                                 <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate">
@@ -150,7 +196,7 @@
                                 <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-6">
                                     No
                                 </th>
-                                <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate">
+                                <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-32">
                                     Code
                                 </th>
                                 <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate">
@@ -226,7 +272,7 @@
                                 <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-6">
                                     No
                                 </th>
-                                <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate">
+                                <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-32">
                                     Code
                                 </th>
                                 <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate">
@@ -400,14 +446,7 @@
                                             <tr>
                                                 <td class="text-gray-600 px-6 py-3 border-t border-gray-100">LLO</td>
                                                     <?php
-                                                    $assignmentPlanLearningOutcomes = [];
-                                                    foreach ($assignmentPlan->assignmentPlanTasks as $assignmentPlanTask) {
-                                                        if (empty($assignmentPlanTask->criteria)) {
-                                                            continue;
-                                                        }
-                                                        $assignmentPlanLearningOutcomes[] = $assignmentPlanTask->criteria->lessonLearningOutcome;
-                                                    }
-                                                    $assignmentPlanLearningOutcomes = collect($assignmentPlanLearningOutcomes);
+                                                    $assignmentPlanLearningOutcomes = $assignmentPlan->assignmentPlanTasks->pluck('criteria')->pluck('lessonLearningOutcome')->unique()
                                                     ?>
                                                 <td class="text-gray-600 px-6 py-3 border-t border-gray-100">
                                                     @if($assignmentPlanLearningOutcomes->count() > 0)

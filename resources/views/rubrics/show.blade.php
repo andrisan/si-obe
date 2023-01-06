@@ -4,7 +4,9 @@
         <div class="flex justify-between">
             <div class="items-start">
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                    {{ $rubric->title }}
+                    {{ $rubric->title }} <a href="{{ route('rubrics.edit', $rubric) }}" class="ml-2 text-sm">
+                        <i class="fa fa-edit text-blue-500"></i>
+                    </a>
                 </h2>
             </div>
         </div>

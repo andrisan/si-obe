@@ -18,15 +18,16 @@ class IntendedLearningOutcomeController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param Syllabus $syllabus
      * @return Application|Factory|View
      */
-    public function index(Syllabus $syllabus)
+    public function index()
     {
-        return view('intended-learning-outcomes.index', [
-            'syllabus' => $syllabus,
-            'ilos' => $syllabus->intendedLearningOutcomes()->orderBy('position')->paginate(10)
-        ]);
+        abort(404);
+    }
+
+    public function show()
+    {
+        abort(404);
     }
 
     /**
@@ -37,6 +38,8 @@ class IntendedLearningOutcomeController extends Controller
      */
     public function create(Syllabus $syllabus)
     {
+        $this->authorize('create', [IntendedLearningOutcome::class, $syllabus]);
+
         return view('intended-learning-outcomes.create', [
             'syllabus' => $syllabus
         ]);
@@ -51,6 +54,8 @@ class IntendedLearningOutcomeController extends Controller
      */
     public function store(Request $request, Syllabus $syllabus)
     {
+        $this->authorize('create', [IntendedLearningOutcome::class, $syllabus]);
+
         $validateData = $request->validate([
             'code' => 'nullable|string|max:255',
             'description' => 'required|string',
@@ -73,7 +78,8 @@ class IntendedLearningOutcomeController extends Controller
      */
     public function edit(Syllabus $syllabus, IntendedLearningOutcome $ilo)
     {
-        // return view('intended-learning-outcomes.edit');
+        $this->authorize('update', $ilo);
+
         return view('intended-learning-outcomes.edit', [
             'syllabus' => $syllabus,
             'ilo' => $ilo
@@ -90,6 +96,8 @@ class IntendedLearningOutcomeController extends Controller
      */
     public function update(Request $request, Syllabus $syllabus, IntendedLearningOutcome $ilo)
     {
+        $this->authorize('update', $ilo);
+
         $validateData = $request->validate([
             'position' => 'required|numeric',
             'code' => 'nullable|string|max:255',
@@ -109,6 +117,8 @@ class IntendedLearningOutcomeController extends Controller
      */
     public function destroy(Syllabus $syllabus, IntendedLearningOutcome $ilo)
     {
+        $this->authorize('delete', $ilo);
+
         $ilo->delete();
         return back();
     }

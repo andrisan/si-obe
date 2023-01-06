@@ -28,7 +28,7 @@
                             <span class="label-text">Code</span>
                         </label>
                         <input type="text" name="code" placeholder="Code"
-                               class="input input-bordered w-full max-w-xs" value="{{ old('code') }}"/>
+                               class="input input-bordered w-full max-w-xs" value="{{ old('code', $ilo->code) }}"/>
                         <x-input-error :messages="$errors->get('code')" class="mt-2"/>
                     </div>
 

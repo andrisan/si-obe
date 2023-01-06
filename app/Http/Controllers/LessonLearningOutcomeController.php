@@ -13,6 +13,16 @@ use App\Models\LessonLearningOutcome;
 
 class LessonLearningOutcomeController extends Controller
 {
+    public function index()
+    {
+        abort(404);
+    }
+
+    public function show()
+    {
+        abort(404);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -21,6 +31,8 @@ class LessonLearningOutcomeController extends Controller
      */
     public function create(Syllabus $syllabus)
     {
+        $this->authorize('create', [LessonLearningOutcome::class, $syllabus]);
+
         return view('lesson-learning-outcomes.create',[
             'syllabus' => $syllabus,
             'clos' => CourseLearningOutcome::where('syllabus_id', $syllabus->id)->get(),
@@ -36,6 +48,8 @@ class LessonLearningOutcomeController extends Controller
      */
     public function store(Request $request, Syllabus $syllabus)
     {
+        $this->authorize('create', [LessonLearningOutcome::class, $syllabus]);
+
         $validated = $request->validate([
             'code' => 'nullable|string|max:255',
             'clo_id' => 'nullable|exists:course_learning_outcomes,id',
@@ -58,6 +72,8 @@ class LessonLearningOutcomeController extends Controller
      */
     public function edit(Syllabus $syllabus, LessonLearningOutcome $llo)
     {
+        $this->authorize('update', $llo);
+
         return view('lesson-learning-outcomes.edit', [
             'syllabus' => $syllabus,
             'llo' => $llo,
@@ -75,6 +91,8 @@ class LessonLearningOutcomeController extends Controller
      */
     public function update(Request $request, Syllabus $syllabus, LessonLearningOutcome $llo)
     {
+        $this->authorize('update', $llo);
+
         $validated = $request->validate([
             'code' => 'nullable|string|max:255',
             'clo_id' => 'nullable|exists:course_learning_outcomes,id',
@@ -96,6 +114,8 @@ class LessonLearningOutcomeController extends Controller
      */
     public function destroy(Syllabus $syllabus, LessonLearningOutcome $llo)
     {
+        $this->authorize('delete', $llo);
+
         $llo->delete();
         return back();
     }
