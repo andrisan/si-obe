@@ -138,7 +138,7 @@ $assignmentPlans = $syllabus->assignmentPlans;
                             @foreach ($ilos as $ilo)
                                 <tr>
                                     <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $loop->index + 1 }}</td>
-                                    <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $ilo->code }}</td>
+                                    <td class="text-gray-600 px-6 py-3 border-t border-gray-100 font-semibold">{{ $ilo->code }}</td>
                                     <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $ilo->description }}</td>
                                     @canany(['is-teacher','is-admin'])
                                         <td
@@ -213,9 +213,12 @@ $assignmentPlans = $syllabus->assignmentPlans;
                             @foreach ($clos as $clo)
                                 <tr>
                                     <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $loop->index + 1 }}</td>
-                                    <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $clo->code ?? "-" }}</td>
+                                    <td class="text-gray-600 px-6 py-3 border-t border-gray-100 font-semibold">{{ $clo->code ?? "-" }}</td>
                                     <td class="text-gray-600 px-6 py-3 border-t border-gray-100">
-                                        {{ $clo->description }} {{ empty($clo->intendedLearningOutcome) ? "" : "[".$clo->intendedLearningOutcome->code."]" }}
+                                        {{ $clo->description }}
+                                        @if(!empty($clo->intendedLearningOutcome))
+                                            <span class="font-semibold text-gray-400">[{{ $clo->intendedLearningOutcome->code }}]</span>
+                                        @endif
                                     </td>
                                     @canany(['is-teacher','is-admin'])
                                         <td class="text-gray-600 px-6 py-3 border-t border-gray-100">
@@ -289,9 +292,12 @@ $assignmentPlans = $syllabus->assignmentPlans;
                             @foreach ($llos as $llo)
                                 <tr>
                                     <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $loop->index + 1 }}</td>
-                                    <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $llo->code ?? "-" }}</td>
+                                    <td class="text-gray-600 px-6 py-3 border-t border-gray-100 font-semibold">{{ $llo->code ?? "-" }}</td>
                                     <td class="text-gray-600 px-6 py-3 border-t border-gray-100">
-                                        {{ $llo->description }} {{ empty($llo->courseLearningOutcome) ? "" : "[".$llo->courseLearningOutcome->code."]" }}
+                                        {{ $llo->description }}
+                                        @if(!empty($llo->courseLearningOutcome))
+                                            <span class="font-semibold text-gray-400">[{{ $llo->courseLearningOutcome->code }}]</span>
+                                        @endif
                                     </td>
                                     @canany(['is-teacher','is-admin'])
                                         <td class="text-gray-600 px-6 py-3 border-t border-gray-100">
@@ -417,17 +423,20 @@ $assignmentPlans = $syllabus->assignmentPlans;
                             @foreach ($assignmentPlans as $assignmentPlan)
                                 <div class="p-5 border border-gray-200 rounded m-4">
                                     <div class="flex flex-row justify-end gap-3 pr-2">
-                                        <a href="{{ route('syllabi.assignment-plans.edit', [$syllabus, $assignmentPlan]) }}"
-                                           class="text-blue-500"><i class="fa fa-edit"></i></a>
+                                        <div class="tooltip tooltip-left" data-tip="Edit Assignment Plan">
+                                            <a href="{{ route('syllabi.assignment-plans.edit', [$syllabus, $assignmentPlan]) }}"
+                                               class="text-blue-500"><i class="fa fa-edit"></i></a>
+                                        </div>
                                         <form method="POST"
                                               action="{{ route('syllabi.assignment-plans.destroy', [$syllabus, $assignmentPlan]) }}">
                                             @csrf
                                             @method('delete')
-
-                                            <button class="text-red-500"
-                                                    onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
+                                            <div class="tooltip tooltip-left" data-tip="Delete Assignment Plan">
+                                                <button class="text-red-500"
+                                                        onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </div>
                                         </form>
                                     </div>
                                     <div class="text-center pb-6">
@@ -519,10 +528,12 @@ $assignmentPlans = $syllabus->assignmentPlans;
                                                             @csrf
                                                             @method('delete')
 
-                                                            <button class="text-red-500 px-3"
-                                                                    onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
-                                                                <i class="fa fa-trash"></i>
-                                                            </button>
+                                                            <div class="tooltip tooltip-right   " data-tip="Delete Rubric">
+                                                                <button class="text-red-500 px-3"
+                                                                        onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
+                                                                    <i class="fa fa-trash"></i>
+                                                                </button>
+                                                            </div>
                                                         </form>
                                                     @else
                                                         <div class="order-5 sm:order-6 mr-2 sm:mr-3">

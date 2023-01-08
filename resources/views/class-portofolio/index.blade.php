@@ -36,10 +36,10 @@
                                     <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $loop->index + 1 }}</td>
                                     <td class="text-gray-600 px-6 py-3 border-t border-gray-100 w-24">[{{ $llo->code }}]</td>
                                     <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $llo->description }}</td>
-                                    <td class="text-gray-600 px-6 py-3 border-t border-gray-100">
+                                    <td class="text-gray-600 px-6 py-3 border-t border-gray-100 w-32">
                                         <span class="font-semibold">{{ $llo->n_passed_student ?? 0 }}</span><span class="text-gray-400"> / {{ $totalStudentsCount }}</span>
                                     </td>
-                                    <td class="text-gray-600 px-6 py-3 border-t border-gray-100 font-semibold">{{ round($llo->llo_accomplishment, 2) }} %</td>
+                                    <td class="text-gray-600 px-6 py-3 border-t border-gray-100 font-semibold w-32">{{ round($llo->llo_accomplishment, 2) }} %</td>
                                 </tr>
                             @endforeach
                             </tbody>

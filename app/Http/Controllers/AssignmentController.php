@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Assignment;
 use App\Models\CourseClass;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -40,11 +41,13 @@ class AssignmentController extends Controller
      * Show the form for creating a new resource.
      *
      * @param CourseClass $class
-     * @param Assignment $assignment
      * @return Application|Factory|View|RedirectResponse
+     * @throws AuthorizationException
      */
-    public function create(CourseClass $class, Assignment $assignment)
+    public function create(CourseClass $class)
     {
+        $this->authorize('create', [Assignment::class, $class]);
+
         $availableAssignmentPlans = $this->_getAvailableAssignmentPlans($class);
 
         if ($availableAssignmentPlans->isEmpty()) {
@@ -53,7 +56,6 @@ class AssignmentController extends Controller
 
         return view('assignments.create', [
             'courseClass' => $class,
-            'assignment' => $assignment,
             'availableAssignmentPlans' => $availableAssignmentPlans,
         ]);
     }
@@ -65,10 +67,12 @@ class AssignmentController extends Controller
      * @param CourseClass $class
      * @param Assignment $assignment
      * @return RedirectResponse
-     * @throws ValidationException
+     * @throws ValidationException|AuthorizationException
      */
     public function store(Request $request, CourseClass $class, Assignment $assignment)
     {
+        $this->authorize('create', [Assignment::class, $class]);
+
         $validator = Validator::make($request->all(), [
             'assignment_plan_id' => 'required|numeric',
             'course_class_id' => 'required|numeric',
@@ -111,15 +115,17 @@ class AssignmentController extends Controller
      * Display the specified resource.
      *
      * @param CourseClass $class
-     * @param int $assignmentID
+     * @param Assignment $assignment
      * @return Application|Factory|View
+     * @throws AuthorizationException
      */
-    public function show(CourseClass $class, int $assignmentID)
+    public function show(CourseClass $class, Assignment $assignment)
     {
-        $assignment = $class->assignments()
-            ->with('assignmentPlan.assignmentPlanTasks.criteria.lessonLearningOutcome')
-            ->with('assignmentPlan.assignmentPlanTasks.criteria.criteriaLevels')
-            ->findOrFail($assignmentID);
+        $this->authorize('view', $assignment);
+
+        $assignment->load('assignmentPlan.assignmentPlanTasks.criteria.lessonLearningOutcome',
+            'assignmentPlan.assignmentPlanTasks.criteria.criteriaLevels'
+        );
 
         $lessonLearningOutcomes = $assignment->assignmentPlan->assignmentPlanTasks
             ->pluck('criteria.lessonLearningOutcome')->unique();
@@ -165,10 +171,13 @@ class AssignmentController extends Controller
      *
      * @param CourseClass $class
      * @param Assignment $assignment
-     * @return Application|Factory|View|RedirectResponse
+     * @return Application|Factory|View
+     * @throws AuthorizationException
      */
     public function edit(CourseClass $class, Assignment $assignment)
     {
+        $this->authorize('update', $assignment);
+
         $availableAssignmentPlans = $this->_getAvailableAssignmentPlans($class);
         $availableAssignmentPlans->push($assignment->assignmentPlan);
 
@@ -186,10 +195,12 @@ class AssignmentController extends Controller
      * @param CourseClass $class
      * @param Assignment $assignment
      * @return RedirectResponse
-     * @throws ValidationException
+     * @throws ValidationException|AuthorizationException
      */
     public function update(Request $request, CourseClass $class, Assignment $assignment)
     {
+        $this->authorize('update', $assignment);
+
         $validator = Validator::make($request->all(), [
             'assignment_plan_id' => 'required|numeric',
             'due_date' => 'nullable|date',
@@ -225,12 +236,15 @@ class AssignmentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  CourseClass $class
-     * @param  Assignment $assignment
+     * @param CourseClass $class
+     * @param Assignment $assignment
      * @return RedirectResponse
+     * @throws AuthorizationException
      */
     public function destroy(CourseClass $class, Assignment $assignment)
     {
+        $this->authorize('delete', $assignment);
+
         $assignment->delete();
         return redirect()->route('classes.show', $class);
     }

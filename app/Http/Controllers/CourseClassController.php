@@ -6,6 +6,7 @@ use App\Models\Course;
 use App\Models\CourseClass;
 use App\Models\Syllabus;
 use App\Models\User;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -22,12 +23,8 @@ class CourseClassController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|RedirectResponse
+     * @return Application|Factory|View|RedirectResponse
      */
-    // public function index()
-    // {
-    //     return view('course-classes.index');
-    // }
     public function index(Request $request)
     {
         if (Gate::allows('is-student')) {
@@ -54,13 +51,13 @@ class CourseClassController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Application|Factory|View
+     * @throws AuthorizationException
      */
     public function create()
     {
-        if (!(Gate::allows('is-teacher') || Gate::allows('is-admin'))) {
-            abort(403);
-        }
+        $this->authorize('create', CourseClass::class);
+
         $courses = Course::all();
         $mySyllabi = Syllabus::where('creator_user_id', Auth::id())->get();
         return view('course-classes.create', [
@@ -72,11 +69,14 @@ class CourseClassController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      * @return RedirectResponse
+     * @throws AuthorizationException
      */
     public function store(Request $request)
     {
+        $this->authorize('create', CourseClass::class);
+
         $validateData = $request->validate([
             'name' => 'required|string',
             'course_id' => 'required|integer',
@@ -97,7 +97,7 @@ class CourseClassController extends Controller
         $courseClass->save();
         $classesId = $courseClass->id;
 
-        $hashids = new Hashids('', 5);
+        $hashids = new Hashids('Th1sis4G3nerat1ngJ0INc0d3', 5);
 
         $classCode = $hashids->encode($classesId);
 
@@ -111,24 +111,15 @@ class CourseClassController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param $courseClassId
+     * @param CourseClass $class
      * @return Application|Factory|View
+     * @throws AuthorizationException
      */
-    public function show($courseClassId)
+    public function show(CourseClass $class)
     {
-        if (Gate::allows("is-student")) {
-            $class = Auth::user()->joinedClasses()->where('course_class_id', $courseClassId)->first();
-        } else if (Gate::allows("is-teacher")) {
-            $class = Auth::user()->createdClasses()->where('id', $courseClassId)->first();
-        } else if (Gate::allows("is-admin")) {
-            $class = CourseClass::where('id', $courseClassId)->first();
-        } else {
-            abort(403);
-        }
+        $this->authorize('view', $class);
 
-        if ($class == null) {
-            abort(404);
-        }
+        $class->load('assignments');
 
         return view('course-classes.show', [
             'courseClass' => $class,
@@ -139,14 +130,13 @@ class CourseClassController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
+     * @param CourseClass $class
      * @return Application|Factory|View
+     * @throws AuthorizationException
      */
     public function edit(CourseClass $class)
     {
-        if (!(Gate::allows('is-teacher') || Gate::allows('is-admin'))) {
-            abort(403);
-        }
+        $this->authorize('update', $class);
 
         $courses = Course::all();
         return view('course-classes.edit', [
@@ -161,17 +151,15 @@ class CourseClassController extends Controller
      * @param Request $request
      * @param CourseClass $class
      * @return RedirectResponse
+     * @throws AuthorizationException
      */
     public function update(Request $request, CourseClass $class)
     {
-        if (!(Gate::allows('is-teacher') || Gate::allows('is-admin'))) {
-            abort(403);
-        }
+        $this->authorize('update', $class);
 
         $validateData = $request->validate([
             'name' => 'required|string',
             'course_id' => 'required|integer',
-//            'syllabus_id' => 'required|integer',
             'thumbnail_img' => 'nullable|image|mimes:png,jpg,jpeg,svg',
         ]);
         if ($request->hasFile('thumbnail_img')) {
@@ -180,7 +168,6 @@ class CourseClassController extends Controller
 
         $class->name = $validateData['name'];
         $class->course_id = $validateData['course_id'];
-//        $class->syllabus_id = $validateData['syllabus_id'];
         if ($request->hasFile('thumbnail_img')) {
             $class->thumbnail_img = $validateData['thumbnail_img'];
         }
@@ -194,15 +181,22 @@ class CourseClassController extends Controller
      *
      * @param CourseClass $class
      * @return RedirectResponse
+     * @throws AuthorizationException
      */
     public function destroy(CourseClass $class)
     {
+        $this->authorize('delete', $class);
+
         $class->delete();
         return back();
     }
 
     public function show_join()
     {
+        if (!(Gate::allows('is-student'))) {
+            abort(403);
+        }
+
         return view('course-classes.show_join');
     }
 
@@ -227,7 +221,9 @@ class CourseClassController extends Controller
 
         $studentUserId = Auth::user()->id;
 
-        $joinClassExist = DB::table('join_classes')->where('course_class_id', $classesCourseId)->where('student_user_id', $studentUserId)->first();
+        $joinClassExist = DB::table('join_classes')
+            ->where('course_class_id', $classesCourseId)
+            ->where('student_user_id', $studentUserId)->first();
 
         if ($joinClassExist != null) {
             $errorMessage = 'Anda sudah bergabung dengan kelas ini';

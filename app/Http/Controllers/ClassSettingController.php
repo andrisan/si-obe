@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\CourseClass;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
 class ClassSettingController extends Controller
 {
@@ -15,7 +16,7 @@ class ClassSettingController extends Controller
      * Display the specified resource.
      *
      * @param CourseClass $class
-     * @return Application|Factory|View
+     * @return void
      */
     public function show(CourseClass $class)
     {
@@ -27,9 +28,12 @@ class ClassSettingController extends Controller
      *
      * @param CourseClass $class
      * @return Application|Factory|View
+     * @throws AuthorizationException
      */
     public function edit(CourseClass $class)
     {
+        $this->authorize('update', [CourseClass::class, $class]);
+
         return view('class-setting.edit', ['class' => $class]);
     }
 
@@ -38,10 +42,13 @@ class ClassSettingController extends Controller
      *
      * @param Request $request
      * @param CourseClass $class
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
+     * @throws AuthorizationException
      */
     public function update(Request $request, CourseClass $class)
     {
+        $this->authorize('update', [CourseClass::class, $class]);
+
         $validated = $request->validate([
             'llo_threshold' => 'required|numeric|min:0|max:100',
         ]);

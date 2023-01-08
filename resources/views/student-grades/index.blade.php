@@ -75,11 +75,11 @@
                                 class="text-gray-600 px-6 py-3 border-t border-gray-100">
                                 <div class="flex flex-wrap space-x-4">
                                     @if(empty($grade->total_student_point))
-                                        <a href="/student-grades/create?assignment_id={{ $assignment->id }}&user_id={{ $grade->student_user_id }}">
+                                        <a href="/student-grades/create?assignment_id={{ $assignment->id }}&student_id={{ $grade->student_user_id }}">
                                             <button class="text-blue-500">Create</button>
                                         </a>
                                     @else
-                                        <a href="/student-grades/edit?assignment_id={{ $assignment->id }}&user_id={{ $grade->student_user_id }}">
+                                        <a href="/student-grades/edit?assignment_id={{ $assignment->id }}&student_id={{ $grade->student_user_id }}">
                                             <button class="text-blue-500"><strong>Edit</strong></button>
                                         </a>
 
@@ -87,8 +87,8 @@
                                               action=" {{ route('student-grades.destroy', 1) }}">
                                             @csrf
                                             @method('delete')
-                                            <input type="hidden" name="assignmentId" value="{{ $assignment->id }}">
-                                            <input type="hidden" name="userId" value="{{ $grade->student_user_id }}">
+                                            <input type="hidden" name="assignment_id" value="{{ $assignment->id }}">
+                                            <input type="hidden" name="student_id" value="{{ $grade->student_user_id }}">
                                             <button class="text-red-500"
                                                     onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
                                                 {{ __('Delete') }}

@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\CourseClass;
 use App\Models\User;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ClassMemberController extends Controller
 {
@@ -23,15 +25,17 @@ class ClassMemberController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param CourseClass $class
      * @return Application|Factory|View
+     * @throws AuthorizationException
      */
-    public function show($id)
+    public function show(CourseClass $class)
     {
-        $courseClass = CourseClass::with('students','creator', 'course')
-            ->findOrFail($id);
+        $this->authorize('view', [CourseClass::class, $class]);
 
-        $students = $courseClass->students()->paginate(10)->through(fn ($user) => [
+        $class->load('students', 'creator', 'course');
+
+        $students = $class->students()->paginate(10)->through(fn ($user) => [
             'id' => $user->id,
             'name' => $user->name,
             'email' => $user->email,
@@ -39,7 +43,7 @@ class ClassMemberController extends Controller
         ]);
 
         return view('class-members.show', [
-            'courseClass' => $courseClass,
+            'courseClass' => $class,
             'students' => $students
         ]);
     }
@@ -67,20 +71,23 @@ class ClassMemberController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $courseClassId
+     * @param Request $request
+     * @param CourseClass $class
      * @return RedirectResponse
+     * @throws AuthorizationException
      */
-    public function destroy(Request $request, $courseClassId)
+    public function destroy(Request $request, CourseClass $class)
     {
+        $this->authorize('removeStudent', [CourseClass::class, $class]);
+
         $student = User::findOrFail($request->student_id);
-        $courseClass = CourseClass::findOrFail($courseClassId);
 
         // if student is not in the class
-        if (!$courseClass->students->contains($student)) {
+        if (!$class->students->contains($student)) {
             return redirect()->back()->with('error', 'Student is not in the class');
         }
 
-        $courseClass->students()->detach($student->id);
+        $class->students()->detach($student->id);
         return redirect()->back()->with('success', 'Student removed from class');
     }
 }

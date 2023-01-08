@@ -16,10 +16,11 @@ class ClassPortofolioController extends Controller
      * @param CourseClass $courseClass
      * @return Application|Factory|View
      */
-    public function index(int $classID)
+    public function index(CourseClass $courseClass)
     {
-        $courseClass = CourseClass::with('syllabus.lessonLearningOutcomes')
-            ->findOrFail($classID);
+        $this->authorize('view', [CourseClass::class, $courseClass]);
+
+        $courseClass->load('syllabus.lessonLearningOutcomes');
 
         $llo_threshold = $courseClass->settings->llo_threshold ?? null;
         if (empty($llo_threshold)) {
@@ -66,12 +67,13 @@ class ClassPortofolioController extends Controller
         ]);
     }
 
-    public function student(int $courseClassID)
+    public function student(CourseClass $courseClass)
     {
-        $courseClass = CourseClass::with('students.studentData',
+        $this->authorize('view', [CourseClass::class, $courseClass]);
+
+        $courseClass->load('students.studentData',
             'students.studentGrade.criteriaLevel',
-            'syllabus.lessonLearningOutcomes.criteria')
-            ->findOrFail($courseClassID);
+            'syllabus.lessonLearningOutcomes.criteria');
 
         $dataReturn = collect();
         $llos = $courseClass->syllabus->lessonLearningOutcomes;

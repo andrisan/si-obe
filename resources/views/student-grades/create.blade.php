@@ -1,4 +1,4 @@
-@section('pageTitle', "Grade - ". $user->name)
+@section('pageTitle', "Grade - ". $student->name)
 
 <x-app-layout>
     <x-slot name="header">
@@ -12,7 +12,7 @@
                     <tbody>
                     <tr>
                         <td>Student</td>
-                        <td>: {{ $user->name }}</td>
+                        <td>: {{ $student->name }}</td>
                     </tr>
                     <tr>
                         <td><span class="mr-10">Assignment</span></td>
@@ -30,7 +30,7 @@
             <div class="bg-white border-b border-gray-200">
                 <form method="post" action="{{ route('student-grades.store') }}">
                     <input type="hidden" name="assignment_id" value="{{ $assignment->id }}">
-                    <input type="hidden" name="user_id" value="{{ $user->id }}">
+                    <input type="hidden" name="student_id" value="{{ $student->id }}">
                     @csrf
 
                     <div class="border rounded m-5">
@@ -40,7 +40,7 @@
                                 <p class="text-sm text-gray-500">{{$apt->criteria->description}}</p>
                                 <p class="pt-5 font-bold">Task:</p>
                                 <div class="flex justify-start gap-4 px-5">
-                                    <p>[{{$apt->code}}]</p>
+                                    <p class="min-w-fit">[{{$apt->code}}]</p>
                                     <p class="text-gray-500">{{ $apt->description }} </p>
                                 </div>
 
