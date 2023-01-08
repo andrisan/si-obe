@@ -10,17 +10,21 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Response;
 
 
 class StudyProgramController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(StudyProgram::class, 'study_program');
+    }
+
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Application|Factory|View
      */
-    public function index(Faculty $faculty, Department $department, )
+    public function index(Faculty $faculty, Department $department )
     {
         return view('study-programs.index',[
             'faculty'=>$faculty,
@@ -29,10 +33,14 @@ class StudyProgramController extends Controller
         ]);
     }
 
+    public function show(Faculty $faculty, Department $department, StudyProgram $studyProgram){
+        abort(404);
+    }
+
    /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Application|Factory|View
     */
     public function create(Faculty $faculty, Department $department)
     {
@@ -45,7 +53,7 @@ class StudyProgramController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return RedirectResponse
      */
     public function store(Request $request, Faculty $faculty, Department $department)

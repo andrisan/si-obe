@@ -53,12 +53,12 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         // Admin role
         Route::group(['middleware' => ['roles:admin']], function (){
             Route::resource('users', UserController::class);
-            Route::resource('faculties', FacultyController::class)->except('show');
+            Route::resource('faculties', FacultyController::class);
             Route::resource('courses', CourseController::class);
 
             Route::scopeBindings()->group(function () {
-                Route::resource('faculties.departments', DepartmentController::class)->except('show');
-                Route::resource('faculties.departments.study-programs', StudyProgramController::class)->except('show');
+                Route::resource('faculties.departments', DepartmentController::class);
+                Route::resource('faculties.departments.study-programs', StudyProgramController::class);
             });
         });
 

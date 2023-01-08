@@ -12,6 +12,11 @@ use Illuminate\Http\RedirectResponse;
 
 class DepartmentController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Department::class, 'department');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -23,6 +28,10 @@ class DepartmentController extends Controller
             'departments' => $faculty->departments()->paginate(10),
             'faculty' => $faculty
         ]);
+    }
+
+    public function show(Faculty $faculty, Department $department){
+        abort(404);
     }
 
     /**

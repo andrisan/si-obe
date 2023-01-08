@@ -2,12 +2,11 @@
 
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex justify-between">
-            <div class="items-start">
-                <h2 class="font-semibold   text-4xl text-gray-800 leading-tight">
-                    {{ __('Edit Course')." $course->name" }}
-                </h2>
-            </div>
+        <div class="flex justify-start gap-4">
+            <x-back-link />
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                {{ __('Edit Course')." $course->name" }}
+            </h2>
         </div>
     </x-slot>
 
@@ -113,7 +112,7 @@
                         <button type="submit" class="btn btn-sm px-7">
                             Save
                         </button>
-                        <a href="{{ route('courses.index') }}">{{ __('Cancel') }}</a>
+                        <x-back-link>{{ __('Cancel') }}</x-back-link>
                     </div>
                 </form>
             </div>
