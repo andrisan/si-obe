@@ -339,10 +339,9 @@ $assignmentPlans = $syllabus->assignmentPlans;
                 </h2>
                 @canany(['is-teacher','is-admin'])
                     <div class="order-5 sm:order-6 mr-2 sm:mr-3">
-                        <a href="{{ route('syllabi.learning-plans.index', $syllabus) }}"
-                           class="w-full bg-white border border-gray-300 rounded-md shadow-sm px-2.5 sm:px-4 py-2 inline-flex justify-center text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                            <span class="pr-1"><i class="fa fa-indent"></i> Manage Weekly Learning Plans</span>
-                        </a>
+                        <x-button-link href="{{ route('syllabi.learning-plans.create', [$syllabus]) }}">
+                            <i class="fa fa-plus"></i> {{ __('Create New Learning Plan') }}
+                        </x-button-link>
                     </div>
                 @endcanany
             </div>
@@ -367,16 +366,41 @@ $assignmentPlans = $syllabus->assignmentPlans;
                                 <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate">
                                     Estimated Time
                                 </th>
+                                @canany(['is-teacher','is-admin'])
+                                    <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-32">
+                                        Action
+                                    </th>
+                                @endcanany
                             </tr>
                             </thead>
                             <tbody>
                             @foreach ($learningPlans as $learningPlan)
                                 <tr>
                                     <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $learningPlan->week_number }}</td>
-                                    <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $learningPlan->lessonLearningOutcome->description }}</td>
+                                    <td class="text-gray-600 px-6 py-3 border-t border-gray-100">
+                                        {{ $learningPlan->lessonLearningOutcome->code ?? "-" }}
+                                    </td>
                                     <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $learningPlan->study_material }}</td>
                                     <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $learningPlan->learning_method }}</td>
                                     <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $learningPlan->estimated_time }}</td>
+                                    @canany(['is-teacher','is-admin'])
+                                        <td class="text-gray-600 px-6 py-3 border-t border-gray-100">
+                                            <div class="flex flex-wrap space-x-4">
+                                                <a href="{{ route('syllabi.learning-plans.edit', [$syllabus, $learningPlan]) }}"
+                                                   class="text-blue-500"><i class="fa fa-edit"></i></a>
+                                                <form method="POST"
+                                                      action="{{ route('syllabi.learning-plans.destroy', [$syllabus, $learningPlan]) }}">
+                                                    @csrf
+                                                    @method('delete')
+
+                                                    <button class="text-red-500"
+                                                            onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                    @endcanany
                                 </tr>
                             @endforeach
                             </tbody>

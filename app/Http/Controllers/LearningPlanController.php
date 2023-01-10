@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -16,22 +17,19 @@ class LearningPlanController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return void
      */
     public function index(Syllabus $syllabus)
     {
-        $this->authorize('viewAny', [LearningPlan::class, $syllabus]);
-
-        return view('learning-plans.index', [
-            'syllabus' => $syllabus,
-            'learningPlans' => $syllabus->learningPlans()->paginate(10)
-        ]);
+        abort(404);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @param Syllabus $syllabus
+     * @return Application|Factory|View
+     * @throws AuthorizationException
      */
     public function create(Syllabus $syllabus)
     {
@@ -61,9 +59,7 @@ class LearningPlanController extends Controller
 
         $syllabus->learningPlans()->create($validated);
 
-        return redirect()->route('syllabi.learning-plans.index', [
-            'syllabus' => $syllabus
-        ]);
+        return redirect()->route('syllabi.show', $syllabus);
     }
 
     /**
@@ -106,9 +102,7 @@ class LearningPlanController extends Controller
 
         $learningPlan->update($validated);
 
-        return redirect()->route('syllabi.learning-plans.index', [
-            'syllabus' => $syllabus,
-        ]);
+        return redirect()->route('syllabi.show', $syllabus);
     }
 
     /**

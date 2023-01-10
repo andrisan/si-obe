@@ -13,9 +13,7 @@
         <div class="pb-8">
             <div class="flex flex-row sm:justify-end mb-3 px-4 sm:px-0 -mr-2 sm:-mr-3">
                 <div class="order-5 sm:order-6 mr-2 sm:mr-3">
-                    <x-button-link href="{{ route('syllabi.learning-plans.create', [$syllabus]) }}">
-                        <i class="fa fa-plus"></i> {{ __('Create New Learning Plan') }}
-                    </x-button-link>
+
                 </div>
             </div>
             @if($learningPlans->count() > 0)
