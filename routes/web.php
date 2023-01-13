@@ -43,7 +43,7 @@ Route::get('/', function () {
         return redirect()->route('dashboard');
     }
     return view('welcome');
-});
+})->name('welcome');
 
 // All authenticated and verified users
 Route::group(['middleware' => ['auth', 'verified']], function () {

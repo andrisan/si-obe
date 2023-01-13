@@ -24,13 +24,13 @@
     <div class="w-full container mx-auto">
         <div class="w-full flex items-center justify-between">
             <a class="flex items-center text-indigo-400 no-underline hover:no-underline font-bold text-2xl lg:text-4xl"
-               href="#">
+               href="{{ route('welcome') }}">
                 <x-application-logo class="block h-8 pr-2 w-auto fill-current" />
                 si-<span class="bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-pink-500 to-purple-500">OBE</span>
             </a>
 
             <div class="flex w-1/2 justify-end content-center">
-                <a href="/login"
+                <a href="{{ route('login') }}"
                    class="inline-block text-blue-300 no-underline hover:text-pink-500 hover:text-underline text-center h-10 p-2 md:h-auto md:p-4 transform hover:scale-125 duration-300 ease-in-out">
                     Login <i class="fa-solid fa-arrow-right-to-bracket"></i>
                 </a>
@@ -43,18 +43,18 @@
         <!--Left Col-->
         <div class="flex flex-col w-full xl:w-2/5 justify-center lg:items-start overflow-y-hidden">
             <h1 class="my-4 text-3xl md:text-5xl text-white opacity-75 font-bold leading-tight text-center md:text-left">
-                Selamat datang di <p>si-OBE</p>
+                Welcome to <span class="text-indigo-400">si-OBE</span>.
             </h1>
-            <p class="leading-normal text-base md:text-2xl mb-8 text-center md:text-left">
-                Aplikasi manajemen nilai berbasis Outcome Based Education
+            <p class="leading-normal text-gray-400 text-base md:text-2xl mb-8 text-center md:text-left">
+                Si-OBE is an application for managing the student's grades based on Outcome-Based Education (OBE) grading system.
             </p>
 
-            <a href="/register" class="btn btn-accent space-x-2">
+            <a href="{{ route('register') }}" class="btn btn-accent space-x-2">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="h-6 w-6 stroke-current">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                           d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
-                <span>Daftar Sekarang</span>
+                <span>Register</span>
             </a>
         </div>
 

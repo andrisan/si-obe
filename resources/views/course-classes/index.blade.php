@@ -41,7 +41,15 @@
                     @foreach ($classes as $class)
                         <li class="flex flex-col p-2 overflow-hidden bg-gray-700 border-t border-gray-600 shadow-2xl shadow-primary-800/10 rounded-xl">
                             <a href="{{ route('classes.show', $class) }}" class="block">
-                                <img src="{{ $class->thumbnail_img ? url('storage/'.substr($class->thumbnail_img, 6)) : "https://via.placeholder.com/374x210/000000/FFFFFF?text=$class->name" }}" class="aspect-[16/9] bg-gray-800 rounded-lg">
+                                <?php
+                                    // check if thumbnail_img is a url or a path
+                                    $isUrl = filter_var($class->thumbnail_img, FILTER_VALIDATE_URL);
+                                    if (empty($class->thumbnail_img))
+                                        $class->thumbnail_img = "https://via.placeholder.com/374x210/000000/FFFFFF?text=$class->name";
+                                    else
+                                        $class->thumbnail_img = $isUrl ? $class->thumbnail_img : url('storage/'.substr($class->thumbnail_img, 6));
+                                ?>
+                                <img src="{{ $class->thumbnail_img }}" class="aspect-[16/9] bg-gray-800 rounded-lg">
                             </a>
 
                             <header class="flex flex-col grow justify-between px-2 py-4 mt-2">
