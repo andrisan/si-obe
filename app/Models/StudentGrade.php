@@ -18,20 +18,18 @@ class StudentGrade extends Model
         'criteria_level_id'
     ];
 
-    public function criteriaLevel()
-    {
-        return $this->belongsTo(CriteriaLevel::class, 'criteria_level_id');
-    }
-    public function User()
-    {
-        return $this->belongsTo(User::class, 'student_user_id');
-    }
-    public function Assignment()
+    public function assignment()
     {
         return $this->belongsTo(Assignment::class, 'assignment_id');
     }
-    public function AssignmentPlanTask()
+
+    public function student()
     {
-        return $this->belongsTo(AssignmentPlanTask::class, 'assignment_plan_task_id');
+        return $this->belongsTo(User::class, 'student_user_id');
+    }
+
+    public function studentGradeDetails()
+    {
+        return $this->hasMany(StudentGradeDetail::class);
     }
 }

@@ -14,7 +14,7 @@
     </x-slot>
 
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        {{ Breadcrumbs::render('student-grades.index', $assignment) }}
+        {{ Breadcrumbs::render('student-grades.index', $courseClass, $assignment) }}
         <div class="pb-8">
             <div class="mb-5 overflow-x-auto bg-white rounded-lg shadow overflow-y-auto relative">
                 @if(empty($assignment->assignmentPlan->rubric))
@@ -26,7 +26,7 @@
                         @php($rubric = $assignment->assignmentPlan->rubric)
                         Please add criteria and its level to the rubric of <a href="{{ route("rubrics.show", $rubric) }}" class="text-blue-500">"{{ $rubric->title }}"</a>.
                     </p>
-                @elseif($assignment->courseClass->students->isEmpty())
+                @elseif($studentWithGrades->isEmpty())
                     <p class="text-center text-gray-500 py-5">
                         No student enrolled in this class.
                     </p>
@@ -59,36 +59,46 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach ($studentGrades as $grade)
+                    @foreach ($studentWithGrades as $student)
+                        @php($collectedPoints = $student->total_grade)
                         <tr>
                             <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $loop->index + 1 }}</td>
-                            <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $grade->student_id_number }}</td>
-                            <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $grade->name }}</td>
+                            <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $student->studentData->student_id_number }}</td>
+                            <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $student->name }}</td>
                             <td class="text-gray-600 px-6 py-3 border-t border-gray-100">
                                 <div class="flex justify-between">
-                                    <span class="font-semibold">{{ $grade->total_student_point ?? 0 }}</span>
-                                    <span class="text-gray-400"> / {{ $maxPoint }}</span>
+                                    @if($student->student_grade_id === null)
+                                        <p class="text-gray-500 text-sm">-</p>
+                                    @else
+                                        <span class="font-semibold">{{ $collectedPoints }}</span>
+                                        <span class="text-gray-400"> / {{ $maxPoint }}</span>
+                                    @endif
                                 </div>
                             </td>
-                            <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $maxPoint==0?0:round(($grade->total_student_point ?? 0)/$maxPoint*100, 2) }}</td>
+                            <td class="text-gray-600 px-6 py-3 border-t border-gray-100">
+                                @if($student->student_grade_id === null)
+                                    <p class="text-gray-500 text-sm">Not Graded</p>
+                                @else
+                                    {{ $maxPoint == 0 ? 0 : round($collectedPoints/$maxPoint*100, 2) }}
+                                @endif
+                            </td>
                             <td
                                 class="text-gray-600 px-6 py-3 border-t border-gray-100">
                                 <div class="flex flex-wrap space-x-4">
-                                    @if(empty($grade->total_student_point))
-                                        <a href="/student-grades/create?assignment_id={{ $assignment->id }}&student_id={{ $grade->student_user_id }}">
+                                    @if($student->student_grade_id === null)
+                                        <a href="{{ route('classes.assignments.student-grades.create', [$courseClass, $assignment, "std" => $student->id]) }}">
                                             <button class="text-blue-500">Create</button>
                                         </a>
                                     @else
-                                        <a href="/student-grades/edit?assignment_id={{ $assignment->id }}&student_id={{ $grade->student_user_id }}">
+                                        <a href="{{ route('classes.assignments.student-grades.edit', [$courseClass, $assignment, $student->student_grade_id]) }}">
                                             <button class="text-blue-500"><strong>Edit</strong></button>
                                         </a>
 
                                         <form method="POST"
-                                              action=" {{ route('student-grades.destroy', 1) }}">
+                                              action=" {{ route('classes.assignments.student-grades.destroy', [$courseClass, $assignment, $student->student_grade_id]) }}">
                                             @csrf
                                             @method('delete')
-                                            <input type="hidden" name="assignment_id" value="{{ $assignment->id }}">
-                                            <input type="hidden" name="student_id" value="{{ $grade->student_user_id }}">
+                                            <input type="hidden" name="student_id" value="{{ $student->id }}">
                                             <button class="text-red-500"
                                                     onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
                                                 {{ __('Delete') }}

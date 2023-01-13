@@ -46,10 +46,11 @@ class ClassPortofolioController extends Controller
                                     select sg.student_user_id, c.llo_id, llo.code, llo.description,
                                     sum(cl.`point`) as student_point, sum(c.max_point) as max_llo_point
                                     from student_grades sg
-                                    join `assignments` a on a.id = sg.assignment_id
-                                    join criteria_levels cl on cl.id = sg.criteria_level_id
+                                    join student_grade_details sgd on sgd.student_grade_id = sg.id
+                                    join criteria_levels cl on cl.id = sgd.criteria_level_id
                                     join criterias c on c.id = cl.criteria_id
                                     join lesson_learning_outcomes llo on llo.id = c.llo_id
+                                    join `assignments` a on a.id = sg.assignment_id
                                     where a.course_class_id = $courseClassID
                                     group by sg.student_user_id, c.llo_id
                                 ) t1
@@ -72,8 +73,8 @@ class ClassPortofolioController extends Controller
         $this->authorize('view', [CourseClass::class, $courseClass]);
 
         $courseClass->load('students.studentData',
-            'students.studentGrade.criteriaLevel',
-            'syllabus.lessonLearningOutcomes.criteria');
+            'students.studentGrades.studentGradeDetails.criteriaLevel',
+            'syllabus.lessonLearningOutcomes.criterias');
 
         $dataReturn = collect();
         $llos = $courseClass->syllabus->lessonLearningOutcomes;
@@ -81,19 +82,21 @@ class ClassPortofolioController extends Controller
             $nim = $student->studentData->student_id_number;
             $name = $student->name;
             $cpmk = collect();
+
             foreach ($llos as $llo) {
-                $temp = 0;
-                $maxPoint = 0;
-                foreach ($llo->criteria as $criteria) {
-                    foreach ($student->studentGrade as $sg) {
-                        if ($criteria->id != $sg->criteriaLevel->criteria_id) {
-                            continue;
+                $collectedPointPerLLO = 0;
+                $maximumCollectiblePointPerLLO = 0;
+                foreach ($llo->criterias as $criteria) {
+                    foreach ($student->studentGrades as $studentGrade) {
+                        foreach ($studentGrade->studentGradeDetails as $studentGradeDetail) {
+                            if ($studentGradeDetail->criteriaLevel->criteria_id == $criteria->id) {
+                                $collectedPointPerLLO += $studentGradeDetail->criteriaLevel->point;
+                            }
                         }
-                        $temp += $sg->criteriaLevel->point;
                     }
-                    $maxPoint += $criteria->max_point;
+                    $maximumCollectiblePointPerLLO += $criteria->max_point;
                 }
-                $cpmk->push(['point' => $temp, 'maxPoint' => $maxPoint]);
+                $cpmk->push(['point' => $collectedPointPerLLO, 'maxPoint' => $maximumCollectiblePointPerLLO]);
             }
             $dataReturn->push(['name' => $name, 'nim' => $nim, 'cpmk' => $cpmk]);
         }

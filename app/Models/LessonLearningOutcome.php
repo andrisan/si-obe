@@ -23,7 +23,7 @@ class LessonLearningOutcome extends Model
         return $this->belongsTo(CourseLearningOutcome::class, 'clo_id');
     }
 
-    public function criteria()
+    public function criterias()
     {
         return $this->hasMany(Criteria::class, 'llo_id');
     }

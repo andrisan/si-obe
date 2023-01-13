@@ -57,7 +57,7 @@
                             {{ __('Profile') }}
                         </x-dropdown-link>
                         @can('is-student')
-                            <x-dropdown-link :href="route('profile.grade')">
+                            <x-dropdown-link :href="route('mygrade.index')">
                                 {{ __('My Grade') }}
                             </x-dropdown-link>
                         @endcan

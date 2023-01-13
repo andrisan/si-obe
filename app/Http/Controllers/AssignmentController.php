@@ -136,27 +136,34 @@ class AssignmentController extends Controller
                 abort(500);
             }
 
-            $studentGrades = $assignment->studentGrades()
+            $studentGrade = $assignment->studentGrades()
                 ->where([
                     ['student_user_id', Auth::user()->id],
                     ['assignment_id', $assignment->id]
                 ])
-                ->with('criteriaLevel')
+                ->with('studentGradeDetails.criteriaLevel')
                 ->with('assignment.assignmentPlan.rubric.criterias.criteriaLevels')
-                ->get();
+                ->first();
 
-            if ($studentGrades->isNotEmpty()) {
-                $assignment->assignmentHasBeenGraded = true;
-                $assignment->totalCollectedPoint = $studentGrades->sum('criteriaLevel.point');
-                $assignmentCriterias = $studentGrades->first()->assignment->assignmentPlan->rubric->criterias;
-                $assignment->totalCriteriaPoint = $assignmentCriterias->sum('max_point');
+            $isAssignmentGraded = !empty($studentGrade);
 
-                foreach ($assignment->assignmentPlan->assignmentPlanTasks as $assignmentPlanTask) {
-                    $assignmentPlanTask->criteria->criteriaLevels->each(function ($criteriaLevel) use ($studentGrades) {
-                        $criteriaLevel->isAchieved = $studentGrades->contains('criteria_level_id', $criteriaLevel->id);
-                    });
+            if ($isAssignmentGraded) {
+                $studentGrade->load('studentGradeDetails.criteriaLevel');
+
+                $studentGradeDetails = $studentGrade->studentGradeDetails;
+                if ($studentGradeDetails->isNotEmpty()) {
+                    $assignment->totalCollectedPoint = $studentGradeDetails->sum('criteriaLevel.point');
+                    $assignmentCriterias = $studentGrade->assignment->assignmentPlan->rubric->criterias;
+                    $assignment->totalCriteriaPoint = $assignmentCriterias->sum('max_point');
+
+                    foreach ($assignment->assignmentPlan->assignmentPlanTasks as $assignmentPlanTask) {
+                        $assignmentPlanTask->criteria->criteriaLevels->each(function ($criteriaLevel) use ($studentGradeDetails) {
+                            $criteriaLevel->isAchieved = $studentGradeDetails->contains('criteria_level_id', $criteriaLevel->id);
+                        });
+                    }
                 }
             }
+            $assignment->assignmentHasBeenGraded = $isAssignmentGraded;
         }
 
         return view('assignments.show', [

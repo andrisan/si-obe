@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Assignment;
+use App\Models\CourseClass;
 use App\Models\StudentGrade;
+use App\Models\StudentGradeDetail;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -23,43 +25,35 @@ class StudentGradeController extends Controller
      * @return Application|Factory|View
      * @throws AuthorizationException
      */
-    public function index(Request $request)
+    public function index(Request $request, CourseClass $class, Assignment $assignment)
     {
-        $assignmentId = $request->get('assignment_id');
-        $assignment = Assignment::findOrFail($assignmentId);
+        $assignment->load('assignmentPlan.assignmentPlanTasks.criteria');
 
-        $this->authorize('viewAny', [StudentGrade::class, $assignment->courseClass]);
+        $studentGradesQuery = $assignment->studentGrades()
+            ->withSum(['studentGradeDetails as total_grade' => function($query){
+                $query
+                    ->join('criteria_levels', 'criteria_levels.id', '=', 'student_grade_details.criteria_level_id')
+                    ->select(DB::raw('sum(point)'));
+            }], 'point')->getQuery();
 
-        $criteriaMaxPoint = 0;
-        foreach ($assignment->assignmentPlan->assignmentPlanTasks as $assignmentPlanTask) {
-            $criteriaMaxPoint += $assignmentPlanTask->criteria->max_point;
-        }
+        $studentWithGrades = $class->students()
+            ->leftJoinSub($studentGradesQuery, 'student_grades', function($join) {
+                $join->on('join_classes.student_user_id', '=', 'student_grades.student_user_id');
+            })
+            ->select('users.*',
+                'student_grades.id as student_grade_id',
+                'student_grades.assignment_id',
+                'student_grades.total_grade')
+            ->with('studentData')
+            ->get();
 
-        $courseClassId = $assignment->courseClass->id;
-
-        $studentGrades = DB::select("select u.id as student_user_id, sd.student_id_number, u.name, grade.total_student_point
-                    from join_classes jc
-                    join users u on u.id  = jc.student_user_id
-                    left join student_data sd on sd.id = u.id
-                    left join (
-                        select student_user_id, sum(student_point) as total_student_point
-                        from (
-                            select sg.student_user_id, sum(cl.`point`) as student_point
-                                from student_grades sg
-                                join `assignments` a on a.id = sg.assignment_id
-                                join criteria_levels cl on cl.id = sg.criteria_level_id
-                                where a.course_class_id = $courseClassId and assignment_id = $assignmentId
-                                group by sg.student_user_id
-                        ) grade_llo
-                        group by student_user_id
-                    ) grade on grade.student_user_id = u.id
-                    where jc.course_class_id = $courseClassId
-                ");
+        $criteriaMaxPoint = $assignment->assignmentPlan->assignmentPlanTasks->sum('criteria.max_point');
 
         return view('student-grades.index', [
-            'studentGrades' => $studentGrades,
+            'courseClass' => $class,
             'assignment' => $assignment,
-            'maxPoint' => $criteriaMaxPoint
+            'studentWithGrades' => $studentWithGrades,
+            'maxPoint' => $criteriaMaxPoint,
         ]);
     }
 
@@ -69,14 +63,14 @@ class StudentGradeController extends Controller
      * @return Application|Factory|View
      * @throws AuthorizationException
      */
-    public function create(Request $request)
+    public function create(Request $request, CourseClass $class, Assignment $assignment)
     {
-        $assignment = Assignment::findOrFail($request->get('assignment_id'));
-        $student = User::findOrFail($request->get('student_id'));
+        $student = User::findOrFail($request->get('std'));
 
         $this->authorize('create', [StudentGrade::class, $assignment, $student]);
 
         return view('student-grades.create', [
+            'courseClass' => $class,
             'assignment' => $assignment,
             'apts' => $assignment->assignmentPlan->assignmentPlanTasks,
             'student' => $student,
@@ -87,32 +81,38 @@ class StudentGradeController extends Controller
      * Store a newly created resource in storage.
      *
      * @param Request $request
+     * @param CourseClass $class
+     * @param Assignment $assignment
      * @return RedirectResponse
      * @throws AuthorizationException
      */
-    public function store(Request $request)
+    public function store(Request $request, CourseClass $class, Assignment $assignment)
     {
-        $assignment = Assignment::findOrFail($request->post('assignment_id'));
-        $student = User::findOrFail($request->post('student_id'));
+        $student = User::findOrFail($request->post('std'));
 
         $this->authorize('create', [StudentGrade::class, $assignment, $student]);
 
         $apts = $assignment->assignmentPlan->assignmentPlanTasks;
 
+        $studentGrade = new StudentGrade();
+        $studentGrade->student_user_id = $student->id;
+        $studentGrade->assignment_id = $assignment->id;
+        $studentGrade->published = false;
+        $studentGrade->save();
+
         $i = 0;
         foreach ($apts as $apt) {
             if ($request->input("criteria_level_id$i")) {
-                $grade = new StudentGrade();
-                $grade->student_user_id = $student->id;
-                $grade->assignment_id = $assignment->id;
-                $grade->assignment_plan_task_id = $apt->id;
-                $grade->criteria_level_id = $request->input("criteria_level_id$i");
-                $grade->save();
+                $studentGradeDetail = new StudentGradeDetail();
+                $studentGradeDetail->student_grade_id = $studentGrade->id;
+                $studentGradeDetail->assignment_plan_task_id = $apt->id;
+                $studentGradeDetail->criteria_level_id = $request->input("criteria_level_id$i");
+                $studentGradeDetail->save();
             }
             $i++;
         }
 
-        return redirect()->route('student-grades.index', ['assignment_id' => $assignment->id]);
+        return redirect()->route('classes.assignments.student-grades.index', [$class, $assignment]);
     }
 
     /**
@@ -130,24 +130,25 @@ class StudentGradeController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param Request $request
+     * @param CourseClass $class
+     * @param Assignment $assignment
+     * @param StudentGrade $studentGrade
      * @return Application|Factory|View
      * @throws AuthorizationException
      */
-    public function edit(Request $request)
+    public function edit(Request $request, CourseClass $class, Assignment $assignment, StudentGrade $studentGrade)
     {
-        $assignment = Assignment::findOrFail($request->get('assignment_id'));
-        $student = User::findOrFail($request->query('student_id'));
+        $student = $studentGrade->student;
 
         $this->authorize('update', [StudentGrade::class, $assignment, $student]);
 
-        $grades = StudentGrade::where('assignment_id', $assignment->id)
-            ->where('student_user_id', $student->id)
-            ->get();
+        $assignment->load('assignmentPlan.assignmentPlanTasks.criteria.criteriaLevels');
 
         $apts = $assignment->assignmentPlan->assignmentPlanTasks;
 
         return view('student-grades.edit', [
-            'grades' => $grades,
+            'courseClass' => $class,
+            'studentGrade' => $studentGrade,
             'apts' => $apts,
             'assignment' => $assignment,
             'student' => $student,
@@ -161,65 +162,56 @@ class StudentGradeController extends Controller
      * @return RedirectResponse
      * @throws AuthorizationException
      */
-    public function update(Request $request)
+    public function update(Request $request, CourseClass $class, Assignment $assignment, StudentGrade $studentGrade)
     {
-        $assignment = Assignment::findOrFail($request->post('assignment_id'));
-        $student = User::findOrFail($request->post('student_id'));
+        $student = User::findOrFail($request->post('std'));
 
         $this->authorize('update', [StudentGrade::class, $assignment, $student]);
-
-        $grades = StudentGrade::where('assignment_id', $assignment->id)
-            ->where('student_user_id', $student->id)
-            ->get();
 
         $apts = $assignment->assignmentPlan->assignmentPlanTasks;
 
         $i = 0;
         foreach ($apts as $apt) {
-            $grade = $grades->where('assignment_plan_task_id',$apt->id)->first();
-            if ($grade) {
-                $grade->criteria_level_id = $request->input("criteria_level_id$i");
-                $grade->update();
+            $gradeDetail = $studentGrade->studentGradeDetails->where('assignment_plan_task_id',$apt->id)->first();
+            if ($gradeDetail) {
+                $gradeDetail->criteria_level_id = $request->input("criteria_level_id$i");
+                $gradeDetail->update();
             } elseif ($request->input("criteria_level_id$i")) {
-                $grade = new StudentGrade();
-                $grade->student_user_id = $student->id;
-                $grade->assignment_id = $request->assignment_id;
-                $grade->assignment_plan_task_id = $apt->id;
-                $grade->criteria_level_id = $request->input("criteria_level_id$i");
-                $grade->save();
+                $gradeDetail = new StudentGradeDetail();
+                $gradeDetail->student_grade_id = $studentGrade->id;
+                $gradeDetail->assignment_plan_task_id = $apt->id;
+                $gradeDetail->criteria_level_id = $request->input("criteria_level_id$i");
+                $gradeDetail->save();
             }
             $i++;
         }
 
-        return redirect()->route('student-grades.index', ['assignment_id' => $assignment->id]);
+        return redirect()->route('classes.assignments.student-grades.index', [$class, $assignment]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param Request $request
+     * @param CourseClass $class
+     * @param Assignment $assignment
+     * @param StudentGrade $studentGrade
      * @return RedirectResponse
      * @throws AuthorizationException
      */
-    public function destroy(Request $request)
+    public function destroy(Request $request, CourseClass $class, Assignment $assignment, StudentGrade $studentGrade)
     {
-        $assignment = Assignment::findOrFail($request->post('assignment_id'));
         $student = User::findOrFail($request->post('student_id'));
 
         $this->authorize('delete', [StudentGrade::class, $assignment, $student]);
 
-        $grades = StudentGrade::where([
-            ['assignment_id', '=', $assignment->id],
-            ['student_user_id', '=', $student->id],
-        ])->get();
+        $studentGrade->load('studentGradeDetails');
 
-        if (empty($grades)) {
-            abort(404);
+        foreach ($studentGrade->studentGradeDetails as $gradeDetail) {
+            $gradeDetail->delete();
         }
 
-        foreach($grades as $grade){
-            $grade->delete();
-        }
+        $studentGrade->delete();
 
         return back();
     }

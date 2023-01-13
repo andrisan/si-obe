@@ -52,7 +52,7 @@
                             </div>
                         </div>
                         @if($assignmentPlan->is_group_assignment)
-                            <div class="badge badge-primary p-4 w-64">Group Assignment</div>
+                            <div class="badge badge-primary p-4 w-[300px]">Group Assignment</div>
                         @endif
                     </div>
                 </div>
@@ -111,9 +111,7 @@
                         </div>
 
                         <div class="nilai py-5 px-10">
-                            <form method="GET" action="{{ route('student-grades.index', [$assignment]) }}">
-                                <input type="hidden" name="assignment_id" id="assignment_id"
-                                       value="{{ $assignment->id}}">
+                            <form method="GET" action="{{ route('classes.assignments.student-grades.index', [$courseClass, $assignment]) }}">
                                 <button type="submit" class="btn btn-sm px-7">
                                     {{ __('Student Grades') }}
                                 </button>
@@ -144,10 +142,12 @@
                                 @foreach($assigmentTasks as $assignmentTask)
                                     @php($taskCriteria = $assignmentTask->criteria)
                                     <div class="flex justify-start">
-                                        <div class="m-2 bg-white w-10 h-10 rounded-lg shadow text-center items-center">
-                                            <span class="w-full h-full flex justify-center items-center text-2xl text-gray-600">{{ $loop->index + 1 }}</span>
+                                        <div class="flex-shrink-0 m-2 bg-white w-10 h-10 rounded-lg shadow text-center items-center">
+                                            <span class="w-full h-full flex justify-center items-center text-2xl text-gray-600">
+                                                {{ $loop->index + 1 }}
+                                            </span>
                                         </div>
-                                        <div class="font-semibold text-gray-500 px-2">
+                                        <div class="font-semibold text-gray-500 p-2">
                                             <span class="w-full h-full flex items-center">
                                                 [{{ $assignmentTask->code ?? "-" }}] {{ $assignmentTask->description }}
                                             </span>

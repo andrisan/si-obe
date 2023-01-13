@@ -25,12 +25,11 @@
     </x-slot>
 
     <div class="max-w-7xl mx-auto pb-10 sm:px-6 lg:px-8">
-        {{ Breadcrumbs::render('student-grades.create', $assignment) }}
+        {{ Breadcrumbs::render('student-grades.create', $courseClass, $assignment) }}
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="bg-white border-b border-gray-200">
-                <form method="post" action="{{ route('student-grades.store') }}">
-                    <input type="hidden" name="assignment_id" value="{{ $assignment->id }}">
-                    <input type="hidden" name="student_id" value="{{ $student->id }}">
+                <form method="post" action="{{ route('classes.assignments.student-grades.store', [$courseClass, $assignment]) }}">
+                    <input type="hidden" name="std" value="{{ $student->id }}">
                     @csrf
 
                     <div class="border rounded m-5">
@@ -72,7 +71,7 @@
                         <button type="submit" class="btn btn-sm px-7">
                             Save
                         </button>
-                        <a href="{{ route('student-grades.index', ['assignment_id' => $assignment->id]) }}">{{ __('Cancel') }}</a>
+                        <x-back-link>{{ __('Cancel') }}</x-back-link>
                     </div>
 
                 </form>

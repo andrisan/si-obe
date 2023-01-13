@@ -18,7 +18,7 @@
                         <th rowspan="2" class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-6">No</th>
                         <th rowspan="2" class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate">Name</th>
                         <th rowspan="2" class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-32">Student ID</th>
-                        <th colspan="{{ $llos->count() }}" class="text-center bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-2">LLO Achievement</th>
+                        <th colspan="{{ $llos->count() }}" class="text-center bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-2">LLO Achievement (%)</th>
                         <th rowspan="2" class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-32">{{ __('Grade') }}</th>
                         <th rowspan="2" class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-32">{{ __('Letter') }}</th>
                     </tr>
@@ -40,7 +40,9 @@
                             <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $data['name'] }}</td>
                             <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $data['nim'] }}</td>
                             @foreach ($data['cpmk'] as $cpmk)
-                            <td class="text-center text-gray-600 px-6 py-3 border-t border-gray-100">{{ $cpmk['point'] }}</td>
+                            <td class="text-center text-gray-600 px-6 py-3 border-t border-gray-100">
+                                {{ round($cpmk['point']/$cpmk['maxPoint']*100,2) }}
+                            </td>
                             @endforeach
                                 <?php
                                 $totalPoint = $data['cpmk']->sum('point');
@@ -63,8 +65,8 @@
                                     $pointLetter = 'E';
                                 }
                                 ?>
-                            <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $totalPoint }}</td>
-                            <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $pointLetter }}</td>
+                            <td class="text-gray-600 px-6 py-3 border-t border-gray-100 text-center">{{ $totalPoint }}</td>
+                            <td class="text-gray-600 px-6 py-3 border-t border-gray-100 text-center">{{ $pointLetter }}</td>
                         </tr>
                             <?php $i++; ?>
                         @endforeach

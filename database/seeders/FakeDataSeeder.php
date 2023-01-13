@@ -19,6 +19,7 @@ use App\Models\LessonLearningOutcome;
 use App\Models\Rubric;
 use App\Models\StudentGrade;
 use App\Models\StudentData;
+use App\Models\StudentGradeDetail;
 use App\Models\StudyProgram;
 use App\Models\Syllabus;
 use App\Models\User;
@@ -188,6 +189,12 @@ class FakeDataSeeder extends Seeder
                                     $assignmentPlanTasks = $assignmentPlan->assignmentPlanTasks;
 
                                     foreach ($studentsJoinThisClass as $student){
+                                        $studentGrade = StudentGrade::factory(1)->create([
+                                            'student_user_id' => $student->id,
+                                            'assignment_id' => $assignment->id,
+                                            'published' => true,
+                                        ])->first();
+
                                         foreach ($assignmentPlanTasks as $assignmentPlanTask) {
                                             $criteria = $assignmentPlanTask->criteria;
                                             $criteriaLevels = $criteria->criteriaLevels;
@@ -198,9 +205,8 @@ class FakeDataSeeder extends Seeder
                                                 $criteriaLevel = $criteriaLevels->random(1)->first();
                                             }
 
-                                            StudentGrade::factory(1)->create([
-                                                'student_user_id' => $student->id,
-                                                'assignment_id' => $assignment->id,
+                                            StudentGradeDetail::factory(1)->create([
+                                                'student_grade_id' => $studentGrade->id,
                                                 'assignment_plan_task_id' => $assignmentPlanTask->criteria_id,
                                                 'criteria_level_id' => $criteriaLevel->id,
                                             ]);

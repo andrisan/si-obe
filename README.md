@@ -1,30 +1,34 @@
-<p align="center"><img src="si-obe.svg" width="400"></p>
+<p align="center">
+  <a href="https://github.com/andrisan/si-obe">
+    <img src="si-obe.svg" width="400" alt="Logo" width="80" height="80">
+  </a>
+  <h1 align="center" style="color: rgb(129, 140, 248">si-OBE</h1>
+  <p align="center">
+    si-OBE is web-based application for the management of student grades based on the OBE (Outcome Based Education) system.
+  </p>
+</p>
 
-## Tentang si-OBE
+# Getting Started
 
-si-OBE adalah aplikasi web yang digunakan untuk mengelola nilai berbasis Outcame Based Education (OBE)
+## Prerequisites
+You will need the following to run si-OBE:
+- PHP >= 8.0.2
+- Composer
+- Node.js
+- NPM
+- Database server (MySQL, MariaDB, PostgreSQL, or SQLite)
+## Installation
 
-## Instalasi
+The following steps will guide you through the installation process of si-OBE for running in a development environment locally on your machine:
+1. Clone the latest version of si-OBE from the repository 
+2. Copy the .env.example file to .env and edit the database credentials according to your database server
+3. Run `php artisan key:generate` to generate a new application key
+4. Run `php artisan migrate` to create the database tables. You can also add the `--seed` flag to seed the database with some dummy data
+5. Run `php artisan serve` to start the development server
+6. Open another terminal and run `npm install` to install the required node modules
+7. Run `npm run dev` to compile the assets for development
+8. Open your browser and go to `http://localhost:8000` to view the application
 
-Untuk instalasi silahkan ikuti langkah-langkah berikut:
-1. Clone repository ini
-2. Buka sebuah terminal dan jalankan perintah `composer install`
-3. Copy file `.env.example` menjadi `.env`
-4. Jalankan perintah `php artisan key:generate`
-5. Buat database baru, misalkan dengan nama `si-obe`
-6. Konfigurasi database di file `.env`
-    - `DB_CONNECTION=mysql`
-    - `DB_HOST=127.0.0.1`
-    - `DB_PORT=3306`
-    - `DB_DATABASE=si-obe`
-    - `DB_USERNAME=username_database`
-    - `DB_PASSWORD=password_database`
-7. Jalankan perintah `php artisan migrate`
-8. Jalankan perintah `php artisan serve` untuk menjalankan server PHP
-9. Setelah berhasil menjalankan server PHP, buka terminal baru dan jalankan perintah `npm install` untuk menginstall semua dependensi yang dibutuhkan oleh aplikasi ini.
-10. Kemudian jalankan perintah `npm run dev` untuk mengkompilasi semua file yang dibutuhkan oleh aplikasi ini. 
-11. Buka browser dan akses `http://localhost:8000`
+# License
 
-## Lisensi
-
-Aplikasi si-OBE adalah sebuah perangkat lunak open-source dibawah lisensi [MIT license](https://github.com/andrisan/si-obe/blob/main/LICENSE).
+si-OBE is open-sourced software licensed under the [MIT license](LICENSE).

@@ -32,8 +32,8 @@ class SyllabusPolicy
      */
     public function view(User $user, Syllabus $sylabus)
     {
-        // only creator can view
-        return $user->id === $sylabus->creator_user_id;
+        // everyone can view syllabus with limitations
+        return true;
     }
 
     /**

@@ -329,25 +329,24 @@ Breadcrumbs::for('criteria-levels.edit', function (BreadcrumbTrail $trail, $rubr
 });
 
 // Student Grades
-Breadcrumbs::for('student-grades.index', function (BreadcrumbTrail $trail, $assignment) {
+Breadcrumbs::for('student-grades.index', function (BreadcrumbTrail $trail, $class, $assignment) {
     $trail->parent('home');
-    $class = $assignment->courseClass;
     $trail->push(Str::limit($class->name, 30), route('classes.show', $class));
     $trail->push(Str::limit($assignment->assignmentPlan->title, 30), route('classes.assignments.show', [$class, $assignment]));
-    $trail->push('Student Grades', route('student-grades.index', [
-        'assignment_id' => $assignment->id
+    $trail->push('Student Grades', route('classes.assignments.student-grades.index', [
+        $class, $assignment
     ]));
 });
 
 // Student Grades > Edit
-Breadcrumbs::for('student-grades.edit', function (BreadcrumbTrail $trail, $assignment) {
-    $trail->parent('student-grades.index', $assignment);
+Breadcrumbs::for('student-grades.edit', function (BreadcrumbTrail $trail, $class, $assignment) {
+    $trail->parent('student-grades.index', $class, $assignment);
     $trail->push('Edit');
 });
 
 // Student Grades > Create
-Breadcrumbs::for('student-grades.create', function (BreadcrumbTrail $trail, $assignment) {
-    $trail->parent('student-grades.index', $assignment);
+Breadcrumbs::for('student-grades.create', function (BreadcrumbTrail $trail, $class, $assignment) {
+    $trail->parent('student-grades.index', $class, $assignment);
     $trail->push('Create');
 });
 
@@ -365,9 +364,14 @@ Breadcrumbs::for('class-portofolio.student', function (BreadcrumbTrail $trail, $
     $trail->push('Student Portfolio', route('class-portofolio.index', $class));
 });
 
-// Profile > Grade
-Breadcrumbs::for('profile.grade', function (BreadcrumbTrail $trail) {
+// MyGrade > Index
+Breadcrumbs::for('mygrade.index', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
-    $trail->push('Profile', route('profile.show'));
-    $trail->push('Grade', route('profile.grade'));
+    $trail->push('My Grades', route('mygrade.index'));
+});
+
+// MyGrade > Show
+Breadcrumbs::for('mygrade.show', function (BreadcrumbTrail $trail, $class) {
+    $trail->parent('mygrade.index');
+    $trail->push(Str::limit($class->name, 30), route('mygrade.show', $class));
 });

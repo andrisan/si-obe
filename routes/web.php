@@ -14,6 +14,7 @@ use App\Http\Controllers\CriteriaLevelController;
 use App\Http\Controllers\IntendedLearningOutcomeController;
 use App\Http\Controllers\LearningPlanController;
 use App\Http\Controllers\LessonLearningOutcomeController;
+use App\Http\Controllers\MyGradeController;
 use App\Http\Controllers\RubricController;
 use App\Http\Controllers\StudentGradeController;
 use App\Http\Controllers\SyllabusController;
@@ -67,11 +68,6 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
             Route::resource('syllabi', SyllabusController::class);
             Route::resource('rubrics', RubricController::class);
 
-            Route::get('student-grades/edit', [StudentGradeController::class, 'edit']);
-            Route::get('student-grades/create', [StudentGradeController::class, 'create']);
-            Route::resource('student-grades', StudentGradeController::class, ['except' => [
-                'edit'
-            ]]);
             Route::get('class-portofolio/{courseClass}', [ClassPortofolioController::class, 'index'])->name('class-portofolio.index');
             Route::get('class-portofolio/{courseClass}/students', [ClassPortofolioController::class, 'student'])->name('class-portofolio.student');
 
@@ -85,6 +81,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
                 Route::resource('rubrics.criterias', CriteriaController::class);
                 Route::resource('rubrics.criterias.criteria-levels', CriteriaLevelController::class);
                 Route::resource('classes.assignments', AssignmentController::class);
+                Route::resource('classes.assignments.student-grades', StudentGradeController::class);
 
                 Route::singleton('classes.setting', ClassSettingController::class);
                 Route::singleton('classes.members', ClassMemberController::class)->creatable();
@@ -95,7 +92,9 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         Route::group(['middleware' => ['roles:student']], function (){
             Route::post('classes/join/process', [CourseClassController::class, 'join'])->name('classes.join');
             Route::get('classes/join',[CourseClassController::class, 'show_join'])->name('classes.show_join');
-            Route::get('profile/grade', [ProfileController::class, 'grade'])->name('profile.grade');
+
+            Route::get('myGrade', [MyGradeController::class, 'index'])->name('mygrade.index');
+            Route::get('myGrade/{courseClass}', [MyGradeController::class, 'show'])->name('mygrade.show');
         });
 
         // All roles

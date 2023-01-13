@@ -25,17 +25,16 @@
     </x-slot>
 
     <div class="max-w-7xl mx-auto pb-10 sm:px-6 lg:px-8">
-        {{ Breadcrumbs::render('student-grades.edit', $assignment) }}
+        {{ Breadcrumbs::render('student-grades.edit', $courseClass, $assignment) }}
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="bg-white border-b border-gray-200">
-                <form method="post" action="{{route('student-grades.update', $grades->first()->id) }}">
-                    <input type="hidden" name="assignment_id" value="{{ $grades->first()->assignment_id }}">
-                    <input type="hidden" name="student_id" value="{{ $student->id }}">
+                <form method="post" action="{{ route('classes.assignments.student-grades.update', [$courseClass, $assignment, $studentGrade]) }}">
+                    <input type="hidden" name="std" value="{{ $student->id }}">
                     @csrf
                     @method('patch')
                     <div class="border rounded m-5">
                         @foreach($apts as $apt)
-                        @php($grade = $grades->where('assignment_plan_task_id',$apt->id)->first())
+                        @php($grade = $studentGrade->studentGradeDetails->where('assignment_plan_task_id',$apt->id)->first())
                         <div class="p-5 {{ !$loop->last ? "border-b": "" }}">
                             <p class="text-lg font-semibold">{{$apt->criteria->title}}</p>
                             <p class="text-sm text-gray-500">{{$apt->criteria->description}}</p>
@@ -66,7 +65,7 @@
                         <button type="submit" class="btn btn-sm px-7">
                             Save
                         </button>
-                        <a href="{{ route('student-grades.index', ['assignment_id' => $grades->first()->assignment_id]) }}">{{ __('Cancel') }}</a>
+                        <x-back-link>{{ __('Cancel') }}</x-back-link>
                     </div>
 
                 </form>
